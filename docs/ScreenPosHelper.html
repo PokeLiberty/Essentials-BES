@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: ScreenPosHelper
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "ScreenPosHelper";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">ScreenPosHelper</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: ScreenPosHelper
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/Tilemap_Perspective.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bmHeight-class_method" title="bmHeight (class method)">.<strong>bmHeight</strong>(bm)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbScreenX-class_method" title="pbScreenX (class method)">.<strong>pbScreenX</strong>(ch)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbScreenY-class_method" title="pbScreenY (class method)">.<strong>pbScreenY</strong>(ch)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbScreenZ-class_method" title="pbScreenZ (class method)">.<strong>pbScreenZ</strong>(ch, height = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbScreenZoomX-class_method" title="pbScreenZoomX (class method)">.<strong>pbScreenZoomX</strong>(ch)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbScreenZoomY-class_method" title="pbScreenZoomY (class method)">.<strong>pbScreenZoomY</strong>(ch)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="bmHeight-class_method">
+  
+    .<strong>bmHeight</strong>(bm)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Tilemap_Perspective.rb', line 99</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bmHeight'>bmHeight</span><span class='lparen'>(</span><span class='id identifier rubyid_bm'>bm</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_h'>h</span><span class='op'>=</span><span class='ivar'>@heightcache</span><span class='lbracket'>[</span><span class='id identifier rubyid_bm'>bm</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_h'>h</span>
+    <span class='id identifier rubyid_bmap'>bmap</span><span class='op'>=</span><span class='const'>AnimatedBitmap</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Graphics/Characters/</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span><span class='id identifier rubyid_bm'>bm</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_h'>h</span><span class='op'>=</span><span class='id identifier rubyid_bmap'>bmap</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span>
+    <span class='ivar'>@heightcache</span><span class='lbracket'>[</span><span class='id identifier rubyid_bm'>bm</span><span class='rbracket'>]</span><span class='op'>=</span><span class='id identifier rubyid_h'>h</span>
+    <span class='id identifier rubyid_bmap'>bmap</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_h'>h</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbScreenX-class_method">
+  
+    .<strong>pbScreenX</strong>(ch)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+77
+78
+79
+80
+81
+82
+83
+84</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Tilemap_Perspective.rb', line 77</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pbScreenX'>pbScreenX</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='id identifier rubyid_ch'>ch</span><span class='period'>.</span><span class='id identifier rubyid_screen_x'>screen_x</span>
+  <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_tilemap'>tilemap</span><span class='op'>==</span><span class='int'>2</span>
+    <span class='id identifier rubyid_widthdiv2'>widthdiv2</span><span class='op'>=</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_width'><span class='object_link'><a href="Graphics.html#width-class_method" title="Graphics.width (method)">width</a></span></span> <span class='op'>/</span> <span class='int'>2</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='id identifier rubyid_widthdiv2'>widthdiv2</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_ret'>ret</span><span class='op'>-</span><span class='id identifier rubyid_widthdiv2'>widthdiv2</span><span class='rparen'>)</span><span class='op'>*</span><span class='id identifier rubyid_pbScreenZoomX'>pbScreenZoomX</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbScreenY-class_method">
+  
+    .<strong>pbScreenY</strong>(ch)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Tilemap_Perspective.rb', line 86</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pbScreenY'>pbScreenY</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='id identifier rubyid_ch'>ch</span><span class='period'>.</span><span class='id identifier rubyid_screen_y'>screen_y</span>
+  <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_tilemap'>tilemap</span><span class='op'>==</span><span class='int'>2</span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Draw_Tilemap.html" title="Draw_Tilemap (class)">Draw_Tilemap</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Draw_Tilemap.html#Curve-constant" title="Draw_Tilemap::Curve (constant)">Curve</a></span></span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Draw_Tilemap.html" title="Draw_Tilemap (class)">Draw_Tilemap</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Draw_Tilemap.html#Pitch-constant" title="Draw_Tilemap::Pitch (constant)">Pitch</a></span></span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_zoomy'>zoomy</span><span class='op'>=</span><span class='id identifier rubyid_pbScreenZoomY'>pbScreenZoomY</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_oneMinusZoomY'>oneMinusZoomY</span><span class='op'>=</span><span class='int'>1</span><span class='op'>-</span><span class='id identifier rubyid_zoomy'>zoomy</span>
+    <span class='id identifier rubyid_ret'>ret</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='int'>8</span> <span class='op'>*</span> <span class='id identifier rubyid_oneMinusZoomY'>oneMinusZoomY</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='id identifier rubyid_oneMinusZoomY'>oneMinusZoomY</span> <span class='op'>/</span>
+       <span class='lparen'>(</span><span class='int'>2</span> <span class='op'>*</span> <span class='lparen'>(</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Draw_Tilemap.html" title="Draw_Tilemap (class)">Draw_Tilemap</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Draw_Tilemap.html#Pitch-constant" title="Draw_Tilemap::Pitch (constant)">Pitch</a></span></span><span class='op'>*</span><span class='float'>1.0</span> <span class='op'>/</span> <span class='int'>100</span><span class='rparen'>)</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_height'><span class='object_link'><a href="Graphics.html#height-class_method" title="Graphics.height (method)">height</a></span></span><span class='op'>*</span><span class='float'>1.0</span> <span class='op'>/</span> <span class='float'>16.0</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='float'>0.5</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbScreenZ-class_method">
+  
+    .<strong>pbScreenZ</strong>(ch, height = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Tilemap_Perspective.rb', line 110</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pbScreenZ'>pbScreenZ</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='comma'>,</span><span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_height'>height</span><span class='op'>==</span><span class='kw'>nil</span>
+    <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>0</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_ch'>ch</span><span class='period'>.</span><span class='id identifier rubyid_tile_id'>tile_id</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>32</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_ch'>ch</span><span class='period'>.</span><span class='id identifier rubyid_character_name'>character_name</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='id identifier rubyid_bmHeight'>bmHeight</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='period'>.</span><span class='id identifier rubyid_character_name'>character_name</span><span class='rparen'>)</span><span class='op'>/</span><span class='int'>4</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='id identifier rubyid_ch'>ch</span><span class='period'>.</span><span class='id identifier rubyid_screen_z'>screen_z</span><span class='lparen'>(</span><span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_tilemap'>tilemap</span><span class='op'>==</span><span class='int'>2</span>
+    <span class='id identifier rubyid_ret'>ret</span><span class='op'>-=</span><span class='lparen'>(</span><span class='id identifier rubyid_pbScreenZoomY'>pbScreenZoomY</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span> <span class='op'>&lt;</span> <span class='float'>0.5</span> <span class='op'>?</span> <span class='int'>1000</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbScreenZoomX-class_method">
+  
+    .<strong>pbScreenZoomX</strong>(ch)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62
+63
+64
+65
+66</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Tilemap_Perspective.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pbScreenZoomX'>pbScreenZoomX</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_zoom'>zoom</span><span class='op'>=</span><span class='float'>1.0</span>
+  <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_tilemap'>tilemap</span><span class='op'>==</span><span class='int'>2</span>
+    <span class='id identifier rubyid_zoom'>zoom</span><span class='op'>=</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='period'>.</span><span class='id identifier rubyid_screen_y'>screen_y</span> <span class='op'>-</span> <span class='int'>16</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_height'><span class='object_link'><a href="Graphics.html#height-class_method" title="Graphics.height (method)">height</a></span></span> <span class='op'>/</span> <span class='int'>2</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>*</span>
+       <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Draw_Tilemap.html" title="Draw_Tilemap (class)">Draw_Tilemap</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Draw_Tilemap.html#Pitch-constant" title="Draw_Tilemap::Pitch (constant)">Pitch</a></span></span><span class='op'>*</span><span class='float'>1.0</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_height'><span class='object_link'><a href="Graphics.html#height-class_method" title="Graphics.height (method)">height</a></span></span> <span class='op'>*</span> <span class='int'>25</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Game_Map.html#TILEWIDTH-constant" title="Game_Map::TILEWIDTH (constant)">TILEWIDTH</a></span></span><span class='op'>*</span><span class='id identifier rubyid_zoom'>zoom</span><span class='op'>/</span><span class='float'>32.0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbScreenZoomY-class_method">
+  
+    .<strong>pbScreenZoomY</strong>(ch)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+68
+69
+70
+71
+72
+73
+74
+75</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Tilemap_Perspective.rb', line 68</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pbScreenZoomY'>pbScreenZoomY</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_zoom'>zoom</span><span class='op'>=</span><span class='float'>1.0</span>
+  <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_tilemap'>tilemap</span><span class='op'>==</span><span class='int'>2</span>
+    <span class='id identifier rubyid_zoom'>zoom</span><span class='op'>=</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_ch'>ch</span><span class='period'>.</span><span class='id identifier rubyid_screen_y'>screen_y</span> <span class='op'>-</span> <span class='int'>16</span><span class='rparen'>)</span> <span class='op'>-</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_height'><span class='object_link'><a href="Graphics.html#height-class_method" title="Graphics.height (method)">height</a></span></span> <span class='op'>/</span> <span class='int'>2</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>*</span>
+       <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Draw_Tilemap.html" title="Draw_Tilemap (class)">Draw_Tilemap</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Draw_Tilemap.html#Pitch-constant" title="Draw_Tilemap::Pitch (constant)">Pitch</a></span></span><span class='op'>*</span><span class='float'>1.0</span> <span class='op'>/</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_height'><span class='object_link'><a href="Graphics.html#height-class_method" title="Graphics.height (method)">height</a></span></span> <span class='op'>*</span> <span class='int'>25</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Game_Map.html#TILEHEIGHT-constant" title="Game_Map::TILEHEIGHT (constant)">TILEHEIGHT</a></span></span><span class='op'>*</span><span class='id identifier rubyid_zoom'>zoom</span><span class='op'>/</span><span class='float'>32.0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:21 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

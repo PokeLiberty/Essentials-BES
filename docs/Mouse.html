@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Mouse
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Mouse";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (M)</a> &raquo;
+    
+    
+    <span class="title">Mouse</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Mouse
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/PSystem_Controls.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Requires Win32API</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#del-class_method" title="del (class method)">.<strong>del</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getMouseGlobalPos-class_method" title="getMouseGlobalPos (class method)">.<strong>getMouseGlobalPos</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getMousePos-class_method" title="getMousePos (class method)">.<strong>getMousePos</strong>(catch_anywhere = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the position of the mouse relative to the game window.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#releaseCapture-class_method" title="releaseCapture (class method)">.<strong>releaseCapture</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#screen_to_client-class_method" title="screen_to_client (class method)">.<strong>screen_to_client</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setCapture-class_method" title="setCapture (class method)">.<strong>setCapture</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="del-class_method">
+  
+    .<strong>del</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+305
+306
+307
+308
+309
+310
+311
+312</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PSystem_Controls.rb', line 305</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_del'>del</span>
+  <span class='kw'>if</span> <span class='ivar'>@oldcursor</span> <span class='op'>==</span> <span class='kw'>nil</span>
+    <span class='kw'>return</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@SetClassLong</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Win32API.html" title="Win32API (class)">Win32API</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pbFindRgssWindow'><span class='object_link'><a href="Win32API.html#pbFindRgssWindow-class_method" title="Win32API.pbFindRgssWindow (method)">pbFindRgssWindow</a></span></span><span class='comma'>,</span><span class='op'>-</span><span class='int'>12</span><span class='comma'>,</span> <span class='ivar'>@oldcursor</span><span class='rparen'>)</span>
+    <span class='ivar'>@oldcursor</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getMouseGlobalPos-class_method">
+  
+    .<strong>getMouseGlobalPos</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+265
+266
+267
+268
+269
+270
+271
+272</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PSystem_Controls.rb', line 265</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getMouseGlobalPos'>getMouseGlobalPos</span>
+  <span class='id identifier rubyid_pos'>pos</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ll</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='ivar'>@GetCursorPos</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_pos'>pos</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ll</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getMousePos-class_method">
+  
+    .<strong>getMousePos</strong>(catch_anywhere = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the position of the mouse relative to the game window.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PSystem_Controls.rb', line 294</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getMousePos'>getMousePos</span><span class='lparen'>(</span><span class='id identifier rubyid_catch_anywhere'>catch_anywhere</span> <span class='op'>=</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_resizeFactor'>resizeFactor</span><span class='op'>=</span><span class='lparen'>(</span><span class='gvar'>$ResizeFactor</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='gvar'>$ResizeFactor</span> <span class='op'>:</span> <span class='int'>1</span>
+  <span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='id identifier rubyid_screen_to_client'>screen_to_client</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_getMouseGlobalPos'>getMouseGlobalPos</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_width'>width</span><span class='comma'>,</span> <span class='id identifier rubyid_height'>height</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Win32API.html" title="Win32API (class)">Win32API</a></span></span><span class='period'>.</span><span class='id identifier rubyid_client_size'><span class='object_link'><a href="Win32API.html#client_size-class_method" title="Win32API.client_size (method)">client_size</a></span></span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_catch_anywhere'>catch_anywhere</span> <span class='kw'>or</span> <span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span> <span class='op'>&gt;=</span> <span class='int'>0</span> <span class='kw'>and</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>&gt;=</span> <span class='int'>0</span> <span class='kw'>and</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_width'>width</span> <span class='kw'>and</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>&lt;</span> <span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='op'>/</span><span class='id identifier rubyid_resizeFactor'>resizeFactor</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span><span class='comma'>,</span> <span class='lparen'>(</span><span class='id identifier rubyid_y'>y</span><span class='op'>/</span><span class='id identifier rubyid_resizeFactor'>resizeFactor</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="releaseCapture-class_method">
+  
+    .<strong>releaseCapture</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+289
+290
+291</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PSystem_Controls.rb', line 289</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_releaseCapture'>releaseCapture</span>
+  <span class='ivar'>@ReleaseCapture</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="screen_to_client-class_method">
+  
+    .<strong>screen_to_client</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PSystem_Controls.rb', line 274</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_screen_to_client'>screen_to_client</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>unless</span> <span class='id identifier rubyid_x'>x</span> <span class='kw'>and</span> <span class='id identifier rubyid_y'>y</span>
+  <span class='id identifier rubyid_screenToClient'>screenToClient</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Win32API.html" title="Win32API (class)">Win32API</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>user32</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ScreenToClient</span><span class='tstring_end'>&#39;</span></span><span class='comma'>,</span> <span class='qwords_beg'>%w(</span><span class='tstring_content'>l</span><span class='words_sep'> </span><span class='tstring_content'>p</span><span class='tstring_end'>)</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>i</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_pos'>pos</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_pack'>pack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ll</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_screenToClient'>screenToClient</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Win32API.html" title="Win32API (class)">Win32API</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pbFindRgssWindow'><span class='object_link'><a href="Win32API.html#pbFindRgssWindow-class_method" title="Win32API.pbFindRgssWindow (method)">pbFindRgssWindow</a></span></span><span class='comma'>,</span> <span class='id identifier rubyid_pos'>pos</span><span class='rparen'>)</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_pos'>pos</span><span class='period'>.</span><span class='id identifier rubyid_unpack'>unpack</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&#39;</span><span class='tstring_content'>ll</span><span class='tstring_end'>&#39;</span></span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setCapture-class_method">
+  
+    .<strong>setCapture</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+285
+286
+287</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PSystem_Controls.rb', line 285</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setCapture'>setCapture</span>
+  <span class='ivar'>@SetCapture</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Win32API.html" title="Win32API (class)">Win32API</a></span></span><span class='period'>.</span><span class='id identifier rubyid_pbFindRgssWindow'><span class='object_link'><a href="Win32API.html#pbFindRgssWindow-class_method" title="Win32API.pbFindRgssWindow (method)">pbFindRgssWindow</a></span></span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:21 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

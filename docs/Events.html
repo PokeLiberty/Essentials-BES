@@ -1,0 +1,2211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Events
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Events";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (E)</a> &raquo;
+    
+    
+    <span class="title">Events</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Events
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/PField_Field.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<h6 id="label-"></h6>
+
+<p>This module stores events that can happen during the game.  A procedure can subscribe to an event by adding itself to the event.  It will then be called whenever the event occurs.</p>
+
+<h6 id="label-"></h6>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="OnMapChange-classvariable" class="">@@OnMapChange =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnMapSceneChange-classvariable" class="">@@OnMapSceneChange =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnMapUpdate-classvariable" class="">@@OnMapUpdate =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnMapChanging-classvariable" class="">@@OnMapChanging =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnLeaveTile-classvariable" class="">@@OnLeaveTile =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnStepTaken-classvariable" class="">@@OnStepTaken =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnStepTakenTransferPossible-classvariable" class="">@@OnStepTakenTransferPossible =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnStepTakenFieldMovement-classvariable" class="">@@OnStepTakenFieldMovement =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnWildBattleOverride-classvariable" class="">@@OnWildBattleOverride =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnWildBattleEnd-classvariable" class="">@@OnWildBattleEnd =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnWildPokemonCreate-classvariable" class="">@@OnWildPokemonCreate =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnTrainerPartyLoad-classvariable" class="">@@OnTrainerPartyLoad =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnSpritesetCreate-classvariable" class="">@@OnSpritesetCreate =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnStartBattle-classvariable" class="">@@OnStartBattle =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnEndBattle-classvariable" class="">@@OnEndBattle =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnMapCreate-classvariable" class="">@@OnMapCreate =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+        <dt id="OnAction-classvariable" class="">@@OnAction =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Event.html" title="Event (class)">Event</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Event.html#initialize-instance_method" title="Event#initialize (method)">new</a></span></span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onAction-class_method" title="onAction (class method)">.<strong>onAction</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onAction=-class_method" title="onAction= (class method)">.<strong>onAction=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Triggers when the player presses the Action button on the map.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onEndBattle-class_method" title="onEndBattle (class method)">.<strong>onEndBattle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onEndBattle=-class_method" title="onEndBattle= (class method)">.<strong>onEndBattle=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onLeaveTile-class_method" title="onLeaveTile (class method)">.<strong>onLeaveTile</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onLeaveTile=-class_method" title="onLeaveTile= (class method)">.<strong>onLeaveTile=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever the player or another event leaves a tile.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapChange-class_method" title="onMapChange (class method)">.<strong>onMapChange</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapChange=-class_method" title="onMapChange= (class method)">.<strong>onMapChange=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever the player moves to a new map.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapChanging-class_method" title="onMapChanging (class method)">.<strong>onMapChanging</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapChanging=-class_method" title="onMapChanging= (class method)">.<strong>onMapChanging=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever one map is about to change to a different one.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapCreate-class_method" title="onMapCreate (class method)">.<strong>onMapCreate</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapCreate=-class_method" title="onMapCreate= (class method)">.<strong>onMapCreate=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever a map is created.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapSceneChange-class_method" title="onMapSceneChange (class method)">.<strong>onMapSceneChange</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapSceneChange=-class_method" title="onMapSceneChange= (class method)">.<strong>onMapSceneChange=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever the map scene is regenerated and soon after the player moves to a new map.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapUpdate-class_method" title="onMapUpdate (class method)">.<strong>onMapUpdate</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onMapUpdate=-class_method" title="onMapUpdate= (class method)">.<strong>onMapUpdate=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires each frame during a map update.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onSpritesetCreate-class_method" title="onSpritesetCreate (class method)">.<strong>onSpritesetCreate</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onSpritesetCreate=-class_method" title="onSpritesetCreate= (class method)">.<strong>onSpritesetCreate=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever a spriteset is created.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onStartBattle-class_method" title="onStartBattle (class method)">.<strong>onStartBattle</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onStartBattle=-class_method" title="onStartBattle= (class method)">.<strong>onStartBattle=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onStepTaken-class_method" title="onStepTaken (class method)">.<strong>onStepTaken</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onStepTaken=-class_method" title="onStepTaken= (class method)">.<strong>onStepTaken=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever the player takes a step.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onStepTakenFieldMovement-class_method" title="onStepTakenFieldMovement (class method)">.<strong>onStepTakenFieldMovement</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onStepTakenFieldMovement=-class_method" title="onStepTakenFieldMovement= (class method)">.<strong>onStepTakenFieldMovement=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever the player or another event enters a tile.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onStepTakenTransferPossible-class_method" title="onStepTakenTransferPossible (class method)">.<strong>onStepTakenTransferPossible</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onStepTakenTransferPossible=-class_method" title="onStepTakenTransferPossible= (class method)">.<strong>onStepTakenTransferPossible=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Fires whenever the player takes a step.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onTrainerPartyLoad-class_method" title="onTrainerPartyLoad (class method)">.<strong>onTrainerPartyLoad</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onTrainerPartyLoad=-class_method" title="onTrainerPartyLoad= (class method)">.<strong>onTrainerPartyLoad=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Triggers whenever an NPC trainer&#39;s Pokémon party is loaded Parameters:  <a href="0">e</a> - Trainer <a href="1">e</a> - Items possessed by the trainer <a href="2">e</a> - Party.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onWildBattleEnd-class_method" title="onWildBattleEnd (class method)">.<strong>onWildBattleEnd</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onWildBattleEnd=-class_method" title="onWildBattleEnd= (class method)">.<strong>onWildBattleEnd=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Triggers whenever a wild Pokémon battle ends Parameters:  <a href="0">e</a> - Pokémon species <a href="1">e</a> - Pokémon level <a href="2">e</a> - Battle result (1-win, 2-loss, 3-escaped, 4-caught, 5-draw).</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onWildBattleOverride-class_method" title="onWildBattleOverride (class method)">.<strong>onWildBattleOverride</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onWildBattleOverride=-class_method" title="onWildBattleOverride= (class method)">.<strong>onWildBattleOverride=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Triggers at the start of a wild battle.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onWildPokemonCreate-class_method" title="onWildPokemonCreate (class method)">.<strong>onWildPokemonCreate</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#onWildPokemonCreate=-class_method" title="onWildPokemonCreate= (class method)">.<strong>onWildPokemonCreate=</strong>(v)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Triggers whenever a wild Pokémon is created Parameters:  <a href="0">e</a> - Pokémon being created.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="onAction-class_method">
+  
+    .<strong>onAction</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+272
+273
+274</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 272</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onAction'>onAction</span>
+  <span class='cvar'>@@OnAction</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onAction=-class_method">
+  
+    .<strong>onAction=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Triggers when the player presses the Action button on the map.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+268
+269
+270</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 268</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onAction='>onAction=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnAction</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onEndBattle-class_method">
+  
+    .<strong>onEndBattle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+288
+289
+290</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 288</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onEndBattle'>onEndBattle</span>
+  <span class='cvar'>@@OnEndBattle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onEndBattle=-class_method">
+  
+    .<strong>onEndBattle=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+284
+285
+286</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 284</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onEndBattle='>onEndBattle=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnEndBattle</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onLeaveTile-class_method">
+  
+    .<strong>onLeaveTile</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+344
+345
+346</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 344</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onLeaveTile'>onLeaveTile</span>
+  <span class='cvar'>@@OnLeaveTile</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onLeaveTile=-class_method">
+  
+    .<strong>onLeaveTile=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever the player or another event leaves a tile. Parameters: <a href="0">e</a> - Event that just left the tile. <a href="1">e</a> - Map ID where the tile is located (not necessarily</p>
+
+<pre class="code ruby"><code class="ruby">the current map). Use &quot;$MapFactory.getMap(e[1])&quot; to
+get the Game_Map object corresponding to that map.
+</code></pre>
+
+<p><a href="2">e</a> - X-coordinate of the tile <a href="3">e</a> - Y-coordinate of the tile</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+340
+341
+342</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 340</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onLeaveTile='>onLeaveTile=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnLeaveTile</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapChange-class_method">
+  
+    .<strong>onMapChange</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+308
+309
+310</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 308</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapChange'>onMapChange</span>
+  <span class='cvar'>@@OnMapChange</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapChange=-class_method">
+  
+    .<strong>onMapChange=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever the player moves to a new map. Event handler receives the old map ID or 0 if none.  Also fires when the first map of the game is loaded</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+304
+305
+306</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 304</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapChange='>onMapChange=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnMapChange</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapChanging-class_method">
+  
+    .<strong>onMapChanging</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+319
+320
+321</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 319</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapChanging'>onMapChanging</span>
+  <span class='cvar'>@@OnMapChanging</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapChanging=-class_method">
+  
+    .<strong>onMapChanging=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever one map is about to change to a different one. Event handler receives the new map ID and the Game_Map object representing the new map. When the event handler is called, $game_map still refers to the old map.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+315
+316
+317</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 315</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapChanging='>onMapChanging=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnMapChanging</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapCreate-class_method">
+  
+    .<strong>onMapCreate</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+298
+299
+300</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 298</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapCreate'>onMapCreate</span>
+  <span class='cvar'>@@OnMapCreate</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapCreate=-class_method">
+  
+    .<strong>onMapCreate=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever a map is created. Event handler receives two parameters: the map (RPG::Map) and the tileset (RPG::Tileset)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+294
+295
+296</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 294</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapCreate='>onMapCreate=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnMapCreate</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapSceneChange-class_method">
+  
+    .<strong>onMapSceneChange</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+440
+441
+442</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 440</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapSceneChange'>onMapSceneChange</span>
+  <span class='cvar'>@@OnMapSceneChange</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapSceneChange=-class_method">
+  
+    .<strong>onMapSceneChange=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever the map scene is regenerated and soon after the player moves to a new map. Parameters: <a href="0">e</a> = Scene_Map object. <a href="1">e</a> = Whether the player just moved to a new map (either true or false).  If</p>
+
+<pre class="code ruby"><code class="ruby">false, some other code had called $scene.createSpritesets to regenerate the
+map scene without transferring the player elsewhere
+</code></pre>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+436
+437
+438</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 436</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapSceneChange='>onMapSceneChange=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnMapSceneChange</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapUpdate-class_method">
+  
+    .<strong>onMapUpdate</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+378
+379
+380</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 378</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapUpdate'>onMapUpdate</span>
+  <span class='cvar'>@@OnMapUpdate</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onMapUpdate=-class_method">
+  
+    .<strong>onMapUpdate=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires each frame during a map update.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+374
+375
+376</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 374</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onMapUpdate='>onMapUpdate=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnMapUpdate</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onSpritesetCreate-class_method">
+  
+    .<strong>onSpritesetCreate</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+453
+454
+455</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 453</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onSpritesetCreate'>onSpritesetCreate</span>
+  <span class='cvar'>@@OnSpritesetCreate</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onSpritesetCreate=-class_method">
+  
+    .<strong>onSpritesetCreate=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever a spriteset is created. Parameters: <a href="0">e</a> = Spriteset being created <a href="1">e</a> = Viewport used for tilemap and characters <a href="0">e</a>.map = Map associated with the spriteset (not necessarily the current map).</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+449
+450
+451</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 449</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onSpritesetCreate='>onSpritesetCreate=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnSpritesetCreate</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onStartBattle-class_method">
+  
+    .<strong>onStartBattle</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+280
+281
+282</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 280</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onStartBattle'>onStartBattle</span>
+  <span class='cvar'>@@OnStartBattle</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onStartBattle=-class_method">
+  
+    .<strong>onStartBattle=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+276
+277
+278</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 276</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onStartBattle='>onStartBattle=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnStartBattle</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onStepTaken-class_method">
+  
+    .<strong>onStepTaken</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+328
+329
+330</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 328</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onStepTaken'>onStepTaken</span>
+  <span class='cvar'>@@OnStepTaken</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onStepTaken=-class_method">
+  
+    .<strong>onStepTaken=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever the player takes a step.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+324
+325
+326</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 324</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onStepTaken='>onStepTaken=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnStepTaken</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onStepTakenFieldMovement-class_method">
+  
+    .<strong>onStepTakenFieldMovement</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+355
+356
+357</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 355</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onStepTakenFieldMovement'>onStepTakenFieldMovement</span>
+  <span class='cvar'>@@OnStepTakenFieldMovement</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onStepTakenFieldMovement=-class_method">
+  
+    .<strong>onStepTakenFieldMovement=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever the player or another event enters a tile. Parameters: <a href="0">e</a> - Event that just entered a tile.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+351
+352
+353</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 351</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onStepTakenFieldMovement='>onStepTakenFieldMovement=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnStepTakenFieldMovement</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onStepTakenTransferPossible-class_method">
+  
+    .<strong>onStepTakenTransferPossible</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+369
+370
+371</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 369</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onStepTakenTransferPossible'>onStepTakenTransferPossible</span>
+  <span class='cvar'>@@OnStepTakenTransferPossible</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onStepTakenTransferPossible=-class_method">
+  
+    .<strong>onStepTakenTransferPossible=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Fires whenever the player takes a step. The event handler may possibly move the player elsewhere. Parameters: <a href="0">e</a> = Array that contains a single boolean value.</p>
+
+<pre class="code ruby"><code class="ruby">If an event handler moves the player to a new map, it should set this value
+</code></pre>
+
+<p>to true. Other event handlers should check this parameter&#39;s value.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+365
+366
+367</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 365</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onStepTakenTransferPossible='>onStepTakenTransferPossible=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnStepTakenTransferPossible</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onTrainerPartyLoad-class_method">
+  
+    .<strong>onTrainerPartyLoad</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+425
+426
+427</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 425</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onTrainerPartyLoad'>onTrainerPartyLoad</span>
+  <span class='cvar'>@@OnTrainerPartyLoad</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onTrainerPartyLoad=-class_method">
+  
+    .<strong>onTrainerPartyLoad=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Triggers whenever an NPC trainer&#39;s Pokémon party is loaded Parameters:  <a href="0">e</a> - Trainer <a href="1">e</a> - Items possessed by the trainer <a href="2">e</a> - Party</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+421
+422
+423</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 421</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onTrainerPartyLoad='>onTrainerPartyLoad=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnTrainerPartyLoad</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onWildBattleEnd-class_method">
+  
+    .<strong>onWildBattleEnd</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+401
+402
+403</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 401</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onWildBattleEnd'>onWildBattleEnd</span>
+  <span class='cvar'>@@OnWildBattleEnd</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onWildBattleEnd=-class_method">
+  
+    .<strong>onWildBattleEnd=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Triggers whenever a wild Pokémon battle ends Parameters:  <a href="0">e</a> - Pokémon species <a href="1">e</a> - Pokémon level <a href="2">e</a> - Battle result (1-win, 2-loss, 3-escaped, 4-caught, 5-draw)</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+397
+398
+399</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 397</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onWildBattleEnd='>onWildBattleEnd=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnWildBattleEnd</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onWildBattleOverride-class_method">
+  
+    .<strong>onWildBattleOverride</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+388
+389
+390</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 388</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onWildBattleOverride'>onWildBattleOverride</span>
+  <span class='cvar'>@@OnWildBattleOverride</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onWildBattleOverride=-class_method">
+  
+    .<strong>onWildBattleOverride=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Triggers at the start of a wild battle.  Event handlers can provide their own wild battle routines to override the default behavior.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+384
+385
+386</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 384</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onWildBattleOverride='>onWildBattleOverride=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnWildBattleOverride</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onWildPokemonCreate-class_method">
+  
+    .<strong>onWildPokemonCreate</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+412
+413
+414</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 412</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onWildPokemonCreate'>onWildPokemonCreate</span>
+  <span class='cvar'>@@OnWildPokemonCreate</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="onWildPokemonCreate=-class_method">
+  
+    .<strong>onWildPokemonCreate=</strong>(v)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Triggers whenever a wild Pokémon is created Parameters:  <a href="0">e</a> - Pokémon being created</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+408
+409
+410</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PField_Field.rb', line 408</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_onWildPokemonCreate='>onWildPokemonCreate=</span><span class='lparen'>(</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+  <span class='cvar'>@@OnWildPokemonCreate</span><span class='op'>=</span><span class='id identifier rubyid_v'>v</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:21 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

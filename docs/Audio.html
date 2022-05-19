@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Audio
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Audio";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (A)</a> &raquo;
+    
+    
+    <span class="title">Audio</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Audio
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/Audio.rb</dd>
+  </dl>
+  
+</div>
+
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="musicstate-classvariable" class="">@@musicstate =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
+      
+        <dt id="soundstate-classvariable" class="">@@soundstate =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_fade-class_method" title="bgm_fade (class method)">.<strong>bgm_fade</strong>(ms)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_play-class_method" title="bgm_play (class method)">.<strong>bgm_play</strong>(name, volume = 80, pitch = 100, position = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_position-class_method" title="bgm_position (class method)">.<strong>bgm_position</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_stop-class_method" title="bgm_stop (class method)">.<strong>bgm_stop</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_fade-class_method" title="bgs_fade (class method)">.<strong>bgs_fade</strong>(ms)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_play-class_method" title="bgs_play (class method)">.<strong>bgs_play</strong>(name, volume = 80, pitch = 100)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_stop-class_method" title="bgs_stop (class method)">.<strong>bgs_stop</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#me_fade-class_method" title="me_fade (class method)">.<strong>me_fade</strong>(ms)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#me_play-class_method" title="me_play (class method)">.<strong>me_play</strong>(name, volume = 80, pitch = 100)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#me_stop-class_method" title="me_stop (class method)">.<strong>me_stop</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-class_method" title="update (class method)">.<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="bgm_fade-class_method">
+  
+    .<strong>bgm_fade</strong>(ms)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+329
+330
+331</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 329</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgm_fade'>bgm_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_ms'>ms</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_bgm_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_ms'>ms</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_play-class_method">
+  
+    .<strong>bgm_play</strong>(name, volume = 80, pitch = 100, position = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 316</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgm_play'>bgm_play</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='op'>=</span><span class='int'>80</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='op'>=</span><span class='int'>100</span><span class='comma'>,</span><span class='id identifier rubyid_position'>position</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>begin</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_position'>position</span><span class='op'>==</span><span class='kw'>nil</span> <span class='op'>||</span> <span class='id identifier rubyid_position'>position</span><span class='op'>==</span><span class='int'>0</span>
+      <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_bgm_play</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_bgm_play</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span><span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span>
+      <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_bgm_fadein</span><span class='lparen'>(</span><span class='int'>500</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>rescue</span> <span class='const'><span class='object_link'><a href="Hangup.html" title="Hangup (class)">Hangup</a></span></span>
+    <span class='id identifier rubyid_bgm_play'>bgm_play</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span><span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_position-class_method">
+  
+    .<strong>bgm_position</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+337
+338
+339
+340</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 337</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgm_position'>bgm_position</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='const'>Kernel</span><span class='period'>.</span><span class='const'>Audio_bgm_get_position</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_stop-class_method">
+  
+    .<strong>bgm_stop</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+333
+334
+335</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 333</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgm_stop'>bgm_stop</span>
+  <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_bgm_stop</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_fade-class_method">
+  
+    .<strong>bgs_fade</strong>(ms)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+358
+359
+360</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 358</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgs_fade'>bgs_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_ms'>ms</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_bgs_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_ms'>ms</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_play-class_method">
+  
+    .<strong>bgs_play</strong>(name, volume = 80, pitch = 100)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+354
+355
+356</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 354</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgs_play'>bgs_play</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='op'>=</span><span class='int'>80</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='op'>=</span><span class='int'>100</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_bgs_play</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_stop-class_method">
+  
+    .<strong>bgs_stop</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+362
+363
+364</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 362</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgs_stop'>bgs_stop</span>
+  <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_bgs_stop</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="me_fade-class_method">
+  
+    .<strong>me_fade</strong>(ms)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+346
+347
+348</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 346</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_me_fade'>me_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_ms'>ms</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_me_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_ms'>ms</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="me_play-class_method">
+  
+    .<strong>me_play</strong>(name, volume = 80, pitch = 100)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+342
+343
+344</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 342</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_me_play'>me_play</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='op'>=</span><span class='int'>80</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='op'>=</span><span class='int'>100</span><span class='rparen'>)</span>
+  <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_me_play</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="me_stop-class_method">
+  
+    .<strong>me_stop</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+350
+351
+352</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 350</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_me_stop'>me_stop</span>
+  <span class='const'><span class='object_link'><a href="Kernel.html" title="Kernel (module)">Kernel</a></span></span><span class='period'>.</span><span class='const'>Audio_me_stop</span><span class='lparen'>(</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-class_method">
+  
+    .<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+307
+308
+309
+310
+311
+312
+313
+314</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 307</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_frame_count'>frame_count</span><span class='op'>%</span><span class='int'>10</span><span class='op'>!=</span><span class='int'>0</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="AudioState.html" title="AudioState (module)">AudioState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_waitingBGM'><span class='object_link'><a href="AudioState.html#waitingBGM-class_method" title="AudioState.waitingBGM (method)">waitingBGM</a></span></span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="AudioState.html" title="AudioState (module)">AudioState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_meActive?'><span class='object_link'><a href="AudioState.html#meActive%3F-class_method" title="AudioState.meActive? (method)">meActive?</a></span></span>
+    <span class='id identifier rubyid_waitbgm'>waitbgm</span><span class='op'>=</span><span class='const'>AudioState</span><span class='period'>.</span><span class='id identifier rubyid_waitingBGM'>waitingBGM</span>
+    <span class='const'><span class='object_link'><a href="AudioState.html" title="AudioState (module)">AudioState</a></span></span><span class='period'>.</span><span class='id identifier rubyid_waitingBGM'><span class='object_link'><a href="AudioState.html#waitingBGM-class_method" title="AudioState.waitingBGM (method)">waitingBGM</a></span></span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='id identifier rubyid_bgm_play'>bgm_play</span><span class='lparen'>(</span><span class='id identifier rubyid_waitbgm'>waitbgm</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_waitbgm'>waitbgm</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_waitbgm'>waitbgm</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_waitbgm'>waitbgm</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:20 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

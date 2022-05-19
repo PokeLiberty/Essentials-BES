@@ -1,0 +1,2743 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: RPG::System
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "RPG::System";
+  relpath = '../';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="../class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="../_index.html">Index (S)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span>
+     &raquo; 
+    <span class="title">System</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: RPG::System
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">RPG::System</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/RGSS2Compatibility.rb<span class="defines">,<br />
+  scripts/RGSS2Compatibility.rb,<br /> scripts/RGSS2Compatibility.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+  
+    
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="System/TestBattler.html" title="RPG::System::TestBattler (class)">TestBattler</a></span>, <span class='object_link'><a href="System/Words.html" title="RPG::System::Words (class)">Words</a></span>
+    
+  
+</p>
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#actor_collapse_se-instance_method" title="#actor_collapse_se (instance method)">#<strong>actor_collapse_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute actor_collapse_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_bgm-instance_method" title="#battle_bgm (instance method)">#<strong>battle_bgm</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute battle_bgm.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_end_me-instance_method" title="#battle_end_me (instance method)">#<strong>battle_end_me</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute battle_end_me.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_start_se-instance_method" title="#battle_start_se (instance method)">#<strong>battle_start_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute battle_start_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_transition-instance_method" title="#battle_transition (instance method)">#<strong>battle_transition</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute battle_transition.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battleback_name-instance_method" title="#battleback_name (instance method)">#<strong>battleback_name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute battleback_name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battler_hue-instance_method" title="#battler_hue (instance method)">#<strong>battler_hue</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute battler_hue.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battler_name-instance_method" title="#battler_name (instance method)">#<strong>battler_name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute battler_name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#buzzer_se-instance_method" title="#buzzer_se (instance method)">#<strong>buzzer_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute buzzer_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cancel_se-instance_method" title="#cancel_se (instance method)">#<strong>cancel_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute cancel_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cursor_se-instance_method" title="#cursor_se (instance method)">#<strong>cursor_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute cursor_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#decision_se-instance_method" title="#decision_se (instance method)">#<strong>decision_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute decision_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#edit_map_id-instance_method" title="#edit_map_id (instance method)">#<strong>edit_map_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute edit_map_id.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#elements-instance_method" title="#elements (instance method)">#<strong>elements</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute elements.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#enemy_collapse_se-instance_method" title="#enemy_collapse_se (instance method)">#<strong>enemy_collapse_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute enemy_collapse_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#equip_se-instance_method" title="#equip_se (instance method)">#<strong>equip_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute equip_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#escape_se-instance_method" title="#escape_se (instance method)">#<strong>escape_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute escape_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gameover_me-instance_method" title="#gameover_me (instance method)">#<strong>gameover_me</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute gameover_me.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#gameover_name-instance_method" title="#gameover_name (instance method)">#<strong>gameover_name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute gameover_name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#load_se-instance_method" title="#load_se (instance method)">#<strong>load_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute load_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#magic_number-instance_method" title="#magic_number (instance method)">#<strong>magic_number</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute magic_number.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#party_members-instance_method" title="#party_members (instance method)">#<strong>party_members</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute party_members.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#save_se-instance_method" title="#save_se (instance method)">#<strong>save_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute save_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shop_se-instance_method" title="#shop_se (instance method)">#<strong>shop_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute shop_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_map_id-instance_method" title="#start_map_id (instance method)">#<strong>start_map_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute start_map_id.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_x-instance_method" title="#start_x (instance method)">#<strong>start_x</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute start_x.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#start_y-instance_method" title="#start_y (instance method)">#<strong>start_y</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute start_y.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#switches-instance_method" title="#switches (instance method)">#<strong>switches</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute switches.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_battlers-instance_method" title="#test_battlers (instance method)">#<strong>test_battlers</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute test_battlers.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#test_troop_id-instance_method" title="#test_troop_id (instance method)">#<strong>test_troop_id</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute test_troop_id.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title_bgm-instance_method" title="#title_bgm (instance method)">#<strong>title_bgm</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute title_bgm.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#title_name-instance_method" title="#title_name (instance method)">#<strong>title_name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute title_name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#variables-instance_method" title="#variables (instance method)">#<strong>variables</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute variables.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#windowskin_name-instance_method" title="#windowskin_name (instance method)">#<strong>windowskin_name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute windowskin_name.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#words-instance_method" title="#words (instance method)">#<strong>words</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute words.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>  &#x21d2; System </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of System.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="RPG::System (class)">System</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of System.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 187</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='ivar'>@magic_number</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@party_members</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+  <span class='ivar'>@elements</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@switches</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@variables</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span>
+  <span class='ivar'>@windowskin_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@title_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@gameover_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@battle_transition</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@title_bgm</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span>
+  <span class='ivar'>@battle_bgm</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span>
+  <span class='ivar'>@battle_end_me</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span>
+  <span class='ivar'>@gameover_me</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span>
+  <span class='ivar'>@cursor_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@decision_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@cancel_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@buzzer_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@equip_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@shop_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@save_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@load_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@battle_start_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@escape_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@actor_collapse_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@enemy_collapse_se</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="AudioFile.html" title="RPG::AudioFile (class)">AudioFile</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="AudioFile.html#initialize-instance_method" title="RPG::AudioFile#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='int'>80</span><span class='rparen'>)</span>
+  <span class='ivar'>@words</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="../RPG.html" title="RPG (module)">RPG</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="" title="RPG::System (class)">System</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="System/Words.html" title="RPG::System::Words (class)">Words</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="System/Words.html#initialize-instance_method" title="RPG::System::Words#initialize (method)">new</a></span></span>
+  <span class='ivar'>@test_battlers</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@test_troop_id</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='ivar'>@start_map_id</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='ivar'>@start_x</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@start_y</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@battleback_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@battler_name</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@battler_hue</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@edit_map_id</span> <span class='op'>=</span> <span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="actor_collapse_se=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="actor_collapse_se-instance_method">
+  
+    #<strong>actor_collapse_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute actor_collapse_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+174
+175
+176</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 174</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_actor_collapse_se'>actor_collapse_se</span>
+  <span class='ivar'>@actor_collapse_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="battle_bgm=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="battle_bgm-instance_method">
+  
+    #<strong>battle_bgm</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute battle_bgm.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+161
+162
+163</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 161</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_bgm'>battle_bgm</span>
+  <span class='ivar'>@battle_bgm</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="battle_end_me=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="battle_end_me-instance_method">
+  
+    #<strong>battle_end_me</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute battle_end_me.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+162
+163
+164</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 162</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_end_me'>battle_end_me</span>
+  <span class='ivar'>@battle_end_me</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="battle_start_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="battle_start_se-instance_method">
+  
+    #<strong>battle_start_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute battle_start_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+172
+173
+174</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 172</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_start_se'>battle_start_se</span>
+  <span class='ivar'>@battle_start_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="battle_transition=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="battle_transition-instance_method">
+  
+    #<strong>battle_transition</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute battle_transition.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 159</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_transition'>battle_transition</span>
+  <span class='ivar'>@battle_transition</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="battleback_name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="battleback_name-instance_method">
+  
+    #<strong>battleback_name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute battleback_name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+182
+183
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 182</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battleback_name'>battleback_name</span>
+  <span class='ivar'>@battleback_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="battler_hue=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="battler_hue-instance_method">
+  
+    #<strong>battler_hue</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute battler_hue.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184
+185
+186</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 184</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battler_hue'>battler_hue</span>
+  <span class='ivar'>@battler_hue</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="battler_name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="battler_name-instance_method">
+  
+    #<strong>battler_name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute battler_name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+183
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 183</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battler_name'>battler_name</span>
+  <span class='ivar'>@battler_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="buzzer_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="buzzer_se-instance_method">
+  
+    #<strong>buzzer_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute buzzer_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+167
+168
+169</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 167</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_buzzer_se'>buzzer_se</span>
+  <span class='ivar'>@buzzer_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="cancel_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cancel_se-instance_method">
+  
+    #<strong>cancel_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute cancel_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+166
+167
+168</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 166</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cancel_se'>cancel_se</span>
+  <span class='ivar'>@cancel_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="cursor_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cursor_se-instance_method">
+  
+    #<strong>cursor_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute cursor_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cursor_se'>cursor_se</span>
+  <span class='ivar'>@cursor_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="decision_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="decision_se-instance_method">
+  
+    #<strong>decision_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute decision_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+165
+166
+167</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 165</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_decision_se'>decision_se</span>
+  <span class='ivar'>@decision_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="edit_map_id=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="edit_map_id-instance_method">
+  
+    #<strong>edit_map_id</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute edit_map_id.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+185
+186
+187</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 185</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_edit_map_id'>edit_map_id</span>
+  <span class='ivar'>@edit_map_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="elements=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="elements-instance_method">
+  
+    #<strong>elements</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute elements.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+153
+154
+155</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 153</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_elements'>elements</span>
+  <span class='ivar'>@elements</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="enemy_collapse_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="enemy_collapse_se-instance_method">
+  
+    #<strong>enemy_collapse_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute enemy_collapse_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+175
+176
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 175</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_enemy_collapse_se'>enemy_collapse_se</span>
+  <span class='ivar'>@enemy_collapse_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="equip_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="equip_se-instance_method">
+  
+    #<strong>equip_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute equip_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+168
+169
+170</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 168</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_equip_se'>equip_se</span>
+  <span class='ivar'>@equip_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="escape_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="escape_se-instance_method">
+  
+    #<strong>escape_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute escape_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+173
+174
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 173</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_escape_se'>escape_se</span>
+  <span class='ivar'>@escape_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="gameover_me=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="gameover_me-instance_method">
+  
+    #<strong>gameover_me</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute gameover_me.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+163
+164
+165</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 163</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gameover_me'>gameover_me</span>
+  <span class='ivar'>@gameover_me</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="gameover_name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="gameover_name-instance_method">
+  
+    #<strong>gameover_name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute gameover_name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+158
+159
+160</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 158</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_gameover_name'>gameover_name</span>
+  <span class='ivar'>@gameover_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="load_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="load_se-instance_method">
+  
+    #<strong>load_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute load_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+171
+172
+173</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 171</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_load_se'>load_se</span>
+  <span class='ivar'>@load_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="magic_number=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="magic_number-instance_method">
+  
+    #<strong>magic_number</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute magic_number.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+151
+152
+153</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 151</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_magic_number'>magic_number</span>
+  <span class='ivar'>@magic_number</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="party_members=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="party_members-instance_method">
+  
+    #<strong>party_members</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute party_members.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+152
+153
+154</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 152</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_party_members'>party_members</span>
+  <span class='ivar'>@party_members</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="save_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="save_se-instance_method">
+  
+    #<strong>save_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute save_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+170
+171
+172</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 170</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_save_se'>save_se</span>
+  <span class='ivar'>@save_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="shop_se=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="shop_se-instance_method">
+  
+    #<strong>shop_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute shop_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+169
+170
+171</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 169</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_shop_se'>shop_se</span>
+  <span class='ivar'>@shop_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="start_map_id=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="start_map_id-instance_method">
+  
+    #<strong>start_map_id</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute start_map_id.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+179
+180
+181</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 179</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_map_id'>start_map_id</span>
+  <span class='ivar'>@start_map_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="start_x=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="start_x-instance_method">
+  
+    #<strong>start_x</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute start_x.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+180
+181
+182</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 180</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_x'>start_x</span>
+  <span class='ivar'>@start_x</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="start_y=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="start_y-instance_method">
+  
+    #<strong>start_y</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute start_y.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_start_y'>start_y</span>
+  <span class='ivar'>@start_y</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="switches=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="switches-instance_method">
+  
+    #<strong>switches</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute switches.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+154
+155
+156</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 154</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_switches'>switches</span>
+  <span class='ivar'>@switches</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="test_battlers=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="test_battlers-instance_method">
+  
+    #<strong>test_battlers</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute test_battlers.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+177
+178
+179</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 177</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_test_battlers'>test_battlers</span>
+  <span class='ivar'>@test_battlers</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="test_troop_id=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="test_troop_id-instance_method">
+  
+    #<strong>test_troop_id</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute test_troop_id.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+178
+179
+180</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 178</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_test_troop_id'>test_troop_id</span>
+  <span class='ivar'>@test_troop_id</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="title_bgm=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="title_bgm-instance_method">
+  
+    #<strong>title_bgm</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute title_bgm.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 160</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_title_bgm'>title_bgm</span>
+  <span class='ivar'>@title_bgm</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="title_name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="title_name-instance_method">
+  
+    #<strong>title_name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute title_name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_title_name'>title_name</span>
+  <span class='ivar'>@title_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="variables=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="variables-instance_method">
+  
+    #<strong>variables</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute variables.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+155
+156
+157</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 155</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_variables'>variables</span>
+  <span class='ivar'>@variables</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="windowskin_name=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="windowskin_name-instance_method">
+  
+    #<strong>windowskin_name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute windowskin_name.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 156</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_windowskin_name'>windowskin_name</span>
+  <span class='ivar'>@windowskin_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="words=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="words-instance_method">
+  
+    #<strong>words</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute words.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+176
+177
+178</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RGSS2Compatibility.rb', line 176</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_words'>words</span>
+  <span class='ivar'>@words</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:37 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

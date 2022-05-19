@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: Graphics
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Graphics";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (G)</a> &raquo;
+    
+    
+    <span class="title">Graphics</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: Graphics
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/Audio.rb<span class="defines">,<br />
+  scripts/Transitions.rb,<br /> scripts/SpriteWindow.rb,<br /> scripts/PSystem_System.rb,<br /> scripts/Sprite_Resizer.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="STOP_WHILE_TRANSITION-constant" class="">STOP_WHILE_TRANSITION =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>true</span></pre></dd>
+      
+        <dt id="transition-classvariable" class="">@@transition =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>nil</span></pre></dd>
+      
+        <dt id="width-classvariable" class="">@@width =
+          <div class="docstring">
+  <div class="discussion">
+    
+<p>Nominal screen size</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="top-level-namespace.html#DEFAULTSCREENWIDTH-constant" title="DEFAULTSCREENWIDTH (constant)">DEFAULTSCREENWIDTH</a></span></span></pre></dd>
+      
+        <dt id="height-classvariable" class="">@@height =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="top-level-namespace.html#DEFAULTSCREENHEIGHT-constant" title="DEFAULTSCREENHEIGHT (constant)">DEFAULTSCREENHEIGHT</a></span></span></pre></dd>
+      
+        <dt id="fadeoutvp-classvariable" class="">@@fadeoutvp =
+          
+        </dt>
+        <dd><pre class="code"><span class='const'><span class='object_link'><a href="Viewport.html" title="Viewport (class)">Viewport</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Viewport.html#initialize-instance_method" title="Viewport#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>640</span><span class='comma'>,</span><span class='int'>480</span><span class='rparen'>)</span></pre></dd>
+      
+        <dt id="deletefailed-classvariable" class="">@@deletefailed =
+          
+        </dt>
+        <dd><pre class="code"><span class='kw'>false</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#audiomodule_update-class_method" title="audiomodule_update (class method)">.<strong>audiomodule_update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#brightness-class_method" title="brightness (class method)">.<strong>brightness</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#brightness=-class_method" title="brightness= (class method)">.<strong>brightness=</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fadein-class_method" title="fadein (class method)">.<strong>fadein</strong>(frames)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fadeout-class_method" title="fadeout (class method)">.<strong>fadeout</strong>(frames)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#haveresizescreen-class_method" title="haveresizescreen (class method)">.<strong>haveresizescreen</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#height-class_method" title="height (class method)">.<strong>height</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#judge_special_transition-class_method" title="judge_special_transition (class method)">.<strong>judge_special_transition</strong>(duration, filename)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#resize_screen-class_method" title="resize_screen (class method)">.<strong>resize_screen</strong>(w, h)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#snap_to_bitmap-class_method" title="snap_to_bitmap (class method)">.<strong>snap_to_bitmap</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transition-class_method" title="transition (class method)">.<strong>transition</strong>(duration = 8, filename = &quot;&quot;, vague = 20)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#transition_KGC_SpecialTransition-class_method" title="transition_KGC_SpecialTransition (class method)">.<strong>transition_KGC_SpecialTransition</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-class_method" title="update (class method)">.<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_KGC_SpecialTransition-class_method" title="update_KGC_SpecialTransition (class method)">.<strong>update_KGC_SpecialTransition</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#wait-class_method" title="wait (class method)">.<strong>wait</strong>(frames)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#width-class_method" title="width (class method)">.<strong>width</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="audiomodule_update-class_method">
+  
+    .<strong>audiomodule_update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+291</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 291</span>
+
+<span class='kw'>alias</span> <span class='id identifier rubyid_audiomodule_update'>audiomodule_update</span> <span class='id identifier rubyid_update'>update</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="brightness-class_method">
+  
+    .<strong>brightness</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Resizer.rb', line 137</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brightness'>brightness</span>
+  <span class='kw'>return</span> <span class='lparen'>(</span><span class='int'>255</span><span class='op'>-</span><span class='cvar'>@@fadeoutvp</span><span class='period'>.</span><span class='id identifier rubyid_color'>color</span><span class='period'>.</span><span class='id identifier rubyid_alpha'>alpha</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="brightness=-class_method">
+  
+    .<strong>brightness=</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+141
+142
+143
+144
+145</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Resizer.rb', line 141</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brightness='>brightness=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_value'>value</span><span class='op'>=</span><span class='int'>0</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='op'>&lt;</span><span class='int'>0</span>
+  <span class='id identifier rubyid_value'>value</span><span class='op'>=</span><span class='int'>255</span> <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span><span class='op'>&gt;</span><span class='int'>255</span>
+  <span class='cvar'>@@fadeoutvp</span><span class='period'>.</span><span class='id identifier rubyid_color'>color</span><span class='period'>.</span><span class='id identifier rubyid_alpha'>alpha</span><span class='op'>=</span><span class='int'>255</span><span class='op'>-</span><span class='id identifier rubyid_value'>value</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fadein-class_method">
+  
+    .<strong>fadein</strong>(frames)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149
+150
+151
+152
+153
+154
+155</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Resizer.rb', line 147</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fadein'>fadein</span><span class='lparen'>(</span><span class='id identifier rubyid_frames'>frames</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_frames'>frames</span><span class='op'>&lt;=</span><span class='int'>0</span>
+  <span class='id identifier rubyid_curvalue'>curvalue</span><span class='op'>=</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brightness'>brightness</span>
+  <span class='id identifier rubyid_count'>count</span><span class='op'>=</span><span class='lparen'>(</span><span class='int'>255</span><span class='op'>-</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brightness'>brightness</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_frames'>frames</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brightness'>brightness</span><span class='op'>=</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='op'>+</span><span class='lparen'>(</span><span class='id identifier rubyid_count'>count</span><span class='op'>*</span><span class='id identifier rubyid_i'>i</span><span class='op'>/</span><span class='id identifier rubyid_frames'>frames</span><span class='rparen'>)</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fadeout-class_method">
+  
+    .<strong>fadeout</strong>(frames)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+164
+165
+166
+167
+168
+169
+170
+171
+172</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Resizer.rb', line 164</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fadeout'>fadeout</span><span class='lparen'>(</span><span class='id identifier rubyid_frames'>frames</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_frames'>frames</span><span class='op'>&lt;=</span><span class='int'>0</span>
+  <span class='id identifier rubyid_curvalue'>curvalue</span><span class='op'>=</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brightness'>brightness</span>
+  <span class='id identifier rubyid_count'>count</span><span class='op'>=</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brightness'>brightness</span>
+  <span class='id identifier rubyid_frames'>frames</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_brightness'>brightness</span><span class='op'>=</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='op'>-</span><span class='lparen'>(</span><span class='id identifier rubyid_count'>count</span><span class='op'>*</span><span class='id identifier rubyid_i'>i</span><span class='op'>/</span><span class='id identifier rubyid_frames'>frames</span><span class='rparen'>)</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="haveresizescreen-class_method">
+  
+    .<strong>haveresizescreen</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+190
+191
+192</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Resizer.rb', line 190</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_haveresizescreen'>haveresizescreen</span>
+  <span class='cvar'>@@haveresizescreen</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="height-class_method">
+  
+    .<strong>height</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+306</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 306</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='int'>480</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="judge_special_transition-class_method">
+  
+    .<strong>judge_special_transition</strong>(duration, filename)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Transitions.rb', line 53</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_judge_special_transition'>judge_special_transition</span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='kw'>true</span>
+  <span class='kw'>if</span> <span class='ivar'>@_interrupt_transition</span>
+    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='cvar'>@@transition</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='cvar'>@@transition</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span>
+    <span class='cvar'>@@transition</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='kw'>nil</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_dc'>dc</span><span class='op'>=</span><span class='const'>File</span><span class='period'>.</span><span class='id identifier rubyid_basename'>basename</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_downcase'>downcase</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrolldown</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ScrollScreen.html" title="ScrollScreen (class)">ScrollScreen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ScrollScreen.html#initialize-instance_method" title="ScrollScreen#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>2</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrollleft</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ScrollScreen.html" title="ScrollScreen (class)">ScrollScreen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ScrollScreen.html#initialize-instance_method" title="ScrollScreen#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>4</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrollright</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ScrollScreen.html" title="ScrollScreen (class)">ScrollScreen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ScrollScreen.html#initialize-instance_method" title="ScrollScreen#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>6</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrollup</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ScrollScreen.html" title="ScrollScreen (class)">ScrollScreen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ScrollScreen.html#initialize-instance_method" title="ScrollScreen#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>8</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrolldownleft</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ScrollScreen.html" title="ScrollScreen (class)">ScrollScreen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ScrollScreen.html#initialize-instance_method" title="ScrollScreen#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrolldownright</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ScrollScreen.html" title="ScrollScreen (class)">ScrollScreen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ScrollScreen.html#initialize-instance_method" title="ScrollScreen#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>3</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrollupleft</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ScrollScreen.html" title="ScrollScreen (class)">ScrollScreen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ScrollScreen.html#initialize-instance_method" title="ScrollScreen#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>7</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scrollupright</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ScrollScreen.html" title="ScrollScreen (class)">ScrollScreen</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ScrollScreen.html#initialize-instance_method" title="ScrollScreen#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>9</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>splash</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="SplashTransition.html" title="SplashTransition (class)">SplashTransition</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SplashTransition.html#initialize-instance_method" title="SplashTransition#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>random_stripe_v</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="RandomStripeTransition.html" title="RandomStripeTransition (class)">RandomStripeTransition</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="RandomStripeTransition.html#initialize-instance_method" title="RandomStripeTransition#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>random_stripe_h</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="RandomStripeTransition.html" title="RandomStripeTransition (class)">RandomStripeTransition</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="RandomStripeTransition.html#initialize-instance_method" title="RandomStripeTransition#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>rotatingpieces</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ShrinkingPieces.html" title="ShrinkingPieces (class)">ShrinkingPieces</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ShrinkingPieces.html#initialize-instance_method" title="ShrinkingPieces#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>shrinkingpieces</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ShrinkingPieces.html" title="ShrinkingPieces (class)">ShrinkingPieces</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ShrinkingPieces.html#initialize-instance_method" title="ShrinkingPieces#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>breakingglass</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="BreakingGlass.html" title="BreakingGlass (class)">BreakingGlass</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="BreakingGlass.html#initialize-instance_method" title="BreakingGlass#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>mosaic</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="MosaicTransition.html" title="MosaicTransition (class)">MosaicTransition</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="MosaicTransition.html#initialize-instance_method" title="MosaicTransition#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>zoomin</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="ZoomInTransition.html" title="ZoomInTransition (class)">ZoomInTransition</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="ZoomInTransition.html#initialize-instance_method" title="ZoomInTransition#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='rparen'>)</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_dc'>dc</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='cvar'>@@transition</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="FadeTransition.html" title="FadeTransition (class)">FadeTransition</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="FadeTransition.html#initialize-instance_method" title="FadeTransition#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='rparen'>)</span>
+  <span class='kw'>else</span> 
+    <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='kw'>end</span>
+  <span class='const'><span class='object_link'><a href="" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_frame_reset'>frame_reset</span> <span class='kw'>if</span> <span class='id identifier rubyid_ret'>ret</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="resize_screen-class_method">
+  
+    .<strong>resize_screen</strong>(w, h)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+195
+196
+197
+198
+199</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Resizer.rb', line 195</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_resize_screen'>resize_screen</span><span class='lparen'>(</span><span class='id identifier rubyid_w'>w</span><span class='comma'>,</span><span class='id identifier rubyid_h'>h</span><span class='rparen'>)</span>
+  <span class='cvar'>@@width</span><span class='op'>=</span><span class='id identifier rubyid_w'>w</span>
+  <span class='cvar'>@@height</span><span class='op'>=</span><span class='id identifier rubyid_h'>h</span>
+  <span class='id identifier rubyid_pbSetResizeFactor'><span class='object_link'><a href="top-level-namespace.html#pbSetResizeFactor-instance_method" title="#pbSetResizeFactor (method)">pbSetResizeFactor</a></span></span><span class='lparen'>(</span><span class='gvar'>$ResizeFactor</span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="snap_to_bitmap-class_method">
+  
+    .<strong>snap_to_bitmap</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+38</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PSystem_System.rb', line 38</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_snap_to_bitmap'>snap_to_bitmap</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='kw'>nil</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="transition-class_method">
+  
+    .<strong>transition</strong>(duration = 8, filename = &quot;&quot;, vague = 20)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Transitions.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_transition'>transition</span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span> <span class='op'>=</span> <span class='int'>8</span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_vague'>vague</span> <span class='op'>=</span> <span class='int'>20</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_judge_special_transition'>judge_special_transition</span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_duration'>duration</span> <span class='op'>=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_filename'>filename</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='kw'>begin</span>
+    <span class='id identifier rubyid_transition_KGC_SpecialTransition'>transition_KGC_SpecialTransition</span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span> <span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span> <span class='id identifier rubyid_vague'>vague</span><span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>Exception</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_filename'>filename</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_transition_KGC_SpecialTransition'>transition_KGC_SpecialTransition</span><span class='lparen'>(</span><span class='id identifier rubyid_duration'>duration</span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_vague'>vague</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="#STOP_WHILE_TRANSITION-constant" title="Graphics::STOP_WHILE_TRANSITION (constant)">STOP_WHILE_TRANSITION</a></span></span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@_interrupt_transition</span>
+    <span class='kw'>while</span> <span class='cvar'>@@transition</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='cvar'>@@transition</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span>
+      <span class='id identifier rubyid_update'>update</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="transition_KGC_SpecialTransition-class_method">
+  
+    .<strong>transition_KGC_SpecialTransition</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Transitions.rb', line 7</span>
+
+<span class='kw'>alias</span> <span class='id identifier rubyid_transition_KGC_SpecialTransition'>transition_KGC_SpecialTransition</span> <span class='id identifier rubyid_transition'>transition</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-class_method">
+  
+    .<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+295
+296
+297
+298</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Audio.rb', line 295</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+  <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'><span class='object_link'><a href="Audio.html#update-class_method" title="Audio.update (method)">update</a></span></span>
+  <span class='id identifier rubyid_audiomodule_update'>audiomodule_update</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_KGC_SpecialTransition-class_method">
+  
+    .<strong>update_KGC_SpecialTransition</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Transitions.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+  <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_update'><span class='object_link'><a href="Audio.html#update-class_method" title="Audio.update (method)">update</a></span></span>
+  <span class='id identifier rubyid_audiomodule_update'>audiomodule_update</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="wait-class_method">
+  
+    .<strong>wait</strong>(frames)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+157
+158
+159
+160
+161
+162</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Resizer.rb', line 157</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_wait'>wait</span><span class='lparen'>(</span><span class='id identifier rubyid_frames'>frames</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_frames'>frames</span><span class='op'>&lt;=</span><span class='int'>0</span>
+  <span class='id identifier rubyid_frames'>frames</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_i'>i</span><span class='op'>|</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="width-class_method">
+  
+    .<strong>width</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+303</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 303</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='semicolon'>;</span> <span class='kw'>return</span> <span class='int'>640</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:20 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Module: RTP
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "RTP";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (R)</a> &raquo;
+    
+    
+    <span class="title">RTP</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Module: RTP
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/SpriteWindow.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eachPath-class_method" title="eachPath (class method)">.<strong>eachPath</strong> {|&quot;.&quot;.gsub(/[\/\\]/,&quot;/&quot;).gsub(/[\/\\]$/,&quot;&quot;)+&quot;/&quot;| ... } &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Gets all RGSS search paths.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#eachPathFor-class_method" title="eachPathFor (class method)">.<strong>eachPathFor</strong>(filename)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Gets the absolute RGSS paths for the given file name.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#exists%3F-class_method" title="exists? (class method)">.<strong>exists?</strong>(filename, extensions = [])  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getAudioPath-class_method" title="getAudioPath (class method)">.<strong>getAudioPath</strong>(filename)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getImagePath-class_method" title="getImagePath (class method)">.<strong>getImagePath</strong>(filename)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getPath-class_method" title="getPath (class method)">.<strong>getPath</strong>(filename, extensions = [])  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="eachPath-class_method">
+  
+    .<strong>eachPath</strong> {|&quot;.&quot;.gsub(/[\/\\]/,&quot;/&quot;).gsub(/[\/\\]$/,&quot;&quot;)+&quot;/&quot;| ... } &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets all RGSS search paths</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Yields:</p>
+<ul class="yield">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>".".gsub(/[\/\\]/,"/").gsub(/[\/\\]$/,"")+"/"</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 515</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_eachPath'>eachPath</span>
+  <span class='comment'># XXX: Use &quot;.&quot; instead of Dir.pwd because of problems retrieving files if
+</span>  <span class='comment'># the current directory contains an accent mark
+</span>  <span class='kw'>yield</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.</span><span class='tstring_end'>&quot;</span></span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[\/\\]</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[\/\\]$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@rtpPaths</span>
+    <span class='id identifier rubyid_tmp'>tmp</span><span class='op'>=</span><span class='const'>Sprite</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='id identifier rubyid_isRgss2'>isRgss2</span><span class='op'>=</span><span class='id identifier rubyid_tmp'>tmp</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wave_amp</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_tmp'>tmp</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+    <span class='ivar'>@rtpPaths</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_isRgss2'>isRgss2</span>
+      <span class='id identifier rubyid_rtp'>rtp</span><span class='op'>=</span><span class='id identifier rubyid_getGameIniValue'>getGameIniValue</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Game</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>RTP</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_rtp'>rtp</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+        <span class='id identifier rubyid_rtp'>rtp</span><span class='op'>=</span><span class='const'>MiniRegistry</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="MiniRegistry.html" title="MiniRegistry (module)">MiniRegistry</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="MiniRegistry.html#HKEY_LOCAL_MACHINE-constant" title="MiniRegistry::HKEY_LOCAL_MACHINE (constant)">HKEY_LOCAL_MACHINE</a></span></span><span class='comma'>,</span>
+           <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SOFTWARE\\Enterbrain\\RGSS2\\RTP</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_rtp'>rtp</span><span class='comma'>,</span><span class='kw'>nil</span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_rtp'>rtp</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_safeIsDirectory?'><span class='object_link'><a href="top-level-namespace.html#safeIsDirectory%3F-instance_method" title="#safeIsDirectory? (method)">safeIsDirectory?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_rtp'>rtp</span><span class='rparen'>)</span>
+          <span class='ivar'>@rtpPaths</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_rtp'>rtp</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[\/\\]$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='qwords_beg'>%w(</span><span class='words_sep'> </span><span class='tstring_content'>RTP1</span><span class='words_sep'> </span><span class='tstring_content'>RTP2</span><span class='words_sep'> </span><span class='tstring_content'>RTP3</span><span class='words_sep'> </span><span class='tstring_end'>)</span></span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_v'>v</span><span class='op'>|</span>
+         <span class='id identifier rubyid_rtp'>rtp</span><span class='op'>=</span><span class='id identifier rubyid_getGameIniValue'>getGameIniValue</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Game</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_v'>v</span><span class='rparen'>)</span>
+         <span class='kw'>if</span> <span class='id identifier rubyid_rtp'>rtp</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+           <span class='id identifier rubyid_rtp'>rtp</span><span class='op'>=</span><span class='const'>MiniRegistry</span><span class='period'>.</span><span class='id identifier rubyid_get'>get</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="MiniRegistry.html" title="MiniRegistry (module)">MiniRegistry</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="MiniRegistry.html#HKEY_LOCAL_MACHINE-constant" title="MiniRegistry::HKEY_LOCAL_MACHINE (constant)">HKEY_LOCAL_MACHINE</a></span></span><span class='comma'>,</span>
+              <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>SOFTWARE\\Enterbrain\\RGSS\\RTP</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_rtp'>rtp</span><span class='comma'>,</span><span class='kw'>nil</span><span class='rparen'>)</span>
+           <span class='kw'>if</span> <span class='id identifier rubyid_rtp'>rtp</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_safeIsDirectory?'><span class='object_link'><a href="top-level-namespace.html#safeIsDirectory%3F-instance_method" title="#safeIsDirectory? (method)">safeIsDirectory?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_rtp'>rtp</span><span class='rparen'>)</span>
+             <span class='ivar'>@rtpPaths</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_rtp'>rtp</span><span class='period'>.</span><span class='id identifier rubyid_sub'>sub</span><span class='lparen'>(</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>[\/\\]$</span><span class='regexp_end'>/</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='op'>+</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>/</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+           <span class='kw'>end</span>
+         <span class='kw'>end</span>
+      <span class='rbrace'>}</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@rtpPaths</span><span class='period'>.</span><span class='id identifier rubyid_each'>each</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_x'>x</span><span class='op'>|</span> <span class='kw'>yield</span> <span class='id identifier rubyid_x'>x</span> <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="eachPathFor-class_method">
+  
+    .<strong>eachPathFor</strong>(filename)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Gets the absolute RGSS paths for the given file name</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 497</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_eachPathFor'>eachPathFor</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_filename'>filename</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_filename'>filename</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[A-Za-z]\:[\/\\]</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='id identifier rubyid_filename'>filename</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^[\/\\]</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span> 
+    <span class='comment'># filename is already absolute
+</span>    <span class='kw'>yield</span> <span class='id identifier rubyid_filename'>filename</span>
+  <span class='kw'>else</span>
+    <span class='comment'># relative path
+</span>    <span class='const'><span class='object_link'><a href="" title="RTP (module)">RTP</a></span></span><span class='period'>.</span><span class='id identifier rubyid_eachPath'><span class='object_link'><a href="#eachPath-class_method" title="RTP.eachPath (method)">eachPath</a></span></span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span> 
+       <span class='kw'>if</span> <span class='id identifier rubyid_path'>path</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>./</span><span class='tstring_end'>&quot;</span></span>
+         <span class='kw'>yield</span> <span class='id identifier rubyid_filename'>filename</span>
+       <span class='kw'>else</span>
+         <span class='kw'>yield</span> <span class='id identifier rubyid_path'>path</span><span class='op'>+</span><span class='id identifier rubyid_filename'>filename</span>
+       <span class='kw'>end</span>
+    <span class='rbrace'>}</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="exists?-class_method">
+  
+    .<strong>exists?</strong>(filename, extensions = [])  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 465</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_exists?'>exists?</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='id identifier rubyid_extensions'>extensions</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>||</span> <span class='id identifier rubyid_filename'>filename</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_eachPathFor'>eachPathFor</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span>
+     <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_safeExists?'><span class='object_link'><a href="top-level-namespace.html#safeExists%3F-instance_method" title="#safeExists? (method)">safeExists?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+     <span class='kw'>for</span> <span class='id identifier rubyid_ext'>ext</span> <span class='kw'>in</span> <span class='id identifier rubyid_extensions'>extensions</span>
+       <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_safeExists?'><span class='object_link'><a href="top-level-namespace.html#safeExists%3F-instance_method" title="#safeExists? (method)">safeExists?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='op'>+</span><span class='id identifier rubyid_ext'>ext</span><span class='rparen'>)</span>
+     <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+  <span class='kw'>return</span> <span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getAudioPath-class_method">
+  
+    .<strong>getAudioPath</strong>(filename)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+480
+481
+482</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 480</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getAudioPath'>getAudioPath</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getPath'>getPath</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.mp3</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.wav</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.wma</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.mid</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.ogg</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.midi</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getImagePath-class_method">
+  
+    .<strong>getImagePath</strong>(filename)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+476
+477
+478</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 476</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getImagePath'>getImagePath</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getPath'>getPath</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='lbracket'>[</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.png</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.jpg</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.gif</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.bmp</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>.jpeg</span><span class='tstring_end'>&quot;</span></span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getPath-class_method">
+  
+    .<strong>getPath</strong>(filename, extensions = [])  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 484</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_getPath'>getPath</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='comma'>,</span><span class='id identifier rubyid_extensions'>extensions</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_filename'>filename</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_filename'>filename</span> <span class='op'>||</span> <span class='id identifier rubyid_filename'>filename</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='id identifier rubyid_eachPathFor'>eachPathFor</span><span class='lparen'>(</span><span class='id identifier rubyid_filename'>filename</span><span class='rparen'>)</span> <span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_path'>path</span><span class='op'>|</span>
+     <span class='kw'>return</span> <span class='id identifier rubyid_path'>path</span> <span class='kw'>if</span> <span class='id identifier rubyid_safeExists?'><span class='object_link'><a href="top-level-namespace.html#safeExists%3F-instance_method" title="#safeExists? (method)">safeExists?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_path'>path</span><span class='rparen'>)</span>
+     <span class='kw'>for</span> <span class='id identifier rubyid_ext'>ext</span> <span class='kw'>in</span> <span class='id identifier rubyid_extensions'>extensions</span>
+       <span class='id identifier rubyid_file'>file</span><span class='op'>=</span><span class='id identifier rubyid_path'>path</span><span class='op'>+</span><span class='id identifier rubyid_ext'>ext</span>
+       <span class='kw'>return</span> <span class='id identifier rubyid_file'>file</span> <span class='kw'>if</span> <span class='id identifier rubyid_safeExists?'><span class='object_link'><a href="top-level-namespace.html#safeExists%3F-instance_method" title="#safeExists? (method)">safeExists?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+     <span class='kw'>end</span>
+  <span class='rbrace'>}</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_filename'>filename</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:21 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

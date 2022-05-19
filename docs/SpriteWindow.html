@@ -1,0 +1,3652 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: SpriteWindow
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "SpriteWindow";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">SpriteWindow</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: SpriteWindow
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="Window.html" title="Window (class)">Window</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Window.html" title="Window (class)">Window</a></span></li>
+          
+            <li class="next">SpriteWindow</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/SpriteWindow.rb</dd>
+  </dl>
+  
+</div>
+
+<div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="SpriteWindow_Base.html" title="SpriteWindow_Base (class)">SpriteWindow_Base</a></span></p>
+</div>
+<h2>Defined Under Namespace</h2>
+<p class="children">
+  
+    
+      <strong class="modules">Modules:</strong> <span class='object_link'><a href="SpriteWindow/CompatBits.html" title="SpriteWindow::CompatBits (module)">CompatBits</a></span>
+    
+  
+    
+  
+</p>
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#active-instance_method" title="#active (instance method)">#<strong>active</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute active.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#back_opacity-instance_method" title="#back_opacity (instance method)">#<strong>back_opacity</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute back_opacity.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#blend_type-instance_method" title="#blend_type (instance method)">#<strong>blend_type</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute blend_type.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#color-instance_method" title="#color (instance method)">#<strong>color</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute color.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#compat-instance_method" title="#compat (instance method)">#<strong>compat</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute compat.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contents-instance_method" title="#contents (instance method)">#<strong>contents</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute contents.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contents_blend_type-instance_method" title="#contents_blend_type (instance method)">#<strong>contents_blend_type</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute contents_blend_type.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#contents_opacity-instance_method" title="#contents_opacity (instance method)">#<strong>contents_opacity</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute contents_opacity.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#cursor_rect-instance_method" title="#cursor_rect (instance method)">#<strong>cursor_rect</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute cursor_rect.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#height-instance_method" title="#height (instance method)">#<strong>height</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute height.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#offset_x-instance_method" title="#offset_x (instance method)">#<strong>offset_x</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute offset_x.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#offset_y-instance_method" title="#offset_y (instance method)">#<strong>offset_y</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute offset_y.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#opacity-instance_method" title="#opacity (instance method)">#<strong>opacity</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute opacity.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#openness-instance_method" title="#openness (instance method)">#<strong>openness</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute openness.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#ox-instance_method" title="#ox (instance method)">#<strong>ox</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute ox.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#oy-instance_method" title="#oy (instance method)">#<strong>oy</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute oy.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pause-instance_method" title="#pause (instance method)">#<strong>pause</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute pause.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#skinformat-instance_method" title="#skinformat (instance method)">#<strong>skinformat</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute skinformat.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#skinrect-instance_method" title="#skinrect (instance method)">#<strong>skinrect</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute skinrect.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#tone-instance_method" title="#tone (instance method)">#<strong>tone</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute tone.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#viewport-instance_method" title="#viewport (instance method)">#<strong>viewport</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute viewport.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#visible-instance_method" title="#visible (instance method)">#<strong>visible</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute visible.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#width-instance_method" title="#width (instance method)">#<strong>width</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute width.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#x-instance_method" title="#x (instance method)">#<strong>x</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute x.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#y-instance_method" title="#y (instance method)">#<strong>y</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute y.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#z-instance_method" title="#z (instance method)">#<strong>z</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute z.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#zoom_x-instance_method" title="#zoom_x (instance method)">#<strong>zoom_x</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute zoom_x.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#zoom_y-instance_method" title="#zoom_y (instance method)">#<strong>zoom_y</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute zoom_y.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Window.html" title="Window (class)">Window</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Window.html#stretch-instance_method" title="Window#stretch (method)">#stretch</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#borderX-instance_method" title="#borderX (instance method)">#<strong>borderX</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#borderY-instance_method" title="#borderY (instance method)">#<strong>borderY</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bottomEdge-instance_method" title="#bottomEdge (instance method)">#<strong>bottomEdge</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispose-instance_method" title="#dispose (instance method)">#<strong>dispose</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#disposed%3F-instance_method" title="#disposed? (instance method)">#<strong>disposed?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#endX-instance_method" title="#endX (instance method)">#<strong>endX</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#endX=-instance_method" title="#endX= (instance method)">#<strong>endX=</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#endY-instance_method" title="#endY (instance method)">#<strong>endY</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#endY=-instance_method" title="#endY= (instance method)">#<strong>endY=</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#flash-instance_method" title="#flash (instance method)">#<strong>flash</strong>(color, duration)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(viewport = nil)  &#x21d2; SpriteWindow </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of SpriteWindow.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#leftEdge-instance_method" title="#leftEdge (instance method)">#<strong>leftEdge</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#loadSkinFile-instance_method" title="#loadSkinFile (instance method)">#<strong>loadSkinFile</strong>(file)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#rightEdge-instance_method" title="#rightEdge (instance method)">#<strong>rightEdge</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startX-instance_method" title="#startX (instance method)">#<strong>startX</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startX=-instance_method" title="#startX= (instance method)">#<strong>startX=</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startY-instance_method" title="#startY (instance method)">#<strong>startY</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#startY=-instance_method" title="#startY= (instance method)">#<strong>startY=</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#stretch=-instance_method" title="#stretch= (instance method)">#<strong>stretch=</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#topEdge-instance_method" title="#topEdge (instance method)">#<strong>topEdge</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#windowskin-instance_method" title="#windowskin (instance method)">#<strong>windowskin</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#windowskin=-instance_method" title="#windowskin= (instance method)">#<strong>windowskin=</strong>(value)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(viewport = nil)  &#x21d2; <tt><span class='object_link'><a href="" title="SpriteWindow (class)">SpriteWindow</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of SpriteWindow.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1961
+1962
+1963
+1964
+1965
+1966
+1967
+1968
+1969
+1970
+1971
+1972
+1973
+1974
+1975
+1976
+1977
+1978
+1979
+1980
+1981
+1982
+1983
+1984
+1985
+1986
+1987
+1988
+1989
+1990
+1991
+1992
+1993
+1994
+1995
+1996
+1997
+1998
+1999
+2000
+2001
+2002
+2003
+2004
+2005
+2006
+2007
+2008
+2009
+2010
+2011
+2012
+2013
+2014
+2015
+2016
+2017</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1961</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_viewport'>viewport</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@sprites</span><span class='op'>=</span><span class='lbrace'>{</span><span class='rbrace'>}</span>
+  <span class='ivar'>@spritekeys</span><span class='op'>=</span><span class='lbracket'>[</span>
+     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>back</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>corner0</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>side0</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scroll0</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>corner1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>side1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scroll1</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>corner2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>side2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scroll2</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>corner3</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>side3</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>scroll3</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+     <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>cursor</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>contents</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>pause</span><span class='tstring_end'>&quot;</span></span>
+  <span class='rbracket'>]</span>
+  <span class='ivar'>@viewport</span><span class='op'>=</span><span class='id identifier rubyid_viewport'>viewport</span>
+  <span class='ivar'>@sidebitmaps</span><span class='op'>=</span><span class='lbracket'>[</span><span class='kw'>nil</span><span class='comma'>,</span><span class='kw'>nil</span><span class='comma'>,</span><span class='kw'>nil</span><span class='comma'>,</span><span class='kw'>nil</span><span class='rbracket'>]</span>
+  <span class='ivar'>@cursorbitmap</span><span class='op'>=</span><span class='kw'>nil</span>
+  <span class='ivar'>@bgbitmap</span><span class='op'>=</span><span class='kw'>nil</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='ivar'>@spritekeys</span>
+    <span class='ivar'>@sprites</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="Sprite.html" title="Sprite (class)">Sprite</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite.html#initialize-instance_method" title="Sprite#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='ivar'>@viewport</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@disposed</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='ivar'>@tone</span><span class='op'>=</span><span class='const'>Tone</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='ivar'>@color</span><span class='op'>=</span><span class='const'>Color</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='ivar'>@blankcontents</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="Bitmap.html" title="Bitmap (class)">Bitmap</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span> <span class='comment'># RGSS2 requires this
+</span>  <span class='ivar'>@contents</span><span class='op'>=</span><span class='ivar'>@blankcontents</span>
+  <span class='ivar'>@_windowskin</span><span class='op'>=</span><span class='kw'>nil</span>
+  <span class='ivar'>@rpgvx</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='ivar'>@compat</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="SpriteWindow/CompatBits.html" title="SpriteWindow::CompatBits (module)">CompatBits</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="SpriteWindow/CompatBits.html#ExpandBack-constant" title="SpriteWindow::CompatBits::ExpandBack (constant)">ExpandBack</a></span></span><span class='op'>|</span><span class='const'>CompatBits</span><span class='op'>::</span><span class='const'>StretchSides</span>
+  <span class='ivar'>@x</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@y</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@width</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@height</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@offset_x</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@offset_y</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@zoom_x</span><span class='op'>=</span><span class='float'>1.0</span>
+  <span class='ivar'>@zoom_y</span><span class='op'>=</span><span class='float'>1.0</span>
+  <span class='ivar'>@ox</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@oy</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@z</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@stretch</span><span class='op'>=</span><span class='kw'>true</span>
+  <span class='ivar'>@visible</span><span class='op'>=</span><span class='kw'>true</span>
+  <span class='ivar'>@active</span><span class='op'>=</span><span class='kw'>true</span>
+  <span class='ivar'>@openness</span><span class='op'>=</span><span class='int'>255</span>
+  <span class='ivar'>@opacity</span><span class='op'>=</span><span class='int'>255</span>
+  <span class='ivar'>@back_opacity</span><span class='op'>=</span><span class='int'>255</span>
+  <span class='ivar'>@blend_type</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@contents_blend_type</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@contents_opacity</span><span class='op'>=</span><span class='int'>255</span>
+  <span class='ivar'>@cursor_rect</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="SpriteWindowCursorRect.html" title="SpriteWindowCursorRect (class)">SpriteWindowCursorRect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="SpriteWindowCursorRect.html#initialize-instance_method" title="SpriteWindowCursorRect#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
+  <span class='ivar'>@cursorblink</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@cursoropacity</span><span class='op'>=</span><span class='int'>255</span>
+  <span class='ivar'>@pause</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='ivar'>@pauseframe</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@flash</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@pauseopacity</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@skinformat</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@skinrect</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="Rect.html" title="Rect (class)">Rect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+  <span class='ivar'>@trim</span><span class='op'>=</span><span class='lbracket'>[</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_privRefresh'>privRefresh</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="active=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="active-instance_method">
+  
+    #<strong>active</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute active.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1927
+1928
+1929</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1927</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_active'>active</span>
+  <span class='ivar'>@active</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="back_opacity=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="back_opacity-instance_method">
+  
+    #<strong>back_opacity</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute back_opacity.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1931
+1932
+1933</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1931</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_back_opacity'>back_opacity</span>
+  <span class='ivar'>@back_opacity</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="blend_type=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="blend_type-instance_method">
+  
+    #<strong>blend_type</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute blend_type.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1936
+1937
+1938</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1936</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_blend_type'>blend_type</span>
+  <span class='ivar'>@blend_type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="color=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="color-instance_method">
+  
+    #<strong>color</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute color.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1914
+1915
+1916</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1914</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_color'>color</span>
+  <span class='ivar'>@color</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="compat=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="compat-instance_method">
+  
+    #<strong>compat</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute compat.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1954
+1955
+1956</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1954</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_compat'>compat</span>
+  <span class='ivar'>@compat</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="contents=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="contents-instance_method">
+  
+    #<strong>contents</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute contents.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1916
+1917
+1918</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1916</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contents'>contents</span>
+  <span class='ivar'>@contents</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="contents_blend_type-instance_method">
+  
+    #<strong>contents_blend_type</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute contents_blend_type.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1935
+1936
+1937</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1935</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contents_blend_type'>contents_blend_type</span>
+  <span class='ivar'>@contents_blend_type</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="contents_opacity=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="contents_opacity-instance_method">
+  
+    #<strong>contents_opacity</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute contents_opacity.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1932
+1933
+1934</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1932</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_contents_opacity'>contents_opacity</span>
+  <span class='ivar'>@contents_opacity</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="cursor_rect=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="cursor_rect-instance_method">
+  
+    #<strong>cursor_rect</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute cursor_rect.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1934
+1935
+1936</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1934</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_cursor_rect'>cursor_rect</span>
+  <span class='ivar'>@cursor_rect</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="height=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="height-instance_method">
+  
+    #<strong>height</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute height.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1929
+1930
+1931</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1929</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_height'>height</span>
+  <span class='ivar'>@height</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="offset_x=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="offset_x-instance_method">
+  
+    #<strong>offset_x</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute offset_x.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1924
+1925
+1926</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1924</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_offset_x'>offset_x</span>
+  <span class='ivar'>@offset_x</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="offset_y=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="offset_y-instance_method">
+  
+    #<strong>offset_y</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute offset_y.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1925
+1926
+1927</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1925</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_offset_y'>offset_y</span>
+  <span class='ivar'>@offset_y</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="opacity=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="opacity-instance_method">
+  
+    #<strong>opacity</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute opacity.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1930
+1931
+1932</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1930</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_opacity'>opacity</span>
+  <span class='ivar'>@opacity</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="openness=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="openness-instance_method">
+  
+    #<strong>openness</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute openness.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1937
+1938
+1939</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1937</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_openness'>openness</span>
+  <span class='ivar'>@openness</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="ox=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="ox-instance_method">
+  
+    #<strong>ox</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute ox.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1917
+1918
+1919</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1917</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_ox'>ox</span>
+  <span class='ivar'>@ox</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="oy=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="oy-instance_method">
+  
+    #<strong>oy</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute oy.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1918
+1919
+1920</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1918</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_oy'>oy</span>
+  <span class='ivar'>@oy</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="pause=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="pause-instance_method">
+  
+    #<strong>pause</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute pause.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1928
+1929
+1930</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1928</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pause'>pause</span>
+  <span class='ivar'>@pause</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="skinformat=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="skinformat-instance_method">
+  
+    #<strong>skinformat</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute skinformat.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2237
+2238
+2239</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2237</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_skinformat'>skinformat</span>
+  <span class='ivar'>@skinformat</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="skinrect=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="skinrect-instance_method">
+  
+    #<strong>skinrect</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute skinrect.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2238
+2239
+2240</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2238</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_skinrect'>skinrect</span>
+  <span class='ivar'>@skinrect</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="tone=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="tone-instance_method">
+  
+    #<strong>tone</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute tone.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1913
+1914
+1915</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1913</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_tone'>tone</span>
+  <span class='ivar'>@tone</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="viewport=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="viewport-instance_method">
+  
+    #<strong>viewport</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute viewport.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1915
+1916
+1917</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1915</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_viewport'>viewport</span>
+  <span class='ivar'>@viewport</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="visible=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="visible-instance_method">
+  
+    #<strong>visible</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute visible.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1933
+1934
+1935</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1933</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_visible'>visible</span>
+  <span class='ivar'>@visible</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="width=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="width-instance_method">
+  
+    #<strong>width</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute width.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1926
+1927
+1928</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1926</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_width'>width</span>
+  <span class='ivar'>@width</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="x=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="x-instance_method">
+  
+    #<strong>x</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute x.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1919
+1920
+1921</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1919</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_x'>x</span>
+  <span class='ivar'>@x</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="y=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="y-instance_method">
+  
+    #<strong>y</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute y.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1920
+1921
+1922</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1920</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_y'>y</span>
+  <span class='ivar'>@y</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="z=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="z-instance_method">
+  
+    #<strong>z</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute z.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1921
+1922
+1923</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1921</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_z'>z</span>
+  <span class='ivar'>@z</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="zoom_x=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="zoom_x-instance_method">
+  
+    #<strong>zoom_x</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute zoom_x.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1922
+1923
+1924</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1922</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_zoom_x'>zoom_x</span>
+  <span class='ivar'>@zoom_x</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="zoom_y=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="zoom_y-instance_method">
+  
+    #<strong>zoom_y</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute zoom_y.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1923
+1924
+1925</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1923</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_zoom_y'>zoom_y</span>
+  <span class='ivar'>@zoom_y</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="borderX-instance_method">
+  
+    #<strong>borderX</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2292
+2293
+2294
+2295
+2296
+2297
+2298</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2292</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_borderX'>borderX</span>
+  <span class='kw'>return</span> <span class='int'>32</span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@trim</span> <span class='op'>||</span> <span class='id identifier rubyid_skinformat'>skinformat</span><span class='op'>==</span><span class='int'>0</span>
+  <span class='kw'>if</span> <span class='ivar'>@_windowskin</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span>
+    <span class='kw'>return</span> <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='op'>+</span><span class='lparen'>(</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='op'>-</span><span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='op'>-</span><span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='int'>32</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="borderY-instance_method">
+  
+    #<strong>borderY</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2300
+2301
+2302
+2303
+2304
+2305
+2306</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2300</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_borderY'>borderY</span>
+  <span class='kw'>return</span> <span class='int'>32</span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@trim</span> <span class='op'>||</span> <span class='id identifier rubyid_skinformat'>skinformat</span><span class='op'>==</span><span class='int'>0</span>
+  <span class='kw'>if</span> <span class='ivar'>@_windowskin</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span>
+    <span class='kw'>return</span> <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='op'>+</span><span class='lparen'>(</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='op'>-</span><span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span><span class='op'>-</span><span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='int'>32</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bottomEdge-instance_method">
+  
+    #<strong>bottomEdge</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2311</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2311</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bottomEdge'>bottomEdge</span><span class='semicolon'>;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_borderY'>borderY</span><span class='op'>-</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_topEdge'>topEdge</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dispose-instance_method">
+  
+    #<strong>dispose</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2019
+2020
+2021
+2022
+2023
+2024
+2025
+2026
+2027
+2028
+2029
+2030
+2031
+2032
+2033
+2034
+2035
+2036
+2037</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2019</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dispose'>dispose</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='ivar'>@sprites</span>
+      <span class='id identifier rubyid_i'>i</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span> <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+      <span class='ivar'>@sprites</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rbracket'>]</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='kw'>end</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@sidebitmaps</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+      <span class='ivar'>@sidebitmaps</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span> <span class='kw'>if</span> <span class='ivar'>@sidebitmaps</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+      <span class='ivar'>@sidebitmaps</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@blankcontents</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+    <span class='ivar'>@cursorbitmap</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span> <span class='kw'>if</span> <span class='ivar'>@cursorbitmap</span>
+    <span class='ivar'>@backbitmap</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span> <span class='kw'>if</span> <span class='ivar'>@backbitmap</span>
+    <span class='ivar'>@sprites</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+    <span class='ivar'>@sidebitmaps</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+    <span class='ivar'>@_windowskin</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='ivar'>@disposed</span><span class='op'>=</span><span class='kw'>true</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="disposed?-instance_method">
+  
+    #<strong>disposed?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2069
+2070
+2071</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2069</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_disposed?'>disposed?</span>
+  <span class='kw'>return</span> <span class='ivar'>@disposed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="endX-instance_method">
+  
+    #<strong>endX</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2321
+2322
+2323</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2321</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_endX'>endX</span>
+  <span class='kw'>return</span> <span class='op'>!</span><span class='ivar'>@trim</span> <span class='op'>||</span> <span class='id identifier rubyid_skinformat'>skinformat</span><span class='op'>==</span><span class='int'>0</span>  <span class='op'>?</span> <span class='int'>16</span> <span class='op'>:</span> <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="endX=-instance_method">
+  
+    #<strong>endX=</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2339
+2340
+2341
+2342</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2339</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_endX='>endX=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='op'>=</span><span class='id identifier rubyid_value'>value</span>
+  <span class='id identifier rubyid_privRefresh'>privRefresh</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="endY-instance_method">
+  
+    #<strong>endY</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2325
+2326
+2327</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2325</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_endY'>endY</span>
+  <span class='kw'>return</span> <span class='op'>!</span><span class='ivar'>@trim</span> <span class='op'>||</span> <span class='id identifier rubyid_skinformat'>skinformat</span><span class='op'>==</span><span class='int'>0</span>  <span class='op'>?</span> <span class='int'>16</span> <span class='op'>:</span> <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="endY=-instance_method">
+  
+    #<strong>endY=</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2344
+2345
+2346
+2347</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2344</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_endY='>endY=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span><span class='op'>=</span><span class='id identifier rubyid_value'>value</span>
+  <span class='id identifier rubyid_privRefresh'>privRefresh</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="flash-instance_method">
+  
+    #<strong>flash</strong>(color, duration)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2196
+2197
+2198
+2199
+2200
+2201
+2202</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2196</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_flash'>flash</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='comma'>,</span><span class='id identifier rubyid_duration'>duration</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_disposed?'>disposed?</span>
+  <span class='ivar'>@flash</span><span class='op'>=</span><span class='id identifier rubyid_duration'>duration</span><span class='op'>+</span><span class='int'>1</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='ivar'>@sprites</span>
+    <span class='id identifier rubyid_i'>i</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_flash'>flash</span><span class='lparen'>(</span><span class='id identifier rubyid_color'>color</span><span class='comma'>,</span><span class='id identifier rubyid_duration'>duration</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="leftEdge-instance_method">
+  
+    #<strong>leftEdge</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2308</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2308</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_leftEdge'>leftEdge</span><span class='semicolon'>;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_startX'>startX</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="loadSkinFile-instance_method">
+  
+    #<strong>loadSkinFile</strong>(file)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2240
+2241
+2242
+2243
+2244
+2245
+2246
+2247
+2248
+2249
+2250
+2251</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2240</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_loadSkinFile'>loadSkinFile</span><span class='lparen'>(</span><span class='id identifier rubyid_file'>file</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_windowskin'>windowskin</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='op'>==</span><span class='int'>80</span> <span class='op'>||</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_windowskin'>windowskin</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='op'>==</span><span class='int'>96</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_windowskin'>windowskin</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='op'>==</span><span class='int'>48</span>
+    <span class='comment'># Body = X, Y, width, height of body rectangle within windowskin
+</span>    <span class='ivar'>@skinrect</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='int'>32</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='rparen'>)</span>
+    <span class='comment'># Trim = X, Y, width, height of trim rectangle within windowskin
+</span>    <span class='ivar'>@trim</span><span class='op'>=</span><span class='lbracket'>[</span><span class='int'>32</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='rbracket'>]</span>
+  <span class='kw'>elsif</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_windowskin'>windowskin</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='op'>==</span><span class='int'>80</span> <span class='op'>&amp;&amp;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_windowskin'>windowskin</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='op'>==</span><span class='int'>80</span>
+    <span class='ivar'>@skinrect</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='int'>32</span><span class='comma'>,</span><span class='int'>32</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='rparen'>)</span>
+    <span class='ivar'>@trim</span><span class='op'>=</span><span class='lbracket'>[</span><span class='int'>32</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>48</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="rightEdge-instance_method">
+  
+    #<strong>rightEdge</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2310</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2310</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_rightEdge'>rightEdge</span><span class='semicolon'>;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_borderX'>borderX</span><span class='op'>-</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_leftEdge'>leftEdge</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="startX-instance_method">
+  
+    #<strong>startX</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2313
+2314
+2315</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2313</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_startX'>startX</span>
+  <span class='kw'>return</span> <span class='op'>!</span><span class='ivar'>@trim</span> <span class='op'>||</span> <span class='id identifier rubyid_skinformat'>skinformat</span><span class='op'>==</span><span class='int'>0</span>  <span class='op'>?</span> <span class='int'>16</span> <span class='op'>:</span> <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="startX=-instance_method">
+  
+    #<strong>startX=</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2329
+2330
+2331
+2332</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2329</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_startX='>startX=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='op'>=</span><span class='id identifier rubyid_value'>value</span>
+  <span class='id identifier rubyid_privRefresh'>privRefresh</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="startY-instance_method">
+  
+    #<strong>startY</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2317
+2318
+2319</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2317</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_startY'>startY</span>
+  <span class='kw'>return</span> <span class='op'>!</span><span class='ivar'>@trim</span> <span class='op'>||</span> <span class='id identifier rubyid_skinformat'>skinformat</span><span class='op'>==</span><span class='int'>0</span>  <span class='op'>?</span> <span class='int'>16</span> <span class='op'>:</span> <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="startY=-instance_method">
+  
+    #<strong>startY=</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2334
+2335
+2336
+2337</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2334</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_startY='>startY=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@trim</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='op'>=</span><span class='id identifier rubyid_value'>value</span>
+  <span class='id identifier rubyid_privRefresh'>privRefresh</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="stretch=-instance_method">
+  
+    #<strong>stretch=</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2039
+2040
+2041
+2042</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2039</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_stretch='>stretch=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='ivar'>@stretch</span><span class='op'>=</span><span class='id identifier rubyid_value'>value</span>
+  <span class='id identifier rubyid_privRefresh'>privRefresh</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="topEdge-instance_method">
+  
+    #<strong>topEdge</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2309</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2309</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_topEdge'>topEdge</span><span class='semicolon'>;</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_startY'>startY</span><span class='semicolon'>;</span> <span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    #<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2204
+2205
+2206
+2207
+2208
+2209
+2210
+2211
+2212
+2213
+2214
+2215
+2216
+2217
+2218
+2219
+2220
+2221
+2222
+2223
+2224
+2225
+2226
+2227
+2228
+2229
+2230
+2231
+2232
+2233
+2234</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2204</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_disposed?'>disposed?</span>
+  <span class='id identifier rubyid_mustchange'>mustchange</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='kw'>if</span> <span class='ivar'>@active</span>
+    <span class='kw'>if</span> <span class='ivar'>@cursorblink</span><span class='op'>==</span><span class='int'>0</span>
+      <span class='ivar'>@cursoropacity</span><span class='op'>-=</span><span class='int'>8</span>
+      <span class='ivar'>@cursorblink</span><span class='op'>=</span><span class='int'>1</span> <span class='kw'>if</span> <span class='ivar'>@cursoropacity</span><span class='op'>&lt;=</span><span class='int'>128</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@cursoropacity</span><span class='op'>+=</span><span class='int'>8</span>
+      <span class='ivar'>@cursorblink</span><span class='op'>=</span><span class='int'>0</span> <span class='kw'>if</span> <span class='ivar'>@cursoropacity</span><span class='op'>&gt;=</span><span class='int'>255</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_privRefreshCursor'>privRefreshCursor</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@cursoropacity</span><span class='op'>=</span><span class='int'>128</span>
+    <span class='id identifier rubyid_privRefreshCursor'>privRefreshCursor</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='ivar'>@pause</span>
+    <span class='id identifier rubyid_oldpauseframe'>oldpauseframe</span><span class='op'>=</span><span class='ivar'>@pauseframe</span>
+    <span class='id identifier rubyid_oldpauseopacity'>oldpauseopacity</span><span class='op'>=</span><span class='ivar'>@pauseopacity</span>
+    <span class='ivar'>@pauseframe</span><span class='op'>=</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_frame_count'>frame_count</span> <span class='op'>/</span> <span class='int'>8</span><span class='rparen'>)</span> <span class='op'>%</span> <span class='int'>4</span>
+    <span class='ivar'>@pauseopacity</span><span class='op'>=</span><span class='lbracket'>[</span><span class='ivar'>@pauseopacity</span><span class='op'>+</span><span class='int'>64</span><span class='comma'>,</span><span class='int'>255</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_min'>min</span>
+    <span class='id identifier rubyid_mustchange'>mustchange</span><span class='op'>=</span><span class='ivar'>@pauseframe</span><span class='op'>!=</span><span class='id identifier rubyid_oldpauseframe'>oldpauseframe</span> <span class='op'>||</span> <span class='ivar'>@pauseopacity</span><span class='op'>!=</span><span class='id identifier rubyid_oldpauseopacity'>oldpauseopacity</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_privRefresh'>privRefresh</span> <span class='kw'>if</span> <span class='id identifier rubyid_mustchange'>mustchange</span>
+  <span class='kw'>if</span> <span class='ivar'>@flash</span><span class='op'>&gt;</span><span class='int'>0</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='ivar'>@sprites</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+      <span class='id identifier rubyid_i'>i</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@flash</span><span class='op'>-=</span><span class='int'>1</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="windowskin-instance_method">
+  
+    #<strong>windowskin</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+1939
+1940
+1941</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 1939</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_windowskin'>windowskin</span>
+  <span class='ivar'>@_windowskin</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="windowskin=-instance_method">
+  
+    #<strong>windowskin=</strong>(value)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2253
+2254
+2255
+2256
+2257
+2258
+2259
+2260
+2261
+2262
+2263
+2264
+2265
+2266
+2267
+2268
+2269
+2270
+2271
+2272
+2273
+2274
+2275
+2276
+2277
+2278</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/SpriteWindow.rb', line 2253</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_windowskin='>windowskin=</span><span class='lparen'>(</span><span class='id identifier rubyid_value'>value</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_oldSkinWidth'>oldSkinWidth</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@_windowskin</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span> <span class='op'>:</span> <span class='op'>-</span><span class='int'>1</span>
+  <span class='id identifier rubyid_oldSkinHeight'>oldSkinHeight</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@_windowskin</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>:</span> <span class='op'>-</span><span class='int'>1</span>
+  <span class='ivar'>@_windowskin</span><span class='op'>=</span><span class='id identifier rubyid_value'>value</span>
+  <span class='kw'>if</span> <span class='ivar'>@skinformat</span><span class='op'>==</span><span class='int'>1</span>
+    <span class='ivar'>@rpgvx</span><span class='op'>=</span><span class='kw'>false</span>
+    <span class='kw'>if</span> <span class='ivar'>@_windowskin</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span>
+      <span class='kw'>if</span> <span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='op'>!=</span><span class='id identifier rubyid_oldSkinWidth'>oldSkinWidth</span> <span class='op'>||</span> <span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='op'>!=</span><span class='id identifier rubyid_oldSkinHeight'>oldSkinHeight</span>
+        <span class='comment'># Update skinrect and trim if windowskin&#39;s dimensions have changed
+</span>        <span class='ivar'>@skinrect</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='lparen'>(</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='op'>-</span><span class='int'>16</span><span class='rparen'>)</span><span class='op'>/</span><span class='int'>2</span><span class='comma'>,</span><span class='lparen'>(</span><span class='ivar'>@_windowskin</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='op'>-</span><span class='int'>16</span><span class='rparen'>)</span><span class='op'>/</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='rparen'>)</span>
+        <span class='ivar'>@trim</span><span class='op'>=</span><span class='lbracket'>[</span><span class='ivar'>@skinrect</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='ivar'>@skinrect</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='ivar'>@skinrect</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='ivar'>@skinrect</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='rbracket'>]</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@skinrect</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='rparen'>)</span>
+      <span class='ivar'>@trim</span><span class='op'>=</span><span class='lbracket'>[</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='rbracket'>]</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_value'>value</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Bitmap.html" title="Bitmap (class)">Bitmap</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_disposed?'>disposed?</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_value'>value</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='op'>==</span><span class='int'>128</span>
+      <span class='ivar'>@rpgvx</span><span class='op'>=</span><span class='kw'>true</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@rpgvx</span><span class='op'>=</span><span class='kw'>false</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@trim</span><span class='op'>=</span><span class='lbracket'>[</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='comma'>,</span><span class='int'>16</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_privRefresh'>privRefresh</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:27 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

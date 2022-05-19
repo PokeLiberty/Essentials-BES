@@ -1,0 +1,1423 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: SpriteAnimation
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "SpriteAnimation";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">SpriteAnimation</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: SpriteAnimation
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">SpriteAnimation</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/RPG__Sprite.rb</dd>
+  </dl>
+  
+</div>
+
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="_animations-classvariable" class="">@@_animations =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbracket'>[</span><span class='rbracket'>]</span></pre></dd>
+      
+        <dt id="_reference_count-classvariable" class="">@@_reference_count =
+          
+        </dt>
+        <dd><pre class="code"><span class='lbrace'>{</span><span class='rbrace'>}</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#clear-class_method" title="clear (class method)">.<strong>clear</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#active%3F-instance_method" title="#active? (instance method)">#<strong>active?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#animation-instance_method" title="#animation (instance method)">#<strong>animation</strong>(animation, hit)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#animation_process_timing-instance_method" title="#animation_process_timing (instance method)">#<strong>animation_process_timing</strong>(timing, hit)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#animation_set_sprites-instance_method" title="#animation_set_sprites (instance method)">#<strong>animation_set_sprites</strong>(sprites, cell_data, position)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispose-instance_method" title="#dispose (instance method)">#<strong>dispose</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispose_animation-instance_method" title="#dispose_animation (instance method)">#<strong>dispose_animation</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispose_loop_animation-instance_method" title="#dispose_loop_animation (instance method)">#<strong>dispose_loop_animation</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#effect%3F-instance_method" title="#effect? (instance method)">#<strong>effect?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(sprite)  &#x21d2; SpriteAnimation </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of SpriteAnimation.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#loop_animation-instance_method" title="#loop_animation (instance method)">#<strong>loop_animation</strong>(animation)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_animation-instance_method" title="#update_animation (instance method)">#<strong>update_animation</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_loop_animation-instance_method" title="#update_loop_animation (instance method)">#<strong>update_loop_animation</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#x=-instance_method" title="#x= (instance method)">#<strong>x=</strong>(x)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#y=-instance_method" title="#y= (instance method)">#<strong>y=</strong>(y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(sprite)  &#x21d2; <tt><span class='object_link'><a href="" title="SpriteAnimation (class)">SpriteAnimation</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of SpriteAnimation.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+5
+6
+7</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 5</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_sprite'>sprite</span><span class='rparen'>)</span>
+  <span class='ivar'>@sprite</span><span class='op'>=</span><span class='id identifier rubyid_sprite'>sprite</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="clear-class_method">
+  
+    .<strong>clear</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+  <span class='cvar'>@@_animations</span><span class='period'>.</span><span class='id identifier rubyid_clear'>clear</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="active?-instance_method">
+  
+    #<strong>active?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+117
+118
+119
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 117</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_active?'>active?</span>
+  <span class='ivar'>@_loop_animation_sprites</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='op'>||</span>
+  <span class='ivar'>@_animation_sprites</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="animation-instance_method">
+  
+    #<strong>animation</strong>(animation, hit)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 30</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_animation'>animation</span><span class='lparen'>(</span><span class='id identifier rubyid_animation'>animation</span><span class='comma'>,</span> <span class='id identifier rubyid_hit'>hit</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_dispose_animation'>dispose_animation</span>
+  <span class='ivar'>@_animation</span> <span class='op'>=</span> <span class='id identifier rubyid_animation'>animation</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@_animation</span> <span class='op'>==</span> <span class='kw'>nil</span>
+  <span class='ivar'>@_animation_hit</span> <span class='op'>=</span> <span class='id identifier rubyid_hit'>hit</span>
+  <span class='ivar'>@_animation_duration</span> <span class='op'>=</span> <span class='ivar'>@_animation</span><span class='period'>.</span><span class='id identifier rubyid_frame_max'>frame_max</span>
+  <span class='id identifier rubyid_animation_name'>animation_name</span> <span class='op'>=</span> <span class='ivar'>@_animation</span><span class='period'>.</span><span class='id identifier rubyid_animation_name'>animation_name</span>
+  <span class='id identifier rubyid_animation_hue'>animation_hue</span> <span class='op'>=</span> <span class='ivar'>@_animation</span><span class='period'>.</span><span class='id identifier rubyid_animation_hue'>animation_hue</span>
+  <span class='id identifier rubyid_bitmap'>bitmap</span> <span class='op'>=</span> <span class='id identifier rubyid_pbGetAnimation'><span class='object_link'><a href="top-level-namespace.html#pbGetAnimation-instance_method" title="#pbGetAnimation (method)">pbGetAnimation</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_animation_name'>animation_name</span><span class='comma'>,</span> <span class='id identifier rubyid_animation_hue'>animation_hue</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='cvar'>@@_reference_count</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rparen'>)</span>
+    <span class='cvar'>@@_reference_count</span><span class='lbracket'>[</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='kw'>else</span>
+    <span class='cvar'>@@_reference_count</span><span class='lbracket'>[</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@_animation_sprites</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='ivar'>@_animation</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span> <span class='op'>!=</span> <span class='int'>3</span> <span class='kw'>or</span> <span class='kw'>not</span> <span class='cvar'>@@_animations</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_animation'>animation</span><span class='rparen'>)</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>..</span><span class='int'>15</span>
+      <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'><span class='object_link'><a href="Sprite.html" title="Sprite (class)">Sprite</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite.html#initialize-instance_method" title="Sprite#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_viewport'>viewport</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span> <span class='op'>=</span> <span class='id identifier rubyid_bitmap'>bitmap</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>false</span>
+      <span class='ivar'>@_animation_sprites</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_sprite'>sprite</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>unless</span> <span class='cvar'>@@_animations</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_animation'>animation</span><span class='rparen'>)</span>
+      <span class='cvar'>@@_animations</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_animation'>animation</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_update_animation'>update_animation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="animation_process_timing-instance_method">
+  
+    #<strong>animation_process_timing</strong>(timing, hit)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 205</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_animation_process_timing'>animation_process_timing</span><span class='lparen'>(</span><span class='id identifier rubyid_timing'>timing</span><span class='comma'>,</span> <span class='id identifier rubyid_hit'>hit</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='lparen'>(</span><span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_condition'>condition</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>or</span>
+     <span class='lparen'>(</span><span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_condition'>condition</span> <span class='op'>==</span> <span class='int'>1</span> <span class='kw'>and</span> <span class='id identifier rubyid_hit'>hit</span> <span class='op'>==</span> <span class='kw'>true</span><span class='rparen'>)</span> <span class='kw'>or</span>
+     <span class='lparen'>(</span><span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_condition'>condition</span> <span class='op'>==</span> <span class='int'>2</span> <span class='kw'>and</span> <span class='id identifier rubyid_hit'>hit</span> <span class='op'>==</span> <span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+      <span class='id identifier rubyid_se'>se</span> <span class='op'>=</span> <span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_se'>se</span>
+      <span class='id identifier rubyid_pbSEPlay'><span class='object_link'><a href="top-level-namespace.html#pbSEPlay-instance_method" title="#pbSEPlay (method)">pbSEPlay</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_se'>se</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>case</span> <span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_flash_scope'>flash_scope</span>
+    <span class='kw'>when</span> <span class='int'>1</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_flash'>flash</span><span class='lparen'>(</span><span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_flash_color'>flash_color</span><span class='comma'>,</span> <span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_flash_duration'>flash_duration</span> <span class='op'>*</span> <span class='int'>2</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>2</span>
+      <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_viewport'>viewport</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+        <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_viewport'>viewport</span><span class='period'>.</span><span class='id identifier rubyid_flash'>flash</span><span class='lparen'>(</span><span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_flash_color'>flash_color</span><span class='comma'>,</span> <span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_flash_duration'>flash_duration</span> <span class='op'>*</span> <span class='int'>2</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>when</span> <span class='int'>3</span>
+      <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_flash'>flash</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_flash_duration'>flash_duration</span> <span class='op'>*</span> <span class='int'>2</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="animation_set_sprites-instance_method">
+  
+    #<strong>animation_set_sprites</strong>(sprites, cell_data, position)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 166</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_animation_set_sprites'>animation_set_sprites</span><span class='lparen'>(</span><span class='id identifier rubyid_sprites'>sprites</span><span class='comma'>,</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>..</span><span class='int'>15</span>
+    <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>=</span> <span class='id identifier rubyid_sprites'>sprites</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>=</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>==</span> <span class='kw'>nil</span> <span class='kw'>or</span> <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>==</span> <span class='kw'>nil</span> <span class='kw'>or</span> <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>==</span> <span class='op'>-</span><span class='int'>1</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='kw'>next</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>true</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_src_rect'>src_rect</span><span class='period'>.</span><span class='id identifier rubyid_set'>set</span><span class='lparen'>(</span><span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>%</span> <span class='int'>5</span> <span class='op'>*</span> <span class='int'>192</span><span class='comma'>,</span> <span class='id identifier rubyid_pattern'>pattern</span> <span class='op'>/</span> <span class='int'>5</span> <span class='op'>*</span> <span class='int'>192</span><span class='comma'>,</span> <span class='int'>192</span><span class='comma'>,</span> <span class='int'>192</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_position'>position</span> <span class='op'>==</span> <span class='int'>3</span>
+      <span class='kw'>if</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_viewport'>viewport</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+        <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_viewport'>viewport</span><span class='period'>.</span><span class='id identifier rubyid_rect'>rect</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span> <span class='op'>/</span> <span class='int'>2</span>
+        <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_viewport'>viewport</span><span class='period'>.</span><span class='id identifier rubyid_rect'>rect</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>-</span> <span class='int'>160</span>
+      <span class='kw'>else</span>
+        <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='int'>320</span>
+        <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='int'>240</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>-</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_ox'>ox</span> <span class='op'>+</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_src_rect'>src_rect</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span> <span class='op'>/</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>-</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_oy'>oy</span> <span class='op'>+</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_src_rect'>src_rect</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>/</span> <span class='int'>2</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>-=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_src_rect'>src_rect</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>/</span> <span class='int'>4</span> <span class='kw'>if</span> <span class='id identifier rubyid_position'>position</span> <span class='op'>==</span> <span class='int'>0</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>+=</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_src_rect'>src_rect</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>/</span> <span class='int'>4</span> <span class='kw'>if</span> <span class='id identifier rubyid_position'>position</span> <span class='op'>==</span> <span class='int'>2</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>+=</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>+=</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>2</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_z'>z</span> <span class='op'>=</span> <span class='int'>2000</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_ox'>ox</span> <span class='op'>=</span> <span class='int'>96</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_oy'>oy</span> <span class='op'>=</span> <span class='int'>96</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_zoom_x'>zoom_x</span> <span class='op'>=</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>3</span><span class='rbracket'>]</span> <span class='op'>/</span> <span class='float'>100.0</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_zoom_y'>zoom_y</span> <span class='op'>=</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>3</span><span class='rbracket'>]</span> <span class='op'>/</span> <span class='float'>100.0</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_angle'>angle</span> <span class='op'>=</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>4</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_mirror'>mirror</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>5</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_tone'>tone</span><span class='op'>=</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_tone'>tone</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_opacity'>opacity</span> <span class='op'>=</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>6</span><span class='rbracket'>]</span> <span class='op'>*</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_opacity'>opacity</span> <span class='op'>/</span> <span class='float'>255.0</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_blend_type'>blend_type</span> <span class='op'>=</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='comma'>,</span> <span class='int'>7</span><span class='rbracket'>]</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dispose-instance_method">
+  
+    #<strong>dispose</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dispose'>dispose</span>
+  <span class='id identifier rubyid_dispose_animation'>dispose_animation</span>
+  <span class='id identifier rubyid_dispose_loop_animation'>dispose_loop_animation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dispose_animation-instance_method">
+  
+    #<strong>dispose_animation</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 83</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dispose_animation'>dispose_animation</span>
+  <span class='kw'>if</span> <span class='ivar'>@_animation_sprites</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+    <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>=</span> <span class='ivar'>@_animation_sprites</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='cvar'>@@_reference_count</span><span class='lbracket'>[</span><span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rbracket'>]</span> <span class='op'>-=</span> <span class='int'>1</span>
+      <span class='kw'>if</span> <span class='cvar'>@@_reference_count</span><span class='lbracket'>[</span><span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>0</span>
+        <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_sprite'>sprite</span> <span class='kw'>in</span> <span class='ivar'>@_animation_sprites</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@_animation_sprites</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='ivar'>@_animation</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dispose_loop_animation-instance_method">
+  
+    #<strong>dispose_loop_animation</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 100</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dispose_loop_animation'>dispose_loop_animation</span>
+  <span class='kw'>if</span> <span class='ivar'>@_loop_animation_sprites</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+    <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>=</span> <span class='ivar'>@_loop_animation_sprites</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='cvar'>@@_reference_count</span><span class='lbracket'>[</span><span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rbracket'>]</span> <span class='op'>-=</span> <span class='int'>1</span>
+      <span class='kw'>if</span> <span class='cvar'>@@_reference_count</span><span class='lbracket'>[</span><span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rbracket'>]</span> <span class='op'>==</span> <span class='int'>0</span>
+        <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_sprite'>sprite</span> <span class='kw'>in</span> <span class='ivar'>@_loop_animation_sprites</span>
+      <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@_loop_animation_sprites</span> <span class='op'>=</span> <span class='kw'>nil</span>
+    <span class='ivar'>@_loop_animation</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="effect?-instance_method">
+  
+    #<strong>effect?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+122
+123
+124</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 122</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_effect?'>effect?</span>
+  <span class='ivar'>@_animation_duration</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="loop_animation-instance_method">
+  
+    #<strong>loop_animation</strong>(animation)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 59</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_loop_animation'>loop_animation</span><span class='lparen'>(</span><span class='id identifier rubyid_animation'>animation</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_animation'>animation</span> <span class='op'>==</span> <span class='ivar'>@_loop_animation</span>
+  <span class='id identifier rubyid_dispose_loop_animation'>dispose_loop_animation</span>
+  <span class='ivar'>@_loop_animation</span> <span class='op'>=</span> <span class='id identifier rubyid_animation'>animation</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='ivar'>@_loop_animation</span> <span class='op'>==</span> <span class='kw'>nil</span>
+  <span class='ivar'>@_loop_animation_index</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='id identifier rubyid_animation_name'>animation_name</span> <span class='op'>=</span> <span class='ivar'>@_loop_animation</span><span class='period'>.</span><span class='id identifier rubyid_animation_name'>animation_name</span>
+  <span class='id identifier rubyid_animation_hue'>animation_hue</span> <span class='op'>=</span> <span class='ivar'>@_loop_animation</span><span class='period'>.</span><span class='id identifier rubyid_animation_hue'>animation_hue</span>
+  <span class='id identifier rubyid_bitmap'>bitmap</span> <span class='op'>=</span> <span class='id identifier rubyid_pbGetAnimation'><span class='object_link'><a href="top-level-namespace.html#pbGetAnimation-instance_method" title="#pbGetAnimation (method)">pbGetAnimation</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_animation_name'>animation_name</span><span class='comma'>,</span> <span class='id identifier rubyid_animation_hue'>animation_hue</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='cvar'>@@_reference_count</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rparen'>)</span>
+    <span class='cvar'>@@_reference_count</span><span class='lbracket'>[</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
+  <span class='kw'>else</span>
+    <span class='cvar'>@@_reference_count</span><span class='lbracket'>[</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@_loop_animation_sprites</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>..</span><span class='int'>15</span>
+    <span class='id identifier rubyid_sprite'>sprite</span> <span class='op'>=</span> <span class='op'>::</span><span class='const'><span class='object_link'><a href="Sprite.html" title="Sprite (class)">Sprite</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite.html#initialize-instance_method" title="Sprite#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_viewport'>viewport</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span> <span class='op'>=</span> <span class='id identifier rubyid_bitmap'>bitmap</span>
+    <span class='id identifier rubyid_sprite'>sprite</span><span class='period'>.</span><span class='id identifier rubyid_visible'>visible</span> <span class='op'>=</span> <span class='kw'>false</span>
+    <span class='ivar'>@_loop_animation_sprites</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_sprite'>sprite</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_update_loop_animation'>update_loop_animation</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    #<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 126</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>if</span> <span class='ivar'>@_animation</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_frame_count'>frame_count</span> <span class='op'>%</span> <span class='int'>2</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span>
+    <span class='ivar'>@_animation_duration</span> <span class='op'>-=</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_update_animation'>update_animation</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='ivar'>@_loop_animation</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='kw'>and</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_frame_count'>frame_count</span> <span class='op'>%</span> <span class='int'>2</span> <span class='op'>==</span> <span class='int'>0</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_update_loop_animation'>update_loop_animation</span>
+    <span class='ivar'>@_loop_animation_index</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='ivar'>@_loop_animation_index</span> <span class='op'>%=</span> <span class='ivar'>@_loop_animation</span><span class='period'>.</span><span class='id identifier rubyid_frame_max'>frame_max</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_animation-instance_method">
+  
+    #<strong>update_animation</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 138</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_animation'>update_animation</span>
+  <span class='kw'>if</span> <span class='ivar'>@_animation_duration</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_frame_index'>frame_index</span> <span class='op'>=</span> <span class='ivar'>@_animation</span><span class='period'>.</span><span class='id identifier rubyid_frame_max'>frame_max</span> <span class='op'>-</span> <span class='ivar'>@_animation_duration</span>
+    <span class='id identifier rubyid_cell_data'>cell_data</span> <span class='op'>=</span> <span class='ivar'>@_animation</span><span class='period'>.</span><span class='id identifier rubyid_frames'>frames</span><span class='lbracket'>[</span><span class='id identifier rubyid_frame_index'>frame_index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_cell_data'>cell_data</span>
+    <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='ivar'>@_animation</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span>
+    <span class='id identifier rubyid_animation_set_sprites'>animation_set_sprites</span><span class='lparen'>(</span><span class='ivar'>@_animation_sprites</span><span class='comma'>,</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_timing'>timing</span> <span class='kw'>in</span> <span class='ivar'>@_animation</span><span class='period'>.</span><span class='id identifier rubyid_timings'>timings</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_frame'>frame</span> <span class='op'>==</span> <span class='id identifier rubyid_frame_index'>frame_index</span>
+        <span class='id identifier rubyid_animation_process_timing'>animation_process_timing</span><span class='lparen'>(</span><span class='id identifier rubyid_timing'>timing</span><span class='comma'>,</span> <span class='ivar'>@_animation_hit</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_dispose_animation'>dispose_animation</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_loop_animation-instance_method">
+  
+    #<strong>update_loop_animation</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 154</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update_loop_animation'>update_loop_animation</span>
+  <span class='id identifier rubyid_frame_index'>frame_index</span> <span class='op'>=</span> <span class='ivar'>@_loop_animation_index</span>
+  <span class='id identifier rubyid_cell_data'>cell_data</span> <span class='op'>=</span> <span class='ivar'>@_loop_animation</span><span class='period'>.</span><span class='id identifier rubyid_frames'>frames</span><span class='lbracket'>[</span><span class='id identifier rubyid_frame_index'>frame_index</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_cell_data'>cell_data</span>
+  <span class='id identifier rubyid_position'>position</span> <span class='op'>=</span> <span class='ivar'>@_loop_animation</span><span class='period'>.</span><span class='id identifier rubyid_position'>position</span>
+  <span class='id identifier rubyid_animation_set_sprites'>animation_set_sprites</span><span class='lparen'>(</span><span class='ivar'>@_loop_animation_sprites</span><span class='comma'>,</span> <span class='id identifier rubyid_cell_data'>cell_data</span><span class='comma'>,</span> <span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_timing'>timing</span> <span class='kw'>in</span> <span class='ivar'>@_loop_animation</span><span class='period'>.</span><span class='id identifier rubyid_timings'>timings</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_timing'>timing</span><span class='period'>.</span><span class='id identifier rubyid_frame'>frame</span> <span class='op'>==</span> <span class='id identifier rubyid_frame_index'>frame_index</span>
+      <span class='id identifier rubyid_animation_process_timing'>animation_process_timing</span><span class='lparen'>(</span><span class='id identifier rubyid_timing'>timing</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="x=-instance_method">
+  
+    #<strong>x=</strong>(x)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 226</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_x='>x=</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sx'>sx</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>-</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_sx'>sx</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='kw'>if</span> <span class='ivar'>@_animation_sprites</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>..</span><span class='int'>15</span>
+        <span class='ivar'>@_animation_sprites</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>+=</span> <span class='id identifier rubyid_sx'>sx</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='ivar'>@_loop_animation_sprites</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>..</span><span class='int'>15</span>
+        <span class='ivar'>@_loop_animation_sprites</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>+=</span> <span class='id identifier rubyid_sx'>sx</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="y=-instance_method">
+  
+    #<strong>y=</strong>(y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/RPG__Sprite.rb', line 242</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_y='>y=</span><span class='lparen'>(</span><span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_sy'>sy</span> <span class='op'>=</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>-</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_sy'>sy</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='kw'>if</span> <span class='ivar'>@_animation_sprites</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>..</span><span class='int'>15</span>
+        <span class='ivar'>@_animation_sprites</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>+=</span> <span class='id identifier rubyid_sy'>sy</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='ivar'>@_loop_animation_sprites</span> <span class='op'>!=</span> <span class='kw'>nil</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>..</span><span class='int'>15</span>
+        <span class='ivar'>@_loop_animation_sprites</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>+=</span> <span class='id identifier rubyid_sy'>sy</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:25 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

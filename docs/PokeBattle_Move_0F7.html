@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: PokeBattle_Move_0F7
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "PokeBattle_Move_0F7";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo;
+    
+    
+    <span class="title">PokeBattle_Move_0F7</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: PokeBattle_Move_0F7
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="PokeBattle_Move.html" title="PokeBattle_Move (class)">PokeBattle_Move</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="PokeBattle_Move.html" title="PokeBattle_Move (class)">PokeBattle_Move</a></span></li>
+          
+            <li class="next">PokeBattle_Move_0F7</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/PokeBattle_MoveEffects.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>El usuario lanza el objeto al objetivo. La potencia y el efecto depende del objeto. Lanzamiento / Fling</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants inherited
+     from <span class='object_link'><a href="PokeBattle_Move.html" title="PokeBattle_Move (class)">PokeBattle_Move</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="PokeBattle_Move.html#IGNOREPKMNTYPES-constant" title="PokeBattle_Move::IGNOREPKMNTYPES (constant)">PokeBattle_Move::IGNOREPKMNTYPES</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#NOCRITICAL-constant" title="PokeBattle_Move::NOCRITICAL (constant)">PokeBattle_Move::NOCRITICAL</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#NOREFLECT-constant" title="PokeBattle_Move::NOREFLECT (constant)">PokeBattle_Move::NOREFLECT</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#NOTYPE-constant" title="PokeBattle_Move::NOTYPE (constant)">PokeBattle_Move::NOTYPE</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#NOWEIGHTING-constant" title="PokeBattle_Move::NOWEIGHTING (constant)">PokeBattle_Move::NOWEIGHTING</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#SELFCONFUSE-constant" title="PokeBattle_Move::SELFCONFUSE (constant)">PokeBattle_Move::SELFCONFUSE</a></span></p>
+
+
+
+
+  <h2>Instance Attribute Summary</h2>
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="PokeBattle_Move.html" title="PokeBattle_Move (class)">PokeBattle_Move</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="PokeBattle_Move.html#accuracy-instance_method" title="PokeBattle_Move#accuracy (method)">#accuracy</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#addlEffect-instance_method" title="PokeBattle_Move#addlEffect (method)">#addlEffect</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#basedamage-instance_method" title="PokeBattle_Move#basedamage (method)">#basedamage</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#battle-instance_method" title="PokeBattle_Move#battle (method)">#battle</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#flags-instance_method" title="PokeBattle_Move#flags (method)">#flags</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#function-instance_method" title="PokeBattle_Move#function (method)">#function</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#id-instance_method" title="PokeBattle_Move#id (method)">#id</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#name-instance_method" title="PokeBattle_Move#name (method)">#name</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pp-instance_method" title="PokeBattle_Move#pp (method)">#pp</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#priority-instance_method" title="PokeBattle_Move#priority (method)">#priority</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#target-instance_method" title="PokeBattle_Move#target (method)">#target</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#thismove-instance_method" title="PokeBattle_Move#thismove (method)">#thismove</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#totalpp-instance_method" title="PokeBattle_Move#totalpp (method)">#totalpp</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#type-instance_method" title="PokeBattle_Move#type (method)">#type</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#flingarray-instance_method" title="#flingarray (instance method)">#<strong>flingarray</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbBaseDamage-instance_method" title="#pbBaseDamage (instance method)">#<strong>pbBaseDamage</strong>(basedmg, attacker, opponent)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbEffect-instance_method" title="#pbEffect (instance method)">#<strong>pbEffect</strong>(attacker, opponent, hitnum = 0, alltargets = nil, showanimation = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbMoveFailed-instance_method" title="#pbMoveFailed (instance method)">#<strong>pbMoveFailed</strong>(attacker, opponent)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="PokeBattle_Move.html" title="PokeBattle_Move (class)">PokeBattle_Move</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="PokeBattle_Move.html#canKingsRock%3F-instance_method" title="PokeBattle_Move#canKingsRock? (method)">#canKingsRock?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#canMagicCoat%3F-instance_method" title="PokeBattle_Move#canMagicCoat? (method)">#canMagicCoat?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#canMirrorMove%3F-instance_method" title="PokeBattle_Move#canMirrorMove? (method)">#canMirrorMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#canProtectAgainst%3F-instance_method" title="PokeBattle_Move#canProtectAgainst? (method)">#canProtectAgainst?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#canSnatch%3F-instance_method" title="PokeBattle_Move#canSnatch? (method)">#canSnatch?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#canThawUser%3F-instance_method" title="PokeBattle_Move#canThawUser? (method)">#canThawUser?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#doesBypassIgnorableAbilities%3F-instance_method" title="PokeBattle_Move#doesBypassIgnorableAbilities? (method)">#doesBypassIgnorableAbilities?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#doesBypassTargetSwap%3F-instance_method" title="PokeBattle_Move#doesBypassTargetSwap? (method)">#doesBypassTargetSwap?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#hasHighCriticalRate%3F-instance_method" title="PokeBattle_Move#hasHighCriticalRate? (method)">#hasHighCriticalRate?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#ignoresSubstitute%3F-instance_method" title="PokeBattle_Move#ignoresSubstitute? (method)">#ignoresSubstitute?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#initialize-instance_method" title="PokeBattle_Move#initialize (method)">#initialize</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isBitingMove%3F-instance_method" title="PokeBattle_Move#isBitingMove? (method)">#isBitingMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isBombMove%3F-instance_method" title="PokeBattle_Move#isBombMove? (method)">#isBombMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isContactMove%3F-instance_method" title="PokeBattle_Move#isContactMove? (method)">#isContactMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isDanceMove%3F-instance_method" title="PokeBattle_Move#isDanceMove? (method)">#isDanceMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isHealingMove%3F-instance_method" title="PokeBattle_Move#isHealingMove? (method)">#isHealingMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isPowderMove%3F-instance_method" title="PokeBattle_Move#isPowderMove? (method)">#isPowderMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isPulseMove%3F-instance_method" title="PokeBattle_Move#isPulseMove? (method)">#isPulseMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isPunchingMove%3F-instance_method" title="PokeBattle_Move#isPunchingMove? (method)">#isPunchingMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isRecoilMove%3F-instance_method" title="PokeBattle_Move#isRecoilMove? (method)">#isRecoilMove?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#isSoundBased%3F-instance_method" title="PokeBattle_Move#isSoundBased? (method)">#isSoundBased?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbAccuracyCheck-instance_method" title="PokeBattle_Move#pbAccuracyCheck (method)">#pbAccuracyCheck</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbAddTarget-instance_method" title="PokeBattle_Move#pbAddTarget (method)">#pbAddTarget</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbAdditionalEffect-instance_method" title="PokeBattle_Move#pbAdditionalEffect (method)">#pbAdditionalEffect</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbBaseDamageMultiplier-instance_method" title="PokeBattle_Move#pbBaseDamageMultiplier (method)">#pbBaseDamageMultiplier</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbCalcDamage-instance_method" title="PokeBattle_Move#pbCalcDamage (method)">#pbCalcDamage</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbCanUseWhileAsleep%3F-instance_method" title="PokeBattle_Move#pbCanUseWhileAsleep? (method)">#pbCanUseWhileAsleep?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbCritialOverride-instance_method" title="PokeBattle_Move#pbCritialOverride (method)">#pbCritialOverride</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbDisplayUseMessage-instance_method" title="PokeBattle_Move#pbDisplayUseMessage (method)">#pbDisplayUseMessage</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbEffectAfterHit-instance_method" title="PokeBattle_Move#pbEffectAfterHit (method)">#pbEffectAfterHit</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbEffectFixedDamage-instance_method" title="PokeBattle_Move#pbEffectFixedDamage (method)">#pbEffectFixedDamage</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbEffectMessages-instance_method" title="PokeBattle_Move#pbEffectMessages (method)">#pbEffectMessages</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbFromPBMove-class_method" title="PokeBattle_Move.pbFromPBMove (method)">pbFromPBMove</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbIsCritical%3F-instance_method" title="PokeBattle_Move#pbIsCritical? (method)">#pbIsCritical?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbIsDamaging%3F-instance_method" title="PokeBattle_Move#pbIsDamaging? (method)">#pbIsDamaging?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbIsMultiHit-instance_method" title="PokeBattle_Move#pbIsMultiHit (method)">#pbIsMultiHit</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbIsPhysical%3F-instance_method" title="PokeBattle_Move#pbIsPhysical? (method)">#pbIsPhysical?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbIsSpecial%3F-instance_method" title="PokeBattle_Move#pbIsSpecial? (method)">#pbIsSpecial?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbIsStatus%3F-instance_method" title="PokeBattle_Move#pbIsStatus? (method)">#pbIsStatus?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbModifyBaseAccuracy-instance_method" title="PokeBattle_Move#pbModifyBaseAccuracy (method)">#pbModifyBaseAccuracy</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbModifyDamage-instance_method" title="PokeBattle_Move#pbModifyDamage (method)">#pbModifyDamage</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbModifyType-instance_method" title="PokeBattle_Move#pbModifyType (method)">#pbModifyType</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbNumHits-instance_method" title="PokeBattle_Move#pbNumHits (method)">#pbNumHits</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbOnDamageLost-instance_method" title="PokeBattle_Move#pbOnDamageLost (method)">#pbOnDamageLost</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbOnStartUse-instance_method" title="PokeBattle_Move#pbOnStartUse (method)">#pbOnStartUse</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbPriority-instance_method" title="PokeBattle_Move#pbPriority (method)">#pbPriority</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbReduceHPDamage-instance_method" title="PokeBattle_Move#pbReduceHPDamage (method)">#pbReduceHPDamage</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbShowAnimation-instance_method" title="PokeBattle_Move#pbShowAnimation (method)">#pbShowAnimation</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbTargetsMultiple%3F-instance_method" title="PokeBattle_Move#pbTargetsMultiple? (method)">#pbTargetsMultiple?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbTwoTurnAttack-instance_method" title="PokeBattle_Move#pbTwoTurnAttack (method)">#pbTwoTurnAttack</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbType-instance_method" title="PokeBattle_Move#pbType (method)">#pbType</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbTypeImmunityByAbility-instance_method" title="PokeBattle_Move#pbTypeImmunityByAbility (method)">#pbTypeImmunityByAbility</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbTypeModMessages-instance_method" title="PokeBattle_Move#pbTypeModMessages (method)">#pbTypeModMessages</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#pbTypeModifier-instance_method" title="PokeBattle_Move#pbTypeModifier (method)">#pbTypeModifier</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#successCheckPerHit%3F-instance_method" title="PokeBattle_Move#successCheckPerHit? (method)">#successCheckPerHit?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#to_int-instance_method" title="PokeBattle_Move#to_int (method)">#to_int</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#tramplesMinimize%3F-instance_method" title="PokeBattle_Move#tramplesMinimize? (method)">#tramplesMinimize?</a></span>, <span class='object_link'><a href="PokeBattle_Move.html#unusableInGravity%3F-instance_method" title="PokeBattle_Move#unusableInGravity? (method)">#unusableInGravity?</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <p class="notice">This class inherits a constructor from <span class='object_link'><a href="PokeBattle_Move.html#initialize-instance_method" title="PokeBattle_Move#initialize (method)">PokeBattle_Move</a></span></p>
+  
+</div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="flingarray-instance_method">
+  
+    #<strong>flingarray</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7333
+7334
+7335
+7336
+7337
+7338
+7339
+7340
+7341
+7342
+7343
+7344
+7345
+7346
+7347
+7348
+7349
+7350
+7351
+7352
+7353
+7354
+7355
+7356
+7357
+7358
+7359
+7360
+7361
+7362
+7363
+7364
+7365
+7366
+7367
+7368
+7369
+7370
+7371
+7372
+7373
+7374
+7375
+7376
+7377
+7378
+7379
+7380
+7381
+7382
+7383
+7384
+7385
+7386
+7387
+7388
+7389
+7390
+7391
+7392
+7393
+7394
+7395
+7396
+7397
+7398
+7399
+7400
+7401
+7402
+7403
+7404
+7405</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PokeBattle_MoveEffects.rb', line 7333</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_flingarray'>flingarray</span>
+  <span class='kw'>return</span> <span class='lbrace'>{</span>
+     <span class='int'>130</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:IRONBALL</span><span class='rbracket'>]</span><span class='comma'>,</span>
+     <span class='int'>100</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:ARMORFOSSIL</span><span class='comma'>,</span><span class='symbol'>:CLAWFOSSIL</span><span class='comma'>,</span><span class='symbol'>:COVERFOSSIL</span><span class='comma'>,</span><span class='symbol'>:DOMEFOSSIL</span><span class='comma'>,</span><span class='symbol'>:HARDSTONE</span><span class='comma'>,</span>
+             <span class='symbol'>:HELIXFOSSIL</span><span class='comma'>,</span><span class='symbol'>:JAWFOSSIL</span><span class='comma'>,</span><span class='symbol'>:OLDAMBER</span><span class='comma'>,</span><span class='symbol'>:PLUMEFOSSIL</span><span class='comma'>,</span><span class='symbol'>:RAREBONE</span><span class='comma'>,</span>
+             <span class='symbol'>:ROOTFOSSIL</span><span class='comma'>,</span><span class='symbol'>:SAILFOSSIL</span><span class='comma'>,</span><span class='symbol'>:SKULLFOSSIL</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>90</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:DEEPSEATOOTH</span><span class='comma'>,</span><span class='symbol'>:DRACOPLATE</span><span class='comma'>,</span><span class='symbol'>:DREADPLATE</span><span class='comma'>,</span><span class='symbol'>:EARTHPLATE</span><span class='comma'>,</span><span class='symbol'>:FISTPLATE</span><span class='comma'>,</span>
+             <span class='symbol'>:FLAMEPLATE</span><span class='comma'>,</span><span class='symbol'>:GRIPCLAW</span><span class='comma'>,</span><span class='symbol'>:ICICLEPLATE</span><span class='comma'>,</span><span class='symbol'>:INSECTPLATE</span><span class='comma'>,</span><span class='symbol'>:IRONPLATE</span><span class='comma'>,</span>
+             <span class='symbol'>:MEADOWPLATE</span><span class='comma'>,</span><span class='symbol'>:MINDPLATE</span><span class='comma'>,</span><span class='symbol'>:PIXIEPLATE</span><span class='comma'>,</span><span class='symbol'>:SKYPLATE</span><span class='comma'>,</span><span class='symbol'>:SPLASHPLATE</span><span class='comma'>,</span>
+             <span class='symbol'>:SPOOKYPLATE</span><span class='comma'>,</span><span class='symbol'>:STONEPLATE</span><span class='comma'>,</span><span class='symbol'>:THICKCLUB</span><span class='comma'>,</span><span class='symbol'>:TOXICPLATE</span><span class='comma'>,</span><span class='symbol'>:ZAPPLATE</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>80</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:ASSAULTVEST</span><span class='comma'>,</span><span class='symbol'>:BLUNDERPOLICY</span><span class='comma'>,</span><span class='symbol'>:CRACKEDPOT</span><span class='comma'>,</span><span class='symbol'>:DAWNSTONE</span><span class='comma'>,</span><span class='symbol'>:DUSKSTONE</span><span class='comma'>,</span>
+             <span class='symbol'>:EJECTPACK</span><span class='comma'>,</span><span class='symbol'>:ELECTIRIZER</span><span class='comma'>,</span><span class='symbol'>:MAGMARIZER</span><span class='comma'>,</span><span class='symbol'>:ODDKEYSTONE</span><span class='comma'>,</span><span class='symbol'>:OVALSTONE</span><span class='comma'>,</span>
+             <span class='symbol'>:PROTECTOR</span><span class='comma'>,</span><span class='symbol'>:QUICKCLAW</span><span class='comma'>,</span><span class='symbol'>:RAZORCLAW</span><span class='comma'>,</span><span class='symbol'>:ROOMSERVICE</span><span class='comma'>,</span><span class='symbol'>:SAFETYGOGGLES</span><span class='comma'>,</span>
+             <span class='symbol'>:SHINYSTONE</span><span class='comma'>,</span><span class='symbol'>:STICKYBARB</span><span class='comma'>,</span><span class='symbol'>:UTILITYUMBRELLA</span><span class='comma'>,</span><span class='symbol'>:WEAKNESSPOLICY</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>70</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:BURNDRIVE</span><span class='comma'>,</span><span class='symbol'>:CHILLDRIVE</span><span class='comma'>,</span><span class='symbol'>:DOUSEDRIVE</span><span class='comma'>,</span><span class='symbol'>:DRAGONFANG</span><span class='comma'>,</span><span class='symbol'>:POISONBARB</span><span class='comma'>,</span>
+             <span class='symbol'>:POWERANKLET</span><span class='comma'>,</span><span class='symbol'>:POWERBAND</span><span class='comma'>,</span><span class='symbol'>:POWERBELT</span><span class='comma'>,</span><span class='symbol'>:POWERBRACER</span><span class='comma'>,</span><span class='symbol'>:POWERLENS</span><span class='comma'>,</span>
+             <span class='symbol'>:POWERWEIGHT</span><span class='comma'>,</span><span class='symbol'>:SHOCKDRIVE</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>60</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:ADAMANTORB</span><span class='comma'>,</span><span class='symbol'>:DAMPROCK</span><span class='comma'>,</span><span class='symbol'>:GRISEOUSORB</span><span class='comma'>,</span><span class='symbol'>:HEATROCK</span><span class='comma'>,</span><span class='symbol'>:LUSTROUSORB</span><span class='comma'>,</span>
+             <span class='symbol'>:MACHOBRACE</span><span class='comma'>,</span><span class='symbol'>:ROCKYHELMET</span><span class='comma'>,</span><span class='symbol'>:STICK</span><span class='comma'>,</span><span class='symbol'>:BLACKAUGURITE</span><span class='comma'>,</span><span class='symbol'>:PEATBLOCK</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>50</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:DUBIOUSDISC</span><span class='comma'>,</span><span class='symbol'>:SHARPBEAK</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>40</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:EVIOLITE</span><span class='comma'>,</span><span class='symbol'>:ICYROCK</span><span class='comma'>,</span><span class='symbol'>:LUCKYPUNCH</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>30</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:ABILITYCAPSULE</span><span class='comma'>,</span><span class='symbol'>:ABILITYURGE</span><span class='comma'>,</span><span class='symbol'>:ABSORBBULB</span><span class='comma'>,</span><span class='symbol'>:AMAZEMULCH</span><span class='comma'>,</span><span class='symbol'>:AMULETCOIN</span><span class='comma'>,</span>
+             <span class='symbol'>:ANTIDOTE</span><span class='comma'>,</span><span class='symbol'>:AWAKENING</span><span class='comma'>,</span><span class='symbol'>:BALMMUSHROOM</span><span class='comma'>,</span><span class='symbol'>:BERRYJUICE</span><span class='comma'>,</span><span class='symbol'>:BIGMUSHROOM</span><span class='comma'>,</span>
+             <span class='symbol'>:BIGNUGGET</span><span class='comma'>,</span><span class='symbol'>:BIGPEARL</span><span class='comma'>,</span><span class='symbol'>:BINDINGBAND</span><span class='comma'>,</span><span class='symbol'>:BLACKBELT</span><span class='comma'>,</span><span class='symbol'>:BLACKFLUTE</span><span class='comma'>,</span>
+             <span class='symbol'>:BLACKGLASSES</span><span class='comma'>,</span><span class='symbol'>:BLACKSLUDGE</span><span class='comma'>,</span><span class='symbol'>:BLUEFLUTE</span><span class='comma'>,</span><span class='symbol'>:BLUESHARD</span><span class='comma'>,</span><span class='symbol'>:BOOSTMULCH</span><span class='comma'>,</span>
+             <span class='symbol'>:BURNHEAL</span><span class='comma'>,</span><span class='symbol'>:CALCIUM</span><span class='comma'>,</span><span class='symbol'>:CARBOS</span><span class='comma'>,</span><span class='symbol'>:CASTELIACONE</span><span class='comma'>,</span><span class='symbol'>:CELLBATTERY</span><span class='comma'>,</span>
+             <span class='symbol'>:CHARCOAL</span><span class='comma'>,</span><span class='symbol'>:CLEANSETAG</span><span class='comma'>,</span><span class='symbol'>:COMETSHARD</span><span class='comma'>,</span><span class='symbol'>:DAMPMULCH</span><span class='comma'>,</span><span class='symbol'>:DEEPSEASCALE</span><span class='comma'>,</span>
+             <span class='symbol'>:DIREHIT</span><span class='comma'>,</span><span class='symbol'>:DIREHIT2</span><span class='comma'>,</span><span class='symbol'>:DIREHIT3</span><span class='comma'>,</span><span class='symbol'>:DRAGONSCALE</span><span class='comma'>,</span><span class='symbol'>:EJECTBUTTON</span><span class='comma'>,</span>
+             <span class='symbol'>:ELIXIR</span><span class='comma'>,</span><span class='symbol'>:ENERGYPOWDER</span><span class='comma'>,</span><span class='symbol'>:ENERGYROOT</span><span class='comma'>,</span><span class='symbol'>:ESCAPEROPE</span><span class='comma'>,</span><span class='symbol'>:ETHER</span><span class='comma'>,</span>
+             <span class='symbol'>:EVERSTONE</span><span class='comma'>,</span><span class='symbol'>:EXPSHARE</span><span class='comma'>,</span><span class='symbol'>:FIRESTONE</span><span class='comma'>,</span><span class='symbol'>:FLAMEORB</span><span class='comma'>,</span><span class='symbol'>:FLOATSTONE</span><span class='comma'>,</span>
+             <span class='symbol'>:FLUFFYTAIL</span><span class='comma'>,</span><span class='symbol'>:FRESHWATER</span><span class='comma'>,</span><span class='symbol'>:FULLHEAL</span><span class='comma'>,</span><span class='symbol'>:FULLRESTORE</span><span class='comma'>,</span><span class='symbol'>:GALARICACUFF</span><span class='comma'>,</span>
+             <span class='symbol'>:GALARICAWREATH</span><span class='comma'>,</span><span class='symbol'>:GOOEYMULCH</span><span class='comma'>,</span><span class='symbol'>:GREENSHARD</span><span class='comma'>,</span><span class='symbol'>:GROWTHMULCH</span><span class='comma'>,</span><span class='symbol'>:GUARDSPEC</span><span class='comma'>,</span>
+             <span class='symbol'>:HEALPOWDER</span><span class='comma'>,</span><span class='symbol'>:HEARTSCALE</span><span class='comma'>,</span>
+             <span class='symbol'>:HEAVYDUTYBOOTS</span><span class='comma'>,</span><span class='symbol'>:HONEY</span><span class='comma'>,</span><span class='symbol'>:HPUP</span><span class='comma'>,</span><span class='symbol'>:HYPERPOTION</span><span class='comma'>,</span><span class='symbol'>:ICEHEAL</span><span class='comma'>,</span><span class='symbol'>:ICESTONE</span><span class='comma'>,</span>
+             <span class='symbol'>:IRON</span><span class='comma'>,</span><span class='symbol'>:ITEMDROP</span><span class='comma'>,</span><span class='symbol'>:ITEMURGE</span><span class='comma'>,</span><span class='symbol'>:KINGSROCK</span><span class='comma'>,</span><span class='symbol'>:LAVACOOKIE</span><span class='comma'>,</span><span class='symbol'>:LEAFSTONE</span><span class='comma'>,</span>
+             <span class='symbol'>:LEMONADE</span><span class='comma'>,</span><span class='symbol'>:LIFEORB</span><span class='comma'>,</span><span class='symbol'>:LIGHTBALL</span><span class='comma'>,</span><span class='symbol'>:LIGHTCLAY</span><span class='comma'>,</span><span class='symbol'>:LUCKYEGG</span><span class='comma'>,</span>
+             <span class='symbol'>:LUMINOUSMOSS</span><span class='comma'>,</span><span class='symbol'>:LUMIOSEGALETTE</span><span class='comma'>,</span><span class='symbol'>:MAGNET</span><span class='comma'>,</span><span class='symbol'>:MAXELIXIR</span><span class='comma'>,</span><span class='symbol'>:MAXETHER</span><span class='comma'>,</span>
+             <span class='symbol'>:MAXPOTION</span><span class='comma'>,</span><span class='symbol'>:MAXREPEL</span><span class='comma'>,</span><span class='symbol'>:MAXREVIVE</span><span class='comma'>,</span><span class='symbol'>:METALCOAT</span><span class='comma'>,</span><span class='symbol'>:METRONOME</span><span class='comma'>,</span>
+             <span class='symbol'>:MIRACLESEED</span><span class='comma'>,</span><span class='symbol'>:MOOMOOMILK</span><span class='comma'>,</span><span class='symbol'>:MOONSTONE</span><span class='comma'>,</span><span class='symbol'>:MYSTICWATER</span><span class='comma'>,</span><span class='symbol'>:NEVERMELTICE</span><span class='comma'>,</span>
+             <span class='symbol'>:NUGGET</span><span class='comma'>,</span><span class='symbol'>:OLDGATEAU</span><span class='comma'>,</span><span class='symbol'>:PARALYZEHEAL</span><span class='comma'>,</span><span class='symbol'>:PARLYZHEAL</span><span class='comma'>,</span><span class='symbol'>:PASSORB</span><span class='comma'>,</span>
+             <span class='symbol'>:PEARL</span><span class='comma'>,</span><span class='symbol'>:PEARLSTRING</span><span class='comma'>,</span><span class='symbol'>:POKEDOLL</span><span class='comma'>,</span><span class='symbol'>:POKETOY</span><span class='comma'>,</span><span class='symbol'>:POTENCIATOR</span><span class='comma'>,</span><span class='symbol'>:POTION</span><span class='comma'>,</span>
+             <span class='symbol'>:PPMAX</span><span class='comma'>,</span><span class='symbol'>:PPUP</span><span class='comma'>,</span><span class='symbol'>:PRISMSCALE</span><span class='comma'>,</span><span class='symbol'>:PROTEIN</span><span class='comma'>,</span><span class='symbol'>:RAGECANDYBAR</span><span class='comma'>,</span>
+             <span class='symbol'>:RARECANDY</span><span class='comma'>,</span><span class='symbol'>:RAZORFANG</span><span class='comma'>,</span><span class='symbol'>:REDFLUTE</span><span class='comma'>,</span><span class='symbol'>:REDSHARD</span><span class='comma'>,</span><span class='symbol'>:RELICBAND</span><span class='comma'>,</span>
+             <span class='symbol'>:RELICCOPPER</span><span class='comma'>,</span><span class='symbol'>:RELICCROWN</span><span class='comma'>,</span><span class='symbol'>:RELICGOLD</span><span class='comma'>,</span><span class='symbol'>:RELICSILVER</span><span class='comma'>,</span><span class='symbol'>:RELICSTATUE</span><span class='comma'>,</span>
+             <span class='symbol'>:RELICVASE</span><span class='comma'>,</span><span class='symbol'>:REPEL</span><span class='comma'>,</span><span class='symbol'>:RESETURGE</span><span class='comma'>,</span><span class='symbol'>:REVIVALHERB</span><span class='comma'>,</span><span class='symbol'>:REVIVE</span><span class='comma'>,</span>
+             <span class='symbol'>:RICHMULCH</span><span class='comma'>,</span><span class='symbol'>:SACHET</span><span class='comma'>,</span><span class='symbol'>:SACREDASH</span><span class='comma'>,</span><span class='symbol'>:SCOPELENS</span><span class='comma'>,</span><span class='symbol'>:SHALOURSABLE</span><span class='comma'>,</span>
+             <span class='symbol'>:SHELLBELL</span><span class='comma'>,</span><span class='symbol'>:SHOALSALT</span><span class='comma'>,</span><span class='symbol'>:SHOALSHELL</span><span class='comma'>,</span><span class='symbol'>:SMOKEBALL</span><span class='comma'>,</span><span class='symbol'>:SNOWBALL</span><span class='comma'>,</span>
+             <span class='symbol'>:SODAPOP</span><span class='comma'>,</span><span class='symbol'>:SOULDEW</span><span class='comma'>,</span><span class='symbol'>:SPELLTAG</span><span class='comma'>,</span><span class='symbol'>:STABLEMULCH</span><span class='comma'>,</span><span class='symbol'>:STARDUST</span><span class='comma'>,</span>
+             <span class='symbol'>:STARPIECE</span><span class='comma'>,</span><span class='symbol'>:SUNSTONE</span><span class='comma'>,</span><span class='symbol'>:SUPERPOTION</span><span class='comma'>,</span><span class='symbol'>:SUPERREPEL</span><span class='comma'>,</span><span class='symbol'>:SURPRISEMULCH</span><span class='comma'>,</span>
+             <span class='symbol'>:SWEETAPPLE</span><span class='comma'>,</span><span class='symbol'>:SWEETHEART</span><span class='comma'>,</span><span class='symbol'>:TARTAPPLE</span><span class='comma'>,</span>
+             <span class='symbol'>:THUNDERSTONE</span><span class='comma'>,</span><span class='symbol'>:TINYMUSHROOM</span><span class='comma'>,</span><span class='symbol'>:TOXICORB</span><span class='comma'>,</span><span class='symbol'>:TWISTEDSPOON</span><span class='comma'>,</span><span class='symbol'>:UPGRADE</span><span class='comma'>,</span>
+             <span class='symbol'>:WATERSTONE</span><span class='comma'>,</span><span class='symbol'>:WHIPPEDDREAM</span><span class='comma'>,</span><span class='symbol'>:WHITEFLUTE</span><span class='comma'>,</span><span class='symbol'>:XACCURACY</span><span class='comma'>,</span>
+             <span class='symbol'>:XACCURACY2</span><span class='comma'>,</span><span class='symbol'>:XACCURACY3</span><span class='comma'>,</span><span class='symbol'>:XACCURACY6</span><span class='comma'>,</span><span class='symbol'>:XATTACK</span><span class='comma'>,</span><span class='symbol'>:XATTACK2</span><span class='comma'>,</span>
+             <span class='symbol'>:XATTACK3</span><span class='comma'>,</span><span class='symbol'>:XATTACK6</span><span class='comma'>,</span><span class='symbol'>:XDEFEND</span><span class='comma'>,</span><span class='symbol'>:XDEFEND2</span><span class='comma'>,</span><span class='symbol'>:XDEFEND3</span><span class='comma'>,</span>
+             <span class='symbol'>:XDEFEND6</span><span class='comma'>,</span><span class='symbol'>:XDEFENSE</span><span class='comma'>,</span><span class='symbol'>:XDEFENSE2</span><span class='comma'>,</span><span class='symbol'>:XDEFENSE3</span><span class='comma'>,</span><span class='symbol'>:XDEFENSE6</span><span class='comma'>,</span>
+             <span class='symbol'>:XSPDEF</span><span class='comma'>,</span><span class='symbol'>:XSPDEF2</span><span class='comma'>,</span><span class='symbol'>:XSPDEF3</span><span class='comma'>,</span><span class='symbol'>:XSPDEF6</span><span class='comma'>,</span><span class='symbol'>:XSPATK</span><span class='comma'>,</span>
+             <span class='symbol'>:XSPATK2</span><span class='comma'>,</span><span class='symbol'>:XSPATK3</span><span class='comma'>,</span><span class='symbol'>:XSPATK6</span><span class='comma'>,</span><span class='symbol'>:XSPECIAL</span><span class='comma'>,</span><span class='symbol'>:XSPECIAL2</span><span class='comma'>,</span>
+             <span class='symbol'>:XSPECIAL3</span><span class='comma'>,</span><span class='symbol'>:XSPECIAL6</span><span class='comma'>,</span><span class='symbol'>:XSPEED</span><span class='comma'>,</span><span class='symbol'>:XSPEED2</span><span class='comma'>,</span><span class='symbol'>:XSPEED3</span><span class='comma'>,</span>
+             <span class='symbol'>:XSPEED6</span><span class='comma'>,</span><span class='symbol'>:YELLOWFLUTE</span><span class='comma'>,</span><span class='symbol'>:YELLOWSHARD</span><span class='comma'>,</span><span class='symbol'>:ZINC</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>20</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:CLEVERWING</span><span class='comma'>,</span><span class='symbol'>:GENIUSWING</span><span class='comma'>,</span><span class='symbol'>:HEALTHWING</span><span class='comma'>,</span><span class='symbol'>:MUSCLEWING</span><span class='comma'>,</span><span class='symbol'>:PRETTYWING</span><span class='comma'>,</span>
+             <span class='symbol'>:RESISTWING</span><span class='comma'>,</span><span class='symbol'>:SWIFTWING</span><span class='rbracket'>]</span><span class='comma'>,</span>
+      <span class='int'>10</span> <span class='op'>=&gt;</span> <span class='lbracket'>[</span><span class='symbol'>:AIRBALLOON</span><span class='comma'>,</span><span class='symbol'>:BIGROOT</span><span class='comma'>,</span><span class='symbol'>:BLUESCARF</span><span class='comma'>,</span><span class='symbol'>:BRIGHTPOWDER</span><span class='comma'>,</span><span class='symbol'>:CHOICEBAND</span><span class='comma'>,</span>
+             <span class='symbol'>:CHOICESCARF</span><span class='comma'>,</span><span class='symbol'>:CHOICESPECS</span><span class='comma'>,</span><span class='symbol'>:DESTINYKNOT</span><span class='comma'>,</span><span class='symbol'>:EXPERTBELT</span><span class='comma'>,</span><span class='symbol'>:FOCUSBAND</span><span class='comma'>,</span>
+             <span class='symbol'>:FOCUSSASH</span><span class='comma'>,</span><span class='symbol'>:FULLINCENSE</span><span class='comma'>,</span><span class='symbol'>:GREENSCARF</span><span class='comma'>,</span><span class='symbol'>:LAGGINGTAIL</span><span class='comma'>,</span><span class='symbol'>:LAXINCENSE</span><span class='comma'>,</span>
+             <span class='symbol'>:LEFTOVERS</span><span class='comma'>,</span><span class='symbol'>:LUCKINCENSE</span><span class='comma'>,</span><span class='symbol'>:MENTALHERB</span><span class='comma'>,</span><span class='symbol'>:METALPOWDER</span><span class='comma'>,</span><span class='symbol'>:MUSCLEBAND</span><span class='comma'>,</span>
+             <span class='symbol'>:ODDINCENSE</span><span class='comma'>,</span><span class='symbol'>:PINKSCARF</span><span class='comma'>,</span><span class='symbol'>:POWERHERB</span><span class='comma'>,</span><span class='symbol'>:PUREINCENSE</span><span class='comma'>,</span><span class='symbol'>:QUICKPOWDER</span><span class='comma'>,</span>
+             <span class='symbol'>:REAPERCLOTH</span><span class='comma'>,</span><span class='symbol'>:REDCARD</span><span class='comma'>,</span><span class='symbol'>:REDSCARF</span><span class='comma'>,</span><span class='symbol'>:RINGTARGET</span><span class='comma'>,</span><span class='symbol'>:ROCKINCENSE</span><span class='comma'>,</span>
+             <span class='symbol'>:ROSEINCENSE</span><span class='comma'>,</span><span class='symbol'>:SEAINCENSE</span><span class='comma'>,</span><span class='symbol'>:SHEDSHELL</span><span class='comma'>,</span><span class='symbol'>:SILKSCARF</span><span class='comma'>,</span><span class='symbol'>:SILVERPOWDER</span><span class='comma'>,</span>
+             <span class='symbol'>:SMOOTHROCK</span><span class='comma'>,</span><span class='symbol'>:SOFTSAND</span><span class='comma'>,</span><span class='symbol'>:SOOTHEBELL</span><span class='comma'>,</span><span class='symbol'>:WAVEINCENSE</span><span class='comma'>,</span><span class='symbol'>:WHITEHERB</span><span class='comma'>,</span>
+             <span class='symbol'>:WIDELENS</span><span class='comma'>,</span><span class='symbol'>:WISEGLASSES</span><span class='comma'>,</span><span class='symbol'>:YELLOWSCARF</span><span class='comma'>,</span><span class='symbol'>:ZOOMLENS</span><span class='comma'>,</span><span class='symbol'>:ELECTRICSEED</span><span class='comma'>,</span>
+             <span class='symbol'>:GRASSYSEED</span><span class='comma'>,</span><span class='symbol'>:MISTYSEED</span><span class='comma'>,</span><span class='symbol'>:PSYCHICSEED</span><span class='rbracket'>]</span>
+  <span class='rbrace'>}</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbBaseDamage-instance_method">
+  
+    #<strong>pbBaseDamage</strong>(basedmg, attacker, opponent)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7431
+7432
+7433
+7434
+7435
+7436
+7437
+7438
+7439
+7440
+7441
+7442</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PokeBattle_MoveEffects.rb', line 7431</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbBaseDamage'>pbBaseDamage</span><span class='lparen'>(</span><span class='id identifier rubyid_basedmg'>basedmg</span><span class='comma'>,</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='int'>10</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbIsBerry?'><span class='object_link'><a href="top-level-namespace.html#pbIsBerry%3F-instance_method" title="#pbIsBerry? (method)">pbIsBerry?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='int'>80</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbIsMegaStone?'><span class='object_link'><a href="top-level-namespace.html#pbIsMegaStone%3F-instance_method" title="#pbIsMegaStone? (method)">pbIsMegaStone?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='id identifier rubyid_flingarray'>flingarray</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_flingarray'>flingarray</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_j'>j</span> <span class='kw'>in</span> <span class='id identifier rubyid_flingarray'>flingarray</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>if</span> <span class='id identifier rubyid_isConst?'>isConst?</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="PBItems.html" title="PBItems (class)">PBItems</a></span></span><span class='comma'>,</span><span class='id identifier rubyid_j'>j</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='int'>1</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbEffect-instance_method">
+  
+    #<strong>pbEffect</strong>(attacker, opponent, hitnum = 0, alltargets = nil, showanimation = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7444
+7445
+7446
+7447
+7448
+7449
+7450
+7451
+7452
+7453
+7454
+7455
+7456
+7457
+7458
+7459
+7460
+7461
+7462
+7463
+7464
+7465
+7466
+7467
+7468
+7469
+7470
+7471
+7472
+7473
+7474
+7475
+7476
+7477
+7478
+7479
+7480
+7481
+7482
+7483
+7484
+7485
+7486
+7487
+7488
+7489
+7490
+7491
+7492
+7493
+7494
+7495
+7496
+7497
+7498
+7499
+7500
+7501
+7502
+7503
+7504
+7505
+7506
+7507
+7508
+7509
+7510
+7511
+7512
+7513
+7514
+7515
+7516
+7517
+7518
+7519
+7520</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PokeBattle_MoveEffects.rb', line 7444</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbEffect'>pbEffect</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='comma'>,</span><span class='id identifier rubyid_hitnum'>hitnum</span><span class='op'>=</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_alltargets'>alltargets</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span><span class='id identifier rubyid_showanimation'>showanimation</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='op'>==</span><span class='int'>0</span>
+    <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡Pero falló!</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='int'>0</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Unburden</span><span class='rbracket'>]</span><span class='op'>=</span><span class='kw'>true</span>
+  <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡{1} lanzó {2}!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_pbThis'>pbThis</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="PBItems.html" title="PBItems (class)">PBItems</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getName'><span class='object_link'><a href="PBItems.html#getName-class_method" title="PBItems.getName (method)">getName</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='comma'>,</span><span class='id identifier rubyid_hitnum'>hitnum</span><span class='comma'>,</span><span class='id identifier rubyid_alltargets'>alltargets</span><span class='comma'>,</span><span class='id identifier rubyid_showanimation'>showanimation</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_damagestate'>damagestate</span><span class='period'>.</span><span class='id identifier rubyid_calcdamage'>calcdamage</span><span class='op'>&gt;</span><span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_damagestate'>damagestate</span><span class='period'>.</span><span class='id identifier rubyid_substitute'>substitute</span> <span class='op'>&amp;&amp;</span>
+     <span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasMoldBreaker'>hasMoldBreaker</span> <span class='op'>||</span> <span class='op'>!</span><span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingAbility'>hasWorkingAbility</span><span class='lparen'>(</span><span class='symbol'>:SHIELDDUST</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_pbIsBerry?'><span class='object_link'><a href="top-level-namespace.html#pbIsBerry%3F-instance_method" title="#pbIsBerry? (method)">pbIsBerry?</a></span></span><span class='lparen'>(</span><span class='ivar'>@item</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbActivateBerryEffect'>pbActivateBerryEffect</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span><span class='kw'>false</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingItem'>hasWorkingItem</span><span class='lparen'>(</span><span class='symbol'>:FLAMEORB</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbCanBurn?'>pbCanBurn?</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='kw'>false</span><span class='comma'>,</span><span class='kw'>self</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbBurn'>pbBurn</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingItem'>hasWorkingItem</span><span class='lparen'>(</span><span class='symbol'>:KINGSROCK</span><span class='rparen'>)</span> <span class='op'>||</span>
+          <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingItem'>hasWorkingItem</span><span class='lparen'>(</span><span class='symbol'>:RAZORFANG</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbFlinch'>pbFlinch</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='rparen'>)</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingItem'>hasWorkingItem</span><span class='lparen'>(</span><span class='symbol'>:LIGHTBALL</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbCanParalyze?'>pbCanParalyze?</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='kw'>false</span><span class='comma'>,</span><span class='kw'>self</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbParalyze'>pbParalyze</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingItem'>hasWorkingItem</span><span class='lparen'>(</span><span class='symbol'>:MENTALHERB</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Attract</span><span class='rbracket'>]</span><span class='op'>&gt;=</span><span class='int'>0</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbCureAttract'>pbCureAttract</span>
+        <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡{1} dejó de estar enamorado!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbThis'>pbThis</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Taunt</span><span class='rbracket'>]</span><span class='op'>&gt;</span><span class='int'>0</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Taunt</span><span class='rbracket'>]</span><span class='op'>=</span><span class='int'>0</span>
+        <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡La Mofa de {1} se terminó!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbThis'>pbThis</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Encore</span><span class='rbracket'>]</span><span class='op'>&gt;</span><span class='int'>0</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Encore</span><span class='rbracket'>]</span><span class='op'>=</span><span class='int'>0</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>EncoreMove</span><span class='rbracket'>]</span><span class='op'>=</span><span class='int'>0</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>EncoreIndex</span><span class='rbracket'>]</span><span class='op'>=</span><span class='int'>0</span>
+        <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡Los efectos de Otra Vez de {1} se terminaron!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbThis'>pbThis</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Torment</span><span class='rbracket'>]</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Torment</span><span class='rbracket'>]</span><span class='op'>=</span><span class='kw'>false</span>
+        <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡Los efectos de Tormento de {1} se terminaron!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbThis'>pbThis</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Disable</span><span class='rbracket'>]</span><span class='op'>&gt;</span><span class='int'>0</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Disable</span><span class='rbracket'>]</span><span class='op'>=</span><span class='int'>0</span>
+        <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡{1} ya no está desactivado!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbThis'>pbThis</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>HealBlock</span><span class='rbracket'>]</span><span class='op'>&gt;</span><span class='int'>0</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>HealBlock</span><span class='rbracket'>]</span><span class='op'>=</span><span class='int'>0</span>
+        <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡Los efectos de Anticura de {1} se terminaron!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbThis'>pbThis</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingItem'>hasWorkingItem</span><span class='lparen'>(</span><span class='symbol'>:POISONBARB</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbCanPoison?'>pbCanPoison?</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='kw'>false</span><span class='comma'>,</span><span class='kw'>self</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbPoison'>pbPoison</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingItem'>hasWorkingItem</span><span class='lparen'>(</span><span class='symbol'>:TOXICORB</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbCanPoison?'>pbCanPoison?</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='kw'>false</span><span class='comma'>,</span><span class='kw'>self</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbPoison'>pbPoison</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='kw'>nil</span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingItem'>hasWorkingItem</span><span class='lparen'>(</span><span class='symbol'>:WHITEHERB</span><span class='rparen'>)</span>
+      <span class='kw'>while</span> <span class='kw'>true</span>
+        <span class='id identifier rubyid_reducedstats'>reducedstats</span><span class='op'>=</span><span class='kw'>false</span>
+        <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='lbracket'>[</span><span class='const'>PBStats</span><span class='op'>::</span><span class='const'>ATTACK</span><span class='comma'>,</span><span class='const'>PBStats</span><span class='op'>::</span><span class='const'>DEFENSE</span><span class='comma'>,</span>
+                  <span class='const'>PBStats</span><span class='op'>::</span><span class='const'>SPEED</span><span class='comma'>,</span><span class='const'>PBStats</span><span class='op'>::</span><span class='const'>SPATK</span><span class='comma'>,</span><span class='const'>PBStats</span><span class='op'>::</span><span class='const'>SPDEF</span><span class='comma'>,</span>
+                  <span class='const'>PBStats</span><span class='op'>::</span><span class='const'>EVASION</span><span class='comma'>,</span><span class='const'>PBStats</span><span class='op'>::</span><span class='const'>ACCURACY</span><span class='rbracket'>]</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_stages'>stages</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='op'>&lt;</span><span class='int'>0</span>
+            <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_stages'>stages</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='op'>=</span><span class='int'>0</span><span class='semicolon'>;</span> <span class='id identifier rubyid_reducedstats'>reducedstats</span><span class='op'>=</span><span class='kw'>true</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+        <span class='kw'>break</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_reducedstats'>reducedstats</span>
+        <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>¡El estado de {1} volvió a la normalidad!</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span>
+           <span class='id identifier rubyid_opponent'>opponent</span><span class='period'>.</span><span class='id identifier rubyid_pbThis'>pbThis</span><span class='lparen'>(</span><span class='kw'>true</span><span class='rparen'>)</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_pbConsumeItem'>pbConsumeItem</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbMoveFailed-instance_method">
+  
+    #<strong>pbMoveFailed</strong>(attacker, opponent)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+7407
+7408
+7409
+7410
+7411
+7412
+7413
+7414
+7415
+7416
+7417
+7418
+7419
+7420
+7421
+7422
+7423
+7424
+7425
+7426
+7427
+7428
+7429</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PokeBattle_MoveEffects.rb', line 7407</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbMoveFailed'>pbMoveFailed</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='id identifier rubyid_opponent'>opponent</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='op'>==</span><span class='int'>0</span> <span class='op'>||</span>
+                 <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_pbIsUnlosableItem'>pbIsUnlosableItem</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='comma'>,</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span> <span class='op'>||</span>
+                 <span class='id identifier rubyid_pbIsPokeBall?'><span class='object_link'><a href="top-level-namespace.html#pbIsPokeBall%3F-instance_method" title="#pbIsPokeBall? (method)">pbIsPokeBall?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span> <span class='op'>||</span>
+                 <span class='ivar'>@battle</span><span class='period'>.</span><span class='id identifier rubyid_field'>field</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>MagicRoom</span><span class='rbracket'>]</span><span class='op'>&gt;</span><span class='int'>0</span> <span class='op'>||</span>
+                 <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingAbility'>hasWorkingAbility</span><span class='lparen'>(</span><span class='symbol'>:KLUTZ</span><span class='rparen'>)</span> <span class='op'>||</span>
+                 <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_effects'>effects</span><span class='lbracket'>[</span><span class='const'>PBEffects</span><span class='op'>::</span><span class='const'>Embargo</span><span class='rbracket'>]</span><span class='op'>&gt;</span><span class='int'>0</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='id identifier rubyid_flingarray'>flingarray</span><span class='period'>.</span><span class='id identifier rubyid_keys'>keys</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_flingarray'>flingarray</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_j'>j</span> <span class='kw'>in</span> <span class='id identifier rubyid_flingarray'>flingarray</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+        <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_isConst?'>isConst?</span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="PBItems.html" title="PBItems (class)">PBItems</a></span></span><span class='comma'>,</span><span class='id identifier rubyid_j'>j</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbIsBerry?'><span class='object_link'><a href="top-level-namespace.html#pbIsBerry%3F-instance_method" title="#pbIsBerry? (method)">pbIsBerry?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+                  <span class='op'>!</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_pbOpposing1'>pbOpposing1</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingAbility'>hasWorkingAbility</span><span class='lparen'>(</span><span class='symbol'>:UNNERVE</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+                  <span class='op'>!</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_pbOpposing2'>pbOpposing2</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingAbility'>hasWorkingAbility</span><span class='lparen'>(</span><span class='symbol'>:UNNERVE</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+                  <span class='op'>!</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_pbOpposing1'>pbOpposing1</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingAbility'>hasWorkingAbility</span><span class='lparen'>(</span><span class='symbol'>:ASONE1</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+                  <span class='op'>!</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_pbOpposing2'>pbOpposing2</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingAbility'>hasWorkingAbility</span><span class='lparen'>(</span><span class='symbol'>:ASONE1</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+                  <span class='op'>!</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_pbOpposing1'>pbOpposing1</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingAbility'>hasWorkingAbility</span><span class='lparen'>(</span><span class='symbol'>:ASONE2</span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span>
+                  <span class='op'>!</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_pbOpposing2'>pbOpposing2</span><span class='period'>.</span><span class='id identifier rubyid_hasWorkingAbility'>hasWorkingAbility</span><span class='lparen'>(</span><span class='symbol'>:ASONE2</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:45 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

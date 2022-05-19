@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: ControlWindow
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "ControlWindow";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (C)</a> &raquo;
+    
+    
+    <span class="title">ControlWindow</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: ControlWindow
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="SpriteWindow_Base.html" title="SpriteWindow_Base (class)">SpriteWindow_Base</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Window.html" title="Window (class)">Window</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="SpriteWindow.html" title="SpriteWindow (class)">SpriteWindow</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="SpriteWindow_Base.html" title="SpriteWindow_Base (class)">SpriteWindow_Base</a></span></li>
+          
+            <li class="next">ControlWindow</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/BattleAnimationEditor.rb</dd>
+  </dl>
+  
+</div>
+
+
+
+
+  <h2>Constant Summary</h2>
+  
+  <h3 class="inherited">Constants inherited
+     from <span class='object_link'><a href="SpriteWindow_Base.html" title="SpriteWindow_Base (class)">SpriteWindow_Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="SpriteWindow_Base.html#TEXTPADDING-constant" title="SpriteWindow_Base::TEXTPADDING (constant)">SpriteWindow_Base::TEXTPADDING</a></span></p>
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#controls-instance_method" title="#controls (instance method)">#<strong>controls</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute controls.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="SpriteWindow.html" title="SpriteWindow (class)">SpriteWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="SpriteWindow.html#active-instance_method" title="SpriteWindow#active (method)">#active</a></span>, <span class='object_link'><a href="SpriteWindow.html#back_opacity-instance_method" title="SpriteWindow#back_opacity (method)">#back_opacity</a></span>, <span class='object_link'><a href="SpriteWindow.html#blend_type-instance_method" title="SpriteWindow#blend_type (method)">#blend_type</a></span>, <span class='object_link'><a href="SpriteWindow.html#color-instance_method" title="SpriteWindow#color (method)">#color</a></span>, <span class='object_link'><a href="SpriteWindow.html#compat-instance_method" title="SpriteWindow#compat (method)">#compat</a></span>, <span class='object_link'><a href="SpriteWindow.html#contents-instance_method" title="SpriteWindow#contents (method)">#contents</a></span>, <span class='object_link'><a href="SpriteWindow.html#contents_blend_type-instance_method" title="SpriteWindow#contents_blend_type (method)">#contents_blend_type</a></span>, <span class='object_link'><a href="SpriteWindow.html#contents_opacity-instance_method" title="SpriteWindow#contents_opacity (method)">#contents_opacity</a></span>, <span class='object_link'><a href="SpriteWindow.html#cursor_rect-instance_method" title="SpriteWindow#cursor_rect (method)">#cursor_rect</a></span>, <span class='object_link'><a href="SpriteWindow.html#height-instance_method" title="SpriteWindow#height (method)">#height</a></span>, <span class='object_link'><a href="SpriteWindow.html#offset_x-instance_method" title="SpriteWindow#offset_x (method)">#offset_x</a></span>, <span class='object_link'><a href="SpriteWindow.html#offset_y-instance_method" title="SpriteWindow#offset_y (method)">#offset_y</a></span>, <span class='object_link'><a href="SpriteWindow.html#opacity-instance_method" title="SpriteWindow#opacity (method)">#opacity</a></span>, <span class='object_link'><a href="SpriteWindow.html#openness-instance_method" title="SpriteWindow#openness (method)">#openness</a></span>, <span class='object_link'><a href="SpriteWindow.html#ox-instance_method" title="SpriteWindow#ox (method)">#ox</a></span>, <span class='object_link'><a href="SpriteWindow.html#oy-instance_method" title="SpriteWindow#oy (method)">#oy</a></span>, <span class='object_link'><a href="SpriteWindow.html#pause-instance_method" title="SpriteWindow#pause (method)">#pause</a></span>, <span class='object_link'><a href="SpriteWindow.html#skinformat-instance_method" title="SpriteWindow#skinformat (method)">#skinformat</a></span>, <span class='object_link'><a href="SpriteWindow.html#skinrect-instance_method" title="SpriteWindow#skinrect (method)">#skinrect</a></span>, <span class='object_link'><a href="SpriteWindow.html#tone-instance_method" title="SpriteWindow#tone (method)">#tone</a></span>, <span class='object_link'><a href="SpriteWindow.html#viewport-instance_method" title="SpriteWindow#viewport (method)">#viewport</a></span>, <span class='object_link'><a href="SpriteWindow.html#visible-instance_method" title="SpriteWindow#visible (method)">#visible</a></span>, <span class='object_link'><a href="SpriteWindow.html#width-instance_method" title="SpriteWindow#width (method)">#width</a></span>, <span class='object_link'><a href="SpriteWindow.html#x-instance_method" title="SpriteWindow#x (method)">#x</a></span>, <span class='object_link'><a href="SpriteWindow.html#y-instance_method" title="SpriteWindow#y (method)">#y</a></span>, <span class='object_link'><a href="SpriteWindow.html#z-instance_method" title="SpriteWindow#z (method)">#z</a></span>, <span class='object_link'><a href="SpriteWindow.html#zoom_x-instance_method" title="SpriteWindow#zoom_x (method)">#zoom_x</a></span>, <span class='object_link'><a href="SpriteWindow.html#zoom_y-instance_method" title="SpriteWindow#zoom_y (method)">#zoom_y</a></span></p>
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Window.html" title="Window (class)">Window</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Window.html#active-instance_method" title="Window#active (method)">#active</a></span>, <span class='object_link'><a href="Window.html#back_opacity-instance_method" title="Window#back_opacity (method)">#back_opacity</a></span>, <span class='object_link'><a href="Window.html#blend_type-instance_method" title="Window#blend_type (method)">#blend_type</a></span>, <span class='object_link'><a href="Window.html#color-instance_method" title="Window#color (method)">#color</a></span>, <span class='object_link'><a href="Window.html#contents-instance_method" title="Window#contents (method)">#contents</a></span>, <span class='object_link'><a href="Window.html#contents_blend_type-instance_method" title="Window#contents_blend_type (method)">#contents_blend_type</a></span>, <span class='object_link'><a href="Window.html#contents_opacity-instance_method" title="Window#contents_opacity (method)">#contents_opacity</a></span>, <span class='object_link'><a href="Window.html#cursor_rect-instance_method" title="Window#cursor_rect (method)">#cursor_rect</a></span>, <span class='object_link'><a href="Window.html#height-instance_method" title="Window#height (method)">#height</a></span>, <span class='object_link'><a href="Window.html#opacity-instance_method" title="Window#opacity (method)">#opacity</a></span>, <span class='object_link'><a href="Window.html#openness-instance_method" title="Window#openness (method)">#openness</a></span>, <span class='object_link'><a href="Window.html#ox-instance_method" title="Window#ox (method)">#ox</a></span>, <span class='object_link'><a href="Window.html#oy-instance_method" title="Window#oy (method)">#oy</a></span>, <span class='object_link'><a href="Window.html#pause-instance_method" title="Window#pause (method)">#pause</a></span>, <span class='object_link'><a href="Window.html#stretch-instance_method" title="Window#stretch (method)">#stretch</a></span>, <span class='object_link'><a href="Window.html#tone-instance_method" title="Window#tone (method)">#tone</a></span>, <span class='object_link'><a href="Window.html#viewport-instance_method" title="Window#viewport (method)">#viewport</a></span>, <span class='object_link'><a href="Window.html#visible-instance_method" title="Window#visible (method)">#visible</a></span>, <span class='object_link'><a href="Window.html#width-instance_method" title="Window#width (method)">#width</a></span>, <span class='object_link'><a href="Window.html#x-instance_method" title="Window#x (method)">#x</a></span>, <span class='object_link'><a href="Window.html#y-instance_method" title="Window#y (method)">#y</a></span>, <span class='object_link'><a href="Window.html#z-instance_method" title="Window#z (method)">#z</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addButton-instance_method" title="#addButton (instance method)">#<strong>addButton</strong>(label)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addCheckbox-instance_method" title="#addCheckbox (instance method)">#<strong>addCheckbox</strong>(label)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addControl-instance_method" title="#addControl (instance method)">#<strong>addControl</strong>(control)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addLabel-instance_method" title="#addLabel (instance method)">#<strong>addLabel</strong>(label)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addOptionalSlider-instance_method" title="#addOptionalSlider (instance method)">#<strong>addOptionalSlider</strong>(label, minvalue, maxvalue, curvalue)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addOptionalTextSlider-instance_method" title="#addOptionalTextSlider (instance method)">#<strong>addOptionalTextSlider</strong>(label, options, curvalue)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addSlider-instance_method" title="#addSlider (instance method)">#<strong>addSlider</strong>(label, minvalue, maxvalue, curvalue)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addSpace-instance_method" title="#addSpace (instance method)">#<strong>addSpace</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#addTextSlider-instance_method" title="#addTextSlider (instance method)">#<strong>addTextSlider</strong>(label, options, curvalue)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#changed%3F-instance_method" title="#changed? (instance method)">#<strong>changed?</strong>(i)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispose-instance_method" title="#dispose (instance method)">#<strong>dispose</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#hittest%3F-instance_method" title="#hittest? (instance method)">#<strong>hittest?</strong>(i)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(x, y, width, height)  &#x21d2; ControlWindow </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of ControlWindow.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#invalidate-instance_method" title="#invalidate (instance method)">#<strong>invalidate</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#refresh-instance_method" title="#refresh (instance method)">#<strong>refresh</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#repaint-instance_method" title="#repaint (instance method)">#<strong>repaint</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#value-instance_method" title="#value (instance method)">#<strong>value</strong>(i)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="SpriteWindow_Base.html" title="SpriteWindow_Base (class)">SpriteWindow_Base</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="SpriteWindow_Base.html#__resolveSystemFrame-instance_method" title="SpriteWindow_Base#__resolveSystemFrame (method)">#__resolveSystemFrame</a></span>, <span class='object_link'><a href="SpriteWindow_Base.html#__setWindowskin-instance_method" title="SpriteWindow_Base#__setWindowskin (method)">#__setWindowskin</a></span>, <span class='object_link'><a href="SpriteWindow_Base.html#setSkin-instance_method" title="SpriteWindow_Base#setSkin (method)">#setSkin</a></span>, <span class='object_link'><a href="SpriteWindow_Base.html#setSystemFrame-instance_method" title="SpriteWindow_Base#setSystemFrame (method)">#setSystemFrame</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="SpriteWindow.html" title="SpriteWindow (class)">SpriteWindow</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="SpriteWindow.html#borderX-instance_method" title="SpriteWindow#borderX (method)">#borderX</a></span>, <span class='object_link'><a href="SpriteWindow.html#borderY-instance_method" title="SpriteWindow#borderY (method)">#borderY</a></span>, <span class='object_link'><a href="SpriteWindow.html#bottomEdge-instance_method" title="SpriteWindow#bottomEdge (method)">#bottomEdge</a></span>, <span class='object_link'><a href="SpriteWindow.html#disposed%3F-instance_method" title="SpriteWindow#disposed? (method)">#disposed?</a></span>, <span class='object_link'><a href="SpriteWindow.html#endX-instance_method" title="SpriteWindow#endX (method)">#endX</a></span>, <span class='object_link'><a href="SpriteWindow.html#endX=-instance_method" title="SpriteWindow#endX= (method)">#endX=</a></span>, <span class='object_link'><a href="SpriteWindow.html#endY-instance_method" title="SpriteWindow#endY (method)">#endY</a></span>, <span class='object_link'><a href="SpriteWindow.html#endY=-instance_method" title="SpriteWindow#endY= (method)">#endY=</a></span>, <span class='object_link'><a href="SpriteWindow.html#flash-instance_method" title="SpriteWindow#flash (method)">#flash</a></span>, <span class='object_link'><a href="SpriteWindow.html#leftEdge-instance_method" title="SpriteWindow#leftEdge (method)">#leftEdge</a></span>, <span class='object_link'><a href="SpriteWindow.html#loadSkinFile-instance_method" title="SpriteWindow#loadSkinFile (method)">#loadSkinFile</a></span>, <span class='object_link'><a href="SpriteWindow.html#rightEdge-instance_method" title="SpriteWindow#rightEdge (method)">#rightEdge</a></span>, <span class='object_link'><a href="SpriteWindow.html#startX-instance_method" title="SpriteWindow#startX (method)">#startX</a></span>, <span class='object_link'><a href="SpriteWindow.html#startX=-instance_method" title="SpriteWindow#startX= (method)">#startX=</a></span>, <span class='object_link'><a href="SpriteWindow.html#startY-instance_method" title="SpriteWindow#startY (method)">#startY</a></span>, <span class='object_link'><a href="SpriteWindow.html#startY=-instance_method" title="SpriteWindow#startY= (method)">#startY=</a></span>, <span class='object_link'><a href="SpriteWindow.html#stretch=-instance_method" title="SpriteWindow#stretch= (method)">#stretch=</a></span>, <span class='object_link'><a href="SpriteWindow.html#topEdge-instance_method" title="SpriteWindow#topEdge (method)">#topEdge</a></span>, <span class='object_link'><a href="SpriteWindow.html#windowskin-instance_method" title="SpriteWindow#windowskin (method)">#windowskin</a></span>, <span class='object_link'><a href="SpriteWindow.html#windowskin=-instance_method" title="SpriteWindow#windowskin= (method)">#windowskin=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Window.html" title="Window (class)">Window</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Window.html#disposed%3F-instance_method" title="Window#disposed? (method)">#disposed?</a></span>, <span class='object_link'><a href="Window.html#flash-instance_method" title="Window#flash (method)">#flash</a></span>, <span class='object_link'><a href="Window.html#windowskin-instance_method" title="Window#windowskin (method)">#windowskin</a></span>, <span class='object_link'><a href="Window.html#windowskin=-instance_method" title="Window#windowskin= (method)">#windowskin=</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(x, y, width, height)  &#x21d2; <tt><span class='object_link'><a href="" title="ControlWindow (class)">ControlWindow</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of ControlWindow.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+896
+897
+898
+899
+900
+901</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 896</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_contents'>contents</span><span class='op'>=</span><span class='const'>Bitmap</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_width'>width</span><span class='op'>-</span><span class='int'>32</span><span class='comma'>,</span><span class='id identifier rubyid_height'>height</span><span class='op'>-</span><span class='int'>32</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_pbSetNarrowFont'><span class='object_link'><a href="top-level-namespace.html#pbSetNarrowFont-instance_method" title="#pbSetNarrowFont (method)">pbSetNarrowFont</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_contents'>contents</span><span class='rparen'>)</span>
+  <span class='ivar'>@controls</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="controls-instance_method">
+  
+    #<strong>controls</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute controls.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+894
+895
+896</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 894</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_controls'>controls</span>
+  <span class='ivar'>@controls</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="addButton-instance_method">
+  
+    #<strong>addButton</strong>(label)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+957
+958
+959</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 957</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addButton'>addButton</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Button.html" title="Button (class)">Button</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Button.html#initialize-instance_method" title="Button#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addCheckbox-instance_method">
+  
+    #<strong>addCheckbox</strong>(label)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+977
+978
+979</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 977</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addCheckbox'>addCheckbox</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Checkbox.html" title="Checkbox (class)">Checkbox</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Checkbox.html#initialize-instance_method" title="Checkbox#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addControl-instance_method">
+  
+    #<strong>addControl</strong>(control)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 939</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='id identifier rubyid_control'>control</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_i'>i</span><span class='op'>=</span><span class='ivar'>@controls</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='op'>=</span><span class='id identifier rubyid_control'>control</span>
+  <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='id identifier rubyid_i'>i</span><span class='op'>*</span><span class='int'>32</span>
+  <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='op'>=</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span>
+  <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='op'>=</span><span class='int'>32</span>
+  <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_parent'>parent</span><span class='op'>=</span><span class='kw'>self</span>
+  <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='op'>=</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_contents'>contents</span>
+  <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_invalidate'>invalidate</span>
+  <span class='id identifier rubyid_refresh'>refresh</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_i'>i</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addLabel-instance_method">
+  
+    #<strong>addLabel</strong>(label)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+953
+954
+955</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 953</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addLabel'>addLabel</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Label.html" title="Label (class)">Label</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="UIControl.html#initialize-instance_method" title="UIControl#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addOptionalSlider-instance_method">
+  
+    #<strong>addOptionalSlider</strong>(label, minvalue, maxvalue, curvalue)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+965
+966
+967</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 965</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addOptionalSlider'>addOptionalSlider</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span><span class='id identifier rubyid_minvalue'>minvalue</span><span class='comma'>,</span><span class='id identifier rubyid_maxvalue'>maxvalue</span><span class='comma'>,</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="OptionalSlider.html" title="OptionalSlider (class)">OptionalSlider</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="OptionalSlider.html#initialize-instance_method" title="OptionalSlider#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span><span class='id identifier rubyid_minvalue'>minvalue</span><span class='comma'>,</span><span class='id identifier rubyid_maxvalue'>maxvalue</span><span class='comma'>,</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addOptionalTextSlider-instance_method">
+  
+    #<strong>addOptionalTextSlider</strong>(label, options, curvalue)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+973
+974
+975</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 973</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addOptionalTextSlider'>addOptionalTextSlider</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="OptionalTextSlider.html" title="OptionalTextSlider (class)">OptionalTextSlider</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="OptionalTextSlider.html#initialize-instance_method" title="OptionalTextSlider#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addSlider-instance_method">
+  
+    #<strong>addSlider</strong>(label, minvalue, maxvalue, curvalue)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+961
+962
+963</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 961</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addSlider'>addSlider</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span><span class='id identifier rubyid_minvalue'>minvalue</span><span class='comma'>,</span><span class='id identifier rubyid_maxvalue'>maxvalue</span><span class='comma'>,</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Slider.html" title="Slider (class)">Slider</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Slider.html#initialize-instance_method" title="Slider#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span><span class='id identifier rubyid_minvalue'>minvalue</span><span class='comma'>,</span><span class='id identifier rubyid_maxvalue'>maxvalue</span><span class='comma'>,</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addSpace-instance_method">
+  
+    #<strong>addSpace</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+981
+982
+983</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 981</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addSpace'>addSpace</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="UIControl.html" title="UIControl (class)">UIControl</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="UIControl.html#initialize-instance_method" title="UIControl#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="addTextSlider-instance_method">
+  
+    #<strong>addTextSlider</strong>(label, options, curvalue)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+969
+970
+971</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 969</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_addTextSlider'>addTextSlider</span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_addControl'>addControl</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="TextSlider.html" title="TextSlider (class)">TextSlider</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="TextSlider.html#initialize-instance_method" title="TextSlider#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_label'>label</span><span class='comma'>,</span><span class='id identifier rubyid_options'>options</span><span class='comma'>,</span><span class='id identifier rubyid_curvalue'>curvalue</span><span class='rparen'>)</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="changed?-instance_method">
+  
+    #<strong>changed?</strong>(i)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+993
+994
+995
+996</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 993</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_changed?'>changed?</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span><span class='op'>&lt;</span><span class='int'>0</span>
+  <span class='kw'>return</span> <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_changed'>changed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="dispose-instance_method">
+  
+    #<strong>dispose</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+903
+904
+905
+906</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 903</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dispose'>dispose</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_contents'>contents</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span>
+  <span class='kw'>super</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="hittest?-instance_method">
+  
+    #<strong>hittest?</strong>(i)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 926</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_hittest?'>hittest?</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_mousepos'>mousepos</span><span class='op'>=</span><span class='const'>Mouse</span><span class='op'>::</span><span class='id identifier rubyid_getMousePos'>getMousePos</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_mousepos'>mousepos</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span><span class='op'>&lt;</span><span class='int'>0</span> <span class='op'>||</span> <span class='id identifier rubyid_i'>i</span><span class='op'>&gt;=</span><span class='ivar'>@controls</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='id identifier rubyid_rc'>rc</span><span class='op'>=</span><span class='const'>Rect</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
+     <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_parentX'>parentX</span><span class='comma'>,</span>
+     <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_parentY'>parentY</span><span class='comma'>,</span>
+     <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span>
+     <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span>
+  <span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_rc'>rc</span><span class='period'>.</span><span class='id identifier rubyid_contains'>contains</span><span class='lparen'>(</span><span class='id identifier rubyid_mousepos'>mousepos</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_mousepos'>mousepos</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="invalidate-instance_method">
+  
+    #<strong>invalidate</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+920
+921
+922
+923
+924</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 920</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_invalidate'>invalidate</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@controls</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_invalidate'>invalidate</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="refresh-instance_method">
+  
+    #<strong>refresh</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+908
+909
+910
+911
+912</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 908</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_refresh'>refresh</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@controls</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_refresh'>refresh</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="repaint-instance_method">
+  
+    #<strong>repaint</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+914
+915
+916
+917
+918</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 914</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_repaint'>repaint</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@controls</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_repaint'>repaint</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    #<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+985
+986
+987
+988
+989
+990
+991</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 985</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>super</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@controls</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_repaint'>repaint</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="value-instance_method">
+  
+    #<strong>value</strong>(i)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+998
+999
+1000
+1001</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/BattleAnimationEditor.rb', line 998</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_value'>value</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_i'>i</span><span class='op'>&lt;</span><span class='int'>0</span>
+  <span class='kw'>return</span> <span class='ivar'>@controls</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_curvalue'>curvalue</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:39 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

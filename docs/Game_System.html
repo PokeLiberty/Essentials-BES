@@ -1,0 +1,3397 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Game_System
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Game_System";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (G)</a> &raquo;
+    
+    
+    <span class="title">Game_System</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Game_System
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">Game_System</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/Game_System.rb<span class="defines">,<br />
+  scripts/Messages.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<h6 id="label-"></h6>
+
+<p>** Game_System</p>
+<hr>
+
+<pre class="code ruby"><code class="ruby">This class handles data surrounding the system. Backround music, etc.
+is managed here as well. Refer to &quot;$game_system&quot; for the instance of 
+this class.
+</code></pre>
+
+<h6 id="label-"></h6>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#autoscroll_x_speed-instance_method" title="#autoscroll_x_speed (instance method)">#<strong>autoscroll_x_speed</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute autoscroll_x_speed.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#autoscroll_y_speed-instance_method" title="#autoscroll_y_speed (instance method)">#<strong>autoscroll_y_speed</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute autoscroll_y_speed.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_interpreter-instance_method" title="#battle_interpreter (instance method)">#<strong>battle_interpreter</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>battle event interpreter.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_position-instance_method" title="#bgm_position (instance method)">#<strong>bgm_position</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute bgm_position.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#encounter_disabled-instance_method" title="#encounter_disabled (instance method)">#<strong>encounter_disabled</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>encounter forbidden.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#magic_number-instance_method" title="#magic_number (instance method)">#<strong>magic_number</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>magic number.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#map_interpreter-instance_method" title="#map_interpreter (instance method)">#<strong>map_interpreter</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>map event interpreter.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#menu_disabled-instance_method" title="#menu_disabled (instance method)">#<strong>menu_disabled</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>menu forbidden.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#message_frame-instance_method" title="#message_frame (instance method)">#<strong>message_frame</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>text option: window frame.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#message_position-instance_method" title="#message_position (instance method)">#<strong>message_position</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>text option: positioning.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#save_count-instance_method" title="#save_count (instance method)">#<strong>save_count</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>save count.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#save_disabled-instance_method" title="#save_disabled (instance method)">#<strong>save_disabled</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>save forbidden.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#timer-instance_method" title="#timer (instance method)">#<strong>timer</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>timer.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#timer_working-instance_method" title="#timer_working (instance method)">#<strong>timer_working</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>timer working flag.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_bgm-instance_method" title="#battle_bgm (instance method)">#<strong>battle_bgm</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_bgm=-instance_method" title="#battle_bgm= (instance method)">#<strong>battle_bgm=</strong>(battle_bgm)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_end_me-instance_method" title="#battle_end_me (instance method)">#<strong>battle_end_me</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#battle_end_me=-instance_method" title="#battle_end_me= (instance method)">#<strong>battle_end_me=</strong>(battle_end_me)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_fade-instance_method" title="#bgm_fade (instance method)">#<strong>bgm_fade</strong>(time)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_memorize-instance_method" title="#bgm_memorize (instance method)">#<strong>bgm_memorize</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Saves the currently playing background music for later playback.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_pause-instance_method" title="#bgm_pause (instance method)">#<strong>bgm_pause</strong>(fadetime = 0.0)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_play-instance_method" title="#bgm_play (instance method)">#<strong>bgm_play</strong>(bgm)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_play_internal-instance_method" title="#bgm_play_internal (instance method)">#<strong>bgm_play_internal</strong>(bgm, position)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_play_internal2-instance_method" title="#bgm_play_internal2 (instance method)">#<strong>bgm_play_internal2</strong>(name, volume, pitch, position)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_restore-instance_method" title="#bgm_restore (instance method)">#<strong>bgm_restore</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Plays the currently memorized background music.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_resume-instance_method" title="#bgm_resume (instance method)">#<strong>bgm_resume</strong>(bgm)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_stop-instance_method" title="#bgm_stop (instance method)">#<strong>bgm_stop</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgm_unpause-instance_method" title="#bgm_unpause (instance method)">#<strong>bgm_unpause</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_fade-instance_method" title="#bgs_fade (instance method)">#<strong>bgs_fade</strong>(time)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_memorize-instance_method" title="#bgs_memorize (instance method)">#<strong>bgs_memorize</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_pause-instance_method" title="#bgs_pause (instance method)">#<strong>bgs_pause</strong>(fadetime = 0.0)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_play-instance_method" title="#bgs_play (instance method)">#<strong>bgs_play</strong>(bgs)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_restore-instance_method" title="#bgs_restore (instance method)">#<strong>bgs_restore</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_resume-instance_method" title="#bgs_resume (instance method)">#<strong>bgs_resume</strong>(bgs)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_stop-instance_method" title="#bgs_stop (instance method)">#<strong>bgs_stop</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bgs_unpause-instance_method" title="#bgs_unpause (instance method)">#<strong>bgs_unpause</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>:nodoc:.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getPlayingBGM-instance_method" title="#getPlayingBGM (instance method)">#<strong>getPlayingBGM</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns an RPG::AudioFile object for the currently playing background music.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getPlayingBGS-instance_method" title="#getPlayingBGS (instance method)">#<strong>getPlayingBGS</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>  &#x21d2; Game_System </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Game_System.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#me_play-instance_method" title="#me_play (instance method)">#<strong>me_play</strong>(me)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#playing_bgm-instance_method" title="#playing_bgm (instance method)">#<strong>playing_bgm</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#playing_bgs-instance_method" title="#playing_bgs (instance method)">#<strong>playing_bgs</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#se_play-instance_method" title="#se_play (instance method)">#<strong>se_play</strong>(se)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#se_stop-instance_method" title="#se_stop (instance method)">#<strong>se_stop</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setDefaultBGM-instance_method" title="#setDefaultBGM (instance method)">#<strong>setDefaultBGM</strong>(bgm, volume = 80, pitch = 100)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#windowskin_name-instance_method" title="#windowskin_name (instance method)">#<strong>windowskin_name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#windowskin_name=-instance_method" title="#windowskin_name= (instance method)">#<strong>windowskin_name=</strong>(windowskin_name)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Game_System (class)">Game_System</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Game_System.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 25</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span>
+  <span class='kw'>if</span> <span class='gvar'>$RPGVX</span>
+    <span class='ivar'>@map_interpreter</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Game_Interpreter.html" title="Game_Interpreter (class)">Game_Interpreter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='ivar'>@battle_interpreter</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Game_Interpreter.html" title="Game_Interpreter (class)">Game_Interpreter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@map_interpreter</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Interpreter.html" title="Interpreter (class)">Interpreter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Interpreter.html#initialize-instance_method" title="Interpreter#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='ivar'>@battle_interpreter</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="Interpreter.html" title="Interpreter (class)">Interpreter</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Interpreter.html#initialize-instance_method" title="Interpreter#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span> <span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@timer</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@timer_working</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@save_disabled</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@menu_disabled</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@encounter_disabled</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@message_position</span> <span class='op'>=</span> <span class='int'>2</span>
+  <span class='ivar'>@message_frame</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@save_count</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@magic_number</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@autoscroll_x_speed</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@autoscroll_y_speed</span> <span class='op'>=</span> <span class='int'>0</span>
+  <span class='ivar'>@bgm_position</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@bgs_position</span><span class='op'>=</span><span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="autoscroll_x_speed=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="autoscroll_x_speed-instance_method">
+  
+    #<strong>autoscroll_x_speed</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute autoscroll_x_speed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+21
+22
+23</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 21</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_autoscroll_x_speed'>autoscroll_x_speed</span>
+  <span class='ivar'>@autoscroll_x_speed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="autoscroll_y_speed=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="autoscroll_y_speed-instance_method">
+  
+    #<strong>autoscroll_y_speed</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute autoscroll_y_speed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+22
+23
+24</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 22</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_autoscroll_y_speed'>autoscroll_y_speed</span>
+  <span class='ivar'>@autoscroll_y_speed</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="battle_interpreter-instance_method">
+  
+    #<strong>battle_interpreter</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>battle event interpreter</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_interpreter'>battle_interpreter</span>
+  <span class='ivar'>@battle_interpreter</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="bgm_position=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_position-instance_method">
+  
+    #<strong>bgm_position</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute bgm_position.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_position'>bgm_position</span>
+  <span class='ivar'>@bgm_position</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="encounter_disabled=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="encounter_disabled-instance_method">
+  
+    #<strong>encounter_disabled</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>encounter forbidden</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 16</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_encounter_disabled'>encounter_disabled</span>
+  <span class='ivar'>@encounter_disabled</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="magic_number=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="magic_number-instance_method">
+  
+    #<strong>magic_number</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>magic number</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 20</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_magic_number'>magic_number</span>
+  <span class='ivar'>@magic_number</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="map_interpreter-instance_method">
+  
+    #<strong>map_interpreter</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>map event interpreter</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+10
+11
+12</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 10</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_map_interpreter'>map_interpreter</span>
+  <span class='ivar'>@map_interpreter</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="menu_disabled=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="menu_disabled-instance_method">
+  
+    #<strong>menu_disabled</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>menu forbidden</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+15
+16
+17</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 15</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_menu_disabled'>menu_disabled</span>
+  <span class='ivar'>@menu_disabled</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="message_frame=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="message_frame-instance_method">
+  
+    #<strong>message_frame</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>text option: window frame</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 18</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_message_frame'>message_frame</span>
+  <span class='ivar'>@message_frame</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="message_position=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="message_position-instance_method">
+  
+    #<strong>message_position</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>text option: positioning</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19
+20</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 17</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_message_position'>message_position</span>
+  <span class='ivar'>@message_position</span><span class='op'>=</span><span class='int'>2</span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@message_position</span>
+  <span class='kw'>return</span> <span class='ivar'>@message_position</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="save_count=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="save_count-instance_method">
+  
+    #<strong>save_count</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>save count</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 19</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_save_count'>save_count</span>
+  <span class='ivar'>@save_count</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="save_disabled=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="save_disabled-instance_method">
+  
+    #<strong>save_disabled</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>save forbidden</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+14
+15
+16</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 14</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_save_disabled'>save_disabled</span>
+  <span class='ivar'>@save_disabled</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="timer=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="timer-instance_method">
+  
+    #<strong>timer</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>timer</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 12</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_timer'>timer</span>
+  <span class='ivar'>@timer</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="timer_working=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="timer_working-instance_method">
+  
+    #<strong>timer_working</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>timer working flag</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_timer_working'>timer_working</span>
+  <span class='ivar'>@timer_working</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="battle_bgm-instance_method">
+  
+    #<strong>battle_bgm</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+268
+269
+270
+271
+272
+273
+274</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 268</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_bgm'>battle_bgm</span>
+  <span class='kw'>if</span> <span class='ivar'>@battle_bgm</span> <span class='op'>==</span> <span class='kw'>nil</span>
+    <span class='kw'>return</span> <span class='gvar'>$data_system</span><span class='period'>.</span><span class='id identifier rubyid_battle_bgm'>battle_bgm</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='ivar'>@battle_bgm</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="battle_bgm=-instance_method">
+  
+    #<strong>battle_bgm=</strong>(battle_bgm)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+276
+277
+278</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 276</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_bgm='>battle_bgm=</span><span class='lparen'>(</span><span class='id identifier rubyid_battle_bgm'>battle_bgm</span><span class='rparen'>)</span>
+  <span class='ivar'>@battle_bgm</span> <span class='op'>=</span> <span class='id identifier rubyid_battle_bgm'>battle_bgm</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="battle_end_me-instance_method">
+  
+    #<strong>battle_end_me</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+280
+281
+282
+283
+284
+285
+286</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 280</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_end_me'>battle_end_me</span>
+  <span class='kw'>if</span> <span class='ivar'>@battle_end_me</span> <span class='op'>==</span> <span class='kw'>nil</span>
+    <span class='kw'>return</span> <span class='gvar'>$data_system</span><span class='period'>.</span><span class='id identifier rubyid_battle_end_me'>battle_end_me</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='ivar'>@battle_end_me</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="battle_end_me=-instance_method">
+  
+    #<strong>battle_end_me=</strong>(battle_end_me)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+288
+289
+290</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 288</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_battle_end_me='>battle_end_me=</span><span class='lparen'>(</span><span class='id identifier rubyid_battle_end_me'>battle_end_me</span><span class='rparen'>)</span>
+  <span class='ivar'>@battle_end_me</span> <span class='op'>=</span> <span class='id identifier rubyid_battle_end_me'>battle_end_me</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_fade-instance_method">
+  
+    #<strong>bgm_fade</strong>(time)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+119
+120
+121
+122
+123
+124
+125</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 119</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_fade'>bgm_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_time'>time</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@bgm_paused</span>
+    <span class='ivar'>@bgm_position</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@playing_bgm</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgm_fade'><span class='object_link'><a href="Audio.html#bgm_fade-class_method" title="Audio.bgm_fade (method)">bgm_fade</a></span></span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_time'>time</span> <span class='op'>*</span> <span class='int'>1000</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_floor'>floor</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@defaultBGM</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_memorize-instance_method">
+  
+    #<strong>bgm_memorize</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Saves the currently playing background music for later playback.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+132
+133
+134</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 132</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_memorize'>bgm_memorize</span>
+  <span class='ivar'>@memorized_bgm</span> <span class='op'>=</span> <span class='ivar'>@playing_bgm</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_pause-instance_method">
+  
+    #<strong>bgm_pause</strong>(fadetime = 0.0)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+89
+90
+91
+92
+93
+94
+95
+96</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 89</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_pause'>bgm_pause</span><span class='lparen'>(</span><span class='id identifier rubyid_fadetime'>fadetime</span><span class='op'>=</span><span class='float'>0.0</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>  <span class='id identifier rubyid_pos'>pos</span><span class='op'>=</span><span class='const'>Audio</span><span class='period'>.</span><span class='id identifier rubyid_bgm_position'>bgm_position</span> <span class='kw'>rescue</span> <span class='int'>0</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_fadetime'>fadetime</span><span class='op'>&gt;</span><span class='float'>0.0</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgm_fade'>bgm_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_fadetime'>fadetime</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@bgm_position</span><span class='op'>=</span><span class='id identifier rubyid_pos'>pos</span>
+  <span class='ivar'>@bgm_paused</span><span class='op'>=</span><span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_play-instance_method">
+  
+    #<strong>bgm_play</strong>(bgm)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+50
+51
+52</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 50</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_play'>bgm_play</span><span class='lparen'>(</span><span class='id identifier rubyid_bgm'>bgm</span><span class='rparen'>)</span> 
+  <span class='id identifier rubyid_bgm_play_internal'>bgm_play_internal</span><span class='lparen'>(</span><span class='id identifier rubyid_bgm'>bgm</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_play_internal-instance_method">
+  
+    #<strong>bgm_play_internal</strong>(bgm, position)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 65</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_play_internal'>bgm_play_internal</span><span class='lparen'>(</span><span class='id identifier rubyid_bgm'>bgm</span><span class='comma'>,</span><span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@bgm_paused</span>
+    <span class='ivar'>@bgm_position</span><span class='op'>=</span><span class='id identifier rubyid_position'>position</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@playing_bgm</span> <span class='op'>=</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='op'>==</span><span class='kw'>nil</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_bgm'>bgm</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='kw'>and</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="FileTest.html" title="FileTest (module)">FileTest</a></span></span><span class='period'>.</span><span class='id identifier rubyid_audio_exist?'><span class='object_link'><a href="FileTest.html#audio_exist%3F-class_method" title="FileTest.audio_exist? (method)">audio_exist?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/BGM/</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_bgm_play_internal2'>bgm_play_internal2</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/BGM/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span> 
+        <span class='ivar'>@bgm_position</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@defaultBGM</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@bgm_paused</span>
+      <span class='ivar'>@bgm_position</span><span class='op'>=</span><span class='id identifier rubyid_position'>position</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@playing_bgm</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgm_stop'><span class='object_link'><a href="Audio.html#bgm_stop-class_method" title="Audio.bgm_stop (method)">bgm_stop</a></span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@defaultBGM</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='ivar'>@defaultBGM</span>
+    <span class='id identifier rubyid_bgm_play_internal2'>bgm_play_internal2</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/BGM/</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span><span class='ivar'>@defaultBGM</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span>
+      <span class='ivar'>@defaultBGM</span><span class='period'>.</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span><span class='ivar'>@defaultBGM</span><span class='period'>.</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span><span class='ivar'>@bgm_position</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_frame_reset'>frame_reset</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_play_internal2-instance_method">
+  
+    #<strong>bgm_play_internal2</strong>(name, volume, pitch, position)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 54</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_play_internal2'>bgm_play_internal2</span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span><span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>  <span class='id identifier rubyid_vol'>vol</span><span class='op'>=</span><span class='id identifier rubyid_volume'>volume</span>
+  <span class='id identifier rubyid_vol'>vol</span><span class='op'>*=</span><span class='lparen'>(</span><span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_bgmvolume'>bgmvolume</span><span class='op'>/</span><span class='float'>100.0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span>
+  <span class='id identifier rubyid_vol'>vol</span><span class='op'>=</span><span class='id identifier rubyid_vol'>vol</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+  <span class='kw'>begin</span>
+    <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgm_play'><span class='object_link'><a href="Audio.html#bgm_play-class_method" title="Audio.bgm_play (method)">bgm_play</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_vol'>vol</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='comma'>,</span><span class='id identifier rubyid_position'>position</span><span class='rparen'>)</span>
+  <span class='kw'>rescue</span> <span class='const'>ArgumentError</span>
+    <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgm_play'><span class='object_link'><a href="Audio.html#bgm_play-class_method" title="Audio.bgm_play (method)">bgm_play</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span><span class='id identifier rubyid_vol'>vol</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_restore-instance_method">
+  
+    #<strong>bgm_restore</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Plays the currently memorized background music</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+137
+138
+139</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 137</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_restore'>bgm_restore</span>
+  <span class='id identifier rubyid_bgm_play'>bgm_play</span><span class='lparen'>(</span><span class='ivar'>@memorized_bgm</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_resume-instance_method">
+  
+    #<strong>bgm_resume</strong>(bgm)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+103
+104
+105
+106
+107
+108
+109</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 103</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_resume'>bgm_resume</span><span class='lparen'>(</span><span class='id identifier rubyid_bgm'>bgm</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>  <span class='kw'>if</span> <span class='ivar'>@bgm_paused</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgm_play_internal'>bgm_play_internal</span><span class='lparen'>(</span><span class='id identifier rubyid_bgm'>bgm</span><span class='comma'>,</span><span class='ivar'>@bgm_position</span><span class='rparen'>)</span>
+    <span class='ivar'>@bgm_position</span><span class='op'>=</span><span class='int'>0</span>
+    <span class='ivar'>@bgm_paused</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_stop-instance_method">
+  
+    #<strong>bgm_stop</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+111
+112
+113
+114
+115
+116
+117</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 111</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_stop'>bgm_stop</span> <span class='comment'># :nodoc:
+</span>  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@bgm_paused</span>
+    <span class='ivar'>@bgm_position</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@playing_bgm</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgm_stop'><span class='object_link'><a href="Audio.html#bgm_stop-class_method" title="Audio.bgm_stop (method)">bgm_stop</a></span></span> <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@defaultBGM</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgm_unpause-instance_method">
+  
+    #<strong>bgm_unpause</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+98
+99
+100
+101</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 98</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgm_unpause'>bgm_unpause</span>  <span class='comment'># :nodoc:
+</span>  <span class='ivar'>@bgm_position</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@bgm_paused</span><span class='op'>=</span><span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_fade-instance_method">
+  
+    #<strong>bgs_fade</strong>(time)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+224
+225
+226
+227
+228</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 224</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgs_fade'>bgs_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_time'>time</span><span class='rparen'>)</span>
+  <span class='ivar'>@bgs_position</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@playing_bgs</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgs_fade'><span class='object_link'><a href="Audio.html#bgs_fade-class_method" title="Audio.bgs_fade (method)">bgs_fade</a></span></span><span class='lparen'>(</span><span class='lparen'>(</span><span class='id identifier rubyid_time'>time</span> <span class='op'>*</span> <span class='int'>1000</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_floor'>floor</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_memorize-instance_method">
+  
+    #<strong>bgs_memorize</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+234
+235
+236</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 234</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgs_memorize'>bgs_memorize</span>
+  <span class='ivar'>@memorized_bgs</span> <span class='op'>=</span> <span class='ivar'>@playing_bgs</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_pause-instance_method">
+  
+    #<strong>bgs_pause</strong>(fadetime = 0.0)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+198
+199
+200
+201
+202
+203
+204
+205</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 198</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgs_pause'>bgs_pause</span><span class='lparen'>(</span><span class='id identifier rubyid_fadetime'>fadetime</span><span class='op'>=</span><span class='float'>0.0</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_fadetime'>fadetime</span><span class='op'>&gt;</span><span class='float'>0.0</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgs_fade'>bgs_fade</span><span class='lparen'>(</span><span class='id identifier rubyid_fadetime'>fadetime</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgs_stop'>bgs_stop</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@bgs_paused</span><span class='op'>=</span><span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_play-instance_method">
+  
+    #<strong>bgs_play</strong>(bgs)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 181</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgs_play'>bgs_play</span><span class='lparen'>(</span><span class='id identifier rubyid_bgs'>bgs</span><span class='rparen'>)</span>
+  <span class='ivar'>@playing_bgs</span> <span class='op'>=</span> <span class='id identifier rubyid_bgs'>bgs</span><span class='op'>==</span><span class='kw'>nil</span> <span class='op'>?</span> <span class='kw'>nil</span> <span class='op'>:</span> <span class='id identifier rubyid_bgs'>bgs</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_bgs'>bgs</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='kw'>and</span> <span class='id identifier rubyid_bgs'>bgs</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="FileTest.html" title="FileTest (module)">FileTest</a></span></span><span class='period'>.</span><span class='id identifier rubyid_audio_exist?'><span class='object_link'><a href="FileTest.html#audio_exist%3F-class_method" title="FileTest.audio_exist? (method)">audio_exist?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/BGS/</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_bgs'>bgs</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>=</span><span class='id identifier rubyid_bgs'>bgs</span><span class='period'>.</span><span class='id identifier rubyid_volume'>volume</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>*=</span><span class='lparen'>(</span><span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_sevolume'>sevolume</span><span class='op'>/</span><span class='float'>100.0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>=</span><span class='id identifier rubyid_vol'>vol</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgs_play'><span class='object_link'><a href="Audio.html#bgs_play-class_method" title="Audio.bgs_play (method)">bgs_play</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/BGS/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_bgs'>bgs</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_vol'>vol</span><span class='comma'>,</span> <span class='id identifier rubyid_bgs'>bgs</span><span class='period'>.</span><span class='id identifier rubyid_pitch'>pitch</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@bgs_position</span><span class='op'>=</span><span class='int'>0</span>
+    <span class='ivar'>@playing_bgs</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgs_stop'><span class='object_link'><a href="Audio.html#bgs_stop-class_method" title="Audio.bgs_stop (method)">bgs_stop</a></span></span>
+  <span class='kw'>end</span>
+  <span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_frame_reset'>frame_reset</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_restore-instance_method">
+  
+    #<strong>bgs_restore</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+238
+239
+240</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 238</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgs_restore'>bgs_restore</span>
+  <span class='id identifier rubyid_bgs_play'>bgs_play</span><span class='lparen'>(</span><span class='ivar'>@memorized_bgs</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_resume-instance_method">
+  
+    #<strong>bgs_resume</strong>(bgs)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+211
+212
+213
+214
+215
+216</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 211</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgs_resume'>bgs_resume</span><span class='lparen'>(</span><span class='id identifier rubyid_bgs'>bgs</span><span class='rparen'>)</span> <span class='comment'># :nodoc:
+</span>  <span class='kw'>if</span> <span class='ivar'>@bgs_paused</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgs_play'>bgs_play</span><span class='lparen'>(</span><span class='id identifier rubyid_bgs'>bgs</span><span class='rparen'>)</span>
+    <span class='ivar'>@bgs_paused</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_stop-instance_method">
+  
+    #<strong>bgs_stop</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+218
+219
+220
+221
+222</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 218</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgs_stop'>bgs_stop</span>
+  <span class='ivar'>@bgs_position</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@playing_bgs</span> <span class='op'>=</span> <span class='kw'>nil</span>
+  <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_bgs_stop'><span class='object_link'><a href="Audio.html#bgs_stop-class_method" title="Audio.bgs_stop (method)">bgs_stop</a></span></span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="bgs_unpause-instance_method">
+  
+    #<strong>bgs_unpause</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>:nodoc:</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+207
+208
+209</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 207</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bgs_unpause'>bgs_unpause</span>  <span class='comment'># :nodoc:
+</span>  <span class='ivar'>@bgs_paused</span><span class='op'>=</span><span class='kw'>false</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getPlayingBGM-instance_method">
+  
+    #<strong>getPlayingBGM</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns an RPG::AudioFile object for the currently playing background music</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+142
+143
+144</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 142</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getPlayingBGM'>getPlayingBGM</span>
+  <span class='kw'>return</span> <span class='ivar'>@playing_bgm</span> <span class='op'>?</span> <span class='ivar'>@playing_bgm</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span> <span class='op'>:</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getPlayingBGS-instance_method">
+  
+    #<strong>getPlayingBGS</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+242
+243
+244</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 242</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getPlayingBGS'>getPlayingBGS</span>
+  <span class='kw'>return</span> <span class='ivar'>@playing_bgs</span> <span class='op'>?</span> <span class='ivar'>@playing_bgs</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span> <span class='op'>:</span> <span class='kw'>nil</span> 
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="me_play-instance_method">
+  
+    #<strong>me_play</strong>(me)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 162</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_me_play'>me_play</span><span class='lparen'>(</span><span class='id identifier rubyid_me'>me</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_me'>me</span><span class='op'>=</span><span class='const'>RPG</span><span class='op'>::</span><span class='const'>AudioFile</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_me'>me</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_me'>me</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='kw'>and</span> <span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="FileTest.html" title="FileTest (module)">FileTest</a></span></span><span class='period'>.</span><span class='id identifier rubyid_audio_exist?'><span class='object_link'><a href="FileTest.html#audio_exist%3F-class_method" title="FileTest.audio_exist? (method)">audio_exist?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/ME/</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span><span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>=</span><span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_volume'>volume</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>*=</span><span class='lparen'>(</span><span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_bgmvolume'>bgmvolume</span><span class='op'>/</span><span class='float'>100.0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>=</span><span class='id identifier rubyid_vol'>vol</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_me_play'><span class='object_link'><a href="Audio.html#me_play-class_method" title="Audio.me_play (method)">me_play</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/ME/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_vol'>vol</span><span class='comma'>,</span> <span class='id identifier rubyid_me'>me</span><span class='period'>.</span><span class='id identifier rubyid_pitch'>pitch</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_me_stop'><span class='object_link'><a href="Audio.html#me_stop-class_method" title="Audio.me_stop (method)">me_stop</a></span></span>
+  <span class='kw'>end</span>
+  <span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_frame_reset'>frame_reset</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="playing_bgm-instance_method">
+  
+    #<strong>playing_bgm</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+127
+128
+129</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 127</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_playing_bgm'>playing_bgm</span>
+  <span class='kw'>return</span> <span class='ivar'>@playing_bgm</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="playing_bgs-instance_method">
+  
+    #<strong>playing_bgs</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230
+231
+232</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 230</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_playing_bgs'>playing_bgs</span>
+  <span class='kw'>return</span> <span class='ivar'>@playing_bgs</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="se_play-instance_method">
+  
+    #<strong>se_play</strong>(se)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 248</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_se_play'>se_play</span><span class='lparen'>(</span><span class='id identifier rubyid_se'>se</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_se'>se</span><span class='op'>=</span><span class='const'>RPG</span><span class='op'>::</span><span class='const'>AudioFile</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_se'>se</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>    
+  <span class='kw'>if</span> <span class='id identifier rubyid_se'>se</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='kw'>and</span> <span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="FileTest.html" title="FileTest (module)">FileTest</a></span></span><span class='period'>.</span><span class='id identifier rubyid_audio_exist?'><span class='object_link'><a href="FileTest.html#audio_exist%3F-class_method" title="FileTest.audio_exist? (method)">audio_exist?</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/SE/</span><span class='tstring_end'>&quot;</span></span><span class='op'>+</span> <span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>=</span><span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_volume'>volume</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>*=</span><span class='lparen'>(</span><span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_sevolume'>sevolume</span><span class='op'>/</span><span class='float'>100.0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='gvar'>$PokemonSystem</span>
+      <span class='id identifier rubyid_vol'>vol</span><span class='op'>=</span><span class='id identifier rubyid_vol'>vol</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_se_play'>se_play</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Audio/SE/</span><span class='tstring_end'>&quot;</span></span> <span class='op'>+</span> <span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='comma'>,</span> <span class='id identifier rubyid_vol'>vol</span><span class='comma'>,</span> <span class='id identifier rubyid_se'>se</span><span class='period'>.</span><span class='id identifier rubyid_pitch'>pitch</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="se_stop-instance_method">
+  
+    #<strong>se_stop</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+262
+263
+264</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 262</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_se_stop'>se_stop</span>
+  <span class='const'><span class='object_link'><a href="Audio.html" title="Audio (module)">Audio</a></span></span><span class='period'>.</span><span class='id identifier rubyid_se_stop'>se_stop</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setDefaultBGM-instance_method">
+  
+    #<strong>setDefaultBGM</strong>(bgm, volume = 80, pitch = 100)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 146</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setDefaultBGM'>setDefaultBGM</span><span class='lparen'>(</span><span class='id identifier rubyid_bgm'>bgm</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='op'>=</span><span class='int'>80</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='op'>=</span><span class='int'>100</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="String.html" title="String (class)">String</a></span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_bgm'>bgm</span><span class='op'>=</span><span class='const'>RPG</span><span class='op'>::</span><span class='const'>AudioFile</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_bgm'>bgm</span><span class='comma'>,</span><span class='id identifier rubyid_volume'>volume</span><span class='comma'>,</span><span class='id identifier rubyid_pitch'>pitch</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_bgm'>bgm</span> <span class='op'>!=</span> <span class='kw'>nil</span> <span class='kw'>and</span> <span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>!=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='ivar'>@defaultBGM</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgm_play'>bgm_play</span><span class='lparen'>(</span><span class='id identifier rubyid_bgm'>bgm</span><span class='rparen'>)</span>
+    <span class='ivar'>@defaultBGM</span><span class='op'>=</span><span class='id identifier rubyid_bgm'>bgm</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@defaultBGM</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_bgm_play'>bgm_play</span><span class='lparen'>(</span><span class='ivar'>@playing_bgm</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    #<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 306</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>if</span> <span class='ivar'>@timer_working</span> <span class='kw'>and</span> <span class='ivar'>@timer</span> <span class='op'>&gt;</span> <span class='int'>0</span>
+    <span class='ivar'>@timer</span> <span class='op'>-=</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="Input.html" title="Input (module)">Input</a></span></span><span class='period'>.</span><span class='id identifier rubyid_trigger?'><span class='object_link'><a href="Input.html#trigger%3F-class_method" title="Input.trigger? (method)">trigger?</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Input.html" title="Input (module)">Input</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Input.html#F5-constant" title="Input::F5 (constant)">F5</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_pbCurrentEventCommentInput'><span class='object_link'><a href="top-level-namespace.html#pbCurrentEventCommentInput-instance_method" title="#pbCurrentEventCommentInput (method)">pbCurrentEventCommentInput</a></span></span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Cut Scene</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_event'>event</span><span class='op'>=</span><span class='ivar'>@map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_get_character'>get_character</span><span class='lparen'>(</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='ivar'>@map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_pbSetSelfSwitch'>pbSetSelfSwitch</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>A</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>
+    <span class='ivar'>@map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_command_end'>command_end</span>
+    <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="windowskin_name-instance_method">
+  
+    #<strong>windowskin_name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+294
+295
+296
+297
+298
+299
+300</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 294</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_windowskin_name'>windowskin_name</span>
+  <span class='kw'>if</span> <span class='ivar'>@windowskin_name</span> <span class='op'>==</span> <span class='kw'>nil</span>
+    <span class='kw'>return</span> <span class='gvar'>$data_system</span><span class='period'>.</span><span class='id identifier rubyid_windowskin_name'>windowskin_name</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='ivar'>@windowskin_name</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="windowskin_name=-instance_method">
+  
+    #<strong>windowskin_name=</strong>(windowskin_name)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+302
+303
+304</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_System.rb', line 302</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_windowskin_name='>windowskin_name=</span><span class='lparen'>(</span><span class='id identifier rubyid_windowskin_name'>windowskin_name</span><span class='rparen'>)</span>
+  <span class='ivar'>@windowskin_name</span> <span class='op'>=</span> <span class='id identifier rubyid_windowskin_name'>windowskin_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:23 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

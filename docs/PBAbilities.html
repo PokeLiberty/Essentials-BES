@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: PBAbilities
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "PBAbilities";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (P)</a> &raquo;
+    
+    
+    <span class="title">PBAbilities</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: PBAbilities
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">PBAbilities</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/PBAbilities.rb</dd>
+  </dl>
+  
+</div>
+
+
+  
+    <h2>
+      Constant Summary
+      <small><a href="#" class="constants_summary_toggle">collapse</a></small>
+    </h2>
+
+    <dl class="constants">
+      
+        <dt id="STENCH-constant" class="">STENCH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>1</span></pre></dd>
+      
+        <dt id="DRIZZLE-constant" class="">DRIZZLE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>2</span></pre></dd>
+      
+        <dt id="SPEEDBOOST-constant" class="">SPEEDBOOST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>3</span></pre></dd>
+      
+        <dt id="BATTLEARMOR-constant" class="">BATTLEARMOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>4</span></pre></dd>
+      
+        <dt id="STURDY-constant" class="">STURDY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>5</span></pre></dd>
+      
+        <dt id="DAMP-constant" class="">DAMP =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>6</span></pre></dd>
+      
+        <dt id="LIMBER-constant" class="">LIMBER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>7</span></pre></dd>
+      
+        <dt id="SANDVEIL-constant" class="">SANDVEIL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>8</span></pre></dd>
+      
+        <dt id="STATIC-constant" class="">STATIC =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>9</span></pre></dd>
+      
+        <dt id="VOLTABSORB-constant" class="">VOLTABSORB =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>10</span></pre></dd>
+      
+        <dt id="WATERABSORB-constant" class="">WATERABSORB =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>11</span></pre></dd>
+      
+        <dt id="OBLIVIOUS-constant" class="">OBLIVIOUS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>12</span></pre></dd>
+      
+        <dt id="CLOUDNINE-constant" class="">CLOUDNINE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>13</span></pre></dd>
+      
+        <dt id="COMPOUNDEYES-constant" class="">COMPOUNDEYES =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>14</span></pre></dd>
+      
+        <dt id="INSOMNIA-constant" class="">INSOMNIA =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>15</span></pre></dd>
+      
+        <dt id="COLORCHANGE-constant" class="">COLORCHANGE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>16</span></pre></dd>
+      
+        <dt id="IMMUNITY-constant" class="">IMMUNITY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>17</span></pre></dd>
+      
+        <dt id="FLASHFIRE-constant" class="">FLASHFIRE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>18</span></pre></dd>
+      
+        <dt id="SHIELDDUST-constant" class="">SHIELDDUST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>19</span></pre></dd>
+      
+        <dt id="OWNTEMPO-constant" class="">OWNTEMPO =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>20</span></pre></dd>
+      
+        <dt id="SUCTIONCUPS-constant" class="">SUCTIONCUPS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>21</span></pre></dd>
+      
+        <dt id="INTIMIDATE-constant" class="">INTIMIDATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>22</span></pre></dd>
+      
+        <dt id="SHADOWTAG-constant" class="">SHADOWTAG =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>23</span></pre></dd>
+      
+        <dt id="ROUGHSKIN-constant" class="">ROUGHSKIN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>24</span></pre></dd>
+      
+        <dt id="WONDERGUARD-constant" class="">WONDERGUARD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>25</span></pre></dd>
+      
+        <dt id="LEVITATE-constant" class="">LEVITATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>26</span></pre></dd>
+      
+        <dt id="EFFECTSPORE-constant" class="">EFFECTSPORE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>27</span></pre></dd>
+      
+        <dt id="SYNCHRONIZE-constant" class="">SYNCHRONIZE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>28</span></pre></dd>
+      
+        <dt id="CLEARBODY-constant" class="">CLEARBODY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>29</span></pre></dd>
+      
+        <dt id="NATURALCURE-constant" class="">NATURALCURE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>30</span></pre></dd>
+      
+        <dt id="LIGHTNINGROD-constant" class="">LIGHTNINGROD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>31</span></pre></dd>
+      
+        <dt id="SERENEGRACE-constant" class="">SERENEGRACE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>32</span></pre></dd>
+      
+        <dt id="SWIFTSWIM-constant" class="">SWIFTSWIM =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>33</span></pre></dd>
+      
+        <dt id="CHLOROPHYLL-constant" class="">CHLOROPHYLL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>34</span></pre></dd>
+      
+        <dt id="ILLUMINATE-constant" class="">ILLUMINATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>35</span></pre></dd>
+      
+        <dt id="TRACE-constant" class="">TRACE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>36</span></pre></dd>
+      
+        <dt id="HUGEPOWER-constant" class="">HUGEPOWER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>37</span></pre></dd>
+      
+        <dt id="POISONPOINT-constant" class="">POISONPOINT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>38</span></pre></dd>
+      
+        <dt id="INNERFOCUS-constant" class="">INNERFOCUS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>39</span></pre></dd>
+      
+        <dt id="MAGMAARMOR-constant" class="">MAGMAARMOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>40</span></pre></dd>
+      
+        <dt id="WATERVEIL-constant" class="">WATERVEIL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>41</span></pre></dd>
+      
+        <dt id="MAGNETPULL-constant" class="">MAGNETPULL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>42</span></pre></dd>
+      
+        <dt id="SOUNDPROOF-constant" class="">SOUNDPROOF =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>43</span></pre></dd>
+      
+        <dt id="RAINDISH-constant" class="">RAINDISH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>44</span></pre></dd>
+      
+        <dt id="SANDSTREAM-constant" class="">SANDSTREAM =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>45</span></pre></dd>
+      
+        <dt id="PRESSURE-constant" class="">PRESSURE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>46</span></pre></dd>
+      
+        <dt id="THICKFAT-constant" class="">THICKFAT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>47</span></pre></dd>
+      
+        <dt id="EARLYBIRD-constant" class="">EARLYBIRD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>48</span></pre></dd>
+      
+        <dt id="FLAMEBODY-constant" class="">FLAMEBODY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>49</span></pre></dd>
+      
+        <dt id="RUNAWAY-constant" class="">RUNAWAY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>50</span></pre></dd>
+      
+        <dt id="KEENEYE-constant" class="">KEENEYE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>51</span></pre></dd>
+      
+        <dt id="HYPERCUTTER-constant" class="">HYPERCUTTER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>52</span></pre></dd>
+      
+        <dt id="PICKUP-constant" class="">PICKUP =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>53</span></pre></dd>
+      
+        <dt id="TRUANT-constant" class="">TRUANT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>54</span></pre></dd>
+      
+        <dt id="HUSTLE-constant" class="">HUSTLE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>55</span></pre></dd>
+      
+        <dt id="CUTECHARM-constant" class="">CUTECHARM =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>56</span></pre></dd>
+      
+        <dt id="PLUS-constant" class="">PLUS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>57</span></pre></dd>
+      
+        <dt id="MINUS-constant" class="">MINUS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>58</span></pre></dd>
+      
+        <dt id="FORECAST-constant" class="">FORECAST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>59</span></pre></dd>
+      
+        <dt id="STICKYHOLD-constant" class="">STICKYHOLD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>60</span></pre></dd>
+      
+        <dt id="SHEDSKIN-constant" class="">SHEDSKIN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>61</span></pre></dd>
+      
+        <dt id="GUTS-constant" class="">GUTS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>62</span></pre></dd>
+      
+        <dt id="MARVELSCALE-constant" class="">MARVELSCALE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>63</span></pre></dd>
+      
+        <dt id="LIQUIDOOZE-constant" class="">LIQUIDOOZE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>64</span></pre></dd>
+      
+        <dt id="OVERGROW-constant" class="">OVERGROW =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>65</span></pre></dd>
+      
+        <dt id="BLAZE-constant" class="">BLAZE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>66</span></pre></dd>
+      
+        <dt id="TORRENT-constant" class="">TORRENT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>67</span></pre></dd>
+      
+        <dt id="SWARM-constant" class="">SWARM =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>68</span></pre></dd>
+      
+        <dt id="ROCKHEAD-constant" class="">ROCKHEAD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>69</span></pre></dd>
+      
+        <dt id="DROUGHT-constant" class="">DROUGHT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>70</span></pre></dd>
+      
+        <dt id="ARENATRAP-constant" class="">ARENATRAP =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>71</span></pre></dd>
+      
+        <dt id="VITALSPIRIT-constant" class="">VITALSPIRIT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>72</span></pre></dd>
+      
+        <dt id="WHITESMOKE-constant" class="">WHITESMOKE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>73</span></pre></dd>
+      
+        <dt id="PUREPOWER-constant" class="">PUREPOWER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>74</span></pre></dd>
+      
+        <dt id="SHELLARMOR-constant" class="">SHELLARMOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>75</span></pre></dd>
+      
+        <dt id="AIRLOCK-constant" class="">AIRLOCK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>76</span></pre></dd>
+      
+        <dt id="TANGLEDFEET-constant" class="">TANGLEDFEET =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>77</span></pre></dd>
+      
+        <dt id="MOTORDRIVE-constant" class="">MOTORDRIVE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>78</span></pre></dd>
+      
+        <dt id="RIVALRY-constant" class="">RIVALRY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>79</span></pre></dd>
+      
+        <dt id="STEADFAST-constant" class="">STEADFAST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>80</span></pre></dd>
+      
+        <dt id="SNOWCLOAK-constant" class="">SNOWCLOAK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>81</span></pre></dd>
+      
+        <dt id="GLUTTONY-constant" class="">GLUTTONY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>82</span></pre></dd>
+      
+        <dt id="ANGERPOINT-constant" class="">ANGERPOINT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>83</span></pre></dd>
+      
+        <dt id="UNBURDEN-constant" class="">UNBURDEN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>84</span></pre></dd>
+      
+        <dt id="HEATPROOF-constant" class="">HEATPROOF =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>85</span></pre></dd>
+      
+        <dt id="SIMPLE-constant" class="">SIMPLE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>86</span></pre></dd>
+      
+        <dt id="DRYSKIN-constant" class="">DRYSKIN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>87</span></pre></dd>
+      
+        <dt id="DOWNLOAD-constant" class="">DOWNLOAD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>88</span></pre></dd>
+      
+        <dt id="IRONFIST-constant" class="">IRONFIST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>89</span></pre></dd>
+      
+        <dt id="POISONHEAL-constant" class="">POISONHEAL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>90</span></pre></dd>
+      
+        <dt id="ADAPTABILITY-constant" class="">ADAPTABILITY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>91</span></pre></dd>
+      
+        <dt id="SKILLLINK-constant" class="">SKILLLINK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>92</span></pre></dd>
+      
+        <dt id="HYDRATION-constant" class="">HYDRATION =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>93</span></pre></dd>
+      
+        <dt id="SOLARPOWER-constant" class="">SOLARPOWER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>94</span></pre></dd>
+      
+        <dt id="QUICKFEET-constant" class="">QUICKFEET =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>95</span></pre></dd>
+      
+        <dt id="NORMALIZE-constant" class="">NORMALIZE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>96</span></pre></dd>
+      
+        <dt id="SNIPER-constant" class="">SNIPER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>97</span></pre></dd>
+      
+        <dt id="MAGICGUARD-constant" class="">MAGICGUARD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>98</span></pre></dd>
+      
+        <dt id="NOGUARD-constant" class="">NOGUARD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>99</span></pre></dd>
+      
+        <dt id="STALL-constant" class="">STALL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>100</span></pre></dd>
+      
+        <dt id="TECHNICIAN-constant" class="">TECHNICIAN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>101</span></pre></dd>
+      
+        <dt id="LEAFGUARD-constant" class="">LEAFGUARD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>102</span></pre></dd>
+      
+        <dt id="KLUTZ-constant" class="">KLUTZ =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>103</span></pre></dd>
+      
+        <dt id="MOLDBREAKER-constant" class="">MOLDBREAKER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>104</span></pre></dd>
+      
+        <dt id="SUPERLUCK-constant" class="">SUPERLUCK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>105</span></pre></dd>
+      
+        <dt id="AFTERMATH-constant" class="">AFTERMATH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>106</span></pre></dd>
+      
+        <dt id="ANTICIPATION-constant" class="">ANTICIPATION =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>107</span></pre></dd>
+      
+        <dt id="FOREWARN-constant" class="">FOREWARN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>108</span></pre></dd>
+      
+        <dt id="UNAWARE-constant" class="">UNAWARE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>109</span></pre></dd>
+      
+        <dt id="TINTEDLENS-constant" class="">TINTEDLENS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>110</span></pre></dd>
+      
+        <dt id="FILTER-constant" class="">FILTER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>111</span></pre></dd>
+      
+        <dt id="SLOWSTART-constant" class="">SLOWSTART =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>112</span></pre></dd>
+      
+        <dt id="SCRAPPY-constant" class="">SCRAPPY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>113</span></pre></dd>
+      
+        <dt id="STORMDRAIN-constant" class="">STORMDRAIN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>114</span></pre></dd>
+      
+        <dt id="ICEBODY-constant" class="">ICEBODY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>115</span></pre></dd>
+      
+        <dt id="SOLIDROCK-constant" class="">SOLIDROCK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>116</span></pre></dd>
+      
+        <dt id="SNOWWARNING-constant" class="">SNOWWARNING =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>117</span></pre></dd>
+      
+        <dt id="HONEYGATHER-constant" class="">HONEYGATHER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>118</span></pre></dd>
+      
+        <dt id="FRISK-constant" class="">FRISK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>119</span></pre></dd>
+      
+        <dt id="RECKLESS-constant" class="">RECKLESS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>120</span></pre></dd>
+      
+        <dt id="MULTITYPE-constant" class="">MULTITYPE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>121</span></pre></dd>
+      
+        <dt id="FLOWERGIFT-constant" class="">FLOWERGIFT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>122</span></pre></dd>
+      
+        <dt id="BADDREAMS-constant" class="">BADDREAMS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>123</span></pre></dd>
+      
+        <dt id="PICKPOCKET-constant" class="">PICKPOCKET =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>124</span></pre></dd>
+      
+        <dt id="SHEERFORCE-constant" class="">SHEERFORCE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>125</span></pre></dd>
+      
+        <dt id="CONTRARY-constant" class="">CONTRARY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>126</span></pre></dd>
+      
+        <dt id="UNNERVE-constant" class="">UNNERVE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>127</span></pre></dd>
+      
+        <dt id="DEFIANT-constant" class="">DEFIANT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>128</span></pre></dd>
+      
+        <dt id="DEFEATIST-constant" class="">DEFEATIST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>129</span></pre></dd>
+      
+        <dt id="CURSEDBODY-constant" class="">CURSEDBODY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>130</span></pre></dd>
+      
+        <dt id="HEALER-constant" class="">HEALER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>131</span></pre></dd>
+      
+        <dt id="FRIENDGUARD-constant" class="">FRIENDGUARD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>132</span></pre></dd>
+      
+        <dt id="WEAKARMOR-constant" class="">WEAKARMOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>133</span></pre></dd>
+      
+        <dt id="HEAVYMETAL-constant" class="">HEAVYMETAL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>134</span></pre></dd>
+      
+        <dt id="LIGHTMETAL-constant" class="">LIGHTMETAL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>135</span></pre></dd>
+      
+        <dt id="MULTISCALE-constant" class="">MULTISCALE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>136</span></pre></dd>
+      
+        <dt id="TOXICBOOST-constant" class="">TOXICBOOST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>137</span></pre></dd>
+      
+        <dt id="FLAREBOOST-constant" class="">FLAREBOOST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>138</span></pre></dd>
+      
+        <dt id="HARVEST-constant" class="">HARVEST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>139</span></pre></dd>
+      
+        <dt id="TELEPATHY-constant" class="">TELEPATHY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>140</span></pre></dd>
+      
+        <dt id="MOODY-constant" class="">MOODY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>141</span></pre></dd>
+      
+        <dt id="OVERCOAT-constant" class="">OVERCOAT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>142</span></pre></dd>
+      
+        <dt id="POISONTOUCH-constant" class="">POISONTOUCH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>143</span></pre></dd>
+      
+        <dt id="REGENERATOR-constant" class="">REGENERATOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>144</span></pre></dd>
+      
+        <dt id="BIGPECKS-constant" class="">BIGPECKS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>145</span></pre></dd>
+      
+        <dt id="SANDRUSH-constant" class="">SANDRUSH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>146</span></pre></dd>
+      
+        <dt id="WONDERSKIN-constant" class="">WONDERSKIN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>147</span></pre></dd>
+      
+        <dt id="ANALYTIC-constant" class="">ANALYTIC =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>148</span></pre></dd>
+      
+        <dt id="ILLUSION-constant" class="">ILLUSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>149</span></pre></dd>
+      
+        <dt id="IMPOSTER-constant" class="">IMPOSTER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>150</span></pre></dd>
+      
+        <dt id="INFILTRATOR-constant" class="">INFILTRATOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>151</span></pre></dd>
+      
+        <dt id="MUMMY-constant" class="">MUMMY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>152</span></pre></dd>
+      
+        <dt id="MOXIE-constant" class="">MOXIE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>153</span></pre></dd>
+      
+        <dt id="JUSTIFIED-constant" class="">JUSTIFIED =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>154</span></pre></dd>
+      
+        <dt id="RATTLED-constant" class="">RATTLED =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>155</span></pre></dd>
+      
+        <dt id="MAGICBOUNCE-constant" class="">MAGICBOUNCE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>156</span></pre></dd>
+      
+        <dt id="SAPSIPPER-constant" class="">SAPSIPPER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>157</span></pre></dd>
+      
+        <dt id="PRANKSTER-constant" class="">PRANKSTER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>158</span></pre></dd>
+      
+        <dt id="SANDFORCE-constant" class="">SANDFORCE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>159</span></pre></dd>
+      
+        <dt id="IRONBARBS-constant" class="">IRONBARBS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>160</span></pre></dd>
+      
+        <dt id="ZENMODE-constant" class="">ZENMODE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>161</span></pre></dd>
+      
+        <dt id="VICTORYSTAR-constant" class="">VICTORYSTAR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>162</span></pre></dd>
+      
+        <dt id="TURBOBLAZE-constant" class="">TURBOBLAZE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>163</span></pre></dd>
+      
+        <dt id="TERAVOLT-constant" class="">TERAVOLT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>164</span></pre></dd>
+      
+        <dt id="AERILATE-constant" class="">AERILATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>165</span></pre></dd>
+      
+        <dt id="AROMAVEIL-constant" class="">AROMAVEIL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>166</span></pre></dd>
+      
+        <dt id="AURABREAK-constant" class="">AURABREAK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>167</span></pre></dd>
+      
+        <dt id="BULLETPROOF-constant" class="">BULLETPROOF =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>168</span></pre></dd>
+      
+        <dt id="CHEEKPOUCH-constant" class="">CHEEKPOUCH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>169</span></pre></dd>
+      
+        <dt id="COMPETITIVE-constant" class="">COMPETITIVE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>170</span></pre></dd>
+      
+        <dt id="DARKAURA-constant" class="">DARKAURA =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>171</span></pre></dd>
+      
+        <dt id="FAIRYAURA-constant" class="">FAIRYAURA =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>172</span></pre></dd>
+      
+        <dt id="FLOWERVEIL-constant" class="">FLOWERVEIL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>173</span></pre></dd>
+      
+        <dt id="FURCOAT-constant" class="">FURCOAT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>174</span></pre></dd>
+      
+        <dt id="GALEWINGS-constant" class="">GALEWINGS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>175</span></pre></dd>
+      
+        <dt id="GOOEY-constant" class="">GOOEY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>176</span></pre></dd>
+      
+        <dt id="GRASSPELT-constant" class="">GRASSPELT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>177</span></pre></dd>
+      
+        <dt id="MAGICIAN-constant" class="">MAGICIAN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>178</span></pre></dd>
+      
+        <dt id="MEGALAUNCHER-constant" class="">MEGALAUNCHER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>179</span></pre></dd>
+      
+        <dt id="PARENTALBOND-constant" class="">PARENTALBOND =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>180</span></pre></dd>
+      
+        <dt id="PIXILATE-constant" class="">PIXILATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>181</span></pre></dd>
+      
+        <dt id="PROTEAN-constant" class="">PROTEAN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>182</span></pre></dd>
+      
+        <dt id="REFRIGERATE-constant" class="">REFRIGERATE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>183</span></pre></dd>
+      
+        <dt id="STANCECHANGE-constant" class="">STANCECHANGE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>184</span></pre></dd>
+      
+        <dt id="STRONGJAW-constant" class="">STRONGJAW =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>185</span></pre></dd>
+      
+        <dt id="SWEETVEIL-constant" class="">SWEETVEIL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>186</span></pre></dd>
+      
+        <dt id="SYMBIOSIS-constant" class="">SYMBIOSIS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>187</span></pre></dd>
+      
+        <dt id="TOUGHCLAWS-constant" class="">TOUGHCLAWS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>188</span></pre></dd>
+      
+        <dt id="DELTASTREAM-constant" class="">DELTASTREAM =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>189</span></pre></dd>
+      
+        <dt id="PRIMORDIALSEA-constant" class="">PRIMORDIALSEA =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>190</span></pre></dd>
+      
+        <dt id="DESOLATELAND-constant" class="">DESOLATELAND =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>191</span></pre></dd>
+      
+        <dt id="SURGESURFER-constant" class="">SURGESURFER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>192</span></pre></dd>
+      
+        <dt id="TANGLINGHAIR-constant" class="">TANGLINGHAIR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>193</span></pre></dd>
+      
+        <dt id="GALVANIZE-constant" class="">GALVANIZE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>194</span></pre></dd>
+      
+        <dt id="POWEROFALCHEMY-constant" class="">POWEROFALCHEMY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>195</span></pre></dd>
+      
+        <dt id="SLUSHRUSH-constant" class="">SLUSHRUSH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>196</span></pre></dd>
+      
+        <dt id="STAKEOUT-constant" class="">STAKEOUT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>197</span></pre></dd>
+      
+        <dt id="QUEENLYMAJESTY-constant" class="">QUEENLYMAJESTY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>198</span></pre></dd>
+      
+        <dt id="WATERBUBBLE-constant" class="">WATERBUBBLE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>199</span></pre></dd>
+      
+        <dt id="CORROSION-constant" class="">CORROSION =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>200</span></pre></dd>
+      
+        <dt id="STEELWORKER-constant" class="">STEELWORKER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>201</span></pre></dd>
+      
+        <dt id="LONGREACH-constant" class="">LONGREACH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>202</span></pre></dd>
+      
+        <dt id="COMATOSE-constant" class="">COMATOSE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>203</span></pre></dd>
+      
+        <dt id="TRIAGE-constant" class="">TRIAGE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>204</span></pre></dd>
+      
+        <dt id="BATTERY-constant" class="">BATTERY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>205</span></pre></dd>
+      
+        <dt id="INNARDSOUT-constant" class="">INNARDSOUT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>206</span></pre></dd>
+      
+        <dt id="ELECTRICSURGE-constant" class="">ELECTRICSURGE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>207</span></pre></dd>
+      
+        <dt id="PSYCHICSURGE-constant" class="">PSYCHICSURGE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>208</span></pre></dd>
+      
+        <dt id="GRASSYSURGE-constant" class="">GRASSYSURGE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>209</span></pre></dd>
+      
+        <dt id="MISTYSURGE-constant" class="">MISTYSURGE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>210</span></pre></dd>
+      
+        <dt id="STAMINA-constant" class="">STAMINA =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>211</span></pre></dd>
+      
+        <dt id="LIQUIDVOICE-constant" class="">LIQUIDVOICE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>212</span></pre></dd>
+      
+        <dt id="SCHOOLING-constant" class="">SCHOOLING =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>213</span></pre></dd>
+      
+        <dt id="WATERCOMPACTION-constant" class="">WATERCOMPACTION =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>214</span></pre></dd>
+      
+        <dt id="FULLMETALBODY-constant" class="">FULLMETALBODY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>215</span></pre></dd>
+      
+        <dt id="SHADOWSHIELD-constant" class="">SHADOWSHIELD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>216</span></pre></dd>
+      
+        <dt id="PRISMARMOR-constant" class="">PRISMARMOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>217</span></pre></dd>
+      
+        <dt id="NEUROFORCE-constant" class="">NEUROFORCE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>218</span></pre></dd>
+      
+        <dt id="DISGUISE-constant" class="">DISGUISE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>219</span></pre></dd>
+      
+        <dt id="DAZZLING-constant" class="">DAZZLING =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>220</span></pre></dd>
+      
+        <dt id="BERSERK-constant" class="">BERSERK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>221</span></pre></dd>
+      
+        <dt id="MERCILESS-constant" class="">MERCILESS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>222</span></pre></dd>
+      
+        <dt id="WIMPOUT-constant" class="">WIMPOUT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>223</span></pre></dd>
+      
+        <dt id="EMERGENCYEXIT-constant" class="">EMERGENCYEXIT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>224</span></pre></dd>
+      
+        <dt id="RECEIVER-constant" class="">RECEIVER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>225</span></pre></dd>
+      
+        <dt id="SOULHEART-constant" class="">SOULHEART =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>226</span></pre></dd>
+      
+        <dt id="SHIELDSDOWN-constant" class="">SHIELDSDOWN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>227</span></pre></dd>
+      
+        <dt id="FLUFFY-constant" class="">FLUFFY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>228</span></pre></dd>
+      
+        <dt id="BATTLEBOND-constant" class="">BATTLEBOND =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>229</span></pre></dd>
+      
+        <dt id="POWERCONSTRUCT-constant" class="">POWERCONSTRUCT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>230</span></pre></dd>
+      
+        <dt id="BEASTBOOST-constant" class="">BEASTBOOST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>231</span></pre></dd>
+      
+        <dt id="DANCER-constant" class="">DANCER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>232</span></pre></dd>
+      
+        <dt id="RKSSYSTEM-constant" class="">RKSSYSTEM =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>233</span></pre></dd>
+      
+        <dt id="STEAMENGINE-constant" class="">STEAMENGINE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>234</span></pre></dd>
+      
+        <dt id="LIBERO-constant" class="">LIBERO =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>235</span></pre></dd>
+      
+        <dt id="BALLFETCH-constant" class="">BALLFETCH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>236</span></pre></dd>
+      
+        <dt id="COTTONDOWN-constant" class="">COTTONDOWN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>237</span></pre></dd>
+      
+        <dt id="PASTELVEIL-constant" class="">PASTELVEIL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>238</span></pre></dd>
+      
+        <dt id="NEUTRALIZINGGAS-constant" class="">NEUTRALIZINGGAS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>239</span></pre></dd>
+      
+        <dt id="GULPMISSILE-constant" class="">GULPMISSILE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>240</span></pre></dd>
+      
+        <dt id="MIRRORARMOR-constant" class="">MIRRORARMOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>241</span></pre></dd>
+      
+        <dt id="DAUNTLESSSHIELD-constant" class="">DAUNTLESSSHIELD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>242</span></pre></dd>
+      
+        <dt id="INTREPIDSWORD-constant" class="">INTREPIDSWORD =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>243</span></pre></dd>
+      
+        <dt id="PUNKROCK-constant" class="">PUNKROCK =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>244</span></pre></dd>
+      
+        <dt id="WANDERINGSPIRIT-constant" class="">WANDERINGSPIRIT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>245</span></pre></dd>
+      
+        <dt id="SCREENCLEANER-constant" class="">SCREENCLEANER =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>246</span></pre></dd>
+      
+        <dt id="RIPEN-constant" class="">RIPEN =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>247</span></pre></dd>
+      
+        <dt id="HUNGERSWITCH-constant" class="">HUNGERSWITCH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>248</span></pre></dd>
+      
+        <dt id="ICESCALES-constant" class="">ICESCALES =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>249</span></pre></dd>
+      
+        <dt id="STEELYSPIRIT-constant" class="">STEELYSPIRIT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>250</span></pre></dd>
+      
+        <dt id="GORILLATACTICS-constant" class="">GORILLATACTICS =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>251</span></pre></dd>
+      
+        <dt id="PERISHBODY-constant" class="">PERISHBODY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>252</span></pre></dd>
+      
+        <dt id="SANDSPIT-constant" class="">SANDSPIT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>253</span></pre></dd>
+      
+        <dt id="ICEFACE-constant" class="">ICEFACE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>254</span></pre></dd>
+      
+        <dt id="POWERSPOT-constant" class="">POWERSPOT =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>255</span></pre></dd>
+      
+        <dt id="STALWART-constant" class="">STALWART =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>256</span></pre></dd>
+      
+        <dt id="PROPELLERTAIL-constant" class="">PROPELLERTAIL =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>257</span></pre></dd>
+      
+        <dt id="MIMICRY-constant" class="">MIMICRY =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>258</span></pre></dd>
+      
+        <dt id="UNSEENFIST-constant" class="">UNSEENFIST =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>259</span></pre></dd>
+      
+        <dt id="QUICKDRAW-constant" class="">QUICKDRAW =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>260</span></pre></dd>
+      
+        <dt id="TRANSISTOR-constant" class="">TRANSISTOR =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>261</span></pre></dd>
+      
+        <dt id="DRAGONSMAW-constant" class="">DRAGONSMAW =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>262</span></pre></dd>
+      
+        <dt id="CHILLINGNEIGH-constant" class="">CHILLINGNEIGH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>263</span></pre></dd>
+      
+        <dt id="GRIMNEIGH-constant" class="">GRIMNEIGH =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>264</span></pre></dd>
+      
+        <dt id="CURIOUSMEDICINE-constant" class="">CURIOUSMEDICINE =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>265</span></pre></dd>
+      
+        <dt id="ASONE1-constant" class="">ASONE1 =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>266</span></pre></dd>
+      
+        <dt id="ASONE2-constant" class="">ASONE2 =
+          
+        </dt>
+        <dd><pre class="code"><span class='int'>267</span></pre></dd>
+      
+    </dl>
+  
+
+
+
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getCount-class_method" title="getCount (class method)">.<strong>getCount</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getName-class_method" title="getName (class method)">.<strong>getName</strong>(id)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#maxValue-class_method" title="maxValue (class method)">.<strong>maxValue</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="getCount-class_method">
+  
+    .<strong>getCount</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+273
+274
+275</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PBAbilities.rb', line 273</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="PBAbilities (class)">PBAbilities</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getCount'>getCount</span>
+<span class='kw'>return</span> <span class='int'>267</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getName-class_method">
+  
+    .<strong>getName</strong>(id)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+270
+271
+272</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PBAbilities.rb', line 270</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="PBAbilities (class)">PBAbilities</a></span></span><span class='period'>.</span><span class='id identifier rubyid_getName'>getName</span><span class='lparen'>(</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+<span class='kw'>return</span> <span class='id identifier rubyid_pbGetMessage'><span class='object_link'><a href="top-level-namespace.html#pbGetMessage-instance_method" title="#pbGetMessage (method)">pbGetMessage</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="MessageTypes.html" title="MessageTypes (module)">MessageTypes</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="MessageTypes.html#Abilities-constant" title="MessageTypes::Abilities (constant)">Abilities</a></span></span><span class='comma'>,</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="maxValue-class_method">
+  
+    .<strong>maxValue</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+277
+278
+279</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PBAbilities.rb', line 277</span>
+
+<span class='kw'>def</span> <span class='const'><span class='object_link'><a href="" title="PBAbilities (class)">PBAbilities</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxValue'>maxValue</span>
+<span class='kw'>return</span> <span class='int'>267</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:25 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

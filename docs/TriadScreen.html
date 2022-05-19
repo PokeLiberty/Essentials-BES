@@ -1,0 +1,1885 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: TriadScreen
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "TriadScreen";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (T)</a> &raquo;
+    
+    
+    <span class="title">TriadScreen</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: TriadScreen
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName">Object</span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next">TriadScreen</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/PMinigame_TripleTriad.rb</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<p>Screen class for handling game logic</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#countUnplayedCards-instance_method" title="#countUnplayedCards (instance method)">#<strong>countUnplayedCards</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute countUnplayedCards.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#height-instance_method" title="#height (instance method)">#<strong>height</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute height.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#openHand-instance_method" title="#openHand (instance method)">#<strong>openHand</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute openHand.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#width-instance_method" title="#width (instance method)">#<strong>width</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute width.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#board-instance_method" title="#board (instance method)">#<strong>board</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#flipBoard-instance_method" title="#flipBoard (instance method)">#<strong>flipBoard</strong>(x, y, attackerParam = nil, recurse = false)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getOwner-instance_method" title="#getOwner (instance method)">#<strong>getOwner</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#getPanel-instance_method" title="#getPanel (instance method)">#<strong>getPanel</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(scene)  &#x21d2; TriadScreen </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of TriadScreen.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#isOccupied%3F-instance_method" title="#isOccupied? (instance method)">#<strong>isOccupied?</strong>(x, y)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#maxCards-instance_method" title="#maxCards (instance method)">#<strong>maxCards</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#opponentName-instance_method" title="#opponentName (instance method)">#<strong>opponentName</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbAdd-instance_method" title="#pbAdd (instance method)">#<strong>pbAdd</strong>(items, item)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbQuantity-instance_method" title="#pbQuantity (instance method)">#<strong>pbQuantity</strong>(items, item)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbStartScreen-instance_method" title="#pbStartScreen (instance method)">#<strong>pbStartScreen</strong>(opponentName, minLevel, maxLevel, rules = nil, oppdeck = nil, prize = nil)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>If pbStartScreen includes parameters, it should pass the parameters to pbStartScene.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbSubtract-instance_method" title="#pbSubtract (instance method)">#<strong>pbSubtract</strong>(items, item)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#playerName-instance_method" title="#playerName (instance method)">#<strong>playerName</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(scene)  &#x21d2; <tt><span class='object_link'><a href="" title="TriadScreen (class)">TriadScreen</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of TriadScreen.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 583</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_scene'>scene</span><span class='rparen'>)</span>
+  <span class='ivar'>@scene</span><span class='op'>=</span><span class='id identifier rubyid_scene'>scene</span>
+  <span class='ivar'>@width</span>              <span class='op'>=</span> <span class='int'>3</span>
+  <span class='ivar'>@height</span>             <span class='op'>=</span> <span class='int'>3</span>
+  <span class='ivar'>@sameWins</span>           <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@openHand</span>           <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@wrapAround</span>         <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@elements</span>           <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@randomHand</span>         <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@countUnplayedCards</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='ivar'>@trade</span>              <span class='op'>=</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="countUnplayedCards=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="countUnplayedCards-instance_method">
+  
+    #<strong>countUnplayedCards</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute countUnplayedCards.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+580
+581
+582</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 580</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_countUnplayedCards'>countUnplayedCards</span>
+  <span class='ivar'>@countUnplayedCards</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="height-instance_method">
+  
+    #<strong>height</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute height.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+581
+582
+583</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 581</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_height'>height</span>
+  <span class='ivar'>@height</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="openHand=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="openHand-instance_method">
+  
+    #<strong>openHand</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute openHand.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+580
+581
+582</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 580</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_openHand'>openHand</span>
+  <span class='ivar'>@openHand</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id=""></span>
+      <div class="method_details ">
+  <h3 class="signature " id="width-instance_method">
+  
+    #<strong>width</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute width.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+581
+582
+583</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 581</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_width'>width</span>
+  <span class='ivar'>@width</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="board-instance_method">
+  
+    #<strong>board</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+596
+597
+598</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 596</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_board'>board</span>
+  <span class='ivar'>@board</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="flipBoard-instance_method">
+  
+    #<strong>flipBoard</strong>(x, y, attackerParam = nil, recurse = false)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 644</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_flipBoard'>flipBoard</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_attackerParam'>attackerParam</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span><span class='id identifier rubyid_recurse'>recurse</span><span class='op'>=</span><span class='kw'>false</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_panels'>panels</span><span class='op'>=</span><span class='lbracket'>[</span><span class='id identifier rubyid_x'>x</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_x'>x</span><span class='op'>+</span><span class='int'>1</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='int'>1</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@wrapAround</span> <span class='op'>?</span> <span class='ivar'>@width</span><span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='op'>&lt;</span><span class='int'>0</span> <span class='comment'># left
+</span>  <span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@wrapAround</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='ivar'>@width</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='op'>&gt;</span><span class='ivar'>@width</span><span class='op'>-</span><span class='int'>1</span> <span class='comment'># right
+</span>  <span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='int'>5</span><span class='rbracket'>]</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@wrapAround</span> <span class='op'>?</span> <span class='ivar'>@height</span><span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='int'>5</span><span class='rbracket'>]</span><span class='op'>&lt;</span><span class='int'>0</span> <span class='comment'># top
+</span>  <span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='int'>7</span><span class='rbracket'>]</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@wrapAround</span> <span class='op'>?</span> <span class='int'>0</span> <span class='op'>:</span> <span class='ivar'>@height</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='int'>7</span><span class='rbracket'>]</span><span class='op'>&gt;</span><span class='ivar'>@height</span><span class='op'>-</span><span class='int'>1</span> <span class='comment'># bottom
+</span>  <span class='id identifier rubyid_attacker'>attacker</span><span class='op'>=</span><span class='id identifier rubyid_attackerParam'>attackerParam</span><span class='op'>!=</span><span class='kw'>nil</span> <span class='op'>?</span> <span class='id identifier rubyid_attackerParam'>attackerParam</span> <span class='op'>:</span> <span class='ivar'>@board</span><span class='lbracket'>[</span><span class='id identifier rubyid_y'>y</span><span class='op'>*</span><span class='ivar'>@width</span><span class='op'>+</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span>
+  <span class='id identifier rubyid_flips'>flips</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='id identifier rubyid_attackerParam'>attackerParam</span><span class='op'>!=</span><span class='kw'>nil</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@board</span><span class='lbracket'>[</span><span class='id identifier rubyid_y'>y</span><span class='op'>*</span><span class='ivar'>@width</span><span class='op'>+</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>!=</span><span class='int'>0</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span> <span class='op'>||</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>==</span><span class='int'>0</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='int'>4</span>
+    <span class='id identifier rubyid_defenderX'>defenderX</span><span class='op'>=</span><span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='op'>*</span><span class='int'>2</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_defenderY'>defenderY</span><span class='op'>=</span><span class='id identifier rubyid_panels'>panels</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='op'>*</span><span class='int'>2</span><span class='op'>+</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_defender'>defender</span><span class='op'>=</span><span class='ivar'>@board</span><span class='lbracket'>[</span><span class='id identifier rubyid_defenderY'>defenderY</span><span class='op'>*</span><span class='ivar'>@width</span><span class='op'>+</span><span class='id identifier rubyid_defenderX'>defenderX</span><span class='rbracket'>]</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_defender'>defender</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>!=</span><span class='id identifier rubyid_defender'>defender</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span>
+      <span class='id identifier rubyid_attack'>attack</span><span class='op'>=</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_attack'>attack</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_defense'>defense</span><span class='op'>=</span><span class='id identifier rubyid_defender'>defender</span><span class='period'>.</span><span class='id identifier rubyid_defense'>defense</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='ivar'>@elements</span>
+        <span class='comment'># If attacker&#39;s type matches the tile&#39;s element, add
+</span>        <span class='comment'># a bonus of 1 (only for original attacker, not combos)
+</span>        <span class='id identifier rubyid_attack'>attack</span><span class='op'>+=</span><span class='int'>1</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_recurse'>recurse</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='op'>==</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>
+      <span class='kw'>else</span>
+        <span class='comment'># Modifier depends on opponent&#39;s Pokémon type:
+</span>        <span class='comment'># +1 - Super effective
+</span>        <span class='comment'># -1 - Not very effective
+</span>        <span class='comment'># -2 - Immune
+</span><span class='comment'>#         attack+=attacker.bonus(defender)
+</span>      <span class='kw'>end</span>
+<span class='comment'>#       p [attacker.card.north,attacker.card.west,
+</span><span class='comment'>#          attacker.card.east,attacker.card.south],
+</span><span class='comment'>#          [defender.card.north,defender.card.west,
+</span><span class='comment'>#          defender.card.east,defender.card.south],
+</span><span class='comment'>#          [attack,defense,attacker.bonus(defender)] if attackerParam==nil
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_attack'>attack</span><span class='op'>&gt;</span><span class='id identifier rubyid_defense'>defense</span> <span class='op'>||</span> <span class='lparen'>(</span><span class='id identifier rubyid_attack'>attack</span><span class='op'>==</span><span class='id identifier rubyid_defense'>defense</span> <span class='op'>&amp;&amp;</span> <span class='ivar'>@sameWins</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_flips'>flips</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_defenderX'>defenderX</span><span class='comma'>,</span><span class='id identifier rubyid_defenderY'>defenderY</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_attackerParam'>attackerParam</span><span class='op'>==</span><span class='kw'>nil</span>
+          <span class='id identifier rubyid_defender'>defender</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>=</span><span class='id identifier rubyid_attacker'>attacker</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span>
+          <span class='kw'>if</span> <span class='ivar'>@sameWins</span>
+            <span class='comment'># Combo with the &quot;sameWins&quot; rule
+</span>            <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='id identifier rubyid_flipBoard'>flipBoard</span><span class='lparen'>(</span><span class='id identifier rubyid_defenderX'>defenderX</span><span class='comma'>,</span><span class='id identifier rubyid_defenderY'>defenderY</span><span class='comma'>,</span><span class='kw'>nil</span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_flips'>flips</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_ret'>ret</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ret'>ret</span>
+          <span class='kw'>end</span>
+        <span class='kw'>else</span>
+          <span class='kw'>if</span> <span class='ivar'>@sameWins</span>
+            <span class='comment'># Combo with the &quot;sameWins&quot; rule
+</span>            <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='id identifier rubyid_flipBoard'>flipBoard</span><span class='lparen'>(</span><span class='id identifier rubyid_defenderX'>defenderX</span><span class='comma'>,</span><span class='id identifier rubyid_defenderY'>defenderY</span><span class='comma'>,</span><span class='id identifier rubyid_attackerParam'>attackerParam</span><span class='comma'>,</span><span class='kw'>true</span><span class='rparen'>)</span>
+            <span class='id identifier rubyid_flips'>flips</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_ret'>ret</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_ret'>ret</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_flips'>flips</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getOwner-instance_method">
+  
+    #<strong>getOwner</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+622
+623
+624</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 622</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getOwner'>getOwner</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='ivar'>@board</span><span class='lbracket'>[</span><span class='id identifier rubyid_y'>y</span><span class='op'>*</span><span class='ivar'>@width</span><span class='op'>+</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="getPanel-instance_method">
+  
+    #<strong>getPanel</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+626
+627
+628</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 626</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_getPanel'>getPanel</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='ivar'>@board</span><span class='lbracket'>[</span><span class='id identifier rubyid_y'>y</span><span class='op'>*</span><span class='ivar'>@width</span><span class='op'>+</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="isOccupied?-instance_method">
+  
+    #<strong>isOccupied?</strong>(x, y)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+618
+619
+620</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 618</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_isOccupied?'>isOccupied?</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='ivar'>@board</span><span class='lbracket'>[</span><span class='id identifier rubyid_y'>y</span><span class='op'>*</span><span class='ivar'>@width</span><span class='op'>+</span><span class='id identifier rubyid_x'>x</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>!=</span><span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="maxCards-instance_method">
+  
+    #<strong>maxCards</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+608
+609
+610
+611
+612
+613
+614
+615
+616</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 608</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_maxCards'>maxCards</span>
+  <span class='id identifier rubyid_numcards'>numcards</span><span class='op'>=</span><span class='ivar'>@width</span><span class='op'>*</span><span class='ivar'>@height</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_numcards'>numcards</span><span class='op'>%</span><span class='int'>2</span> <span class='op'>==</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_numcards'>numcards</span><span class='op'>=</span><span class='id identifier rubyid_numcards'>numcards</span><span class='op'>/</span><span class='int'>2</span><span class='op'>+</span><span class='int'>1</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_numcards'>numcards</span><span class='op'>=</span><span class='id identifier rubyid_numcards'>numcards</span><span class='op'>/</span><span class='int'>2</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_numcards'>numcards</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="opponentName-instance_method">
+  
+    #<strong>opponentName</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+604
+605
+606</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 604</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_opponentName'>opponentName</span>
+  <span class='ivar'>@opponentName</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbAdd-instance_method">
+  
+    #<strong>pbAdd</strong>(items, item)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+634
+635
+636
+637</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 634</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbAdd'>pbAdd</span><span class='lparen'>(</span><span class='id identifier rubyid_items'>items</span><span class='comma'>,</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='const'>ItemStorageHelper</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_items'>items</span><span class='comma'>,</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_maxSize'>maxSize</span><span class='comma'>,</span>
+     <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_maxPerSlot'>maxPerSlot</span><span class='comma'>,</span><span class='id identifier rubyid_item'>item</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbQuantity-instance_method">
+  
+    #<strong>pbQuantity</strong>(items, item)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+630
+631
+632</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 630</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbQuantity'>pbQuantity</span><span class='lparen'>(</span><span class='id identifier rubyid_items'>items</span><span class='comma'>,</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='const'>ItemStorageHelper</span><span class='period'>.</span><span class='id identifier rubyid_pbQuantity'>pbQuantity</span><span class='lparen'>(</span><span class='id identifier rubyid_items'>items</span><span class='comma'>,</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_maxSize'>maxSize</span><span class='comma'>,</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbStartScreen-instance_method">
+  
+    #<strong>pbStartScreen</strong>(opponentName, minLevel, maxLevel, rules = nil, oppdeck = nil, prize = nil)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>If pbStartScreen includes parameters, it should pass the parameters to pbStartScene.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766
+767
+768
+769
+770
+771
+772
+773
+774
+775
+776
+777
+778
+779
+780
+781
+782
+783
+784
+785
+786
+787
+788
+789
+790
+791
+792
+793
+794
+795
+796
+797
+798
+799
+800
+801
+802
+803
+804
+805
+806
+807
+808
+809
+810
+811
+812
+813
+814
+815
+816
+817
+818
+819
+820
+821
+822
+823
+824
+825
+826
+827
+828
+829
+830
+831
+832
+833
+834
+835
+836
+837
+838
+839
+840
+841
+842
+843
+844
+845
+846
+847
+848
+849
+850
+851
+852
+853
+854
+855
+856
+857
+858
+859
+860
+861
+862
+863
+864
+865
+866
+867
+868
+869
+870
+871
+872
+873
+874
+875
+876
+877
+878
+879
+880
+881
+882
+883
+884
+885
+886
+887
+888
+889
+890
+891
+892
+893
+894
+895
+896
+897
+898
+899
+900
+901
+902
+903
+904
+905
+906
+907
+908
+909
+910
+911
+912
+913
+914
+915
+916
+917
+918
+919
+920
+921
+922
+923
+924
+925
+926
+927
+928
+929
+930
+931
+932
+933
+934
+935
+936
+937
+938
+939
+940
+941
+942
+943
+944
+945
+946
+947
+948
+949
+950
+951
+952
+953
+954
+955
+956
+957
+958
+959
+960
+961
+962
+963
+964
+965
+966
+967
+968
+969
+970
+971
+972
+973
+974
+975
+976
+977
+978
+979
+980
+981
+982
+983
+984
+985
+986
+987
+988
+989
+990
+991</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 702</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbStartScreen'>pbStartScreen</span><span class='lparen'>(</span><span class='id identifier rubyid_opponentName'>opponentName</span><span class='comma'>,</span><span class='id identifier rubyid_minLevel'>minLevel</span><span class='comma'>,</span><span class='id identifier rubyid_maxLevel'>maxLevel</span><span class='comma'>,</span><span class='id identifier rubyid_rules'>rules</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span><span class='id identifier rubyid_oppdeck'>oppdeck</span><span class='op'>=</span><span class='kw'>nil</span><span class='comma'>,</span><span class='id identifier rubyid_prize'>prize</span><span class='op'>=</span><span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_minLevel'>minLevel</span><span class='op'>&lt;</span><span class='int'>0</span> <span class='op'>||</span> <span class='id identifier rubyid_minLevel'>minLevel</span><span class='op'>&gt;</span><span class='int'>9</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Minimum level must be 0 through 9.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_maxLevel'>maxLevel</span><span class='op'>&lt;</span><span class='int'>0</span> <span class='op'>||</span> <span class='id identifier rubyid_maxLevel'>maxLevel</span><span class='op'>&gt;</span><span class='int'>9</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Maximum level must be 0 through 9.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_maxLevel'>maxLevel</span><span class='op'>&lt;</span><span class='id identifier rubyid_minLevel'>minLevel</span>
+    <span class='id identifier rubyid_raise'>raise</span> <span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Maximum level shouldn&#39;t be less than the minimum level.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_rules'>rules</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_rules'>rules</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_rules'>rules</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>&gt;</span><span class='int'>0</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_rule'>rule</span> <span class='kw'>in</span> <span class='id identifier rubyid_rules'>rules</span>
+      <span class='ivar'>@sameWins</span>           <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>samewins</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@openHand</span>           <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>openhand</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@wrapAround</span>         <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>wrap</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@elements</span>           <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>elements</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@randomHand</span>         <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>randomhand</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@countUnplayedCards</span> <span class='op'>=</span> <span class='kw'>true</span> <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>countunplayed</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@trade</span>              <span class='op'>=</span> <span class='int'>1</span>    <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>direct</span><span class='tstring_end'>&quot;</span></span>
+      <span class='ivar'>@trade</span>              <span class='op'>=</span> <span class='int'>2</span>    <span class='kw'>if</span> <span class='id identifier rubyid_rule'>rule</span><span class='op'>==</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>winall</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@triadCards</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='gvar'>$PokemonGlobal</span>
+    <span class='gvar'>$PokemonGlobal</span><span class='op'>=</span><span class='const'><span class='object_link'><a href="PokemonGlobalMetadata.html" title="PokemonGlobalMetadata (class)">PokemonGlobalMetadata</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="PokemonGlobalMetadata.html#initialize-instance_method" title="PokemonGlobalMetadata#initialize (method)">new</a></span></span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_count'>count</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    <span class='id identifier rubyid_item'>item</span><span class='op'>=</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+    <span class='const'>ItemStorageHelper</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='ivar'>@triadCards</span><span class='comma'>,</span>
+       <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_maxSize'>maxSize</span><span class='comma'>,</span>
+       <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_maxPerSlot'>maxPerSlot</span><span class='comma'>,</span>
+       <span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span>
+    <span class='rparen'>)</span>
+    <span class='id identifier rubyid_count'>count</span><span class='op'>+=</span><span class='id identifier rubyid_item'>item</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='comment'># Add item count to total count
+</span>  <span class='kw'>end</span>
+  <span class='ivar'>@board</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@playerName</span><span class='op'>=</span><span class='gvar'>$Trainer</span> <span class='op'>?</span> <span class='gvar'>$Trainer</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span> <span class='op'>:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Trainer</span><span class='tstring_end'>&quot;</span></span>
+  <span class='ivar'>@opponentName</span><span class='op'>=</span><span class='id identifier rubyid_opponentName'>opponentName</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@width</span><span class='op'>*</span><span class='ivar'>@height</span>
+    <span class='id identifier rubyid_square'>square</span><span class='op'>=</span><span class='const'>TriadSquare</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+    <span class='kw'>if</span> <span class='ivar'>@elements</span>
+      <span class='kw'>begin</span>
+        <span class='id identifier rubyid_square'>square</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='op'>=</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PBTypes.html" title="PBTypes (class)">PBTypes</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxValue'><span class='object_link'><a href="PBTypes.html#maxValue-class_method" title="PBTypes.maxValue (method)">maxValue</a></span></span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span>
+      <span class='kw'>end</span> <span class='kw'>until</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="PBTypes.html" title="PBTypes (class)">PBTypes</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isPseudoType?'><span class='object_link'><a href="PBTypes.html#isPseudoType%3F-class_method" title="PBTypes.isPseudoType? (method)">isPseudoType?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_square'>square</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='ivar'>@board</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_square'>square</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbStartScene'>pbStartScene</span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span> <span class='comment'># (param1, param2)
+</span>  <span class='comment'># Check whether there are enough cards.
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_count'>count</span><span class='op'>&lt;</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_maxCards'>maxCards</span>
+    <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>You don&#39;t have enough cards.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbEndScene'>pbEndScene</span>
+    <span class='kw'>return</span> <span class='int'>0</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Set the player&#39;s cards.
+</span>  <span class='id identifier rubyid_cards'>cards</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='ivar'>@randomHand</span>   <span class='comment'># Determine hand at random
+</span>    <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_maxCards'>maxCards</span><span class='period'>.</span><span class='id identifier rubyid_times'>times</span> <span class='kw'>do</span>
+      <span class='id identifier rubyid_randCard'>randCard</span><span class='op'>=</span><span class='ivar'>@triadCards</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='ivar'>@triadCards</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_pbSubtract'>pbSubtract</span><span class='lparen'>(</span><span class='ivar'>@triadCards</span><span class='comma'>,</span><span class='id identifier rubyid_randCard'>randCard</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_cards'>cards</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_randCard'>randCard</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span> 
+    <span class='kw'>end</span>
+    <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbShowPlayerCards'>pbShowPlayerCards</span><span class='lparen'>(</span><span class='id identifier rubyid_cards'>cards</span><span class='rparen'>)</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_cards'>cards</span><span class='op'>=</span><span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbChooseTriadCard'>pbChooseTriadCard</span><span class='lparen'>(</span><span class='ivar'>@triadCards</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Set the opponent&#39;s cards.
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_oppdeck'>oppdeck</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_oppdeck'>oppdeck</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Array.html" title="Array (class)">Array</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_oppdeck'>oppdeck</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>==</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_maxCards'>maxCards</span> <span class='comment'># Preset
+</span>    <span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='id identifier rubyid_oppdeck'>oppdeck</span>
+      <span class='id identifier rubyid_card'>card</span><span class='op'>=</span><span class='id identifier rubyid_getID'>getID</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PBSpecies.html" title="PBSpecies (module)">PBSpecies</a></span></span><span class='comma'>,</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_card'>card</span><span class='op'>&lt;=</span><span class='int'>0</span>
+        <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Opponent has an illegal card, \&quot;{1}\&quot;.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbEndScene'>pbEndScene</span>
+        <span class='kw'>return</span> <span class='int'>0</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='id identifier rubyid_candidates'>candidates</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='kw'>while</span> <span class='id identifier rubyid_candidates'>candidates</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>&lt;</span><span class='int'>200</span>
+      <span class='id identifier rubyid_card'>card</span><span class='op'>=</span><span class='int'>0</span>
+      <span class='id identifier rubyid_loop'>loop</span> <span class='kw'>do</span>
+        <span class='id identifier rubyid_card'>card</span><span class='op'>=</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PBSpecies.html" title="PBSpecies (module)">PBSpecies</a></span></span><span class='period'>.</span><span class='id identifier rubyid_maxValue'><span class='object_link'><a href="PBSpecies.html#maxValue-class_method" title="PBSpecies.maxValue (method)">maxValue</a></span></span><span class='rparen'>)</span><span class='op'>+</span><span class='int'>1</span>
+        <span class='id identifier rubyid_cname'>cname</span><span class='op'>=</span><span class='id identifier rubyid_getConstantName'>getConstantName</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PBSpecies.html" title="PBSpecies (module)">PBSpecies</a></span></span><span class='comma'>,</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span> <span class='kw'>rescue</span> <span class='kw'>nil</span>
+        <span class='kw'>break</span> <span class='kw'>if</span> <span class='id identifier rubyid_cname'>cname</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_triad'>triad</span><span class='op'>=</span><span class='const'>TriadCard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_total'>total</span><span class='op'>=</span><span class='id identifier rubyid_triad'>triad</span><span class='period'>.</span><span class='id identifier rubyid_north'>north</span><span class='op'>+</span><span class='id identifier rubyid_triad'>triad</span><span class='period'>.</span><span class='id identifier rubyid_south'>south</span><span class='op'>+</span><span class='id identifier rubyid_triad'>triad</span><span class='period'>.</span><span class='id identifier rubyid_east'>east</span><span class='op'>+</span><span class='id identifier rubyid_triad'>triad</span><span class='period'>.</span><span class='id identifier rubyid_west'>west</span>
+      <span class='comment'># Add random species and its total point count
+</span>      <span class='id identifier rubyid_candidates'>candidates</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_card'>card</span><span class='comma'>,</span><span class='id identifier rubyid_total'>total</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_candidates'>candidates</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>&lt;</span><span class='int'>200</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$Trainer</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$Trainer</span><span class='period'>.</span><span class='id identifier rubyid_owned'>owned</span><span class='lbracket'>[</span><span class='id identifier rubyid_card'>card</span><span class='rbracket'>]</span>
+        <span class='comment'># Add again if Trainer owns the species
+</span>        <span class='id identifier rubyid_candidates'>candidates</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_card'>card</span><span class='comma'>,</span><span class='id identifier rubyid_total'>total</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+    <span class='comment'># sort by total point count
+</span>    <span class='id identifier rubyid_candidates'>candidates</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span> <span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='op'>&lt;=&gt;</span><span class='id identifier rubyid_b'>b</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span> <span class='rbrace'>}</span>
+    <span class='id identifier rubyid_minIndex'>minIndex</span><span class='op'>=</span><span class='id identifier rubyid_minLevel'>minLevel</span><span class='op'>*</span><span class='int'>20</span>
+    <span class='id identifier rubyid_maxIndex'>maxIndex</span><span class='op'>=</span><span class='id identifier rubyid_maxLevel'>maxLevel</span><span class='op'>*</span><span class='int'>20</span><span class='op'>+</span><span class='int'>20</span>
+    <span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_maxCards'>maxCards</span>
+      <span class='comment'># generate random card based on level
+</span>      <span class='id identifier rubyid_index'>index</span><span class='op'>=</span><span class='id identifier rubyid_minIndex'>minIndex</span><span class='op'>+</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='id identifier rubyid_maxIndex'>maxIndex</span><span class='op'>-</span><span class='id identifier rubyid_minIndex'>minIndex</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_candidates'>candidates</span><span class='lbracket'>[</span><span class='id identifier rubyid_index'>index</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_originalCards'>originalCards</span><span class='op'>=</span><span class='id identifier rubyid_cards'>cards</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span>
+  <span class='id identifier rubyid_originalOpponentCards'>originalOpponentCards</span><span class='op'>=</span><span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbNotifyCards'>pbNotifyCards</span><span class='lparen'>(</span><span class='id identifier rubyid_cards'>cards</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span><span class='comma'>,</span><span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='period'>.</span><span class='id identifier rubyid_clone'>clone</span><span class='rparen'>)</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbShowOpponentCards'>pbShowOpponentCards</span><span class='lparen'>(</span><span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='rparen'>)</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Choosing the starting player...</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbUpdateScore'>pbUpdateScore</span>
+  <span class='id identifier rubyid_playerTurn'>playerTurn</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>2</span><span class='rparen'>)</span><span class='op'>==</span><span class='int'>0</span>
+    <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{1} will go first.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@playerName</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_playerTurn'>playerTurn</span><span class='op'>=</span><span class='kw'>true</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{1} will go first.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@opponentName</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_playerTurn'>playerTurn</span><span class='op'>=</span><span class='kw'>false</span>
+  <span class='kw'>end</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@width</span><span class='op'>*</span><span class='ivar'>@height</span>
+    <span class='id identifier rubyid_position'>position</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='id identifier rubyid_triadCard'>triadCard</span><span class='op'>=</span><span class='kw'>nil</span>
+    <span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='op'>=</span><span class='int'>0</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_playerTurn'>playerTurn</span>
+      <span class='comment'># Player&#39;s turn
+</span>      <span class='kw'>while</span> <span class='op'>!</span><span class='id identifier rubyid_position'>position</span>
+        <span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='op'>=</span><span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbPlayerChooseCard'>pbPlayerChooseCard</span><span class='lparen'>(</span><span class='id identifier rubyid_cards'>cards</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_triadCard'>triadCard</span><span class='op'>=</span><span class='const'>TriadCard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_cards'>cards</span><span class='lbracket'>[</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_position'>position</span><span class='op'>=</span><span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbPlayerPlaceCard'>pbPlayerPlaceCard</span><span class='lparen'>(</span><span class='id identifier rubyid_triadCard'>triadCard</span><span class='comma'>,</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='comment'># Opponent&#39;s turn
+</span>      <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{1} is making a move...</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@opponentName</span><span class='rparen'>)</span><span class='rparen'>)</span>    
+      <span class='id identifier rubyid_scores'>scores</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_cardIndex'>cardIndex</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+        <span class='id identifier rubyid_square'>square</span><span class='op'>=</span><span class='const'>TriadSquare</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span>
+        <span class='id identifier rubyid_square'>square</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='op'>=</span><span class='const'>TriadCard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='lbracket'>[</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_square'>square</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>=</span><span class='int'>2</span>
+        <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@width</span><span class='op'>*</span><span class='ivar'>@height</span>
+          <span class='id identifier rubyid_x'>x</span><span class='op'>=</span><span class='id identifier rubyid_i'>i</span><span class='op'>%</span><span class='ivar'>@width</span>
+          <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='id identifier rubyid_i'>i</span><span class='op'>/</span><span class='ivar'>@width</span>
+          <span class='id identifier rubyid_square'>square</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span><span class='op'>=</span><span class='ivar'>@board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_type'>type</span>
+          <span class='id identifier rubyid_flips'>flips</span><span class='op'>=</span><span class='id identifier rubyid_flipBoard'>flipBoard</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_square'>square</span><span class='rparen'>)</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_flips'>flips</span><span class='op'>!=</span><span class='kw'>nil</span>
+            <span class='id identifier rubyid_scores'>scores</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='lbracket'>[</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='comma'>,</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_flips'>flips</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      <span class='comment'># Sort by number of flips
+</span>      <span class='id identifier rubyid_scores'>scores</span><span class='period'>.</span><span class='id identifier rubyid_sort!'>sort!</span><span class='lbrace'>{</span><span class='op'>|</span><span class='id identifier rubyid_a'>a</span><span class='comma'>,</span><span class='id identifier rubyid_b'>b</span><span class='op'>|</span> 
+         <span class='kw'>if</span> <span class='id identifier rubyid_b'>b</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span><span class='op'>==</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+           <span class='kw'>next</span> <span class='lbracket'>[</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>0</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='int'>3</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+         <span class='kw'>else</span>
+           <span class='kw'>next</span> <span class='id identifier rubyid_b'>b</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span><span class='op'>&lt;=&gt;</span><span class='id identifier rubyid_a'>a</span><span class='lbracket'>[</span><span class='int'>3</span><span class='rbracket'>]</span>
+         <span class='kw'>end</span>
+      <span class='rbrace'>}</span> 
+      <span class='id identifier rubyid_scores'>scores</span><span class='op'>=</span><span class='id identifier rubyid_scores'>scores</span><span class='lbracket'>[</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rbracket'>]</span> <span class='comment'># Get the best results
+</span>      <span class='kw'>if</span> <span class='id identifier rubyid_scores'>scores</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>==</span><span class='int'>0</span>
+        <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplay'>pbDisplay</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{1} can&#39;t move somehow...</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@opponentName</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_playerTurn'>playerTurn</span><span class='op'>=</span><span class='op'>!</span><span class='id identifier rubyid_playerTurn'>playerTurn</span>
+        <span class='id identifier rubyid_continue'>continue</span>
+      <span class='kw'>end</span>
+      <span class='id identifier rubyid_result'>result</span><span class='op'>=</span><span class='id identifier rubyid_scores'>scores</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='id identifier rubyid_scores'>scores</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='op'>=</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_triadCard'>triadCard</span><span class='op'>=</span><span class='const'>TriadCard</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='lbracket'>[</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_position'>position</span><span class='op'>=</span><span class='lbracket'>[</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_result'>result</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span><span class='rbracket'>]</span>
+      <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbOpponentPlaceCard'>pbOpponentPlaceCard</span><span class='lparen'>(</span><span class='id identifier rubyid_triadCard'>triadCard</span><span class='comma'>,</span><span class='id identifier rubyid_position'>position</span><span class='comma'>,</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_boardIndex'>boardIndex</span><span class='op'>=</span><span class='id identifier rubyid_position'>position</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='op'>*</span><span class='ivar'>@width</span><span class='op'>+</span><span class='id identifier rubyid_position'>position</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_boardIndex'>boardIndex</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='op'>=</span><span class='id identifier rubyid_triadCard'>triadCard</span>
+    <span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_boardIndex'>boardIndex</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>=</span><span class='id identifier rubyid_playerTurn'>playerTurn</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='int'>2</span>
+    <span class='id identifier rubyid_flipBoard'>flipBoard</span><span class='lparen'>(</span><span class='id identifier rubyid_position'>position</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='comma'>,</span><span class='id identifier rubyid_position'>position</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_playerTurn'>playerTurn</span>
+      <span class='id identifier rubyid_cards'>cards</span><span class='period'>.</span><span class='id identifier rubyid_delete_at'>delete_at</span><span class='lparen'>(</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rparen'>)</span>
+      <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbEndPlaceCard'>pbEndPlaceCard</span><span class='lparen'>(</span><span class='id identifier rubyid_position'>position</span><span class='comma'>,</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rparen'>)</span>
+    <span class='kw'>else</span>
+      <span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='period'>.</span><span class='id identifier rubyid_delete_at'>delete_at</span><span class='lparen'>(</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rparen'>)</span>
+      <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbEndOpponentPlaceCard'>pbEndOpponentPlaceCard</span><span class='lparen'>(</span><span class='id identifier rubyid_position'>position</span><span class='comma'>,</span><span class='id identifier rubyid_cardIndex'>cardIndex</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='id identifier rubyid_playerTurn'>playerTurn</span><span class='op'>=</span><span class='op'>!</span><span class='id identifier rubyid_playerTurn'>playerTurn</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Determine the winner
+</span>  <span class='id identifier rubyid_playerCount'>playerCount</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='id identifier rubyid_opponentCount'>opponentCount</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@width</span><span class='op'>*</span><span class='ivar'>@height</span>
+    <span class='id identifier rubyid_playerCount'>playerCount</span><span class='op'>+=</span><span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>==</span><span class='int'>1</span>
+    <span class='id identifier rubyid_opponentCount'>opponentCount</span><span class='op'>+=</span><span class='int'>1</span> <span class='kw'>if</span> <span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>==</span><span class='int'>2</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='ivar'>@countUnplayedCards</span>
+    <span class='id identifier rubyid_playerCount'>playerCount</span><span class='op'>+=</span><span class='id identifier rubyid_cards'>cards</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+    <span class='id identifier rubyid_opponentCount'>opponentCount</span><span class='op'>+=</span><span class='id identifier rubyid_opponentCards'>opponentCards</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_result'>result</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_playerCount'>playerCount</span><span class='op'>==</span><span class='id identifier rubyid_opponentCount'>opponentCount</span>
+    <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>The game is a draw.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span><span class='op'>=</span><span class='int'>3</span>
+    <span class='kw'>case</span> <span class='ivar'>@trade</span>
+    <span class='kw'>when</span> <span class='int'>1</span>
+      <span class='comment'># Keep only cards of your color
+</span>      <span class='kw'>for</span> <span class='id identifier rubyid_card'>card</span> <span class='kw'>in</span> <span class='id identifier rubyid_originalCards'>originalCards</span>
+        <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbDeleteItem'>pbDeleteItem</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='id identifier rubyid_cards'>cards</span>
+        <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@width</span><span class='op'>*</span><span class='ivar'>@height</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>==</span><span class='int'>1</span>
+          <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='period'>.</span><span class='id identifier rubyid_species'>species</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Kept all cards of your color.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_playerCount'>playerCount</span><span class='op'>&gt;</span><span class='id identifier rubyid_opponentCount'>opponentCount</span>
+    <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{1} won against {2}.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@playerName</span><span class='comma'>,</span><span class='ivar'>@opponentName</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span><span class='op'>=</span><span class='int'>1</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_prize'>prize</span>
+      <span class='id identifier rubyid_card'>card</span><span class='op'>=</span><span class='id identifier rubyid_getID'>getID</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="PBSpecies.html" title="PBSpecies (module)">PBSpecies</a></span></span><span class='comma'>,</span><span class='id identifier rubyid_prize'>prize</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_card'>card</span><span class='op'>&gt;</span><span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+        <span class='id identifier rubyid_cardname'>cardname</span><span class='op'>=</span><span class='const'>PBSpecies</span><span class='period'>.</span><span class='id identifier rubyid_getName'>getName</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+        <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got opponent&#39;s {1} card.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_cardname'>cardname</span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>else</span>
+      <span class='kw'>case</span> <span class='ivar'>@trade</span>
+      <span class='kw'>when</span> <span class='int'>0</span>
+        <span class='comment'># Gain 1 random card from opponent&#39;s deck
+</span>        <span class='id identifier rubyid_card'>card</span><span class='op'>=</span><span class='id identifier rubyid_originalOpponentCards'>originalOpponentCards</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='id identifier rubyid_originalOpponentCards'>originalOpponentCards</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+        <span class='kw'>if</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+          <span class='id identifier rubyid_cardname'>cardname</span><span class='op'>=</span><span class='const'>PBSpecies</span><span class='period'>.</span><span class='id identifier rubyid_getName'>getName</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+          <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got opponent&#39;s {1} card.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_cardname'>cardname</span><span class='rparen'>)</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>when</span> <span class='int'>1</span>
+        <span class='comment'># Keep only cards of your color
+</span>        <span class='kw'>for</span> <span class='id identifier rubyid_card'>card</span> <span class='kw'>in</span> <span class='id identifier rubyid_originalCards'>originalCards</span>
+          <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbDeleteItem'>pbDeleteItem</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+        <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='id identifier rubyid_cards'>cards</span>
+          <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+        <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@width</span><span class='op'>*</span><span class='ivar'>@height</span>
+          <span class='kw'>if</span> <span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>==</span><span class='int'>1</span>
+            <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='period'>.</span><span class='id identifier rubyid_species'>species</span><span class='rparen'>)</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+        <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Kept all cards of your color.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>when</span> <span class='int'>2</span>
+        <span class='comment'># Gain all opponent&#39;s cards
+</span>        <span class='kw'>for</span> <span class='id identifier rubyid_card'>card</span> <span class='kw'>in</span> <span class='id identifier rubyid_originalOpponentCards'>originalOpponentCards</span>
+          <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+        <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Got all opponent&#39;s cards.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>{1} lost against {2}.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@playerName</span><span class='comma'>,</span><span class='ivar'>@opponentName</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_result'>result</span><span class='op'>=</span><span class='int'>2</span>
+    <span class='kw'>case</span> <span class='ivar'>@trade</span>
+    <span class='kw'>when</span> <span class='int'>0</span>
+      <span class='comment'># Lose 1 random card from your deck
+</span>      <span class='id identifier rubyid_card'>card</span><span class='op'>=</span><span class='id identifier rubyid_originalCards'>originalCards</span><span class='lbracket'>[</span><span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='id identifier rubyid_originalCards'>originalCards</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='rparen'>)</span><span class='rbracket'>]</span>
+      <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbDeleteItem'>pbDeleteItem</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_cardname'>cardname</span><span class='op'>=</span><span class='const'>PBSpecies</span><span class='period'>.</span><span class='id identifier rubyid_getName'>getName</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+      <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Opponent won your {1} card.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_cardname'>cardname</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>1</span>
+      <span class='comment'># Keep only cards of your color
+</span>      <span class='kw'>for</span> <span class='id identifier rubyid_card'>card</span> <span class='kw'>in</span> <span class='id identifier rubyid_originalCards'>originalCards</span>
+        <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbDeleteItem'>pbDeleteItem</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='id identifier rubyid_cards'>cards</span>
+        <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_i'>i</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@width</span><span class='op'>*</span><span class='ivar'>@height</span>
+        <span class='kw'>if</span> <span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_owner'>owner</span><span class='op'>==</span><span class='int'>1</span>
+          <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbStoreItem'>pbStoreItem</span><span class='lparen'>(</span><span class='id identifier rubyid_board'>board</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_card'>card</span><span class='period'>.</span><span class='id identifier rubyid_species'>species</span><span class='rparen'>)</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+      <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Kept all cards of your color.</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='id identifier rubyid_cardname'>cardname</span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>when</span> <span class='int'>2</span>
+      <span class='comment'># Lose all your cards
+</span>      <span class='kw'>for</span> <span class='id identifier rubyid_card'>card</span> <span class='kw'>in</span> <span class='id identifier rubyid_originalCards'>originalCards</span>
+        <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_pbDeleteItem'>pbDeleteItem</span><span class='lparen'>(</span><span class='id identifier rubyid_card'>card</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+      <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbDisplayPaused'>pbDisplayPaused</span><span class='lparen'>(</span><span class='id identifier rubyid__INTL'><span class='object_link'><a href="top-level-namespace.html#_INTL-instance_method" title="#_INTL (method)">_INTL</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Opponent won all your cards.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='ivar'>@scene</span><span class='period'>.</span><span class='id identifier rubyid_pbEndScene'>pbEndScene</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbSubtract-instance_method">
+  
+    #<strong>pbSubtract</strong>(items, item)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+639
+640
+641
+642</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 639</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbSubtract'>pbSubtract</span><span class='lparen'>(</span><span class='id identifier rubyid_items'>items</span><span class='comma'>,</span><span class='id identifier rubyid_item'>item</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='const'>ItemStorageHelper</span><span class='period'>.</span><span class='id identifier rubyid_pbDeleteItem'>pbDeleteItem</span><span class='lparen'>(</span><span class='id identifier rubyid_items'>items</span><span class='comma'>,</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_triads'>triads</span><span class='period'>.</span><span class='id identifier rubyid_maxSize'>maxSize</span><span class='comma'>,</span>
+     <span class='id identifier rubyid_item'>item</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="playerName-instance_method">
+  
+    #<strong>playerName</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+600
+601
+602</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PMinigame_TripleTriad.rb', line 600</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_playerName'>playerName</span>
+  <span class='ivar'>@playerName</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:40 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

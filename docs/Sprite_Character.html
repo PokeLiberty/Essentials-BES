@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Sprite_Character
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Sprite_Character";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (S)</a> &raquo;
+    
+    
+    <span class="title">Sprite_Character</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Sprite_Character
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="RPG/Sprite.html" title="RPG::Sprite (class)">RPG::Sprite</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Sprite.html" title="Sprite (class)">Sprite</a></span></li>
+          
+            <li class="next"><span class='object_link'><a href="RPG/Sprite.html" title="RPG::Sprite (class)">RPG::Sprite</a></span></li>
+          
+            <li class="next">Sprite_Character</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/DynamicShadows.rb<span class="defines">,<br />
+  scripts/Sprite_Character.rb,<br /> scripts/Tilemap_Perspective.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<h6 id="label-"></h6>
+
+<p>? CLASS Sprite_Character edit</p>
+
+<h6 id="label-"></h6>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><div id="subclasses">
+  <h2>Direct Known Subclasses</h2>
+  <p class="children"><span class='object_link'><a href="ClippableSprite.html" title="ClippableSprite (class)">ClippableSprite</a></span></p>
+</div>
+
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#character-instance_method" title="#character (instance method)">#<strong>character</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute character.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbBushDepthBitmap-class_method" title="pbBushDepthBitmap (class method)">.<strong>pbBushDepthBitmap</strong>(bitmap, depth)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbBushDepthTile-class_method" title="pbBushDepthTile (class method)">.<strong>pbBushDepthTile</strong>(bitmap, depth)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#dispose-instance_method" title="#dispose (instance method)">#<strong>dispose</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#groundY-instance_method" title="#groundY (instance method)">#<strong>groundY</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(viewport, character = nil)  &#x21d2; Sprite_Character </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Sprite_Character.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#perspectivetilemap_initialize-instance_method" title="#perspectivetilemap_initialize (instance method)">#<strong>perspectivetilemap_initialize</strong>  &#x21d2; Sprite_Character </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Sprite_Character.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setShadows-instance_method" title="#setShadows (instance method)">#<strong>setShadows</strong>(map, shadows)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shadow_initialize-instance_method" title="#shadow_initialize (instance method)">#<strong>shadow_initialize</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#shadow_update-instance_method" title="#shadow_update (instance method)">#<strong>shadow_update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_or-instance_method" title="#update_or (instance method)">#<strong>update_or</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="RPG/Sprite.html" title="RPG::Sprite (class)">RPG::Sprite</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="RPG/Sprite.html#animation-instance_method" title="RPG::Sprite#animation (method)">#animation</a></span>, <span class='object_link'><a href="RPG/Sprite.html#appear-instance_method" title="RPG::Sprite#appear (method)">#appear</a></span>, <span class='object_link'><a href="RPG/Sprite.html#blink%3F-instance_method" title="RPG::Sprite#blink? (method)">#blink?</a></span>, <span class='object_link'><a href="RPG/Sprite.html#blink_off-instance_method" title="RPG::Sprite#blink_off (method)">#blink_off</a></span>, <span class='object_link'><a href="RPG/Sprite.html#blink_on-instance_method" title="RPG::Sprite#blink_on (method)">#blink_on</a></span>, <span class='object_link'><a href="RPG/Sprite.html#collapse-instance_method" title="RPG::Sprite#collapse (method)">#collapse</a></span>, <span class='object_link'><a href="RPG/Sprite.html#damage-instance_method" title="RPG::Sprite#damage (method)">#damage</a></span>, <span class='object_link'><a href="RPG/Sprite.html#dispose_animation-instance_method" title="RPG::Sprite#dispose_animation (method)">#dispose_animation</a></span>, <span class='object_link'><a href="RPG/Sprite.html#dispose_damage-instance_method" title="RPG::Sprite#dispose_damage (method)">#dispose_damage</a></span>, <span class='object_link'><a href="RPG/Sprite.html#dispose_loop_animation-instance_method" title="RPG::Sprite#dispose_loop_animation (method)">#dispose_loop_animation</a></span>, <span class='object_link'><a href="RPG/Sprite.html#effect%3F-instance_method" title="RPG::Sprite#effect? (method)">#effect?</a></span>, <span class='object_link'><a href="RPG/Sprite.html#escape-instance_method" title="RPG::Sprite#escape (method)">#escape</a></span>, <span class='object_link'><a href="RPG/Sprite.html#loop_animation-instance_method" title="RPG::Sprite#loop_animation (method)">#loop_animation</a></span>, <span class='object_link'><a href="RPG/Sprite.html#pushAnimation-instance_method" title="RPG::Sprite#pushAnimation (method)">#pushAnimation</a></span>, <span class='object_link'><a href="RPG/Sprite.html#update_animation-instance_method" title="RPG::Sprite#update_animation (method)">#update_animation</a></span>, <span class='object_link'><a href="RPG/Sprite.html#update_loop_animation-instance_method" title="RPG::Sprite#update_loop_animation (method)">#update_loop_animation</a></span>, <span class='object_link'><a href="RPG/Sprite.html#whiten-instance_method" title="RPG::Sprite#whiten (method)">#whiten</a></span>, <span class='object_link'><a href="RPG/Sprite.html#x=-instance_method" title="RPG::Sprite#x= (method)">#x=</a></span>, <span class='object_link'><a href="RPG/Sprite.html#y=-instance_method" title="RPG::Sprite#y= (method)">#y=</a></span></p>
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Sprite.html" title="Sprite (class)">Sprite</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Sprite.html#_bushdeptheq_SpriteResizer-instance_method" title="Sprite#_bushdeptheq_SpriteResizer (method)">#_bushdeptheq_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_initialize_SpriteResizer-instance_method" title="Sprite#_initialize_SpriteResizer (method)">#_initialize_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_ox_SpriteResizer-instance_method" title="Sprite#_ox_SpriteResizer (method)">#_ox_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_oxeq_SpriteResizer-instance_method" title="Sprite#_oxeq_SpriteResizer (method)">#_oxeq_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_oy_SpriteResizer-instance_method" title="Sprite#_oy_SpriteResizer (method)">#_oy_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_oyeq_SpriteResizer-instance_method" title="Sprite#_oyeq_SpriteResizer (method)">#_oyeq_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_x_SpriteResizer-instance_method" title="Sprite#_x_SpriteResizer (method)">#_x_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_xeq_SpriteResizer-instance_method" title="Sprite#_xeq_SpriteResizer (method)">#_xeq_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_y_SpriteResizer-instance_method" title="Sprite#_y_SpriteResizer (method)">#_y_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_yeq_SpriteResizer-instance_method" title="Sprite#_yeq_SpriteResizer (method)">#_yeq_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_zoomx_SpriteResizer-instance_method" title="Sprite#_zoomx_SpriteResizer (method)">#_zoomx_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_zoomxeq_SpriteResizer-instance_method" title="Sprite#_zoomxeq_SpriteResizer (method)">#_zoomxeq_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_zoomy_SpriteResizer-instance_method" title="Sprite#_zoomy_SpriteResizer (method)">#_zoomy_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#_zoomyeq_SpriteResizer-instance_method" title="Sprite#_zoomyeq_SpriteResizer (method)">#_zoomyeq_SpriteResizer</a></span>, <span class='object_link'><a href="Sprite.html#bush_depth-instance_method" title="Sprite#bush_depth (method)">#bush_depth</a></span>, <span class='object_link'><a href="Sprite.html#bush_depth=-instance_method" title="Sprite#bush_depth= (method)">#bush_depth=</a></span>, <span class='object_link'><a href="Sprite.html#ox-instance_method" title="Sprite#ox (method)">#ox</a></span>, <span class='object_link'><a href="Sprite.html#ox=-instance_method" title="Sprite#ox= (method)">#ox=</a></span>, <span class='object_link'><a href="Sprite.html#oy-instance_method" title="Sprite#oy (method)">#oy</a></span>, <span class='object_link'><a href="Sprite.html#oy=-instance_method" title="Sprite#oy= (method)">#oy=</a></span>, <span class='object_link'><a href="Sprite.html#x-instance_method" title="Sprite#x (method)">#x</a></span>, <span class='object_link'><a href="Sprite.html#x=-instance_method" title="Sprite#x= (method)">#x=</a></span>, <span class='object_link'><a href="Sprite.html#y-instance_method" title="Sprite#y (method)">#y</a></span>, <span class='object_link'><a href="Sprite.html#y=-instance_method" title="Sprite#y= (method)">#y=</a></span>, <span class='object_link'><a href="Sprite.html#zoom_x-instance_method" title="Sprite#zoom_x (method)">#zoom_x</a></span>, <span class='object_link'><a href="Sprite.html#zoom_x=-instance_method" title="Sprite#zoom_x= (method)">#zoom_x=</a></span>, <span class='object_link'><a href="Sprite.html#zoom_y-instance_method" title="Sprite#zoom_y (method)">#zoom_y</a></span>, <span class='object_link'><a href="Sprite.html#zoom_y=-instance_method" title="Sprite#zoom_y= (method)">#zoom_y=</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(viewport, character = nil)  &#x21d2; <tt><span class='object_link'><a href="" title="Sprite_Character (class)">Sprite_Character</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Sprite_Character.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+148
+149
+150
+151
+152</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/DynamicShadows.rb', line 148</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_viewport'>viewport</span><span class='comma'>,</span> <span class='id identifier rubyid_character'>character</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@ombrelist</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@character</span> <span class='op'>=</span> <span class='id identifier rubyid_character'>character</span>
+  <span class='id identifier rubyid_shadow_initialize'>shadow_initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_viewport'>viewport</span><span class='comma'>,</span> <span class='ivar'>@character</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="character=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="character-instance_method">
+  
+    #<strong>character</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute character.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+33
+34
+35</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Character.rb', line 33</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_character'>character</span>
+  <span class='ivar'>@character</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="pbBushDepthBitmap-class_method">
+  
+    .<strong>pbBushDepthBitmap</strong>(bitmap, depth)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Character.rb', line 47</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pbBushDepthBitmap'>pbBushDepthBitmap</span><span class='lparen'>(</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span><span class='id identifier rubyid_depth'>depth</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='const'>Bitmap</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_charheight'>charheight</span><span class='op'>=</span><span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='op'>/</span><span class='int'>4</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='int'>4</span>
+    <span class='id identifier rubyid_cy'>cy</span><span class='op'>=</span><span class='id identifier rubyid_charheight'>charheight</span><span class='op'>-</span><span class='id identifier rubyid_depth'>depth</span><span class='op'>-</span><span class='int'>2</span>
+    <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='id identifier rubyid_i'>i</span><span class='op'>*</span><span class='id identifier rubyid_charheight'>charheight</span>
+    <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_blt'>blt</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Rect.html" title="Rect (class)">Rect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='id identifier rubyid_cy'>cy</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_cy'>cy</span><span class='op'>&gt;=</span><span class='int'>0</span>
+    <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_blt'>blt</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='id identifier rubyid_cy'>cy</span><span class='comma'>,</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Rect.html" title="Rect (class)">Rect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='id identifier rubyid_cy'>cy</span><span class='comma'>,</span><span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='int'>2</span><span class='rparen'>)</span><span class='comma'>,</span><span class='int'>170</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_cy'>cy</span><span class='op'>&gt;=</span><span class='int'>0</span>    
+    <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_blt'>blt</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='id identifier rubyid_cy'>cy</span><span class='op'>+</span><span class='int'>2</span><span class='comma'>,</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Rect.html" title="Rect (class)">Rect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='id identifier rubyid_cy'>cy</span><span class='op'>+</span><span class='int'>2</span><span class='comma'>,</span><span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='int'>2</span><span class='rparen'>)</span><span class='comma'>,</span><span class='int'>85</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_cy'>cy</span><span class='op'>+</span><span class='int'>2</span><span class='op'>&gt;=</span><span class='int'>0</span>    
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbBushDepthTile-class_method">
+  
+    .<strong>pbBushDepthTile</strong>(bitmap, depth)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Character.rb', line 60</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pbBushDepthTile'>pbBushDepthTile</span><span class='lparen'>(</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span><span class='id identifier rubyid_depth'>depth</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='const'>Bitmap</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_charheight'>charheight</span><span class='op'>=</span><span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span>
+  <span class='id identifier rubyid_cy'>cy</span><span class='op'>=</span><span class='id identifier rubyid_charheight'>charheight</span><span class='op'>-</span><span class='id identifier rubyid_depth'>depth</span><span class='op'>-</span><span class='int'>2</span>
+  <span class='id identifier rubyid_y'>y</span><span class='op'>=</span><span class='id identifier rubyid_charheight'>charheight</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_blt'>blt</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Rect.html" title="Rect (class)">Rect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='comma'>,</span><span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='id identifier rubyid_cy'>cy</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_cy'>cy</span><span class='op'>&gt;=</span><span class='int'>0</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_blt'>blt</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='id identifier rubyid_cy'>cy</span><span class='comma'>,</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Rect.html" title="Rect (class)">Rect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='id identifier rubyid_cy'>cy</span><span class='comma'>,</span><span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='int'>2</span><span class='rparen'>)</span><span class='comma'>,</span><span class='int'>170</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_cy'>cy</span><span class='op'>&gt;=</span><span class='int'>0</span>    
+  <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_blt'>blt</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='id identifier rubyid_cy'>cy</span><span class='op'>+</span><span class='int'>2</span><span class='comma'>,</span><span class='id identifier rubyid_bitmap'>bitmap</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Rect.html" title="Rect (class)">Rect</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='id identifier rubyid_y'>y</span><span class='op'>+</span><span class='id identifier rubyid_cy'>cy</span><span class='op'>+</span><span class='int'>2</span><span class='comma'>,</span><span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span><span class='comma'>,</span><span class='int'>2</span><span class='rparen'>)</span><span class='comma'>,</span><span class='int'>85</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_cy'>cy</span><span class='op'>+</span><span class='int'>2</span><span class='op'>&gt;=</span><span class='int'>0</span>    
+  <span class='kw'>return</span> <span class='id identifier rubyid_ret'>ret</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="dispose-instance_method">
+  
+    #<strong>dispose</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+71
+72
+73
+74
+75
+76
+77</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Character.rb', line 71</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_dispose'>dispose</span>
+  <span class='ivar'>@bushbitmap</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span> <span class='kw'>if</span> <span class='ivar'>@bushbitmap</span>
+  <span class='ivar'>@bushbitmap</span><span class='op'>=</span><span class='kw'>nil</span>
+  <span class='ivar'>@charbitmap</span><span class='period'>.</span><span class='id identifier rubyid_dispose'>dispose</span> <span class='kw'>if</span> <span class='ivar'>@charbitmap</span>
+  <span class='ivar'>@charbitmap</span><span class='op'>=</span><span class='kw'>nil</span>
+  <span class='kw'>super</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="groundY-instance_method">
+  
+    #<strong>groundY</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+43
+44
+45</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Sprite_Character.rb', line 43</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_groundY'>groundY</span>
+  <span class='kw'>return</span> <span class='ivar'>@character</span><span class='period'>.</span><span class='id identifier rubyid_screen_y_ground'>screen_y_ground</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="perspectivetilemap_initialize-instance_method">
+  
+    #<strong>perspectivetilemap_initialize</strong>  &#x21d2; <tt><span class='object_link'><a href="" title="Sprite_Character (class)">Sprite_Character</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Sprite_Character.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="" title="Sprite_Character (class)">Sprite_Character</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'>
+<p>a new instance of Sprite_Character</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+418
+419
+420
+421
+422</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Tilemap_Perspective.rb', line 418</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_viewport'>viewport</span><span class='comma'>,</span> <span class='id identifier rubyid_character'>character</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
+  <span class='ivar'>@ombrelist</span><span class='op'>=</span><span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='ivar'>@character</span> <span class='op'>=</span> <span class='id identifier rubyid_character'>character</span>
+  <span class='id identifier rubyid_shadow_initialize'>shadow_initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_viewport'>viewport</span><span class='comma'>,</span> <span class='ivar'>@character</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setShadows-instance_method">
+  
+    #<strong>setShadows</strong>(map, shadows)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/DynamicShadows.rb', line 154</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setShadows'>setShadows</span><span class='lparen'>(</span><span class='id identifier rubyid_map'>map</span><span class='comma'>,</span><span class='id identifier rubyid_shadows'>shadows</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_character'>character</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Game_Event.html" title="Game_Event (class)">Game_Event</a></span></span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_shadows'>shadows</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>&gt;</span><span class='int'>0</span>
+    <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='const'><span class='object_link'><a href="top-level-namespace.html#XPML_read-instance_method" title="#XPML_read (method)">XPML_read</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_map'>map</span><span class='comma'>,</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Shadow</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span><span class='ivar'>@character</span><span class='comma'>,</span><span class='int'>4</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_params'>params</span><span class='op'>!=</span><span class='kw'>nil</span>
+      <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_shadows'>shadows</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+        <span class='ivar'>@ombrelist</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Sprite_Shadow.html" title="Sprite_Shadow (class)">Sprite_Shadow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite_Shadow.html#initialize-instance_method" title="Sprite_Shadow#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+           <span class='id identifier rubyid_viewport'>viewport</span><span class='comma'>,</span> <span class='ivar'>@character</span><span class='comma'>,</span><span class='id identifier rubyid_shadows'>shadows</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+        <span class='rparen'>)</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_character'>character</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Game_Player.html" title="Game_Player (class)">Game_Player</a></span></span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_shadows'>shadows</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>&gt;</span><span class='int'>0</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='id identifier rubyid_shadows'>shadows</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+      <span class='ivar'>@ombrelist</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Sprite_Shadow.html" title="Sprite_Shadow (class)">Sprite_Shadow</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Sprite_Shadow.html#initialize-instance_method" title="Sprite_Shadow#initialize (method)">new</a></span></span><span class='lparen'>(</span>
+         <span class='id identifier rubyid_viewport'>viewport</span><span class='comma'>,</span> <span class='gvar'>$game_player</span><span class='comma'>,</span><span class='id identifier rubyid_shadows'>shadows</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span>
+      <span class='rparen'>)</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_update'>update</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shadow_initialize-instance_method">
+  
+    #<strong>shadow_initialize</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+146</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/DynamicShadows.rb', line 146</span>
+
+<span class='kw'>alias</span> <span class='symbol'>:shadow_initialize</span> <span class='symbol'>:initialize</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="shadow_update-instance_method">
+  
+    #<strong>shadow_update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+175</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/DynamicShadows.rb', line 175</span>
+
+<span class='kw'>alias</span> <span class='id identifier rubyid_shadow_update'>shadow_update</span> <span class='id identifier rubyid_update'>update</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    #<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+177
+178
+179
+180
+181
+182
+183
+184</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/DynamicShadows.rb', line 177</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='id identifier rubyid_shadow_update'>shadow_update</span>
+  <span class='kw'>if</span> <span class='ivar'>@ombrelist</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>&gt;</span><span class='int'>0</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@ombrelist</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+      <span class='ivar'>@ombrelist</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_or-instance_method">
+  
+    #<strong>update_or</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+426
+427
+428
+429
+430
+431
+432
+433</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Tilemap_Perspective.rb', line 426</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='id identifier rubyid_shadow_update'>shadow_update</span>
+  <span class='kw'>if</span> <span class='ivar'>@ombrelist</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>&gt;</span><span class='int'>0</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_i'>i</span> <span class='kw'>in</span> <span class='int'>0</span><span class='op'>...</span><span class='ivar'>@ombrelist</span><span class='period'>.</span><span class='id identifier rubyid_size'>size</span>
+      <span class='ivar'>@ombrelist</span><span class='lbracket'>[</span><span class='id identifier rubyid_i'>i</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_update'>update</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:30 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>

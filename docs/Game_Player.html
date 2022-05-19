@@ -1,0 +1,2817 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  Class: Game_Player
+  
+    &mdash; Documentation by YARD 0.9.27
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "Game_Player";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="class_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index (G)</a> &raquo;
+    
+    
+    <span class="title">Game_Player</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><h1>Class: Game_Player
+  
+  
+  
+</h1>
+<div class="box_info">
+  
+  <dl>
+    <dt>Inherits:</dt>
+    <dd>
+      <span class="inheritName"><span class='object_link'><a href="Game_Character.html" title="Game_Character (class)">Game_Character</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Game_Character.html" title="Game_Character (class)">Game_Character</a></span></li>
+          
+            <li class="next">Game_Player</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+    </dd>
+  </dl>
+  
+
+  
+  
+  
+  
+  
+
+  
+
+  
+  <dl>
+    <dt>Defined in:</dt>
+    <dd>scripts/Game_Player.rb<span class="defines">,<br />
+  scripts/Walk_Run.rb,<br /> scripts/PBattle_OrgBattle.rb</span>
+</dd>
+  </dl>
+  
+</div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    
+<h6 id="label-"></h6>
+
+<p>** Game_Player</p>
+<hr>
+
+<pre class="code ruby"><code class="ruby">This class handles the player. Its functions include event starting
+determinants and map scrolling. Refer to &quot;$game_player&quot; for the one
+instance of this class.
+</code></pre>
+
+<h6 id="label-"></h6>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small><a href="#" class="summary_toggle">collapse</a></small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bump_se-instance_method" title="#bump_se (instance method)">#<strong>bump_se</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute bump_se.</p>
+</div></span>
+  
+</li>
+
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#direction-instance_method" title="#direction (instance method)">#<strong>direction</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>Returns the value of attribute direction.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+  
+  
+  <h3 class="inherited">Attributes inherited from <span class='object_link'><a href="Game_Character.html" title="Game_Character (class)">Game_Character</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Game_Character.html#animation_id-instance_method" title="Game_Character#animation_id (method)">#animation_id</a></span>, <span class='object_link'><a href="Game_Character.html#blend_type-instance_method" title="Game_Character#blend_type (method)">#blend_type</a></span>, <span class='object_link'><a href="Game_Character.html#character_hue-instance_method" title="Game_Character#character_hue (method)">#character_hue</a></span>, <span class='object_link'><a href="Game_Character.html#id-instance_method" title="Game_Character#id (method)">#id</a></span>, <span class='object_link'><a href="Game_Character.html#move_route_forcing-instance_method" title="Game_Character#move_route_forcing (method)">#move_route_forcing</a></span>, <span class='object_link'><a href="Game_Character.html#move_speed-instance_method" title="Game_Character#move_speed (method)">#move_speed</a></span>, <span class='object_link'><a href="Game_Character.html#opacity-instance_method" title="Game_Character#opacity (method)">#opacity</a></span>, <span class='object_link'><a href="Game_Character.html#pattern-instance_method" title="Game_Character#pattern (method)">#pattern</a></span>, <span class='object_link'><a href="Game_Character.html#real_x-instance_method" title="Game_Character#real_x (method)">#real_x</a></span>, <span class='object_link'><a href="Game_Character.html#real_y-instance_method" title="Game_Character#real_y (method)">#real_y</a></span>, <span class='object_link'><a href="Game_Character.html#through-instance_method" title="Game_Character#through (method)">#through</a></span>, <span class='object_link'><a href="Game_Character.html#tile_id-instance_method" title="Game_Character#tile_id (method)">#tile_id</a></span>, <span class='object_link'><a href="Game_Character.html#transparent-instance_method" title="Game_Character#transparent (method)">#transparent</a></span>, <span class='object_link'><a href="Game_Character.html#walk_anime-instance_method" title="Game_Character#walk_anime (method)">#walk_anime</a></span>, <span class='object_link'><a href="Game_Character.html#x-instance_method" title="Game_Character#x (method)">#x</a></span>, <span class='object_link'><a href="Game_Character.html#y-instance_method" title="Game_Character#y (method)">#y</a></span></p>
+
+
+  
+    <h2>
+      Instance Method Summary
+      <small><a href="#" class="summary_toggle">collapse</a></small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#bush_depth-instance_method" title="#bush_depth (instance method)">#<strong>bush_depth</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#center-instance_method" title="#center (instance method)">#<strong>center</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Set Map Display Position to Center of Screen —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#character_name-instance_method" title="#character_name (instance method)">#<strong>character_name</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_event_trigger_here-instance_method" title="#check_event_trigger_here (instance method)">#<strong>check_event_trigger_here</strong>(triggers)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Same Position Starting Determinant —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_event_trigger_there-instance_method" title="#check_event_trigger_there (instance method)">#<strong>check_event_trigger_there</strong>(triggers)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Front Event Starting Determinant —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#check_event_trigger_touch-instance_method" title="#check_event_trigger_touch (instance method)">#<strong>check_event_trigger_touch</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Touch Event Starting Determinant —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#encounter_count-instance_method" title="#encounter_count (instance method)">#<strong>encounter_count</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Get Encounter Count —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fullPattern-instance_method" title="#fullPattern (instance method)">#<strong>fullPattern</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">#<strong>initialize</strong>(*arg)  &#x21d2; Game_Player </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>A new instance of Game_Player.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#make_encounter_count-instance_method" title="#make_encounter_count (instance method)">#<strong>make_encounter_count</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Make Encounter Count —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#map-instance_method" title="#map (instance method)">#<strong>map</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#move_down-instance_method" title="#move_down (instance method)">#<strong>move_down</strong>(turn_enabled = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#move_left-instance_method" title="#move_left (instance method)">#<strong>move_left</strong>(turn_enabled = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#move_right-instance_method" title="#move_right (instance method)">#<strong>move_right</strong>(turn_enabled = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#move_up-instance_method" title="#move_up (instance method)">#<strong>move_up</strong>(turn_enabled = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#moveto-instance_method" title="#moveto (instance method)">#<strong>moveto</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Move to Designated Position     x : x-coordinate     y : y-coordinate —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#moveto2-instance_method" title="#moveto2 (instance method)">#<strong>moveto2</strong>(x, y)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#passable%3F-instance_method" title="#passable? (instance method)">#<strong>passable?</strong>(x, y, d)  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Passable Determinants     x : x-coordinate     y : y-coordinate     d : direction (0,2,4,6,8)         * 0 = Determines if all directions are impassable (for jumping) —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbCanRun%3F-instance_method" title="#pbCanRun? (instance method)">#<strong>pbCanRun?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbCheckEventTriggerAfterTurning-instance_method" title="#pbCheckEventTriggerAfterTurning (instance method)">#<strong>pbCheckEventTriggerAfterTurning</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbCheckEventTriggerFromDistance-instance_method" title="#pbCheckEventTriggerFromDistance (instance method)">#<strong>pbCheckEventTriggerFromDistance</strong>(triggers)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbFacingEvent-instance_method" title="#pbFacingEvent (instance method)">#<strong>pbFacingEvent</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbHasDependentEvents%3F-instance_method" title="#pbHasDependentEvents? (instance method)">#<strong>pbHasDependentEvents?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbIsRunning%3F-instance_method" title="#pbIsRunning? (instance method)">#<strong>pbIsRunning?</strong>  &#x21d2; Boolean </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbTriggeredCounterEvents-instance_method" title="#pbTriggeredCounterEvents (instance method)">#<strong>pbTriggeredCounterEvents</strong>(triggers, checkIfRunning = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#pbTriggeredTrainerEvents-instance_method" title="#pbTriggeredTrainerEvents (instance method)">#<strong>pbTriggeredTrainerEvents</strong>(triggers, checkIfRunning = true)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#refresh-instance_method" title="#refresh (instance method)">#<strong>refresh</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Refresh —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#setDefaultCharName-instance_method" title="#setDefaultCharName (instance method)">#<strong>setDefaultCharName</strong>(chname, pattern)  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update-instance_method" title="#update (instance method)">#<strong>update</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'>
+<p>—————————————————————————– * Frame Update —————————————————————————–.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#update_old-instance_method" title="#update_old (instance method)">#<strong>update_old</strong>  &#x21d2; Object </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'></div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Game_Character.html" title="Game_Character (class)">Game_Character</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Game_Character.html#force_move_route-instance_method" title="Game_Character#force_move_route (method)">#force_move_route</a></span>, <span class='object_link'><a href="Game_Character.html#increase_steps-instance_method" title="Game_Character#increase_steps (method)">#increase_steps</a></span>, <span class='object_link'><a href="Game_Character.html#jump-instance_method" title="Game_Character#jump (method)">#jump</a></span>, <span class='object_link'><a href="Game_Character.html#jumpBackward-instance_method" title="Game_Character#jumpBackward (method)">#jumpBackward</a></span>, <span class='object_link'><a href="Game_Character.html#jumpForward-instance_method" title="Game_Character#jumpForward (method)">#jumpForward</a></span>, <span class='object_link'><a href="Game_Character.html#jumping%3F-instance_method" title="Game_Character#jumping? (method)">#jumping?</a></span>, <span class='object_link'><a href="Game_Character.html#lock-instance_method" title="Game_Character#lock (method)">#lock</a></span>, <span class='object_link'><a href="Game_Character.html#lock%3F-instance_method" title="Game_Character#lock? (method)">#lock?</a></span>, <span class='object_link'><a href="Game_Character.html#minilock-instance_method" title="Game_Character#minilock (method)">#minilock</a></span>, <span class='object_link'><a href="Game_Character.html#moveLeft90-instance_method" title="Game_Character#moveLeft90 (method)">#moveLeft90</a></span>, <span class='object_link'><a href="Game_Character.html#moveRight90-instance_method" title="Game_Character#moveRight90 (method)">#moveRight90</a></span>, <span class='object_link'><a href="Game_Character.html#move_away_from_player-instance_method" title="Game_Character#move_away_from_player (method)">#move_away_from_player</a></span>, <span class='object_link'><a href="Game_Character.html#move_backward-instance_method" title="Game_Character#move_backward (method)">#move_backward</a></span>, <span class='object_link'><a href="Game_Character.html#move_forward-instance_method" title="Game_Character#move_forward (method)">#move_forward</a></span>, <span class='object_link'><a href="Game_Character.html#move_lower_left-instance_method" title="Game_Character#move_lower_left (method)">#move_lower_left</a></span>, <span class='object_link'><a href="Game_Character.html#move_lower_right-instance_method" title="Game_Character#move_lower_right (method)">#move_lower_right</a></span>, <span class='object_link'><a href="Game_Character.html#move_random-instance_method" title="Game_Character#move_random (method)">#move_random</a></span>, <span class='object_link'><a href="Game_Character.html#move_toward_player-instance_method" title="Game_Character#move_toward_player (method)">#move_toward_player</a></span>, <span class='object_link'><a href="Game_Character.html#move_type_custom-instance_method" title="Game_Character#move_type_custom (method)">#move_type_custom</a></span>, <span class='object_link'><a href="Game_Character.html#move_type_random-instance_method" title="Game_Character#move_type_random (method)">#move_type_random</a></span>, <span class='object_link'><a href="Game_Character.html#move_type_toward_player-instance_method" title="Game_Character#move_type_toward_player (method)">#move_type_toward_player</a></span>, <span class='object_link'><a href="Game_Character.html#move_upper_left-instance_method" title="Game_Character#move_upper_left (method)">#move_upper_left</a></span>, <span class='object_link'><a href="Game_Character.html#move_upper_right-instance_method" title="Game_Character#move_upper_right (method)">#move_upper_right</a></span>, <span class='object_link'><a href="Game_Character.html#moving%3F-instance_method" title="Game_Character#moving? (method)">#moving?</a></span>, <span class='object_link'><a href="Game_Character.html#passableEx%3F-instance_method" title="Game_Character#passableEx? (method)">#passableEx?</a></span>, <span class='object_link'><a href="Game_Character.html#passableStrict%3F-instance_method" title="Game_Character#passableStrict? (method)">#passableStrict?</a></span>, <span class='object_link'><a href="Game_Character.html#screen_x-instance_method" title="Game_Character#screen_x (method)">#screen_x</a></span>, <span class='object_link'><a href="Game_Character.html#screen_y-instance_method" title="Game_Character#screen_y (method)">#screen_y</a></span>, <span class='object_link'><a href="Game_Character.html#screen_y_ground-instance_method" title="Game_Character#screen_y_ground (method)">#screen_y_ground</a></span>, <span class='object_link'><a href="Game_Character.html#screen_z-instance_method" title="Game_Character#screen_z (method)">#screen_z</a></span>, <span class='object_link'><a href="Game_Character.html#straighten-instance_method" title="Game_Character#straighten (method)">#straighten</a></span>, <span class='object_link'><a href="Game_Character.html#terrain_tag-instance_method" title="Game_Character#terrain_tag (method)">#terrain_tag</a></span>, <span class='object_link'><a href="Game_Character.html#triggerLeaveTile-instance_method" title="Game_Character#triggerLeaveTile (method)">#triggerLeaveTile</a></span>, <span class='object_link'><a href="Game_Character.html#turnGeneric-instance_method" title="Game_Character#turnGeneric (method)">#turnGeneric</a></span>, <span class='object_link'><a href="Game_Character.html#turn_180-instance_method" title="Game_Character#turn_180 (method)">#turn_180</a></span>, <span class='object_link'><a href="Game_Character.html#turn_away_from_player-instance_method" title="Game_Character#turn_away_from_player (method)">#turn_away_from_player</a></span>, <span class='object_link'><a href="Game_Character.html#turn_down-instance_method" title="Game_Character#turn_down (method)">#turn_down</a></span>, <span class='object_link'><a href="Game_Character.html#turn_left-instance_method" title="Game_Character#turn_left (method)">#turn_left</a></span>, <span class='object_link'><a href="Game_Character.html#turn_left_90-instance_method" title="Game_Character#turn_left_90 (method)">#turn_left_90</a></span>, <span class='object_link'><a href="Game_Character.html#turn_random-instance_method" title="Game_Character#turn_random (method)">#turn_random</a></span>, <span class='object_link'><a href="Game_Character.html#turn_right-instance_method" title="Game_Character#turn_right (method)">#turn_right</a></span>, <span class='object_link'><a href="Game_Character.html#turn_right_90-instance_method" title="Game_Character#turn_right_90 (method)">#turn_right_90</a></span>, <span class='object_link'><a href="Game_Character.html#turn_right_or_left_90-instance_method" title="Game_Character#turn_right_or_left_90 (method)">#turn_right_or_left_90</a></span>, <span class='object_link'><a href="Game_Character.html#turn_toward_player-instance_method" title="Game_Character#turn_toward_player (method)">#turn_toward_player</a></span>, <span class='object_link'><a href="Game_Character.html#turn_up-instance_method" title="Game_Character#turn_up (method)">#turn_up</a></span>, <span class='object_link'><a href="Game_Character.html#unlock-instance_method" title="Game_Character#unlock (method)">#unlock</a></span>, <span class='object_link'><a href="Game_Character.html#update_jump-instance_method" title="Game_Character#update_jump (method)">#update_jump</a></span>, <span class='object_link'><a href="Game_Character.html#update_move-instance_method" title="Game_Character#update_move (method)">#update_move</a></span>, <span class='object_link'><a href="Game_Character.html#update_stop-instance_method" title="Game_Character#update_stop (method)">#update_stop</a></span></p>
+<div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    #<strong>initialize</strong>(*arg)  &#x21d2; <tt><span class='object_link'><a href="" title="Game_Player (class)">Game_Player</a></span></tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns a new instance of Game_Player.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+16
+17
+18
+19
+20
+21</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 16</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_arg'>arg</span><span class='rparen'>)</span>
+  <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_arg'>arg</span><span class='rparen'>)</span>
+  <span class='ivar'>@lastdir</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@lastdirframe</span><span class='op'>=</span><span class='int'>0</span>
+  <span class='ivar'>@bump_se</span><span class='op'>=</span><span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id="bump_se=-instance_method"></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="bump_se-instance_method">
+  
+    #<strong>bump_se</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute bump_se.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+9
+10
+11</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 9</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bump_se'>bump_se</span>
+  <span class='ivar'>@bump_se</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      
+      <span id="direction=-instance_method"></span>
+      <div class="method_details ">
+  <h3 class="signature " id="direction-instance_method">
+  
+    #<strong>direction</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+<p>Returns the value of attribute direction.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+263
+264
+265</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PBattle_OrgBattle.rb', line 263</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_direction'>direction</span>
+  <span class='ivar'>@direction</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="instance_method_details" class="method_details_list">
+    <h2>Instance Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="bush_depth-instance_method">
+  
+    #<strong>bush_depth</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_bush_depth'>bush_depth</span>
+  <span class='kw'>return</span> <span class='int'>0</span> <span class='kw'>if</span> <span class='ivar'>@tile_id</span> <span class='op'>&gt;</span> <span class='int'>0</span> <span class='kw'>or</span> <span class='ivar'>@always_on_top</span>
+  <span class='id identifier rubyid_xbehind'>xbehind</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@direction</span><span class='op'>==</span><span class='int'>4</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@x</span><span class='op'>+</span><span class='int'>1</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='ivar'>@direction</span><span class='op'>==</span><span class='int'>6</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@x</span><span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@x</span>
+  <span class='id identifier rubyid_ybehind'>ybehind</span><span class='op'>=</span><span class='lparen'>(</span><span class='ivar'>@direction</span><span class='op'>==</span><span class='int'>8</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@y</span><span class='op'>+</span><span class='int'>1</span> <span class='op'>:</span> <span class='lparen'>(</span><span class='ivar'>@direction</span><span class='op'>==</span><span class='int'>2</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='ivar'>@y</span><span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@y</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span><span class='ivar'>@y</span><span class='rparen'>)</span> <span class='op'>||</span> <span class='op'>!</span><span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='id identifier rubyid_xbehind'>xbehind</span><span class='comma'>,</span><span class='id identifier rubyid_ybehind'>ybehind</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='int'>0</span> <span class='kw'>if</span> <span class='op'>!</span><span class='gvar'>$MapFactory</span>
+    <span class='id identifier rubyid_newhere'>newhere</span><span class='op'>=</span><span class='gvar'>$MapFactory</span><span class='period'>.</span><span class='id identifier rubyid_getNewMap'>getNewMap</span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span><span class='ivar'>@y</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_newbehind'>newbehind</span><span class='op'>=</span><span class='gvar'>$MapFactory</span><span class='period'>.</span><span class='id identifier rubyid_getNewMap'>getNewMap</span><span class='lparen'>(</span><span class='id identifier rubyid_xbehind'>xbehind</span><span class='comma'>,</span><span class='id identifier rubyid_ybehind'>ybehind</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span><span class='ivar'>@y</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_heremap'>heremap</span><span class='op'>=</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='semicolon'>;</span> <span class='id identifier rubyid_herex'>herex</span><span class='op'>=</span><span class='ivar'>@x</span><span class='semicolon'>;</span> <span class='id identifier rubyid_herey'>herey</span><span class='op'>=</span><span class='ivar'>@y</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_newhere'>newhere</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_newhere'>newhere</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_heremap'>heremap</span><span class='op'>=</span><span class='id identifier rubyid_newhere'>newhere</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='id identifier rubyid_herex'>herex</span><span class='op'>=</span><span class='id identifier rubyid_newhere'>newhere</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='id identifier rubyid_herey'>herey</span><span class='op'>=</span><span class='id identifier rubyid_newhere'>newhere</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='int'>0</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='id identifier rubyid_xbehind'>xbehind</span><span class='comma'>,</span><span class='id identifier rubyid_ybehind'>ybehind</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_behindmap'>behindmap</span><span class='op'>=</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='semicolon'>;</span> <span class='id identifier rubyid_behindx'>behindx</span><span class='op'>=</span><span class='id identifier rubyid_xbehind'>xbehind</span><span class='semicolon'>;</span> <span class='id identifier rubyid_behindy'>behindy</span><span class='op'>=</span><span class='id identifier rubyid_ybehind'>ybehind</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_newbehind'>newbehind</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_newbehind'>newbehind</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_behindmap'>behindmap</span><span class='op'>=</span><span class='id identifier rubyid_newbehind'>newbehind</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='id identifier rubyid_behindx'>behindx</span><span class='op'>=</span><span class='id identifier rubyid_newbehind'>newbehind</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='semicolon'>;</span> <span class='id identifier rubyid_behindy'>behindy</span><span class='op'>=</span><span class='id identifier rubyid_newbehind'>newbehind</span><span class='lbracket'>[</span><span class='int'>2</span><span class='rbracket'>]</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='int'>0</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='ivar'>@jump_count</span> <span class='op'>&lt;=</span> <span class='int'>0</span> <span class='kw'>and</span> <span class='id identifier rubyid_heremap'>heremap</span><span class='period'>.</span><span class='id identifier rubyid_deepBush?'>deepBush?</span><span class='lparen'>(</span><span class='id identifier rubyid_herex'>herex</span><span class='comma'>,</span> <span class='id identifier rubyid_herey'>herey</span><span class='rparen'>)</span> <span class='kw'>and</span>
+                            <span class='id identifier rubyid_behindmap'>behindmap</span><span class='period'>.</span><span class='id identifier rubyid_deepBush?'>deepBush?</span><span class='lparen'>(</span><span class='id identifier rubyid_behindx'>behindx</span><span class='comma'>,</span> <span class='id identifier rubyid_behindy'>behindy</span><span class='rparen'>)</span>
+      <span class='kw'>return</span> <span class='int'>32</span>
+    <span class='kw'>elsif</span> <span class='ivar'>@jump_count</span> <span class='op'>&lt;=</span> <span class='int'>0</span> <span class='kw'>and</span> <span class='id identifier rubyid_heremap'>heremap</span><span class='period'>.</span><span class='id identifier rubyid_bush?'>bush?</span><span class='lparen'>(</span><span class='id identifier rubyid_herex'>herex</span><span class='comma'>,</span> <span class='id identifier rubyid_herey'>herey</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='op'>!</span><span class='id identifier rubyid_moving?'>moving?</span>
+      <span class='kw'>return</span> <span class='int'>12</span>
+    <span class='kw'>else</span>
+      <span class='kw'>return</span> <span class='int'>0</span>
+    <span class='kw'>end</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='kw'>super</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="center-instance_method">
+  
+    #<strong>center</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Set Map Display Position to Center of Screen</p>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 253</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_center'>center</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='comment'># X coordinate in the center of the screen
+</span>  <span class='id identifier rubyid_center_x'>center_x</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_width'><span class='object_link'><a href="Graphics.html#width-class_method" title="Graphics.width (method)">width</a></span></span><span class='op'>/</span><span class='int'>2</span> <span class='op'>-</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Game_Map.html#TILEWIDTH-constant" title="Game_Map::TILEWIDTH (constant)">TILEWIDTH</a></span></span><span class='op'>/</span><span class='int'>2</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Game_Map.html#XSUBPIXEL-constant" title="Game_Map::XSUBPIXEL (constant)">XSUBPIXEL</a></span></span> 
+  <span class='comment'># Y coordinate in the center of the screen   
+</span>  <span class='id identifier rubyid_center_y'>center_y</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_height'><span class='object_link'><a href="Graphics.html#height-class_method" title="Graphics.height (method)">height</a></span></span><span class='op'>/</span><span class='int'>2</span> <span class='op'>-</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Game_Map.html#TILEHEIGHT-constant" title="Game_Map::TILEHEIGHT (constant)">TILEHEIGHT</a></span></span><span class='op'>/</span><span class='int'>2</span><span class='rparen'>)</span> <span class='op'>*</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Game_Map.html#YSUBPIXEL-constant" title="Game_Map::YSUBPIXEL (constant)">YSUBPIXEL</a></span></span>
+  <span class='id identifier rubyid_max_x'>max_x</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='period'>.</span><span class='id identifier rubyid_width'>width</span> <span class='op'>-</span> <span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_width'><span class='object_link'><a href="Graphics.html#width-class_method" title="Graphics.width (method)">width</a></span></span><span class='op'>*</span><span class='float'>1.0</span><span class='op'>/</span><span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Game_Map.html#TILEWIDTH-constant" title="Game_Map::TILEWIDTH (constant)">TILEWIDTH</a></span></span><span class='rparen'>)</span> <span class='op'>*</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_realResX'><span class='object_link'><a href="Game_Map.html#realResX-class_method" title="Game_Map.realResX (method)">realResX</a></span></span>
+  <span class='id identifier rubyid_max_y'>max_y</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='period'>.</span><span class='id identifier rubyid_height'>height</span> <span class='op'>-</span> <span class='const'><span class='object_link'><a href="Graphics.html" title="Graphics (module)">Graphics</a></span></span><span class='period'>.</span><span class='id identifier rubyid_height'><span class='object_link'><a href="Graphics.html#height-class_method" title="Graphics.height (method)">height</a></span></span><span class='op'>*</span><span class='float'>1.0</span><span class='op'>/</span><span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Game_Map.html#TILEHEIGHT-constant" title="Game_Map::TILEHEIGHT (constant)">TILEHEIGHT</a></span></span><span class='rparen'>)</span> <span class='op'>*</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_realResY'><span class='object_link'><a href="Game_Map.html#realResY-class_method" title="Game_Map.realResY (method)">realResY</a></span></span>
+  <span class='id identifier rubyid_dispx'>dispx</span><span class='op'>=</span><span class='id identifier rubyid_x'>x</span> <span class='op'>*</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_realResX'><span class='object_link'><a href="Game_Map.html#realResX-class_method" title="Game_Map.realResX (method)">realResX</a></span></span> <span class='op'>-</span> <span class='id identifier rubyid_center_x'>center_x</span>
+  <span class='id identifier rubyid_dispy'>dispy</span><span class='op'>=</span><span class='id identifier rubyid_y'>y</span> <span class='op'>*</span> <span class='const'><span class='object_link'><a href="Game_Map.html" title="Game_Map (class)">Game_Map</a></span></span><span class='period'>.</span><span class='id identifier rubyid_realResY'><span class='object_link'><a href="Game_Map.html#realResY-class_method" title="Game_Map.realResY (method)">realResY</a></span></span> <span class='op'>-</span> <span class='id identifier rubyid_center_y'>center_y</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='period'>.</span><span class='id identifier rubyid_display_x'>display_x</span> <span class='op'>=</span> <span class='id identifier rubyid_dispx'>dispx</span>
+  <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='period'>.</span><span class='id identifier rubyid_display_y'>display_y</span> <span class='op'>=</span> <span class='id identifier rubyid_dispy'>dispy</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="character_name-instance_method">
+  
+    #<strong>character_name</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Walk_Run.rb', line 39</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_character_name'>character_name</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@defaultCharacterName</span>
+    <span class='ivar'>@defaultCharacterName</span><span class='op'>=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='ivar'>@defaultCharacterName</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
+    <span class='kw'>return</span> <span class='ivar'>@defaultCharacterName</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_moving?'>moving?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@move_route_forcing</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$PokemonGlobal</span>
+    <span class='id identifier rubyid_meta'>meta</span><span class='op'>=</span><span class='id identifier rubyid_pbGetMetadata'>pbGetMetadata</span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="top-level-namespace.html#MetadataPlayerA-constant" title="MetadataPlayerA (constant)">MetadataPlayerA</a></span></span><span class='op'>+</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_playerID'>playerID</span><span class='rparen'>)</span>
+    <span class='kw'>if</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_playerID'>playerID</span><span class='op'>&gt;=</span><span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_meta'>meta</span> <span class='op'>&amp;&amp;</span> 
+       <span class='op'>!</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_bicycle'>bicycle</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_diving'>diving</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_surfing'>surfing</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_meta'>meta</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_meta'>meta</span><span class='lbracket'>[</span><span class='int'>4</span><span class='rbracket'>]</span><span class='op'>!=</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span> <span class='op'>&amp;&amp;</span> <span class='const'><span class='object_link'><a href="Input.html" title="Input (module)">Input</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dir4'><span class='object_link'><a href="Input.html#dir4-class_method" title="Input.dir4 (method)">dir4</a></span></span><span class='op'>!=</span><span class='int'>0</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_passable?'><span class='object_link'><a href="top-level-namespace.html#passable%3F-instance_method" title="#passable? (method)">passable?</a></span></span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span><span class='ivar'>@y</span><span class='comma'>,</span><span class='const'><span class='object_link'><a href="Input.html" title="Input (module)">Input</a></span></span><span class='period'>.</span><span class='id identifier rubyid_dir4'><span class='object_link'><a href="Input.html#dir4-class_method" title="Input.dir4 (method)">dir4</a></span></span><span class='rparen'>)</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_pbCanRun?'>pbCanRun?</span>
+        <span class='comment'># Display running character sprite
+</span>        <span class='ivar'>@character_name</span><span class='op'>=</span><span class='id identifier rubyid_pbGetPlayerCharset'><span class='object_link'><a href="top-level-namespace.html#pbGetPlayerCharset-instance_method" title="#pbGetPlayerCharset (method)">pbGetPlayerCharset</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span><span class='int'>4</span><span class='rparen'>)</span>
+      <span class='kw'>else</span>
+        <span class='comment'># Display normal character sprite 
+</span>        <span class='ivar'>@character_name</span><span class='op'>=</span><span class='id identifier rubyid_pbGetPlayerCharset'><span class='object_link'><a href="top-level-namespace.html#pbGetPlayerCharset-instance_method" title="#pbGetPlayerCharset (method)">pbGetPlayerCharset</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_meta'>meta</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='ivar'>@character_name</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_event_trigger_here-instance_method">
+  
+    #<strong>check_event_trigger_here</strong>(triggers)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Same Position Starting Determinant</p>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 303</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_event_trigger_here'>check_event_trigger_here</span><span class='lparen'>(</span><span class='id identifier rubyid_triggers'>triggers</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='comment'># If event is running
+</span>  <span class='kw'>if</span> <span class='gvar'>$game_system</span><span class='period'>.</span><span class='id identifier rubyid_map_interpreter'>map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>end</span>
+  <span class='comment'># All event loops
+</span>  <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+    <span class='comment'># If event coordinates and triggers are consistent
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>==</span> <span class='ivar'>@x</span> <span class='kw'>and</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>==</span> <span class='ivar'>@y</span> <span class='kw'>and</span> <span class='id identifier rubyid_triggers'>triggers</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_trigger'>trigger</span><span class='rparen'>)</span>
+      <span class='comment'># If starting determinant is same position event (other than jumping)
+</span>      <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_jumping?'>jumping?</span> <span class='kw'>and</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_over_trigger?'>over_trigger?</span>
+        <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_event_trigger_there-instance_method">
+  
+    #<strong>check_event_trigger_there</strong>(triggers)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Front Event Starting Determinant</p>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 325</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_event_trigger_there'>check_event_trigger_there</span><span class='lparen'>(</span><span class='id identifier rubyid_triggers'>triggers</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='comment'># If event is running
+</span>  <span class='kw'>if</span> <span class='gvar'>$game_system</span><span class='period'>.</span><span class='id identifier rubyid_map_interpreter'>map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>end</span>
+  <span class='comment'># Calculate front event coordinates
+</span>  <span class='id identifier rubyid_new_x'>new_x</span> <span class='op'>=</span> <span class='ivar'>@x</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>6</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>4</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_y'>new_y</span> <span class='op'>=</span> <span class='ivar'>@y</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>2</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>8</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='comment'># All event loops
+</span>  <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+    <span class='comment'># If event coordinates and triggers are consistent
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>==</span> <span class='id identifier rubyid_new_x'>new_x</span> <span class='kw'>and</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>==</span> <span class='id identifier rubyid_new_y'>new_y</span> <span class='kw'>and</span>
+       <span class='id identifier rubyid_triggers'>triggers</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_trigger'>trigger</span><span class='rparen'>)</span>
+      <span class='comment'># If starting determinant is front event (other than jumping)
+</span>      <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_jumping?'>jumping?</span> <span class='kw'>and</span> <span class='op'>!</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_over_trigger?'>over_trigger?</span>
+        <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='comment'># If fitting event is not found
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_result'>result</span> <span class='op'>==</span> <span class='kw'>false</span>
+    <span class='comment'># If front tile is a counter
+</span>    <span class='kw'>if</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_counter?'>counter?</span><span class='lparen'>(</span><span class='id identifier rubyid_new_x'>new_x</span><span class='comma'>,</span> <span class='id identifier rubyid_new_y'>new_y</span><span class='rparen'>)</span>
+      <span class='comment'># Calculate 1 tile inside coordinates
+</span>      <span class='id identifier rubyid_new_x'>new_x</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>6</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>4</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_new_y'>new_y</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>2</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>8</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+      <span class='comment'># All event loops
+</span>      <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+        <span class='comment'># If event coordinates and triggers are consistent
+</span>        <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>==</span> <span class='id identifier rubyid_new_x'>new_x</span> <span class='kw'>and</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>==</span> <span class='id identifier rubyid_new_y'>new_y</span> <span class='kw'>and</span>
+           <span class='id identifier rubyid_triggers'>triggers</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_trigger'>trigger</span><span class='rparen'>)</span>
+          <span class='comment'># If starting determinant is front event (other than jumping)
+</span>          <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_jumping?'>jumping?</span> <span class='kw'>and</span> <span class='op'>!</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_over_trigger?'>over_trigger?</span>
+            <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span>
+            <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>true</span>
+          <span class='kw'>end</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="check_event_trigger_touch-instance_method">
+  
+    #<strong>check_event_trigger_touch</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Touch Event Starting Determinant</p>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 372</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_check_event_trigger_touch'>check_event_trigger_touch</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='comment'># If event is running
+</span>  <span class='kw'>if</span> <span class='gvar'>$game_system</span><span class='period'>.</span><span class='id identifier rubyid_map_interpreter'>map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>end</span>
+  <span class='comment'># All event loops
+</span>  <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Trainer\((\d+)\)$</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_distance'>distance</span><span class='op'>=</span><span class='gvar'>$~</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='kw'>next</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_pbEventCanReachPlayer?'><span class='object_link'><a href="top-level-namespace.html#pbEventCanReachPlayer%3F-instance_method" title="#pbEventCanReachPlayer? (method)">pbEventCanReachPlayer?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='comma'>,</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_distance'>distance</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Counter\((\d+)\)$</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span>
+      <span class='id identifier rubyid_distance'>distance</span><span class='op'>=</span><span class='gvar'>$~</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+      <span class='kw'>next</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_pbEventFacesPlayer?'><span class='object_link'><a href="top-level-namespace.html#pbEventFacesPlayer%3F-instance_method" title="#pbEventFacesPlayer? (method)">pbEventFacesPlayer?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='comma'>,</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_distance'>distance</span><span class='rparen'>)</span>
+    <span class='kw'>end</span>
+    <span class='comment'># If event coordinates and triggers are consistent
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>==</span> <span class='id identifier rubyid_x'>x</span> <span class='kw'>and</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>==</span> <span class='id identifier rubyid_y'>y</span> <span class='kw'>and</span> <span class='lbracket'>[</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>2</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_trigger'>trigger</span><span class='rparen'>)</span>
+      <span class='comment'># If starting determinant is front event (other than jumping)
+</span>      <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_jumping?'>jumping?</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_over_trigger?'>over_trigger?</span>
+        <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span>
+        <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='kw'>true</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="encounter_count-instance_method">
+  
+    #<strong>encounter_count</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Get Encounter Count</p>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+280
+281
+282</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 280</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_encounter_count'>encounter_count</span>
+  <span class='kw'>return</span> <span class='ivar'>@encounter_count</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fullPattern-instance_method">
+  
+    #<strong>fullPattern</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Walk_Run.rb', line 2</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_fullPattern'>fullPattern</span>
+  <span class='kw'>case</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_direction'>direction</span>
+  <span class='kw'>when</span> <span class='int'>2</span>
+    <span class='kw'>return</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pattern'>pattern</span>
+  <span class='kw'>when</span> <span class='int'>4</span>
+    <span class='kw'>return</span> <span class='int'>4</span><span class='op'>+</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pattern'>pattern</span>
+  <span class='kw'>when</span> <span class='int'>6</span>
+    <span class='kw'>return</span> <span class='int'>8</span><span class='op'>+</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pattern'>pattern</span>
+  <span class='kw'>when</span> <span class='int'>8</span>
+    <span class='kw'>return</span> <span class='int'>12</span><span class='op'>+</span><span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_pattern'>pattern</span>
+  <span class='kw'>else</span>
+    <span class='kw'>return</span> <span class='int'>0</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="make_encounter_count-instance_method">
+  
+    #<strong>make_encounter_count</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Make Encounter Count</p>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+286
+287
+288
+289
+290
+291
+292</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 286</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_make_encounter_count'>make_encounter_count</span>
+  <span class='comment'># Image of two dice rolling
+</span>  <span class='kw'>if</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_map_id'>map_id</span> <span class='op'>!=</span> <span class='int'>0</span>
+    <span class='id identifier rubyid_n'>n</span> <span class='op'>=</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_encounter_step'>encounter_step</span>
+    <span class='ivar'>@encounter_count</span> <span class='op'>=</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='id identifier rubyid_rand'>rand</span><span class='lparen'>(</span><span class='id identifier rubyid_n'>n</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>1</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="map-instance_method">
+  
+    #<strong>map</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13
+14</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 11</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_map'>map</span>
+  <span class='ivar'>@map</span><span class='op'>=</span><span class='kw'>nil</span>
+  <span class='kw'>return</span> <span class='gvar'>$game_map</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="move_down-instance_method">
+  
+    #<strong>move_down</strong>(turn_enabled = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 62</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_move_down'>move_down</span><span class='lparen'>(</span><span class='id identifier rubyid_turn_enabled'>turn_enabled</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_turn_enabled'>turn_enabled</span>
+    <span class='id identifier rubyid_turn_down'>turn_down</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_passable?'><span class='object_link'><a href="top-level-namespace.html#passable%3F-instance_method" title="#passable? (method)">passable?</a></span></span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span> <span class='ivar'>@y</span><span class='comma'>,</span> <span class='int'>2</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbLedge'><span class='object_link'><a href="top-level-namespace.html#pbLedge-instance_method" title="#pbLedge (method)">pbLedge</a></span></span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbEndSurf'><span class='object_link'><a href="top-level-namespace.html#pbEndSurf-instance_method" title="#pbEndSurf (method)">pbEndSurf</a></span></span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_turn_down'>turn_down</span>
+    <span class='ivar'>@y</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='gvar'>$PokemonTemp</span><span class='period'>.</span><span class='id identifier rubyid_dependentEvents'>dependentEvents</span><span class='period'>.</span><span class='id identifier rubyid_pbMoveDependentEvents'>pbMoveDependentEvents</span>
+    <span class='id identifier rubyid_increase_steps'>increase_steps</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_check_event_trigger_touch'>check_event_trigger_touch</span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span> <span class='ivar'>@y</span><span class='op'>+</span><span class='int'>1</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@bump_se</span> <span class='op'>||</span> <span class='ivar'>@bump_se</span><span class='op'>&lt;=</span><span class='int'>0</span>
+        <span class='id identifier rubyid_pbSEPlay'><span class='object_link'><a href="top-level-namespace.html#pbSEPlay-instance_method" title="#pbSEPlay (method)">pbSEPlay</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bump</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='ivar'>@bump_se</span><span class='op'>=</span><span class='int'>10</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="move_left-instance_method">
+  
+    #<strong>move_left</strong>(turn_enabled = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 82</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_move_left'>move_left</span><span class='lparen'>(</span><span class='id identifier rubyid_turn_enabled'>turn_enabled</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_turn_enabled'>turn_enabled</span>
+    <span class='id identifier rubyid_turn_left'>turn_left</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_passable?'><span class='object_link'><a href="top-level-namespace.html#passable%3F-instance_method" title="#passable? (method)">passable?</a></span></span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span> <span class='ivar'>@y</span><span class='comma'>,</span> <span class='int'>4</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbLedge'><span class='object_link'><a href="top-level-namespace.html#pbLedge-instance_method" title="#pbLedge (method)">pbLedge</a></span></span><span class='lparen'>(</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbEndSurf'><span class='object_link'><a href="top-level-namespace.html#pbEndSurf-instance_method" title="#pbEndSurf (method)">pbEndSurf</a></span></span><span class='lparen'>(</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_turn_left'>turn_left</span>
+    <span class='ivar'>@x</span> <span class='op'>-=</span> <span class='int'>1</span>
+    <span class='gvar'>$PokemonTemp</span><span class='period'>.</span><span class='id identifier rubyid_dependentEvents'>dependentEvents</span><span class='period'>.</span><span class='id identifier rubyid_pbMoveDependentEvents'>pbMoveDependentEvents</span>
+    <span class='id identifier rubyid_increase_steps'>increase_steps</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_check_event_trigger_touch'>check_event_trigger_touch</span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='op'>-</span><span class='int'>1</span><span class='comma'>,</span> <span class='ivar'>@y</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@bump_se</span> <span class='op'>||</span> <span class='ivar'>@bump_se</span><span class='op'>&lt;=</span><span class='int'>0</span>
+        <span class='id identifier rubyid_pbSEPlay'><span class='object_link'><a href="top-level-namespace.html#pbSEPlay-instance_method" title="#pbSEPlay (method)">pbSEPlay</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bump</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='ivar'>@bump_se</span><span class='op'>=</span><span class='int'>10</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="move_right-instance_method">
+  
+    #<strong>move_right</strong>(turn_enabled = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 102</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_move_right'>move_right</span><span class='lparen'>(</span><span class='id identifier rubyid_turn_enabled'>turn_enabled</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_turn_enabled'>turn_enabled</span>
+    <span class='id identifier rubyid_turn_right'>turn_right</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_passable?'><span class='object_link'><a href="top-level-namespace.html#passable%3F-instance_method" title="#passable? (method)">passable?</a></span></span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span> <span class='ivar'>@y</span><span class='comma'>,</span> <span class='int'>6</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbLedge'><span class='object_link'><a href="top-level-namespace.html#pbLedge-instance_method" title="#pbLedge (method)">pbLedge</a></span></span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbEndSurf'><span class='object_link'><a href="top-level-namespace.html#pbEndSurf-instance_method" title="#pbEndSurf (method)">pbEndSurf</a></span></span><span class='lparen'>(</span><span class='int'>1</span><span class='comma'>,</span><span class='int'>0</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_turn_right'>turn_right</span>
+    <span class='ivar'>@x</span> <span class='op'>+=</span> <span class='int'>1</span>
+    <span class='gvar'>$PokemonTemp</span><span class='period'>.</span><span class='id identifier rubyid_dependentEvents'>dependentEvents</span><span class='period'>.</span><span class='id identifier rubyid_pbMoveDependentEvents'>pbMoveDependentEvents</span>
+    <span class='id identifier rubyid_increase_steps'>increase_steps</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_check_event_trigger_touch'>check_event_trigger_touch</span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='op'>+</span><span class='int'>1</span><span class='comma'>,</span> <span class='ivar'>@y</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@bump_se</span> <span class='op'>||</span> <span class='ivar'>@bump_se</span><span class='op'>&lt;=</span><span class='int'>0</span>
+        <span class='id identifier rubyid_pbSEPlay'><span class='object_link'><a href="top-level-namespace.html#pbSEPlay-instance_method" title="#pbSEPlay (method)">pbSEPlay</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bump</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='ivar'>@bump_se</span><span class='op'>=</span><span class='int'>10</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="move_up-instance_method">
+  
+    #<strong>move_up</strong>(turn_enabled = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 122</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_move_up'>move_up</span><span class='lparen'>(</span><span class='id identifier rubyid_turn_enabled'>turn_enabled</span> <span class='op'>=</span> <span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_turn_enabled'>turn_enabled</span>
+    <span class='id identifier rubyid_turn_up'>turn_up</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_passable?'><span class='object_link'><a href="top-level-namespace.html#passable%3F-instance_method" title="#passable? (method)">passable?</a></span></span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span> <span class='ivar'>@y</span><span class='comma'>,</span> <span class='int'>8</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbLedge'><span class='object_link'><a href="top-level-namespace.html#pbLedge-instance_method" title="#pbLedge (method)">pbLedge</a></span></span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pbEndSurf'><span class='object_link'><a href="top-level-namespace.html#pbEndSurf-instance_method" title="#pbEndSurf (method)">pbEndSurf</a></span></span><span class='lparen'>(</span><span class='int'>0</span><span class='comma'>,</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_turn_up'>turn_up</span>
+    <span class='ivar'>@y</span> <span class='op'>-=</span> <span class='int'>1</span>
+    <span class='gvar'>$PokemonTemp</span><span class='period'>.</span><span class='id identifier rubyid_dependentEvents'>dependentEvents</span><span class='period'>.</span><span class='id identifier rubyid_pbMoveDependentEvents'>pbMoveDependentEvents</span>
+    <span class='id identifier rubyid_increase_steps'>increase_steps</span>
+  <span class='kw'>else</span>
+    <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_check_event_trigger_touch'>check_event_trigger_touch</span><span class='lparen'>(</span><span class='ivar'>@x</span><span class='comma'>,</span> <span class='ivar'>@y</span><span class='op'>-</span><span class='int'>1</span><span class='rparen'>)</span>
+      <span class='kw'>if</span> <span class='op'>!</span><span class='ivar'>@bump_se</span> <span class='op'>||</span> <span class='ivar'>@bump_se</span><span class='op'>&lt;=</span><span class='int'>0</span>
+        <span class='id identifier rubyid_pbSEPlay'><span class='object_link'><a href="top-level-namespace.html#pbSEPlay-instance_method" title="#pbSEPlay (method)">pbSEPlay</a></span></span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>bump</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='semicolon'>;</span> <span class='ivar'>@bump_se</span><span class='op'>=</span><span class='int'>10</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="moveto-instance_method">
+  
+    #<strong>moveto</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Move to Designated Position</p>
+
+<pre class="code ruby"><code class="ruby">x : x-coordinate
+y : y-coordinate
+</code></pre>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+270
+271
+272
+273
+274
+275
+276</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 270</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_moveto'>moveto</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='kw'>super</span>
+  <span class='comment'># Centering
+</span>  <span class='id identifier rubyid_center'>center</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='comment'># Make encounter count
+</span>  <span class='id identifier rubyid_make_encounter_count'>make_encounter_count</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="moveto2-instance_method">
+  
+    #<strong>moveto2</strong>(x, y)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+265
+266
+267
+268
+269
+270
+271</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/PBattle_OrgBattle.rb', line 265</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_moveto2'>moveto2</span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='rparen'>)</span>
+  <span class='ivar'>@x</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span>
+  <span class='ivar'>@y</span> <span class='op'>=</span> <span class='id identifier rubyid_y'>y</span>
+  <span class='ivar'>@real_x</span> <span class='op'>=</span> <span class='ivar'>@x</span> <span class='op'>*</span> <span class='int'>128</span>
+  <span class='ivar'>@real_y</span> <span class='op'>=</span> <span class='ivar'>@y</span> <span class='op'>*</span> <span class='int'>128</span>
+  <span class='ivar'>@prelock_direction</span> <span class='op'>=</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="passable?-instance_method">
+  
+    #<strong>passable?</strong>(x, y, d)  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Passable Determinants</p>
+
+<pre class="code ruby"><code class="ruby">x : x-coordinate
+y : y-coordinate
+d : direction (0,2,4,6,8)
+    * 0 = Determines if all directions are impassable (for jumping)
+</code></pre>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 230</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_passable?'><span class='object_link'><a href="top-level-namespace.html#passable%3F-instance_method" title="#passable? (method)">passable?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_x'>x</span><span class='comma'>,</span> <span class='id identifier rubyid_y'>y</span><span class='comma'>,</span> <span class='id identifier rubyid_d'>d</span><span class='rparen'>)</span>
+  <span class='comment'># Get new coordinates
+</span>  <span class='id identifier rubyid_new_x'>new_x</span> <span class='op'>=</span> <span class='id identifier rubyid_x'>x</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_d'>d</span> <span class='op'>==</span> <span class='int'>6</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='id identifier rubyid_d'>d</span> <span class='op'>==</span> <span class='int'>4</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_y'>new_y</span> <span class='op'>=</span> <span class='id identifier rubyid_y'>y</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='id identifier rubyid_d'>d</span> <span class='op'>==</span> <span class='int'>2</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='id identifier rubyid_d'>d</span> <span class='op'>==</span> <span class='int'>8</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='comment'># If coordinates are outside of map
+</span>  <span class='kw'>unless</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_validLax?'>validLax?</span><span class='lparen'>(</span><span class='id identifier rubyid_new_x'>new_x</span><span class='comma'>,</span> <span class='id identifier rubyid_new_y'>new_y</span><span class='rparen'>)</span>
+    <span class='comment'># Impassable
+</span>    <span class='kw'>return</span> <span class='kw'>false</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='op'>!</span><span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_valid?'>valid?</span><span class='lparen'>(</span><span class='id identifier rubyid_new_x'>new_x</span><span class='comma'>,</span> <span class='id identifier rubyid_new_y'>new_y</span><span class='rparen'>)</span>
+    <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='op'>!</span><span class='gvar'>$MapFactory</span>
+    <span class='kw'>return</span> <span class='gvar'>$MapFactory</span><span class='period'>.</span><span class='id identifier rubyid_isPassableFromEdge?'>isPassableFromEdge?</span><span class='lparen'>(</span><span class='id identifier rubyid_new_x'>new_x</span><span class='comma'>,</span> <span class='id identifier rubyid_new_y'>new_y</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+  <span class='comment'># If debug mode is ON and ctrl key was pressed
+</span>  <span class='kw'>if</span> <span class='gvar'>$DEBUG</span> <span class='kw'>and</span> <span class='const'><span class='object_link'><a href="Input.html" title="Input (module)">Input</a></span></span><span class='period'>.</span><span class='id identifier rubyid_press?'><span class='object_link'><a href="Input.html#press%3F-class_method" title="Input.press? (method)">press?</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Input.html" title="Input (module)">Input</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Input.html#CTRL-constant" title="Input::CTRL (constant)">CTRL</a></span></span><span class='rparen'>)</span>
+    <span class='comment'># Passable
+</span>    <span class='kw'>return</span> <span class='kw'>true</span>
+  <span class='kw'>end</span>
+  <span class='kw'>super</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbCanRun?-instance_method">
+  
+    #<strong>pbCanRun?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Walk_Run.rb', line 24</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbCanRun?'>pbCanRun?</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='gvar'>$game_temp</span><span class='period'>.</span><span class='id identifier rubyid_in_menu'>in_menu</span>
+  <span class='id identifier rubyid_terrain'>terrain</span><span class='op'>=</span><span class='id identifier rubyid_pbGetTerrainTag'>pbGetTerrainTag</span>
+  <span class='id identifier rubyid_input'>input</span><span class='op'>=</span><span class='lparen'>(</span><span class='gvar'>$PokemonSystem</span><span class='period'>.</span><span class='id identifier rubyid_runstyle'>runstyle</span><span class='op'>==</span><span class='int'>1</span><span class='rparen'>)</span> <span class='op'>?</span> <span class='lparen'>(</span><span class='gvar'>$PokemonGlobal</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_runtoggle'>runtoggle</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='const'><span class='object_link'><a href="Input.html" title="Input (module)">Input</a></span></span><span class='period'>.</span><span class='id identifier rubyid_press?'><span class='object_link'><a href="Input.html#press%3F-class_method" title="Input.press? (method)">press?</a></span></span><span class='lparen'>(</span><span class='const'><span class='object_link'><a href="Input.html" title="Input (module)">Input</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Input.html#A-constant" title="Input::A (constant)">A</a></span></span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_input'>input</span> <span class='op'>&amp;&amp;</span>
+     <span class='op'>!</span><span class='id identifier rubyid_pbMapInterpreterRunning?'><span class='object_link'><a href="top-level-namespace.html#pbMapInterpreterRunning%3F-instance_method" title="#pbMapInterpreterRunning? (method)">pbMapInterpreterRunning?</a></span></span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@move_route_forcing</span> <span class='op'>&amp;&amp;</span> 
+     <span class='gvar'>$PokemonGlobal</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_runningShoes'>runningShoes</span> <span class='op'>&amp;&amp;</span>
+     <span class='op'>!</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_diving'>diving</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_surfing'>surfing</span> <span class='op'>&amp;&amp;</span>
+     <span class='op'>!</span><span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_bicycle'>bicycle</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='const'><span class='object_link'><a href="PBTerrain.html" title="PBTerrain (module)">PBTerrain</a></span></span><span class='period'>.</span><span class='id identifier rubyid_onlyWalk?'><span class='object_link'><a href="PBTerrain.html#onlyWalk%3F-class_method" title="PBTerrain.onlyWalk? (method)">onlyWalk?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_terrain'>terrain</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbCheckEventTriggerAfterTurning-instance_method">
+  
+    #<strong>pbCheckEventTriggerAfterTurning</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+184
+185</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 184</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbCheckEventTriggerAfterTurning'>pbCheckEventTriggerAfterTurning</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbCheckEventTriggerFromDistance-instance_method">
+  
+    #<strong>pbCheckEventTriggerFromDistance</strong>(triggers)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+187
+188
+189
+190
+191
+192
+193
+194
+195</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 187</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbCheckEventTriggerFromDistance'>pbCheckEventTriggerFromDistance</span><span class='lparen'>(</span><span class='id identifier rubyid_triggers'>triggers</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='op'>=</span><span class='id identifier rubyid_pbTriggeredTrainerEvents'>pbTriggeredTrainerEvents</span><span class='lparen'>(</span><span class='id identifier rubyid_triggers'>triggers</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_concat'>concat</span><span class='lparen'>(</span><span class='id identifier rubyid_pbTriggeredCounterEvents'>pbTriggeredCounterEvents</span><span class='lparen'>(</span><span class='id identifier rubyid_triggers'>triggers</span><span class='rparen'>)</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>false</span> <span class='kw'>if</span> <span class='id identifier rubyid_ret'>ret</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>==</span><span class='int'>0</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='id identifier rubyid_ret'>ret</span>
+    <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_start'>start</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='kw'>true</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbFacingEvent-instance_method">
+  
+    #<strong>pbFacingEvent</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 197</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbFacingEvent'>pbFacingEvent</span>
+  <span class='kw'>if</span> <span class='gvar'>$game_system</span><span class='period'>.</span><span class='id identifier rubyid_map_interpreter'>map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span>
+    <span class='kw'>return</span> <span class='kw'>nil</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_new_x'>new_x</span> <span class='op'>=</span> <span class='ivar'>@x</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>6</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>4</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new_y'>new_y</span> <span class='op'>=</span> <span class='ivar'>@y</span> <span class='op'>+</span> <span class='lparen'>(</span><span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>2</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>8</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+  <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+    <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>==</span> <span class='id identifier rubyid_new_x'>new_x</span> <span class='kw'>and</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>==</span> <span class='id identifier rubyid_new_y'>new_y</span>
+      <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_jumping?'>jumping?</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_over_trigger?'>over_trigger?</span>
+        <span class='kw'>return</span> <span class='id identifier rubyid_event'>event</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>if</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_counter?'>counter?</span><span class='lparen'>(</span><span class='id identifier rubyid_new_x'>new_x</span><span class='comma'>,</span> <span class='id identifier rubyid_new_y'>new_y</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new_x'>new_x</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>6</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>4</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new_y'>new_y</span> <span class='op'>+=</span> <span class='lparen'>(</span><span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>2</span> <span class='op'>?</span> <span class='int'>1</span> <span class='op'>:</span> <span class='ivar'>@direction</span> <span class='op'>==</span> <span class='int'>8</span> <span class='op'>?</span> <span class='op'>-</span><span class='int'>1</span> <span class='op'>:</span> <span class='int'>0</span><span class='rparen'>)</span>
+    <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_x'>x</span> <span class='op'>==</span> <span class='id identifier rubyid_new_x'>new_x</span> <span class='kw'>and</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_y'>y</span> <span class='op'>==</span> <span class='id identifier rubyid_new_y'>new_y</span>
+        <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_jumping?'>jumping?</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_over_trigger?'>over_trigger?</span>
+          <span class='kw'>return</span> <span class='id identifier rubyid_event'>event</span>
+        <span class='kw'>end</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='kw'>nil</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbHasDependentEvents?-instance_method">
+  
+    #<strong>pbHasDependentEvents?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+58
+59
+60</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 58</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbHasDependentEvents?'>pbHasDependentEvents?</span>
+  <span class='kw'>return</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_dependentEvents'>dependentEvents</span><span class='period'>.</span><span class='id identifier rubyid_length'>length</span><span class='op'>&gt;</span><span class='int'>0</span>   
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbIsRunning?-instance_method">
+  
+    #<strong>pbIsRunning?</strong>  &#x21d2; <tt>Boolean</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Walk_Run.rb', line 35</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbIsRunning?'>pbIsRunning?</span>
+  <span class='kw'>return</span> <span class='op'>!</span><span class='id identifier rubyid_moving?'>moving?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@move_route_forcing</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$PokemonGlobal</span> <span class='op'>&amp;&amp;</span> <span class='id identifier rubyid_pbCanRun?'>pbCanRun?</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbTriggeredCounterEvents-instance_method">
+  
+    #<strong>pbTriggeredCounterEvents</strong>(triggers, checkIfRunning = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 163</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbTriggeredCounterEvents'>pbTriggeredCounterEvents</span><span class='lparen'>(</span><span class='id identifier rubyid_triggers'>triggers</span><span class='comma'>,</span><span class='id identifier rubyid_checkIfRunning'>checkIfRunning</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='comment'># If event is running
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_checkIfRunning'>checkIfRunning</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$game_system</span><span class='period'>.</span><span class='id identifier rubyid_map_interpreter'>map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>end</span>
+  <span class='comment'># All event loops
+</span>  <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Counter\((\d+)\)$</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_distance'>distance</span><span class='op'>=</span><span class='gvar'>$~</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='comment'># If event coordinates and triggers are consistent
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_pbEventFacesPlayer?'><span class='object_link'><a href="top-level-namespace.html#pbEventFacesPlayer%3F-instance_method" title="#pbEventFacesPlayer? (method)">pbEventFacesPlayer?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='comma'>,</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_distance'>distance</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_triggers'>triggers</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_trigger'>trigger</span><span class='rparen'>)</span>
+        <span class='comment'># If starting determinant is front event (other than jumping)
+</span>      <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_jumping?'>jumping?</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_over_trigger?'>over_trigger?</span>
+        <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="pbTriggeredTrainerEvents-instance_method">
+  
+    #<strong>pbTriggeredTrainerEvents</strong>(triggers, checkIfRunning = true)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 142</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_pbTriggeredTrainerEvents'>pbTriggeredTrainerEvents</span><span class='lparen'>(</span><span class='id identifier rubyid_triggers'>triggers</span><span class='comma'>,</span><span class='id identifier rubyid_checkIfRunning'>checkIfRunning</span><span class='op'>=</span><span class='kw'>true</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_result'>result</span> <span class='op'>=</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
+  <span class='comment'># If event is running
+</span>  <span class='kw'>if</span> <span class='id identifier rubyid_checkIfRunning'>checkIfRunning</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$game_system</span><span class='period'>.</span><span class='id identifier rubyid_map_interpreter'>map_interpreter</span><span class='period'>.</span><span class='id identifier rubyid_running?'>running?</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+  <span class='kw'>end</span>
+  <span class='comment'># All event loops
+</span>  <span class='kw'>for</span> <span class='id identifier rubyid_event'>event</span> <span class='kw'>in</span> <span class='gvar'>$game_map</span><span class='period'>.</span><span class='id identifier rubyid_events'>events</span><span class='period'>.</span><span class='id identifier rubyid_values'>values</span>
+    <span class='kw'>next</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_name'>name</span><span class='lbracket'>[</span><span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^Trainer\((\d+)\)$</span><span class='regexp_end'>/</span></span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_distance'>distance</span><span class='op'>=</span><span class='gvar'>$~</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span>
+    <span class='comment'># If event coordinates and triggers are consistent
+</span>    <span class='kw'>if</span> <span class='id identifier rubyid_pbEventCanReachPlayer?'><span class='object_link'><a href="top-level-namespace.html#pbEventCanReachPlayer%3F-instance_method" title="#pbEventCanReachPlayer? (method)">pbEventCanReachPlayer?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='comma'>,</span><span class='kw'>self</span><span class='comma'>,</span><span class='id identifier rubyid_distance'>distance</span><span class='rparen'>)</span> <span class='kw'>and</span> <span class='id identifier rubyid_triggers'>triggers</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_trigger'>trigger</span><span class='rparen'>)</span>
+        <span class='comment'># If starting determinant is front event (other than jumping)
+</span>      <span class='kw'>if</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_jumping?'>jumping?</span> <span class='kw'>and</span> <span class='kw'>not</span> <span class='id identifier rubyid_event'>event</span><span class='period'>.</span><span class='id identifier rubyid_over_trigger?'>over_trigger?</span>
+        <span class='id identifier rubyid_result'>result</span><span class='period'>.</span><span class='id identifier rubyid_push'>push</span><span class='lparen'>(</span><span class='id identifier rubyid_event'>event</span><span class='rparen'>)</span>
+      <span class='kw'>end</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='kw'>return</span> <span class='id identifier rubyid_result'>result</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="refresh-instance_method">
+  
+    #<strong>refresh</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Refresh</p>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+296
+297
+298
+299</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 296</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_refresh'>refresh</span>
+  <span class='ivar'>@opacity</span> <span class='op'>=</span> <span class='int'>255</span>
+  <span class='ivar'>@blend_type</span> <span class='op'>=</span> <span class='int'>0</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="setDefaultCharName-instance_method">
+  
+    #<strong>setDefaultCharName</strong>(chname, pattern)  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+17
+18
+19
+20
+21
+22</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Walk_Run.rb', line 17</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_setDefaultCharName'>setDefaultCharName</span><span class='lparen'>(</span><span class='id identifier rubyid_chname'>chname</span><span class='comma'>,</span><span class='id identifier rubyid_pattern'>pattern</span><span class='rparen'>)</span>
+  <span class='kw'>return</span> <span class='kw'>if</span> <span class='id identifier rubyid_pattern'>pattern</span><span class='op'>&lt;</span><span class='int'>0</span> <span class='op'>||</span> <span class='id identifier rubyid_pattern'>pattern</span><span class='op'>&gt;=</span><span class='int'>16</span>
+  <span class='ivar'>@defaultCharacterName</span><span class='op'>=</span><span class='id identifier rubyid_chname'>chname</span>
+  <span class='ivar'>@direction</span><span class='op'>=</span><span class='lbracket'>[</span><span class='int'>2</span><span class='comma'>,</span><span class='int'>4</span><span class='comma'>,</span><span class='int'>6</span><span class='comma'>,</span><span class='int'>8</span><span class='rbracket'>]</span><span class='lbracket'>[</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>/</span><span class='int'>4</span><span class='rbracket'>]</span>
+  <span class='ivar'>@pattern</span><span class='op'>=</span><span class='id identifier rubyid_pattern'>pattern</span><span class='op'>%</span><span class='int'>4</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update-instance_method">
+  
+    #<strong>update</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <hr>
+<ul><li>
+<p>Frame Update</p>
+</li></ul>
+<hr>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Game_Player.rb', line 402</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_update'>update</span>
+  <span class='kw'>if</span> <span class='const'><span class='object_link'><a href="PBTerrain.html" title="PBTerrain (module)">PBTerrain</a></span></span><span class='period'>.</span><span class='id identifier rubyid_isIce?'><span class='object_link'><a href="PBTerrain.html#isIce%3F-class_method" title="PBTerrain.isIce? (method)">isIce?</a></span></span><span class='lparen'>(</span><span class='id identifier rubyid_pbGetTerrainTag'><span class='object_link'><a href="top-level-namespace.html#pbGetTerrainTag-instance_method" title="#pbGetTerrainTag (method)">pbGetTerrainTag</a></span></span><span class='rparen'>)</span>
+    <span class='ivar'>@move_speed</span> <span class='op'>=</span> <span class='gvar'>$RPGVX</span> <span class='op'>?</span> <span class='float'>6.5</span> <span class='op'>:</span> <span class='float'>4.8</span>
+  <span class='kw'>elsif</span> <span class='op'>!</span><span class='id identifier rubyid_moving?'>moving?</span> <span class='op'>&amp;&amp;</span> <span class='op'>!</span><span class='ivar'>@move_route_forcing</span> <span class='op'>&amp;&amp;</span> <span class='gvar'>$PokemonGlobal</span>
+    <span class='kw'>if</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_bicycle'>bicycle</span>
+      <span class='ivar'>@move_speed</span> <span class='op'>=</span> <span class='gvar'>$RPGVX</span> <span class='op'>?</span> <span class='int'>8</span> <span class='op'>:</span> <span class='float'>5.2</span>
+    <span class='kw'>elsif</span> <span class='id identifier rubyid_pbCanRun?'>pbCanRun?</span> <span class='op'>||</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_surfing'>surfing</span> <span class='op'>||</span> <span class='gvar'>$PokemonGlobal</span><span class='period'>.</span><span class='id identifier rubyid_diving'>diving</span>
+      <span class='ivar'>@move_speed</span> <span class='op'>=</span> <span class='gvar'>$RPGVX</span> <span class='op'>?</span> <span class='float'>6.5</span> <span class='op'>:</span> <span class='float'>4.8</span>
+    <span class='kw'>else</span>
+      <span class='ivar'>@move_speed</span> <span class='op'>=</span> <span class='gvar'>$RPGVX</span> <span class='op'>?</span> <span class='float'>4.5</span> <span class='op'>:</span> <span class='float'>3.8</span>
+    <span class='kw'>end</span>
+  <span class='kw'>end</span>
+  <span class='id identifier rubyid_update_old'>update_old</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="update_old-instance_method">
+  
+    #<strong>update_old</strong>  &#x21d2; <tt>Object</tt> 
+  
+
+  
+
+  
+</h3><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+62</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'scripts/Walk_Run.rb', line 62</span>
+
+<span class='kw'>alias</span> <span class='id identifier rubyid_update_old'>update_old</span> <span class='id identifier rubyid_update'>update</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+      <div id="footer">
+  Generated on Thu May 19 20:12:24 2022 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.27 (ruby-2.7.5).
+</div>
+
+    </div>
+  </body>
+</html>
