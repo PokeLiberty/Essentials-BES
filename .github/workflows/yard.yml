@@ -1,0 +1,22 @@
+name: ci 
+on:
+  push:
+    branches:
+      - main
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: '2.7'
+    - run: git config user.name "GitHub Actions Bot"
+    - run: git config user.email "<>"
+    - run: gem install yard
+    - run: yardoc scripts
+    - run: mv doc docs
+    - run: git checkout gh-pages
+    - run: git add .yardoc doc
+    - run: git commit -m "update docs"
+    - run: git push origin gh-pages
