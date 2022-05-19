@@ -17,6 +17,6 @@ jobs:
     - run: yardoc scripts
     - run: mv doc docs
     - run: git checkout gh-pages
-    - run: git add .yardoc doc
+    - run: git add .yardoc docs
     - run: git commit -m "update docs"
     - run: git push origin gh-pages
