@@ -1,0 +1,306 @@
+﻿[000]
+TrainerBattleBGM=Battle! (Trainer)
+WildBattleBGM=Battle! (Wild Pokemon)
+PlayerA=POKEMONTRAINER_Red,trchar000,boy_bike,boy_surf_offset,boy_run,boy_surf_offset,boy_fish_offset,boy_fish_offset
+PlayerB=POKEMONTRAINER_Leaf,trchar001,girl_bike,girl_surf_offset,girl_run,girl_surf_offset,girl_fish_offset,girl_fish_offset
+BicycleBGM=Bike
+Home=3,7,5,8
+SurfBGM=Surf
+[001]
+# Intro
+[002]
+# Pueblo Empanada
+Outdoor=true
+MapPosition=0,13,12
+ShowArea=true
+[003]
+# Casa de \PN
+BattleBack=IndoorB
+MapPosition=0,13,12
+HealingSpot=2,8,8
+[004]
+# Laboratorio Pokémon
+MapPosition=0,13,12
+[005]
+# Ruta 1
+Outdoor=true
+MapPosition=0,13,11
+ShowArea=true
+[006]
+# Casa de Kurt
+MapPosition=0,13,11
+[007]
+# Ciudad Milanesa
+Outdoor=true
+MapPosition=0,13,10
+MapSize=2,11
+ShowArea=true
+[008]
+# Casa de Belén
+MapPosition=0,13,12
+[009]
+# Centro Pokémon
+MapPosition=0,14,10
+HealingSpot=8,17,11
+[010]
+# Gimnasio Milanesa
+BattleBack=IndoorB
+MapPosition=0,13,10
+[011]
+# Instituto Pokémon
+MapPosition=0,14,10
+[012]
+# Club Movimientos
+MapPosition=0,14,10
+[013]
+# Rincón de Juegos
+MapPosition=0,14,10
+[014]
+# Centro Comercial PB
+MapPosition=0,13,10
+[015]
+# Centro Comercial P1
+MapPosition=0,13,10
+[016]
+# Centro Comercial P2
+MapPosition=0,13,10
+[017]
+# Centro Comercial P3
+MapPosition=0,13,10
+[018]
+# Centro Comercial P4
+MapPosition=0,13,10
+[019]
+# Centro Comercial Azotea
+MapPosition=0,13,10
+[020]
+# Centro Comercial Ascensor
+MapPosition=0,13,10
+[021]
+# Ruta 2
+Outdoor=true
+MapPosition=0,14,8
+MapSize=1,11
+ShowArea=true
+Weather=Rain,50
+[022]
+# Alola
+[023]
+# Pueblo Lomito
+Outdoor=true
+MapPosition=0,15,8
+ShowArea=true
+[024]
+# Centro Pokémon
+MapPosition=0,15,8
+HealingSpot=23,11,15
+[025]
+# Tienda
+MapPosition=0,15,8
+[026]
+# Club Fanáticos Pokémon
+MapPosition=0,15,8
+[027]
+# Guardería Pokémon
+MapPosition=0,15,8
+[028]
+# Parque Natural
+Outdoor=true
+BattleBack=Forest
+MapPosition=0,16,8
+ShowArea=true
+[029]
+# Entrada Parque Natural
+MapPosition=0,16,8
+Bicycle=true
+[030]
+# Sala Parque Natural
+MapPosition=0,16,8
+[031]
+# Ruta 3
+Outdoor=true
+MapPosition=0,14,6
+MapSize=2,1101
+ShowArea=true
+[032]
+# Galar
+[033]
+# Hisui
+[034]
+# Cueva Helada
+BattleBack=IndoorC
+MapPosition=0,15,6
+Bicycle=true
+[035]
+# Monte Plateado
+Outdoor=true
+MapPosition=0,13,6
+ShowArea=true
+[036]
+# Liga Pokémon
+MapPosition=0,13,6
+HealingSpot=35,17,7
+[037]
+# Liga Pokémon
+BattleBack=EliteA
+MapPosition=0,13,6
+[038]
+# Hall de la Fama
+MapPosition=0,13,6
+[039]
+# Ruta 4
+Outdoor=true
+MapPosition=0,11,6
+MapSize=2,11
+ShowArea=true
+[040]
+# Ruta 4
+Outdoor=true
+MapPosition=0,11,6
+BicycleAlways=True
+ShowArea=true
+[041]
+# Ruta 5
+Outdoor=true
+MapPosition=0,11,7
+MapSize=1,111
+BicycleAlways=True
+ShowArea=true
+[042]
+# Paldea
+[044]
+# Ruta 6
+Outdoor=true
+MapPosition=0,11,10
+MapSize=2,11
+ShowArea=true
+[045]
+# Ruta 6
+Outdoor=true
+MapPosition=0,11,10
+BicycleAlways=True
+ShowArea=true
+[046]
+# Entrada Ruta Ciclista
+MapPosition=0,12,6
+Bicycle=true
+[047]
+# Ruta 7
+Outdoor=true
+BattleBack=Mountain
+MapPosition=0,15,10
+MapSize=2,11
+ShowArea=true
+Weather=Rain,0
+[049]
+# Cueva Rocosa
+MapPosition=0,16,10
+Bicycle=true
+[050]
+# Cueva Rocosa
+BattleBack=CaveDark
+MapPosition=0,16,10
+Bicycle=true
+DarkMap=true
+[051]
+# Mazmorra
+MapPosition=0,16,10
+Bicycle=true
+Dungeon=true
+[052]
+# Frente de Batalla
+Outdoor=true
+MapPosition=0,17,10
+ShowArea=true
+[053]
+# Centro Pokémon
+MapPosition=0,17,10
+HealingSpot=52,17,14
+[054]
+# Tienda
+MapPosition=0,17,10
+[055]
+# Torre Batalla
+MapPosition=0,17,10
+HealingSpot=52,30,10
+[056]
+# Campo Torre Batalla
+BattleBack=EliteA
+MapPosition=0,17,10
+[057]
+# Hall Copa Estadio
+MapPosition=0,17,10
+[058]
+# Palacio Batalla
+MapPosition=0,17,10
+[059]
+# Campo Palacio Batalla
+BattleBack=EliteD
+MapPosition=0,17,10
+[060]
+# Dojo Batalla
+MapPosition=0,17,10
+[061]
+# Campo Dojo Batalla
+BattleBack=EliteB
+MapPosition=0,17,10
+[062]
+# Fábrica Batalla
+MapPosition=0,17,10
+[063]
+# Intro Pasillo de Fábrica Batalla
+MapPosition=0,17,10
+[064]
+# Campo Fábrica Batalla
+BattleBack=EliteC
+MapPosition=0,17,10
+[065]
+# Pasillo de Fábrica Batalla
+MapPosition=0,17,10
+[066]
+# Zona Safari
+Outdoor=true
+MapPosition=0,12,12
+ShowArea=true
+[067]
+# Entrada Zona Safari
+MapPosition=0,12,12
+[068]
+# Zona Safari
+Outdoor=true
+BattleBack=Forest
+MapPosition=0,12,12
+ShowArea=true
+SafariMap=true
+[069]
+# Ruta 8
+DiveMap=70
+Outdoor=true
+BattleBack=Field
+MapPosition=0,13,13
+ShowArea=true
+[070]
+# Fondo Marino
+MapPosition=0,13,13
+[071]
+# Puerto
+MapPosition=0,13,13
+[072]
+# Isla Daroxy
+Outdoor=true
+MapPosition=0,18,17
+ShowArea=true
+Weather=Storm,50
+[073]
+# Isla Faraday
+Outdoor=true
+MapPosition=0,22,16
+ShowArea=true
+[074]
+# Entrada Ruta Ciclista
+MapPosition=0,12,10
+Bicycle=true
+[075]
+# Región Tiall
+Outdoor=true
+MapPosition=1,13,16

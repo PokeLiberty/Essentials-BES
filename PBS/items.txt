@@ -1,0 +1,710 @@
+﻿1,REPEL,Repelente,Repelentes,1,350,"Repele Pokémon salvajes débiles en un recorrido de 100 pasos.",2,0,0,
+2,SUPERREPEL,Superrepelente,Superrepelentes,1,500,"Repele Pokémon salvajes débiles en un recorrido de 200 pasos.",2,0,0,
+3,MAXREPEL,Repelente Máximo,Repelentes Máximos,1,700,"Repele Pokémon salvajes débiles en un recorrido de 250 pasos.",2,0,0,
+4,BLACKFLUTE,Flauta Negra,Flautas Negras,1,400,"Flauta de cristal negro cuya melodía ayuda a reducir las probabilidades de encontrarse con Pokémon salvajes.",2,0,0,
+5,WHITEFLUTE,Flauta Blanca,Flautas Blancas,1,500,"Flauta de cristal blanco cuya melodía ayuda a aumentar las probabilidades de encontrarse con Pokémon salvajes.",2,0,0,
+6,HONEY,Miel,Mieles,1,100,"Su delicioso aroma atrae a Pokémon salvajes si se usa en zonas de hierba alta, cuevas o árboles especiales.",2,0,0,
+7,ESCAPEROPE,Cuerda Huida,Cuerdas Huida,1,550,"Cuerda larga y resistente que sirve para huir de cuevas y sitios cerrados en general.",2,0,0,
+8,REDSHARD,Parte Roja,Partes Rojas,1,200,"Un pequeño fragmento rojo. Parece formar parte de algún tipo de herramienta antigua.",0,0,0,
+9,YELLOWSHARD,Parte Amarilla,Partes Amarillas,1,200,"Un pequeño fragmento amarillo. Parece formar parte de algún tipo de herramienta antigua.",0,0,0,
+10,BLUESHARD,Parte Azul,Partes Azules,1,200,"Un pequeño fragmento azul. Parece formar parte de algún tipo de herramienta antigua.",0,0,0,
+11,GREENSHARD,Parte Verde,Partes Verdes,1,200,"Un pequeño fragmento verde. Parece formar parte de algún tipo de herramienta antigua.",0,0,0,
+12,FIRESTONE,Piedra Fuego,Piedras Fuego,1,2100,"Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es amarilla con una marca naranja.",1,0,0,
+13,THUNDERSTONE,Piedra Trueno,Piedras Trueno,1,2100,"Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Tiene dibujado un rayo.",1,0,0,
+14,WATERSTONE,Piedra Agua,Piedras Agua,1,2100,"Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es de color azul, como el agua.",1,0,0,
+15,LEAFSTONE,Piedra Hoja,Piedras Hoja,1,2100,"Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Tiene dibujada una hoja.",1,0,0,
+16,MOONSTONE,Piedra Lunar,Piedras Lunar,1,2100,"Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es negra como el azabache.",1,0,0,
+17,SUNSTONE,Piedra Solar,Piedras Solar,1,2100,"Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Es roja como el núcleo del sol.",1,0,0,
+18,DUSKSTONE,Piedra Noche,Piedras Noche,1,2100,"Una piedra peculiar que hace evolucionar a algunos Pokémon. Es oscura como la noche.",1,0,0,
+19,DAWNSTONE,Piedra Alba,Piedras Alba,1,2100,"Una piedra peculiar que hace evolucionar a algunos Pokémon. Brilla como un lucero.",1,0,0,
+20,SHINYSTONE,Piedra Día,Piedras Día,1,2100,"Una piedra peculiar que hace evolucionar a algunos Pokémon. Tiene un brillo espectacular.",1,0,0,
+21,REDAPRICORN,Bonguri Roja,Bonguris Roja,1,200,"Bonguri de color rojo y aroma muy penetrante.",0,0,0,
+22,YLWAPRICORN,Bonguri Amarilla,Bonguris Amarilla,1,200,"Bonguri de color amarillo y aroma refrescante.",0,0,0,
+23,BLUAPRICORN,Bonguri Azul,Bonguris Azul,1,200,"Bonguri de color azul y aroma tierno.",0,0,0,
+24,GRNAPRICORN,Bonguri Verde,Bonguris Verde,1,200,"Bonguri de color verde y aroma peculiar que recuerda al café tostado.",0,0,0,
+25,PNKAPRICORN,Bonguri Rosa,Bonguris Rosa,1,200,"Bonguri de color rosa y aroma dulce.",0,0,0,
+26,WHTAPRICORN,Bonguri Blanca,Bonguris Blanca,1,200,"Bonguri de color blanco que no desprende aroma alguno.",0,0,0,
+27,BLKAPRICORN,Bonguri Negra,Bonguris Negra,1,200,"Bonguri de color negro y aroma indescriptible.",0,0,0,
+28,HELIXFOSSIL,Fósil Helix,Fósiles Helix,1,1000,"Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser un fragmento de concha marina.",0,0,0,
+29,DOMEFOSSIL,Fósil Domo,Fósiles Domo,1,1000,"Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser un fragmento de concha.",0,0,0,
+30,OLDAMBER,Ámbar Viejo,Ámbares Viejos,1,1000,"Fragmento de ámbar que contiene información genética de un Pokémon ancestral. Es de color amarillo.",0,0,0,
+31,ROOTFOSSIL,Fósil Raíz,Fósiles Raíz,1,1000,"Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser parte de una raíz.",0,0,0,
+32,CLAWFOSSIL,Fósil Garra,Fósiles Garra,1,1000,"Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser parte de una garra.",0,0,0,
+33,SKULLFOSSIL,Fósil Cráneo,Fósiles Cráneo,1,1000,"Fósil de un Pokémon prehistórico terrestre. Parece ser parte de una cabeza.",0,0,0,
+34,ARMORFOSSIL,Fósil Coraza,Fósiles Coraza,1,1000,"Fósil de un Pokémon prehistórico terrestre. Parece ser un fragmento del cuello.",0,0,0,
+35,COVERFOSSIL,Fósil Tapa,Fósiles Tapa,1,1000,"Fósil de un Pokémon ancestral que vivió en el fondo del mar. Parece ser un fragmento de concha marina.",0,0,0,
+36,PLUMEFOSSIL,Fósil Pluma,Fósiles Pluma,1,1000,"Fósil de un Pokémon ancestral que surcó los cielos. Parece ser parte de un ala suya.",0,0,0,
+37,PRETTYWING,Pluma Bella,Plumas Bellas,1,200,"Pluma normal y corriente. Muy bonita, pero no sirve para nada.",0,0,0,
+38,TINYMUSHROOM,Mini Seta,Mini Setas,1,500,"Seta pequeña y poco común bastante popular entre determinados grupos de gourmets.",0,0,0,
+39,BIGMUSHROOM,Seta Grande,Setas Grandes,1,5000,"Seta grande y poco común muy popular entre determinados grupos de gourmets.",0,0,0,
+40,BALMMUSHROOM,Seta Aroma,Setas Aroma,1,50000,"Extraña seta que desprende un agradable aroma. Muy apreciada por los gourmets.",0,0,0,
+41,PEARL,Perla,Perlas,1,1400,"Brillante perla plateada de tamaño más bien pequeño que no alcanza mucho precio en las tiendas.",0,0,0,
+42,BIGPEARL,Perla Grande,Perlas Grandes,1,7500,"Brillante perla plateada de gran tamaño que puede venderse a buen precio en las tiendas.",0,0,0,
+43,PEARLSTRING,Sarta Perlas,Sartas Perlas,1,50000,"Brillantes perlas plateadas de gran tamaño. Muy valoradas por los coleccionistas.",0,0,0,
+44,STARDUST,Polvoestelar,Polvoestelares,1,2000,"Bonita arena roja de tacto sedoso que alcanza un alto precio en las tiendas.",0,0,0,
+45,STARPIECE,Trozo Estrella,Trozos Estrella,1,9800,"Fragmento de una bonita gema roja que puede venderse muy caro en las tiendas.",0,0,0,
+46,COMETSHARD,Fragmento Cometa,Fragmentos Cometa,1,120000,"Fragmento de un cometa caído al suelo al atravesar la atmósfera. Muy valorado por los coleccionistas.",0,0,0,
+47,NUGGET,Pepita,Pepitas,1,10000,"Pepita de oro puro que desprende un brillo espectacular. Puede venderse muy cara en las tiendas.",0,0,0,
+48,BIGNUGGET,Maxipepita,Maxipepitas,1,60000,"Pepita grande de oro puro que desprende un brillo espectacular. Muy valorada por los coleccionistas.",0,0,0,
+49,HEARTSCALE,Escama Corazón,Escamas Corazón,1,100,"Bella escama con forma de corazón que brilla con los colores del arco iris. Es muy poco común.",0,0,0,
+50,SLOWPOKETAIL,Cola Slowpoke,Colas Slowpoke,1,9800,"Cola de origen desconocido y muy sabrosa. Se vende muy cara.",0,0,0,
+51,RAREBONE,Hueso Raro,Huesos Raros,1,10000,"Un hueso de gran valor arqueológico que puede alcanzar un alto precio en las tiendas.",0,0,0,
+52,RELICCOPPER,Real Cobre,Reales Cobre,1,2000,"Moneda de cobre de más de tres mil años de antigüedad. Muy valorada por los coleccionistas.",0,0,0,
+53,RELICSILVER,Real Plata,Reales Plata,1,10000,"Moneda de plata de más de tres mil años de antigüedad. Muy valorada por los coleccionistas.",0,0,0,
+54,RELICGOLD,Real Oro,Reales Oro,1,20000,"Moneda de oro de más de tres mil años de antigüedad. Muy valorada por los coleccionistas.",0,0,0,
+55,RELICVASE,Ánfora,Ánforas,1,100000,"Jarrón de más de tres mil años de antigüedad. Muy valorado por los coleccionistas.",0,0,0,
+56,RELICBAND,Brazal,Brazales,1,200000,"Brazalete de más de tres mil años de antigüedad. Muy valorado por los coleccionistas.",0,0,0,
+57,RELICSTATUE,Efigie Antigua,Efigies Antiguas,1,400000,"Efigie de piedra de más de tres mil años de antigüedad. Muy valorado por los coleccionistas.",0,0,0,
+58,RELICCROWN,Corona Antigua,Coronas Antiguas,1,600000,"Corona de más de tres mil años de antigüedad. Muy valorada por los coleccionistas.",0,0,0,
+59,GROWTHMULCH,Abono Rápido,Abonos Rápidos,1,200,"Un fertilizante que se usa en tierra suelta. Acelera el crecimiento de las bayas, pero también seca el suelo.",0,0,0,
+60,DAMPMULCH,Abono Lento,Abonos Lentos,1,200,"Fertilizante para tierra suelta que ralentiza el crecimiento de las bayas y seca el suelo lentamente.",0,0,0,
+61,STABLEMULCH,Abono Fijador,Abonos Fijadores,1,200,"Fertilizante para tierra suelta que retrasa la caída de las bayas maduras.",0,0,0,
+62,GOOEYMULCH,Abono Brote,Abonos Brotes,1,200,"Fertilizante para tierra suelta que hace que broten más plantas nuevas de las plantas marchitas.",0,0,0,
+63,SHOALSALT,Sal Cardumen,Sales Cardumen,1,20,"Sal pura y de sabor intenso procedente de las profundidades de la Cueva Cardumen.",0,0,0,
+64,SHOALSHELL,Concha Cardumen,Conchas Cardumen,1,20,"Hermosa concha marina hallada en lo más profundo de la Cueva Cardumen. Tiene rayas azules y blancas.",0,0,0,
+65,ODDKEYSTONE,Piedra Espíritu,Piedras Espíritu,1,2100,"Vital para impedir que una torre de piedra se derrumbe. A veces se oyen voces en su interior.",0,0,0,
+66,AIRBALLOON,Globo Helio,Globos Helio,1,200,"El Pokémon que lo lleve flotará en el aire. Si recibe un golpe, estallará.",0,0,0,
+67,BRIGHTPOWDER,Polvo Brillo,Polvos Brillo,1,10,"Lanza un destello que baja la precisión del enemigo. Debe llevarlo un Pokémon.",0,0,0,
+68,EVIOLITE,Mineral Evolutivo,Minerales Evolutivos,1,200,"Piedra evolutiva. El Pokémon portador aumentará su Defensa y su Defensa Especial si aún puede evolucionar.",0,0,0,
+69,FLOATSTONE,Piedra Pómez,Piedras Pómez,1,200,"Piedra muy ligera que reduce el peso del Pokémon que la lleve.",0,0,0,
+70,DESTINYKNOT,Lazo Destino,Lazos Destino,1,200,"Un hilo largo y delgado de color rojo que transmite el enamoramiento del Pokémon que lo lleva a su rival.",0,0,0,
+71,ROCKYHELMET,Casco Dentado,Cascos Dentados,1,200,"Si el portador es alcanzado por un ataque físico, el agresor también recibe daño.",0,0,0,
+72,EJECTBUTTON,Botón Escape,Botones Escape,1,200,"Si el portador es alcanzado por un ataque, saldrá del combate y será sustituido por otro Pokémon del equipo.",0,0,0,
+73,REDCARD,Tarjeta Roja,Tarjetas Rojas,1,200,"Misteriosa tarjeta que permite al Pokémon que la lleve expulsar al agresor cuando este le cause daño.",0,0,0,
+74,SHEDSHELL,Muda Concha,Muda Conchas,1,100,"En combate, esta concha desechada sirve para que un Pokémon se cambie por otro que no esté combatiendo.",0,0,0,
+75,SMOKEBALL,Bola Humo,Bolas Humo,1,200,"Debe llevarla un Pokémon. Permite huir de combates contra Pokémon salvajes.",0,0,0,
+76,LUCKYEGG,Huevo Suerte,Huevos Suerte,1,200,"Es un huevo lleno de felicidad que te hará ganar Puntos de Exp. extra en combate. Debe llevarlo un Pokémon.",0,0,0,
+77,EXPSHARE,Repartir Exp,Repartir Exp,1,3000,"El Pokémon que lo lleva obtiene parte de los Puntos de Exp. conseguidos en el combate sin participar en él.",0,0,0,
+78,AMULETCOIN,Moneda Amuleto,Monedas Amuleto,1,100,"Si el Pokémon que la lleva lucha en un combate, duplica las ganancias.",0,0,0,
+79,SOOTHEBELL,Campana Alivio,Campanas Alivio,1,100,"Una campana con un tañido calmante que reconforta al Pokémon que la lleva y lo vuelve más amistoso.",0,0,0,
+80,CLEANSETAG,Amuleto,Amuletos,1,200,"Si lo lleva el primer Pokémon del equipo, se reduce la probabilidad de que se acerquen Pokémon salvajes.",0,0,0,
+81,CHOICEBAND,Cinta Elegida,Cintas Elegidas,1,100,"Aumenta el Ataque pero solo permite usar un tipo de movimiento. Debe llevarla un Pokémon.",0,0,0,
+82,CHOICESPECS,Gafas Elegidas,Gafas Elegidas,1,200,"Potencian el At. Esp. pero solo permiten usar un tipo de movimiento. Debe llevarlas un Pokémon.",0,0,0,
+83,CHOICESCARF,Pañuelo Elegido,Pañuelos Elegidos,1,200,"Debe llevarlo un Pokémon. Potencia la Velocidad, pero solo permite usar un tipo de movimiento.",0,0,0,
+84,HEATROCK,Roca Calor,Rocas Calor,1,200,"Prolonga la duración del movimiento Día Soleado que use el Pokémon que la lleva.",0,0,0,
+85,DAMPROCK,Roca Lluvia,Rocas Lluvia,1,200,"Prolonga la duración del movimiento Danza Lluvia que use el Pokémon que la lleva.",0,0,0,
+86,SMOOTHROCK,Roca Suave,Rocas Suave,1,200,"Prolonga la duración del movimiento Tormenta Arena que use el Pokémon que la lleva.",0,0,0,
+87,ICYROCK,Roca Helada,Rocas Helada,1,200,"Prolonga la duración del movimiento Granizo del Pokémon que la lleva.",0,0,0,
+88,LIGHTCLAY,Refleluz,Refleluces,1,200,"Prolonga la duración de barreras como Reflejo y Pantalla de Luz. Debe llevarla un Pokémon.",0,0,0,
+89,GRIPCLAW,Garra Garfio,Garras Garfio,1,200,"Prolonga la duración de ataques multiturno como Atadura y Repetición. Debe llevarla un Pokémon.",0,0,0,
+90,BINDINGBAND,Banda Atadura,Bandas Atadura,1,200,"Banda que potencia los movimientos que estrujan al rival.",0,0,0,
+91,BIGROOT,Raíz Grande,Raíces Grandes,1,200,"Potencia los movimientos que roban PS. Debe llevarla un Pokémon.",0,0,0,
+92,BLACKSLUDGE,Lodo Negro,Lodos Negros,1,200,"Restaura gradualmente los PS de los Pokémon de tipo Veneno y daña a todos los demás.",0,0,0,
+93,LEFTOVERS,Restos,Restos,1,200,"Restauran gradualmente los PS del Pokémon que los lleva durante el combate.",0,0,0,
+94,SHELLBELL,Campana Concha,Campanas Concha,1,200,"Debe llevarla un Pokémon. Cada vez que este inflija daño, recuperará algunos PS.",0,0,0,
+95,MENTALHERB,Hierba Mental,Hierbas Mentales,1,100,"El Pokémon que la lleve se libera del enamoramiento. Solo puede usarse una vez.",0,0,0,
+96,WHITEHERB,Hierba Blanca,Hierbas Blancas,1,100,"Restaura cualquier característica debilitada en combate. Solo se puede usar una vez. Debe llevarla un Pokémon.",0,0,0,
+97,POWERHERB,Hierba Única,Hierbas Únicas,1,100,"Permite el uso inmediato de cualquier movimiento en el primer turno. Es de un solo uso y debe llevarla un Pokémon.",0,0,0,
+98,ABSORBBULB,Tubérculo,Tubérculos,1,200,"Raíz de usar y tirar que sube el Ataque Especial cuando se recibe un ataque de tipo Agua.",0,0,0,
+99,CELLBATTERY,Pila,Pilas,1,200,Batería de usar y tirar que sube el Ataque de quien la lleva cuando recibe un golpe de tipo Eléctrico.,0,0,0,
+100,LIFEORB,Vidasfera,Vidasfera,1,200,"Potencia los movimientos, pero consume PS con cada ataque. Debe llevarla un Pokémon.",0,0,0,
+101,EXPERTBELT,Cinta Experto,Cintas Experto,1,200,"Potencia ligeramente los movimientos supereficaces. Debe llevarla un Pokémon.",0,0,0,
+102,METRONOME,Metrónomo,Metrónomos,1,200,"Potencia un movimiento que se use de forma consecutiva. Pero el efecto se pierde si se emplea otro movimiento.",0,0,0,
+103,MUSCLEBAND,Cinta Fuerte,Cintas Fuertes,1,200,"Cinta de pelo que aumenta ligeramente la potencia de los movimientos físicos. Debe llevarla un Pokémon.",0,0,0,
+104,WISEGLASSES,Gafas Especiales,Gafas Especiales,1,200,"Potencian ligeramente los movimientos especiales. Debe llevarlas un Pokémon.",0,0,0,
+105,RAZORCLAW,Garra Afilada,Garras Afiladas,1,2100,"Aumenta a la probabilidad de que el Pokémon que la lleva consiga un golpe crítico.",0,0,0,
+106,SCOPELENS,Periscopio,Periscopios,1,200,"Su lente aumenta la posibilidad que tiene el Pokémon que lo lleva de conseguir un golpe crítico.",0,0,0,
+107,WIDELENS,Lupa,Lupas,1,200,"Debe llevarla un Pokémon. Aumenta ligeramente la precisión de los movimientos.",0,0,0,
+108,ZOOMLENS,Telescopio,Telescopios,1,200,"Debe llevarlo un Pokémon. Si se mueve después del enemigo, aumenta el índice de precisión del Pokémon.",0,0,0,
+109,KINGSROCK,Roca del Rey,Rocas del Rey,1,100,"Puede hacer retroceder al enemigo cuando el Pokémon que la lleva le hiera.",1,0,0,
+110,RAZORFANG,Colmillo Agudo,Colmillos Agudos,1,2100,"Si lo lleva un Pokémon cuando hiere a un rival, puede hacerle retroceder.",0,0,0,
+111,LAGGINGTAIL,Cola Plúmbea,Colas Plúmbea,1,200,"Es muy pesada y hace que el Pokémon que la lleva se mueva más lento de lo normal.",0,0,0,
+112,QUICKCLAW,Garra Rápida,Garras Rápidas,1,100,"Garra ligera y afilada que permite que el Pokémon que la lleve ataque el primero ocasionalmente.",0,0,0,
+113,FOCUSBAND,Cinta Focus,Cintas Focus,1,200,"El Pokémon que la lleve puede resistir un golpe potencialmente crítico y quedarse con 1 PS.",0,0,0,
+114,FOCUSSASH,Banda Focus,Bandas Focus,1,200,"Si el Pokémon que la lleva tiene los PS al máximo, resistirá un golpe que potencialmente lo deja KO con 1 PS.",0,0,0,
+115,FLAMEORB,Llamasfera,Llamasferas,1,100,"Extraña esfera que causa quemaduras a quien la usa en combate. Debe llevarla un Pokémon.",0,0,0,
+116,TOXICORB,Toxisfera,Toxisferas,1,100,"Extraña esfera que envenena gravemente a quien la usa en combate. Debe llevarla un Pokémon.",0,0,0,
+117,STICKYBARB,Toxiestrella,Toxiestrellas,1,200,"Daña en cada turno al Pokémon que la lleva y también puede dañar a los enemigos que toquen al Pokémon.",0,0,0,
+118,IRONBALL,Bola Férrea,Bolas Férreas,1,200,"Reduce la Velocidad. Los Pokémon que levitan y los de tipo Volador se tornan sensibles a movimientos de Tierra.",0,0,0,
+119,RINGTARGET,Blanco,Blancos,1,200,"El Pokémon que lo lleva es vulnerable frente a movimientos que normalmente no afectan a su tipo.",0,0,0,
+120,MACHOBRACE,Brazal Firme,Brazales Firmes,1,3000,"Sólido y pesado brazal que fomenta el crecimiento pero reduce la Velocidad. Debe llevarlo un Pokémon.",0,0,0,
+121,POWERWEIGHT,Pesa Recia,Pesas Recias,1,3000,"Ayuda a conseguir más PS al subir de nivel, pero reduce la Velocidad. Debe llevarla un Pokémon.",0,0,0,
+122,POWERBRACER,Brazal Recio,Brazales Recios,1,3000,"Ayuda a ganar Ataque al subir de nivel, pero reduce la Velocidad. Debe llevarlo un Pokémon.",0,0,0,
+123,POWERBELT,Cinto Recio,Cintos Recios,1,3000,"Ayuda a ganar Defensa al subir de nivel, pero reduce la Velocidad. Debe llevarlo un Pokémon.",0,0,0,
+124,POWERLENS,Lente Recia,Lentes Recias,1,3000,"Ayuda a ganar At. Esp. al subir de nivel, pero reduce la Velocidad. Debe llevarla un Pokémon.",0,0,0,
+125,POWERBAND,Banda Recia,Bandas Recias,1,3000,"Ayuda a ganar Def. Esp. al subir de nivel, pero reduce la Velocidad. Debe llevarla un Pokémon.",0,0,0,
+126,POWERANKLET,Franja Recia,Franjas Recias,1,3000,"Ayuda a ganar Velocidad al subir de nivel, pero reduce la Velocidad en combate. Debe llevarla un Pokémon.",0,0,0,
+127,LAXINCENSE,Incienso Suave,Inciensos Suaves,1,9600,"Debe llevarlo un Pokémon. Su peculiar aroma reduce la precisión del rival.",0,0,0,
+128,FULLINCENSE,Incienso Lento,Inciensos Lentos,1,9600,"Exótica sustancia aromática que hace que el Pokémon que la lleva se mueva más despacio.",0,0,0,
+129,LUCKINCENSE,Incienso Duplo,Inciensos Duplo,1,9600,"Incienso de aroma exótico. Si el Pokémon que lo lleva participa en un combate, duplica las ganancias.",0,0,0,
+130,PUREINCENSE,Incienso Puro,Inciensos Puros,1,9600,"Si lo lleva el primer Pokémon del equipo, los Pokémon salvajes se acercarán con menos frecuencia.",0,0,0,
+131,SEAINCENSE,Incienso Marino,Inciensos Marinos,1,9600,"Tiene un curioso aroma que potencia la energía de los ataques de tipo Agua. Debe llevarlo un Pokémon.",0,0,0,
+132,WAVEINCENSE,Incienso Aqua,Inciensos Aqua,1,9600,"Incienso exótico que fortalece los movimientos de tipo Agua. Debe llevarlo un Pokémon.",0,0,0,
+133,ROSEINCENSE,Incienso Floral,Inciensos Florales,1,9600,"Incienso de exótico aroma que fortalece los movimientos de tipo Planta. Debe llevarlo un Pokémon.",0,0,0,
+134,ODDINCENSE,Incienso Raro,Inciensos Raros,1,9600,"Incienso de exótico aroma que fortalece los movimientos de tipo Psíquico. Debe llevarlo un Pokémon.",0,0,0,
+135,ROCKINCENSE,Incienso Roca,Inciensos Roca,1,9600,"Incienso de exótico aroma que fortalece los movimientos de tipo Roca. Debe llevarlo un Pokémon.",0,0,0,
+136,CHARCOAL,Carbón,Carbones,1,9800,"Actúa como combustible y potencia la energía de los ataques de tipo Fuego. Debe llevarlo un Pokémon.",0,0,0,
+137,MYSTICWATER,Agua Mística,Aguas Místicas,1,100,"Gema con forma de lágrima que fortalece los ataques de tipo Agua. Debe llevarla un Pokémon.",0,0,0,
+138,MAGNET,Imán,Imanes,1,100,"Debe llevarlo un Pokémon. Su potente magnetismo fortalece los ataques de tipo Eléctrico.",0,0,0,
+139,MIRACLESEED,Semilla Milagro,Semillas Milagros,1,100,"Debe llevarla un Pokémon. La vitalidad de la semilla fortalece los ataques de tipo Planta.",0,0,0,
+140,NEVERMELTICE,Antiderretir,Antiderretires,1,100,"Fragmento de hielo que repele el calor y fortalece los ataques de tipo Hielo. Debe llevarlo un Pokémon.",0,0,0,
+141,BLACKBELT,Cinturón Negro,Cinturones Negros,1,100,"Debe llevarlo un Pokémon. Aumenta la decisión y fortalece los ataques de tipo Lucha.",0,0,0,
+142,POISONBARB,Flecha Venenosa,Flechas Venenosas,1,100,"Flecha venenosa que refuerza los movimientos de tipo Veneno. Debe llevarla un Pokémon.",0,0,0,
+143,SOFTSAND,Arena Fina,Arenas Finas,1,100,"Debe llevarla un Pokémon. La suavidad de la arena fortalece los ataques de tipo Tierra.",0,0,0,
+144,SHARPBEAK,Pico Afilado,Picos Afilados,1,100,"Pico largo y afilado que aumenta la potencia de los movimientos de tipo Volador. Debe llevarlo un Pokémon.",0,0,0,
+145,TWISTEDSPOON,Cuchara Torcida,Cucharas Torcidas,1,100,"Cuchara llena de energía telequinética que potencia los movimientos de tipo Psíquico. Debe llevarla un Pokémon.",0,0,0,
+146,SILVERPOWDER,Polvo Plata,Polvos Plata,1,100,"Polvo de brillo argénteo que fortalece los ataques de tipo Bicho. Debe llevarlo un Pokémon.",0,0,0,
+147,HARDSTONE,Piedra Dura,Piedras Duras,1,100,"Debe llevarla un Pokémon. La robustez de la piedra fortalece los ataques de tipo Roca.",0,0,0,
+148,SPELLTAG,Hechizo,Hechizos,1,100,"Misterioso y oscuro objeto que refuerza los ataques de tipo Fantasma. Debe llevarlo un Pokémon.",0,0,0,
+149,DRAGONFANG,Colmillo Dragón,Colmillos Dragón,1,100,"Colmillo de gran dureza que refuerza los ataques de tipo Dragón. Debe llevarlo un Pokémon.",0,0,0,
+150,BLACKGLASSES,Gafas de Sol,Gafas de Sol,1,100,"Debe llevarlas un Pokémon. Fortalecen los ataques de tipo Siniestro.",0,0,0,
+151,METALCOAT,Revestim. Metálico,Revestim. Metálico,1,100,"Película metálica que fortalece los ataques de tipo Acero. Debe llevarlo un Pokémon.",1,0,0,
+152,SILKSCARF,Pañuelo Seda,Pañuelos Seda,1,100,"La delicadeza del pañuelo fortalece los ataques de tipo Normal. Debe llevarlo un Pokémon.",0,0,0,
+153,FLAMEPLATE,Tabla Llama,Tablas Llama,1,0,"Tabla de piedra que potencia los movimientos de tipo Fuego. Debe llevarla un Pokémon.",0,0,0,
+154,SPLASHPLATE,Tabla Linfa,Tablas Linfa,1,0,"Tabla de piedra que potencia los movimientos de tipo Agua. Debe llevarla un Pokémon.",0,0,0,
+155,ZAPPLATE,Tabla Trueno,Tablas Trueno,1,0,"Tabla de piedra que potencia los movimientos de tipo Eléctrico. Debe llevarla un Pokémon.",0,0,0,
+156,MEADOWPLATE,Tabla Pradal,Tablas Pradal,1,0,"Tabla de piedra que potencia los movimientos de tipo Planta. Debe llevarla un Pokémon.",0,0,0,
+157,ICICLEPLATE,Tabla Helada,Tablas Helada,1,0,"Tabla de piedra que potencia los movimientos de tipo Hielo. Debe llevarla un Pokémon.",0,0,0,
+158,FISTPLATE,Tabla Fuerte,Tablas Fuerte,1,0,"Tabla de piedra que potencia los movimientos de tipo Lucha. Debe llevarla un Pokémon.",0,0,0,
+159,TOXICPLATE,Tabla Tóxica,Tablas Tóxica,1,0,"Tabla de piedra que potencia los movimientos de tipo Veneno. Debe llevarla un Pokémon.",0,0,0,
+160,EARTHPLATE,Tabla Terrax,Tablas Terrax,1,0,"Tabla de piedra que potencia los movimientos de tipo Tierra. Debe llevarla un Pokémon.",0,0,0,
+161,SKYPLATE,Tabla Cielo,Tablas Cielo,1,0,"Tabla de piedra que potencia los movimientos de tipo Volador. Debe llevarla un Pokémon.",0,0,0,
+162,MINDPLATE,Tabla Mental,Tablas Mental,1,0,"Tabla de piedra que potencia los movimientos de tipo Psíquico. Debe llevarla un Pokémon.",0,0,0,
+163,INSECTPLATE,Tabla Bicho,Tablas Bicho,1,0,"Tabla de piedra que potencia los movimientos de tipo Bicho. Debe llevarla un Pokémon.",0,0,0,
+164,STONEPLATE,Tabla Pétrea,Tablas Pétrea,1,0,"Tabla de piedra que potencia los movimientos de tipo Roca. Debe llevarla un Pokémon.",0,0,0,
+165,SPOOKYPLATE,Tabla Terror,Tablas Terror,1,0,"Tabla de piedra que potencia los movimientos de tipo Fantasma. Debe llevarla un Pokémon.",0,0,0,
+166,DRACOPLATE,Tabla Draco,Tablas Draco,1,0,"Tabla de piedra que potencia los movimientos de tipo Dragón. Debe llevarla un Pokémon.",0,0,0,
+167,DREADPLATE,Tabla Oscura,Tablas Oscura,1,0,"Tabla de piedra que potencia los movimientos de tipo Siniestro. Debe llevarla un Pokémon.",0,0,0,
+168,IRONPLATE,Tabla Acero,Tablas Acero,1,0,"Tabla de piedra que potencia los movimientos de tipo Acero. Debe llevarla un Pokémon.",0,0,0,
+169,FIREGEM,Gema Fuego,Gemas Fuego,1,200,"Joya de un solo uso que potencia los movimientos de tipo Fuego. Debe llevarla un Pokémon.",0,0,0,
+170,WATERGEM,Gema Agua,Gemas Agua,1,200,"Joya de un solo uso que potencia los movimientos de tipo Agua. Debe llevarla un Pokémon.",0,0,0,
+171,ELECTRICGEM,Gema Eléctrica,Gemas Eléctrica,1,200,"Joya de un solo uso que potencia los movimientos de tipo Eléctrico. Debe llevarla un Pokémon.",0,0,0,
+172,GRASSGEM,Gema Planta,Gemas Planta,1,200,"Joya de un solo uso que potencia los movimientos de tipo Planta. Debe llevarla un Pokémon.",0,0,0,
+173,ICEGEM,Gema Hielo,Gemas Hielo,1,200,"Joya de un solo uso que potencia los movimientos de tipo Hielo. Debe llevarla un Pokémon.",0,0,0,
+174,FIGHTINGGEM,Gema Lucha,Gemas Lucha,1,200,"Joya de un solo uso que potencia los movimientos de tipo Lucha. Debe llevarla un Pokémon.",0,0,0,
+175,POISONGEM,Gema Veneno,Gemas Veneno,1,200,"Joya de un solo uso que potencia los movimientos de tipo Veneno. Debe llevarla un Pokémon.",0,0,0,
+176,GROUNDGEM,Gema Tierra,Gemas Tierra,1,200,"Joya de un solo uso que potencia los movimientos de tipo Tierra. Debe llevarla un Pokémon.",0,0,0,
+177,FLYINGGEM,Gema Voladora,Gemas Voladora,1,200,"Joya de un solo uso que potencia los movimientos de tipo Volador. Debe llevarla un Pokémon.",0,0,0,
+178,PSYCHICGEM,Gema Psíquica,Gemas Psíquica,1,200,"Joya de un solo uso que potencia los movimientos de tipo Psíquico. Debe llevarla un Pokémon.",0,0,0,
+179,BUGGEM,Gema Bicho,Gemas Bicho,1,200,"Joya de un solo uso que potencia los movimientos de tipo Bicho. Debe llevarla un Pokémon.",0,0,0,
+180,ROCKGEM,Gema Roca,Gemas Roca,1,200,"Joya de un solo uso que potencia los movimientos de tipo Roca. Debe llevarla un Pokémon.",0,0,0,
+181,GHOSTGEM,Gema Fantasma,Gemas Fantasma,1,200,"Joya de un solo uso que potencia los movimientos de tipo Fantasma. Debe llevarla un Pokémon.",0,0,0,
+182,DRAGONGEM,Gema Dragón,Gemas Dragón,1,200,"Joya de un solo uso que potencia los movimientos de tipo Dragón. Debe llevarla un Pokémon.",0,0,0,
+183,DARKGEM,Gema Siniestra,Gemas Siniestra,1,200,"Joya de un solo uso que potencia los movimientos de tipo Siniestro. Debe llevarla un Pokémon.",0,0,0,
+184,STEELGEM,Gema Acero,Gemas Acero,1,200,"Joya de un solo uso que potencia los movimientos de tipo Acero. Debe llevarla un Pokémon.",0,0,0,
+185,NORMALGEM,Gema Normal,Gemas Normal,1,200,"Joya de un solo uso que potencia los movimientos de tipo Normal. Debe llevarla un Pokémon.",0,0,0,
+186,LIGHTBALL,Bolaluminosa,Bolaluminosas,1,100,"Asombrosa esfera que debe llevar Pikachu y que aumenta el Ataque y el Ataque Especial.",0,0,0,
+187,LUCKYPUNCH,Puño Suerte,Puños Suerte,1,10,"Debe llevarlo Chansey. Potencia su índice de golpe crítico.",0,0,0,
+188,METALPOWDER,Polvo Metálico,Polvos Metálicos,1,10,"Debe llevarlo Ditto. Es un polvo muy fino, pero a la vez resistente, que aumentará su Defensa.",0,0,0,
+189,QUICKPOWDER,Polvo Veloz,Polvos Veloces,1,10,"Este objeto incrementa en un 100% la Velocidad de Ditto en batalla. Este objeto deja de ser efectivo una vez Ditto ha usado Transform. o Impostor.",0,0,0,
+190,THICKCLUB,Hueso Grueso,Huesos Gruesos,1,500,"Un extraño tipo de hueso que potencia el Ataque. Suelen llevarlo Cubone o Marowak.",0,0,0,
+191,STICK,Palo,Palos,1,200,"Es un puerro muy largo que suele llevar Farfetch′d. Aumenta la probabilidad de que logre un golpe crítico.",0,0,0,
+192,SOULDEW,Rocío Bondad,Rocíos Bondad,1,200,"Un orbe fantástico que deben llevar Latios o Latias. Sube el At. Esp. y la Def. Esp.",0,0,0,
+193,DEEPSEATOOTH,Diente Marino,Dientes Marinos,1,200,"Tiene el brillo afilado de la plata y debe llevarlo Clamperl. Sube el At. Esp.",0,0,0,
+194,DEEPSEASCALE,Escama Marina,Escamas Marinas,1,200,"Tiene un débil brillo rosado y debe llevarla Clamperl. Sube la Def. Esp.",0,0,0,
+195,ADAMANTORB,Diamansfera,Diamansferas,1,10000,"Una esfera brillante que potencia los ataques de tipo Acero y Dragón. Debe llevarla Dialga.",0,0,0,
+196,LUSTROUSORB,Lustresfera,Lustresferas,1,10000,"Una bonita esfera que potencia los ataques de tipo Dragón y Agua. Debe llevarla Palkia.",0,0,0,
+197,GRISEOUSORB,Griseosfera,Griseosferas,1,10000,"Una esfera brillante que potencia los ataques de tipo Dragón y Fantasma. Debe llevarla Giratina.",0,0,0,
+198,DOUSEDRIVE,HidroROM,HidroROMs,1,1000,"Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Agua.",0,0,0,
+199,SHOCKDRIVE,FulgoROM,FulgoROMs,1,1000,"Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Eléctrico.",0,0,0,
+200,BURNDRIVE,PiroROM,PiroROMs,1,1000,"Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Fuego.",0,0,0,
+201,CHILLDRIVE,CrioROM,CrioROMs,1,1000,"Cartucho que convierte Tecno Shock de Genesect en un movimiento de tipo Hielo.",0,0,0,
+202,EVERSTONE,Piedra Eterna,Piedras Eternas,1,200,"El Pokémon que lleve esta piedra mágica no evolucionará.",0,0,0,
+203,DRAGONSCALE,Escamadragón,Escamadragones,1,2100,"Una gruesa y resistente escama que pueden llevar los Pokémon de tipo Dragón cuando son capturados.",1,0,0,
+204,UPGRADE,Mejora,Mejoras,1,2100,"Peculiar dispositivo fabricado en Silph S.A. que contiene todo tipo de datos.",1,0,0,
+205,DUBIOUSDISC,Disco Extraño,Discos Extraños,1,2100,"Dispositivo transparente que contiene datos misteriosos. Es de fabricante desconocido.",1,0,0,
+206,PROTECTOR,Protector,Protectores,1,2100,"Dispositivo de protección muy pesado. Algunos Pokémon lo adoran.",1,0,0,
+207,ELECTIRIZER,Electrizador,Electrizadores,1,2100,"Este dispositivo contiene una gran cantidad de energía eléctrica. Algunos Pokémon lo adoran.",1,0,0,
+208,MAGMARIZER,Magmatizador,Magmatizadores,1,2100,"Esta caja contiene una enorme cantidad de energía magmática. Algunos Pokémon lo adoran.",1,0,0,
+209,REAPERCLOTH,Tela Terrible,Telas Terribles,1,2100,"Tela imbuida de una energía espiritual muy potente. Algunos Pokémon la adoran.",1,0,0,
+210,PRISMSCALE,Escama Bella,Escamas Bellas,1,500,"Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Brilla con los colores del arcoíris.",0,0,0,
+211,OVALSTONE,Piedra Oval,Piedras Ovales,1,2100,"Una piedra peculiar que hace evolucionar a algunos Pokémon. Tiene forma de huevo.",0,0,0,
+212,REDSCARF,Pañuelo Rojo,Pañuelos Rojo,1,100,"Debe llevarlo un Pokémon. Aumenta el carisma en los concursos.",0,0,0,
+213,BLUESCARF,Pañuelo Azul,Pañuelos Azul,1,100,"Debe llevarlo un Pokémon. Aumenta la belleza en los concursos.",0,0,0,
+214,PINKSCARF,Pañuelo Rosa,Pañuelos Rosa,1,100,"Debe llevarlo un Pokémon. Aumenta la dulzura en los concursos.",0,0,0,
+215,GREENSCARF,Pañuelo Verde,Pañuelos Verde,1,100,"Debe llevarlo un Pokémon. Aumenta el ingenio en los concursos.",0,0,0,
+216,YELLOWSCARF,Pañuelo Amarillo,Pañuelos Amarillo,1,100,"Debe llevarlo un Pokémon. Aumenta la dureza en los concursos.",0,0,0,
+217,POTION,Poción,Pociones,2,300,"Medicina en spray que cura heridas y restaura 20 PS de un Pokémon.",1,1,0,
+218,SUPERPOTION,Superpoción,Superpociones,2,700,"Medicina en spray que cura heridas y restaura 50 PS de un Pokémon.",1,1,0,
+219,HYPERPOTION,Hiperpoción,Hiperpociones,2,1200,"Medicina en spray que cura heridas y restaura 200 PS de un Pokémon.",1,1,0,
+220,MAXPOTION,Poción Máxima,Pociones Máximas,2,2500,"Medicina en spray que cura heridas y restaura todos los PS de un Pokémon.",1,1,0,
+221,FULLRESTORE,Restaura Todo,Restaura Todo,2,3000,"Medicina que restaura todos los PS y cura todos los problemas de estado de un Pokémon.",1,1,0,
+222,SACREDASH,Ceniza Sagrada,Cenizas Sagradas,2,200,"Reanima completamente a los Pokémon debilitados y restaura todos sus PS.",2,0,0,
+223,AWAKENING,Despertar,Despertar,2,250,"Medicina en spray que libera a un Pokémon de las garras del sueño.",1,1,0,
+224,ANTIDOTE,Antídoto,Antídotos,2,100,"Medicina en spray que contrarresta los efectos del veneno en un Pokémon.",1,1,0,
+225,BURNHEAL,Antiquemadura,Antiquemaduras,2,250,"Medicina en spray que cura las quemaduras a un Pokémon.",1,1,0,
+226,PARLYZHEAL,Antiparalizante,Antiparalizantes,2,200,"Medicina en spray que cura a un Pokémon paralizado.",1,1,0,
+227,ICEHEAL,Antihielo,Antihielos,2,250,"Medicina en spray que descongela a un Pokémon.",1,1,0,
+228,FULLHEAL,Cura Total,Curas Totales,2,600,"Medicina en spray que cura todos los problemas de estado de un Pokémon.",1,1,0,
+229,LAVACOOKIE,Galleta Lava,Galletas Lava,2,1000,"Dulce típico de Pueblo Lavacalda que cura todos los problemas de estado de un Pokémon.",1,1,0,
+230,OLDGATEAU,Barrita Plus,Barritas Plus,2,1000,"Especialidad de la Vieja Mansión. Cura los problemas de estado de un Pokémon.",1,1,0,
+231,CASTELIACONE,Porcehelado,Porcehelados,2,1000,"Especialidad de Ciudad Porcelana. Cura los problemas de estado de un Pokémon.",1,1,0,
+232,REVIVE,Revivir,Revivir,2,1500,"Medicina que reanima a un Pokémon debilitado y restaura la mitad de sus PS.",1,1,0,
+233,MAXREVIVE,Revivir Máximo,Revivir Máximos,2,4000,"Medicina que reanima a un Pokémon debilitado y restaura todos sus PS.",1,1,0,
+234,BERRYJUICE,Zumo de Baya,Zumos de Baya,2,100,"Zumo de bayas 100% natural que restaura 20 PS de un Pokémon.",1,1,0,
+235,RAGECANDYBAR,Caramelo Furia,Caramelos Furia,2,1000,"Caramelo típico de Pueblo Caoba, muy popular como souvenir.",1,1,0,
+236,SWEETHEART,Corazón Dulce,Corazones Dulces,2,100,"Chocolatina de sabor dulce. Restaura 20 PS de un Pokémon.",1,1,0,
+237,FRESHWATER,Agua Fresca,Aguas Frescas,2,200,"Agua de alto contenido mineral que restaura 50 PS de un Pokémon.",1,1,0,
+238,SODAPOP,Refresco,Refrescos,2,300,"Chispeante bebida gaseosa que restaura 60 PS de un Pokémon.",1,1,0,
+239,LEMONADE,Limonada,Limonadas,2,350,"Bebida dulce que restaura 80 PS de un Pokémon.",1,1,0,
+240,MOOMOOMILK,Leche Mu-mu,Leches Mu-mu,2,500,"Leche de alto valor nutritivo que restaura 100 PS de un Pokémon.",1,1,0,
+241,ENERGYPOWDER,Polvoenergía,Polvoenergías,2,500,"Polvo medicinal muy amargo que restaura 50 PS de un Pokémon.",1,1,0,
+242,ENERGYROOT,Raíz Energía,Raíces Energías,2,800,"Raíz muy amarga que restaura 200 PS de un Pokémon.",1,1,0,
+243,HEALPOWDER,Polvo Curación,Polvos Curación,2,450,"Polvos muy amargos que curan todos los problemas de estado de un Pokémon.",1,1,0,
+244,REVIVALHERB,Hierba Revivir,Hierbas Revivir,2,2800,"Hierba muy amarga que reanima a un Pokémon debilitado y restaura todos sus PS.",1,1,0,
+245,ETHER,Éter,Éteres,2,1200,"Restaura un máximo de 10 PP del ataque que elijas de un Pokémon.",1,1,0,
+246,MAXETHER,Éter Máximo,Éteres Máximos,2,2000,"Restaura completamente los PP del movimiento que elijas de un Pokémon.",1,1,0,
+247,ELIXIR,Elixir,Elíxires,2,3000,"Restaura 10 PP de todos los movimientos aprendidos por un Pokémon.",1,1,0,
+248,MAXELIXIR,Elixir Máximo,Elíxires Máximos,2,4500,"Restaura completamente los PP de todos los movimientos aprendidos por el Pokémon elegido.",1,1,0,
+249,PPUP,Más PP,Más PP,2,9800,"Aumenta ligeramente los PP máximos del ataque que elijas de un Pokémon.",1,0,0,
+250,PPMAX,PP Máximos,PP Máximos,2,9800,"Aumenta al máximo los PP del ataque que elijas de un Pokémon.",1,0,0,
+251,HPUP,Más PS,Más PS,2,9800,"Nutritiva bebida que aumenta los PS de un Pokémon.",1,0,0,
+252,PROTEIN,Proteína,Proteínas,2,9800,"Nutritiva bebida que aumenta el Ataque de un Pokémon.",1,0,0,
+253,IRON,Hierro,Hierros,2,9800,"Nutritiva bebida que aumenta la Defensa de un Pokémon.",1,0,0,
+254,CALCIUM,Calcio,Calcios,2,9800,"Nutritiva bebida que sube el At. Esp. de un Pokémon.",1,0,0,
+255,ZINC,Zinc,Zincs,2,9800,"Nutritiva bebida que aumenta la Defensa Especial de un Pokémon.",1,0,0,
+256,CARBOS,Carburante,Carburantes,2,9800,"Nutritiva bebida que sube la Velocidad de un Pokémon.",1,0,0,
+257,HEALTHWING,Pluma Vigor,Plumas Vigor,2,3000,"Pluma que aumenta un poco los PS de un Pokémon al subir de nivel.",1,0,0,
+258,MUSCLEWING,Pluma Músculo,Plumas Músculo,2,3000,"Pluma que aumenta un poco el Ataque de un Pokémon al subir de nivel.",1,0,0,
+259,RESISTWING,Pluma Aguante,Plumas Aguante,2,3000,"Pluma que aumenta un poco la Defensa de un Pokémon al subir de nivel.",1,0,0,
+260,GENIUSWING,Pluma Intelecto,Plumas Intelecto,2,3000,"Pluma que aumenta un poco el Ataque Especial de un Pokémon al subir de nivel.",1,0,0,
+261,CLEVERWING,Pluma Mente,Plumas Mente,2,3000,"Pluma que aumenta un poco la Defensa Especial de un Pokémon al subir de nivel.",1,0,0,
+262,SWIFTWING,Pluma Ímpetu,Plumas Ímpetu,2,3000,"Pluma que aumenta un poco la Velocidad de un Pokémon al subir de nivel.",1,0,0,
+263,RARECANDY,Caramelo Raro,Caramelos Raros,2,4800,"Caramelo energético que sube a un Pokémon de nivel.",1,0,0,
+264,MASTERBALL,Master Ball,Master Balls,3,0,"La Poké Ball definitiva. Atrapa a cualquier Pokémon salvaje y no falla nunca.",0,2,3,
+265,ULTRABALL,Ultra Ball,Ultra Balls,3,1200,"Poké Ball de rendimiento superior. Tiene más índice de éxito que la Superball.",0,2,4,
+266,GREATBALL,Super Ball,Super Balls,3,600,"Poké Ball de alto rendimiento. Tiene un índice de éxito superior al de la Poké Ball.",0,2,4,
+267,POKEBALL,Poké Ball,Poké Balls,3,200,"Dispositivo con diseño capsular que atrapa Pokémon salvajes. Se lanza como una bola contra el blanco.",0,2,4,
+268,SAFARIBALL,Safari Ball,Safari Balls,3,0,"Poké Ball con un diseño de camuflaje que se utiliza únicamente en el Gran Pantano.",0,2,4,
+269,SPORTBALL,Compet Ball,Compet Balls,3,0,"Poké Ball especial para el Concurso de Captura de Bichos.",0,2,4,
+270,NETBALL,Malla Ball,Malla Balls,3,1000,"Es algo distinta a las demás. Funciona especialmente bien con los Pokémon de tipo Agua y Bicho.",0,2,4,
+271,DIVEBALL,Buceo Ball,Buceo Balls,3,1000,"Es algo distinta a las demás. Funciona especialmente bien con los Pokémon que viven en el mar.",0,2,4,
+272,NESTBALL,Nido Ball,Nido Balls,3,1000,"Es algo distinta a las demás. Funciona especialmente bien con los Pokémon salvajes de menor nivel.",0,2,4,
+273,REPEATBALL,Acopio Ball,Acopio Balls,3,1000,"Es algo distinta a las demás. Funciona especialmente bien con los Pokémon iguales a los que ya has capturado.",0,2,4,
+274,TIMERBALL,Turno Ball,Turno Balls,3,1000,"Una Poké Ball algo distinta que va mejorando su rendimiento con cada turno de combate.",0,2,4,
+275,LUXURYBALL,Lujo Ball,Lujo Balls,3,1000,"Acogedora Poké Ball que hace más amistosos a los Pokémon salvajes capturados.",0,2,4,
+276,PREMIERBALL,Honor Ball,Honor Balls,3,200,"Es una Poké Ball muy particular que se creó para conmemorar algún acontecimiento.",0,2,4,
+277,DUSKBALL,Ocaso Ball,Ocaso Balls,3,1000,"Es algo distinta. Hace que sea más fácil capturar a Pokémon salvajes en la oscuridad.",0,2,4,
+278,HEALBALL,Sana Ball,Sana Balls,3,300,"Poké Ball curativa que restaura los PS de un Pokémon capturado y cura sus problemas de estado.",0,2,4,
+279,QUICKBALL,Veloz Ball,Veloz Balls,3,1000,"Una Poké Ball algo distinta que potencia el índice de captura si se usa al inicio de un encuentro con Pokémon salvajes.",0,2,4,
+280,CHERISHBALL,Gloria Ball,Gloria Balls,3,200,"Es una Poké Ball muy particular que se creó para conmemorar algún acontecimiento.",0,2,4,
+281,FASTBALL,Rapid Ball,Rapid Balls,3,3000,"Poké Ball algo distinta, especialmente indicada para capturar Pokémon con Velocidad muy alta.",0,2,4,
+282,LEVELBALL,Nivel Ball,Nivel Balls,3,3000,"Una Poké Ball diseñada para capturar Pokémon de nivel inferior al de tu Pokémon.",0,2,4,
+283,LUREBALL,Cebo Ball,Cebo Balls,3,3000,"Poké Ball algo distinta, especialmente indicada para capturar los Pokémon que se han pescado con una Caña.",0,2,4,
+284,HEAVYBALL,Peso Ball,Peso Balls,3,3000,"Una Poké Ball diseñada para capturar Pokémon muy pesados.",0,2,4,
+285,LOVEBALL,Amor Ball,Amor Balls,3,3000,"Una Poké Ball diseñada para capturar Pokémon del género opuesto al de tu Pokémon.",0,2,4,
+286,FRIENDBALL,Amigo Ball,Amigo Balls,3,3000,"Una Poké Ball que hace más amistosos a los Pokémon capturados.",0,2,4,
+287,MOONBALL,Luna Ball,Luna Balls,3,3000,"Una Poké Ball diseñada para capturar Pokémon que evolucionan con Piedra Lunar.",0,2,4,
+288,TM01,MT01,MT01s,4,0,"El usuario se afila las garras para aumentar su Ataque y Precisión.",3,0,0,HONECLAWS
+289,TM02,MT02,MT02s,4,0,"Araña al objetivo con garras afiladas.",3,0,0,DRAGONCLAW
+290,TM03,MT03,MT03s,4,0,"Crea una onda psíquica que golpea al objetivo y provoca un gran daño.",3,0,0,PSYSHOCK
+291,TM04,MT04,MT04s,4,0,"Aumenta la concentración y calma el espíritu para subir el Ataque Especial y la Defensa Especial.",3,0,0,CALMMIND
+292,TM05,MT05,MT05s,4,0,"Se lleva al objetivo, que es cambiado por otro Pokémon. Si es un Pokémon salvaje, acaba el combate.",3,0,0,ROAR
+293,TM06,MT06,MT06s,4,0,"Envenena gravemente al objetivo y causa un daño mayor en cada turno.",3,0,0,TOXIC
+294,TM07,MT07,MT07s,4,0,"Tormenta de granizo que dura cinco turnos. Hiere a todos, excepto a los de tipo Hielo.",3,0,0,HAIL
+295,TM08,MT08,MT08s,4,0,"Robustece el cuerpo para subir el Ataque y la Defensa.",3,0,0,BULKUP
+296,TM09,MT09,MT09s,4,0,"Ataca cubriendo al objetivo con un líquido venenoso. El daño será doble si este ya está envenenado.",3,0,0,VENOSHOCK
+297,TM10,MT10,MT10s,4,0,"Ataque único cuyo tipo y potencia varían según el agresor.",3,0,0,HIDDENPOWER
+298,TM11,MT11,MT11s,4,0,"Quien lo usa intensifica el sol durante cinco turnos, lo que potencia los movimientos de tipo Fuego.",3,0,0,SUNNYDAY
+299,TM12,MT12,MT12s,4,0,"Enfurece al objetivo para que solo use movimientos de ataque durante tres turnos.",3,0,0,TAUNT
+300,TM13,MT13,MT13s,4,0,"Rayo de hielo que puede llegar a congelar.",3,0,0,ICEBEAM
+301,TM14,MT14,MT14s,4,0,"Tormenta de hielo que puede llegar a congelar.",3,0,0,BLIZZARD
+302,TM15,MT15,MT15s,4,0,"Es eficaz, pero el atacante deberá descansar en el siguiente turno.",3,0,0,HYPERBEAM
+303,TM16,MT16,MT16s,4,0,"Pared de luz que reduce durante cinco turnos el daño producido por los ataques especiales.",3,0,0,LIGHTSCREEN
+304,TM17,MT17,MT17s,4,0,"Frena todos los ataques, pero puede fallar si se usa repetidamente.",3,0,0,PROTECT
+305,TM18,MT18,MT18s,4,0,"Genera una fuerte lluvia que refuerza los movimientos de tipo Agua durante cinco turnos.",3,0,0,RAINDANCE
+306,TM19,MT19,MT19s,4,0,"Aterriza sobre la superficie para descansar. Recupera hasta la mitad del total de sus PS.",3,0,0,ROOST
+307,TM20,MT20,MT20s,4,0,"Crea un campo protector que evita problemas de estado durante cinco turnos.",3,0,0,SAFEGUARD
+308,TM21,MT21,MT21s,4,0,"Cuanto menor sea la amistad con el Entrenador, más poderoso será este ataque.",3,0,0,FRUSTRATION
+309,TM22,MT22,MT22s,4,0,"Primer turno: absorbe luz.            Segundo turno: ataca.",3,0,0,SOLARBEAM
+310,TM23,MT23,MT23s,4,0,"El usuario ataca lanzando una piedra o un proyectil. Puede estrellar contra el suelo al objetivo si vuela.",3,0,0,SMACKDOWN
+311,TM24,MT24,MT24s,4,0,"Potente ataque eléctrico que puede paralizar al objetivo.",3,0,0,THUNDERBOLT
+312,TM25,MT25,MT25s,4,0,"Un poderoso rayo que daña al objetivo y puede paralizarlo.",3,0,0,THUNDER
+313,TM26,MT26,MT26s,4,0,"Un terremoto que afecta a los Pokémon de alrededor en combate.",3,0,0,EARTHQUAKE
+314,TM27,MT27,MT27s,4,0,"Cuanto mayor sea la amistad con el Entrenador, más poderoso será este ataque.",3,0,0,RETURN
+315,TM28,MT28,MT28s,4,0,"Primer turno: cava.                        Segundo turno: ataca. También sirve para salir de ciertas zonas.",3,0,0,DIG
+316,TM29,MT29,MT29s,4,0,"Fuerte ataque telequinético que puede bajar la Defensa Especial del objetivo.",3,0,0,PSYCHIC
+317,TM30,MT30,MT30s,4,0,"Lanza una bola oscura que puede bajar la Defensa Especial del objetivo.",3,0,0,SHADOWBALL
+318,TM31,MT31,MT31s,4,0,"Potente ataque que también es capaz de destruir barreras como Pantalla de Luz y Reflejo.",3,0,0,BRICKBREAK
+319,TM32,MT32,MT32s,4,0,"Crea copias de sí mismo para mejorar la Evasión.",3,0,0,DOUBLETEAM
+320,TM33,MT33,MT33s,4,0,"Pared de luz que reduce durante cinco turnos el daño producido por los ataques físicos.",3,0,0,REFLECT
+321,TM34,MT34,MT34s,4,0,"Una onda tóxica que daña a los Pokémon de alrededor. Puede envenenar.",3,0,0,SLUDGEWAVE
+322,TM35,MT35,MT35s,4,0,"Ataca con una gran ráfaga de fuego que puede causar quemaduras.",3,0,0,FLAMETHROWER
+323,TM36,MT36,MT36s,4,0,"Arroja residuos al objetivo. Puede llegar a envenenar.",3,0,0,SLUDGEBOMB
+324,TM37,MT37,MT37s,4,0,"Tormenta de arena que dura cinco turnos y hiere a todos, excepto a los de tipo Roca, Tierra y Acero.",3,0,0,SANDSTORM
+325,TM38,MT38,MT38s,4,0,"Llama intensa que chamusca y puede causar quemaduras.",3,0,0,FIREBLAST
+326,TM39,MT39,MT39s,4,0,"Tira rocas que detienen al objetivo y bajan su Velocidad.",3,0,0,ROCKTOMB
+327,TM40,MT40,MT40s,4,0,"El usuario lanza un ataque muy rápido e ineludible.",3,0,0,AERIALACE
+328,TM41,MT41,MT41s,4,0,"Atormenta y enfurece al objetivo, que no puede usar dos veces seguidas el mismo movimiento.",3,0,0,TORMENT
+329,TM42,MT42,MT42s,4,0,"Ataca con el doble de potencia si el usuario está quemado, paralizado o envenenado.",3,0,0,FACADE
+330,TM43,MT43,MT43s,4,0,"Llamas que golpean al objetivo y aumentan la Velocidad del atacante.",3,0,0,FLAMECHARGE
+331,TM44,MT44,MT44s,4,0,"Restaura todos los PS y cura todos los problemas de estado del usuario. Duerme los dos próximos turnos.",3,0,0,REST
+332,TM45,MT45,MT45s,4,0,"Si el objetivo es del sexo opuesto, se enamorará y bajará la posibilidad de que ataque.",3,0,0,ATTRACT
+333,TM46,MT46,MT46s,4,0,"Ataca y le quita al objetivo el objeto que lleve. Si el agresor lleva un objeto, no robará el del objetivo.",3,0,0,THIEF
+334,TM47,MT47,MT47s,4,0,"Un veloz ataque a los pies que reduce la Velocidad del objetivo.",3,0,0,LOWSWEEP
+335,TM48,MT48,MT48s,4,0,"Un canto que ataca al objetivo. Cuantos más Pokémon lo usan, más aumenta de potencia.",3,0,0,ROUND
+336,TM49,MT49,MT49s,4,0,"Un susurro que aumenta de potencia conforme el usuario y otros Pokémon lo van utilizando.",3,0,0,ECHOEDVOICE
+337,TM50,MT50,MT50s,4,0,"Ataque en toda regla que baja mucho el Ataque Especial de quien lo usa.",3,0,0,OVERHEAT
+338,TM51,MT51,MT51s,4,0,"Alas macizas que golpean al objetivo y pueden subir la Defensa del usuario.",3,0,0,STEELWING
+339,TM52,MT52,MT52s,4,0,"Agudiza la concentración mental y libera su poder. Puede disminuir la Defensa Especial del objetivo.",3,0,0,FOCUSBLAST
+340,TM53,MT53,MT53s,4,0,"Aúna fuerzas de la naturaleza y libera su ataque. Puede disminuir la Defensa Especial del objetivo.",3,0,0,ENERGYBALL
+341,TM54,MT54,MT54s,4,0,"Ataque moderado que no debilita al objetivo y le deja al menos un PS.",3,0,0,FALSESWIPE
+342,TM55,MT55,MT55s,4,0,"Ataca arrojando agua hirviendo al objetivo. Puede causar quemaduras.",3,0,0,SCALD
+343,TM56,MT56,MT56s,4,0,"Lanza contra el objetivo el objeto que lleva. La fuerza del ataque y su efecto varían según el objeto.",3,0,0,FLING
+344,TM57,MT57,MT57s,4,0,"Lanza un rayo eléctrico contra el objetivo. Puede subir el Ataque Especial de quien lo usa.",3,0,0,CHARGEBEAM
+345,TM58,MT58,MT58s,4,0,"Primero lanza al objetivo al aire y despues lo hace caer. Mientras está en el aire, no lo deja moverse.",3,0,0,SKYDROP
+346,TM59,MT59,MT59s,4,0,"Llamas que golpean a los objetivos adyacentes. Si estos llevan Bayas, estas se quemarán y ya no se podrán usar.",3,0,0,INCINERATE
+347,TM60,MT60,MT60s,4,0,"El usuario intimida a su objetivo logrando que su movimiento sea el último del turno.",3,0,0,QUASH
+348,TM61,MT61,MT61s,4,0,"Siniestra llama morada que produce quemaduras.",3,0,0,WILLOWISP
+349,TM62,MT62,MT62s,4,0,"Golpea ágilmente. Si el usuario no porta ningún objeto, el objetivo resulta seriamente dañado.",3,0,0,ACROBATICS
+350,TM63,MT63,MT63s,4,0,"Impide al objetivo usar el objeto que lleva. Su Entrenador tampoco puede usar objetos sobre él.",3,0,0,EMBARGO
+351,TM64,MT64,MT64s,4,0,"El atacante explota y hiere a todos a su alrededor. El usuario se debilita de inmediato.",3,0,0,EXPLOSION
+352,TM65,MT65,MT65s,4,0,"Ataca con una garra afilada hecha de sombras. Suele ser crítico.",3,0,0,SHADOWCLAW
+353,TM66,MT66,MT66s,4,0,"El usuario contraataca con el doble de fuerza si el objetivo usa un movimiento antes.",3,0,0,PAYBACK
+354,TM67,MT67,MT67s,4,0,"Venga a los amigos derrotados. Si en el turno anterior han derrotado a uno, la potencia del ataque aumentará.",3,0,0,RETALIATE
+355,TM68,MT68,MT68s,4,0,"Carga contra el objetivo usando toda la fuerza que tiene. El Pokémon descansa el turno siguiente.",3,0,0,GIGAIMPACT
+356,TM69,MT69,MT69s,4,0,"Reduce la resistencia puliendo su cuerpo. Aumenta la Velocidad considerablemente.",3,0,0,ROCKPOLISH
+357,TM70,MT70,MT70s,4,0,"Luz cegadora que baja la Precisión del objetivo. Fuera de combate sirve para iluminar.",3,0,0,FLASH
+358,TM71,MT71,MT71s,4,0,"Clava piedras muy afiladas al objetivo. Suele ser crítico.",3,0,0,STONEEDGE
+359,TM72,MT72,MT72s,4,0,"Tras atacar, vuelve a toda prisa para dar paso a otro Pokémon del equipo.",3,0,0,VOLTSWITCH
+360,TM73,MT73,MT73s,4,0,"Una ligera descarga que paraliza al objetivo si lo alcanza.",3,0,0,THUNDERWAVE
+361,TM74,MT74,MT74s,4,0,"Embiste al objetivo con un potente ataque giratorio. Cuanto más lento es el usuario, más daño causa.",3,0,0,GYROBALL
+362,TM75,MT75,MT75s,4,0,"Baile frenético que aumenta mucho el Ataque.",3,0,0,SWORDSDANCE
+363,TM76,MT76,MT76s,4,0,"El usuario contraataca. Además baja el Ataque Especial de los oponentes.",3,0,0,STRUGGLEBUG
+364,TM77,MT77,MT77s,4,0,"Quien lo usa se hipnotiza y copia cualquier cambio que haya en las características de su objetivo.",3,0,0,PSYCHUP
+365,TM78,MT78,MT78s,4,0,"Ataca con una sacudida sísmica que afecta a los Pokémon adyacentes en combate y baja su Velocidad.",3,0,0,BULLDOZE
+366,TM79,MT79,MT79s,4,0,"Ataque con aire helado. Siempre resulta en un golpe crítico.",3,0,0,FROSTBREATH
+367,TM80,MT80,MT80s,4,0,"Lanza grandes pedruscos. Puede hacer retroceder al objetivo.",3,0,0,ROCKSLIDE
+368,TM81,MT81,MT81s,4,0,"Cruza las guadañas o las garras para atacar al objetivo como si fueran unas tijeras.",3,0,0,XSCISSOR
+369,TM82,MT82,MT82s,4,0,"Ataca al objetivo y lo obliga a cambiarse por otro Pokémon. Si es uno salvaje, acaba el combate.",3,0,0,DRAGONTAIL
+370,TM83,MT83,MT83s,4,0,"Oprime al enemigo de cuatro a cinco turnos, durante los cuales no podrá huir.",3,0,0,INFESTATION
+371,TM84,MT84,MT84s,4,0,"Pincha al objetivo con un tentáculo o brazo envenenado. Puede llegar a envenenar al objetivo.",3,0,0,POISONJAB
+372,TM85,MT85,MT85s,4,0,"Restaura al usuario la mitad del daño causado a un objetivo dormido.",3,0,0,DREAMEATER
+373,TM86,MT86,MT86s,4,0,"Enreda al objetivo con hierba y lo derriba. Cuanto más pesado es el objetivo, más daño inflige.",3,0,0,GRASSKNOT
+374,TM87,MT87,MT87s,4,0,"Provoca confusión en el objetivo, pero también sube mucho su Ataque.",3,0,0,SWAGGER
+375,TM88,MT88,MT88s,4,0,"Mientras duerme, usa uno de sus movimientos elegido al azar.",3,0,0,SLEEPTALK
+376,TM89,MT89,MT89s,4,0,"Tras atacar, vuelve a toda prisa para dar paso a otro Pokémon del equipo.",3,0,0,UTURN
+377,TM90,MT90,MT90s,4,0,"Utiliza parte de los PS propios para crear un sustituto que actúa como señuelo.",3,0,0,SUBSTITUTE
+378,TM91,MT91,MT91s,4,0,"El usuario concentra toda la luz del cuerpo y la libera. Puede bajar la Defensa Especial del objetivo.",3,0,0,FLASHCANNON
+379,TM92,MT92,MT92s,4,0,"Se crea un espacio extraño en el que los Pokémon lentos se mueven primero durante cinco turnos.",3,0,0,TRICKROOM
+380,TM93,MT93,MT93s,4,0,"Carga eléctrica muy potente que también hiere ligeramente a quien la usa.",3,0,0,WILDCHARGE
+381,TM94,MT94,MT94s,4,1000,"Ataca con puñetazos que pueden romper rocas. Puede bajar la Defensa del objetivo.",3,0,0,ROCKSMASH
+382,TM95,MT95,MT95s,4,0,"Ataca lanzando un chillido insoportable que baja el Ataque Especial de los objetivos.",3,0,0,SNARL
+383,TM96,MT96,MT96s,4,0,"Este movimiento se convierte en otro movimiento según el terreno en que tenga lugar la batalla.",3,0,0,NATUREPOWER
+384,TM97,MT97,MT97s,4,0,"Libera una horrible aura de malos pensamientos que puede hacer retroceder al rival.",3,0,0,DARKPULSE
+385,TM98,MT98,MT98s,4,0,"Puñetazo que sube el ataque del usuario.",3,0,0,POWERUPPUNCH
+386,TM99,MT99,MT99s,4,0,"Inflige daño a los oponentes con una potente luz.",3,0,0,DAZZLINGGLEAM
+387,TM100,MT100,MT100s,4,0,"Baja un nivel el ataque especial del rival.",3,0,0,CONFIDE
+
+389,CHERIBERRY,Baya Zreza,Bayas Zreza,5,20,"Los Pokémon pueden llevarla o usarla para recuperarse de la parálisis.",1,1,5,
+390,CHESTOBERRY,Baya Atania,Bayas Atania,5,20,"Los Pokémon pueden llevarla o usarla para despertar del sueño.",1,1,5,
+391,PECHABERRY,Baya Meloc,Bayas Meloc,5,20,"Los Pokémon pueden llevarla o usarla para curarse del envenenamiento.",1,1,5,
+392,RAWSTBERRY,Baya Safre,Bayas Safre,5,20,"Los Pokémon pueden llevarla o usarla para curarse las quemaduras.",1,1,5,
+393,ASPEARBERRY,Baya Perasi,Bayas Perasi,5,20,"Los Pokémon pueden llevarla o usarla para descongelarse.",1,1,5,
+394,LEPPABERRY,Baya Zanama,Bayas Zanama,5,20,"Los Pokémon pueden llevarla o usarla para restaurar 10 PP de un movimiento.",1,1,5,
+395,ORANBERRY,Baya Aranja,Bayas Aranja,5,20,"Los Pokémon pueden usarla o llevarla para restaurar 10 PS.",1,1,5,
+396,PERSIMBERRY,Baya Caquic,Bayas Caquic,5,20,"Los Pokémon pueden usarla o llevarla para salir del estado de confusión.",0,1,5,
+397,LUMBERRY,Baya Ziuela,Bayas Ziuela,5,20,"Los Pokémon pueden llevarla o usarla para recuperarse de problemas de estado.",1,1,5,
+398,SITRUSBERRY,Baya Zidra,Bayas Zidra,5,20,"Los Pokémon pueden usarla o llevarla para restaurar algunos PS.",1,1,5,
+399,FIGYBERRY,Baya Higog,Bayas Higog,5,20,"Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",0,0,5,
+400,WIKIBERRY,Baya Wiki,Bayas Wiki,5,20,"Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",0,0,5,
+401,MAGOBERRY,Baya Ango,Bayas Ango,5,20,"Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",0,0,5,
+402,AGUAVBERRY,Baya Guaya,Bayas Guaya,5,20,"Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",0,0,5,
+403,IAPAPABERRY,Baya Pabaya,Bayas Pabaya,5,20,"Restaura los PS del Pokémon que la usa en un apuro, pero puede causar confusión.",0,0,5,
+404,RAZZBERRY,Baya Frambu,Bayas Frambu,5,20,"Si la plantas en tierra suelta, saldrá una planta de Frambu.",0,0,5,
+405,BLUKBERRY,Baya Oram,Bayas Oram,5,20,"Si la plantas en tierra suelta, saldrá una planta de Oram.",0,0,5,
+406,NANABBERRY,Baya Latano,Bayas Latano,5,20,"Si la plantas en tierra suelta, saldrá una planta de Latano.",0,0,5,
+407,WEPEARBERRY,Baya Peragu,Bayas Peragu,5,20,"Si la plantas en tierra suelta, saldrá una planta de Peragu.",0,0,5,
+408,PINAPBERRY,Baya Pinia,Bayas Pinia,5,20,"Si la plantas en tierra suelta, saldrá una planta de Pinia.",0,0,5,
+409,POMEGBERRY,Baya Grana,Bayas Grana,5,200,"Si la usas en un Pokémon te ganas su amistad, pero también reduces sus PS.",1,0,5,
+410,KELPSYBERRY,Baya Algama,Bayas Algama,5,200,"Si la usas en un Pokémon te ganas su amistad, pero reduces su Ataque.",1,0,5,
+411,QUALOTBERRY,Baya Ispero,Bayas Ispero,5,200,"Si la usas en un Pokémon te ganas su amistad, pero reduces su Defensa.",1,0,5,
+412,HONDEWBERRY,Baya Meluce,Bayas Meluce,5,200,"Si la usas en un Pokémon te ganas su amistad, pero reduces su Ataque Especial.",1,0,5,
+413,GREPABERRY,Baya Uvav,Bayas Uvav,5,200,"Si la usas en un Pokémon te ganas su amistad, pero reduces su Defensa Especial.",1,0,5,
+414,TAMATOBERRY,Baya Tamate,Bayas Tamate,5,200,"Si la usas en un Pokémon te ganas su amistad, pero baja su Velocidad.",1,0,5,
+415,CORNNBERRY,Baya Mais,Bayas Mais,5,20,"Si la plantas en tierra suelta, saldrá una planta de Mais.",0,0,5,
+416,MAGOSTBERRY,Baya Aostan,Bayas Aostan,5,20,"Si la plantas en tierra suelta, saldrá una planta de Aostan.",0,0,5,
+417,RABUTABERRY,Baya Rautan,Bayas Rautan,5,20,"Si la plantas en tierra suelta, saldrá una planta de Rautan.",0,0,5,
+418,NOMELBERRY,Baya Monli,Bayas Monli,5,20,"Si la plantas en tierra suelta, saldrá una planta de Monli.",0,0,5,
+419,SPELONBERRY,Baya Wikano,Bayas Wikano,5,20,"Si la plantas en tierra suelta, saldrá una planta de Wikano.",0,0,5,
+420,PAMTREBERRY,Baya Plama,Bayas Plama,5,20,"Si la plantas en tierra suelta, saldrá una planta de Plama.",0,0,5,
+421,WATMELBERRY,Baya Sambia,Bayas Sambia,5,20,"Si la plantas en tierra suelta, saldrá una planta de Sambia.",0,0,5,
+422,DURINBERRY,Baya Rudion,Bayas Rudion,5,20,"Si la plantas en tierra suelta, saldrá una planta de Rudion.",0,0,5,
+423,BELUEBERRY,Baya Andano,Bayas Andano,5,20,"Si la plantas en tierra suelta, saldrá una planta de Andano.",0,0,5,
+424,OCCABERRY,Baya Caoca,Bayas Caoca,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Fuego.",0,0,5,
+425,PASSHOBERRY,Baya Pasio,Bayas Pasio,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Agua.",0,0,5,
+426,WACANBERRY,Baya Gualot,Bayas Gualot,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Eléctrico.",0,0,5,
+427,RINDOBERRY,Baya Tamar,Bayas Tamar,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Planta.",0,0,5,
+428,YACHEBERRY,Baya Rimoya,Bayas Rimoya,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Hielo.",0,0,5,
+429,CHOPLEBERRY,Baya Pomaro,Bayas Pomaro,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Lucha.",0,0,5,
+430,KEBIABERRY,Baya Kebia,Bayas Kebia,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Veneno.",0,0,5,
+431,SHUCABERRY,Baya Acardo,Bayas Acardo,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Tierra.",0,0,5,
+432,COBABERRY,Baya Kouba,Bayas Kouba,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Volador.",0,0,5,
+433,PAYAPABERRY,Baya Payapa,Bayas Payapa,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Psíquico.",0,0,5,
+434,TANGABERRY,Baya Yecana,Bayas Yecana,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Bicho.",0,0,5,
+435,CHARTIBERRY,Baya Alcho,Bayas Alcho,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Roca.",0,0,5,
+436,KASIBBERRY,Baya Drasi,Bayas Drasi,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Fantasma.",0,0,5,
+437,HABANBERRY,Baya Anjiro,Bayas Anjiro,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Dragón.",0,0,5,
+438,COLBURBERRY,Baya Dillo,Bayas Dillo,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Siniestro.",0,0,5,
+439,BABIRIBERRY,Baya Baribá,Bayas Baribá,5,20,"Si la lleva un Pokémon, debilita ataques supereficaces de tipo Acero.",0,0,5,
+440,CHILANBERRY,Baya Chilan,Bayas Chilan,5,20,"Si la lleva un Pokémon, debilita el ataque de tipo Normal de un enemigo.",0,0,5,
+441,LIECHIBERRY,Baya Lichi,Bayas Lichi,5,200,"Si la lleva un Pokémon, le subirá el Ataque en un momento de apuro.",0,0,5,
+442,GANLONBERRY,Baya Gonlan,Bayas Gonlan,5,200,"Si la lleva un Pokémon, le subirá la Defensa en un momento de apuro.",0,0,5,
+443,SALACBERRY,Baya Aslac,Bayas Aslac,5,200,"Si la lleva un Pokémon, le subirá la Velocidad en un momento de apuro.",0,0,5,
+444,PETAYABERRY,Baya Yapati,Bayas Yapati,5,200,"Si la lleva un Pokémon, le subirá el At. Esp. en un momento de apuro.",0,0,5,
+445,APICOTBERRY,Baya Aricoc,Bayas Aricoc,5,200,"Si la lleva un Pokémon, le subirá la Def. Esp. en un momento de apuro.",0,0,5,
+446,LANSATBERRY,Baya Zonlan,Bayas Zonlan,5,200,"Si la lleva un Pokémon, sube su capacidad de dar un golpe crítico en un apuro.",0,0,5,
+447,STARFBERRY,Baya Arabol,Bayas Arabol,5,200,"Si la lleva un Pokémon, aumenta drásticamente 1 característica en un momento de apuro.",0,0,5,
+448,ENIGMABERRY,Baya Enigma,Bayas Enigma,5,20,"Restaura los PS de un Pokémon si la lleva cuando le alcanza un ataque supereficaz.",0,0,5,
+449,MICLEBERRY,Baya Lagro,Bayas Lagro,5,200,"Cuando la lleve un Pokémon, le subirá la precisión de un movimiento en un momento de apuro.",0,0,5,
+450,CUSTAPBERRY,Baya Chiri,Bayas Chiri,5,300,"El Pokémon que la lleve podrá actuar en primer lugar una vez cuando se encuentre en un momento de apuro.",0,0,5,
+451,JABOCABERRY,Baya Jaboca,Bayas Jaboca,5,20,"Si la lleva un Pokémon cuando un enemigo lanza un ataque físico, este también recibirá daño.",0,0,5,
+452,ROWAPBERRY,Baya Magua,Bayas Magua,5,20,"Si la lleva un Pokémon cuando un enemigo lanza un ataque especial, este también recibirá daño.",0,0,5,
+
+453,GRASSMAIL,Carta Hierba,Cartas Hierba,1,50,"Carta con un estampado de hierba. Haz que la entregue un Pokémon.",0,0,2,
+454,FLAMEMAIL,Carta Fuego,Cartas Fuego,1,50,"Carta con los colores del fuego. Haz que la entregue un Pokémon.",0,0,2,
+455,BUBBLEMAIL,Carta Pompas,Cartas Pompas,1,50,"Carta con una imagen de burbujas. Haz que la entregue un Pokémon.",0,0,2,
+456,BLOOMMAIL,Carta Flores,Cartas Flores,1,50,"Carta con un bonito estampado floral. Haz que la entregue un Pokémon.",0,0,2,
+457,TUNNELMAIL,Carta Mina,Cartas Mina,1,50,"Carta con la imagen de una mina de carbón poco iluminada. Haz que la entregue un Pokémon.",0,0,2,
+458,STEELMAIL,Carta Acero,Cartas Acero,1,50,"Carta con un estupendo diseño de estilo industrial. Haz que la entregue un Pokémon.",0,0,2,
+459,HEARTMAIL,Carta Corazón,Cartas Corazón,1,50,"Carta con un estampado de corazones. Haz que la entregue un Pokémon.",0,0,2,
+460,SNOWMAIL,Carta Nieve,Cartas Nieve,1,50,"Carta con la imagen de un bonito mundo cubierto de nieve. Haz que la entregue un Pokémon.",0,0,2,
+461,SPACEMAIL,Carta Sideral,Cartas Sideral,1,50,"Carta con la imagen de una galaxia. Haz que la entregue un Pokémon.",0,0,2,
+462,AIRMAIL,Carta Áerea,Cartas Áerea,1,50,"Carta con el diseño tradicional del correo aéreo. Haz que la entregue un Pokémon.",0,0,2,
+463,MOSAICMAIL,Carta Mosaico,Cartas Mosaico,1,50,"Carta con un mosaico de arco iris. Haz que la entregue un Pokémon.",0,0,2,
+464,BRICKMAIL,Carta Pared,Cartas Pared,1,50,"Carta con la imagen de una pared de ladrillos. Haz que la entregue un Pokémon.",0,0,2,
+
+465,XATTACK,Ataque X,Ataque X,7,500,"Aumenta el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+466,XATTACK2,Ataque X 2,Ataque X 2,7,0,"Aumenta ligeramente el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+467,XATTACK3,Ataque X 3,Ataque X 3,7,0,"Aumenta bastante el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+468,XATTACK6,Ataque X 6,Ataque X 6,7,0,"Aumenta mucho el Ataque en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+469,XDEFEND,Defensa X,Defensa X,7,550,"Aumenta la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+470,XDEFEND2,Defensa X 2,Defensa X 2,7,0,"Aumenta ligeramente la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+471,XDEFEND3,Defensa X 3,Defensa X 3,7,0,"Aumenta bastante la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+472,XDEFEND6,Defensa X 6,Defensa X 6,7,0,"Aumenta mucho la Defensa en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+473,XSPECIAL,Especial X,Especial X,7,350,"Aumenta el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+474,XSPECIAL2,Especial X 2,Especial X 2,7,0,"Aumenta ligeramente el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+475,XSPECIAL3,Especial X 3,Especial X 3,7,0,"Aumenta bastante el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+476,XSPECIAL6,Especial X 6,Especial X 6,7,0,"Aumenta mucho el Ataque Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+477,XSPDEF,Defensa Especial X,Defensa Especial X,7,350,"Aumenta la Defensa Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+478,XSPDEF2,Defensa Especial X 2,Defensa Especial X 2,7,0,"Aumenta ligeramente la Defensa Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+479,XSPDEF3,Defensa Especial X 3,Defensa Especial X 3,7,0,"Aumenta bastante la Defensa Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+480,XSPDEF6,Defensa Especial X 6,Defensa Especial X 6,7,0,"Aumenta mucho la Defensa Especial en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+481,XSPEED,Velocidad X,Velocidad X,7,350,"Aumenta la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+482,XSPEED2,Velocidad X 2,Velocidad X 2,7,0,"Aumenta ligeramente la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+483,XSPEED3,Velocidad X 3,Velocidad X 3,7,0,"Aumenta bastante la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+484,XSPEED6,Velocidad X 6,Velocidad X 6,7,0,"Aumenta mucho la Velocidad en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+485,XACCURACY,Precisión X,Precisión X,7,950,"Aumenta la precisión de los ataques en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+486,XACCURACY2,Precisión X 2,Precisión X 2,7,0,"Aumenta ligeramente la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+487,XACCURACY3,Precisión X 3,Precisión X 3,7,0,"Aumenta bastante la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+488,XACCURACY6,Precisión X 6,Precisión X 6,7,0,"Aumenta mucho la Precisión en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+489,DIREHIT,Directo,Directo,7,650,"Aumenta el índice de golpe crítico en combate. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+490,DIREHIT2,Directo 2,Directo 2,7,0,"Aumenta la probabilidad de asestar un golpe crítico. Al cambiar de Pokémon, el efecto desaparece..",0,2,0,
+491,DIREHIT3,Directo 3,Directo 3,7,0,"Aumenta mucho la probabilidad de asestar un golpe crítico. Al cambiar de Pokémon, el efecto desaparece.",0,2,0,
+492,GUARDSPEC,Prot. Especial,Prot. Especiales,7,700,"Evita que bajen las características del equipo Pokémon durante cinco turnos.",0,2,0,
+493,RESETURGE,Quitaestado,Quitaestados,7,0,"Cuando se usa, se anulan los cambios en las características de un Pokémon de tu equipo.",0,2,0,
+494,ABILITYURGE,Habilitador,Habilitadores,7,0,"Al usarlo, activa la habilidad de un Pokémon de tu equipo.",0,2,0,
+495,ITEMURGE,Activaobjeto,Activaobjetos,7,0,"Cuando se usa, un Pokémon de tu equipo utiliza su objeto inmediatamente.",0,2,0,
+496,ITEMDROP,Tiraobjeto,Tiraobjetos,7,0,"Cuando se usa, un Pokémon de tu equipo pierde su objeto.",0,2,0,
+497,BLUEFLUTE,Flauta Azul,Flautas Azules,7,100,"Flauta de cristal azul cuya melodía despierta a los Pokémon dormidos.",5,3,0,
+498,YELLOWFLUTE,Flauta Amarilla,Flautas Amarillas,7,200,"Flauta de cristal amarillo que espabila a los Pokémon confusos.",0,2,0,
+499,REDFLUTE,Flauta Roja,Flautas Rojas,7,300,"Flauta de cristal rojo que libera a un Pokémon del enamoramiento.",0,2,0,
+500,POKEDOLL,Poké Muñeco,Poké Muñecos,7,1000,"Un muñeco que atrae a los Pokémon. Puedes utilizarlo para huir de un combate con un Pokémon salvaje.",0,2,0,
+501,FLUFFYTAIL,Cola Skitty,Colas Skitty,7,1000,"Atrae a los Pokémon y sirve para huir de un combate con un Pokémon salvaje.",0,2,0,
+502,POKETOY,Pokéseñuelo,Pokéseñuelos,7,500,"Un objeto que atrae a los Pokémon. Puedes utilizarlo para huir de un combate con un Pokémon salvaje.",0,2,0,
+503,BICYCLE,Bici,Bicis,8,0,"Bicicleta plegable con la que se va más rápido que con deportivas.",2,0,6,
+504,OLDROD,Caña Vieja,Cañas Viejas,8,0,"Una caña de pescar bastante usada y desgastada. Pesca Pokémon salvajes en todo tipo de aguas.",2,0,6,
+505,GOODROD,Caña Buena,Cañas Buenas,8,0,"Una caña de pescar nuevecita y de gran calidad. Pesca Pokémon salvajes en todo tipo de aguas.",2,0,6,
+506,SUPERROD,Supercaña,Supercañas,8,0,"Una increíble caña de pescar de alta tecnología. Pesca Pokémon salvajes en todo tipo de aguas.",2,0,6,
+507,ITEMFINDER,Buscaobjetos,Buscaobjetos,8,0,"Detector de objetos invisibles por ondas sonoras. Emite una señal cuando encuentra un objeto.",2,0,6,
+508,DOWSINGMACHINE,Zahorí,Zahoríes,8,0,"Aparato de precisión que reacciona con luz y sonido ante los objetos que no se ven e indica su posición.",2,0,6,
+509,POKERADAR,Poké Radar,Poké Radares,8,0,"Busca Pokémon que se esconden en la hierba. La batería se recarga mientras caminas.",2,0,6,
+510,TOWNMAP,Mapa,Mapas,8,0,"Un mapa que puede consultarse en cualquier momento y que te indica dónde te encuentras.",2,0,6,
+511,POKEFLUTE,Poké Flauta,Poké Flautas,8,7000,"Consigue despertar al instante a cualquier Pokémon y suena de maravilla.",5,3,6,
+512,COINCASE,Monedero,Monederos,8,0,"Caña pequeña para guardar fichas.",2,0,6,
+513,SOOTSACK,Saco Hollín,Sacos Hollín,8,0,"Un saco grande y resistente utilizado para transportar la ceniza volcánicaa.",0,0,6,
+514,SILPHSCOPE,Detector Silph,Detectores Silph,8,0,"Dispositivo hecho en SILPH S.A para ver Pokémon invisibles.",0,0,6,
+515,DEVONSCOPE,Detector Devon,Detectores Devon,8,0,"Dispositivo hecho en DEVON para ver Pokémon invisibles.",0,0,6,
+516,SQUIRTBOTTLE,Regadera,Regaderas,8,0,"Una regadera con forma de Squirtle. Ayuda a que las bayas plantadas en tierra suelta crezcan mejor.",0,0,6,
+517,SPRAYDUCK,Regadera,Regaderas,8,0,"Una regadera con forma de Psyduck. Ayuda a que las bayas plantadas en tierra suelta crezcan mejor.",0,0,6,
+518,WAILMERPAIL,Regadera,Regaderas,8,0,"Una regadera con forma de Wailmer. Ayuda a que las bayas plantadas en tierra suelta crezcan mejor.",0,0,6,
+519,GRACIDEA,Gracídea,Gracídeas,8,0,"Una flor que se suele regalar en ramos para expresar agradecimiento en ocasiones especiales, como cumpleaños.",5,0,6,
+520,AURORATICKET,Carné Espacial,Carnés Espaciales,8,0,"Una tarjeta de identificación necesaria para acceder a los Puertos Espaciales.",0,0,6,
+521,OLDSEAMAP,Mapa Viejo,Mapas Viejos,8,0,"Un mapa viejo descolorido que muestra el camino a una determinada isla.",0,0,6,
+522,DNASPLICERS,Punta ADN,Puntas ADN,8,0,"Punta que permite fusionar a Kyurem con cierto Pokémon con el que, originariamente, formaba un solo ser.",5,0,6,
+523,REVEALGLASS,Espejo Veraz,Espejos Veraces,8,0,"Espejo misterioso que refleja la verdad y devuelve los Pokémon a su forma original.",5,0,6,
+524,OVALCHARM,Amuleto Oval,Amuletos Ovales,8,0,"Misterioso amuleto redondo que aumenta la posibilidad de encontrar Huevos en la Guardería Pokémon.",0,0,6,
+525,SHINYCHARM,Amuleto Iris,Amuletos Iris,8,0,"Misterioso amuleto brillante que aumenta la probabilidad de encontrar Pokémon variocolores.",0,0,6,
+526,SACHET,Saquito Fragante,Saquitos Fragantes,1,100,"Saquito que desprende un aroma peculiar. Cierto Pokémon lo adora.",0,0,0,
+527,WHIPPEDDREAM,Dulce de Nata,Dulces de Nata,1,100,"Un dulce a base de suave y esponjosa nata montada. Cierto Pokémon lo adora.",0,0,0,
+528,ASSAULTVEST,Chaleco Asalto,Chalecos Asalto,1,1000,"Chaleco que potencia la Def. Esp. del Pokémon que lo lleva, pero le impide lanzar ataques de estado.",0,0,0
+529,ABSOLITE,Absolita,Absolitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Absol en combate.",0,0,0,
+530,GALLADITE,Galladita,Galladitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Gallade en combate.",0,0,0,
+531,GLALITITE,Glalita,Glalitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Glalie en combate.",0,0,0,
+532,PINSIRITE,Pinsirita,Pinsiritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Pinsir en combate.",0,0,0,
+533,GARCHOMPITE,Garchompita,Garchompitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Garchomp en combate.",0,0,0,
+534,BLASTOISINITE,Blastoisita,Blastoisitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Blastoise en combate.",0,0,0,
+535,KANGASKHANITE,Kangaskhanita,Kangaskhanitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Kangaskhan en combate.",0,0,0,
+536,GYARADOSITE,Gyaradosita,Gyaradositas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Gyarados en combate.",0,0,0,
+537,MAWILITE,Mawilita,Mawilitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Mawile en combate.",0,0,0,
+538,GENGARITE,Gengarita,Gengaritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Gengar en combate.",0,0,0,
+539,GARDEVOIRITE,Gardevoirita,Gardevoiritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Gardevoir en combate.",0,0,0,
+540,SHARPEDONITE,Sharpedonita,Sharpedonitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Sharpedo en combate.",0,0,0,
+541,SCEPTILITE,Sceptilita,Sceptilitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Sceptile en combate.",0,0,0,
+542,BANETTITE,Banettita,Banettitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Banette en combate.",0,0,0,
+543,BEEDRILLITE,Beedrillita,Beedrillitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Beedrill en combate.",0,0,0,
+544,AUDINITE,Audinita,Audinitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Audino en combate.",0,0,0,
+545,MEDICHAMITE,Medichamita,Medichamitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Medicham en combate.",0,0,0,
+546,ALTARIANITE,Altarianita,Altarianitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Altaria en combate.",0,0,0,
+547,DIANCITE,Diancita,Diancitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Diancie en combate.",0,0,0,
+548,AMPHAROSITE,Ampharosita,Ampharositas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Ampharos en combate.",0,0,0,
+549,STEELIXITE,Steelixita,Steelixitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Steelix en combate.",0,0,0,
+550,CAMERUPTITE,Cameruptita,Cameruptitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Camerupt en combate.",0,0,0,
+551,BLAZIKENITE,Blazikenita,Blazikenitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Blaziken en combate.",0,0,0,
+552,SCIZORITE,Scizorita,Scizoritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Scizor en combate.",0,0,0,
+553,TYRANITARITE,Tyranitarita,Tyranitaritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Tyranitar en combate.",0,0,0,
+554,PIDGEOTITE,Pidgeotita,Pideotitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Pidgeot en combate.",0,0,0,
+555,ALAKAZITE,Alakazamita,Alakazamitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Alakazam en combate.",0,0,0,
+556,VENUSAURITE,Venusaurita,Venusauritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Venusaur en combate.",0,0,0,
+557,AERODACTYLITE,Aerodactylita,Aerodactylitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Aerodactyl en combate..",0,0,0,
+558,HERACRONITE,Heracrossita,Heracrossitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Heracross en combate.",0,0,0,
+559,HOUNDOOMINITE,Houndoomita,Houndoomitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Houndoom en combate.",0,0,0,
+560,SALAMENCITE,Salamencita,Salamencitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Salamence en combate.",0,0,0,
+561,AGGRONITE,Aggronita,Aggronitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Aggron en combate.",0,0,0,
+562,LOPUNNITE,Lopunnita,Lopunnitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Lopunny en combate.",0,0,0,
+563,MEWTWONITEX,Mewtwoita X,Mewtwoitas X,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Mewtwo en combate.",0,0,0,
+564,MEWTWONITEY,Mewtwoita Y,Mewtwoitas Y,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Mewtwo en combate.",0,0,0,
+565,METAGROSSITE,Metagrossita,Metagrossitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Metagross en combate.",0,0,0,
+566,SLOWBRONITE,Slowbronita,Slowbronitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Slowbro en combate.",0,0,0,
+567,SABLENITE,Sableynita,Sableynitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Sableye en combate.",0,0,0,
+568,ABOMASITE,Abomasnowita,Abomasnowitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Abomasnow en combate.",0,0,0,
+569,MANECTITE,Manectricita,Manectricitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Manectric en combate.",0,0,0,
+570,SWAMPERTITE,Swampertita,Swampertitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Swampert en combate.",0,0,0,
+571,LATIASITE,Latiasita,Latiasitas,1,0,"Una de las misteriosas Mega Piedras. Dásela a Latias y esta piedra le permitirá Mega Evolucionar en batalla.",0,0,0,
+572,LATIOSITE,Latiosita,Latiositas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Latios en combate.",0,0,0,
+573,CHARIZARDITEX,Charizardita X,Charizarditas X,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Charizard en combate.",0,0,0,
+574,CHARIZARDITEY,Charizardita Y,Charizarditas Y,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Charizard en combate.",0,0,0,
+575,LUCARIONITE,Lucarita,Lucaritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Lucario en combate.",0,0,0,
+576,REDORB,Prisma Rojo,Prismas Rojos,1,0,"Piedra carmesí de la que se dice que guarda una estrecha relación con las leyendas de Hoenn.",0,0,0,
+577,BLUEORB,Prisma Azul,Prismas Azules,1,0,"Piedra añil que, según dicen, guarda una estrecha relación con las leyendas de Hoenn.",0,0,0,
+578,MEGARING,Mega Aro,Mega Aros,8,0,"Aro que sirve para activar el poder de la Mega Evolución.",0,0,6,
+579,PRISONBOTTLE,Vasija Castigo,Vasijas Castigo,8,0,"Vasija en la que se halla confinado el poder de cierto Pokémon desde hace mucho tiempo.",5,0,6,
+580,ABILITYCAPSULE,Cápsula Habilidad,Cápsulas Habilidad,1,10000,"Cápsula que les permite cambiar de habilidad a los Pokémon que poseen dos.",1,0,0,
+581,LUMIOSEGALETTE,Crêpe Luminalia,Crêpes Luminalia,2,1000,"Postre típico de Ciudad Luminalia. Cura los problemas de estado de un Pokémon.",1,1,0,
+582,SNOWBALL,Bola de Nieve,Bolas de Nieve,1,200,"Objeto de un solo uso. Aumenta el Ataque del Pokémon que lo lleva si este recibe un ataque de tipo hielo.",0,0,0,
+583,LUMINOUSMOSS,Musgo Brillante,Musgos Brillantes,1,200,"Objeto de un solo uso. Aumenta la Def. Esp. del Pokémon que la lleva si este recibe un ataque de tipo agua.",0,0,0,
+584,FAIRYGEM,Gema Hada,Gemas Hada,1,200,"Joya de un solo uso que potencia los movimientos de tipo Hada. Debe llevarla un Pokémon.",0,0,0,
+585,PIXIEPLATE,Tabla Duende,Tablas Duende,1,0,"Tabla de piedra que potencia los movimientos de tipo hada. Debe llevarla un Pokémon.",0,0,0,
+586,WEAKNESSPOLICY,Seguro Debilidad,Seguros Debilidad,1,1000,"Aumenta mucho el Atq. y el At. Esp. cuando el Pokémon que lo lleva recibe un ataque frente al cual es débil",0,0,0,
+587,JAWFOSSIL,Fósil Mandíbula,Fósiles Mandíbula,1,1000,"Fósil de un Pokémon prehistórico terrestre. Parece ser parte de una mandíbula.",0,0,0,
+588,SAILFOSSIL,Fósil Aleta,Fósiles Aleta,1,1000,"Fósil de un Pokémon prehistórico marino. Parece ser parte de una aleta.",0,0,0,
+589,MARANGABERRY,Baya Maranga,Bayas Maranga,5,20,"Aumenta la defensa especial cuando el Pokémon recibe un ataque especial.",0,0,5,
+590,KEEBERRY,Baya Biglia,Bayas Biglia,5,20,"Aumenta la defensa cuando el pokémon recibe un ataque físico.",0,0,5,
+591,ROSELIBERRY,Baya Hibis,Bayas Hibis,5,20,"Debilita ataques super eficaces de tipo hada.",0,0,5,
+592,RUSTEDSHIELD,Escudo Oxidado,Escudos Oxidados,1,0,"Cuenta una antigua leyenda que un valiente héroe asió este escudo para hacer frente a un cataclismo.",0,0,0,
+593,RUSTEDSWORD,Espada Oxidada,Espadas Oxidadas,1,0,"Cuenta una antigua leyenda que un valiente héroe blandió esta espada para hacer frente a un cataclismo.",0,0,0,
+594,SAFETYGOGGLES,Gafa Protectora,Gafas Protectoras,1,3000,"Gafa que protege de los efectos adversos del clima y del polvo lanzado por los rivales.",0,0,0,
+595,TARTAPPLE,Manzana Ácida,Manzanas Ácidas,1,100,"Curiosa manzana, de sabor particularmente ácido, que hace evolucionar a determinadas especies de Pokémon.",1,0,0,
+596,SWEETAPPLE,Manzana Dulce,Manzanas Dulces,1,100,"Curiosa manzana, de sabor particularmente dulce, que hace evolucionar a determinadas especies de Pokémon.",1,0,0,
+597,CRACKEDPOT,Tetera Agrietada,Teteras Agrietadas,1,100,"Curiosa tetera que hace evolucionar a determinadas especies de Pokémon. Pese a estar agrietada, sirve un té exquisito.",1,0,0,
+598,UTILITYUMBRELLA,Parasol Multiuso,Parasoles Multiuso,1,100,"El portador se vuelve invulnerable a los efectos de los climas lluvioso y soleado.",0,0,0,
+599,HEAVYDUTYBOOTS,Botas Gruesas,Botas Gruesas,1,100,"Anula los efectos de aquello que se coloca a los pies del Pokémon para obstaculizarlo, como las trampas.",0,0,0,
+600,ROOMSERVICE,Servicio Raro,Servicios Raros,1,100,"Si lo lleva un Pokémon, reduce la Velocidad cuando se usa Espacio Raro.",0,0,0,
+601,EJECTPACK,Mochila Escape,Mochilas Escape,1,100,"Si el portador ve reducidas sus características, será sustituido por otro Pokémon del equipo.",0,0,0,
+602,BLUNDERPOLICY,Seguro Fallo,Seguros Fallo,1,100,"Aumenta mucho la Velocidad cuando el Pokémon erra el movimiento debido a la precisión.",0,0,0,
+603,THROATSPRAY,Espray Bucal,Esprays Bucales,1,100,"Aumenta el Ataque Especial al emplear un movimiento que se sirva del sonido.",0,0,0,
+604,GALARICACUFF,Brazal Galanuez,Brazales Galanuez,1,100,"Un brazalete hecho de Ramas de Galanuez trenzadas. Los Slowpoke de Galar lo adoran.",1,0,0,
+605,EXPCANDYXS,Caramelo Exp. XS,Caramelos Exp. XS,1,20,"Caramelo energético que aumenta ligerísimamente los Puntos de Experiencia de un Pokémon.",1,0,0,
+606,EXPCANDYS,Caramelo Exp. S,Caramelos Exp. S,1,240,"Caramelo energético que aumenta ligeramente los Puntos de Experiencia de un Pokémon.",1,0,0,
+607,EXPCANDYM,Caramelo Exp. M,Caramelos Exp. M,1,1000,"Caramelo energético que aumenta los Puntos de Experiencia de un Pokémon.",1,0,0,
+608,EXPCANDYL,Caramelo Exp. L,Caramelos Exp. L,1,3000,"Caramelo energético que aumenta bastante los Puntos de Experiencia de un Pokémon.",1,0,0,
+609,EXPCANDYXL,Caramelo Exp. XL,Caramelos Exp. XL,1,10000,"Caramelo energético que aumenta mucho los Puntos de Experiencia de un Pokémon.",1,0,0,
+610,GALARICAWREATH,Corona Galanuez,Coronas Galanuez,1,100,"Una corona hecha de Ramas de Galanuez trenzadas. Los Slowpoke de Galar se ponen contentísimos cuando la llevan puesta.",1,0,0,
+611,ABILITYPATCH,Parche Habilidad,Parches Habilidad,1,10000,"Parche que permite cambiar la habilidad de un Pokémon a otra menos común.",1,0,0,
+612,REINSOFUNITY,Riendas Unión,Riendas Unión,8,0,"Riendas que permiten el entendimiento mutuo entre aquellos que están unidos.",5,0,6,
+613,BEASTBALL,Ente Ball,Ente Balls,3,1000,"Un tipo especial de Poké Ball diseñada para capturar de forma específica a los Ultraentes.",0,2,4,
+614,BLACKAUGURITE,Mineral Negro,Minerales Negros,1,2100,"Piedra negra que posee cualidades similares a las del cristal y cuyos bordes son muy afilados al partirse. Le encanta a cierto Pokémon.",1,0,0,
+615,PEATBLOCK,Bloque de Turba,Bloques de Turba,1,2100,"Pedrusco de carbón que se asemeja al lodo y que se puede emplear como combustible tras secarse. Le encanta a cierto Pokémon.",1,0,0,
+616,AUSPICIOUSARMOR,Armadura Auspiciosa,Armaduras Auspiciosas,1,3000,"Curiosa armadura que hace evolucionar a una determinada especie de Pokémon. En su interior alberga sentimientos auspiciosos.",0,0,0,
+617,MALICIOUSARMOR,Armadura Maldita,Armaduras Malditas,1,3000,"Curiosa armadura que hace evolucionar a una determinada especie de Pokémon. En su interior alberga sentimientos de rencor.",0,0,0,
+618,LEADERSCREST,Distintivo Líder,Distintivos Líderes,1,5000,"Fragmento de lo que parece una cuchilla desgastada. Solo la llevan los Bisharp que lideran grupos de Pawniard.",1,0,0,
+
+630,HM01,MO01,MO01s,4,0,"Corta con garras, guadañas, etc. También sirve para cortar árboles finos.",4,0,0,CUT
+631,HM02,MO02,MO02s,4,0,"1° turno: vuela.                                   2° turno: ataca. Fuera de combate, permite ir a sitios conocidos.",4,0,0,FLY
+632,HM03,MO03,MO03s,4,0,"Inunda el campo de batalla con una ola gigante. Fuera de batalla sirve para moverse sobre el agua.",4,0,0,SURF
+633,HM04,MO04,MO04s,4,0,"Potente puñetazo. Fuera de combate sirve para mover piedras.",4,0,0,STRENGTH
+634,HM05,MO05,MO05s,4,0,"Embiste con un gran impulso que puede hacer retroceder. También sirve para remontar cascadas.",4,0,0,WATERFALL
+635,HM06,MO06,MO06s,4,0,"Primer turno: se sumerge en el mar.  Segundo turno: emerge y ataca.",4,0,0,DIVE
+
+643,PROTECTIVEPADS,Paracontacto,Paracontactos,1,0,"Protege al Pokémon de los efectos que le produciría el contacto directo en combate.",0,0,0,
+644,TERRAINEXTENDER,Cubresuelos,Cubresuelos,1,0,"Al llevarlo, prolonga la duración de los campos creados por el Pokémon en el terreno de combate.",0,0,0,
+645,PSYCHICSEED,Semilla Psique,Semillas Psique,1,0,"Aumenta la Defensa Especial del portador si el terreno está cubierto por un Campo Psíquico.",0,0,0,
+646,MISTYSEED,Semilla Bruma,Semillas Bruma,1,0,"Aumenta la Defensa Especial del portador si el terreno está cubierto por un Campo de Niebla.",0,0,0,
+647,GRASSYSEED,Semilla Hierba,Semillas Hierba,1,0,"Aumenta la Defensa del portador si el terreno está cubierto por un Campo de Hierba.",0,0,0,
+648,ELECTRICSEED,Semilla Electro,Semillas Electro,1,0,"Aumenta la Defensa del portador si el terreno está cubierto por un Campo Eléctrico.",0,0,0,
+649,ICESTONE,Piedra Hielo,Piedras Hielo,1,2100,"Curiosa piedra que hace evolucionar a determinadas especies de Pokémon. Tiene un patrón nevado.",1,0,0,
+650,NSOLARIZER,Necrosol,Necrosoles,8,0,"Artefacto que permite fusionar a Necrozma, ávido de luz, con Solgaleo.",5,0,6,
+651,NLUNARIZER,Necroluna,Necrolunas,8,0,"Artefacto que permite fusionar a Necrozma, ávido de luz, con Lunala.",5,0,6,
+652,ULTRANECROZIUMZ,Ultranecrostal Z,Ultranecrostales Z,6,0,"Cristal que confiere el Poder Z al movimiento Géiser Fotónico de Necrozma.",5,0,8
+653,REDNECTAR,Néctar Rojo,Néctares Rojos,1,0,"Néctar de ciertas flores de los Jardines de Ula-Ula, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
+654,YELLOWNECTAR,Néctar Amarillo,Néctares Amarillos,1,0,"Néctar de ciertas flores de los Jardines de Melemele, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
+655,PINKNECTAR,Néctar Rosa,Néctares Rosas,1,0,"Néctar de ciertas flores de los parterres de la Avenida Royale, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
+656,PURPLENECTAR,Néctar Violeta,Néctares Violetas,1,0,"Néctar de ciertas flores de los Jardines de Poni, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
+657,GRASSMEMORY,Disco Planta,Discos Planta,1,0,"Disco de datos que contiene información relativa al tipo Planta. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+658,FIREMEMORY,Disco Fuego,Discos Fuego,1,0,"Disco de datos que contiene información relativa al tipo Fuego. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+659,WATERMEMORY,Disco Agua,Discos Agua,1,0,"Disco de datos que contiene información relativa al tipo Agua. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+660,ELECTRICMEMORY,Disco Eléctrico,Discos Eléctrico,1,0,"Disco de datos que contiene información relativa al tipo Eléctrico. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+661,FIGHTINGMEMORY,Disco Lucha,Discos Lucha,1,0,"Disco de datos que contiene información relativa al tipo Lucha. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+662,ICEMEMORY,Disco Hielo,Discos Hielo,1,0,"Disco de datos que contiene información relativa al tipo Hielo. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+663,ROCKMEMORY,Disco Roca,Discos Roca,1,0,"Disco de datos que contiene información relativa al tipo Roca. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+664,POISONMEMORY,Disco Veneno,Discos Veneno,1,0,"Disco de datos que contiene información relativa al tipo Veneno. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+665,PSYCHICMEMORY,Disco Psíquico,Discos Psíquico,1,0,"Disco de datos que contiene información relativa al tipo Psíquico. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+666,DARKMEMORY,Disco Siniestro,Discos Siniestro,1,0,"Disco de datos que contiene información relativa al tipo Siniestro. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+667,GHOSTMEMORY,Disco Fantasma,Discos Fantasma,1,0,"Disco de datos que contiene información relativa al tipo Fantasma. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+668,BUGMEMORY,Disco Bicho,Discos Bicho,1,0,"Disco de datos que contiene información relativa al tipo Bicho. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+669,GROUNDMEMORY,Disco Tierra,Discos Tierra,1,0,"Disco de datos que contiene información relativa al tipo Tierra. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+670,FLYINGMEMORY,Disco Volador,Discos Volador,1,0,"Disco de datos que contiene información relativa al tipo Volador. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+671,DRAGONMEMORY,Disco Dragón,Discos Dragón,1,0,"Disco de datos que contiene información relativa al tipo Dragón. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+672,STEELMEMORY,Disco Acero,Discos Acero,1,0,"Disco de datos que contiene información relativa al tipo Acero. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+673,FAIRYMEMORY,Disco Hada,Discos Hada,1,0,"Disco de datos que contiene información relativa al tipo Hada. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
+
+674,SYRUPYAPPLE,Manzana Melosa,Manzanas Melosas,1,100,"Curiosa manzana, de sabor particularmente dulce, que hace evolucionar a determinadas especies de Pokémon.",1,0,0,
+675,METALALLOY,Metal compuesto,Metales compuestos,1,2100,"Un peculiar metal que puede hacer evolucionar a determinadas especies de Pokémon. Está compuesto de muchas capas.",1,0,0,
+676,SCROLLOFDARKNESS,Manuscrito Sombras,Manuscritos Sombras,8,14000,"Curioso manuscrito que hace evolucionar a una determinada especie de Pokémon. En él se revelan los secretos del tipo Siniestro.",5,0,8
+677,SCROLLOFWATERS,Manuscrito Aguas,Manuscritos Aguas,8,14000,"Curioso manuscrito que hace evolucionar a una determinada especie de Pokémon. En él se revelan los secretos del tipo Agua.",5,0,8
+678,BOOSTERENERGY,Energía Potenciadora,Energías Potenciadoras,1,20000,"Tanque que contiene energía en su interior. Si lo lleva un Pokémon que posea cierta habilidad, potenciará su poder.",0,0,0,
+679,ABILITYSHIELD,Escudo Habilidad,Escudos Habilidad,1,20000,"Un escudo muy bonito de aspecto singular. Impide que otros Pokémon cambien la habilidad del Pokémon que lo lleva.",0,0,0,
+680,CLEARAMULET,Amuleto Puro,Amuletos Puros,1,20000,"Un amuleto brillante y transparente. Impide que los movimientos o habilidades de otros Pokémon reduzcan las características del Pokémon que lo lleva.",0,0,0,
+681,MIRRORHERB,Hierba Copia,Hierbas Copia,1,10000,"Si el rival aumenta sus características, permite al Pokémon que la lleva imitarlo y aumentar las suyas también, pero solo una vez.",0,0,0,
+682,PUNCHINGGLOVE,Guante de Boxeo,Guantes de Boxeo,1,10000,"Guante protector que aumenta la potencia de los movimientos con los puños del Pokémon que lo lleve y evita que hagan contacto directo con el rival.",0,0,0,
+683,COVERTCLOAK,Capa Furtiva,Capas Furtivas,1,10000,"Capa con capucha que engaña al rival. Oculta a quien la lleve y lo protege de los efectos secundarios de los movimientos de sus rivales.",0,0,0,
+684,LOADEDDICE,Dado Trucado,Dado Trucado,1,10000,"Un dado que siempre cae favorablemente. Los movimientos de ataque múltiple de quien lo lleve golpearán más veces.",0,0,0,
+
+685,BUGINIUMZ,Insectostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Bicho.",5,0,8
+686,DARKINIUMZ,Nictostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Siniestro.",5,0,8
+687,DRAGONIUMZ,Dracostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Dragon.",7,0,8
+688,ELECTRIUMZ,Electrostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Eléctrico.",5,0,8
+689,FAIRIUMZ,Feeristal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Hada.",5,0,8
+690,FIGHTINIUMZ,Lizastal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Lucha.",5,0,8
+691,FIRIUMZ,Pirostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Fuego.",5,0,8
+692,FLYINIUMZ,Aerostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Volador.",5,0,8
+693,GHOSTIUMZ,Espectrostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Fantasma.",5,0,8
+694,GRASSIUMZ,Fitostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Planta.",5,0,8
+695,GROUNDIUMZ,Geostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Tierra.",5,0,8
+697,ICIUMZ,Criostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Hielo.",5,0,8
+698,NORMALIUMZ,Normastal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Normal.",5,0,8
+699,POISONIUMZ,Toxistal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Bicho.",5,0,8
+700,PSYCHIUMZ,Psicostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Psíquico.",5,0,8
+701,ROCKIUMZ,Litostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Roca.",5,0,8
+702,STEELIUMZ,Metalostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Acero.",5,0,8
+703,WATERIUMZ,Hidrostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Water.",5,0,8
+704,ALORAICHIUMZ,Alo-Raistal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Raichu Alola convertir su Rayo en un movimiento Z.",5,0,8
+705,DECIDIUMZ,Dueyestal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Decidueye convertir su Puntada sombría en un movimiento Z.",5,0,8
+706,INCINIUMZ,Incinostal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Incineroar convertir su Lariat oscuro en un movimiento Z.",5,0,8
+707,PRIMARIUMZ,Primastal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Primarina convertir su Aria burbuja en un movimiento Z.",5,0,8
+708,EEVIUMZ,Eevium Z,,6,0,"Concentra el Poder Z en cristales que permiten a Eevee convertir su Última Baza en un movimiento Z.",5,0,8
+709,PIKANIUMZ,Pikastal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Pikachu convertir su Placaje Eléc en un movimiento Z.",5,0,8
+710,SNORLIUMZ,Snorlastal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Snorlax convertir su Gigaimpacto en un movimiento Z.",5,0,8
+711,MEWNIUMZ,Mewstal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Mew convertir su Psíquico en un movimiento Z.",5,0,8
+712,TAPUNIUMZ,Tapistal Z,,6,0,"Concentra el Poder Z en cristales que permiten a los Tapus convertir su Furia natural en un movimiento Z.",5,0,8
+713,MARSHADIUMZ,Marshastal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Marshadow convertir su Roba sombra en un movimiento Z.",5,0,8
+714,PIKASHUNIUMZ,Ash-Pikastal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Pikachu convertir su Rayo en un movimiento Z.",5,0,8
+715,LYCANIUMZ,Lycanrostal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Lycanroc convertir su Roca afilada en un movimiento Z.",5,0,8
+716,MIMIKIUMZ,Mimikyustal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Mimikyu convertir su Carantoña en un movimiento Z.",5,0,8
+717,KOMMONIUMZ,Kommostal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Kommo convertir su Fragor Escamas en un movimiento Z.",5,0,8
+718,SOLGANIUMZ,Solgaleostal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Solgaleo convertir su Meteoimpacto en un movimiento Z.",5,0,8
+719,LUNALIUMZ,Lunalastal Z,,6,0,"Concentra el Poder Z en cristales que permiten a Lunala convertir su Rayo umbrío en un movimiento Z.",5,0,8
+
+720,FAIRYFEATHER,Pluma feérica,Plumas feéricas,1,3000,"Pluma mágica que fortalece los ataques de tipo Hada. Debe llevarlo un Pokémon.",0,0,0,
+721,EXPALL,Repartir Exp,Repartir Exp,8,0,"Todo el equipo obtiene Puntos de Experiencia conseguidos en el combate sin participar en él.",2,0,6,
+722,EXPALLOFF,Repartir Exp,Repartir Exp,8,0,"Todo el equipo obtiene Puntos de Experiencia conseguidos en el combate sin participar en él. Actualmente apagado.",2,0,6,
