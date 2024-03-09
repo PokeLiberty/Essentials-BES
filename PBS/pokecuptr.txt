@@ -1,0 +1,1400 @@
+﻿[000]
+PokemonNos=5,8,13,21,27,33,36,42,44,48,57,58,74,78,94,104
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=RENULS
+EndSpeechLose="Man, I lost!"
+[001]
+PokemonNos=14,18,42,45,46,47,50,51,54,63,75,81,96,97,98,106,112,119
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=GAC
+EndSpeechLose="Man, I lost!"
+[002]
+PokemonNos=17,25,26,30,55,67,78,95,97,107
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=ZORNOH
+EndSpeechLose="Man, I lost!"
+[003]
+PokemonNos=1,19,33,35,70,110,113
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=POJIO
+EndSpeechLose="Man, I lost!"
+[004]
+PokemonNos=6,13,17,38,53,55,62,69,81,83,85,92,99,104
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=PAIO
+EndSpeechLose="Man, I lost!"
+[005]
+PokemonNos=3,5,11,14,16,25,39,47,65,82,87,91,94,102,103,109
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=MIZE
+EndSpeechLose="Man, I lost!"
+[006]
+PokemonNos=4,11,13,15,41,49,51,52,63,64,69,70,73,84,91,92,99,103,104,114
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=ENANKA
+EndSpeechLose="Man, I lost!"
+[007]
+PokemonNos=46,54,69,85,91,94,97,98,110
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=DONA
+EndSpeechLose="Man, I lost!"
+[008]
+PokemonNos=9,15,21,33,42,50,51,55,57,67,76,89,107,108,118
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=GLATINA
+EndSpeechLose="Man, I lost!"
+[009]
+PokemonNos=11,17,19,24,25,27,29,33,40,63,64,74,85,90,91,104,113,119
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=ELA
+EndSpeechLose="Man, I lost!"
+[010]
+PokemonNos=13,18,26,34,36,40,60,87,89,95,97,101,104,116,119
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=WUSTA
+EndSpeechLose="Man, I lost!"
+[011]
+PokemonNos=13,15,19,31,34,55,61,66,78,82,83,87,98,107,120
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=EGA
+EndSpeechLose="Man, I lost!"
+[012]
+PokemonNos=2,15,21,30,39,57,60,73,100,111,112
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=MILA
+EndSpeechLose="Man, I lost!"
+[013]
+PokemonNos=26,42,45,46,57,59,63,85,90,93,95,117
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=EHOLELLE
+EndSpeechLose="Man, I lost!"
+[014]
+PokemonNos=4,8,10,13,20,41,46,47,50,51,64,71,80,95,99
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=FENKA
+EndSpeechLose="Man, I lost!"
+[015]
+PokemonNos=22,24,33,38,42,43,54,60,62,73,76,90,91,95,96,105,111,114,116,118
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=PROMELLE
+EndSpeechLose="Man, I lost!"
+[016]
+PokemonNos=14,21,41,51,61,73,78,96,99,113
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=OHINA
+EndSpeechLose="Man, I lost!"
+[017]
+PokemonNos=3,26,41,44,47,53,58,66,75,76,78,81,92,99,100
+EndSpeechWin="Yes, I won!"
+Type=LASS
+BeginSpeech=Here I come!
+Name=SLOTALA
+EndSpeechLose="Man, I lost!"
+[018]
+PokemonNos=4,17,47,57,59,74,81,86,87,95,104,112
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=REKT
+EndSpeechLose="Man, I lost!"
+[019]
+PokemonNos=3,11,25,53,55,58,60,103,104
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=LAIUS
+EndSpeechLose="Man, I lost!"
+[020]
+PokemonNos=0,31,36,40,42,51,55,58,62,71,77,81,89,92,93,115,117
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=RIO
+EndSpeechLose="Man, I lost!"
+[021]
+PokemonNos=16,19,26,34,35,57,59,61,68,87,98,102,107,116
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=SEO
+EndSpeechLose="Man, I lost!"
+[022]
+PokemonNos=30,34,38,42,47,63,69,77,85,99,107,118
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=ROR
+EndSpeechLose="Man, I lost!"
+[023]
+PokemonNos=19,24,28,38,42,58,83,84,85,86,102,109
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=DITISP
+EndSpeechLose="Man, I lost!"
+[024]
+PokemonNos=9,16,17,23,32,35,40,42,53,65,74,75,88,94,101,103,106,108,115
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=PREES
+EndSpeechLose="Man, I lost!"
+[025]
+PokemonNos=10,18,22,24,47,49,51,67,74,76,80,95,107,110,111
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=GAU
+EndSpeechLose="Man, I lost!"
+[026]
+PokemonNos=1,4,16,27,39,43,44,45,81,96,102,117
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=POIO
+EndSpeechLose="Man, I lost!"
+[027]
+PokemonNos=1,2,10,25,30,39,42,69,76,77,91
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=GRURIUS
+EndSpeechLose="Man, I lost!"
+[028]
+PokemonNos=13,18,26,66,67,73,79,85
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=GLOR
+EndSpeechLose="Man, I lost!"
+[029]
+PokemonNos=5,6,16,35,36,64,66,83,85,100,108,114
+EndSpeechWin="Yes, I won!"
+Type=YOUNGSTER
+BeginSpeech=Here I come!
+Name=KAGU
+EndSpeechLose="Man, I lost!"
+[030]
+PokemonNos=38,44,54,68,96,97,103,120
+EndSpeechWin="Yes, I won!"
+Type=TUBER_F
+BeginSpeech=Here I come!
+Name=SICHA
+EndSpeechLose="Man, I lost!"
+[031]
+PokemonNos=5,14,28,42,58,69,88,91
+EndSpeechWin="Yes, I won!"
+Type=TUBER_F
+BeginSpeech=Here I come!
+Name=ACHA
+EndSpeechLose="Man, I lost!"
+[032]
+PokemonNos=10,11,14,39,50,52,59,61,66,84,95,101,102
+EndSpeechWin="Yes, I won!"
+Type=TUBER_F
+BeginSpeech=Here I come!
+Name=VLINA
+EndSpeechLose="Man, I lost!"
+[033]
+PokemonNos=6,43,49,57,78,89,97,107,109,119
+EndSpeechWin="Yes, I won!"
+Type=TUBER_F
+BeginSpeech=Here I come!
+Name=ULSA
+EndSpeechLose="Man, I lost!"
+[034]
+PokemonNos=2,5,11,22,25,30,44,50,53,56,63,111
+EndSpeechWin="Yes, I won!"
+Type=TUBER_M
+BeginSpeech=Here I come!
+Name=GOSOSK
+EndSpeechLose="Man, I lost!"
+[035]
+PokemonNos=9,31,38,39,64,66,71,81,82,95,100,103,111
+EndSpeechWin="Yes, I won!"
+Type=TUBER_M
+BeginSpeech=Here I come!
+Name=PROZARD
+EndSpeechLose="Man, I lost!"
+[036]
+PokemonNos=2,24,26,34,36,39,47,53,58,64,75,79,80,81,84,98,102,110,117
+EndSpeechWin="Yes, I won!"
+Type=CAMPER
+BeginSpeech=Here I come!
+Name=RIHO
+EndSpeechLose="Man, I lost!"
+[037]
+PokemonNos=22,31,37,59,69,73,75,101,105,106,107
+EndSpeechWin="Yes, I won!"
+Type=CAMPER
+BeginSpeech=Here I come!
+Name=PON
+EndSpeechLose="Man, I lost!"
+[038]
+PokemonNos=4,8,16,18,27,31,50,60,62,104,110,114,120
+EndSpeechWin="Yes, I won!"
+Type=CAMPER
+BeginSpeech=Here I come!
+Name=DONG
+EndSpeechLose="Man, I lost!"
+[039]
+PokemonNos=2,18,62,65,71,79,83,93,111,120
+EndSpeechWin="Yes, I won!"
+Type=PICNICKER
+BeginSpeech=Here I come!
+Name=URNINE
+EndSpeechLose="Man, I lost!"
+[040]
+PokemonNos=6,22,35,41,44,55,87,93,102,106,109,118,120
+EndSpeechWin="Yes, I won!"
+Type=PICNICKER
+BeginSpeech=Here I come!
+Name=SAZHALA
+EndSpeechLose="Man, I lost!"
+[041]
+PokemonNos=10,14,17,36,57,60,67,72,73,81,91,99,100,119
+EndSpeechWin="Yes, I won!"
+Type=PICNICKER
+BeginSpeech=Here I come!
+Name=EFSA
+EndSpeechLose="Man, I lost!"
+[042]
+PokemonNos=0,15,20,27,39,63,74,78,82,83,84,89,108,117
+EndSpeechWin="Yes, I won!"
+Type=FISHERMAN
+BeginSpeech=Here I come!
+Name=KUITO
+EndSpeechLose="Man, I lost!"
+[043]
+PokemonNos=4,5,13,19,20,21,22,53,54,72,111,116,118
+EndSpeechWin="Yes, I won!"
+Type=FISHERMAN
+BeginSpeech=Here I come!
+Name=KIN
+EndSpeechLose="Man, I lost!"
+[044]
+PokemonNos=33,41,66,77,103,112,115
+EndSpeechWin="Yes, I won!"
+Type=FISHERMAN
+BeginSpeech=Here I come!
+Name=REGE
+EndSpeechLose="Man, I lost!"
+[045]
+PokemonNos=3,24,34,42,45,61,76,80,90,105
+EndSpeechWin="Yes, I won!"
+Type=FISHERMAN
+BeginSpeech=Here I come!
+Name=KUDSUD
+EndSpeechLose="Man, I lost!"
+[046]
+PokemonNos=0,24,46,51,52,71
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=WARITA
+EndSpeechLose="Man, I lost!"
+[047]
+PokemonNos=3,4,7,29,38,46,50,55,56,57,58,75,78,84,89,119
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=HANKA
+EndSpeechLose="Man, I lost!"
+[048]
+PokemonNos=0,1,34,71,97,107
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=ZABA
+EndSpeechLose="Man, I lost!"
+[049]
+PokemonNos=4,29,30,32,38,39,44,55,92,99,102,106,109
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=ORELLE
+EndSpeechLose="Man, I lost!"
+[050]
+PokemonNos=1,7,11,24,28,31,52,64,65,66,85,101,104,120
+EndSpeechWin="Yes, I won!"
+Type=POKEMONBREEDER
+BeginSpeech=Here I come!
+Name=ASTA
+EndSpeechLose="Man, I lost!"
+[051]
+PokemonNos=9,17,25,31,32,34,41,53,62,72,75,88,95,101,113
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=MIZO
+EndSpeechLose="Man, I lost!"
+[052]
+PokemonNos=0,29,42,59,63,67,72,77,81,83,85,86,93,99,120
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=ALA
+EndSpeechLose="Man, I lost!"
+[053]
+PokemonNos=15,16,38,54,82,91,100,105,110,119
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=CEZHA
+EndSpeechLose="Man, I lost!"
+[054]
+PokemonNos=10,12,28,45,50,68,79,83,87,89,100,109,115
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=INICA
+EndSpeechLose="Man, I lost!"
+[055]
+PokemonNos=9,36,48,73,83,86,92
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=KLONA
+EndSpeechLose="Man, I lost!"
+[056]
+PokemonNos=2,9,14,19,22,26,65,76,84,93,104,109,114,117
+EndSpeechWin="Yes, I won!"
+Type=PAINTER
+BeginSpeech=Here I come!
+Name=OSA
+EndSpeechLose="Man, I lost!"
+[057]
+PokemonNos=2,4,5,13,23,26,37,60,75,76,83,94,109
+EndSpeechWin="Yes, I won!"
+Type=PAINTER
+BeginSpeech=Here I come!
+Name=KECHA
+EndSpeechLose="Man, I lost!"
+[058]
+PokemonNos=7,16,43,45,49,68,70,79,83,103,104,108,111,118
+EndSpeechWin="Yes, I won!"
+Type=PAINTER
+BeginSpeech=Here I come!
+Name=ENSORPA
+EndSpeechLose="Man, I lost!"
+[059]
+PokemonNos=2,7,13,14,15,22,31,37,54,63,67,79,81,94,119
+EndSpeechWin="Yes, I won!"
+Type=PAINTER
+BeginSpeech=Here I come!
+Name=USKITA
+EndSpeechLose="Man, I lost!"
+[060]
+PokemonNos=0,34,39,56,101,107
+EndSpeechWin="Yes, I won!"
+Type=PAINTER
+BeginSpeech=Here I come!
+Name=PHANA
+EndSpeechLose="Man, I lost!"
+[061]
+PokemonNos=17,29,31,47,51,52,54,91,105,112,115,117
+EndSpeechWin="Yes, I won!"
+Type=SCIENTIST
+BeginSpeech=Here I come!
+Name=RON
+EndSpeechLose="Man, I lost!"
+[062]
+PokemonNos=8,14,16,18,34,35,37,39,44,53,57,63,82,87,90,100,101
+EndSpeechWin="Yes, I won!"
+Type=AROMALADY
+BeginSpeech=Here I come!
+Name=EPSABSIKA
+EndSpeechLose="Man, I lost!"
+[063]
+PokemonNos=23,32,57,59,63,65,84,94,95,98,108
+EndSpeechWin="Yes, I won!"
+Type=PSYCHIC_M
+BeginSpeech=Here I come!
+Name=PROO
+EndSpeechLose="Man, I lost!"
+[064]
+PokemonNos=6,29,71,81,84,92
+EndSpeechWin="Yes, I won!"
+Type=PSYCHIC_M
+BeginSpeech=Here I come!
+Name=KIHIUS
+EndSpeechLose="Man, I lost!"
+[065]
+PokemonNos=3,5,24,29,30,42,48,69,79,87,99,105,112,117
+EndSpeechWin="Yes, I won!"
+Type=PSYCHIC_M
+BeginSpeech=Here I come!
+Name=PROSU
+EndSpeechLose="Man, I lost!"
+[066]
+PokemonNos=3,28,29,49,89,106,111
+EndSpeechWin="Yes, I won!"
+Type=PSYCHIC_F
+BeginSpeech=Here I come!
+Name=ARIKINE
+EndSpeechLose="Man, I lost!"
+[067]
+PokemonNos=126,141,143,156,157,174,181,182,187,188,202,210,235
+EndSpeechWin="Yes, I won!"
+Type=PSYCHIC_F
+BeginSpeech=Here I come!
+Name=UFTA
+EndSpeechLose="Man, I lost!"
+[068]
+PokemonNos=121,138,139,141,156,160,166,169,170,179,185,186,222,233,234
+EndSpeechWin="Yes, I won!"
+Type=PSYCHIC_F
+BeginSpeech=Here I come!
+Name=PICIKA
+EndSpeechLose="Man, I lost!"
+[069]
+PokemonNos=135,137,175,183,190,198,219,233,235
+EndSpeechWin="Yes, I won!"
+Type=PSYCHIC_F
+BeginSpeech=Here I come!
+Name=WANA
+EndSpeechLose="Man, I lost!"
+[070]
+PokemonNos=121,122,128,151,155,162,168,171,173,186,199,211,214,230,232,235
+EndSpeechWin="Yes, I won!"
+Type=SUPERNERD
+BeginSpeech=Here I come!
+Name=GLEEIO
+EndSpeechLose="Man, I lost!"
+[071]
+PokemonNos=141,144,151,163,188,202,212,218,225,227,235
+EndSpeechWin="Yes, I won!"
+Type=SUPERNERD
+BeginSpeech=Here I come!
+Name=PLUL
+EndSpeechLose="Man, I lost!"
+[072]
+PokemonNos=142,150,179,180,184,185,189,192,204,236,237,240
+EndSpeechWin="Yes, I won!"
+Type=SUPERNERD
+BeginSpeech=Here I come!
+Name=KIIO
+EndSpeechLose="Man, I lost!"
+[073]
+PokemonNos=133,134,136,139,145,148,173,179,190,216,217,222,223,227,229,232
+EndSpeechWin="Yes, I won!"
+Type=BIRDKEEPER
+BeginSpeech=Here I come!
+Name=HIGS
+EndSpeechLose="Man, I lost!"
+[074]
+PokemonNos=126,135,148,162,189,197,219,232,233,237
+EndSpeechWin="Yes, I won!"
+Type=BIRDKEEPER
+BeginSpeech=Here I come!
+Name=BLIPT
+EndSpeechLose="Man, I lost!"
+[075]
+PokemonNos=123,128,129,168,169,179,181,182,184,205,216,220,234,236
+EndSpeechWin="Yes, I won!"
+Type=BUGCATCHER
+BeginSpeech=Here I come!
+Name=GRUUK
+EndSpeechLose="Man, I lost!"
+[076]
+PokemonNos=128,139,184,189,193,204,207,226,228,233
+EndSpeechWin="Yes, I won!"
+Type=HIKER
+BeginSpeech=Here I come!
+Name=RORME
+EndSpeechLose="Man, I lost!"
+[077]
+PokemonNos=122,135,137,140,142,174,175,189,220,222,227,235
+EndSpeechWin="Yes, I won!"
+Type=HIKER
+BeginSpeech=Here I come!
+Name=LEDENS
+EndSpeechLose="Man, I lost!"
+[078]
+PokemonNos=123,151,183,185,198,200,202,213,220,222,230,233,236
+EndSpeechWin="Yes, I won!"
+Type=HIKER
+BeginSpeech=Here I come!
+Name=NYAO
+EndSpeechLose="Man, I lost!"
+[079]
+PokemonNos=135,151,165,174,178,187,190,196,197,200,207,218
+EndSpeechWin="Yes, I won!"
+Type=BEAUTY
+BeginSpeech=Here I come!
+Name=ETHENDRA
+EndSpeechLose="Man, I lost!"
+[080]
+PokemonNos=136,138,149,160,164,179,201,216,221
+EndSpeechWin="Yes, I won!"
+Type=BEAUTY
+BeginSpeech=Here I come!
+Name=UTHINDA
+EndSpeechLose="Man, I lost!"
+[081]
+PokemonNos=128,134,137,149,158,160,163,168,171,174,179,189,207,210,220,239,241
+EndSpeechWin="Yes, I won!"
+Type=TWINS
+BeginSpeech=Here I come!
+Name=ATHONKA
+EndSpeechLose="Man, I lost!"
+[082]
+PokemonNos=149,152,155,156,162,165,168,175,185,200,222,228,229,234,239
+EndSpeechWin="Yes, I won!"
+Type=TWINS
+BeginSpeech=Here I come!
+Name=ARILA
+EndSpeechLose="Man, I lost!"
+[083]
+PokemonNos=133,138,152,184,198,200,209,220,235,236,240
+EndSpeechWin="Yes, I won!"
+Type=TWINS
+BeginSpeech=Here I come!
+Name=ANSULI
+EndSpeechLose="Man, I lost!"
+[084]
+PokemonNos=146,147,148,152,166,203,219,226,233
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_F
+BeginSpeech=Here I come!
+Name=IGANDA
+EndSpeechLose="Man, I lost!"
+[085]
+PokemonNos=126,135,139,141,149,153,158,176,195,196,198,228,233,235,240
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_F
+BeginSpeech=Here I come!
+Name=UGSARA
+EndSpeechLose="Man, I lost!"
+[086]
+PokemonNos=141,143,147,162,163,164,165,177,182,188,197,201,207,211,212,214,222,228,233,239
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_F
+BeginSpeech=Here I come!
+Name=VORINA
+EndSpeechLose="Man, I lost!"
+[087]
+PokemonNos=123,131,132,157,166,178,181,193,199,205,219,236
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_F
+BeginSpeech=Here I come!
+Name=ONDA
+EndSpeechLose="Man, I lost!"
+[088]
+PokemonNos=121,128,134,151,173,234
+EndSpeechWin="Yes, I won!"
+Type=ROCKER
+BeginSpeech=Here I come!
+Name=TIN
+EndSpeechLose="Man, I lost!"
+[089]
+PokemonNos=144,147,148,154,158,161,182,184,191,196,208,219,237
+EndSpeechWin="Yes, I won!"
+Type=ROCKER
+BeginSpeech=Here I come!
+Name=KARPIUS
+EndSpeechLose="Man, I lost!"
+[090]
+PokemonNos=132,137,157,164,172,173,178,189,191,206,235,238,241
+EndSpeechWin="Yes, I won!"
+Type=ROCKER
+BeginSpeech=Here I come!
+Name=PRIFT
+EndSpeechLose="Man, I lost!"
+[091]
+PokemonNos=128,131,138,159,165,168,169,201,207,212,216,226,238,241
+EndSpeechWin="Yes, I won!"
+Type=ROCKER
+BeginSpeech=Here I come!
+Name=SIKO
+EndSpeechLose="Man, I lost!"
+[092]
+PokemonNos=135,139,142,145,152,173,179,182,183,197,208,212,227,228,234
+EndSpeechWin="Yes, I won!"
+Type=ROCKER
+BeginSpeech=Here I come!
+Name=TIGG
+EndSpeechLose="Man, I lost!"
+[093]
+PokemonNos=124,128,134,141,145,157,186,188,200,213,226
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=DEIUS
+EndSpeechLose="Man, I lost!"
+[094]
+PokemonNos=121,125,131,136,175,181,185,187,201,217,218,221,222
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=GLEEE
+EndSpeechLose="Man, I lost!"
+[095]
+PokemonNos=126,133,160,161,164,165,167,168,212,215,216,232
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=LIE
+EndSpeechLose="Man, I lost!"
+[096]
+PokemonNos=126,148,159,173,192,196,199,203,208,217,218,224,236
+EndSpeechWin="Yes, I won!"
+Type=GAMBLER
+BeginSpeech=Here I come!
+Name=RIZ
+EndSpeechLose="Man, I lost!"
+[097]
+PokemonNos=128,162,163,167,191,208,212,229,235,236
+EndSpeechWin="Yes, I won!"
+Type=GAMBLER
+BeginSpeech=Here I come!
+Name=SLARN
+EndSpeechLose="Man, I lost!"
+[098]
+PokemonNos=133,154,158,165,172,178,179,189,190,201,212,217,232,237
+EndSpeechWin="Yes, I won!"
+Type=GAMBLER
+BeginSpeech=Here I come!
+Name=SEE
+EndSpeechLose="Man, I lost!"
+[099]
+PokemonNos=136,145,150,158,162,174,184,188,195,198,199,205,215,235
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=IRALA
+EndSpeechLose="Man, I lost!"
+[100]
+PokemonNos=131,141,160,178,184,188,191,194,204,219,224,237
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=MICHIE
+EndSpeechLose="Man, I lost!"
+[101]
+PokemonNos=121,128,130,131,157,173,174,176,177,181,223,233
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=VLICHIE
+EndSpeechLose="Man, I lost!"
+[102]
+PokemonNos=123,180,198,213,226,230
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=SOLA
+EndSpeechLose="Man, I lost!"
+[103]
+PokemonNos=125,126,152,160,172,178,191,194,202,235
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=FINA
+EndSpeechLose="Man, I lost!"
+[104]
+PokemonNos=124,149,150,151,160,205,214,220,232,236
+EndSpeechWin="Yes, I won!"
+Type=ENGINEER
+BeginSpeech=Here I come!
+Name=BRAPH
+EndSpeechLose="Man, I lost!"
+[105]
+PokemonNos=125,130,139,149,150,160,177,179,209,212,232
+EndSpeechWin="Yes, I won!"
+Type=ENGINEER
+BeginSpeech=Here I come!
+Name=YAZ
+EndSpeechLose="Man, I lost!"
+[106]
+PokemonNos=140,141,151,169,190,191,205,215,227,235
+EndSpeechWin="Yes, I won!"
+Type=ENGINEER
+BeginSpeech=Here I come!
+Name=BUDAC
+EndSpeechLose="Man, I lost!"
+[107]
+PokemonNos=125,142,147,157,159,163,165,178,187,200,208,209
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_M
+BeginSpeech=Here I come!
+Name=LEJ
+EndSpeechLose="Man, I lost!"
+[108]
+PokemonNos=142,160,170,172,175,191,212,218,220,225
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_M
+BeginSpeech=Here I come!
+Name=KUGG
+EndSpeechLose="Man, I lost!"
+[109]
+PokemonNos=125,126,134,135,138,141,156,164,175,178,191,192,206,209,227,232,233
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_F
+BeginSpeech=Here I come!
+Name=ADUSTA
+EndSpeechLose="Man, I lost!"
+[110]
+PokemonNos=0,1,126,151,229,234
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_F
+BeginSpeech=Here I come!
+Name=ACHA
+EndSpeechLose="Man, I lost!"
+[111]
+PokemonNos=138,154,160,163,171,183,200,205,207,227,233
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_F
+BeginSpeech=Here I come!
+Name=NINA
+EndSpeechLose="Man, I lost!"
+[112]
+PokemonNos=129,131,139,150,153,160,168,173,178,207,220,232,236
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_F
+BeginSpeech=Here I come!
+Name=AZITA
+EndSpeechLose="Man, I lost!"
+[113]
+PokemonNos=134,138,140,144,148,167,168,180,191,213,232
+EndSpeechWin="Yes, I won!"
+Type=RUINMANIAC
+BeginSpeech=Here I come!
+Name=ZHOVUSH
+EndSpeechLose="Man, I lost!"
+[114]
+PokemonNos=122,144,152,153,167,171,180,199,204,213,215,223,225
+EndSpeechWin="Yes, I won!"
+Type=RUINMANIAC
+BeginSpeech=Here I come!
+Name=JEP
+EndSpeechLose="Man, I lost!"
+[115]
+PokemonNos=132,143,175,177,185,198,212,215,228
+EndSpeechWin="Yes, I won!"
+Type=RUINMANIAC
+BeginSpeech=Here I come!
+Name=POBSE
+EndSpeechLose="Man, I lost!"
+[116]
+PokemonNos=125,130,150,154,156,170,171,172,199,218,234
+EndSpeechWin="Yes, I won!"
+Type=BIKER
+BeginSpeech=Here I come!
+Name=ROTIUS
+EndSpeechLose="Man, I lost!"
+[117]
+PokemonNos=121,127,138,146,153,156,165,168,177,178,182,184,195,199,215,240
+EndSpeechWin="Yes, I won!"
+Type=BIKER
+BeginSpeech=Here I come!
+Name=BOD
+EndSpeechLose="Man, I lost!"
+[118]
+PokemonNos=133,135,142,155,162,187,190,202,208,209,212,233
+EndSpeechWin="Yes, I won!"
+Type=PICNICKER
+BeginSpeech=Here I come!
+Name=AYNKO
+EndSpeechLose="Man, I lost!"
+[119]
+PokemonNos=140,156,198,205,221,231
+EndSpeechWin="Yes, I won!"
+Type=PICNICKER
+BeginSpeech=Here I come!
+Name=HORAT
+EndSpeechLose="Man, I lost!"
+[120]
+PokemonNos=121,126,131,142,190,197,219,234,237,238
+EndSpeechWin="Yes, I won!"
+Type=PICNICKER
+BeginSpeech=Here I come!
+Name=OOD
+EndSpeechLose="Man, I lost!"
+[121]
+PokemonNos=133,135,157,162,171,172,174,186,188,194,201,204,211,222,230,232,240
+EndSpeechWin="Yes, I won!"
+Type=PICNICKER
+BeginSpeech=Here I come!
+Name=KHASI
+EndSpeechLose="Man, I lost!"
+[122]
+PokemonNos=121,133,159,183,221,222,225,232,241
+EndSpeechWin="Yes, I won!"
+Type=PICNICKER
+BeginSpeech=Here I come!
+Name=ILITH
+EndSpeechLose="Man, I lost!"
+[123]
+PokemonNos=123,129,139,145,149,153,154,162,168,175,179,181,182,201,202,211,220,221,230,232,240
+EndSpeechWin="Yes, I won!"
+Type=PAINTER
+BeginSpeech=Here I come!
+Name=OB
+EndSpeechLose="Man, I lost!"
+[124]
+PokemonNos=123,139,143,147,152,167,171,172,174,175,183,185,197,212,217,219,225,227,229
+EndSpeechWin="Yes, I won!"
+Type=PAINTER
+BeginSpeech=Here I come!
+Name=OOVAY
+EndSpeechLose="Man, I lost!"
+[125]
+PokemonNos=150,153,173,174,182,187,195,203,204,215,224,230,239
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_M
+BeginSpeech=Here I come!
+Name=GLOBO
+EndSpeechLose="Man, I lost!"
+[126]
+PokemonNos=127,133,170,174,176,178,190,232
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_M
+BeginSpeech=Here I come!
+Name=GRUJU
+EndSpeechLose="Man, I lost!"
+[127]
+PokemonNos=123,124,132,149,151,156,157,159,188,190,193,196,200,233
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_M
+BeginSpeech=Here I come!
+Name=SER
+EndSpeechLose="Man, I lost!"
+[128]
+PokemonNos=127,129,131,135,138,159,181,196,199,224,237,241
+EndSpeechWin="Yes, I won!"
+Type=POKEMONBREEDER
+BeginSpeech=Here I come!
+Name=NOCHA
+EndSpeechLose="Man, I lost!"
+[129]
+PokemonNos=123,124,130,141,166,174,179,183,193,206,213,239
+EndSpeechWin="Yes, I won!"
+Type=POKEMONBREEDER
+BeginSpeech=Here I come!
+Name=IBBILA
+EndSpeechLose="Man, I lost!"
+[130]
+PokemonNos=130,147,177,181,205,220
+EndSpeechWin="Yes, I won!"
+Type=POKEMONBREEDER
+BeginSpeech=Here I come!
+Name=EHICHIE
+EndSpeechLose="Man, I lost!"
+[131]
+PokemonNos=133,144,157,164,165,166,180,192,210,215,222,231,239
+EndSpeechWin="Yes, I won!"
+Type=POKEMONBREEDER
+BeginSpeech=Here I come!
+Name=ECHA
+EndSpeechLose="Man, I lost!"
+[132]
+PokemonNos=123,137,144,153,192,195,200,201,211,212,229
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=LIU
+EndSpeechLose="Man, I lost!"
+[133]
+PokemonNos=131,145,152,154,159,160,186,200,210,214,223,234
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=MALS
+EndSpeechLose="Man, I lost!"
+[134]
+PokemonNos=245,266,277,278,279,291,301,308,310,313,316,324,326,335,337,346
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=REIO
+EndSpeechLose="Man, I lost!"
+[135]
+PokemonNos=245,246,263,264,292,298,309,314,330,335,343,349
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=NYAJOD
+EndSpeechLose="Man, I lost!"
+[136]
+PokemonNos=273,274,275,296,305,309,327,328,343,347,349
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=DOLD
+EndSpeechLose="Man, I lost!"
+[137]
+PokemonNos=246,254,256,266,272,282,288,299,324,329,335,340,347,348,359
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=BADE
+EndSpeechLose="Man, I lost!"
+[138]
+PokemonNos=246,264,309,321,323,353,354,356,361
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_M
+BeginSpeech=Here I come!
+Name=GASSE
+EndSpeechLose="Man, I lost!"
+[139]
+PokemonNos=277,292,301,310,312,318,321,329,334,351,356,357
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_F
+BeginSpeech=Here I come!
+Name=UJALI
+EndSpeechLose="Man, I lost!"
+[140]
+PokemonNos=247,277,291,311,318,320,336,350
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_F
+BeginSpeech=Here I come!
+Name=URUNINE
+EndSpeechLose="Man, I lost!"
+[141]
+PokemonNos=254,262,283,303,312,321,332,333,336,354,361
+EndSpeechWin="Yes, I won!"
+Type=SWIMMER_F
+BeginSpeech=Here I come!
+Name=SEZITA
+EndSpeechLose="Man, I lost!"
+[142]
+PokemonNos=243,257,278,280,285,289,294,305,306,312,315,319,323,327,330,337,344,346,348,349
+EndSpeechWin="Yes, I won!"
+Type=SAILOR
+BeginSpeech=Here I come!
+Name=LENU
+EndSpeechLose="Man, I lost!"
+[143]
+PokemonNos=245,246,258,265,267,275,278,290,301,320,324,337,340,349,354,358
+EndSpeechWin="Yes, I won!"
+Type=SAILOR
+BeginSpeech=Here I come!
+Name=NYANS
+EndSpeechLose="Man, I lost!"
+[144]
+PokemonNos=247,256,257,263,270,275,282,285,291,294,296,299,304,321,323,330,362
+EndSpeechWin="Yes, I won!"
+Type=SAILOR
+BeginSpeech=Here I come!
+Name=DEE
+EndSpeechLose="Man, I lost!"
+[145]
+PokemonNos=271,273,275,284,290,293,314,315,322,330,331,342,351
+EndSpeechWin="Yes, I won!"
+Type=SAILOR
+BeginSpeech=Here I come!
+Name=KIDESS
+EndSpeechLose="Man, I lost!"
+[146]
+PokemonNos=243,248,251,257,287,297,302,308,332,333,335,345,354
+EndSpeechWin="Yes, I won!"
+Type=SUPERNERD
+BeginSpeech=Here I come!
+Name=PUR
+EndSpeechLose="Man, I lost!"
+[147]
+PokemonNos=258,259,262,263,275,285,296,298,303,306,314,317,325,329,332,339,342,343,345,360,362
+EndSpeechWin="Yes, I won!"
+Type=SUPERNERD
+BeginSpeech=Here I come!
+Name=KAMSEK
+EndSpeechLose="Man, I lost!"
+[148]
+PokemonNos=246,275,297,302,309,317,319,352,356,358
+EndSpeechWin="Yes, I won!"
+Type=SUPERNERD
+BeginSpeech=Here I come!
+Name=DOMORN
+EndSpeechLose="Man, I lost!"
+[149]
+PokemonNos=263,279,281,306,313,322,326,330,331,335,337,341,345
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_M
+BeginSpeech=Here I come!
+Name=LAD
+EndSpeechLose="Man, I lost!"
+[150]
+PokemonNos=245,265,276,281,314,321,326,338,342
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_M
+BeginSpeech=Here I come!
+Name=BUK
+EndSpeechLose="Man, I lost!"
+[151]
+PokemonNos=277,288,300,304,324,331,332,338,339,352,356
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_M
+BeginSpeech=Here I come!
+Name=BAE
+EndSpeechLose="Man, I lost!"
+[152]
+PokemonNos=252,267,268,274,288,296,307,315,357
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_M
+BeginSpeech=Here I come!
+Name=GOJ
+EndSpeechLose="Man, I lost!"
+[153]
+PokemonNos=244,250,287,289,311,322,349,356,361
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_F
+BeginSpeech=Here I come!
+Name=OFA
+EndSpeechLose="Man, I lost!"
+[154]
+PokemonNos=242,245,246,261,269,299,300,335,360
+EndSpeechWin="Yes, I won!"
+Type=COOLTRAINER_F
+BeginSpeech=Here I come!
+Name=ENKA
+EndSpeechLose="Man, I lost!"
+[155]
+PokemonNos=249,251,263,277,299,304,311,334,347,350,355
+EndSpeechWin="Yes, I won!"
+Type=SCIENTIST
+BeginSpeech=Here I come!
+Name=BAGUP
+EndSpeechLose="Man, I lost!"
+[156]
+PokemonNos=245,246,257,260,276,277,283,286,292,300,307,330,339,341,342,349,362
+EndSpeechWin="Yes, I won!"
+Type=SCIENTIST
+BeginSpeech=Here I come!
+Name=BRIM
+EndSpeechLose="Man, I lost!"
+[157]
+PokemonNos=267,278,287,292,308,312,313,322,331,335,338,349,359
+EndSpeechWin="Yes, I won!"
+Type=SISANDBRO
+BeginSpeech=Here I come!
+Name=IRP
+EndSpeechLose="Man, I lost!"
+[158]
+PokemonNos=248,259,265,279,285,303,305,308,309,313,321,322,328
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=MORDEK
+EndSpeechLose="Man, I lost!"
+[159]
+PokemonNos=262,267,276,280,289,291,292,295,309,311,354,358,361
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=GAKOT
+EndSpeechLose="Man, I lost!"
+[160]
+PokemonNos=246,271,284,288,297,345,360
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=KUHOC
+EndSpeechLose="Man, I lost!"
+[161]
+PokemonNos=243,249,251,258,269,281,295,313,348,349,358,359
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=LELD
+EndSpeechLose="Man, I lost!"
+[162]
+PokemonNos=258,268,269,278,283,308,329,330,338,343,349
+EndSpeechWin="Yes, I won!"
+Type=BLACKBELT
+BeginSpeech=Here I come!
+Name=NOR
+EndSpeechLose="Man, I lost!"
+[163]
+PokemonNos=255,269,274,278,283,285,289,292,298,300,318,322,328,336,347,348,350,352
+EndSpeechWin="Yes, I won!"
+Type=CRUSHGIRL
+BeginSpeech=Here I come!
+Name=RALA
+EndSpeechLose="Man, I lost!"
+[164]
+PokemonNos=244,263,287,300,307,319,329,331,349,352
+EndSpeechWin="Yes, I won!"
+Type=CRUSHGIRL
+BeginSpeech=Here I come!
+Name=FUNA
+EndSpeechLose="Man, I lost!"
+[165]
+PokemonNos=275,276,283,314,315,323,335,355
+EndSpeechWin="Yes, I won!"
+Type=CRUSHGIRL
+BeginSpeech=Here I come!
+Name=ONAGANA
+EndSpeechLose="Man, I lost!"
+[166]
+PokemonNos=247,259,263,265,318,344
+EndSpeechWin="Yes, I won!"
+Type=CRUSHGIRL
+BeginSpeech=Here I come!
+Name=OROCHIE
+EndSpeechLose="Man, I lost!"
+[167]
+PokemonNos=252,255,260,274,280,298,300,307,310,321,332,343,345,359
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=RIMAND
+EndSpeechLose="Man, I lost!"
+[168]
+PokemonNos=247,252,256,257,271,276,281,305,306,318,324,327,343,344,358
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=LIE
+EndSpeechLose="Man, I lost!"
+[169]
+PokemonNos=250,254,256,264,279,285,295,299,303,320,327,328,333,360
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=GORP
+EndSpeechLose="Man, I lost!"
+[170]
+PokemonNos=242,244,246,268,272,288,327,332,335,361
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=GRALAT
+EndSpeechLose="Man, I lost!"
+[171]
+PokemonNos=289,291,295,306,314,332,342,344,355,358,360
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_M
+BeginSpeech=Here I come!
+Name=BARUM
+EndSpeechLose="Man, I lost!"
+[172]
+PokemonNos=276,278,279,282,285,291,301,302,312,332,336,338,359,360,362
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=ECHIE
+EndSpeechLose="Man, I lost!"
+[173]
+PokemonNos=243,251,254,259,265,271,274,276,277,279,284,286,296,304,308,311,326
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=IRMILI
+EndSpeechLose="Man, I lost!"
+[174]
+PokemonNos=246,251,252,260,276,283,288,295,296,311,330,335,341,342
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=CECHIE
+EndSpeechLose="Man, I lost!"
+[175]
+PokemonNos=252,259,261,271,275,280,338,343,346
+EndSpeechWin="Yes, I won!"
+Type=TEAMROCKET_F
+BeginSpeech=Here I come!
+Name=ACA
+EndSpeechLose="Man, I lost!"
+[176]
+PokemonNos=295,310,330,336,338,348,355,356,362
+EndSpeechWin="Yes, I won!"
+Type=GENTLEMAN
+BeginSpeech=Here I come!
+Name=MIO
+EndSpeechLose="Man, I lost!"
+[177]
+PokemonNos=257,258,260,269,282,296,299,307,317,327,332,337,339,344,360
+EndSpeechWin="Yes, I won!"
+Type=GENTLEMAN
+BeginSpeech=Here I come!
+Name=LABSIJ
+EndSpeechLose="Man, I lost!"
+[178]
+PokemonNos=246,260,265,266,270,282,285,291,302,308,319,325,346,347
+EndSpeechWin="Yes, I won!"
+Type=TAMER
+BeginSpeech=Here I come!
+Name=PROVARD
+EndSpeechLose="Man, I lost!"
+[179]
+PokemonNos=253,261,267,275,277,289,293,312,331,344,350,358
+EndSpeechWin="Yes, I won!"
+Type=TAMER
+BeginSpeech=Here I come!
+Name=PREEB
+EndSpeechLose="Man, I lost!"
+[180]
+PokemonNos=292,299,308,321,333,349
+EndSpeechWin="Yes, I won!"
+Type=TAMER
+BeginSpeech=Here I come!
+Name=LINIUS
+EndSpeechLose="Man, I lost!"
+[181]
+PokemonNos=244,246,287,289,302,323,327,335,341,342,352,353,362
+EndSpeechWin="Yes, I won!"
+Type=TAMER
+BeginSpeech=Here I come!
+Name=SOCS
+EndSpeechLose="Man, I lost!"
+[182]
+PokemonNos=246,251,257,269,275,290,297,311,314,334,336,338,348,357,360
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=NICHIE
+EndSpeechLose="Man, I lost!"
+[183]
+PokemonNos=242,248,255,266,267,276,281,297,316,320,342,344,350
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=ZUGA
+EndSpeechLose="Man, I lost!"
+[184]
+PokemonNos=250,265,268,275,291,301,317,327,344,351,354,356,358
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=OTIKA
+EndSpeechLose="Man, I lost!"
+[185]
+PokemonNos=245,247,249,259,264,269,271,277,297,299,306,307,311,339,343,344,353,356
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=TONA
+EndSpeechLose="Man, I lost!"
+[186]
+PokemonNos=255,257,279,285,296,305,314,327,349,354
+EndSpeechWin="Yes, I won!"
+Type=LADY
+BeginSpeech=Here I come!
+Name=UNDA
+EndSpeechLose="Man, I lost!"
+[187]
+PokemonNos=242,270,275,293,297,298,301,315,323,335,339,353
+EndSpeechWin="Yes, I won!"
+Type=JUGGLER
+BeginSpeech=Here I come!
+Name=ROZ
+EndSpeechLose="Man, I lost!"
+[188]
+PokemonNos=247,249,293,295,309,331,355,357,361,362
+EndSpeechWin="Yes, I won!"
+Type=YOUNGCOUPLE
+BeginSpeech=Here I come!
+Name=SEDIE
+EndSpeechLose="Man, I lost!"
+[189]
+PokemonNos=243,250,251,254,261,266,275,280,284,290,291,294,297,298,311,320,342,347,358,361
+EndSpeechWin="Yes, I won!"
+Type=YOUNGCOUPLE
+BeginSpeech=Here I come!
+Name=KLUSTA
+EndSpeechLose="Man, I lost!"
+[190]
+PokemonNos=245,248,256,264,275,286,289,305,311,312,317,323,345,346
+EndSpeechWin="Yes, I won!"
+Type=YOUNGCOUPLE
+BeginSpeech=Here I come!
+Name=AUCSE
+EndSpeechLose="Man, I lost!"
+[191]
+PokemonNos=256,286,308,328,347,359
+EndSpeechWin="Yes, I won!"
+Type=YOUNGCOUPLE
+BeginSpeech=Here I come!
+Name=ALOO
+EndSpeechLose="Man, I lost!"
+[192]
+PokemonNos=257,259,260,262,272,286,306,308,313,321,323,329,342,348,358,359,361
+EndSpeechWin="Yes, I won!"
+Type=YOUNGCOUPLE
+BeginSpeech=Here I come!
+Name=LULOO
+EndSpeechLose="Man, I lost!"
+[193]
+PokemonNos=248,262,266,282,300,313
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_M
+BeginSpeech=Here I come!
+Name=ZODO
+EndSpeechLose="Man, I lost!"
+[194]
+PokemonNos=242,249,256,262,289,319,357,361
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_M
+BeginSpeech=Here I come!
+Name=RATH
+EndSpeechLose="Man, I lost!"
+[195]
+PokemonNos=258,284,299,306,311,323,327,356,358
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_M
+BeginSpeech=Here I come!
+Name=BAIUS
+EndSpeechLose="Man, I lost!"
+[196]
+PokemonNos=243,246,248,259,261,262,268,273,296,318,332,340,354,358
+EndSpeechWin="Yes, I won!"
+Type=POKEMONRANGER_F
+BeginSpeech=Here I come!
+Name=UCECHA
+EndSpeechLose="Man, I lost!"
+[197]
+PokemonNos=242,263,265,266,280,282,298,300,312,314,316,322,327,343
+EndSpeechWin="Yes, I won!"
+Type=JUGGLER
+BeginSpeech=Here I come!
+Name=MOROP
+EndSpeechLose="Man, I lost!"
+[198]
+PokemonNos=244,278,307,314,316,324,339,340,350
+EndSpeechWin="Yes, I won!"
+Type=JUGGLER
+BeginSpeech=Here I come!
+Name=SMEZU
+EndSpeechLose="Man, I lost!"
+[199]
+PokemonNos=245,257,259,260,268,269,307,316,341,348,350,353
+EndSpeechWin="Yes, I won!"
+Type=JUGGLER
+BeginSpeech=Here I come!
+Name=EELOO
+EndSpeechLose="Man, I lost!"

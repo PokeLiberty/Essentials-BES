@@ -1,0 +1,26 @@
+﻿[<Generics>]
+¿Cómo van tus Pokémon?\mMi \TP está lleno de energías. ¡Es una bestia!\mAh, sí, me las arreglé para vencer a un duro \TE.\mPero necesito fortalecer a mi equipo.
+Mi \TP tiene muy buena pinta. Me gustaría poder mostrártelo.\m¡Ey, escucha! Casi atrapo a un \TE el otro día.\m¡Oh, estuve tan cerca, hermano!
+[<BattleRequests>]
+¿Aceptas un combate? No se repetirá lo de la última vez.\mTe estaré esperando cerca de \TM.
+¿Quieres tener un combate? ¡Ganaré esta vez!\mTe estaré esperando cerca de \TM.\mBúscame, ¿quieres? Mi \TP te estará esperando también.
+[<GreetingsMorning>]
+Buen día, \PN.\mSoy \TN. ¿Te desperté?
+[<GreetingsEvening>]
+¡\PN, buenas noches! Hola.\mSoy \TN.
+[<Greetings>]
+¡Hola! Soy \TN.
+¡Buen día, \PN! Hola. Soy \TN.
+¿Cómo vas? ¡\PN, qué tal! Soy \TN. ¿No te parece que está agradable afuera?
+¡\PN, buen día! Soy yo, \TN. ¿Tienes un minuto?
+¡Hola, \PN. Soy \TN. ¿Cómo están tus cosas?
+[<Bodies1>]
+¿Cómo van tus Pokémon?\mMi \TP está lleno de energías. ¡Es una bestia!
+¿Cómo van tus Pokémon?\mYo siempre mantengo a mi \TP a su máximo yendo seguido a un Centro Pokémon.
+Mi \TP tiene muy buena pinta. Me gustaría poder mostrártelo.
+Yo vestí a mi \TP y ahora se ve mucho más adorable que antes.
+[<Bodies2>]
+Ah, sí, me las arreglé para vencer a un duro \TE.\mPero necesito fortalecer a mi equipo.
+¡Tienes que escuchar esto! Vencí a un \TE el otro día.\m¡Fue muy fácil! Tenía ventaja por el tipo.
+¡Ey, escucha! Casi atrapo a un \TE el otro día.\m¡Oh, estuve tan cerca, hermano!
+Adivina qué pasó el otro día. Volví a fallar en intentar atrapar un \TE.\mTal vez no sea muy bueno en ésto.
