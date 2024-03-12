@@ -127,31 +127,6 @@ end
 ################################################################################
 #De v16 a v18
 ################################################################################
-class PokemonBagScreen
-  def pbChooseItemScreen(proc=nil)
-    oldlastpocket = @bag.lastpocket
-    oldchoices = @bag.getAllChoices
-    @scene.pbStartScene(@bag,true,proc)
-    item = @scene.pbChooseItem
-    @scene.pbEndScene
-    @bag.lastpocket = oldlastpocket
-    @bag.setAllChoices(oldchoices)
-    return item
-  end
-end
-
-class PokemonBag
-  def getAllChoices
-    ret = @choices.clone
-    for i in 0...@choices.length; @choices[i] = 0; end
-    return ret
-  end
-
-  def setAllChoices(choices)
-    @choices = choices
-  end
-end
-
 def pbMessage(message,commands=nil,cmdIfCancel=0,skin=nil,defaultCmd=0,&block)
   Kernel.pbMessage(message,commands=nil,cmdIfCancel=0,skin=nil,defaultCmd=0,&block)
 end
