@@ -259,6 +259,11 @@ POKE_RADAR_ENCOUNTERS       = POKERADAREXCLUSIVES
 FISHING_BEGIN_COMMON_EVENT  = FISHINGBEGINCOMMONEVENT
 FISHING_END_COMMON_EVENT    = FISHINGBEGINCOMMONEVENT
 
+module PluginManager;def self.register(options);end;end
+    
+################################################################################
+#De v16 a v20
+################################################################################
 module Settings
   SCREEN_WIDTH                = DEFAULTSCREENWIDTH
   SCREEN_HEIGHT               = DEFAULTSCREENHEIGHT
