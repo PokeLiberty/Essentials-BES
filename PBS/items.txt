@@ -708,3 +708,4 @@
 720,FAIRYFEATHER,Pluma feérica,Plumas feéricas,1,3000,"Pluma mágica que fortalece los ataques de tipo Hada. Debe llevarlo un Pokémon.",0,0,0,
 721,EXPALL,Repartir Exp,Repartir Exp,8,0,"Todo el equipo obtiene Puntos de Experiencia conseguidos en el combate sin participar en él.",2,0,6,
 722,EXPALLOFF,Repartir Exp,Repartir Exp,8,0,"Todo el equipo obtiene Puntos de Experiencia conseguidos en el combate sin participar en él. Actualmente apagado.",2,0,6,
+723,LINKINGCORD,Cordón unión,Cordón unión,6,2100,"Cordón que emite una singular energía capaz de transmitir una extraña sensación de conexión. Ciertos Pokémon lo adoran.",1,0,0,
