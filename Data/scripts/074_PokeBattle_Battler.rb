@@ -2234,7 +2234,26 @@ class PokeBattle_Battler
           end
           PBDebug.log("[Ability triggered] #{target.pbThis}'s Anger Shell")
         end
-        
+        # Disemillar
+            if target.hasWorkingAbility(:SEEDSOWER) &&
+              @battle.field.effects[PBEffects::GrassyTerrain]<=0
+              @battle.field.effects[PBEffects::ElectricTerrain]=0
+              @battle.field.effects[PBEffects::PsychicTerrain]=0
+              @battle.field.effects[PBEffects::MistyTerrain]=0
+            if self.hasWorkingItem(:TERRAINEXTENDER)
+              @battle.field.effects[PBEffects::GrassyTerrain]=8
+            else
+              @battle.field.effects[PBEffects::GrassyTerrain]=5
+            end
+            @battle.pbDisplay(_INTL("¡El terreno de combate se ha cubierto de hierba!"))
+            PBDebug.log("[#{pbThis} summoned Grassy Terrain]")
+            for battler in @battle.battlers
+              next if battler.isFainted?
+              if battler.hasWorkingAbility(:MIMICRY)
+                battler.pbActivateMimicry
+             end
+           end
+        end
         # Pelusa
         if target.hasWorkingAbility(:COTTONDOWN)
           for i in 0...4
