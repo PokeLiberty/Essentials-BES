@@ -17,6 +17,7 @@ jobs:
     - run: git checkout gh-pages
     - run: gem install yard
     - run: yardoc scripts
+    - run: rm -rf docs
     - run: mv doc docs
     - run: git add .yardoc docs
     - run: git commit -m "update docs"
