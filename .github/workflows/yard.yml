@@ -16,7 +16,7 @@ jobs:
     - run: git fetch
     - run: git checkout gh-pages
     - run: gem install yard
-    - run: yardoc scripts
+    - run: yardoc Data/Scripts
     - run: rm -rf docs
     - run: mv doc docs
     - run: git add .yardoc docs
