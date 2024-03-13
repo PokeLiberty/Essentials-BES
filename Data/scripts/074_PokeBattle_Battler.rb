@@ -2235,7 +2235,7 @@ class PokeBattle_Battler
           PBDebug.log("[Ability triggered] #{target.pbThis}'s Anger Shell")
         end
         # Disemillar
-            if target.hasWorkingAbility(:SEEDSOWER) &&
+          if target.hasWorkingAbility(:SEEDSOWER) &&
               @battle.field.effects[PBEffects::GrassyTerrain]<=0
               @battle.field.effects[PBEffects::ElectricTerrain]=0
               @battle.field.effects[PBEffects::PsychicTerrain]=0
