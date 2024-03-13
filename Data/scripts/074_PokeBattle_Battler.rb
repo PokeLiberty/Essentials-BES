@@ -509,7 +509,6 @@ class PokeBattle_Battler
     @effects[PBEffects::Roar]             = false
     @effects[PBEffects::Rollout]          = 0
     @effects[PBEffects::Roost]            = false
-    @effects[PBEffects::SaltCure]         = false
     @effects[PBEffects::ShellTrap]        = false
     @effects[PBEffects::SkipTurn]         = false
     @effects[PBEffects::SkyDrop]          = false
@@ -545,6 +544,8 @@ class PokeBattle_Battler
     @effects[PBEffects::Commander]        = 0
     @effects[PBEffects::GlaiveRush]       = false
     @effects[PBEffects::ShedTail]         = false
+    @effects[PBEffects::SaltCure]         = false
+    @effects[PBEffects::Syrup Bomb]         = false
   end
 
   def pbUpdate(fullchange=false)

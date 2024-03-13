@@ -4397,6 +4397,13 @@ class PokeBattle_Battle
           PBDebug.log("[Habilidad disparada] #{PBAbilities.getName(i.ability)} de #{i.pbThis}")
         end
       end
+     # Syrup Bomb
+        if i.turncount>0 && i.effects[PBEffects::SyrupBomb]>0
+          if i.pbCanReduceStatStage?(PBStats::SPEED,i,false,self)
+          i.pbReduceStat(PBStats::SPEED,1,i,false,self,true)
+          i.effects[PBEffects::SyrupBomb]-=1
+        end
+      end
       # Oportunista
       if i.hasWorkingAbility(:OPPORTUNIST)
         for j in [PBStats::ATTACK,PBStats::DEFENSE,PBStats::SPEED,

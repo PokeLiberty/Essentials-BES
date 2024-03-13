@@ -12754,24 +12754,9 @@ end
 # Bomba Caramelo / Syrup Bomb
 ################################################################################
 class PokeBattle_Move_253 < PokeBattle_Move
-
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    ret=super(attacker,opponent,hitnum,alltargets,showanimation)
-    if opponent.damagestate.calcdamage>0 && !opponent.isFainted? &&
-       !opponent.damagestate.substitute
-      if opponent.effects[PBEffects::MultiTurn]==0
-        opponent.effects[PBEffects::MultiTurn]=5+@battle.pbRandom(2)
-        if attacker.hasWorkingItem(:GRIPCLAW)
-          opponent.effects[PBEffects::MultiTurn]=(USENEWBATTLEMECHANICS) ? 8 : 6
-        end
-        opponent.effects[PBEffects::MultiTurnAttack]=@id
-        opponent.effects[PBEffects::MultiTurnUser]=attacker.index
-        @battle.pbDisplay(_INTL("¡{1} fue atrapado en el torbellino!",opponent.pbThis))
-      end
-    end
-    return ret
+  def pbAdditionalEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    opponent.effects[PBEffects::SyrupBomb]=3 if opponent.damagestate.calcdamage>0
   end
-  
 end
 
 ################################################################################
