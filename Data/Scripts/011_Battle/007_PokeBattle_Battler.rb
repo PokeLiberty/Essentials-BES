@@ -545,7 +545,7 @@ class PokeBattle_Battler
     @effects[PBEffects::GlaiveRush]       = false
     @effects[PBEffects::ShedTail]         = false
     @effects[PBEffects::SaltCure]         = false
-    @effects[PBEffects::SyrupBomb]         = false
+    @effects[PBEffects::SyrupBomb]        = 0
   end
 
   def pbUpdate(fullchange=false)
