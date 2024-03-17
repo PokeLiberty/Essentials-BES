@@ -1264,9 +1264,6 @@ class PokeBattle_Move
         defmult=(defmult*1.1).round
       end
     end
-    if @battle.field.effects[PBEffects::GrassyTerrain]>0
-      defmult=(defmult*1.5).round
-    end
     if !attacker.hasMoldBreaker && !doesBypassIgnorableAbilities?
       if opponent.hasWorkingAbility(:MARVELSCALE) &&
          opponent.status>0 && pbIsPhysical?(type)
@@ -1464,9 +1461,7 @@ class PokeBattle_Move
       end
     end
     if opponent.hasWorkingAbility(:FLUFFY) && isConst?(type,PBTypes,:FIRE)
-      if isContactMove?
-        finaldamagemult=(finaldamagemult*1.0).round
-      else
+      if !isContactMove?
         finaldamagemult=(finaldamagemult*2.0).round
       end
       elsif opponent.hasWorkingAbility(:FLUFFY) && attacker.hasWorkingAbility(:LONGREACH) && isContactMove?

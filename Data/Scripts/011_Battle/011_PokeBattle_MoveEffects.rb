@@ -3280,6 +3280,10 @@ class PokeBattle_Move_070 < PokeBattle_Move
   end
 
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if isConst?(@id,PBMoves,:SHEERCOLD) && opponent.pbHasType?(:ICE)
+      @battle.pbDisplay(_INTL("No afecta a {1}...",opponent.pbThis(true)))
+      return -1
+    end
     damage=pbEffectFixedDamage(opponent.totalhp,attacker,opponent,hitnum,alltargets,showanimation)
     if opponent.isFainted?
       @battle.pbDisplay(_INTL("¡K.O. en 1 golpe!"))
@@ -4616,7 +4620,7 @@ class PokeBattle_Move_0A4 < PokeBattle_Move
     when PBEnvironment::Sand;        id=getConst(PBMoves,:MUDSLAP) || id
     when PBEnvironment::Forest;      id=getConst(PBMoves,:RAZORLEAF) || id
     # Ice tiles in Gen 6 should be Ice Shard
-    when PBEnvironment::Snow;        id=getConst(PBMoves,:AVALANCHE) || id
+    when PBEnvironment::Snow;        id=getConst(PBMoves,:ICESHARD) || id
     when PBEnvironment::Volcano;     id=getConst(PBMoves,:INCINERATE) || id
     when PBEnvironment::Graveyard;   id=getConst(PBMoves,:SHADOWSNEAK) || id
     when PBEnvironment::Sky;         id=getConst(PBMoves,:GUST) || id
@@ -5525,7 +5529,7 @@ class PokeBattle_Move_0BC < PokeBattle_Move
         opponent.effects[PBEffects::Encore]=4
         opponent.effects[PBEffects::EncoreIndex]=i
         opponent.effects[PBEffects::EncoreMove]=opponent.moves[i].id
-        @battle.pbDisplay(_INTL("¡{1} es víctima de una Otra Vez!",opponent.pbThis))
+        @battle.pbDisplay(_INTL("¡{1} es víctima de Otra Vez!",opponent.pbThis))
         return 0
       end
     end
@@ -9459,7 +9463,7 @@ class PokeBattle_Move_142 < PokeBattle_Move
     pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
     opponent.effects[PBEffects::Type3]=getConst(PBTypes,:GHOST)
     typename=PBTypes.getName(getConst(PBTypes,:GHOST))
-    @battle.pbDisplay(_INTL("¡{1} ha sido transaformado en tipo {2}!",opponent.pbThis,typename))
+    @battle.pbDisplay(_INTL("¡{1} ha sido transformado en tipo {2}!",opponent.pbThis,typename))
     return 0
   end
 end
@@ -9489,7 +9493,7 @@ class PokeBattle_Move_143 < PokeBattle_Move
     pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
     opponent.effects[PBEffects::Type3]=getConst(PBTypes,:GRASS)
     typename=PBTypes.getName(getConst(PBTypes,:GRASS))
-    @battle.pbDisplay(_INTL("¡{1} ha sido transaformado en tipo {2}!",opponent.pbThis,typename))
+    @battle.pbDisplay(_INTL("¡{1} ha sido transformado en tipo {2}!",opponent.pbThis,typename))
     return 0
   end
 end
@@ -10074,6 +10078,38 @@ class PokeBattle_Move_156 < PokeBattle_Move
   end
 end
 
+
+################################################################################
+# For 5 rounds, creates a psychic terrain which boosts Psychic-type moves and
+# protects Pokémon from priority moves. Affects non-airborne Pokémon only.
+# (Psychic Terrain)
+################################################################################
+class PokeBattle_Move_159 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if @battle.field.effects[PBEffects::PsychicTerrain]>0
+      @battle.pbDisplay(_INTL("¡Pero falló!"))
+      return -1
+    end
+    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    @battle.field.effects[PBEffects::ElectricTerrain]=0
+    @battle.field.effects[PBEffects::MistyTerrain]=0
+    @battle.field.effects[PBEffects::GrassyTerrain]=0
+    if attacker.hasWorkingItem(:TERRAINEXTENDER)
+      @battle.field.effects[PBEffects::PsychicTerrain]=8
+    else
+      @battle.field.effects[PBEffects::PsychicTerrain]=5
+    end
+    @battle.pbDisplay(_INTL("¡El campo de batalla se volvió extraño!"))
+    for battler in @battle.battlers
+      next if battler.isFainted?
+      if battler.hasWorkingAbility(:MIMICRY)
+         battler.pbActivateMimicry
+      end
+    end
+    return 0
+  end
+end
+
 ################################################################################
 # Duplica el dinero que obtiene el jugador tras ganar el combate.
 # (Paga Extra/Happy Hour)
@@ -10366,39 +10402,6 @@ class PokeBattle_Move_CF14 < PokeBattle_Move
     return ret
   end
 end
-
-
-################################################################################
-# For 5 rounds, creates a psychic terrain which boosts Psychic-type moves and
-# protects Pokémon from priority moves. Affects non-airborne Pokémon only.
-# (Psychic Terrain)
-################################################################################
-class PokeBattle_Move_159 < PokeBattle_Move
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if @battle.field.effects[PBEffects::PsychicTerrain]>0
-      @battle.pbDisplay(_INTL("¡Pero falló!"))
-      return -1
-    end
-    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
-    @battle.field.effects[PBEffects::ElectricTerrain]=0
-    @battle.field.effects[PBEffects::MistyTerrain]=0
-    @battle.field.effects[PBEffects::GrassyTerrain]=0
-    if attacker.hasWorkingItem(:TERRAINEXTENDER)
-      @battle.field.effects[PBEffects::PsychicTerrain]=8
-    else
-      @battle.field.effects[PBEffects::PsychicTerrain]=5
-    end
-    @battle.pbDisplay(_INTL("¡El campo de batalla se volvió extraño!"))
-    for battler in @battle.battlers
-      next if battler.isFainted?
-      if battler.hasWorkingAbility(:MIMICRY)
-         battler.pbActivateMimicry
-      end
-    end
-    return 0
-  end
-end
-
 
 ################################################################################
 # Copies the opponent's stat changes and then resets it. After this, it will
@@ -11607,42 +11610,6 @@ class PokeBattle_Move_215 < PokeBattle_Move
 end
 
 ################################################################################
-# Incrementa el Ataque, Ataque Especial, la Defensa y la Defensa Especial del
-# usuario en 1 nivel cada uno.
-# Victory Dance / Danza Triunfal
-################################################################################
-class PokeBattle_Move_228 < PokeBattle_Move
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if !attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self) &&
-       !attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self) &&
-       !attacker.pbCanIncreaseStatStage?(PBStats::SPATK,attacker,false,self) &&
-       !attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,attacker,false,self)
-      @battle.pbDisplay(_INTL("¡Las características de {1} no subirán más!",attacker.pbThis))
-      return -1
-    end
-    pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
-    showanim=true
-    if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
-      attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
-      showanim=false
-    end
-    if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
-      attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
-      showanim=false
-    end
-    if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,attacker,false,self)
-      attacker.pbIncreaseStat(PBStats::SPATK,1,attacker,false,self,showanim)
-      showanim=false
-    end
-    if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,attacker,false,self)
-      attacker.pbIncreaseStat(PBStats::SPDEF,1,attacker,false,self,showanim)
-      showanim=false
-    end
-    return 0
-  end
-end
-
-################################################################################
 # El usuario pierde la mitad de sus PS totales al usar el ataque y reduce su
 # Velocidad.
 # Chloroblast / Clorofiláser
@@ -11667,29 +11634,6 @@ class PokeBattle_Move_229 < PokeBattle_Move
   end
 end
 
-################################################################################
-# Duerme, congela o paraliza al objetivo.
-# Dire Claw / Garra Nociva
-################################################################################
-class PokeBattle_Move_230 < PokeBattle_Move
-  def pbAdditionalEffect(attacker,opponent)
-    return if opponent.damagestate.substitute
-    case @battle.pbRandom(3)
-    when 0
-      if opponent.pbCanPoison?(attacker,false,self)
-        opponent.pbPoison(attacker)
-      end
-    when 1
-      if opponent.pbCanSleep?(attacker,false,self)
-        opponent.pbSleep
-      end
-    when 2
-      if opponent.pbCanParalyze?(attacker,false,self)
-        opponent.pbParalyze(attacker)
-      end
-    end
-  end
-end
 
 ################################################################################
 # El usuario pierde PS por el retroceso, pero aumenta su Velocidad.
@@ -11713,32 +11657,6 @@ class PokeBattle_Move_231 < PokeBattle_Move
   def pbAdditionalEffect(attacker,opponent)
     if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,attacker,false,self)
       attacker.pbIncreaseStat(PBStats::SPEED,1,attacker,false,self)
-    end
-  end
-end
-
-################################################################################
-# La potencia se duplica es el usuario está quemado, envenenado o paralizado.
-# Además puede envenenar.
-# Barb Barrage / Mil Púas Tóxicas
-################################################################################
-class PokeBattle_Move_232 < PokeBattle_Move
-  def pbBaseDamage(basedmg,attacker,opponent)
-    if (opponent.status>0 &&
-       (opponent.effects[PBEffects::Substitute]==0 || 
-       ignoresSubstitute?(attacker))) || (opponent.hasWorkingAbility(:COMATOSE) &&
-       isConst?(opponent.species,PBSpecies,:KOMALA) &&
-       (opponent.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(attacker)))
-      return basedmg*2
-    end
-    return basedmg
-  end
-  
-  def pbAdditionalEffect(attacker,opponent)
-    return if opponent.damagestate.substitute
-    if opponent.pbCanPoison?(attacker,false,self) ||
-     attacker.hasWorkingAbility(:CORROSION) && opponent.status==0
-      opponent.pbPoison(attacker)
     end
   end
 end
@@ -11794,6 +11712,156 @@ class PokeBattle_Move_234 < PokeBattle_Move
 end
 
 ################################################################################
+# Intercambia su Ataque por su At.Esp. y su Defensa por su Def.Esp.
+# Power Shift / Cambiapoder
+################################################################################
+class PokeBattle_Move_240 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    attacker.attack,attacker.defense=attacker.defense,attacker.attack
+    attacker.spatk,attacker.spdef=attacker.spdef,attacker.spatk
+    attacker.effects[PBEffects::PowerShift]=!attacker.effects[PBEffects::PowerShift]
+    @battle.pbDisplay(_INTL("¡{1} cambió su ofensiva y defensiva!",attacker.pbThis))
+    return 0
+  end
+end
+
+################################################################################
+# Puede aumentar Ataque, Defensa, At.Esp. y Def.Esp. del usuario (forma 0).
+# Puede reducir Defensa y Def.Esp. del objetivo (forma 1).
+# Springtide Storm / Ciclón primavera
+################################################################################
+class PokeBattle_Move_241 < PokeBattle_Move
+  def pbAdditionalEffect(attacker,opponent) 
+    if attacker.form==0
+      showanim=true
+      if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
+        showanim=false
+      end
+      if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
+        showanim=false
+      end
+      if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::SPATK,1,attacker,false,self,showanim)
+        showanim=false
+      end
+      if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::SPDEF,1,attacker,false,self,showanim)
+        showanim=false
+      end
+    elsif attacker.form==1
+      return if opponent.damagestate.substitute
+      if opponent.pbCanReduceStatStage?(PBStats::DEFENSE,attacker,false,self)
+        opponent.pbReduceStat(PBStats::DEFENSE,1,attacker,false,self)
+      end
+      if opponent.pbCanReduceStatStage?(PBStats::SPDEF,attacker,false,self)
+        opponent.pbReduceStat(PBStats::SPDEF,1,attacker,false,self)
+      end
+    end
+  end
+end
+
+
+################################################################################
+# Aumenta la ofensiva del usuario si es mayor que su defensiva. Si no, al revés.
+# Mystical Power / Poder Místico
+################################################################################
+class PokeBattle_Move_239 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if attacker.attack + attacker.spatk >= attacker.defense + attacker.spdef
+      if !attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self) &&
+         !attacker.pbCanIncreaseStatStage?(PBStats::SPATK,attacker,false,self)
+        @battle.pbDisplay(_INTL("¡Las características de {1} no subirán más!",attacker.pbThis))
+        return -1
+      end
+      pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
+      showanim=true
+      if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
+        showanim=false
+      end
+      if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::SPATK,1,attacker,false,self,showanim)
+        showanim=false
+      end
+    else
+      if !attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self) &&
+         !attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,attacker,false,self)
+        @battle.pbDisplay(_INTL("¡Las características de {1} no subirán más!",attacker.pbThis))
+        return -1
+      end
+      pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
+      showanim=true
+      if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
+        showanim=false
+      end
+      if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::SPDEF,1,attacker,false,self,showanim)
+        showanim=false
+      end
+    end
+    return 0
+  end
+end
+
+################################################################################
+# Incrementa el Ataque, la Defensa y la Velocidad del
+# usuario en 1 nivel cada uno.
+# Victory Dance / Danza Triunfal
+################################################################################
+class PokeBattle_Move_228 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if !attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self) &&
+       !attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self) &&
+       !attacker.pbCanIncreaseStatStage?(PBStats::SPEED,attacker,false,self)
+      @battle.pbDisplay(_INTL("¡Las características de {1} no subirán más!",attacker.pbThis))
+      return -1
+    end
+    pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
+    showanim=true
+    if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
+      attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
+      showanim=false
+    end
+    if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
+      attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
+      showanim=false
+    end
+    if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,attacker,false,self)
+      attacker.pbIncreaseStat(PBStats::SPEED,1,attacker,false,self,showanim)
+      showanim=false
+    end
+    return 0
+  end
+end
+
+################################################################################
+# Duerme, congela o paraliza al objetivo.
+# Dire Claw / Garra Nociva
+################################################################################
+class PokeBattle_Move_230 < PokeBattle_Move
+  def pbAdditionalEffect(attacker,opponent)
+    return if opponent.damagestate.substitute
+    case @battle.pbRandom(3)
+    when 0
+      if opponent.pbCanPoison?(attacker,false,self)
+        opponent.pbPoison(attacker)
+      end
+    when 1
+      if opponent.pbCanSleep?(attacker,false,self)
+        opponent.pbSleep
+      end
+    when 2
+      if opponent.pbCanParalyze?(attacker,false,self)
+        opponent.pbParalyze(attacker)
+      end
+    end
+  end
+end
+################################################################################
 # La potencia se duplica es el oponente tiene un problema de estado.
 # Además puede quemar.
 # Infernal Parade / Marcha Espectral
@@ -11831,6 +11899,32 @@ class PokeBattle_Move_236 < PokeBattle_Move
       else
         @battle.pbDisplay(_INTL("¡Tu equipo está rodeado de piedras puntiagudas!"))
       end
+    end
+  end
+end
+
+################################################################################
+# La potencia se duplica es el usuario está quemado, envenenado o paralizado.
+# Además puede envenenar.
+# Barb Barrage / Mil Púas Tóxicas
+################################################################################
+class PokeBattle_Move_232 < PokeBattle_Move
+  def pbBaseDamage(basedmg,attacker,opponent)
+    if (opponent.status>0 &&
+       (opponent.effects[PBEffects::Substitute]==0 || 
+       ignoresSubstitute?(attacker))) || (opponent.hasWorkingAbility(:COMATOSE) &&
+       isConst?(opponent.species,PBSpecies,:KOMALA) &&
+       (opponent.effects[PBEffects::Substitute]==0 || ignoresSubstitute?(attacker)))
+      return basedmg*2
+    end
+    return basedmg
+  end
+  
+  def pbAdditionalEffect(attacker,opponent)
+    return if opponent.damagestate.substitute
+    if opponent.pbCanPoison?(attacker,false,self) ||
+     attacker.hasWorkingAbility(:CORROSION) && opponent.status==0
+      opponent.pbPoison(attacker)
     end
   end
 end
@@ -11893,111 +11987,47 @@ class PokeBattle_Move_238 < PokeBattle_Move
     pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
     attacker.pbRecoverHP(((attacker.totalhp+1)/2).floor,true)
     @battle.pbDisplay(_INTL("{1} recuperó salud.",attacker.pbThis))
-    if !attacker.pbCanIncreaseStatStage?(PBStats::EVASION,attacker,false,self)
-      @battle.pbDisplay(_INTL("¡La Evasión de {1} no subirá más!",attacker.pbThis))
-      return -1
+    activepkmn=[]
+    for i in @battle.battlers
+      next if attacker.pbIsOpposing?(i.index) || i.isFainted?
+      activepkmn.push(i.pokemonIndex)
+      next if USENEWBATTLEMECHANICS && i.index!=attacker.index && 
+         pbTypeImmunityByAbility(pbType(@type,attacker,i),attacker,i)
+      case i.status
+      when PBStatuses::PARALYSIS
+        @battle.pbDisplay(_INTL("¡{1} se curó de la parálisis!",i.pbThis))
+      when PBStatuses::SLEEP
+        @battle.pbDisplay(_INTL("¡{1} se despertó!",i.pbThis))
+      when PBStatuses::POISON
+        @battle.pbDisplay(_INTL("¡{1} se curó del envenenamiento!",i.pbThis))
+      when PBStatuses::BURN
+        @battle.pbDisplay(_INTL("¡{1} se curó de la quemadura!",i.pbThis))
+      when PBStatuses::FROZEN
+        @battle.pbDisplay(_INTL("¡{1} se descongeló!",i.pbThis))
+      end
+      i.pbCureStatus(false)
+    end
+    party=@battle.pbParty(attacker.index) # NOTE: Considers both parties in multi battles
+    for i in 0...party.length
+      next if activepkmn.include?(i)
+      next if !party[i] || party[i].isEgg? || party[i].hp<=0
+      case party[i].status
+      when PBStatuses::PARALYSIS
+        @battle.pbDisplay(_INTL("¡{1} se curó de la parálisis!",party[i].name))
+      when PBStatuses::SLEEP
+          @battle.pbDisplay(_INTL("¡{1} se despertó!",party[i].name))
+      when PBStatuses::POISON
+        @battle.pbDisplay(_INTL("¡{1} se curó del envenenamiento!",party[i].name))
+      when PBStatuses::BURN
+        @battle.pbDisplay(_INTL("¡{1} se curó de la quemadura!",party[i].name))
+      when PBStatuses::FROZEN
+        @battle.pbDisplay(_INTL("¡{1} se descongeló!",party[i].name))
+      end
+      party[i].status=0
+      party[i].statusCount=0
     end
     showanim=true
-    if attacker.pbCanIncreaseStatStage?(PBStats::EVASION,attacker,false,self)
-      attacker.pbIncreaseStat(PBStats::EVASION,1,attacker,false,self,showanim)
-      showanim=false
-    end
     return 0
-  end
-end
-
-################################################################################
-# Aumenta la ofensiva del usuario si es mayor que su defensiva. Si no, al revés.
-# Mystical Power / Poder Místico
-################################################################################
-class PokeBattle_Move_239 < PokeBattle_Move
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if attacker.attack + attacker.spatk >= attacker.defense + attacker.spdef
-      if !attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self) &&
-         !attacker.pbCanIncreaseStatStage?(PBStats::SPATK,attacker,false,self)
-        @battle.pbDisplay(_INTL("¡Las características de {1} no subirán más!",attacker.pbThis))
-        return -1
-      end
-      pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
-      showanim=true
-      if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
-        showanim=false
-      end
-      if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::SPATK,1,attacker,false,self,showanim)
-        showanim=false
-      end
-    else
-      if !attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self) &&
-         !attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,attacker,false,self)
-        @battle.pbDisplay(_INTL("¡Las características de {1} no subirán más!",attacker.pbThis))
-        return -1
-      end
-      pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
-      showanim=true
-      if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
-        showanim=false
-      end
-      if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::SPDEF,1,attacker,false,self,showanim)
-        showanim=false
-      end
-    end
-    return 0
-  end
-end
-
-################################################################################
-# Intercambia su Ataque por su At.Esp. y su Defensa por su Def.Esp.
-# Power Shift / Cambiapoder
-################################################################################
-class PokeBattle_Move_240 < PokeBattle_Move
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
-    attacker.attack,attacker.defense=attacker.defense,attacker.attack
-    attacker.spatk,attacker.spdef=attacker.spdef,attacker.spatk
-    attacker.effects[PBEffects::PowerShift]=!attacker.effects[PBEffects::PowerShift]
-    @battle.pbDisplay(_INTL("¡{1} cambió su ofensiva y defensiva!",attacker.pbThis))
-    return 0
-  end
-end
-
-################################################################################
-# Puede aumentar Ataque, Defensa, At.Esp. y Def.Esp. del usuario (forma 0).
-# Puede reducir Defensa y Def.Esp. del objetivo (forma 1).
-# Springtide Storm / Ciclón primavera
-################################################################################
-class PokeBattle_Move_241 < PokeBattle_Move
-  def pbAdditionalEffect(attacker,opponent) 
-    if attacker.form==0
-      showanim=true
-      if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
-        showanim=false
-      end
-      if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
-        showanim=false
-      end
-      if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::SPATK,1,attacker,false,self,showanim)
-        showanim=false
-      end
-      if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::SPDEF,1,attacker,false,self,showanim)
-        showanim=false
-      end
-    elsif attacker.form==1
-      return if opponent.damagestate.substitute
-      if opponent.pbCanReduceStatStage?(PBStats::DEFENSE,attacker,false,self)
-        opponent.pbReduceStat(PBStats::DEFENSE,1,attacker,false,self)
-      end
-      if opponent.pbCanReduceStatStage?(PBStats::SPDEF,attacker,false,self)
-        opponent.pbReduceStat(PBStats::SPDEF,1,attacker,false,self)
-      end
-    end
   end
 end
 
