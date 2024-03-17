@@ -1426,7 +1426,7 @@ class PokeBattle_Battler
       PBDebug.log("[Habilidad disparada] Intimidación de #{pbThis}")
       for i in 0...4
         if pbIsOpposing?(i) && !@battle.battlers[i].isFainted?
-          if @battle.battlers[i].hasWorkingAbility(:OBLIVIOUS) || 
+          unless @battle.battlers[i].hasWorkingAbility(:OBLIVIOUS) || 
              @battle.battlers[i].hasWorkingAbility(:OWNTEMPO) ||
              @battle.battlers[i].hasWorkingAbility(:SCRAPPY) 
             @battle.battlers[i].pbReduceAttackStatIntimidate(self)
