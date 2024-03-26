@@ -823,7 +823,7 @@ class PokeBattle_Move
     if attacker.hasWorkingAbility(:IRONFIST) && isPunchingMove?
       damagemult=(damagemult*1.2).round
     end
-    if attacker.hasWorkingAbility(:PUNCHINGGLOVE) && isPunchingMove?
+    if attacker.hasWorkingItem(:PUNCHINGGLOVE) && isPunchingMove?
       damagemult=(damagemult*1.1).round
     end
     if attacker.hasWorkingAbility(:STRONGJAW) && isBitingMove?
