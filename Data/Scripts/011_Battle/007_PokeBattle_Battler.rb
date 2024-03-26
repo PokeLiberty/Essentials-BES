@@ -1133,11 +1133,12 @@ class PokeBattle_Battler
          isConst?(self.species,PBSpecies,:EISCUE) ||
          isConst?(self.species,PBSpecies,:MORPEKO)||
          isConst?(self.species,PBSpecies,:ZACIAN)||
-         isConst?(self.species,PBSpecies,:ZAMAZENTA)
+         isConst?(self.species,PBSpecies,:ZAMAZENTA) ||
+         isConst?(self.species,PBSpecies,:TERAPAGOS)||
         self.form=0
       end
       if isConst?(self.species,PBSpecies,:DARMANITAN)
-        self.form=0 if self.form==2; self.form=1 if self.form==3
+        self.form=0 if self.form==1; self.form=2 if self.form==3
       end
       if isConst?(self.species,PBSpecies,:MINIOR)
         if @@miniorform>0
