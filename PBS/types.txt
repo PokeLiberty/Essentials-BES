@@ -125,3 +125,8 @@ IsSpecialType=true
 Weaknesses=POISON,STEEL
 Resistances=FIGHTING,BUG,DARK
 Immunities=DRAGON
+
+[20]
+Name=Astral
+InternalName=STELLAR
+IsSpecialType=true

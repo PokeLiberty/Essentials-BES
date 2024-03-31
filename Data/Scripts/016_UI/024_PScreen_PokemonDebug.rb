@@ -627,7 +627,6 @@ class PokemonScreen
             end
           when 1
             pkmn.teracristalized=!pkmn.teracristalized
-          when 2
           end
         end
       ### Make Mystery Gift ###

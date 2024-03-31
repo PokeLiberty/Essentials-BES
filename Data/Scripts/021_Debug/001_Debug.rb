@@ -259,14 +259,16 @@ def pbDebugMenu
   commands.add("togglepokegear",_INTL("Habilitar Pokégear"))
   commands.add("togglepokedex",_INTL("Habilitar Pokédex"))
   commands.add("dexlists",_INTL("Acceso a los Dex"))
+  commands.add("chargeorb",_INTL("Cargar Teraorbe"))
+  commands.add("upgradeorb",_INTL("Mejaorar Teraorbe"))
   commands.add("readyrematches",_INTL("Activar Revanchas del Celular"))
   commands.add("mysterygift",_INTL("Gestionar Regalos Misteriosos"))
   commands.add("daycare",_INTL("Opciones de la Guardería"))
   commands.add("quickhatch",_INTL("Eclosión rápida"))
   commands.add("roamerstatus",_INTL("Estado de los Pokémon errantes"))
   commands.add("roam",_INTL("Avanzar errantes"))
-  commands.add("setencounters",_INTL("Setear Encuentros")) 
-  commands.add("setmetadata",_INTL("Setear Metadatos")) 
+  commands.add("setencounters",_INTL("Setear Encuentros"))
+  commands.add("setmetadata",_INTL("Setear Metadatos"))
   commands.add("terraintags",_INTL("Setear Etiquetas de Terrenos"))
   commands.add("trainertypes",_INTL("Editar Tipos de Entrenadores"))
   commands.add("resettrainers",_INTL("Restablecer Entrenadores"))
@@ -462,7 +464,7 @@ def pbDebugMenu
       trname=pbEnterPlayerName("¿Tu nombre?",0,7,$Trainer.name)
       if trname==""
         trainertype=pbGetPlayerTrainerType
-        gender=pbGetTrainerTypeGender(trainertype) 
+        gender=pbGetTrainerTypeGender(trainertype)
         trname=pbSuggestTrainerName(gender)
       end
       $Trainer.name=trname
@@ -480,6 +482,15 @@ def pbDebugMenu
       params.setDefaultValue(oldoutfit)
       $Trainer.outfit=Kernel.pbMessageChooseNumber(_INTL("Establecer la ropa del jugador."),params)
       Kernel.pbMessage(_INTL("La ropa del jugador ha sido cambiada.")) if $Trainer.outfit!=oldoutfit
+    elsif cmd=="chargeorb"
+      pbCharge_TeraOrb()
+      Kernel.pbMessage(_INTL("El teraorbe se cargó completamente."))
+    elsif cmd=="upgradeorb"
+      params=ChooseNumberParams.new
+      params.setRange(0,999)
+      params.setDefaultValue($PokemonGlobal.teraorb[1])
+      val=Kernel.pbMessageChooseNumber(_INTL("Nuevo máximo de energía del teraorbe."),params)
+      pbUpgradeTeraorb(val)
     elsif cmd=="setmoney"
       params=ChooseNumberParams.new
       params.setMaxDigits(6)
@@ -912,7 +923,7 @@ def pbDebugScreen(mode)
   viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
   viewport.z=99999
   sprites={}
-  sprites["right_window"] = SpriteWindow_DebugRight.new  
+  sprites["right_window"] = SpriteWindow_DebugRight.new
   right_window=sprites["right_window"]
   right_window.mode=mode
   right_window.viewport=viewport

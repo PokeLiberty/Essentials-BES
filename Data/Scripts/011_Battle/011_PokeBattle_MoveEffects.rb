@@ -13026,6 +13026,8 @@ class PokeBattle_Move_263 < PokeBattle_Move
       return 100
     else
       return 80
+    end
+  end
 
   def pbModifyType(type,attacker,opponent)
     if attacker.isTera?

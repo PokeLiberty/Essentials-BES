@@ -2222,7 +2222,7 @@ class PokeBattle_Battle
     return if !@battlers[index] || !@battlers[index].pokemon
     return if !(@battlers[index].hasUltra? rescue false)
     return if (@battlers[index].isUltra? rescue true)
-    @necrozmaVar = [@battlers[index].pokemonIndex,@battlers[index].form]
+    @necrozmaVar = [@battlers[index].pokemonIndex,@battlers[index].form] if pbBelongsToPlayer(index)
     ownername=pbGetOwner(index).fullname
     ownername=pbGetOwner(index).name if pbBelongsToPlayer?(index)
     pbDisplay(_INTL("¡{1} emite una luz cegadora!",@battlers[index].pbThis))
