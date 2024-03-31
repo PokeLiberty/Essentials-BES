@@ -114,9 +114,9 @@ class PokemonStorage
   def party=(value)
     raise ArgumentError.new("Not supported")
   end
-  
+
   MARKINGCHARS=["●","■","▲","♥"]
-  
+
   def maxBoxes
     return @boxes.length
   end
@@ -186,7 +186,7 @@ class PokemonStorage
         raise "Trying to copy nil to storage"
       end
       pkmn.heal
-      pkmn.formTime = nil if pkmn.respond_to?("formTime") && pkmn.formTime 
+      pkmn.formTime = nil if pkmn.respond_to?("formTime") && pkmn.formTime
       self[boxDst,indexDst] = pkmn
     end
     return true
@@ -338,7 +338,7 @@ class RegionalStorage
   end
 
   def pbMoveCaughtToParty(pkmn)
-    getCurrentStorage.pbMoveCaughtToParty(pkmn) 
+    getCurrentStorage.pbMoveCaughtToParty(pkmn)
   end
 
   def pbMoveCaughtToBox(pkmn,box)
@@ -346,7 +346,7 @@ class RegionalStorage
   end
 
   def pbStoreCaught(pkmn)
-    getCurrentStorage.pbStoreCaught(pkmn) 
+    getCurrentStorage.pbStoreCaught(pkmn)
   end
 
   def pbDelete(box,index)
@@ -355,7 +355,7 @@ class RegionalStorage
 end
 
 #===============================================================================
-# 
+#
 #===============================================================================
 
 def pbUnlockWallpaper(index)
@@ -993,7 +993,7 @@ class PokemonBoxPartySprite < SpriteWrapper
     pbDrawTextPositions(self.bitmap,[
        [_INTL("Salir"),86,242,2,Color.new(248,248,248),Color.new(80,80,80),1]
     ])
-    
+
     xvalues = [18,90,18,90,18,90]
     yvalues = [2,18,66,82,130,146]
     for j in 0...6
@@ -1081,7 +1081,7 @@ class PokemonStorageScene
   end
 
   def pbCloseBox
-    pbFadeOutAndHide(@sprites)  
+    pbFadeOutAndHide(@sprites)
     pbDisposeSpriteHash(@sprites)
     @boxviewport.dispose
     @boxsidesviewport.dispose
@@ -1316,11 +1316,11 @@ class PokemonStorageScene
         @selection = selection
         if selection>=0
           return [@storage.currentBox,selection]
-        elsif selection==-1 # Box name 
+        elsif selection==-1 # Box name
           return [-4,-1]
-        elsif selection==-2 # Party Pokémon 
+        elsif selection==-2 # Party Pokémon
           return [-2,-1]
-        elsif selection==-3 # Close Box 
+        elsif selection==-3 # Close Box
           return [-3,-1]
         end
       end
@@ -1395,7 +1395,7 @@ class PokemonStorageScene
         if selection>=0 && selection<6
           @selection = selection
           return selection
-        elsif selection==6   # Close Box 
+        elsif selection==6   # Close Box
           @selection = selection
           return (depositing) ? -3 : -1
         end
@@ -1783,7 +1783,7 @@ class PokemonStorageScene
     @sprites["boxparty"] = PokemonBoxPartySprite.new(@storage.party,@boxsidesviewport)
     @sprites["boxparty"].y = oldPartyY
   end
-    
+
   def drawMarkings(bitmap,x,y,width,height,markings)
     totaltext=""
     oldfontname=bitmap.font.name
@@ -1808,8 +1808,8 @@ class PokemonStorageScene
     bitmap.font.size=oldfontsize
     bitmap.font.color=oldfontcolor
   end
-  
-  
+
+
   def pbUpdateOverlay(selection,party=nil)
     overlay = @sprites["overlay"].bitmap
     overlay.clear
@@ -1860,14 +1860,19 @@ class PokemonStorageScene
       if pokemon.isShiny?
         imagepos.push(["Graphics/Pictures/shiny",156,198,0,0,-1,-1])
       end
-      typebitmap = AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-      type1rect = Rect.new(0,pokemon.type1*28,64,28)
-      type2rect = Rect.new(0,pokemon.type2*28,64,28)
+      typebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+      teratypebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/teraTypes"))
+      type1rect=Rect.new(0,pokemon.type1*28,64,28)
+      type2rect=Rect.new(0,pokemon.type2*28,64,28)
+      teratyperect=Rect.new(0,pokemon.teratype*32,32,32)
       if pokemon.type1==pokemon.type2
         overlay.blt(52,272,typebitmap.bitmap,type1rect)
       else
         overlay.blt(18,272,typebitmap.bitmap,type1rect)
         overlay.blt(88,272,typebitmap.bitmap,type2rect)
+      end
+      if ![getConst(PBSpecies,:OGERPON),getConst(PBSpecies,:TERAPAGOS)].include?(pokemon.species) && !$game_switches[NO_TERA_CRISTAL]
+        overlay.blt(66,232,teratypebitmap.bitmap,teratyperect)
       end
       drawMarkings(overlay,70,240,128,20,pokemon.markings)
       pbDrawImagePositions(overlay,imagepos)
@@ -1884,7 +1889,7 @@ class PokemonStorageScene
     @sprites["pokemon"].setPokemonBitmap(pokemon)
     pbPositionPokemonSprite(@sprites["pokemon"],26,70)
   end
-  
+
 
   def update
     pbUpdateSpriteHash(@sprites)
@@ -2124,7 +2129,7 @@ class PokemonStorageScreen
     index = selected[1]
     if box!=-1
       raise _INTL("No se puede dejar desde la Caja...")
-    end   
+    end
     if pbAbleCount<=1 && pbAble?(@storage[box,index]) && !heldpoke
       pbDisplay(_INTL("¡Ése es tu último Pokémon!"))
     elsif heldpoke && heldpoke.mail
@@ -2164,7 +2169,7 @@ class PokemonStorageScreen
     end
     @scene.pbHold(selected)
     @heldpkmn = @storage[box,index]
-    @storage.pbDelete(box,index) 
+    @storage.pbDelete(box,index)
     @scene.pbRefresh
   end
 

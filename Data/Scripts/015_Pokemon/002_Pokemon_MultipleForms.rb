@@ -17,11 +17,11 @@ class PokeBattle_Pokemon
     self.calcStats
     pbSeenForm(self)
   end
-  
+
   def hasUltraForm?
     v=MultipleForms.call("getUltraForm",self)
     return v!=nil
-  end  
+  end
 
   def isUltra?
     v=MultipleForms.call("getUltraForm",self)
@@ -32,7 +32,7 @@ class PokeBattle_Pokemon
     v=MultipleForms.call("getUltraForm",self)
     if v!=nil
       @startform=self.form
-      self.form=v 
+      self.form=v
     end
   end
 
@@ -86,16 +86,18 @@ class PokeBattle_Pokemon
   end
 
   def type1
-    v=MultipleForms.call("type1",self)
-    return v if v!=nil
-    return self.__mf_type1
-  end
+   return self.teratype if self.isTera?
+   v=MultipleForms.call("type1",self)
+   return v if v!=nil
+   return self.__mf_type1
+ end
 
-  def type2
-    v=MultipleForms.call("type2",self)
-    return v if v!=nil
-    return self.__mf_type2
-  end
+ def type2
+   return self.teratype if self.isTera?
+   v=MultipleForms.call("type2",self)
+   return v if v!=nil
+   return self.__mf_type2
+ end
 
   def height
     v=MultipleForms.call("height",self)
@@ -162,7 +164,7 @@ class PokeBattle_Pokemon
     end
   end
 end
-  
+
 class PokeBattle_RealBattlePeer
   def pbOnEnteringBattle(battle,pokemon)
     f=MultipleForms.call("getFormOnEnteringBattle",pokemon)
@@ -230,7 +232,7 @@ def drawSpot(bitmap,spotpattern,x,y,red,green,blue)
         bitmap.set_pixel(xOrg+1,yOrg,color)
         bitmap.set_pixel(xOrg,yOrg+1,color)
         bitmap.set_pixel(xOrg+1,yOrg+1,color)
-       end   
+       end
     end
   end
 end
@@ -775,7 +777,7 @@ MultipleForms.register(:BASCULIN,{
    case pokemon.form
    when 1; next [[getID(PBAbilities,:ROCKHEAD),0],[getID(PBAbilities,:ADAPTABILITY),1],[getID(PBAbilities,:MOLDBREAKER),2]] # Raya Azul
    when 2; next [[getID(PBAbilities,:RATTLED),0],[getID(PBAbilities,:ADAPTABILITY),1],[getID(PBAbilities,:MOLDBREAKER),2]] # Raya Blanca
-   else;   next                                       
+   else;   next
    end
 },
 "getMoveList"=>proc{|pokemon|
@@ -997,8 +999,8 @@ MultipleForms.register(:GENESECT,{
 # GRENINJA
 MultipleForms.register(:GRENINJA,{
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0      
-   next [72,145,67,132,153,71]  
+   next if pokemon.form==0
+   next [72,145,67,132,153,71]
 }
 })
 
@@ -1055,7 +1057,7 @@ MultipleForms.register(:MEOWSTIC,{
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
    when 1; next [[getID(PBAbilities,:KEENEYE),0],[getID(PBAbilities,:INFILTRATOR),1],[getID(PBAbilities,:COMPETITIVE),2]]
-   else;   next                                       
+   else;   next
    end
 },
 "getMoveList"=>proc{|pokemon|
@@ -1079,8 +1081,8 @@ MultipleForms.register(:MEOWSTIC,{
 # AEGISLASH
 MultipleForms.register(:AEGISLASH,{
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0      
-   next [60,140,50,60,140,50]   
+   next if pokemon.form==0
+   next [60,140,50,60,140,50]
 }
 })
 
@@ -1090,27 +1092,27 @@ MultipleForms.register(:PUMPKABOO,{
    next [rand(4),rand(4)].min
 },
 "height"=>proc{|pokemon|
-   next if pokemon.form==0     
-   next 4 if pokemon.form==1   
-   next 5 if pokemon.form==2   
-   next 8 if pokemon.form==3   
+   next if pokemon.form==0
+   next 4 if pokemon.form==1
+   next 5 if pokemon.form==2
+   next 8 if pokemon.form==3
 },
 "weight"=>proc{|pokemon|
-   next if pokemon.form==0       
-   next 50 if pokemon.form==1    
-   next 75 if pokemon.form==2    
-   next 150 if pokemon.form==3   
+   next if pokemon.form==0
+   next 50 if pokemon.form==1
+   next 75 if pokemon.form==2
+   next 150 if pokemon.form==3
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0                       
-   next [49,66,70,51,44,55] if pokemon.form==1   
-   next [54,66,70,46,44,55] if pokemon.form==2   
-   next [59,66,70,41,44,55] if pokemon.form==3   
+   next if pokemon.form==0
+   next [49,66,70,51,44,55] if pokemon.form==1
+   next [54,66,70,46,44,55] if pokemon.form==2
+   next [59,66,70,41,44,55] if pokemon.form==3
 },
 "wildHoldItems"=>proc{|pokemon|
    next [getID(PBItems,:MIRACLESEED),
          getID(PBItems,:MIRACLESEED),
-         getID(PBItems,:MIRACLESEED)] if pokemon.form==3 
+         getID(PBItems,:MIRACLESEED)] if pokemon.form==3
    next
 }
 })
@@ -1121,22 +1123,22 @@ MultipleForms.register(:GOURGEIST,{
    next [rand(4),rand(4)].min
 },
 "height"=>proc{|pokemon|
-   next if pokemon.form==0      
-   next 9 if pokemon.form==1    
-   next 11 if pokemon.form==2   
-   next 17 if pokemon.form==3   
+   next if pokemon.form==0
+   next 9 if pokemon.form==1
+   next 11 if pokemon.form==2
+   next 17 if pokemon.form==3
 },
 "weight"=>proc{|pokemon|
-   next if pokemon.form==0       
-   next 125 if pokemon.form==1   
-   next 140 if pokemon.form==2   
-   next 390 if pokemon.form==3   
+   next if pokemon.form==0
+   next 125 if pokemon.form==1
+   next 140 if pokemon.form==2
+   next 390 if pokemon.form==3
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0                         
-   next [65,90,122,84,58,75] if pokemon.form==1    
-   next [75,95,122,69,58,75] if pokemon.form==2    
-   next [85,100,122,54,58,75] if pokemon.form==3   
+   next if pokemon.form==0
+   next [65,90,122,84,58,75] if pokemon.form==1
+   next [75,95,122,69,58,75] if pokemon.form==2
+   next [85,100,122,54,58,75] if pokemon.form==3
 }
 })
 
@@ -1167,20 +1169,20 @@ MultipleForms.register(:HOOPA,{
    next
 },
 "type2"=>proc{|pokemon|
-   next if pokemon.form==0     
-   next getID(PBTypes,:DARK)   
+   next if pokemon.form==0
+   next getID(PBTypes,:DARK)
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0       
-   next [80,160,60,80,170,130]   
+   next if pokemon.form==0
+   next [80,160,60,80,170,130]
 },
 "height"=>proc{|pokemon|
-   next if pokemon.form==0   
-   next 65                   
+   next if pokemon.form==0
+   next 65
 },
 "weight"=>proc{|pokemon|
-   next if pokemon.form==0   
-   next 4900                 
+   next if pokemon.form==0
+   next 4900
 },
 "getMoveList"=>proc{|pokemon|
    next if pokemon.form==0
@@ -1195,8 +1197,8 @@ MultipleForms.register(:HOOPA,{
    next movelist
 },
 "kind"=>proc{|pokemon|
-   next if pokemon.form==0   
-   next _INTL("Djinn")       
+   next if pokemon.form==0
+   next _INTL("Djinn")
 },
 "onSetForm"=>proc{|pokemon,form|
    pokemon.formTime=(form>0) ? pbGetTimeNow.to_i : nil
@@ -1204,15 +1206,15 @@ MultipleForms.register(:HOOPA,{
 })
 
 # ORICORIO
-MultipleForms.register(:ORICORIO,{ 
+MultipleForms.register(:ORICORIO,{
 "getFormOnCreation"=>proc{|pokemon|
-   maps=[121]                  
+   maps=[121]
    if $game_map && maps.include?($game_map.map_id)
      next 1
-   maps=[122]                  
+   maps=[122]
    elsif $game_map && maps.include?($game_map.map_id)
      next 2
-   maps=[120]                  
+   maps=[120]
    elsif $game_map && maps.include?($game_map.map_id)
      next 3
    else
@@ -1249,7 +1251,7 @@ MultipleForms.register(:ROCKRUFF,{
 "getForm"=>proc{|pokemon|
    if PBDayNight.isEvening?
      next 2
-   elsif PBDayNight.isNight? 
+   elsif PBDayNight.isNight?
      next 1
    else
      next 0
@@ -1259,11 +1261,11 @@ MultipleForms.register(:ROCKRUFF,{
 
 # LYCANROC
 MultipleForms.register(:LYCANROC,{
-"getFormOnCreation"=>proc{|pokemon|             
-   if PBDayNight.isEvening? 
+"getFormOnCreation"=>proc{|pokemon|
+   if PBDayNight.isEvening?
      next 2
    elsif PBDayNight.isNight?
-     next 1 
+     next 1
    else
      next 0
    end
@@ -1276,8 +1278,8 @@ MultipleForms.register(:LYCANROC,{
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
    when 1; next [[getID(PBAbilities,:KEENEYE),0],[getID(PBAbilities,:VITALSPIRIT),1],[getID(PBAbilities,:NOGUARD),2]]
-   when 2; next [[getID(PBAbilities,:TOUGHCLAWS),0]]  
-   else;   next                                       
+   when 2; next [[getID(PBAbilities,:TOUGHCLAWS),0]]
+   else;   next
    end
 },
 "getMoveList"=>proc{|pokemon|
@@ -1467,10 +1469,10 @@ MultipleForms.register(:NECROZMA,{
 # TOXTRICITY
 MultipleForms.register(:TOXTRICITY,{
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form==0
    next [[getID(PBAbilities,:PUNKROCK),0],
          [getID(PBAbilities,:MINUS),1],
-         [getID(PBAbilities,:TECHNICIAN),2]] 
+         [getID(PBAbilities,:TECHNICIAN),2]]
 },
 "getMoveList"=>proc{|pokemon|
    next if pokemon.form==0
@@ -1510,8 +1512,8 @@ MultipleForms.register(:TOXTRICITY,{
 # EISCUE
 MultipleForms.register(:EISCUE,{
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0      
-   next [75,80,70,130,65,50]    
+   next if pokemon.form==0
+   next [75,80,70,130,65,50]
 }
 })
 
@@ -1527,7 +1529,7 @@ MultipleForms.register(:INDEEDEE,{
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
    when 1; next [[getID(PBAbilities,:OWNTEMPO),0],[getID(PBAbilities,:SYNCHRONIZE),1],[getID(PBAbilities,:PSYCHICSURGE),2]]
-   else;   next                                       
+   else;   next
    end
 },
 "getMoveList"=>proc{|pokemon|
@@ -1685,7 +1687,7 @@ MultipleForms.register(:URSHIFU,{
 # CALYREX
 MultipleForms.register(:CALYREX,{
 "type2"=>proc{|pokemon|
-   next if pokemon.form==0             
+   next if pokemon.form==0
    case pokemon.form
    when 1; next getID(PBTypes,:ICE)    # Calyrex Glacial
    when 2; next getID(PBTypes,:GHOST)  # Calyrex Espectral
@@ -1695,14 +1697,14 @@ MultipleForms.register(:CALYREX,{
    case pokemon.form
    when 1; next [100,165,150,50,85,130] # Calyrex Glacial
    when 2; next [100,85,80,150,165,100] # Calyrex Espectral
-   else;   next                          
+   else;   next
    end
 },
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
    when 1; next [[getID(PBAbilities,:ASONE1),0]]   # Calyrex Glacial
    when 2; next [[getID(PBAbilities,:ASONE2),0]]   # Calyrex Espectral
-   else;   next                                    
+   else;   next
    end
 },
 "onSetForm"=>proc{|pokemon,form|
@@ -1766,7 +1768,7 @@ MultipleForms.register(:OINKOLOGNE,{
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
    when 1; next [[getID(PBAbilities,:AROMAVEIL),0],[getID(PBAbilities,:GLUTTONY),1],[getID(PBAbilities,:THICKFAT),2]]
-   else;   next                                       
+   else;   next
    end
 }
 })
@@ -1792,7 +1794,7 @@ MultipleForms.register(:SQUAWKABILLY,{
    when 1; next [[getID(PBAbilities,:INTIMIDATE),0],[getID(PBAbilities,:HUSTLE),1],[getID(PBAbilities,:SHEERFORCE),2]] # Plumaje Blanco
    when 2; next [[getID(PBAbilities,:INTIMIDATE),0],[getID(PBAbilities,:HUSTLE),1],[getID(PBAbilities,:SHEERFORCE),2]] # Plumaje Amarillo
    when 3; next [[getID(PBAbilities,:INTIMIDATE),0],[getID(PBAbilities,:HUSTLE),1],[getID(PBAbilities,:GUTS),2]] # Plumaje Azul
-   else;   next                                       
+   else;   next
    end
 }
 })
@@ -1804,7 +1806,7 @@ MultipleForms.register(:PALAFIN,{
   next
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0      
+   next if pokemon.form==0
    next [100,160,97,100,106,87]
 }
 })
@@ -1824,7 +1826,7 @@ MultipleForms.register(:TERAPAGOS,{
    case pokemon.form
    when 1; next [[getID(PBAbilities,:TERASHELL),0]]
    when 2; next [[getID(PBAbilities,:TERAFORMZERO),0]]
-   else;   next                                       
+   else;   next
    end
 },
 "getUltraForm"=>proc{|pokemon|
@@ -1835,4 +1837,31 @@ MultipleForms.register(:TERAPAGOS,{
    next _INTL("Ultra Necrozma") if pokemon.form==2
    next
 },
+})
+
+MultipleForms.register(:OGERPON,{
+"getForm"=>proc{|pokemon|
+   f = 1 if isConst?(pokemon.item,PBItems,:WELLSPRINGMASK)
+   f = 2 if isConst?(pokemon.item,PBItems,:HEARTHFLAMEMASK)
+   f = 3 if isConst?(pokemon.item,PBItems,:CORRNERSTONEMASK)
+   f += 5 if pokemon.isTera?
+   next f
+},
+"type2"=>proc{|pokemon|
+  next getID(PBTypes,:WATER) if pokemon.form==1
+  next getID(PBTypes,:FIRE) if pokemon.form==2
+  next getID(PBTypes,:ROCK) if pokemon.form==3
+  next
+},
+})
+
+MultipleForms.register(:TERAPAGOS,{
+  "getFormOnEnteringBattle"=>proc{|pokemon|
+  next 1
+},
+
+"getForm"=>proc{|pokemon|
+   next 2 if pokemon.isTera?
+}
+
 })

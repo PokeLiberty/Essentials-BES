@@ -53,6 +53,8 @@ class PokemonGlobalMetadata
   attr_accessor :phoneTime
   attr_accessor :eventvars
   attr_accessor :safesave
+  attr_accessor :teraorb
+  attr_accessor :tera_trainer
 
   def initialize
     @bicycle              = false
@@ -111,6 +113,7 @@ class PokemonGlobalMetadata
     @phoneTime            = 0
     @eventvars            = {}
     @safesave             = false
+    @teraorb=[1,1]
   end
 
   def bridge
@@ -128,7 +131,7 @@ end
 #===============================================================================
 class PokemonMapMetadata
   attr_reader :erasedEvents
-  attr_reader :movedEvents    
+  attr_reader :movedEvents
   attr_accessor :strengthUsed
   attr_accessor :blackFluteUsed
   attr_accessor :whiteFluteUsed
@@ -219,3 +222,15 @@ class PokemonTemp
     @flydata                = nil
   end
 end
+
+def pbCharge_TeraOrb
+  $PokemonGlobal.teraorb[0]=$PokemonGlobal.teraorb[1]
+end
+
+def pbUpgradeTeraorb(grade)
+  $PokemonGlobal.teraorb[1]=grade
+end
+
+Events.onEndBattle+=proc {|sender,e|
+   $PokemonGlobal.tera_trainer[0]=false
+}

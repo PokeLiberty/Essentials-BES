@@ -64,7 +64,7 @@ class PokeSelectionConfirmCancelSprite < SpriteWrapper
       @bgsprite.addBitmap("deselbitmap","Graphics/#{PARTY_ROUTE}/partyCancel")
       @bgsprite.addBitmap("selbitmap","Graphics/#{PARTY_ROUTE}/partyCancelSel")
     end
-        
+
     @bgsprite.changeBitmap("deselbitmap")
     @overlaysprite=BitmapSprite.new(@bgsprite.bitmap.width,@bgsprite.bitmap.height,viewport)
     @yoffset=8
@@ -253,7 +253,7 @@ class PokeSelectionSprite < SpriteWrapper
     @spriteX=xvalues[index]
     @spriteY=yvalues[index]
     @refreshBitmap=true
-    @refreshing=false 
+    @refreshing=false
     @preselected=false
     @switching=false
     @pkmnsprite.z=self.z+2 # For compatibility with RGSS2
@@ -441,6 +441,7 @@ class PokeSelectionSprite < SpriteWrapper
     @pokeballsprite.update if @pokeballsprite && !@pokeballsprite.disposed?
     @itemsprite.update if @itemsprite && !@itemsprite.disposed?
     if @pkmnsprite && !@pkmnsprite.disposed?
+      @pkmnsprite.tone=TERATONES[@pkmnsprite.pokemon.teratype] if @pkmnsprite.pokemon.isTera?
       @pkmnsprite.update
     end
   end
@@ -502,7 +503,7 @@ class PokemonScreen_Scene
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
     @multiselect=multiselect
-    
+
     @sprites["partybg"]=IconSprite.new(0,0,@viewport)
     @sprites["partybg"].setBitmap("Graphics/#{PARTY_ROUTE}/partybg")
     #addBackgroundPlane(@sprites,"partybg","partybg",@viewport)
@@ -548,7 +549,7 @@ class PokemonScreen_Scene
   end
 
   def pbChangeSelection(key,currentsel)
-    numsprites=(@multiselect) ? 8 : 7 
+    numsprites=(@multiselect) ? 8 : 7
     case key
     when Input::LEFT
       begin
@@ -600,7 +601,7 @@ class PokemonScreen_Scene
   def pbRefresh
     for i in 0...6
       sprite=@sprites["pokemon#{i}"]
-      if sprite 
+      if sprite
         if sprite.is_a?(PokeSelectionSprite)
           sprite.pokemon=sprite.pokemon
         else
@@ -612,7 +613,7 @@ class PokemonScreen_Scene
 
   def pbRefreshSingle(i)
     sprite=@sprites["pokemon#{i}"]
-    if sprite 
+    if sprite
       if sprite.is_a?(PokeSelectionSprite)
         sprite.pokemon=sprite.pokemon
       else
@@ -728,7 +729,7 @@ class PokemonScreen_Scene
       self.update
     end
   end
-  
+
   def pbSwitchEnd(oldid,newid)
     pbSEPlay("GUI party switch")
     oldsprite=@sprites["pokemon#{oldid}"]
@@ -1073,7 +1074,7 @@ class PokemonScreen
         statuses[i]=1
       else
         statuses[i]=2
-      end  
+      end
     end
     for i in 0...@party.length
       annot[i]=ordinals[statuses[i]]
@@ -1220,7 +1221,7 @@ class PokemonScreen
           commands[cmdMoves[i]=commands.length] = [PBMoves.getName(move.id),1]
         end
       end
-      
+
       commands[cmdSwitch=commands.length]       = _INTL("Mover") if @party.length>1
       if !pkmn.isEgg?
         if pkmn.mail
@@ -1229,17 +1230,17 @@ class PokemonScreen
           commands[cmdItem=commands.length]     = _INTL("Objeto")
         end
       end
-      
+
       if pbGetRelearnableMoves(pkmn).length>0 && MENU_MOVERELEANER
        commands[cmdRelearner = commands.length]   = _INTL("Cambiar movimientos")
        end
       if MENU_NICKNAME
         commands[cmdRename = commands.length]= _INTL("Cambiar nombre") if !pkmn.isEgg?
       end
-    
+
       commands[commands.length]                 = _INTL("Salir")
       command=@scene.pbShowCommands(_INTL("¿Qué hacer con {1}?",pkmn.name),commands)
-      
+
       havecommand=false
       for i in 0...4
         if cmdMoves[i]>=0 && command==cmdMoves[i]
@@ -1294,7 +1295,7 @@ class PokemonScreen
         end
       end
       next if havecommand
-      
+
       if cmdSummary>=0 && command==cmdSummary
         @scene.pbSummary(pkmnid)
       elsif cmdDebug>=0 && command==cmdDebug
@@ -1401,7 +1402,7 @@ class PokemonScreen
     end
     @scene.pbEndScene
     return nil
-  end  
+  end
 end
 
 #BES-T Colores en los comandos del menú :D

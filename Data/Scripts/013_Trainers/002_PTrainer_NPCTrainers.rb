@@ -15,7 +15,8 @@ TPHAPPINESS = 13
 TPNAME      = 14
 TPSHADOW    = 15
 TPBALL      = 16
-TPDEFAULTS = [0,10,0,0,0,0,0,nil,nil,0,false,nil,10,70,nil,false,0]
+TPTERA      = 17
+TPDEFAULTS = [0,10,0,0,0,0,0,nil,nil,0,false,nil,10,70,nil,false,0,nil]
 
 def pbLoadTrainer(trainerid,trainername,partyid=0)
   if trainerid.is_a?(String) || trainerid.is_a?(Symbol)
@@ -77,6 +78,10 @@ def pbLoadTrainer(trainerid,trainername,partyid=0)
         pokemon.makeShadow rescue nil
         pokemon.pbUpdateShadowMoves(true) rescue nil
         pokemon.makeNotShiny
+      end
+      if poke[TPTERA]                # si éste es un Pokémon Oscuro
+        pokemon.teratype=poke[TPTERA]
+        pokemon.tera_ace=true
       end
       pokemon.ballused=poke[TPBALL]
       pokemon.calcStats
@@ -340,7 +345,7 @@ def pbTrainerBattle(trainerid,trainername,endspeech,
   restorebgm=true
   decision=0
   Audio.me_stop
-  pbBattleAnimation(trainerbgm,trainer[0].trainertype,trainer[0].name) { 
+  pbBattleAnimation(trainerbgm,trainer[0].trainertype,trainer[0].name) {
      pbSceneStandby {
         decision=battle.pbStartBattle(canlose)
      }
@@ -379,7 +384,7 @@ def pbTrainerBattle(trainerid,trainername,endspeech,
 end
 
 def pbDoubleTrainerBattle(trainerid1, trainername1, trainerparty1, endspeech1,
-                          trainerid2, trainername2, trainerparty2, endspeech2, 
+                          trainerid2, trainername2, trainerparty2, endspeech2,
                           canlose=false,variable=nil)
   trainer1=pbLoadTrainer(trainerid1,trainername1,trainerparty1)
   Events.onTrainerPartyLoad.trigger(nil,trainer1)
@@ -442,7 +447,7 @@ def pbDoubleTrainerBattle(trainerid1, trainername1, trainerparty1, endspeech1,
   pbPrepareBattle(battle)
   restorebgm=true
   decision=0
-  pbBattleAnimation(trainerbgm) { 
+  pbBattleAnimation(trainerbgm) {
      pbSceneStandby {
         decision=battle.pbStartBattle(canlose)
      }
@@ -527,7 +532,7 @@ class TrainerWalkingCharSprite < SpriteWrapper
     super
     if @animbitmap
       @animbitmap.update
-      self.bitmap=@animbitmap.bitmap 
+      self.bitmap=@animbitmap.bitmap
     end
     @frame+=1
     @frame=0 if @frame>100
