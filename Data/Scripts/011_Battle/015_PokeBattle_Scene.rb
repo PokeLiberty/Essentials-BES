@@ -395,6 +395,7 @@ class FightMenuButtons < BitmapSprite
     @typebitmap.dispose
     @megaevobitmap.dispose
     @ultraburstbitmap.dispose
+    @terastalbitmap.dispose
     super
   end
 
@@ -691,6 +692,8 @@ class PokemonDataBox < SpriteWrapper
       elsif isConst?(@battler.pokemon.species,PBSpecies,:GROUDON)
         imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimalGroudonBox.png",@spritebaseX+140,4,0,0,-1,-1])
       end
+    elsif @battler.isTera?
+      imagepos.push(["Graphics/#{BATTLE_ROUTE}/teraTypes.png",@spritebaseX+140,4,0,@battler.type1*32,32,32])
     end
     if @battler.owned && (@battler.index&1)==1
       imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleBoxOwned.png",@spritebaseX+8,36,0,0,-1,-1])
@@ -2468,12 +2471,12 @@ class PokeBattle_Scene
     cw.ultraButton=1 if @battle.pbCanUltraBurst?(index)
     cw.zButton=0
     cw.zButton=1 if @battle.pbCanZMove?(index)
+    cw.teraButton=0
+    cw.teraButton=1 if @battle.pbCanTeraCristal?(index)
     # NO FUNCIONAN, DEJADOS PARA MEJOR COMPATIBILIDAD 
     # SOLO PARA EL CASO DE QUE UNO QUIERA PONERLOS
     cw.dynaButton=0
     cw.dynaButton=1 if false
-    cw.teraButton=0
-    cw.teraButton=1 if false
     pbSelectBattler(index)
     pbRefresh
     loop do
@@ -2511,6 +2514,11 @@ class PokeBattle_Scene
         if @battle.pbCanMegaEvolve?(index) && !pbIsZCrystal?(battler.item)
           @battle.pbRegisterMegaEvolution(index)
           cw.megaButton=2
+          pbPlayDecisionSE()
+        end
+        if @battle.pbCanTeraCristal?(index) && !pbIsZCrystal?(battler.item)
+          @battle.pbRegisterTeraCristal(index)
+          cw.teraButton=2
           pbPlayDecisionSE()
         end
         if @battle.pbCanUltraBurst?(index)  # Use Ultra Burst
