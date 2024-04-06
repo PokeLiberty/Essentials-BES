@@ -1781,6 +1781,11 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡{1} no rinde todo lo que podría!",
          pbThis,PBAbilities.getName(self.ability)))
     end
+    if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT)
+      self.pokemon.form=1
+      @battle.scene.pbChangePokemon(self,@pokemon)
+      @battle.pbDisplay(_INTL("¡{1} se transformó!",pbThis))
+    end
     # Antibarrera
     if self.hasWorkingAbility(:SCREENCLEANER) && onactive
       if self.pbOwnSide.effects[PBEffects::LightScreen]>0 || self.pbOpposingSide.effects[PBEffects::LightScreen]>0 ||

@@ -12371,23 +12371,6 @@ class PokeBattle_Move_259 < PokeBattle_Move
   end
 end
 
-class PokeBattle_Move_260 < PokeBattle_Move
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if attacker.attack+attacker.stages[PBStats::ATTACK]>attacker.spatk+attacker.stages[PBStats::SPATK]
-      @category=0
-    else
-      @category=1
-    end
-    return super(attacker,opponent,hitnum,alltargets,showanimation)
-  end
-
-  def pbModifyType(type,attacker,opponent)
-    hp=pbHiddenPower(attacker.iv)
-    type=hp[0]
-    return type
-  end
-end
-
 ################################################################################
 # Puede aumentar Ataque (forma 0).
 # Puede aumentar Defensa (forma 1).

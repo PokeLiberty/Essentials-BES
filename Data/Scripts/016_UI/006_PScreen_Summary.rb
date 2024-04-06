@@ -145,7 +145,7 @@ class PokemonSummaryScene
     pbFadeOutAndHide(@sprites) { pbUpdate }
     pbDisposeSpriteHash(@sprites)
     @typebitmap.dispose
-    @tera_typebitmap.dispose
+    @tera_typebitmap.dispose if @tera_typebitmap
     @viewport.dispose
   end
 

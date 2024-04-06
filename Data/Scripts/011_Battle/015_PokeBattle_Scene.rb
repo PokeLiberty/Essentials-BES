@@ -341,6 +341,7 @@ class FightMenuDisplay
   end
 
   def refresh
+    @buttons.pokemon=@battler.pokemon if @battler
     return if !@battler
     commands=[]
     for i in 0...4
@@ -374,6 +375,7 @@ end
 
 class FightMenuButtons < BitmapSprite
   UPPERGAP=46
+  attr_writer :pokemon
 
   def initialize(index=0,moves=nil,viewport=nil)
     super(Graphics.width,96+UPPERGAP,viewport)
@@ -387,6 +389,7 @@ class FightMenuButtons < BitmapSprite
     @zmovebitmap=AnimatedBitmap.new(_INTL("Graphics/#{BATTLE_ROUTE}/battleZMove"))
     @dynamaxbitmap=AnimatedBitmap.new(_INTL("Graphics/#{BATTLE_ROUTE}/battleDynamax"))
     @terastalbitmap=AnimatedBitmap.new(_INTL("Graphics/#{BATTLE_ROUTE}/battleTerastal"))
+    @pokemon
     refresh(index,moves,0,0,0,0,0)
   end
 
@@ -444,18 +447,19 @@ class FightMenuButtons < BitmapSprite
     pbDrawTextPositions(self.bitmap,textpos)
     if megaButton>0
       self.bitmap.blt(200,0,@megaevobitmap.bitmap,Rect.new(0,(megaButton-1)*46,96,46))
-    end
-    if zButton>0
-      self.bitmap.blt(200,0,@zmovebitmap.bitmap,Rect.new(0,(zButton-1)*46,96,46))
-    end
-    if dynaButton>0
+    elsif dynaButton>0
       self.bitmap.blt(200,0,@dynamaxbitmap.bitmap,Rect.new(0,(dynaButton-1)*46,96,46))
-    end
-    if teraButton>0
-      self.bitmap.blt(200,0,@terastalbitmap.bitmap,Rect.new(0,(teraButton-1)*46,96,46))
-    end
-    if ultraButton>0
+    elsif teraButton>0
+      if teraButton==2
+        terapos=@pokemon.teratype+1
+      else
+        terapos=0
+      end
+      self.bitmap.blt(200,0,@terastalbitmap.bitmap,Rect.new(0,terapos*46,96,46))
+    elsif ultraButton>0
       self.bitmap.blt(200,0,@ultraburstbitmap.bitmap,Rect.new(0,(ultraButton-1)*46,96,46))
+    elsif zButton>0
+      self.bitmap.blt(200,0,@zmovebitmap.bitmap,Rect.new(0,(zButton-1)*46,96,46))
     end
   end
 end
@@ -693,7 +697,7 @@ class PokemonDataBox < SpriteWrapper
         imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimalGroudonBox.png",@spritebaseX+140,4,0,0,-1,-1])
       end
     elsif @battler.isTera?
-      imagepos.push(["Graphics/#{BATTLE_ROUTE}/teraTypes.png",@spritebaseX+140,4,0,@battler.type1*32,32,32])
+      imagepos.push(["Graphics/Pictures/teraTypes.png",@spritebaseX+140,4,0,@battler.type1*32,32,32])
     end
     if @battler.owned && (@battler.index&1)==1
       imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleBoxOwned.png",@spritebaseX+8,36,0,0,-1,-1])
@@ -2472,10 +2476,10 @@ class PokeBattle_Scene
     cw.megaButton=1 if @battle.pbCanMegaEvolve?(index)
     cw.ultraButton=0
     cw.ultraButton=1 if @battle.pbCanUltraBurst?(index)
-    cw.zButton=0
-    cw.zButton=1 if @battle.pbCanZMove?(index)
     cw.teraButton=0
     cw.teraButton=1 if @battle.pbCanTeraCristal?(index)
+    cw.zButton=0
+    cw.zButton=1 if @battle.pbCanZMove?(index)
     # NO FUNCIONAN, DEJADOS PARA MEJOR COMPATIBILIDAD
     # SOLO PARA EL CASO DE QUE UNO QUIERA PONERLOS
     cw.dynaButton=0
@@ -2518,22 +2522,18 @@ class PokeBattle_Scene
           @battle.pbRegisterMegaEvolution(index)
           cw.megaButton=2
           pbPlayDecisionSE()
-        end
-        if @battle.pbCanTeraCristal?(index) && !pbIsZCrystal?(battler.item)
-          @battle.pbRegisterTeraCristal(index)
-          cw.teraButton=2
-          pbPlayDecisionSE()
-        end
-        if @battle.pbCanUltraBurst?(index)  # Use Ultra Burst
+        elsif @battle.pbCanUltraBurst?(index)  # Use Ultra Burst
           @battle.pbRegisterUltraBurst(index)
           cw.ultraButton=2
           pbPlayDecisionSE()
-        else
-          if @battle.pbCanZMove?(index)  # Use Z Move
-            @battle.pbRegisterZMove(index)
-            cw.zButton=2
-            pbPlayDecisionSE()
-          end
+        elsif @battle.pbCanTeraCristal?(index)
+          @battle.pbRegisterTeraCristal(index)
+          cw.teraButton=2
+          pbPlayDecisionSE()
+        elsif @battle.pbCanZMove?(index)  # Use Z Move
+          @battle.pbRegisterZMove(index)
+          cw.zButton=2
+          pbPlayDecisionSE()
         end
       elsif Input.trigger?(Input::B)   # Cancel fight menu
         @lastmove[index]=cw.index

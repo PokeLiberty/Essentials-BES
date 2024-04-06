@@ -320,7 +320,7 @@ ItemHandlers::UseOnPokemon.add(:NORMALCORE,proc{|item,pokemon,scene|
   type=17 if isConst?(item,PBItems,:DARKCORE)
   type=18 if isConst?(item,PBItems,:FAIRYCORE)
   type=getConst(PBTypes,:STELLAR) if isConst?(item,PBItems,:STELLARCORE)
-  if pokemon.teratype==type || pokemon.species==getConst(PBSpecies,:OGERPON)
+  if pokemon.teratype==type || pokemon.species==getConst(PBSpecies,:OGERPON) || pokemon.species==getConst(PBSpecies,:TERAPAGOS)
     scene.pbDisplay(_INTL("¡No tendrá efecto!"))
     next false
   else

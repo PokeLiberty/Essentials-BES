@@ -2066,6 +2066,8 @@ class PokeBattle_Battle
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
 
+    return false if @battlers[index].isTera?
+    return false if pbIsZCrystal?(@battlers[index].item) || pbCanZMove?(index)
     return false if $game_switches[NO_MEGA_EVOLUTION]
     return false if !@battlers[index].hasMega?
     #return false if pbIsOpposing?(index) && !@opponent
@@ -2127,10 +2129,10 @@ class PokeBattle_Battle
 # Teracristalización
 ################################################################################
   def pbCanTeraCristal?(index)
-    return false if pbCanZMove?(index)
-    return false if pbCanMegaEvolve?(index) || @battlers[index].isMega?
+    return false if @battlers[index].hasMega? || @battlers[index].isMega?
     return false if @battlers[index].isPrimal?
-    return false if pbCanUltraBurst?(index) || @battlers[index].isUltra?
+    return false if @battlers[index].hasUltra? || @battlers[index].isUltra?
+    return false if pbIsZCrystal?(@battlers[index].item) || pbCanZMove?(index)
     return false if $game_switches[NO_TERA_CRISTAL]
     return false if pbIsOpposing?(index) && !@opponent
     return true if $DEBUG && Input.press?(Input::CTRL)
@@ -2200,6 +2202,7 @@ class PokeBattle_Battle
 # Ultra Burst battler.
 ################################################################################
   def pbCanUltraBurst?(index)
+    return false if @battlers[index].isTera?
     return false if $game_switches[NO_ULTRA_BURST]
     return false if !@battlers[index].hasUltra?
     return false if pbIsOpposing?(index) && !@opponent
@@ -2222,7 +2225,7 @@ class PokeBattle_Battle
     return if !@battlers[index] || !@battlers[index].pokemon
     return if !(@battlers[index].hasUltra? rescue false)
     return if (@battlers[index].isUltra? rescue true)
-    @necrozmaVar = [@battlers[index].pokemonIndex,@battlers[index].form] if pbBelongsToPlayer(index)
+    @necrozmaVar = [@battlers[index].pokemonIndex,@battlers[index].form] if pbBelongsToPlayer?(index)
     ownername=pbGetOwner(index).fullname
     ownername=pbGetOwner(index).name if pbBelongsToPlayer?(index)
     pbDisplay(_INTL("¡{1} emite una luz cegadora!",@battlers[index].pbThis))
@@ -2247,6 +2250,7 @@ class PokeBattle_Battle
 # Use Z-Move.
 ################################################################################
   def pbCanZMove?(index)
+    return false if @battlers[index].isTera?
     return false if $game_switches[NO_Z_MOVE]
     return false if !@battlers[index].hasZMove?
     return false if !pbHasZRing(index)
@@ -2916,9 +2920,9 @@ class PokeBattle_Battle
       else
         raise _INTL("Sólo se permite uno o dos Pokémon salvajes en batallas dobles")
       end
-      if rand(65536)<TERAWILD || $game_switches[ALWAISTERAWILD]
-        fpTeracristal(1)
-      end
+      #if rand(65536)<TERAWILD || $game_switches[ALWAISTERAWILD]
+      #  fpTeracristal(1)
+      #end
 #=====================================================================================
 # Initialize opponents in double battles / Inicializa oponentes en batallas dobles
 #=====================================================================================
@@ -3520,6 +3524,11 @@ class PokeBattle_Battle
     end
     @usepriority=false  # recalculate priority
     priority=pbPriority(true) # Ignoring Quick Claw here
+    #for i in @battlers
+    #  if pbIsOpposing?(i.index) && i.totalhp/2 > i.hp && i.isTera? && !@opponent
+    #    i.makeUntera
+    #  end
+    #end
     # Weather
     case @weather
     when PBWeather::SUNNYDAY

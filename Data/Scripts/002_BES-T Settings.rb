@@ -75,8 +75,6 @@ NO_TETXBOX_OPTIONS = true
 
 NO_Z_MOVE = NO_MEGA_EVOLUTION #Interruptor para bloquear el uso de movimientos Z
 NO_TERA_CRISTAL = NO_MEGA_EVOLUTION #Interruptor para bloquear el uso de teracristalización
-ALWAISTERAWILD = 40 #Al activarse este interruptor todos los Pokémon salvajes teracristalizarán
-TERAWILD = 128 #Probabilidad sobre 65536 de que un Pokémon salvaje teracristalice
 
 ZEROAREA=[66] #Lista de mapas considerados como Área Zero(El teraorbe tiene usos infinitos)
 #Para recargar el Teraorbe use: pbCharge_TeraOrb()
@@ -97,7 +95,7 @@ TERATONES=[Tone.new(142,143,107,64),#Normal
   Tone.new(245,53,0,64),#Fuego
   Tone.new(0,24,245,64),#Agua
   Tone.new(22,156,2,64),#Planta
-  Tone.new(240,240,5,48),#Eléctrico
+  Tone.new(240,240,5,32),#Eléctrico
   Tone.new(255,15,119,64),#Psíquico
   Tone.new(15,255,235,64),#Hielo
   Tone.new(58,15,255,64),#Dragón

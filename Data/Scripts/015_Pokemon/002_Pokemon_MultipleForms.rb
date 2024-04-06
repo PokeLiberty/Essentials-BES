@@ -1812,11 +1812,34 @@ MultipleForms.register(:PALAFIN,{
 })
 
 
-# TERAPAGOS
-MultipleForms.register(:TERAPAGOS,{
-"getFormOnEnteringBattle"=>proc{|pokemon|
-   next 1
+MultipleForms.register(:OGERPON,{
+"getForm"=>proc{|pokemon|
+   f = 1 if isConst?(pokemon.item,PBItems,:WELLSPRINGMASK)
+   f = 2 if isConst?(pokemon.item,PBItems,:HEARTHFLAMEMASK)
+   f = 3 if isConst?(pokemon.item,PBItems,:CORRNERSTONEMASK)
+   f += 5 if pokemon.isTera?
+   next f
 },
+"getAbilityList"=>proc{|pokemon|
+   case pokemon.form
+   when 1; next [[getID(PBAbilities,:WATERABSORB),0],[getID(PBAbilities,:EMBODYASPECT3),1]]
+   when 2; next [[getID(PBAbilities,:MOLDBREAKER),0],[getID(PBAbilities,:EMBODYASPECT2),1]]
+   when 3; next [[getID(PBAbilities,:ENDURE),0],[getID(PBAbilities,:EMBODYASPECT4),1]]
+   when 6; next [[getID(PBAbilities,:WATERABSORB),0],[getID(PBAbilities,:EMBODYASPECT3),1]]
+   when 7; next [[getID(PBAbilities,:MOLDBREAKER),0],[getID(PBAbilities,:EMBODYASPECT2),1]]
+   when 8; next [[getID(PBAbilities,:ENDURE),0],[getID(PBAbilities,:EMBODYASPECT4),1]]
+   else;   next
+   end
+},
+"type2"=>proc{|pokemon|
+  next getID(PBTypes,:WATER) if pokemon.form==1
+  next getID(PBTypes,:FIRE) if pokemon.form==2
+  next getID(PBTypes,:ROCK) if pokemon.form==3
+  next
+},
+})
+
+MultipleForms.register(:TERAPAGOS,{
 "getBaseStats"=>proc{|pokemon|
   next [95,95,110,85,105,110] if pokemon.form==1
   next [160,105,110,85,130,110] if pokemon.form==2
@@ -1829,37 +1852,6 @@ MultipleForms.register(:TERAPAGOS,{
    else;   next
    end
 },
-"getUltraForm"=>proc{|pokemon|
-   next 2 if pokemon.form!=0
-   next
-},
-"getUltraName"=>proc{|pokemon|
-   next _INTL("Ultra Necrozma") if pokemon.form==2
-   next
-},
-})
-
-MultipleForms.register(:OGERPON,{
-"getForm"=>proc{|pokemon|
-   f = 1 if isConst?(pokemon.item,PBItems,:WELLSPRINGMASK)
-   f = 2 if isConst?(pokemon.item,PBItems,:HEARTHFLAMEMASK)
-   f = 3 if isConst?(pokemon.item,PBItems,:CORRNERSTONEMASK)
-   f += 5 if pokemon.isTera?
-   next f
-},
-"type2"=>proc{|pokemon|
-  next getID(PBTypes,:WATER) if pokemon.form==1
-  next getID(PBTypes,:FIRE) if pokemon.form==2
-  next getID(PBTypes,:ROCK) if pokemon.form==3
-  next
-},
-})
-
-MultipleForms.register(:TERAPAGOS,{
-  "getFormOnEnteringBattle"=>proc{|pokemon|
-  next 1
-},
-
 "getForm"=>proc{|pokemon|
    next 2 if pokemon.isTera?
 }

@@ -128,5 +128,6 @@ Immunities=DRAGON
 
 [20]
 Name=Astral
+IsPseudoType=true
 InternalName=STELLAR
 IsSpecialType=true

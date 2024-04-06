@@ -441,7 +441,11 @@ class PokeSelectionSprite < SpriteWrapper
     @pokeballsprite.update if @pokeballsprite && !@pokeballsprite.disposed?
     @itemsprite.update if @itemsprite && !@itemsprite.disposed?
     if @pkmnsprite && !@pkmnsprite.disposed?
-      @pkmnsprite.tone=TERATONES[@pkmnsprite.pokemon.teratype] if @pkmnsprite.pokemon.isTera?
+      if @pkmnsprite.pokemon.isTera?
+        @pkmnsprite.tone=TERATONES[@pkmnsprite.pokemon.teratype] if @pkmnsprite.pokemon.isTera?
+      else
+        @pkmnsprite.tone=Tone.new(0,0,0,0)
+      end
       @pkmnsprite.update
     end
   end

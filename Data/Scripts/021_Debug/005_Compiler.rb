@@ -755,6 +755,13 @@ def parseMove(item)
   return pbGetConst(PBMoves,clonitem,_INTL("Nombre de constante de movimiento indefinido: %s\r\nEl nombre sólo consiste en letras, números y\r\nguiones bajos y no puede iniciar con un número.\r\nAsegúrate de que el objeto está definido en\r\nPBS/moves.txt.\r\n{1}",FileLineData.linereport))
 end
 
+def parseType(item)
+  clonitem=item.upcase
+  clonitem.sub!(/^\s*/){}
+  clonitem.sub!(/\s*$/){}
+  return pbGetConst(PBTypes,clonitem,_INTL("Nombre de constante de tipo indefinido: %s\r\nEl nombre sólo consiste en letras, números y\r\nguiones bajos y no puede iniciar con un número.\r\nAsegúrate de que el objeto está definido en\r\nPBS/moves.txt.\r\n{1}",FileLineData.linereport))
+end
+
 def parseNature(item)
   clonitem=item.upcase
   clonitem.sub!(/^\s*/){}
@@ -2315,8 +2322,8 @@ def pbCompileTrainers
       if !poke[TPTERA] || poke[TPTERA]==""
         poke[TPTERA]=TPDEFAULTS[TPTERA]
       else
-        poke[TPTERA]=poke[TPTERA].to_i
-        raise _INTL("Ball errónea: {1} (debe ser 0 o mayor)\r\n{2}",poke[TPTERA],FileLineData.linereport) if poke[TPTERA]<0
+        poke[TPTERA]=parseType(poke[TPTERA])
+        raise _INTL("Tipo erróneo: {1} (debe ser 0 o mayor)\r\n{2}",poke[TPTERA],FileLineData.linereport) if poke[TPTERA]<0
       end
       pkmn.push(poke)
     end

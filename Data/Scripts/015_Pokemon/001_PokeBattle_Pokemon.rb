@@ -670,7 +670,7 @@ class PokeBattle_Pokemon
   def makeUntera #Desteracristaiza al Pokémon
     @teracristalized=false
     if @species==PBSpecies::TERAPAGOS
-      form=0
+      @form=0
     end
   end
 
