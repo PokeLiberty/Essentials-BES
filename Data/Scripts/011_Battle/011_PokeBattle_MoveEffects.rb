@@ -12615,13 +12615,13 @@ class PokeBattle_Move_249 < PokeBattle_Move
     when PBWeather::STRONGWINDS
       @battle.pbDisplay(_INTL("¡Las misteriosas turbulencias siguen soplando sin cesar!"))
       canhail = false
-    when PBWeather::SNOW
+    when PBWeather::HAIL
       @battle.pbDisplay(_INTL("¡Pero falló!"))
       canhail = false
     end
     if canhail == true
       pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
-      @battle.weather=PBWeather::SNOW
+      @battle.weather=PBWeather::HAIL
       @battle.weatherduration=5
       @battle.weatherduration=8 if attacker.hasWorkingItem(:ICYROCK)
       @battle.pbCommonAnimation("Hail",nil,nil)
