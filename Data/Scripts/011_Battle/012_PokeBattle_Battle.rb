@@ -1082,7 +1082,7 @@ class PokeBattle_Battle
     if thispkmn.effects[PBEffects::GigatonHammer]==2     # Martillo Colosal
       if thismove.function==0x245
         if showMessages
-          pbDisplayPaused(_INTL("¡{1} no puede usar Martillo Colosal dos veces seguidas!",thispkmn.pbThis))
+          pbDisplayPaused(_INTL("¡{1} no puede usar este movimiento dos veces seguidas!",thispkmn.pbThis))
         end
         return false
       end
