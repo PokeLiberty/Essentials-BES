@@ -36,6 +36,7 @@ class PokeBattle_Battler
   attr_accessor :damagestate
   attr_accessor :captured
   attr_accessor :lastTarget
+  attr_accessor :astral_stab
 
 
   def inHyperMode?; return false; end
@@ -74,7 +75,7 @@ class PokeBattle_Battler
   def isSpecies?(species)
     return @pokemon && @pokemon.isSpecies?(species)
   end
-  
+
   def hasMega?
     return false if @effects[PBEffects::Transform]
     if @pokemon
@@ -89,8 +90,20 @@ class PokeBattle_Battler
     end
     return false
   end
-  
-  
+
+  def makeUntera
+    @pokemon.makeUntera
+  end
+
+  def makeTera
+    @pokemon.makeTera
+  end
+
+  def isTera?
+    return @pokemon.teracristalized if @pokemon
+  end
+
+
   def hasUltra?
     return false if @effects[PBEffects::Transform]
     if @pokemon
@@ -221,8 +234,9 @@ class PokeBattle_Battler
     pbInitBlank
     pbInitEffects(false)
     pbInitPermanentEffects
+    @astral_stab  = [true,true]
   end
- 
+
   def pbInitPokemon(pkmn,pkmnIndex)
     if pkmn.isEgg?
       raise _INTL("Un huevo no puede ser un Pokémon activo")
@@ -333,7 +347,7 @@ class PokeBattle_Battler
     @effects[PBEffects::Wish]               = 0
     @effects[PBEffects::WishAmount]         = 0
     @effects[PBEffects::WishMaker]          = -1
-    @effects[PBEffects::CorrosiveGas]       = false    
+    @effects[PBEffects::CorrosiveGas]       = false
   end
 
   def pbInitEffects(batonpass)
@@ -391,7 +405,7 @@ class PokeBattle_Battler
       @effects[PBEffects::PerishSong]     = 0
       @effects[PBEffects::PerishSongUser] = -1
       @effects[PBEffects::PowerTrick]     = false
-      @effects[PBEffects::PowerShift]     = false      
+      @effects[PBEffects::PowerShift]     = false
       @effects[PBEffects::Telekinesis]    = 0
       @effects[PBEffects::Substitute]     = 0 if @effects[PBEffects::ShedTail]!=nil && !@effects[PBEffects::ShedTail]
     else
@@ -407,7 +421,7 @@ class PokeBattle_Battler
     @damagestate.reset
     @fainted          = false
     @lastAttacker     = []
-    @lastTarget       = 0    
+    @lastTarget       = 0
     @lastHPLost       = 0
     @tookDamage       = false
     @lastMoveUsed     = -1
@@ -575,7 +589,7 @@ class PokeBattle_Battler
       self.status=0
     end
     # Cambio Heroico
-    if self.hasWorkingAbility(:ZEROTOHERO) && 
+    if self.hasWorkingAbility(:ZEROTOHERO) &&
       isConst?(self.species,PBSpecies,:PALAFIN) && self.form==0
       self.form=1
     end
@@ -624,8 +638,8 @@ class PokeBattle_Battler
 ################################################################################
 # About this battler
 ################################################################################
-  
-  
+
+
 
   def pbThis(lowercase=false)
     if @battle.pbIsOpposing?(@index)
@@ -657,7 +671,7 @@ class PokeBattle_Battler
     end
     return ret
   end
-  
+
   def pbHasMove?(id)
     if id.is_a?(String) || id.is_a?(Symbol)
       id=getID(PBMoves,id)
@@ -700,7 +714,7 @@ class PokeBattle_Battler
   def fainted? #BES-T Compt - v17
     return @hp<=0
   end
-  
+
   def hasMoldBreaker
     return true if hasWorkingAbility(:MOLDBREAKER) ||
                    hasWorkingAbility(:TERAVOLT) ||
@@ -739,7 +753,7 @@ class PokeBattle_Battler
     return false if self.hasWorkingAbility(:KLUTZ,ignorefainted)
     return pbIsBerry?(@item)
   end
-  
+
   def isAirborne?(ignoreability=false)
     return false if self.hasWorkingItem(:IRONBALL)
     return false if @effects[PBEffects::Ingrain]
@@ -876,6 +890,9 @@ class PokeBattle_Battler
     end
     if self.isPrimal?
       @pokemon.makeUnprimal
+    end
+    if self.isTera?
+      @pokemon.makeUntera
     end
     @pokemon.revertOtherForms
     @fainted=true
@@ -1062,7 +1079,7 @@ class PokeBattle_Battler
       end
     end
     # Zygarde
-    if self.hasWorkingAbility(:POWERCONSTRUCT) && 
+    if self.hasWorkingAbility(:POWERCONSTRUCT) &&
        isConst?(self.species,PBSpecies,:ZYGARDE) && self.form!=2 &&
        self.hp<(self.totalhp/2).ceil
       $zygardeform=self.form
@@ -1071,20 +1088,20 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} siente la presencia de muchos...",pbThis))
     end
     # Minior
-    if self.hasWorkingAbility(:SHIELDSDOWN) && 
+    if self.hasWorkingAbility(:SHIELDSDOWN) &&
       isConst?(self.species,PBSpecies,:MINIOR) &&
       self.hp>(self.totalhp*0.5).floor && self.form!=0
       @@miniorform=self.form
       self.form=0
       @battle.pbDisplay(_INTL("¡El cuerpo de {1} fue petrificado!",self.pbThis))
       transformed=true
-    elsif self.hasWorkingAbility(:SHIELDSDOWN) && 
+    elsif self.hasWorkingAbility(:SHIELDSDOWN) &&
       isConst?(self.species,PBSpecies,:MINIOR) &&
        self.hp<=(self.totalhp*0.5).floor && self.form==0 && @@miniorform>0
       self.form=@@miniorform
       @battle.pbDisplay(_INTL("¡La coraza rocosa de {1} se rompió!",self.pbThis))
       transformed=true
-    elsif self.hasWorkingAbility(:SHIELDSDOWN) && 
+    elsif self.hasWorkingAbility(:SHIELDSDOWN) &&
       isConst?(self.species,PBSpecies,:MINIOR) &&
        self.hp<=(self.totalhp*0.5).floor && self.form==0 && @@miniorform=0
        self.form=1+rand(7)
@@ -1092,7 +1109,7 @@ class PokeBattle_Battler
        @battle.pbDisplay(_INTL("¡El núcleo de {1} fue quebrado!",self.pbThis))
        transformed=true
     end
-        
+
     if transformed
       pbUpdate(true)
       @battle.scene.pbChangePokemon(self,@pokemon)
@@ -1118,7 +1135,7 @@ class PokeBattle_Battler
          self.form=@pokemon.form
          transformed=true
       end
-    end 
+    end
   end
 
   def pbResetForm
@@ -1133,16 +1150,15 @@ class PokeBattle_Battler
          isConst?(self.species,PBSpecies,:EISCUE) ||
          isConst?(self.species,PBSpecies,:MORPEKO)||
          isConst?(self.species,PBSpecies,:ZACIAN)||
-         isConst?(self.species,PBSpecies,:ZAMAZENTA) ||
-         isConst?(self.species,PBSpecies,:TERAPAGOS)||
+         isConst?(self.species,PBSpecies,:ZAMAZENTA)
         self.form=0
       end
       if isConst?(self.species,PBSpecies,:DARMANITAN)
-        self.form=0 if self.form==1; self.form=2 if self.form==3
+        self.form=0 if self.form==2; self.form=1 if self.form==3
       end
       if isConst?(self.species,PBSpecies,:MINIOR)
         if @@miniorform>0
-          self.form=@@miniorform 
+          self.form=@@miniorform
         else
           self.form=1+rand(7)
           @@miniorform=self.form
@@ -1261,7 +1277,7 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("¡{1} tiene {2}!",pbThis,PBAbilities.getName(self.ability)))
         @battle.pbDisplay(_INTL("El tiempo atmosférico ya no ejerce ninguna influencia."))
       end
-      if self.hasWorkingAbility(:TERAFORMZERO) 
+      if self.hasWorkingAbility(:TERAFORMZERO)
         @battle.pbDisplay(_INTL("¡{1} tiene {2}!",pbThis,PBAbilities.getName(self.ability)))
         @battle.field.effects[PBEffects::PsychicTerrain]=0
         @battle.field.effects[PBEffects::ElectricTerrain]=0
@@ -1288,7 +1304,7 @@ class PokeBattle_Battler
              !isConst?(abil,PBAbilities,:STANCECHANGE) &&
              !isConst?(abil,PBAbilities,:COMATOSE) &&
              !isConst?(abil,PBAbilities,:BATTLEBOND) &&
-             !isConst?(abil,PBAbilities,:POWERCONSTRUCT) &&             
+             !isConst?(abil,PBAbilities,:POWERCONSTRUCT) &&
              !isConst?(abil,PBAbilities,:DISGUISE) &&
              !isConst?(abil,PBAbilities,:POWEROFALCHEMY) &&
              !isConst?(abil,PBAbilities,:RECEIVER) &&
@@ -1297,7 +1313,7 @@ class PokeBattle_Battler
              !isConst?(abil,PBAbilities,:RKSSYSTEM) &&
              !isConst?(abil,PBAbilities,:ICEFACE) &&
              !isConst?(abil,PBAbilities,:GULPMISSILE) &&
-             !isConst?(abil,PBAbilities,:ZEROTOHERO)           
+             !isConst?(abil,PBAbilities,:ZEROTOHERO)
             choices.push(i)
           end
         end
@@ -1313,7 +1329,7 @@ class PokeBattle_Battler
       end
     end
     # Reacción Química & Receptor
-    if (self.hasWorkingAbility(:POWEROFALCHEMY) || self.hasWorkingAbility(:RECEIVER)) && 
+    if (self.hasWorkingAbility(:POWEROFALCHEMY) || self.hasWorkingAbility(:RECEIVER)) &&
      @battle.doublebattle && pbPartner.isFainted?
       usable=false
       abil=pbPartner.ability
@@ -1333,7 +1349,7 @@ class PokeBattle_Battler
              !isConst?(abil,PBAbilities,:WONDERGUARD) &&
              !isConst?(abil,PBAbilities,:DISGUISE) &&
              !isConst?(abil,PBAbilities,:ZENMODE) &&
-             !isConst?(abil,PBAbilities,:SCHOOLING) && 
+             !isConst?(abil,PBAbilities,:SCHOOLING) &&
              !isConst?(abil,PBAbilities,:SHIELDSDOWN) &&
              !isConst?(abil,PBAbilities,:RKSSYSTEM) &&
              !isConst?(abil,PBAbilities,:ICEFACE) &&
@@ -1349,7 +1365,7 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("¡{1} copió {3} de {2}!",pbThis,battlername,abilityname))
       end
     end
-    
+
     # Hospitalidad
     if self.hasWorkingAbility(:HOSPITALITY) && onactive
       if self.pbPartner && !self.pbPartner.isFainted?
@@ -1421,18 +1437,18 @@ class PokeBattle_Battler
         end
       end
     end
-    
+
     # Intimidación
     if self.hasWorkingAbility(:INTIMIDATE) && onactive
       PBDebug.log("[Habilidad disparada] Intimidación de #{pbThis}")
       for i in 0...4
         if pbIsOpposing?(i) && !@battle.battlers[i].isFainted?
-          unless @battle.battlers[i].hasWorkingAbility(:OBLIVIOUS) || 
+          unless @battle.battlers[i].hasWorkingAbility(:OBLIVIOUS) ||
              @battle.battlers[i].hasWorkingAbility(:OWNTEMPO) ||
-             @battle.battlers[i].hasWorkingAbility(:SCRAPPY) 
+             @battle.battlers[i].hasWorkingAbility(:SCRAPPY)
             @battle.battlers[i].pbReduceAttackStatIntimidate(self)
           end
-          if @battle.battlers[i].hasWorkingAbility(:RATTLED) 
+          if @battle.battlers[i].hasWorkingAbility(:RATTLED)
             if @battle.battlers[i].pbIncreaseStatWithCause(PBStats::SPEED,1,@battle.battlers[i],PBAbilities.getName(@battle.battlers[i].ability))
               PBDebug.log("[Ability triggered] #{@battle.battlers[i].pbThis}'s Rattled")
             end
@@ -1445,7 +1461,7 @@ class PokeBattle_Battler
         end
       end
     end
-    
+
     # Commander
     if (self.hasWorkingAbility(:COMMANDER) && @battle.doublebattle && pbPartner.isFainted? && self.effects[PBEffects::Commander]!=0)
       if isConst?(pbPartner.species,PBSpecies,:DONDOZO)
@@ -1503,7 +1519,7 @@ class PokeBattle_Battler
         end
       end
     end
-    
+
     # Medicina Extraña
     if self.hasWorkingAbility(:CURIOUSMEDICINE) && onactive
       PBDebug.log("[Habilidad disparada] Medicina Extraña de #{pbThis}")
@@ -1620,7 +1636,7 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("¡Alerta de {1} detectó {2}!",pbThis,movename))
       end
     end
-    
+
     # Semillas
       if self.hasWorkingItem(:ELECTRICSEED) && !self.pbTooHigh?(PBStats::DEFENSE) &&
             @battle.field.effects[PBEffects::ElectricTerrain]>0
@@ -1641,10 +1657,10 @@ class PokeBattle_Battler
             @battle.field.effects[PBEffects::MistyTerrain]>0
         self.pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBItems.getName(self.item))
         self.pbConsumeItem
-      end    
-      
+      end
+
     # Habilidades de campos
-    if (self.hasWorkingAbility(:ELECTRICSURGE) || self.hasWorkingAbility(:HADRONENGINE)) && 
+    if (self.hasWorkingAbility(:ELECTRICSURGE) || self.hasWorkingAbility(:HADRONENGINE)) &&
       @battle.field.effects[PBEffects::ElectricTerrain]<=0 && onactive
       @battle.field.effects[PBEffects::PsychicTerrain]=0
       @battle.field.effects[PBEffects::GrassyTerrain]=0
@@ -1666,7 +1682,7 @@ class PokeBattle_Battler
       end
     end
     # Psychic Surge
-    if self.hasWorkingAbility(:PSYCHICSURGE) && 
+    if self.hasWorkingAbility(:PSYCHICSURGE) &&
       @battle.field.effects[PBEffects::PsychicTerrain]<=0 && onactive
       @battle.field.effects[PBEffects::ElectricTerrain]=0
       @battle.field.effects[PBEffects::GrassyTerrain]=0
@@ -1676,7 +1692,7 @@ class PokeBattle_Battler
       else
         @battle.field.effects[PBEffects::PsychicTerrain]=5
       end
-      
+
        # @battle.pbDisplayEffect(self,false)
        # @battle.pbHideEffect(self)
       @battle.pbDisplay(_INTL("¡El campo de batalla se volvió extraño!"))
@@ -1689,7 +1705,7 @@ class PokeBattle_Battler
       end
     end
     # Grassy Surge
-    if self.hasWorkingAbility(:GRASSYSURGE) && 
+    if self.hasWorkingAbility(:GRASSYSURGE) &&
       @battle.field.effects[PBEffects::GrassyTerrain]<=0 && onactive
       @battle.field.effects[PBEffects::ElectricTerrain]=0
       @battle.field.effects[PBEffects::PsychicTerrain]=0
@@ -1711,7 +1727,7 @@ class PokeBattle_Battler
       end
     end
     # Misty Surge
-    if self.hasWorkingAbility(:MISTYSURGE) && 
+    if self.hasWorkingAbility(:MISTYSURGE) &&
       @battle.field.effects[PBEffects::MistyTerrain]<=0 && onactive
       @battle.field.effects[PBEffects::ElectricTerrain]=0
       @battle.field.effects[PBEffects::GrassyTerrain]=0
@@ -1765,9 +1781,14 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡{1} no rinde todo lo que podría!",
          pbThis,PBAbilities.getName(self.ability)))
     end
+    if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT)
+      self.pokemon.form=1
+      @battle.scene.pbChangePokemon(self,@pokemon)
+      @battle.pbDisplay(_INTL("¡{1} se transformó!",pbThis))
+    end
     # Antibarrera
     if self.hasWorkingAbility(:SCREENCLEANER) && onactive
-      if self.pbOwnSide.effects[PBEffects::LightScreen]>0 || self.pbOpposingSide.effects[PBEffects::LightScreen]>0 || 
+      if self.pbOwnSide.effects[PBEffects::LightScreen]>0 || self.pbOpposingSide.effects[PBEffects::LightScreen]>0 ||
       self.pbOwnSide.effects[PBEffects::Reflect]> 0 || self.pbOpposingSide.effects[PBEffects::Reflect]>0 ||
       self.pbOwnSide.effects[PBEffects::AuroraVeil]>0 || self.pbOpposingSide.effects[PBEffects::AuroraVeil]>0
         if self.pbOwnSide.effects[PBEffects::LightScreen]>0; self.pbOwnSide.effects[PBEffects::LightScreen]=0
@@ -1782,7 +1803,7 @@ class PokeBattle_Battler
         if self.pbOpposingSide.effects[PBEffects::Reflect]>0; self.pbOpposingSide.effects[PBEffects::Reflect]=0
           @battle.pbDisplay(_INTL("¡Reflejo dejó de funcionar!"))
         end
-        if self.pbOwnSide.effects[PBEffects::AuroraVeil]>0; self.pbOwnSide.effects[PBEffects::AuroraVeil]=0 
+        if self.pbOwnSide.effects[PBEffects::AuroraVeil]>0; self.pbOwnSide.effects[PBEffects::AuroraVeil]=0
           @battle.pbDisplay(_INTL("¡Velo Aurora dejó de funcionar!"))
         end
         if self.pbOpposingSide.effects[PBEffects::AuroraVeil]>0; self.pbOpposingSide.effects[PBEffects::AuroraVeil]=0
@@ -1904,8 +1925,8 @@ class PokeBattle_Battler
 
   def pbEffectsOnDealingDamage(move,user,target,damage)
     movetype=move.pbType(move.type,user,target)
-    if damage>0 && move.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && 
-      !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && move.isPunchingMove?)
+    if damage>0 && move.isContactMove? && !user.hasWorkingAbility(:LONGREACH) &&
+      !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
       if !target.damagestate.substitute
         # Rizos Rebeldes
         if target.hasWorkingAbility(:TANGLINGHAIR,true)
@@ -1914,7 +1935,7 @@ class PokeBattle_Battler
           end
         end
         # Toxiestrella
-        if target.hasWorkingItem(:STICKYBARB,true) && user.item==0 && !user.isFainted?          # Toxiestrella 
+        if target.hasWorkingItem(:STICKYBARB,true) && user.item==0 && !user.isFainted?          # Toxiestrella
           user.item=target.item
           target.item=0
           target.effects[PBEffects::Unburden]=true
@@ -1947,7 +1968,7 @@ class PokeBattle_Battler
           if targetmove.function==0x193 && move.pbIsPhysical?(user)                      # Shell Trap
             target.effects[PBEffects::ShellTrap]=true
           end
-        end   
+        end
         # Resquicio
         if target.hasWorkingAbility(:AFTERMATH,true) && target.isFainted? &&             # Resquicio
            !user.isFainted?
@@ -2001,7 +2022,7 @@ class PokeBattle_Battler
           user.pbBurn(target,_INTL("¡{2} de {1} quemó a {3}!",target.pbThis,
              PBAbilities.getName(target.ability),user.pbThis(true)))
         end
-        # Momia   
+        # Momia
         if target.hasWorkingAbility(:MUMMY,true) && !user.isFainted?                     # Momia
           if !isConst?(user.ability,PBAbilities,:MULTITYPE) &&
              !isConst?(user.ability,PBAbilities,:STANCECHANGE) &&
@@ -2013,7 +2034,7 @@ class PokeBattle_Battler
              !isConst?(user.ability,PBAbilities,:POWERCONSTRUCT) &&
              !isConst?(user.ability,PBAbilities,:SHIELDSDOWN) &&
              !isConst?(user.ability,PBAbilities,:RKSSYSTEM)  &&
-             !isConst?(user.ability,PBAbilities,:ZEROTOHERO) && 
+             !isConst?(user.ability,PBAbilities,:ZEROTOHERO) &&
              !user.hasWorkingItem(:ABILITYSHIELD)
             PBDebug.log("[Habilidad disparada] La habilidad Momia de #{target.pbThis} ha sido copiada en #{user.pbThis(true)}")
             user.ability=getConst(PBAbilities,:MUMMY) || 0
@@ -2034,7 +2055,7 @@ class PokeBattle_Battler
              !isConst?(user.ability,PBAbilities,:RKSSYSTEM) &&
              !isConst?(user.ability,PBAbilities,:ICEFACE) &&
              !isConst?(user.ability,PBAbilities,:ZEROTOHERO) &&
-             !isConst?(user.ability,PBAbilities,:LINGERINGAROMA) && 
+             !isConst?(user.ability,PBAbilities,:LINGERINGAROMA) &&
              !user.hasWorkingItem(:ABILITYSHIELD)
             PBDebug.log("[Habilidad disparada] La habilidad Olor Persistente de #{target.pbThis} ha sido copiada en #{user.pbThis(true)}")
             user.ability=getConst(PBAbilities,:LINGERINGAROMA) || 0
@@ -2044,17 +2065,17 @@ class PokeBattle_Battler
         end
         # Alma Errante
         if target.hasWorkingAbility(:WANDERINGSPIRIT,true) && !user.isFainted?
-          if !isConst?(user.ability,PBAbilities,:WANDERINGSPIRIT) && 
-             !isConst?(user.ability,PBAbilities,:MULTITYPE)       && 
+          if !isConst?(user.ability,PBAbilities,:WANDERINGSPIRIT) &&
+             !isConst?(user.ability,PBAbilities,:MULTITYPE)       &&
              !isConst?(user.ability,PBAbilities,:STANCECHANGE)    &&
              !isConst?(user.ability,PBAbilities,:BATTLEBOND)      &&
              !isConst?(user.ability,PBAbilities,:SCHOOLING)       &&
-             !isConst?(user.ability,PBAbilities,:COMATOSE)        &&            
+             !isConst?(user.ability,PBAbilities,:COMATOSE)        &&
              !isConst?(user.ability,PBAbilities,:DISGUISE)        &&
-             !isConst?(user.ability,PBAbilities,:RKSSYSTEM)       && 
+             !isConst?(user.ability,PBAbilities,:RKSSYSTEM)       &&
              !isConst?(user.ability,PBAbilities,:SHIELDSDOWN)     &&
              !isConst?(user.ability,PBAbilities,:ICEFACE)         &&
-             !isConst?(user.ability,PBAbilities,:ZEROTOHERO) && 
+             !isConst?(user.ability,PBAbilities,:ZEROTOHERO) &&
              !user.hasWorkingItem(:ABILITYSHIELD)
             PBDebug.log("[Ability triggered] #{target.pbThis}'s Wandering Spirit swap onto #{user.pbThis(true)}'s Ability")
             tmp=user.ability
@@ -2072,7 +2093,7 @@ class PokeBattle_Battler
           user.pbPoison(target,_INTL("¡{2} de {1} envenenó a {3}!",target.pbThis,
              PBAbilities.getName(target.ability),user.pbThis(true)))
         end
-        # Piel Tosca / Punta Acero   
+        # Piel Tosca / Punta Acero
         if (target.hasWorkingAbility(:ROUGHSKIN,true) ||                                 #  Piel Tosca
            target.hasWorkingAbility(:IRONBARBS,true)) && !user.isFainted?
           if !user.hasWorkingAbility(:MAGICGUARD)
@@ -2091,20 +2112,20 @@ class PokeBattle_Battler
              target.pbThis,PBAbilities.getName(target.ability),user.pbThis(true)))
            end
         # Baba
-        if target.hasWorkingAbility(:GOOEY,true)                     
+        if target.hasWorkingAbility(:GOOEY,true)
           if user.pbReduceStatWithCause(PBStats::SPEED,1,target,PBAbilities.getName(target.ability))
             PBDebug.log("[Habilidad disparada] Baba de #{target.pbThis}")
           end
         end
         # Toque Tóxico
-        if user.hasWorkingAbility(:POISONTOUCH,true) &&              
+        if user.hasWorkingAbility(:POISONTOUCH,true) &&
            target.pbCanPoison?(nil,false) && @battle.pbRandom(10)<3
           PBDebug.log("[Habilidad disparada] Toque Tóxico de #{user.pbThis}")
           target.pbPoison(user,_INTL("¡{2} de {1} envenenó a {3}!",user.pbThis,
              PBAbilities.getName(user.ability),target.pbThis(true)))
         end
         # Cuerpo Mortal
-        if target.hasWorkingAbility(:PERISHBODY,true) && !user.hasMoldBreaker && 
+        if target.hasWorkingAbility(:PERISHBODY,true) && !user.hasMoldBreaker &&
            user.effects[PBEffects::PerishBody]==0 && target.effects[PBEffects::PerishBody]==0
           @battle.pbDisplay(_INTL("¡Ambos Pokémon se debilitarán en tres turnos!"))
           user.effects[PBEffects::PerishBody]=3; target.effects[PBEffects::PerishBody]=3
@@ -2114,7 +2135,7 @@ class PokeBattle_Battler
     if damage>0
       if !target.damagestate.substitute
         # Cadena Tóxica
-        if user.hasWorkingAbility(:TOXICCHAIN,true) &&              
+        if user.hasWorkingAbility(:TOXICCHAIN,true) &&
            target.pbCanPoison?(nil,false) && @battle.pbRandom(10)<3
           PBDebug.log("[Habilidad disparada] Cadena Tóxica de #{user.pbThis}")
           target.pbPoison(user,_INTL("¡{2} de {1} envenenó a {3}!",user.pbThis,
@@ -2141,7 +2162,7 @@ class PokeBattle_Battler
           else
             @battle.pbDisplay(_INTL("¡Tu equipo ha sido rodeado de púas venenosas!"))
           end
-        end     
+        end
         # Firmeza
         if target.hasWorkingAbility(:STAMINA)
           if target.pbIncreaseStatWithCause(PBStats::DEFENSE,1,target,PBAbilities.getName(target.ability))
@@ -2160,7 +2181,7 @@ class PokeBattle_Battler
             PBDebug.log("[Habilidad disparada] Justiciero de #{target.pbThis}")
           end
         end
-        
+
         # Cólera
         if target.hasWorkingAbility(:BERSERK) &&
             target.hp+damage>target.totalhp/2 &&
@@ -2170,7 +2191,7 @@ class PokeBattle_Battler
           end
         end
         # Cobardía
-        if target.hasWorkingAbility(:RATTLED) &&                     
+        if target.hasWorkingAbility(:RATTLED) &&
            (isConst?(movetype,PBTypes,:BUG) ||
             isConst?(movetype,PBTypes,:DARK) ||
             isConst?(movetype,PBTypes,:GHOST))
@@ -2179,7 +2200,7 @@ class PokeBattle_Battler
           end
         end
         # Armadura Frágil
-        if target.hasWorkingAbility(:WEAKARMOR) && move.pbIsPhysical?(movetype)    
+        if target.hasWorkingAbility(:WEAKARMOR) && move.pbIsPhysical?(movetype)
           if target.pbReduceStatWithCause(PBStats::DEFENSE,1,target,PBAbilities.getName(target.ability))
             PBDebug.log("[Habilidad disparada] Armadura Frágil de #{target.pbThis} (baja Defensa)")
           end
@@ -2189,7 +2210,7 @@ class PokeBattle_Battler
         end
         # Expulsarena
         if target.hasWorkingAbility(:SANDSPIT)
-          if @battle.weather!=PBWeather::HEAVYRAIN && @battle.weather!=PBWeather::HARSHSUN && 
+          if @battle.weather!=PBWeather::HEAVYRAIN && @battle.weather!=PBWeather::HARSHSUN &&
              @battle.weather!=PBWeather::STRONGWINDS && @battle.weather!=PBWeather::SANDSTORM
             @battle.weather=PBWeather::SANDSTORM
             @battle.weatherduration=5
@@ -2210,7 +2231,7 @@ class PokeBattle_Battler
           @battle.pbDisplay(_INTL("¡{1} comenzó a cargar energía!",attacker.pbThis))
         end
         # Surcavientos
-        if target.hasWorkingAbility(:WINDRIDER) && move.isWindMove? 
+        if target.hasWorkingAbility(:WINDRIDER) && move.isWindMove?
           if target.pbIncreaseStatWithCause(PBStats::ATTACK,1,target,PBAbilities.getName(target.ability))
             PBDebug.log("[Habilidad disparada] Wind Rider de #{target.pbThis}")
           end
@@ -2259,7 +2280,7 @@ class PokeBattle_Battler
         # Pelusa
         if target.hasWorkingAbility(:COTTONDOWN)
           for i in 0...4
-            if @battle.battlers[i]!=target 
+            if @battle.battlers[i]!=target
               if @battle.battlers[i].pbReduceStatWithCause(PBStats::SPEED,1,target,PBAbilities.getName(target.ability))
                 PBDebug.log("[Ability triggered] #{target.pbThis}'s Cotton Down")
               end
@@ -2267,14 +2288,14 @@ class PokeBattle_Battler
           end
         end
         # Combustible
-        if target.hasWorkingAbility(:STEAMENGINE) && 
+        if target.hasWorkingAbility(:STEAMENGINE) &&
           (isConst?(movetype,PBTypes,:WATER) || isConst?(movetype,PBTypes,:FIRE))
           if target.pbIncreaseStatWithCause(PBStats::SPEED,6,target,PBAbilities.getName(target.ability))
             PBDebug.log("[Ability triggered] #{target.pbThis}'s Steam Engine")
           end
         end
         # Tragamisil
-        if target.hasWorkingAbility(:GULPMISSILE,true) && isConst?(target.species,PBSpecies,:CRAMORANT) && 
+        if target.hasWorkingAbility(:GULPMISSILE,true) && isConst?(target.species,PBSpecies,:CRAMORANT) &&
            target.form!=0 && !(PBMoveData.new(target.effects[PBEffects::TwoTurnAttack]).function==0xCB)
           lowerspeed=false; lowerspeed=true if target.form==1 # Gulping Form (Arrokuda)
           paralyze=false; paralyze=true if target.form==2     # Gorging Form (Pikachu)
@@ -2282,7 +2303,7 @@ class PokeBattle_Battler
           @battle.scene.pbChangePokemon(target,target.pokemon)
           @battle.pbAnimation(getConst(PBMoves,:TACKLE),user,nil)
           user.pbReduceHP((user.totalhp/4).floor) if !user.hasWorkingAbility(:MAGICGUARD)
-          PBDebug.log("[Form changed] #{pbThis} changed to #{self.form}")        
+          PBDebug.log("[Form changed] #{pbThis} changed to #{self.form}")
           if lowerspeed
             if user.pbCanReduceStatStage?(PBStats::DEFENSE,user)
               user.pbReduceStat(PBStats::DEFENSE,1,user,true)
@@ -2293,7 +2314,7 @@ class PokeBattle_Battler
           end
         end
         # Globo Helio
-        if target.hasWorkingItem(:AIRBALLOON,true)                   
+        if target.hasWorkingItem(:AIRBALLOON,true)
           PBDebug.log("[Objeto disparado] Globo Helio de #{target.pbThis} ha reventado")
           @battle.pbDisplay(_INTL("¡Ha explotado el Globo Helio de {1}!",target.pbThis))
           target.pbConsumeItem(true,false)
@@ -2360,7 +2381,7 @@ class PokeBattle_Battler
         end
       end
       # Irascible
-      if target.hasWorkingAbility(:ANGERPOINT)                       
+      if target.hasWorkingAbility(:ANGERPOINT)
         if target.damagestate.critical && !target.damagestate.substitute &&
            target.pbCanIncreaseStatStage?(PBStats::ATTACK,target)
           PBDebug.log("[Habilidad disparada] Irascible de #{target.pbThis}")
@@ -2382,7 +2403,7 @@ class PokeBattle_Battler
       pbCureStatus(false)
       @battle.pbDisplay(_INTL("Pompa de {1} evitó la quemadura",pbThis,PBAbilities.getName(user.ability))) if showMessages
     end
-    if !(user.hasWorkingAbility(:SHEERFORCE) && thismove.addlEffect>0)         
+    if !(user.hasWorkingAbility(:SHEERFORCE) && thismove.addlEffect>0)
       # Objetos de objetivos:
       # Tarjeta Roja
       if target.hasWorkingItem(:REDCARD) && @battle.pbCanSwitch?(user.index,-1,false)
@@ -2418,7 +2439,7 @@ class PokeBattle_Battler
       user.pbFaint if user.isFainted? # no return
       # Cambio Color
       movetype=thismove.pbType(thismove.type,user,target)
-      if target.hasWorkingAbility(:COLORCHANGE) &&
+      if target.hasWorkingAbility(:COLORCHANGE) && !target.isTera? &&
          !PBTypes.isPseudoType?(movetype) && !target.pbHasType?(movetype)
         PBDebug.log("[Habilidad disparada] Cambio Color de #{target.pbThis} cambió al tipo #{PBTypes.getName(movetype)}")
         target.type1=movetype
@@ -2642,7 +2663,7 @@ class PokeBattle_Battler
       end
     end
   end
-  
+
   def pbConfusionBerry(flavor,message1,message2)
     return false if @effects[PBEffects::HealBlock]>0
     if hasWorkingAbility(:RIPEN)
@@ -2668,7 +2689,7 @@ class PokeBattle_Battler
       return pbIncreaseStatWithCause(stat,1,self,berryname)
     end
   end
-  
+
   def pbActivateMimicry
     type = 0
     if @battle.field.effects[PBEffects::ElectricTerrain]>0
@@ -2773,10 +2794,10 @@ class PokeBattle_Battler
         else
           pokemove.pp+=10
         end
-        pokemove.pp=pokemove.totalpp if pokemove.pp>pokemove.totalpp 
+        pokemove.pp=pokemove.totalpp if pokemove.pp>pokemove.totalpp
         self.moves[choice].pp=pokemove.pp
         movename=PBMoves.getName(pokemove.id)
-        @battle.pbDisplay(_INTL("¡{1} ha restaurado los PP de {3} con {2}!",pbThis,berryname,movename)) 
+        @battle.pbDisplay(_INTL("¡{1} ha restaurado los PP de {3} con {2}!",pbThis,berryname,movename))
         consumed=true
       end
     elsif isConst?(berry,PBItems,:PERSIMBERRY)
@@ -2905,7 +2926,7 @@ class PokeBattle_Battler
       end
     end
     if !unnerver
-      if hpcure 
+      if hpcure
         if self.hp<=(self.totalhp/2).floor
           if self.hasWorkingItem(:ORANBERRY) ||
              self.hasWorkingItem(:SITRUSBERRY)
@@ -3009,7 +3030,7 @@ class PokeBattle_Battler
       pbConsumeItem
       return
     end
-    if hpcure && self.hasWorkingItem(:LEFTOVERS) && self.hp!=self.totalhp &&        # Restos 
+    if hpcure && self.hasWorkingItem(:LEFTOVERS) && self.hp!=self.totalhp &&        # Restos
        @effects[PBEffects::HealBlock]==0
       PBDebug.log("[Objeto disparado] Restos de #{pbThis}")
       @battle.pbCommonAnimation("UseItem",self,nil)
@@ -3129,7 +3150,7 @@ class PokeBattle_Battler
     owner=@battle.pbGetOwnerIndex(self.index)
     if @battle.zMove[side][owner]==self.index && (move.pbIsPhysical?(move.type) || move.pbIsSpecial?(move.type))
       target=PBTargets::SingleNonUser
-    end        
+    end
     return target
   end
 
@@ -3156,8 +3177,8 @@ class PokeBattle_Battler
     user=userandtarget[0]
     target=userandtarget[1]
     # Pararrayos
-    if targets.length==1 && isConst?(thismove.pbType(thismove.type,user,target),PBTypes,:ELECTRIC) && 
-       !target.hasWorkingAbility(:LIGHTNINGROD) && !thismove.doesBypassTargetSwap? && 
+    if targets.length==1 && isConst?(thismove.pbType(thismove.type,user,target),PBTypes,:ELECTRIC) &&
+       !target.hasWorkingAbility(:LIGHTNINGROD) && !thismove.doesBypassTargetSwap? &&
        !(user.hasWorkingAbility(:STALWART)||user.hasWorkingAbility(:PROPELLERTAIL))
       for i in priority                     # usa Pokémon con mayor prioridad
         next if user.index==i.index || target.index==i.index
@@ -3170,8 +3191,8 @@ class PokeBattle_Battler
       end
     end
     # Colector
-    if targets.length==1 && isConst?(thismove.pbType(thismove.type,user,target),PBTypes,:WATER) && 
-       !target.hasWorkingAbility(:STORMDRAIN) && !thismove.doesBypassTargetSwap? && 
+    if targets.length==1 && isConst?(thismove.pbType(thismove.type,user,target),PBTypes,:WATER) &&
+       !target.hasWorkingAbility(:STORMDRAIN) && !thismove.doesBypassTargetSwap? &&
        !(user.hasWorkingAbility(:STALWART)||user.hasWorkingAbility(:PROPELLERTAIL))
       for i in priority                     # usa Pokémon con mayor prioridad
         next if user.index==i.index || target.index==i.index
@@ -3204,7 +3225,7 @@ class PokeBattle_Battler
     if user.pbIsOpposing?(target.index) && target.hasWorkingAbility(:PRESSURE)
       PBDebug.log("[Habilidad disparada] Presión de #{target.pbThis} (en pbChangeTarget)")
       user.pbReducePP(thismove) # Reduce PP
-    end  
+    end
     # Cambia el usuario actual por el usuario de Robo
     if thismove.canSnatch?
       for i in priority
@@ -3281,7 +3302,7 @@ class PokeBattle_Battler
 
   def pbReducePP(move)
     if @effects[PBEffects::TwoTurnAttack]>0 ||
-       @effects[PBEffects::Bide]>0 || 
+       @effects[PBEffects::Bide]>0 ||
        @effects[PBEffects::Outrage]>0 ||
        @effects[PBEffects::Rollout]>0 ||
        @effects[PBEffects::HyperBeam]>0 ||
@@ -3329,9 +3350,9 @@ class PokeBattle_Battler
       if disobedient
         PBDebug.log("[Desobediencia] #{pbThis} ha desobedecido")
         @effects[PBEffects::Rage]=false
-        if self.status==PBStatuses::SLEEP && 
+        if self.status==PBStatuses::SLEEP &&
            (move.function==0x11 || move.function==0xB4) # Snore, Sleep Talk
-          @battle.pbDisplay(_INTL("¡{1} ignora las órdenes mientras se va a dormir!",pbThis)) 
+          @battle.pbDisplay(_INTL("¡{1} ignora las órdenes mientras se va a dormir!",pbThis))
           return false
         end
         b=((@level+badgelevel)*@battle.pbRandom(256)/255).floor
@@ -3343,7 +3364,7 @@ class PokeBattle_Battler
             othermoves[othermoves.length]=i if @battle.pbCanChooseMove?(@index,i,false)
           end
           if othermoves.length>0
-            @battle.pbDisplay(_INTL("¡{1} se hace el distraido!",pbThis)) 
+            @battle.pbDisplay(_INTL("¡{1} se hace el distraido!",pbThis))
             newchoice=othermoves[@battle.pbRandom(othermoves.length)]
             choice[1]=newchoice
             choice[2]=@moves[newchoice]
@@ -3460,9 +3481,9 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡Cuerpo Vívido impidió el ataque!",target.pbThis))
       PBDebug.log("[Movimiento falló] Regia Presencia bloqueó el ataque")
       return false
-    end  
+    end
     # Vastaguardia
-    if target.pbOwnSide.effects[PBEffects::WideGuard] &&             
+    if target.pbOwnSide.effects[PBEffects::WideGuard] &&
        PBTargets.hasMultipleTargets?(thismove) && !thismove.pbIsStatus? &&
        !target.effects[PBEffects::ProtectNegation] && !unseenfist
       @battle.pbDisplay(_INTL("¡{1} ha sido protegido por Vastaguardia!",target.pbThis))
@@ -3494,8 +3515,8 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Movimiento falló] Escudo Real de #{target.pbThis} ha detenido el ataque")
-      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) && 
-        (!user.hasWorkingItem(:PUNCHINGGLOVE) && move.isPunchingMove?)
+      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+        (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
         user.pbReduceStat(PBStats::ATTACK,1,nil,false)
       end
       return false
@@ -3507,7 +3528,7 @@ class PokeBattle_Battler
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Movimiento falló] Barrera Espinosa de #{user.pbThis} ha detenido el ataque")
       if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
-         (!user.hasWorkingItem(:PUNCHINGGLOVE) && move.isPunchingMove?) && !user.isFainted?
+         (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?) && !user.isFainted?
         @battle.scene.pbDamageAnimation(user,0)
         amt=user.pbReduceHP((user.totalhp/8).floor)
         @battle.pbDisplay(_INTL("¡{1} ha sido dañado!",user.pbThis)) if amt>0
@@ -3520,33 +3541,33 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Move failed] #{user.pbThis}'s Baneful Bunker stopped the attack!")
-      if thismove.isContactMove? && !user.isFainted? && user.pbCanPoison?(nil,false) && !user.hasWorkingAbility(:LONGREACH) && 
-         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && move.isPunchingMove?)
+      if thismove.isContactMove? && !user.isFainted? && user.pbCanPoison?(nil,false) && !user.hasWorkingAbility(:LONGREACH) &&
+         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
         PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker")
         user.pbPoison(target,_INTL("¡{1} fue envenenado!",target.pbThis))
       end
       return false
     end
     # Obstrucción
-    if target.effects[PBEffects::Obstruct] && thismove.canProtectAgainst? && 
+    if target.effects[PBEffects::Obstruct] && thismove.canProtectAgainst? &&
        !target.effects[PBEffects::ProtectNegation] && !unseenfist
       @battle.pbDisplay(_INTL("¡{1} está protegiendo!",target.pbThis))
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Move failed] #{target.pbThis}'s Obstruct stopped the attack")
-      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && 
-         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && move.isPunchingMove?)
+      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) &&
+         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
         user.pbReduceStat(PBStats::DEFENSE,2,nil,false)
       end
       return false
     end
     # Telatrampa
-    if target.effects[PBEffects::Silktrap] && thismove.canProtectAgainst? && 
+    if target.effects[PBEffects::Silktrap] && thismove.canProtectAgainst? &&
        !target.effects[PBEffects::ProtectNegation] && !unseenfist
       @battle.pbDisplay(_INTL("¡{1} está protegiendo!",target.pbThis))
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Move failed] #{target.pbThis}'s Silktrap stopped the attack")
-      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) && 
-         (!user.hasWorkingItem(:PUNCHINGGLOVE) && move.isPunchingMove?)
+      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+         (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
         user.pbReduceStat(PBStats::SPEED,1,nil,false)
       end
       return false
@@ -3557,8 +3578,8 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Move failed] #{user.pbThis}'s Baneful Bunker stopped the attack!")
-      if thismove.isContactMove? && !user.isFainted? && user.pbCanBurn?(nil,false) && !user.hasWorkingAbility(:LONGREACH) && 
-         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && move.isPunchingMove?)
+      if thismove.isContactMove? && !user.isFainted? && user.pbCanBurn?(nil,false) && !user.hasWorkingAbility(:LONGREACH) &&
+         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
         PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker")
         user.pbBurn(target,_INTL("¡{1} fue envenenado!",target.pbThis))
       end
@@ -3581,7 +3602,7 @@ class PokeBattle_Battler
       #Cuerpo Aureo
       if (thismove.pbIsStatus? && thismove.doesBypassIgnorableAbilities?) &&
          !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD)
-         
+
          @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
       end
       # Inmunidad a movimientos de tipo Tierra en base a Pokémon en el aire
@@ -3599,12 +3620,12 @@ class PokeBattle_Battler
           PBDebug.log("[Objeto disparado] Globo Helio de #{target.pbThis} anula movimientos de tipo Tierra")
           return false
         end
-        if target.effects[PBEffects::MagnetRise]>0                             # Levitón 
+        if target.effects[PBEffects::MagnetRise]>0                             # Levitón
           @battle.pbDisplay(_INTL("¡{1} evita los movimientos de tipo Tierra con Levitón!",target.pbThis))
           PBDebug.log("[Efecto prolongado disparado] Levitón de #{target.pbThis} anula movimientos de tipo Tierra")
           return false
         end
-        if target.effects[PBEffects::Telekinesis]>0                            # Telequinesis 
+        if target.effects[PBEffects::Telekinesis]>0                            # Telequinesis
           @battle.pbDisplay(_INTL("¡{1} evita los movimientos de tipo Tierra con Telequinesis!",target.pbThis))
           PBDebug.log("[Efecto prolongado disparado] Telequinesis de #{target.pbThis} anula movimientos de tipo Tierra")
           return false
@@ -3614,12 +3635,12 @@ class PokeBattle_Battler
          type>=0 && typemod<=8 && !thismove.doesBypassIgnorableAbilities?
         @battle.pbDisplay(_INTL("¡{1} evitó el daño usando Superguarda!",target.pbThis))
         PBDebug.log("[Habilidad disparada] Superguarda de #{target.pbThis}")
-        return false 
+        return false
       end
       if typemod==0
         @battle.pbDisplay(_INTL("No afecta a\r\n{1}...",target.pbThis(true)))
         PBDebug.log("[Movimiento falló] Inmunidad por tipo")
-        return false 
+        return false
       end
     end
     if accuracy
@@ -3675,10 +3696,10 @@ class PokeBattle_Battler
       override=true if !miss && turneffects[PBEffects::SkipAccuracyCheck] # Called by another move
       if !override && (miss || !thismove.pbAccuracyCheck(user,target))         # Incluye Contraataque/Manto Espejo
         PBDebug.log(sprintf("[Movimiento falló] Falló pbAccuracyCheck (código de función %02X) o el objetivo es semi-invulnerable",thismove.function))
-        if thismove.target==PBTargets::AllOpposing && 
+        if thismove.target==PBTargets::AllOpposing &&
            (!user.pbOpposing1.isFainted? ? 1 : 0) + (!user.pbOpposing2.isFainted? ? 1 : 0) > 1
           @battle.pbDisplay(_INTL("¡{1} ha evitado el ataque!",target.pbThis))
-        elsif thismove.target==PBTargets::AllNonUsers && 
+        elsif thismove.target==PBTargets::AllNonUsers &&
            (!user.pbOpposing1.isFainted? ? 1 : 0) + (!user.pbOpposing2.isFainted? ? 1 : 0) + (!user.pbPartner.isFainted? ? 1 : 0) > 1
           @battle.pbDisplay(_INTL("¡{1} ha esquivado el ataque!",target.pbThis))
         elsif target.effects[PBEffects::TwoTurnAttack]>0
@@ -3801,11 +3822,11 @@ class PokeBattle_Battler
         pbCheckForm
       elsif @battle.pbRandom(10)<2 && !turneffects[PBEffects::SkipAccuracyCheck] && !FROSTBITE_REPLACES_FREEZE
         self.pbCureStatus
-        pbCheckForm 
+        pbCheckForm
       elsif !thismove.canThawUser? && !FROSTBITE_REPLACES_FREEZE
         self.pbContinueStatus
         PBDebug.log("[Estado] #{pbThis} continúa congelado y no se puedo mover")
-        return false 
+        return false
       end
     end
     if !turneffects[PBEffects::SkipAccuracyCheck]
@@ -3824,9 +3845,9 @@ class PokeBattle_Battler
               @battle.pbDisplay(_INTL("¡{1} cambió de forma!",self.pbThis))
               PBDebug.log("[Form changed] #{self.pbThis} changed to form #{self.form}")
               return false
-            else  
+            else
               pbConfusionDamage
-              @battle.pbDisplay(_INTL("¡Está tan confuso que se hirió a sí mismo!")) 
+              @battle.pbDisplay(_INTL("¡Está tan confuso que se hirió a sí mismo!"))
               PBDebug.log("[Estado] #{pbThis} se daña a sí mismo en su confusión y no se puede mover")
               return false
             end
@@ -3894,12 +3915,12 @@ class PokeBattle_Battler
         end
         if (thismove.pbTypeModifier(thismove.pbType(thismove.type,user,originalTarget),user,originalTarget)==0 ||
            thismove.pbTypeImmunityByAbility(thismove.pbType(thismove.type,user,originalTarget),user,originalTarget) ||
-           (originalTarget.effects[PBEffects::Protect] || 
+           (originalTarget.effects[PBEffects::Protect] ||
            (originalTarget.pbOwnSide.effects[PBEffects::QuickGuard] && thismove.priority>0) ||
            originalTarget.effects[PBEffects::SpikyShield] ||
            originalTarget.effects[PBEffects::BanefulBunker] ||
            originalTarget.effects[PBEffects::Obstruct] ||
-           originalTarget.effects[PBEffects::Silktrap]) ||             
+           originalTarget.effects[PBEffects::Silktrap]) ||
            originalTarget.effects[PBEffects::TwoTurnAttack]>0 ||
            !thismove.pbAccuracyCheck(user,originalTarget)) && !changetarget
           target=originalTarget.pbPartner
@@ -3924,10 +3945,10 @@ class PokeBattle_Battler
           end
         end
         #BLUNDER POLICY
-        if user.hasWorkingItem(:BLUNDERPOLICY) && 
+        if user.hasWorkingItem(:BLUNDERPOLICY) &&
                                             user.pbCanIncreaseStatStage?(
                                             PBStats::SPEED,user) &&
-                                            !(thismove.function==0x116) # Golpe Bajo                                            
+                                            !(thismove.function==0x116) # Golpe Bajo
           pbIncreaseStat(PBStats::SPEED,2,user,false,self)
           user.pbConsumeItem
         end
@@ -3935,7 +3956,7 @@ class PokeBattle_Battler
         user.effects[PBEffects::Rollout]=0 if thismove.function==0xD3          # Desenrollar
         user.effects[PBEffects::FuryCutter]=0 if thismove.function==0x91       # Cortefuria
         user.effects[PBEffects::Stockpile]=0 if thismove.function==0x113       # Escupir
-        user.effects[PBEffects::LastMoveFailed]=true        
+        user.effects[PBEffects::LastMoveFailed]=true
         return
       end
       # Incremento de contadores de movimientos que llevan la cuenta de usos sucesivos
@@ -3963,12 +3984,12 @@ class PokeBattle_Battler
         end
         if (thismove.pbTypeModifier(thismove.pbType(thismove.type,user,secondTarget),user,secondTarget)==0 ||
            thismove.pbTypeImmunityByAbility(thismove.pbType(thismove.type,user,secondTarget),user,secondTarget) ||
-           (secondTarget.effects[PBEffects::Protect] || 
+           (secondTarget.effects[PBEffects::Protect] ||
            (secondTarget.pbOwnSide.effects[PBEffects::QuickGuard] && thismove.priority>0) ||
            secondTarget.effects[PBEffects::SpikyShield] ||
            secondTarget.effects[PBEffects::BanefulBunker] ||
            secondTarget.effects[PBEffects::Obstruct] ||
-           secondTarget.effects[PBEffects::Silktrap]) ||             
+           secondTarget.effects[PBEffects::Silktrap]) ||
            secondTarget.effects[PBEffects::TwoTurnAttack]>0 ||
            secondTarget.isFainted? ||
            !thismove.pbAccuracyCheck(user,secondTarget)) && !changetarget
@@ -3995,14 +4016,14 @@ class PokeBattle_Battler
       # Ilusión
       if target.effects[PBEffects::Illusion] && target.hasWorkingAbility(:ILLUSION) &&
          damage>0 && !target.damagestate.substitute
-        PBDebug.log("[Habilidad disparada] La Ilusión de #{target.pbThis} se terminó")    
+        PBDebug.log("[Habilidad disparada] La Ilusión de #{target.pbThis} se terminó")
         target.effects[PBEffects::Illusion]=nil
         @battle.scene.pbChangePokemon(target,target.pokemon)
         @battle.pbDisplay(_INTL("¡La {2} de {1} se terminó!",target.pbThis,
             PBAbilities.getName(target.ability)))
       end
       # Disguise
-      if target.hasWorkingAbility(:DISGUISE) && 
+      if target.hasWorkingAbility(:DISGUISE) &&
         isConst?(target.species,PBSpecies,:MIMIKYU) && target.form==0 &&
         thismove.pbIsDamaging? && !target.damagestate.substitute &&
         !user.hasMoldBreaker && !thismove.doesBypassIgnorableAbilities?
@@ -4106,7 +4127,7 @@ class PokeBattle_Battler
       target.pbFaint if target.isFainted? # no return
       user.pbFaint if user.isFainted? # no return
       break if user.isFainted? || target.isFainted?
-################################################################################      
+################################################################################
       # Dancer using damaging moves
     if thismove.isDanceMove? && !dancercheck
       if @battle.doublebattle
@@ -4183,14 +4204,14 @@ class PokeBattle_Battler
       elsif target.hasWorkingAbility(:DANCER) && !target.isFainted? && user.isFainted?
            @battle.pbDisplay(_INTL("¡Qué pena! {1} quería bailar...",target.pbThis))
       end
-    end 
-################################################################################      
+    end
+################################################################################
       # Verificación de bayas (maybe just called by ability effect, since only necessary Berries are checked)
       for j in 0...4
         @battle.battlers[j].pbBerryCureCheck
       end
       if i==numhits-1
-        if isConst?(thismove.id,PBMoves,:SCALESHOT) 
+        if isConst?(thismove.id,PBMoves,:SCALESHOT)
           if user.pbCanIncreaseStatStage?(PBStats::SPEED,user,false,self)
             user.pbIncreaseStat(PBStats::SPEED,1,user,false,self)
           end
@@ -4230,7 +4251,7 @@ class PokeBattle_Battler
     end
     PBDebug.log("El movimiento golpeó #{numhits} vez(es), daño total=#{turneffects[PBEffects::TotalDamage]}")
     # Innards Out
-    if target.ability==PBAbilities::INNARDSOUT && target.isFainted? && 
+    if target.ability==PBAbilities::INNARDSOUT && target.isFainted? &&
      thismove.pbIsDamaging? && !target.effects[PBEffects::GastroAcid]
       PBDebug.log("[Ability triggered] #{target.pbThis}'s Innards Out")
       @battle.pbDisplay(_INTL("{1} fue dañado por {3} de {2}!",user.pbThis,
@@ -4278,9 +4299,9 @@ class PokeBattle_Battler
     if @battle.zMove[side][owner]==self.index
       crystal = pbZCrystalFromType(choice[2].type)
       PokeBattle_ZMoves.new(@battle,self,choice[2],crystal,choice)
-    else      
+    else
     pbUseMove(choice,true)
-    end    
+    end
     return
   end
 
@@ -4335,7 +4356,7 @@ class PokeBattle_Battler
         @battle.scene.pbChangePokemon(self,@pokemon)
         @battle.pbDisplay(_INTL("¡{1} ha cambiado a su Forma Escudo!",pbThis))
         PBDebug.log("[Cambio de forma] #{pbThis} ha cambiado a su Forma Escudo")
-      end      
+      end
     end
     # Record that user has used a move this round (ot at least tried to)
     self.lastRoundMoved=@battle.turncount
@@ -4415,10 +4436,10 @@ class PokeBattle_Battler
     targets=[]
     user=pbFindUser(choice,targets)
     #Change to two targets for expanding force with psychic terrain
-    if isConst?(thismove.id,PBMoves,:EXPANDINGFORCE) && @battle.field.effects[PBEffects::PsychicTerrain]>0 && !user.isAirborne? && @battle.doublebattle 
+    if isConst?(thismove.id,PBMoves,:EXPANDINGFORCE) && @battle.field.effects[PBEffects::PsychicTerrain]>0 && !user.isAirborne? && @battle.doublebattle
       targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
     end
-    # Battle Arena only - assume failure 
+    # Battle Arena only - assume failure
     @battle.successStates[user.index].useState=1
     @battle.successStates[user.index].typemod=8
     # Check whether Selfdestruct works
@@ -4472,7 +4493,7 @@ class PokeBattle_Battler
       PBDebug.log("[Efecto prolongado disparado] Polvo Explosivo de anuló el movimiento de tipo Fuego")
       @battle.pbCommonAnimation("Powder",user,nil)
       @battle.pbDisplay(_INTL("¡Cuando las llamas tocaron el polvo que cubría al Pokémon, éste explotó!"))
-      user.pbReduceHP(1+(user.totalhp/4).floor) if !user.hasWorkingAbility(:MAGICGUARD)   
+      user.pbReduceHP(1+(user.totalhp/4).floor) if !user.hasWorkingAbility(:MAGICGUARD)
       user.lastMoveUsed=thismove.id
       user.lastMoveUsedType=thismove.pbType(thismove.type,user,nil)
       if !turneffects[PBEffects::SpecialUsage]
@@ -4486,7 +4507,7 @@ class PokeBattle_Battler
       return
     end
     # Mutatipo
-    if (user.hasWorkingAbility(:PROTEAN) || user.hasWorkingAbility(:LIBERO)) &&
+    if (user.hasWorkingAbility(:PROTEAN) || user.hasWorkingAbility(:LIBERO)) && !user.isTera? &&
        thismove.function!=0xAE &&   # Mirror Move
        thismove.function!=0xAF &&   # Copycat
        thismove.function!=0xB0 &&   # Me First
@@ -4526,7 +4547,7 @@ class PokeBattle_Battler
            if thismove.isDanceMove?
              for s in @battle.pbPriority(true)
                if s!=user &&
-               s.hasWorkingAbility(:DANCER) && 
+               s.hasWorkingAbility(:DANCER) &&
                  !s.isFainted?
                  @battle.pbDisplay(_INTL("¡{1} también baila!",s.pbThis))
                  PBDebug.logonerr{
@@ -4534,7 +4555,7 @@ class PokeBattle_Battler
                  }
                end
              end
-           end 
+           end
       end
     else
       # We have targets
@@ -4658,7 +4679,7 @@ class PokeBattle_Battler
         @battle.pbRevival(index,newpoke)
         @battle.pbMessagesOnRevival(index,newpoke,newpokename)
       end
-    end 
+    end
     # Record move as having been used
     user.lastMoveUsed=thismove.id
     user.lastMoveUsedType=thismove.pbType(thismove.type,user,nil)
@@ -4726,13 +4747,13 @@ class PokeBattle_Battler
 
   def pbEndTurn(choice)
     # True end(?)
-    if @effects[PBEffects::ChoiceBand]<0 && @lastMoveUsed>=0 && !self.isFainted? && 
+    if @effects[PBEffects::ChoiceBand]<0 && @lastMoveUsed>=0 && !self.isFainted? &&
        (self.hasWorkingItem(:CHOICEBAND) ||
        self.hasWorkingItem(:CHOICESPECS) ||
        self.hasWorkingItem(:CHOICESCARF))
       @effects[PBEffects::ChoiceBand]=@lastMoveUsed
     end
-    if @effects[PBEffects::GorillaTactics]<0 && @lastMoveUsed>=0 && !isFainted? && 
+    if @effects[PBEffects::GorillaTactics]<0 && @lastMoveUsed>=0 && !isFainted? &&
        self.hasWorkingAbility(:GORILLATACTICS)
       @effects[PBEffects::GorillaTactics]=@lastMoveUsed
     end
@@ -4781,16 +4802,16 @@ class PokeBattle_Battler
       return false
     end
     # Use the move
-    if choice[2].zmove	
-      choice[2].zmove=false	
-      @battle.pbUseZMove(self.index,choice[2],self.item)	
-    else          	
+    if choice[2].zmove
+      choice[2].zmove=false
+      @battle.pbUseZMove(self.index,choice[2],self.item)
+    else
 #   @battle.pbDisplayPaused("Before: [#{@lastMoveUsedSketch},#{@lastMoveUsed}]")
     PBDebug.log("#{pbThis} usó #{choice[2].name}")
     PBDebug.logonerr{
        pbUseMove(choice,choice[2]==@battle.struggle)
     }
-    end	
+    end
 #   @battle.pbDisplayPaused("After: [#{@lastMoveUsedSketch},#{@lastMoveUsed}]")
     return true
   end

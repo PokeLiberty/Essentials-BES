@@ -7,10 +7,10 @@ class PokeBattle_ZMoves
   attr_reader(:type)
   attr_reader(:accuracy)
   attr_reader(:addlEffect)
-  attr_reader(:target)   
+  attr_reader(:target)
   #attr_reader(:priority) #Priority already handled
   attr_reader(:flags)
-  attr_reader(:category)  
+  attr_reader(:category)
   attr_reader(:thismove)
   attr_reader(:oldmove)
   attr_reader(:status)
@@ -37,16 +37,16 @@ class PokeBattle_ZMoves
     #@priority   = movedata.priority
     @flags      = pbZMoveFlags(move,crystal)
     @category   = oldmovedata.category
-    @thismove   = self #move  
+    @thismove   = self #move
     battler.pbBeginTurn(self)
     if !@status
       @battle.pbDisplayBrief(_INTL("¡{1} liberó todo el poder de su movimiento Z!",battler.pbThis))
       @battle.pbDisplayBrief(_INTL("¡{1}!",@nameEspanol))
-    end    
+    end
     zchoice=@battle.choices[battler.index] #[0,0,move,move.target]
     if simplechoice!=false
       zchoice=simplechoice
-    end    
+    end
     ztargets=[]
     user=battler.pbFindUser(zchoice,ztargets)
     if ztargets.length==0
@@ -57,15 +57,15 @@ class PokeBattle_ZMoves
          @thismove.target==PBTargets::Partner ||
          @thismove.target==PBTargets::UserOrPartner ||
          @thismove.target==PBTargets::SingleOpposing ||
-         @thismove.target==PBTargets::OppositeOpposing 
+         @thismove.target==PBTargets::OppositeOpposing
         @battle.pbDisplay(_INTL("Pero no habia objetivo..."))
       else
         #selftarget status moves here
-        pbZStatus(@id,battler)        
+        pbZStatus(@id,battler)
         zchoice[2].name = @name
         battler.pbUseMove(zchoice)
         @oldmove.name = @oldname
-      end      
+      end
     else
       if @status
         #targeted status Z's here
@@ -77,13 +77,13 @@ class PokeBattle_ZMoves
         turneffects=[]
         turneffects[PBEffects::SpecialUsage]=false
         turneffects[PBEffects::PassedTrying]=false
-        turneffects[PBEffects::TotalDamage]=0  
-        battler.pbProcessMoveAgainstTarget(@thismove,user,ztargets[0],1,turneffects,true,nil,true)  
+        turneffects[PBEffects::TotalDamage]=0
+        battler.pbProcessMoveAgainstTarget(@thismove,user,ztargets[0],1,turneffects,true,nil,true)
         battler.pbReducePPOther(@oldmove)
       end
-    end    
+    end
   end
-  
+
   def pbZMoveId(oldmove,crystal)
     if @status
       return oldmove.id
@@ -91,44 +91,44 @@ class PokeBattle_ZMoves
       case crystal
       when getID(PBItems,:NORMALIUMZ)   ;return "Z001"
       when getID(PBItems,:FIGHTINIUMZ)  ;return "Z002"
-      when getID(PBItems,:FLYINIUMZ)    ;return "Z003"      
-      when getID(PBItems,:POISONIUMZ)   ;return "Z004"              
-      when getID(PBItems,:GROUNDIUMZ)   ;return "Z005"        
-      when getID(PBItems,:ROCKIUMZ)     ;return "Z006"               
-      when getID(PBItems,:BUGINIUMZ)    ;return "Z007"      
-      when getID(PBItems,:GHOSTIUMZ)    ;return "Z008"                 
-      when getID(PBItems,:STEELIUMZ)    ;return "Z009"           
-      when getID(PBItems,:FIRIUMZ)      ;return "Z010"     
-      when getID(PBItems,:WATERIUMZ)    ;return "Z011"                   
-      when getID(PBItems,:GRASSIUMZ)    ;return "Z012"              
-      when getID(PBItems,:ELECTRIUMZ)   ;return "Z013"              
-      when getID(PBItems,:PSYCHIUMZ)    ;return "Z014"           
-      when getID(PBItems,:ICIUMZ)       ;return "Z015"                    
-      when getID(PBItems,:DRAGONIUMZ)   ;return "Z016"                  
-      when getID(PBItems,:DARKINIUMZ)   ;return "Z017"             
-      when getID(PBItems,:FAIRIUMZ)     ;return "Z018"                           
-      when getID(PBItems,:ALORAICHIUMZ) ;return "Z019"              
-      when getID(PBItems,:DECIDIUMZ)    ;return "Z020"            
-      when getID(PBItems,:INCINIUMZ)    ;return "Z021"        
-      when getID(PBItems,:PRIMARIUMZ)   ;return "Z022" 
-      when getID(PBItems,:EEVIUMZ)      ;return "Z023"        
-      when getID(PBItems,:PIKANIUMZ)    ;return "Z024"  
-      when getID(PBItems,:SNORLIUMZ)    ;return "Z025"     
+      when getID(PBItems,:FLYINIUMZ)    ;return "Z003"
+      when getID(PBItems,:POISONIUMZ)   ;return "Z004"
+      when getID(PBItems,:GROUNDIUMZ)   ;return "Z005"
+      when getID(PBItems,:ROCKIUMZ)     ;return "Z006"
+      when getID(PBItems,:BUGINIUMZ)    ;return "Z007"
+      when getID(PBItems,:GHOSTIUMZ)    ;return "Z008"
+      when getID(PBItems,:STEELIUMZ)    ;return "Z009"
+      when getID(PBItems,:FIRIUMZ)      ;return "Z010"
+      when getID(PBItems,:WATERIUMZ)    ;return "Z011"
+      when getID(PBItems,:GRASSIUMZ)    ;return "Z012"
+      when getID(PBItems,:ELECTRIUMZ)   ;return "Z013"
+      when getID(PBItems,:PSYCHIUMZ)    ;return "Z014"
+      when getID(PBItems,:ICIUMZ)       ;return "Z015"
+      when getID(PBItems,:DRAGONIUMZ)   ;return "Z016"
+      when getID(PBItems,:DARKINIUMZ)   ;return "Z017"
+      when getID(PBItems,:FAIRIUMZ)     ;return "Z018"
+      when getID(PBItems,:ALORAICHIUMZ) ;return "Z019"
+      when getID(PBItems,:DECIDIUMZ)    ;return "Z020"
+      when getID(PBItems,:INCINIUMZ)    ;return "Z021"
+      when getID(PBItems,:PRIMARIUMZ)   ;return "Z022"
+      when getID(PBItems,:EEVIUMZ)      ;return "Z023"
+      when getID(PBItems,:PIKANIUMZ)    ;return "Z024"
+      when getID(PBItems,:SNORLIUMZ)    ;return "Z025"
       when getID(PBItems,:MEWNIUMZ)     ;return "Z026"
       when getID(PBItems,:TAPUNIUMZ)    ;return "Z027"
       when getID(PBItems,:MARSHADIUMZ)  ;return "Z028"
-      when getID(PBItems,:PIKASHUNIUMZ) ;return "Z029" 
-      when getID(PBItems,:ULTRANECROZIUMZ) ;return "Z030" 
-      when getID(PBItems,:LYCANIUMZ)  ;return "Z031"  
-      when getID(PBItems,:MIMIKIUMZ)  ;return "Z032"  
-      when getID(PBItems,:KOMMONIUMZ) ;return "Z033"  
-      when getID(PBItems,:SOLGANIUMZ) ;return "Z034"  
-      when getID(PBItems,:LUNALIUMZ)  ;return "Z035"  
+      when getID(PBItems,:PIKASHUNIUMZ) ;return "Z029"
+      when getID(PBItems,:ULTRANECROZIUMZ) ;return "Z030"
+      when getID(PBItems,:LYCANIUMZ)  ;return "Z031"
+      when getID(PBItems,:MIMIKIUMZ)  ;return "Z032"
+      when getID(PBItems,:KOMMONIUMZ) ;return "Z033"
+      when getID(PBItems,:SOLGANIUMZ) ;return "Z034"
+      when getID(PBItems,:LUNALIUMZ)  ;return "Z035"
 
       end
-    end    
-  end  
-  
+    end
+  end
+
   def pbZMoveName(oldmove,crystal)
     if @status
       return "Z-" + oldmove.name
@@ -136,43 +136,43 @@ class PokeBattle_ZMoves
       case crystal
       when getID(PBItems,:NORMALIUMZ)  ;return "Breakneck Blitz"
       when getID(PBItems,:FIGHTINIUMZ) ;return "All-Out Pummeling"
-      when getID(PBItems,:FLYINIUMZ)   ;return "Supersonic Skystrike"      
-      when getID(PBItems,:POISONIUMZ)  ;return "Acid Downpour"              
-      when getID(PBItems,:GROUNDIUMZ)  ;return "Tectonic Rage"        
-      when getID(PBItems,:ROCKIUMZ)    ;return "Continental Crush"               
-      when getID(PBItems,:BUGINIUMZ)   ;return "Savage Spin-Out"      
-      when getID(PBItems,:GHOSTIUMZ)   ;return "Never-Ending Nightmare"                 
-      when getID(PBItems,:STEELIUMZ)   ;return "Corkscrew Crash"           
-      when getID(PBItems,:FIRIUMZ)     ;return "Inferno Overdrive"     
-      when getID(PBItems,:WATERIUMZ)   ;return "Hydro Vortex"                   
-      when getID(PBItems,:GRASSIUMZ)   ;return "Bloom Doom"              
-      when getID(PBItems,:ELECTRIUMZ)  ;return "Gigavolt Havoc"              
-      when getID(PBItems,:PSYCHIUMZ)   ;return "Shattered Psyche"           
-      when getID(PBItems,:ICIUMZ)      ;return "Subzero Slammer"                    
-      when getID(PBItems,:DRAGONIUMZ)  ;return "Devastating Drake"                  
-      when getID(PBItems,:DARKINIUMZ)  ;return "Black Hole Eclipse"             
-      when getID(PBItems,:FAIRIUMZ)    ;return "Twinkle Tackle"                           
-      when getID(PBItems,:ALORAICHIUMZ);return "Stoked Sparksurfer"              
-      when getID(PBItems,:DECIDIUMZ)   ;return "Sinister Arrow Raid"            
-      when getID(PBItems,:INCINIUMZ)   ;return "Malicious Moonsault"        
-      when getID(PBItems,:PRIMARIUMZ)  ;return "Oceanic Operetta" 
-      when getID(PBItems,:EEVIUMZ)     ;return "Extreme Evoboost"        
-      when getID(PBItems,:PIKANIUMZ)   ;return "Catastropika"  
-      when getID(PBItems,:SNORLIUMZ)   ;return "Pulverizing Pancake"     
+      when getID(PBItems,:FLYINIUMZ)   ;return "Supersonic Skystrike"
+      when getID(PBItems,:POISONIUMZ)  ;return "Acid Downpour"
+      when getID(PBItems,:GROUNDIUMZ)  ;return "Tectonic Rage"
+      when getID(PBItems,:ROCKIUMZ)    ;return "Continental Crush"
+      when getID(PBItems,:BUGINIUMZ)   ;return "Savage Spin-Out"
+      when getID(PBItems,:GHOSTIUMZ)   ;return "Never-Ending Nightmare"
+      when getID(PBItems,:STEELIUMZ)   ;return "Corkscrew Crash"
+      when getID(PBItems,:FIRIUMZ)     ;return "Inferno Overdrive"
+      when getID(PBItems,:WATERIUMZ)   ;return "Hydro Vortex"
+      when getID(PBItems,:GRASSIUMZ)   ;return "Bloom Doom"
+      when getID(PBItems,:ELECTRIUMZ)  ;return "Gigavolt Havoc"
+      when getID(PBItems,:PSYCHIUMZ)   ;return "Shattered Psyche"
+      when getID(PBItems,:ICIUMZ)      ;return "Subzero Slammer"
+      when getID(PBItems,:DRAGONIUMZ)  ;return "Devastating Drake"
+      when getID(PBItems,:DARKINIUMZ)  ;return "Black Hole Eclipse"
+      when getID(PBItems,:FAIRIUMZ)    ;return "Twinkle Tackle"
+      when getID(PBItems,:ALORAICHIUMZ);return "Stoked Sparksurfer"
+      when getID(PBItems,:DECIDIUMZ)   ;return "Sinister Arrow Raid"
+      when getID(PBItems,:INCINIUMZ)   ;return "Malicious Moonsault"
+      when getID(PBItems,:PRIMARIUMZ)  ;return "Oceanic Operetta"
+      when getID(PBItems,:EEVIUMZ)     ;return "Extreme Evoboost"
+      when getID(PBItems,:PIKANIUMZ)   ;return "Catastropika"
+      when getID(PBItems,:SNORLIUMZ)   ;return "Pulverizing Pancake"
       when getID(PBItems,:MEWNIUMZ)    ;return "Genesis Supernova"
       when getID(PBItems,:TAPUNIUMZ)   ;return "Guardian of Alola"
       when getID(PBItems,:MARSHADIUMZ) ;return "Soul-Stealing 7-Star Strike"
-      when getID(PBItems,:PIKASHUNIUMZ);return "10,000,000 Volt Tunderbolt"  
-      when getID(PBItems,:ULTRANECROZIUMZ) ;return "Light That Burns the Sky" 
-      when getID(PBItems,:LYCANIUMZ)  ;return "Splintered Stormshards"  
-      when getID(PBItems,:MIMIKIUMZ)  ;return "Let's Snuggle Forever"  
-      when getID(PBItems,:KOMMONIUMZ) ;return "Clangorous Soulblaze"  
-      when getID(PBItems,:SOLGANIUMZ) ;return "Searing Sunraze Smash"  
-      when getID(PBItems,:LUNALIUMZ)  ;return "Menacing Moonraze Maelstrom"  
+      when getID(PBItems,:PIKASHUNIUMZ);return "10,000,000 Volt Tunderbolt"
+      when getID(PBItems,:ULTRANECROZIUMZ) ;return "Light That Burns the Sky"
+      when getID(PBItems,:LYCANIUMZ)  ;return "Splintered Stormshards"
+      when getID(PBItems,:MIMIKIUMZ)  ;return "Let's Snuggle Forever"
+      when getID(PBItems,:KOMMONIUMZ) ;return "Clangorous Soulblaze"
+      when getID(PBItems,:SOLGANIUMZ) ;return "Searing Sunraze Smash"
+      when getID(PBItems,:LUNALIUMZ)  ;return "Menacing Moonraze Maelstrom"
       end
-    end    
+    end
   end
-  
+
   #BES-T ZMOVES EN ESPAÑOL
   def pbZMoveName2(oldmove,crystal)
     if @status
@@ -181,51 +181,51 @@ class PokeBattle_ZMoves
       case crystal
       when getID(PBItems,:NORMALIUMZ)  ;return "Carrera arrolladora"
       when getID(PBItems,:FIGHTINIUMZ) ;return "Ráfaga demoledora"
-      when getID(PBItems,:FLYINIUMZ)   ;return "Picado supersónico"      
-      when getID(PBItems,:POISONIUMZ)  ;return "Diluvio corrosivo"              
-      when getID(PBItems,:GROUNDIUMZ)  ;return "Barrena telúrica"        
-      when getID(PBItems,:ROCKIUMZ)    ;return "Aplastamiento gigalítico"               
-      when getID(PBItems,:BUGINIUMZ)   ;return "Guadaña sedosa"      
-      when getID(PBItems,:GHOSTIUMZ)   ;return "Presa espectral"                 
-      when getID(PBItems,:STEELIUMZ)   ;return "Hélice trepanadora"           
-      when getID(PBItems,:FIRIUMZ)     ;return "Hecatombe pírica"     
-      when getID(PBItems,:WATERIUMZ)   ;return "Hidrovórtice abisal"                   
-      when getID(PBItems,:GRASSIUMZ)   ;return "Megatón floral"              
-      when getID(PBItems,:ELECTRIUMZ)  ;return "Gigavoltio destructor"              
-      when getID(PBItems,:PSYCHIUMZ)   ;return "Disruptor psíquico"           
-      when getID(PBItems,:ICIUMZ)      ;return "Crioaliento despiadado"                    
-      when getID(PBItems,:DRAGONIUMZ)  ;return "Dracoaliento devastador"                  
-      when getID(PBItems,:DARKINIUMZ)  ;return "Agujero negro aniquilador"             
-      when getID(PBItems,:FAIRIUMZ)    ;return "Arrumaco sideral"                           
-      when getID(PBItems,:ALORAICHIUMZ);return "Surfeo galvánico"              
-      when getID(PBItems,:DECIDIUMZ)   ;return "Aluvión de flechas sombrías"            
-      when getID(PBItems,:INCINIUMZ)   ;return "Hiperplancha oscura"        
-      when getID(PBItems,:PRIMARIUMZ)  ;return "Sinfonía de la diva marina" 
-      when getID(PBItems,:EEVIUMZ)     ;return "Novena potencia"        
-      when getID(PBItems,:PIKANIUMZ)   ;return "Pikavoltio letal"  
-      when getID(PBItems,:SNORLIUMZ)   ;return "Arrojo intempestivo"     
+      when getID(PBItems,:FLYINIUMZ)   ;return "Picado supersónico"
+      when getID(PBItems,:POISONIUMZ)  ;return "Diluvio corrosivo"
+      when getID(PBItems,:GROUNDIUMZ)  ;return "Barrena telúrica"
+      when getID(PBItems,:ROCKIUMZ)    ;return "Aplastamiento gigalítico"
+      when getID(PBItems,:BUGINIUMZ)   ;return "Guadaña sedosa"
+      when getID(PBItems,:GHOSTIUMZ)   ;return "Presa espectral"
+      when getID(PBItems,:STEELIUMZ)   ;return "Hélice trepanadora"
+      when getID(PBItems,:FIRIUMZ)     ;return "Hecatombe pírica"
+      when getID(PBItems,:WATERIUMZ)   ;return "Hidrovórtice abisal"
+      when getID(PBItems,:GRASSIUMZ)   ;return "Megatón floral"
+      when getID(PBItems,:ELECTRIUMZ)  ;return "Gigavoltio destructor"
+      when getID(PBItems,:PSYCHIUMZ)   ;return "Disruptor psíquico"
+      when getID(PBItems,:ICIUMZ)      ;return "Crioaliento despiadado"
+      when getID(PBItems,:DRAGONIUMZ)  ;return "Dracoaliento devastador"
+      when getID(PBItems,:DARKINIUMZ)  ;return "Agujero negro aniquilador"
+      when getID(PBItems,:FAIRIUMZ)    ;return "Arrumaco sideral"
+      when getID(PBItems,:ALORAICHIUMZ);return "Surfeo galvánico"
+      when getID(PBItems,:DECIDIUMZ)   ;return "Aluvión de flechas sombrías"
+      when getID(PBItems,:INCINIUMZ)   ;return "Hiperplancha oscura"
+      when getID(PBItems,:PRIMARIUMZ)  ;return "Sinfonía de la diva marina"
+      when getID(PBItems,:EEVIUMZ)     ;return "Novena potencia"
+      when getID(PBItems,:PIKANIUMZ)   ;return "Pikavoltio letal"
+      when getID(PBItems,:SNORLIUMZ)   ;return "Arrojo intempestivo"
       when getID(PBItems,:MEWNIUMZ)    ;return "Supernova original"
       when getID(PBItems,:TAPUNIUMZ)   ;return "Cólera del guardián"
       when getID(PBItems,:MARSHADIUMZ) ;return "Constelación robaalmas"
-      when getID(PBItems,:PIKASHUNIUMZ);return "Gigarrayo fulminante"    
-      when getID(PBItems,:ULTRANECROZIUMZ) ;return "Fotodestrucción apocalíptica" 
-      when getID(PBItems,:LYCANIUMZ)  ;return "Tempestad rocosa"  
-      when getID(PBItems,:MIMIKIUMZ)  ;return "Somanta amistosa"  
-      when getID(PBItems,:KOMMONIUMZ) ;return "Estruendo implacable"  
-      when getID(PBItems,:SOLGANIUMZ) ;return "Embestida solar"  
-      when getID(PBItems,:LUNALIUMZ)  ;return "Deflagración lunar"  
+      when getID(PBItems,:PIKASHUNIUMZ);return "Gigarrayo fulminante"
+      when getID(PBItems,:ULTRANECROZIUMZ) ;return "Fotodestrucción apocalíptica"
+      when getID(PBItems,:LYCANIUMZ)  ;return "Tempestad rocosa"
+      when getID(PBItems,:MIMIKIUMZ)  ;return "Somanta amistosa"
+      when getID(PBItems,:KOMMONIUMZ) ;return "Estruendo implacable"
+      when getID(PBItems,:SOLGANIUMZ) ;return "Embestida solar"
+      when getID(PBItems,:LUNALIUMZ)  ;return "Deflagración lunar"
       end
-    end    
+    end
   end
-  
+
   def pbZMoveFunction(oldmove,crystal)
     if @status
       return oldmove.function
     else
       "Z"
-    end 
+    end
   end
-  
+
   def pbZMoveBaseDamage(oldmove,crystal)
     if @status
       return 0
@@ -236,19 +236,19 @@ class PokeBattle_ZMoves
       when getID(PBItems,:INCINIUMZ)    ;return 180
       when getID(PBItems,:PRIMARIUMZ)   ;return 195
       when getID(PBItems,:EEVIUMZ)      ;return 0
-      when getID(PBItems,:PIKANIUMZ)    ;return 210  
+      when getID(PBItems,:PIKANIUMZ)    ;return 210
       when getID(PBItems,:SNORLIUMZ)    ;return 210
       when getID(PBItems,:MEWNIUMZ)     ;return 185
       when getID(PBItems,:TAPUNIUMZ)    ;return 0
       when getID(PBItems,:MARSHADIUMZ)  ;return 195
-      when getID(PBItems,:PIKASHUNIUMZ) ;return 195        
-      when getID(PBItems,:ULTRANECROZIUMZ) ;return 200    
+      when getID(PBItems,:PIKASHUNIUMZ) ;return 195
+      when getID(PBItems,:ULTRANECROZIUMZ) ;return 200
       when getID(PBItems,:LYCANIUMZ)  ;return 190
       when getID(PBItems,:MIMIKIUMZ)  ;return 190
       when getID(PBItems,:KOMMONIUMZ) ;return 185
-      when getID(PBItems,:SOLGANIUMZ) ;return 200  
+      when getID(PBItems,:SOLGANIUMZ) ;return 200
       when getID(PBItems,:LUNALIUMZ)  ;return 200
-        
+
       else
         case @oldmove.id
         when getID(PBMoves,:MEGADRAIN)    ;return 120
@@ -280,21 +280,21 @@ class PokeBattle_ZMoves
             return 195
           elsif check>139
             return 200
-          end          
-        end        
-      end  
-    end    
+          end
+        end
+      end
+    end
   end
-  
+
   def pbZMoveAccuracy(oldmove,crystal)
     if @status
       return oldmove.accuracy
     else
       return 0 #Z Moves can't miss
-    end      
+    end
   end
-  
-  
+
+
   def pbZMoveFlags(oldmove,crystal)
     if @status
       return oldmove.flags
@@ -323,41 +323,41 @@ class PokeBattle_ZMoves
       when getID(PBItems,:INCINIUMZ)   ;return "af"
       when getID(PBItems,:PRIMARIUMZ)  ;return "f"
       when getID(PBItems,:EEVIUMZ)     ;return ""
-      when getID(PBItems,:PIKANIUMZ)   ;return "af" 
+      when getID(PBItems,:PIKANIUMZ)   ;return "af"
       when getID(PBItems,:SNORLIUMZ)   ;return "af"
       when getID(PBItems,:MEWNIUMZ)    ;return ""
       when getID(PBItems,:TAPUNIUMZ)   ;return "f"
       when getID(PBItems,:MARSHADIUMZ) ;return "a"
-      when getID(PBItems,:PIKASHUNIUMZ);return ""        
-      when getID(PBItems,:ULTRANECROZIUMZ);return ""   
-      when getID(PBItems,:LYCANIUMZ)  ;return "" 
-      when getID(PBItems,:MIMIKIUMZ)  ;return "" 
-      when getID(PBItems,:KOMMONIUMZ) ;return "" 
-      when getID(PBItems,:SOLGANIUMZ) ;return ""   
-      when getID(PBItems,:LUNALIUMZ)  ;return "" 
-      end  
-    end    
+      when getID(PBItems,:PIKASHUNIUMZ);return ""
+      when getID(PBItems,:ULTRANECROZIUMZ);return ""
+      when getID(PBItems,:LYCANIUMZ)  ;return ""
+      when getID(PBItems,:MIMIKIUMZ)  ;return ""
+      when getID(PBItems,:KOMMONIUMZ) ;return ""
+      when getID(PBItems,:SOLGANIUMZ) ;return ""
+      when getID(PBItems,:LUNALIUMZ)  ;return ""
+      end
+    end
   end
-  
+
 ################################################################################
 # PokeBattle_Move Features needed for move use
-################################################################################  
-  def pbIsSpecial?(type)  
+################################################################################
+  def pbIsSpecial?(type)
     @oldmove.pbIsSpecial?(type)
   end
-  
-  def pbIsPhysical?(type)  
+
+  def pbIsPhysical?(type)
     @oldmove.pbIsPhysical?(type)
-  end  
-  
+  end
+
   def pbEffectAfterHit(attacker,opponent,turneffects)
-  end  
-  
+  end
+
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     return 0 if !opponent
     if @id == "Z027" # Guardian of Alola
       return pbEffectFixedDamage((opponent.hp*3/4).floor,attacker,opponent,hitnum,alltargets,showanimation)
-    elsif @id == "Z023" # Extreme Evoboost  
+    elsif @id == "Z023" # Extreme Evoboost
       if !attacker.pbCanIncreaseStatStage?(PBStats::SPATK,false) &&
          !attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,false) &&
          !attacker.pbCanIncreaseStatStage?(PBStats::SPEED,false) &&
@@ -387,13 +387,13 @@ class PokeBattle_ZMoves
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,false)
         attacker.pbIncreaseStat(PBStats::DEFENSE,2,false,true,nil,showanim)
         showanim=false
-      end      
+      end
       attacker.lastRoundMoved=@battle.turncount
-      return 0     
-    end    
-    damage=pbCalcDamage(attacker,opponent)    
-    if opponent.damagestate.typemod!=0 
-      pbShowAnimation(@name,attacker,opponent,hitnum,alltargets,showanimation)     
+      return 0
+    end
+    damage=pbCalcDamage(attacker,opponent)
+    if opponent.damagestate.typemod!=0
+      pbShowAnimation(@name,attacker,opponent,hitnum,alltargets,showanimation)
     end
     damage=pbReduceHPDamage(damage,attacker,opponent)
     pbEffectMessages(attacker,opponent)
@@ -402,12 +402,12 @@ class PokeBattle_ZMoves
       if opponent.pbCanParalyze?(false)
         opponent.pbParalyze(attacker)
         @battle.pbDisplay(_INTL("¡{1} está paralizado!  Puede que no se mueva",opponent.pbThis))
-      end   
-    end    
+      end
+    end
     attacker.lastRoundMoved=@battle.turncount
-    return damage   
-  end  
-  
+    return damage
+  end
+
   def pbEffectFixedDamage(damage,attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     type=@type
     typemod=pbTypeModMessages(type,attacker,opponent)
@@ -427,15 +427,15 @@ class PokeBattle_ZMoves
       return damage
     end
     return 0
-  end  
+  end
 
   def pbOnDamageLost(damage,attacker,opponent)
     #Used by Counter/Mirror Coat/Revenge/Focus Punch/Bide
-    type=@type  
+    type=@type
     if opponent.effects[PBEffects::Bide]>0
       opponent.effects[PBEffects::BideDamage]+=damage
       opponent.effects[PBEffects::BideTarget]=attacker.index
-    end            
+    end
     if @oldmove.pbIsPhysical?(type)
       opponent.effects[PBEffects::Counter]=damage
       opponent.effects[PBEffects::CounterTarget]=attacker.index
@@ -447,8 +447,8 @@ class PokeBattle_ZMoves
     opponent.lastHPLost=damage # for Revenge/Focus Punch/Metal Burst
     opponent.tookDamage=true if damage>0 # for Assurance
     opponent.lastAttacker.push(attacker.index) # for Revenge/Metal Burst
-  end 
-  
+  end
+
   def pbEffectMessages(attacker,opponent,ignoretype=false)
     if opponent.damagestate.critical
       @battle.pbDisplay(_INTL("¡Es un golpe crítico!"))
@@ -468,8 +468,8 @@ class PokeBattle_ZMoves
     elsif opponent.damagestate.focusband
       @battle.pbDisplay(_INTL("¡{1} resistió usando Cinta Focus!",opponent.pbThis))
     end
-  end  
-  
+  end
+
   def pbReduceHPDamage(damage,attacker,opponent)
     endure=false
     if opponent.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(attacker) &&
@@ -529,24 +529,24 @@ class PokeBattle_ZMoves
       opponent.damagestate.hplost=damage
     end
     return damage
-  end 
-  
+  end
+
   def pbType(type,attacker,opponent)
     return @type
-  end  
+  end
 
-  def isContactMove?    
+  def isContactMove?
     return @flags.include?("a")
   end
-  
+
   def pbCanUseWhileAsleep?
     return false
-  end  
-  
-  def isDanceMove?    
+  end
+
+  def isDanceMove?
     return false
-  end  
-  
+  end
+
   def pbTypeModifier(type,attacker,opponent)
     return 8 if type<0
     return 8 if isConst?(type,PBTypes,:GROUND) && opponent.pbHasType?(:FLYING) &&
@@ -611,7 +611,7 @@ class PokeBattle_ZMoves
     end
     return mod1*mod2*mod3
   end
-  
+
   def pbCalcDamage(attacker,opponent,options=0)
     opponent.damagestate.critical=false
     opponent.damagestate.typemod=0
@@ -619,7 +619,7 @@ class PokeBattle_ZMoves
     opponent.damagestate.hplost=0
     return 0 if @basedamage==0
     stagemul=[10,10,10,10,10,10,10,15,20,25,30,35,40]
-    stagediv=[40,35,30,25,20,15,10,10,10,10,10,10,10]    
+    stagediv=[40,35,30,25,20,15,10,10,10,10,10,10,10]
     type=pbType(@type,attacker,opponent)
     opponent.damagestate.critical=pbIsCritical?(attacker,opponent)
     ##### Calcuate base power of move #####
@@ -1078,19 +1078,19 @@ class PokeBattle_ZMoves
     PBDebug.log("Move's damage calculated to be #{damage}")
     return damage
   end
-  
-  
-  
+
+
+
   def pbModifyDamage(damagemult,attacker,opponent)
-    if !opponent.effects[PBEffects::ProtectNegation] && (opponent.pbOwnSide.effects[PBEffects::MatBlock] || 
+    if !opponent.effects[PBEffects::ProtectNegation] && (opponent.pbOwnSide.effects[PBEffects::MatBlock] ||
       opponent.effects[PBEffects::Protect] || opponent.effects[PBEffects::SpikyShield])
       @battle.pbDisplay(_INTL("¡{1} no pudo protegerse completamente!",opponent.pbThis))
       return (damagemult/4).floor
-    else      
+    else
       return damagemult
-    end    
-  end    
-  
+    end
+  end
+
   def pbIsCritical?(attacker,opponent)
     if attacker.effects[PBEffects::LaserFocus]>0
       attacker.effects[PBEffects::LaserFocus]=0
@@ -1100,8 +1100,8 @@ class PokeBattle_ZMoves
       if opponent.hasWorkingAbility(:BATTLEARMOR) ||
          opponent.hasWorkingAbility(:SHELLARMOR)
         return false
-      end      
-      return true if attacker.hasWorkingAbility(:MERCILESS) && opponent.status==PBStatuses::POISON      
+      end
+      return true if attacker.hasWorkingAbility(:MERCILESS) && opponent.status==PBStatuses::POISON
       return true if attacker.effects[PBEffects::LaserFocus]>0
     end
     return false if opponent.pbOwnSide.effects[PBEffects::LuckyChant]>0
@@ -1115,7 +1115,7 @@ class PokeBattle_ZMoves
     c=4 if c>4
     return @battle.pbRandom(ratios[c])==0
   end
-  
+
   def pbTypeModMessages(type,attacker,opponent)
     return 8 if type<0
     typemod=pbTypeModifier(type,attacker,opponent)
@@ -1125,17 +1125,17 @@ class PokeBattle_ZMoves
       return 0 if pbTypeImmunityByAbility(type,attacker,opponent)
     end
     return typemod
-  end 
-  
+  end
+
   def pbTargetsMultiple?(attacker)
     return false
-  end  
-  
+  end
+
   def pbTypeImmunityByAbility(type,attacker,opponent)
     return false if attacker.index==opponent.index
     return false if attacker.hasMoldBreaker
     # Herbívoro
-    if opponent.hasWorkingAbility(:SAPSIPPER) && isConst?(type,PBTypes,:GRASS)         
+    if opponent.hasWorkingAbility(:SAPSIPPER) && isConst?(type,PBTypes,:GRASS)
       PBDebug.log("[Habilidad disparada] Herbívoro de #{opponent.pbThis} (hizo ineficaz #{@name})")
       if opponent.pbCanIncreaseStatStage?(PBStats::ATTACK,opponent)
         opponent.pbIncreaseStatWithCause(PBStats::ATTACK,1,opponent,PBAbilities.getName(opponent.ability))
@@ -1146,7 +1146,7 @@ class PokeBattle_ZMoves
       return true
     end
     # Colector / Pararrayos
-    if (opponent.hasWorkingAbility(:STORMDRAIN) && isConst?(type,PBTypes,:WATER)) ||     
+    if (opponent.hasWorkingAbility(:STORMDRAIN) && isConst?(type,PBTypes,:WATER)) ||
        (opponent.hasWorkingAbility(:LIGHTNINGROD) && isConst?(type,PBTypes,:ELECTRIC))
       PBDebug.log("[Habilidad disparada] #{PBAbilities.getName(opponent.ability)} de #{opponent.pbThis} (hizo ineficaz #{@name})")
       if opponent.pbCanIncreaseStatStage?(PBStats::SPATK,opponent)
@@ -1158,7 +1158,7 @@ class PokeBattle_ZMoves
       return true
     end
     # Electromotor
-    if opponent.hasWorkingAbility(:MOTORDRIVE) && isConst?(type,PBTypes,:ELECTRIC)       
+    if opponent.hasWorkingAbility(:MOTORDRIVE) && isConst?(type,PBTypes,:ELECTRIC)
       PBDebug.log("[Habilidad disparada] Electromotor de #{opponent.pbThis} (hizo ineficaz #{@name})")
       if opponent.pbCanIncreaseStatStage?(PBStats::SPEED,opponent)
         opponent.pbIncreaseStatWithCause(PBStats::SPEED,1,opponent,PBAbilities.getName(opponent.ability))
@@ -1169,7 +1169,7 @@ class PokeBattle_ZMoves
       return true
     end
     # Cuerpo Horneado
-    if opponent.hasWorkingAbility(:WELLBAKEDBODY) && isConst?(type,PBTypes,:FIRE) 
+    if opponent.hasWorkingAbility(:WELLBAKEDBODY) && isConst?(type,PBTypes,:FIRE)
       PBDebug.log("[Habilidad disparada] Electromotor de #{opponent.pbThis} (hizo ineficaz #{@name})")
       if opponent.pbCanIncreaseStatStage?(PBStats::DEFENSE,opponent)
         opponent.pbIncreaseStatWithCause(PBStats::DEFENSE,2,opponent,PBAbilities.getName(opponent.ability))
@@ -1191,10 +1191,10 @@ class PokeBattle_ZMoves
       return true
     end
     # Piel Seca / Absorbe Elec. / Absorbe Agua / Geofagia
-    if (opponent.hasWorkingAbility(:DRYSKIN) && isConst?(type,PBTypes,:WATER)) ||        
-       (opponent.hasWorkingAbility(:VOLTABSORB) && isConst?(type,PBTypes,:ELECTRIC)) ||  
-       (opponent.hasWorkingAbility(:WATERABSORB) && isConst?(type,PBTypes,:WATER)) ||    
-       (opponent.hasWorkingAbility(:EARTHEATER) && isConst?(type,PBTypes,:GROUND))       
+    if (opponent.hasWorkingAbility(:DRYSKIN) && isConst?(type,PBTypes,:WATER)) ||
+       (opponent.hasWorkingAbility(:VOLTABSORB) && isConst?(type,PBTypes,:ELECTRIC)) ||
+       (opponent.hasWorkingAbility(:WATERABSORB) && isConst?(type,PBTypes,:WATER)) ||
+       (opponent.hasWorkingAbility(:EARTHEATER) && isConst?(type,PBTypes,:GROUND))
       PBDebug.log("[Habilidad disparada] #{PBAbilities.getName(opponent.ability)} de #{opponent.pbThis} (hizo ineficaz #{@name})")
       if opponent.effects[PBEffects::HealBlock]==0
         if opponent.pbRecoverHP((opponent.totalhp/4).floor,true)>0
@@ -1221,7 +1221,7 @@ class PokeBattle_ZMoves
       return true
     end
     # Telepatía
-    if opponent.hasWorkingAbility(:TELEPATHY) && pbIsDamaging? &&        
+    if opponent.hasWorkingAbility(:TELEPATHY) && pbIsDamaging? &&
        !opponent.pbIsOpposing?(attacker.index)
       PBDebug.log("[Habilidad disparada] Telepatía de #{opponent.pbThis} (hizo ineficaz #{@name})")
       @battle.pbDisplay(_INTL("¡{1} evita los ataques de sus Pokémon aliados!",opponent.pbThis))
@@ -1236,11 +1236,11 @@ class PokeBattle_ZMoves
     end
     return false
   end
-  
+
 ################################################################################
 # PokeBattle_ActualScene Feature for playing animation (based on common anims)
-################################################################################    
-  
+################################################################################
+
   def pbShowAnimation(movename,user,target,hitnum=0,alltargets=nil,showanimation=true)
     animname=movename.delete(" ").delete("-").upcase
     animations=load_data("Data/PkmnAnimations.rxdata")
@@ -1256,16 +1256,16 @@ class PokeBattle_ZMoves
           return
         elsif animations[i] && animations[i].name=="ZMove:"+animname && showanimation
           @battle.scene.pbAnimationCore(animations[i],user,(target!=nil) ? target : user)
-          return        
-        end   
-      end 
+          return
+        end
+      end
     end
-  end  
-  
+  end
+
 ################################################################################
 # Z Status Effect check
-################################################################################  
-  
+################################################################################
+
   def pbZStatus(move,attacker)
     atk1 =   [getID(PBMoves,:BULKUP),getID(PBMoves,:HONECLAWS),getID(PBMoves,:HOWL),getID(PBMoves,:LASERFOCUS),getID(PBMoves,:LEER),getID(PBMoves,:MEDITATE),getID(PBMoves,:ODORSLEUTH),getID(PBMoves,:POWERTRICK),getID(PBMoves,:ROTOTILLER),getID(PBMoves,:SCREECH),getID(PBMoves,:SHARPEN),getID(PBMoves,:TAILWHIP),getID(PBMoves,:TAUNT),getID(PBMoves,:TOPSYTURVY),getID(PBMoves,:WILLOWISP),getID(PBMoves,:WORKUP)]
     atk2 =   [getID(PBMoves,:MIRRORMOVE)]
@@ -1298,165 +1298,165 @@ class PokeBattle_ZMoves
     centre = [getID(PBMoves,:DESTINYBOND),getID(PBMoves,:GRUDGE)]
     if atk1.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,false)
-        attacker.pbIncreaseStat(PBStats::ATTACK,1,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::ATTACK,1,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡El Ataque de {1} ha aumentado gracias al Poder Z!",attacker.pbThis))
       end
     elsif atk2.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,false)
-        attacker.pbIncreaseStat(PBStats::ATTACK,2,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::ATTACK,2,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡El Ataque de {1} ha aumentado mucho gracias al Poder Z!",attacker.pbThis))
       end
     elsif atk3.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,false)
-        attacker.pbIncreaseStat(PBStats::ATTACK,3,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::ATTACK,3,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡El Ataque de {1} ha aumentado drásticamente gracias al Poder Z!",attacker.pbThis))
       end
     elsif def1.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,false)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,1,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::DEFENSE,1,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Defensa de {1} ha aumentado gracias al Poder Z!",attacker.pbThis))
       end
     elsif def2.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,false)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,2,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::DEFENSE,2,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Defensa de {1} ha aumentado mucho gracias al Poder Z!",attacker.pbThis))
       end
     elsif def3.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,false)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,3,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::DEFENSE,3,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Defensa de {1} ha aumentado drásticamente gracias al Poder Z!",attacker.pbThis))
       end
     elsif spatk1.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,false)
-        attacker.pbIncreaseStat(PBStats::SPATK,1,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPATK,1,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡El Ataque Especial {1} ha aumentado gracias al Poder Z!",attacker.pbThis))
       end
     elsif spatk2.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,false)
-        attacker.pbIncreaseStat(PBStats::SPATK,2,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPATK,2,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡El Ataque Especial {1} ha aumentado mucho gracias al Poder Z!",attacker.pbThis))
       end
     elsif spatk3.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,false)
-        attacker.pbIncreaseStat(PBStats::SPATK,3,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPATK,3,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡El Ataque Especial {1} ha aumentado drásticamente gracias al Poder Z!",attacker.pbThis))
       end
     elsif spdef1.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,false)
-        attacker.pbIncreaseStat(PBStats::SPDEF,1,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPDEF,1,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Defensa Especial {1} ha aumentado gracias al Poder Z!",attacker.pbThis))
       end
     elsif spdef2.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,false)
-        attacker.pbIncreaseStat(PBStats::SPDEF,2,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPDEF,2,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Defensa Especial {1} ha aumentado mucho gracias al Poder Z!",attacker.pbThis))
       end
     elsif spdef3.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,false)
-        attacker.pbIncreaseStat(PBStats::SPDEF,3,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPDEF,3,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Defensa Especial {1} ha aumentado drásticamente gracias al Poder Z!",attacker.pbThis))
       end
     elsif speed1.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,false)
-        attacker.pbIncreaseStat(PBStats::SPEED,1,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPEED,1,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Velocidad {1} ha aumentado gracias al Poder Z!",attacker.pbThis))
       end
     elsif speed2.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,false)
-        attacker.pbIncreaseStat(PBStats::SPEED,2,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPEED,2,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Velocidad {1} ha aumentado mucho gracias al Poder Z!",attacker.pbThis))
       end
     elsif speed3.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,false)
-        attacker.pbIncreaseStat(PBStats::SPEED,3,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::SPEED,3,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Velocidad {1} ha aumentado drásticamente gracias al Poder Z!",attacker.pbThis))
       end
     elsif acc1.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ACCURACY,false)
-        attacker.pbIncreaseStat(PBStats::ACCURACY,1,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::ACCURACY,1,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Precisión {1} ha aumentado gracias al Poder Z!",attacker.pbThis))
       end
     elsif acc2.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ACCURACY,false)
-        attacker.pbIncreaseStat(PBStats::ACCURACY,2,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::ACCURACY,2,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Precisión {1} ha aumentado mucho gracias al Poder Z!",attacker.pbThis))
       end
     elsif acc3.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ACCURACY,false)
-        attacker.pbIncreaseStat(PBStats::ACCURACY,3,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::ACCURACY,3,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Precisión {1} ha aumentado drásticamente gracias al Poder Z!",attacker.pbThis))
       end
     elsif eva1.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::EVASION,false)
-        attacker.pbIncreaseStat(PBStats::EVASION,1,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::EVASION,1,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Evasión {1} ha aumentado gracias al Poder Z!",attacker.pbThis))
       end
     elsif eva2.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::EVASION,false)
-        attacker.pbIncreaseStat(PBStats::EVASION,2,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::EVASION,2,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Evasión {1} ha aumentado mucho gracias al Poder Z!",attacker.pbThis))
       end
     elsif eva3.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::EVASION,false)
-        attacker.pbIncreaseStat(PBStats::EVASION,3,false,nil,nil,false,false,false)         
+        attacker.pbIncreaseStat(PBStats::EVASION,3,false,nil,nil,false,false,false)
         @battle.pbDisplayBrief(_INTL("¡La Evasión {1} ha aumentado drásticamente gracias al Poder Z!",attacker.pbThis))
       end
     elsif stat1.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,false)
-        attacker.pbIncreaseStat(PBStats::ATTACK,1,false,nil,nil,false,false,false)                 
+        attacker.pbIncreaseStat(PBStats::ATTACK,1,false,nil,nil,false,false,false)
       end
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,false)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,1,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::DEFENSE,1,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,false)
-        attacker.pbIncreaseStat(PBStats::SPATK,1,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPATK,1,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,false)
-        attacker.pbIncreaseStat(PBStats::SPDEF,1,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPDEF,1,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,false)
-        attacker.pbIncreaseStat(PBStats::SPEED,1,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPEED,1,false,nil,nil,false,false,false)
+      end
       @battle.pbDisplayBrief(_INTL("¡El Poder Z de {1} aumentó sus estadísticas!",attacker.pbThis))
     elsif stat2.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,false)
-        attacker.pbIncreaseStat(PBStats::ATTACK,2,false,nil,nil,false,false,false)                 
+        attacker.pbIncreaseStat(PBStats::ATTACK,2,false,nil,nil,false,false,false)
       end
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,false)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,2,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::DEFENSE,2,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,false)
-        attacker.pbIncreaseStat(PBStats::SPATK,2,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPATK,2,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,false)
-        attacker.pbIncreaseStat(PBStats::SPDEF,2,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPDEF,2,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,false)
-        attacker.pbIncreaseStat(PBStats::SPEED,2,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPEED,2,false,nil,nil,false,false,false)
+      end
       @battle.pbDisplayBrief(_INTL("¡El Poder Z de {1} aumentó mucho sus estadísticas!",attacker.pbThis))
     elsif stat3.include?(move)
       if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,false)
-        attacker.pbIncreaseStat(PBStats::ATTACK,3,false,nil,nil,false,false,false)                 
+        attacker.pbIncreaseStat(PBStats::ATTACK,3,false,nil,nil,false,false,false)
       end
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,false)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,3,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::DEFENSE,3,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,false)
-        attacker.pbIncreaseStat(PBStats::SPATK,3,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPATK,3,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,false)
-        attacker.pbIncreaseStat(PBStats::SPDEF,3,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPDEF,3,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,false)
-        attacker.pbIncreaseStat(PBStats::SPEED,3,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPEED,3,false,nil,nil,false,false,false)
+      end
       @battle.pbDisplayBrief(_INTL("¡El Poder Z de {1} aumentó drásticamente sus estadísticas!",attacker.pbThis))
     elsif crit1.include?(move)
       if attacker.effects[PBEffects::FocusEnergy]<3
         attacker.effects[PBEffects::FocusEnergy]+=1
         @battle.pbDisplayBrief(_INTL("¡{1} ve aumentada su probabilidad de asestar golpes críticos gracias al Poder Z!",attacker.pbThis))
-      end      
+      end
     elsif reset.include?(move)
       for i in [PBStats::ATTACK,PBStats::DEFENSE,
                 PBStats::SPEED,PBStats::SPATK,PBStats::SPDEF,
@@ -1475,29 +1475,29 @@ class PokeBattle_ZMoves
       attacker.effects[PBEffects::FollowMe]=true
       if !attacker.pbPartner.isFainted?
         attacker.pbPartner.effects[PBEffects::FollowMe]=false
-        attacker.pbPartner.effects[PBEffects::RagePowder]=false  
+        attacker.pbPartner.effects[PBEffects::RagePowder]=false
         @battle.pbDisplayBrief(_INTL("¡{1} se ha convertido en el centro de atención debido al Poder Z!!",attacker.pbThis))
       end
     else
       if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,false)
-        attacker.pbIncreaseStat(PBStats::ATTACK,1,false,nil,nil,false,false,false)                 
+        attacker.pbIncreaseStat(PBStats::ATTACK,1,false,nil,nil,false,false,false)
       end
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,false)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,1,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::DEFENSE,1,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPATK,false)
-        attacker.pbIncreaseStat(PBStats::SPATK,1,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPATK,1,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPDEF,false)
-        attacker.pbIncreaseStat(PBStats::SPDEF,1,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPDEF,1,false,nil,nil,false,false,false)
+      end
       if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,false)
-        attacker.pbIncreaseStat(PBStats::SPEED,1,false,nil,nil,false,false,false)                 
-      end      
+        attacker.pbIncreaseStat(PBStats::SPEED,1,false,nil,nil,false,false,false)
+      end
       @battle.pbDisplayBrief(_INTL("¡El Poder Z de {1} aumentó sus estadísticas!",attacker.pbThis))
     end
   end
-  
+
 end
 ################################################################################
 # Z - MOVES ITEMS
@@ -1509,250 +1509,250 @@ end
 class PokeBattle_Battler
   def pbZCrystalFromType(type)
     case type
-    when 0  ;crystal = getID(PBItems,:NORMALIUMZ)  
-    when 1  ;crystal = getID(PBItems,:FIGHTINIUMZ)   
-    when 2  ;crystal = getID(PBItems,:FLYINIUMZ) 
-    when 3  ;crystal = getID(PBItems,:POISONIUMZ)       
-    when 4  ;crystal = getID(PBItems,:GROUNDIUMZ)  
-    when 5  ;crystal = getID(PBItems,:ROCKIUMZ)          
+    when 0  ;crystal = getID(PBItems,:NORMALIUMZ)
+    when 1  ;crystal = getID(PBItems,:FIGHTINIUMZ)
+    when 2  ;crystal = getID(PBItems,:FLYINIUMZ)
+    when 3  ;crystal = getID(PBItems,:POISONIUMZ)
+    when 4  ;crystal = getID(PBItems,:GROUNDIUMZ)
+    when 5  ;crystal = getID(PBItems,:ROCKIUMZ)
     when 6  ;crystal = getID(PBItems,:BUGINIUMZ)
-    when 7  ;crystal = getID(PBItems,:GHOSTIUMZ)          
-    when 8  ;crystal = getID(PBItems,:STEELIUMZ)         
-    when 10 ;crystal = getID(PBItems,:FIRIUMZ)      
-    when 11 ;crystal = getID(PBItems,:WATERIUMZ)       
-    when 12 ;crystal = getID(PBItems,:GRASSIUMZ)    
-    when 13 ;crystal = getID(PBItems,:ELECTRIUMZ)          
-    when 14 ;crystal = getID(PBItems,:PSYCHIUMZ) 
-    when 15 ;crystal = getID(PBItems,:ICIUMZ)              
-    when 16 ;crystal = getID(PBItems,:DRAGONIUMZ)             
-    when 17 ;crystal = getID(PBItems,:DARKINIUMZ)          
-    when 18 ;crystal = getID(PBItems,:FAIRIUMZ)                                
+    when 7  ;crystal = getID(PBItems,:GHOSTIUMZ)
+    when 8  ;crystal = getID(PBItems,:STEELIUMZ)
+    when 10 ;crystal = getID(PBItems,:FIRIUMZ)
+    when 11 ;crystal = getID(PBItems,:WATERIUMZ)
+    when 12 ;crystal = getID(PBItems,:GRASSIUMZ)
+    when 13 ;crystal = getID(PBItems,:ELECTRIUMZ)
+    when 14 ;crystal = getID(PBItems,:PSYCHIUMZ)
+    when 15 ;crystal = getID(PBItems,:ICIUMZ)
+    when 16 ;crystal = getID(PBItems,:DRAGONIUMZ)
+    when 17 ;crystal = getID(PBItems,:DARKINIUMZ)
+    when 18 ;crystal = getID(PBItems,:FAIRIUMZ)
     end
     return crystal
-  end  
-  
+  end
+
   def hasZMove?
     canuse=false
     pkmn=self
     case pkmn.item
     when getID(PBItems,:NORMALIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==0
-      end   
+      end
     when getID(PBItems,:FIGHTINIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==1
-      end     
+      end
     when getID(PBItems,:FLYINIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==2
-      end   
+      end
     when getID(PBItems,:POISONIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==3
-      end           
+      end
     when getID(PBItems,:GROUNDIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==4
-      end    
+      end
     when getID(PBItems,:ROCKIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==5
-      end           
+      end
     when getID(PBItems,:BUGINIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==6
-      end  
+      end
     when getID(PBItems,:GHOSTIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==7
-      end           
+      end
     when getID(PBItems,:STEELIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==8
-      end           
+      end
     when getID(PBItems,:FIRIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==10
-      end       
+      end
     when getID(PBItems,:WATERIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==11
-      end           
+      end
     when getID(PBItems,:GRASSIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==12
-      end               
+      end
     when getID(PBItems,:ELECTRIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==13
-      end          
+      end
     when getID(PBItems,:PSYCHIUMZ)
-      canuse=false   
-      for move in pkmn.moves        
+      canuse=false
+      for move in pkmn.moves
         canuse=true if move.type==14
-      end   
+      end
     when getID(PBItems,:ICIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==15
-      end               
+      end
     when getID(PBItems,:DRAGONIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==16
-      end               
+      end
     when getID(PBItems,:DARKINIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         if move.type==17
           canuse=true
         end
-      end           
+      end
     when getID(PBItems,:FAIRIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.type==18
-      end                     
+      end
     when getID(PBItems,:ALORAICHIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:THUNDERBOLT)
       end
       canuse=false if pkmn.species!=26 || pkmn.form!=1
     when getID(PBItems,:DECIDIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:SPIRITSHACKLE)
       end
-      canuse=false if pkmn.species!=724        
+      canuse=false if pkmn.species!=724
     when getID(PBItems,:INCINIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:DARKESTLARIAT)
       end
-      canuse=false if pkmn.species!=727         
+      canuse=false if pkmn.species!=727
     when getID(PBItems,:PRIMARIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:SPARKLINGARIA)
       end
       canuse=false if pkmn.species!=730
     when getID(PBItems,:EEVIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:LASTRESORT)
       end
       canuse=false if pkmn.species!=133
     when getID(PBItems,:PIKANIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:VOLTTACKLE)
       end
       canuse=false if pkmn.species!=25
     when getID(PBItems,:SNORLIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:GIGAIMPACT)
       end
       canuse=false if pkmn.species!=143
     when getID(PBItems,:MEWNIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:PSYCHIC)
       end
       canuse=false if pkmn.species!=151
     when getID(PBItems,:TAPUNIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:NATURESMADNESS)
       end
-      if !(pokemon.species==785 || 
-           pokemon.species==786 || 
-           pokemon.species==787 || 
+      if !(pokemon.species==785 ||
+           pokemon.species==786 ||
+           pokemon.species==787 ||
            pokemon.species==788)
         canuse=false
-      end   
+      end
     when getID(PBItems,:MARSHADIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:SPECTRALTHIEF)
       end
       canuse=false if pkmn.species!=802
     when getID(PBItems,:PIKASHUNIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:THUNDERBOLT)
       end
       canuse=false if pkmn.species!=25
     when getID(PBItems,:ULTRANECROZIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:PHOTONGEYSER)
       end
-      canuse=false if pkmn.species!=800 #|| pkmn.form==3
+      canuse=false if pkmn.species!=800 || pkmn.form!=3
     when getID(PBItems,:LYCANIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:STONEEDGE)
       end
       canuse=false if pkmn.species!=745
     when getID(PBItems,:MIMIKIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:PLAYROUGH)
       end
       canuse=false if pkmn.species!=778
     when getID(PBItems,:KOMMONIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:CLANGINGSCALES)
       end
       canuse=false if pkmn.species!=784
-    when getID(PBItems,:SOLGANIUMZ) 
-      canuse=false   
+    when getID(PBItems,:SOLGANIUMZ)
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:SUNSTEELSTRIKE)
       end
     when getID(PBItems,:LUNALIUMZ)
-      canuse=false   
+      canuse=false
       for move in pkmn.moves
         canuse=true if move.id==getID(PBMoves,:MOONGEISTBEAM)
       end
-      
+
     # AÑADE NUEVOS Z MOVES AQUÍ
 
     end
-    
-    
-    
+
+
+
     return canuse
-  end    
-  
-  def pbCompatibleZMoveFromMove?(move)  
+  end
+
+  def pbCompatibleZMoveFromMove?(move)
     pkmn=self
     case pkmn.item
     when getID(PBItems,:NORMALIUMZ)
       return true if move.type==0
     when getID(PBItems,:FIGHTINIUMZ)
-      return true if move.type==1 
+      return true if move.type==1
     when getID(PBItems,:FLYINIUMZ)
       return true if move.type==2
     when getID(PBItems,:POISONIUMZ)
-      return true if move.type==3    
+      return true if move.type==3
     when getID(PBItems,:GROUNDIUMZ)
       return true if move.type==4
     when getID(PBItems,:ROCKIUMZ)
@@ -1770,17 +1770,17 @@ class PokeBattle_Battler
     when getID(PBItems,:GRASSIUMZ)
       return true if move.type==12
     when getID(PBItems,:ELECTRIUMZ)
-      return true if move.type==13 
+      return true if move.type==13
     when getID(PBItems,:PSYCHIUMZ)
       return true if move.type==14
     when getID(PBItems,:ICIUMZ)
-      return true if move.type==15    
+      return true if move.type==15
     when getID(PBItems,:DRAGONIUMZ)
       return true if move.type==16
     when getID(PBItems,:DARKINIUMZ)
       return true if move.type==17
     when getID(PBItems,:FAIRIUMZ)
-      return true if move.type==18    
+      return true if move.type==18
     when getID(PBItems,:ALORAICHIUMZ)
       return true if move.id==getID(PBMoves,:THUNDERBOLT)
     when getID(PBItems,:DECIDIUMZ)
@@ -1804,22 +1804,22 @@ class PokeBattle_Battler
     when getID(PBItems,:PIKASHUNIUMZ)
       return true if move.id==getID(PBMoves,:THUNDERBOLT)
     when getID(PBItems,:ULTRANECROZIUMZ)
-      return true if move.id==getID(PBMoves,:PHOTONGEYSER)   
+      return true if move.id==getID(PBMoves,:PHOTONGEYSER)
     when getID(PBItems,:LYCANIUMZ)
       return true if move.id==getID(PBMoves,:STONEEDGE)
     when getID(PBItems,:MIMIKIUMZ)
       return true if move.id==getID(PBMoves,:PLAYROUGH)
     when getID(PBItems,:KOMMONIUMZ)
       return true if move.id==getID(PBMoves,:CLANGINGSCALES)
-    when getID(PBItems,:SOLGANIUMZ) 
+    when getID(PBItems,:SOLGANIUMZ)
       return true if move.id==getID(PBMoves,:SUNSTEELSTRIKE)
     when getID(PBItems,:LUNALIUMZ)
       return true if move.id==getID(PBMoves,:MOONGEISTBEAM)
     end
     return false
   end
-  
-  def pbCompatibleZMoveFromIndex?(moveindex)  
+
+  def pbCompatibleZMoveFromIndex?(moveindex)
     pkmn=self
     case pkmn.item
     when getID(PBItems,:NORMALIUMZ)
@@ -1827,33 +1827,33 @@ class PokeBattle_Battler
     when getID(PBItems,:FIGHTINIUMZ)
       return true if pkmn.moves[moveindex].type==1
     when getID(PBItems,:FLYINIUMZ)
-      return true if pkmn.moves[moveindex].type==2 
+      return true if pkmn.moves[moveindex].type==2
     when getID(PBItems,:POISONIUMZ)
-      return true if pkmn.moves[moveindex].type==3                
+      return true if pkmn.moves[moveindex].type==3
     when getID(PBItems,:GROUNDIUMZ)
-      return true if pkmn.moves[moveindex].type==4          
+      return true if pkmn.moves[moveindex].type==4
     when getID(PBItems,:ROCKIUMZ)
       return true if pkmn.moves[moveindex].type==5
     when getID(PBItems,:BUGINIUMZ)
       return true if pkmn.moves[moveindex].type==6
     when getID(PBItems,:GHOSTIUMZ)
-      return true if pkmn.moves[moveindex].type==7                
+      return true if pkmn.moves[moveindex].type==7
     when getID(PBItems,:STEELIUMZ)
-      return true if pkmn.moves[moveindex].type==8        
+      return true if pkmn.moves[moveindex].type==8
     when getID(PBItems,:FIRIUMZ)
-      return true if pkmn.moves[moveindex].type==10    
+      return true if pkmn.moves[moveindex].type==10
     when getID(PBItems,:WATERIUMZ)
-      return true if pkmn.moves[moveindex].type==11                
+      return true if pkmn.moves[moveindex].type==11
     when getID(PBItems,:GRASSIUMZ)
-      return true if pkmn.moves[moveindex].type==12       
+      return true if pkmn.moves[moveindex].type==12
     when getID(PBItems,:ELECTRIUMZ)
       return true if pkmn.moves[moveindex].type==13
     when getID(PBItems,:PSYCHIUMZ)
-      return true if pkmn.moves[moveindex].type==14       
+      return true if pkmn.moves[moveindex].type==14
     when getID(PBItems,:ICIUMZ)
-      return true if pkmn.moves[moveindex].type==15     
+      return true if pkmn.moves[moveindex].type==15
     when getID(PBItems,:DRAGONIUMZ)
-      return true if pkmn.moves[moveindex].type==16               
+      return true if pkmn.moves[moveindex].type==16
     when getID(PBItems,:DARKINIUMZ)
       return true if pkmn.moves[moveindex].type==17
     when getID(PBItems,:FAIRIUMZ)
@@ -1879,7 +1879,7 @@ class PokeBattle_Battler
     when getID(PBItems,:MARSHADIUMZ)
        return true if pkmn.moves[moveindex].id==getID(PBMoves,:SPECTRALTHIEF)
     when getID(PBItems,:PIKASHUNIUMZ)
-       return true if pkmn.moves[moveindex].id==getID(PBMoves,:THUNDERBOLT)   
+       return true if pkmn.moves[moveindex].id==getID(PBMoves,:THUNDERBOLT)
     when getID(PBItems,:ULTRANECROZIUMZ)
        return true if pkmn.moves[moveindex].id==getID(PBMoves,:PHOTONGEYSER)
     when getID(PBItems,:LYCANIUMZ)
@@ -1888,13 +1888,12 @@ class PokeBattle_Battler
       return true if pkmn.moves[moveindex].id==getID(PBMoves,:PLAYROUGH)
     when getID(PBItems,:KOMMONIUMZ)
       return true if pkmn.moves[moveindex].id==getID(PBMoves,:CLANGINGSCALES)
-    when getID(PBItems,:SOLGANIUMZ) 
+    when getID(PBItems,:SOLGANIUMZ)
       return true if pkmn.moves[moveindex].id==getID(PBMoves,:SUNSTEELSTRIKE)
     when getID(PBItems,:LUNALIUMZ)
       return true if pkmn.moves[moveindex].id==getID(PBMoves,:MOONGEISTBEAM)
     end
-      
-    return false
-  end    
-end
 
+    return false
+  end
+end

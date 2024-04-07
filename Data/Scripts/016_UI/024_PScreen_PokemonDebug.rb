@@ -1,5 +1,5 @@
 #===============================================================================
-# BES-T 
+# BES-T
 # El debug de PScreen_Storage y PScreen_Party, para facilitar la edición de codigo en estos dos ultimos de forma más sencilla.
 #===============================================================================
 class PokemonScreen
@@ -25,6 +25,7 @@ class PokemonScreen
          _INTL("Cintas"),
          _INTL("Huevo"),
          _INTL("Pokémon Oscuro"),
+         _INTL("Teracristalización"),
          _INTL("Hacer Reg. Mist."),
          _INTL("Duplicar"),
          _INTL("Borrar"),
@@ -603,11 +604,36 @@ class PokemonScreen
             end
           end
         end
-      ### Make Mystery Gift ###
+      ### Opciones de Teracristalización
       when 18
+        cmd=0
+        loop do
+          cmd=@scene.pbShowCommands(_INTL("¿Qué hacer con {1}?",pkmn.name),[
+             _INTL("Setear Teratipo"),
+             _INTL("Teracristalizar")],cmd)
+          case cmd
+          when -1
+            break
+          when 0
+            cmdt=0
+            typenames=[]
+            for i in 0..PBTypes.maxValue
+              typenames.push(PBTypes.getName(i))
+            end
+            loop do
+              cmdt=@scene.pbShowCommands(_INTL("¿A cual tipo?",pkmn.name),typenames,cmdt)
+              pkmn.teratype=cmdt
+              break
+            end
+          when 1
+            pkmn.teracristalized=!pkmn.teracristalized
+          end
+        end
+      ### Make Mystery Gift ###
+      when 19
         pbCreateMysteryGift(0,pkmn)
       ### Duplicate ###
-      when 19
+      when 20
         if pbConfirm(_INTL("¿Estás seguro de que quieres copiar este Pokémon?"))
           clonedpkmn=pkmn.clone
           clonedpkmn.iv=pkmn.iv.clone
@@ -618,7 +644,7 @@ class PokemonScreen
           break
         end
       ### Delete ###
-      when 20
+      when 21
         if pbConfirm(_INTL("¿Estás seguro de que quieres borrar este Pokémon?"))
           @party[pkmnid]=nil
           @party.compact!

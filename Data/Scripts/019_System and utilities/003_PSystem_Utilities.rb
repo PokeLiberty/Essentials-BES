@@ -50,7 +50,7 @@ end
 
 def pbGetCDID()
   sendString=proc{|x|
-     mciSendString=Win32API.new('winmm','mciSendString','%w(p,p,l,l)','l') 
+     mciSendString=Win32API.new('winmm','mciSendString','%w(p,p,l,l)','l')
      next "" if !mciSendString
      buffer="\0"*2000
      x=mciSendString.call(x,buffer,2000,0)
@@ -168,10 +168,10 @@ class LinearCongRandom
   end
 
   def getNext16 # calculates @seed * @s1 + @s2
-    @seed=((((@seed & 0x0000ffff) * (@s1 & 0x0000ffff)) & 0x0000ffff) | 
-       (((((((@seed & 0x0000ffff) * (@s1 & 0x0000ffff)) & 0xffff0000) >> 16) + 
-       ((((@seed & 0xffff0000) >> 16) * (@s1 & 0x0000ffff)) & 0x0000ffff) + 
-       (((@seed & 0x0000ffff) * ((@s1 & 0xffff0000) >> 16)) & 0x0000ffff)) & 
+    @seed=((((@seed & 0x0000ffff) * (@s1 & 0x0000ffff)) & 0x0000ffff) |
+       (((((((@seed & 0x0000ffff) * (@s1 & 0x0000ffff)) & 0xffff0000) >> 16) +
+       ((((@seed & 0xffff0000) >> 16) * (@s1 & 0x0000ffff)) & 0x0000ffff) +
+       (((@seed & 0x0000ffff) * ((@s1 & 0xffff0000) >> 16)) & 0x0000ffff)) &
        0x0000ffff) << 16)) + @s2
     r=(@seed>>16)
     r=(r+0xFFFFFFFF)+1 if r<0
@@ -199,7 +199,7 @@ def  pbIsJsonString(str)
   stringLiterals=/"[^"\\\n\r\x00-\x1f\x7f-\x9f]*"/ #"
   whiteSpace=/[\s]+/
   str=str.gsub(charEscapes,"@").gsub(stringLiterals,"true").gsub(whiteSpace," ")
-  # prevent cases like "truetrue" or "true true" or "true[true]" or "5-2" or "5true" 
+  # prevent cases like "truetrue" or "true true" or "true[true]" or "5-2" or "5true"
   otherLiterals=/(true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)(?! ?[0-9a-z\-\[\{\"])/ #"
   str=str.gsub(otherLiterals,"]").gsub(d,"") #"
   p str
@@ -565,7 +565,7 @@ def pbTrainerName(name=nil,outfit=0)
   if trname==nil
     trname=pbEnterPlayerName(_INTL("¿Cuál es tu nombre?"),0,7)
     if trname==""
-      gender=pbGetTrainerTypeGender(trainertype) 
+      gender=pbGetTrainerTypeGender(trainertype)
       trname=pbSuggestTrainerName(gender)
     end
   end
@@ -637,7 +637,7 @@ def getRandomNameEx(type,variable,upper,maxLength=100)
          set=%w( a a a e e e i i i o o o u u u )
          name+=set[rand(set.length)]
        when "W" # beginning vowel
-         set=%w( a a a e e e i i i o o o u u u au au ay ay 
+         set=%w( a a a e e e i i i o o o u u u au au ay ay
             ea ea ee ee oo oo ou ou )
          name+=set[rand(set.length)]
        when "U" # ending vowel
@@ -935,7 +935,7 @@ def beginRecordUI
     buffer="\0"*256
     MciErrorString.call(code,buffer,256)
     Kernel.pbMessage(_INTL("Fallo en la grabación: {1}",buffer.gsub(/\x00/,"")))
-    return false    
+    return false
   end
 end
 
@@ -1216,7 +1216,7 @@ def pbCheckPokemonIconFiles(params,egg=false)
   if egg
     bitmapFileName=sprintf("Graphics/Icons/icon%segg",getConstantName(PBSpecies,species)) rescue nil
     if !pbResolveBitmap(bitmapFileName)
-      bitmapFileName=sprintf("Graphics/Icons/icon%03degg",species) 
+      bitmapFileName=sprintf("Graphics/Icons/icon%03degg",species)
       if !pbResolveBitmap(bitmapFileName)
         bitmapFileName=sprintf("Graphics/Icons/iconEgg")
       end
@@ -1427,7 +1427,7 @@ def pbCryFrameLength(pokemon,pitch=nil)
     else
       pkmnwav=pbResolveAudioSE(pbCryFile(pokemon))
       playtime=getPlayTime(pkmnwav) if pkmnwav
-    end 
+    end
   end
   playtime/=pitch # sound is lengthened the lower the pitch
   # 4 is added to provide a buffer between sounds
@@ -1765,7 +1765,7 @@ def pbNicknameAndStore(pokemon)
 end
 
 def pbAddPokemon(pokemon,level=nil,seeform=true)
-  return if !pokemon || !$Trainer 
+  return if !pokemon || !$Trainer
   if pbBoxesFull?
     Kernel.pbMessage(_INTL("¡No hay espacio para el Pokémon!\1"))
     Kernel.pbMessage(_INTL("¡Las Cajas del PC están llenas y no aceptan ni un Pokémon más!"))
@@ -2125,7 +2125,7 @@ def pbChoosePokemon(variableNumber,nameVarNumber,ableProc=nil, allowIneligible=f
      scene=PokemonScreen_Scene.new
      screen=PokemonScreen.new(scene,$Trainer.party)
      if ableProc
-       chosen=screen.pbChooseAblePokemon(ableProc,allowIneligible)      
+       chosen=screen.pbChooseAblePokemon(ableProc,allowIneligible)
      else
        screen.pbStartScene(_INTL("Elige un Pokémon."),false)
        chosen=screen.pbChoosePokemon
@@ -2173,8 +2173,8 @@ def pbHasSpecies?(species, form=nil)
   end
   for pokemon in $Trainer.party
     next if pokemon.isEgg?
-    
-    if form == nil  
+
+    if form == nil
       return true if pokemon.species==species
     else
       return true if pokemon.species==species && pokemon.form==form
@@ -2458,7 +2458,7 @@ def pbMoveTutorChoose(move,movelist=nil,bymachine=false)
          end
        else
          break
-       end  
+       end
      end
      screen.pbEndScene
   }
@@ -2547,4 +2547,67 @@ def pbNicknameAndStore(pokemon,nick=true)
   $Trainer.owned[pokemon.species]=true
   pbNickname(pokemon) if nick
   pbStorePokemon(pokemon)
+end
+
+#===============================================================================
+#  Extensions for Array objects
+#===============================================================================
+class ::Array
+  #-----------------------------------------------------------------------------
+  #  swaps two values in arrays
+  #-----------------------------------------------------------------------------
+  def swap(val1, val2)
+    index1 = self.index(val1)
+    index2 = self.index(val2)
+    self[index1] = val2
+    self[index2] = val1
+  end
+  #-----------------------------------------------------------------------------
+  #  swaps specific indexes
+  #-----------------------------------------------------------------------------
+  def swap_at(index1, index2)
+    val1 = self[index1].clone
+    val2 = self[index2].clone
+    self[index1] = val2
+    self[index2] = val1
+  end
+  #-----------------------------------------------------------------------------
+  #  gets first value
+  #-----------------------------------------------------------------------------
+  def first(index = nil)
+    return (index == 0) if !index.nil?
+    return self[0]
+  end
+  #-----------------------------------------------------------------------------
+  #  gets last value
+  #-----------------------------------------------------------------------------
+  def last(index = nil)
+    return (index == self.length - 1) if !index.nil?
+    return self[self.length - 1]
+  end
+  #-----------------------------------------------------------------------------
+  #  gets random value
+  #-----------------------------------------------------------------------------
+  def sample
+    return self[rand(self.length)]
+  end
+  #-----------------------------------------------------------------------------
+  #  pushes value to last index
+  #-----------------------------------------------------------------------------
+  def to_last(val)
+    self.delete(val) if self.include?(val)
+    self.push(val)
+  end
+  #-----------------------------------------------------------------------------
+  #  check if part of string matches
+  #-----------------------------------------------------------------------------
+  def string_include?(val)
+    return false if !val.is_a?(String)
+    ret = false
+    for a in self
+      ret = true if a.is_a?(String) && val.include?(a)
+    end
+    return ret
+  end
+  #-----------------------------------------------------------------------------
 end

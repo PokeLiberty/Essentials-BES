@@ -14,7 +14,7 @@ end
 
 ### WILD AI CONFIG #############################################################
 #Nivel en el que los salvajes comenzaran a ser inteligentes.
- WILD_AI_LEVEL = 25 
+ WILD_AI_LEVEL = 25
 # Interruptir con el que cualquier pokémon salvaje, tendra la IA mas alta, ideal para jefes.
  WILD_AI_SWITCH = 100
 ################################################################################
@@ -38,7 +38,7 @@ class PokeBattle_Battle
         score=0
       end
     when 0x02 # Struggle
-    when 0x03 # Sleep 
+    when 0x03 # Sleep
       if opponent.pbCanSleep?(attacker,false)
         score+=30
         if skill>=PBTrainerAI.mediumSkill
@@ -249,7 +249,7 @@ class PokeBattle_Battle
       end
     when 0x1A
       if attacker.pbOwnSide.effects[PBEffects::Safeguard]>0
-        score-=80 
+        score-=80
       elsif attacker.status!=0
         score-=40
       else
@@ -589,7 +589,7 @@ class PokeBattle_Battle
       score+=10 if attacker.stages[PBStats::DEFENSE]<0
       score+=10 if attacker.stages[PBStats::SPEED]<0
       score+=10 if attacker.stages[PBStats::SPATK]<0
-      score+=10 if attacker.stages[PBStats::SPDEF]<0 
+      score+=10 if attacker.stages[PBStats::SPDEF]<0
       if skill>=PBTrainerAI.mediumSkill
         hasdamagingattack=false
         for thismove in attacker.moves
@@ -1040,7 +1040,7 @@ class PokeBattle_Battle
       end
       score+=30 if opponent.pbOwnSide.effects[PBEffects::Reflect]>0 ||
                    opponent.pbOwnSide.effects[PBEffects::LightScreen]>0 ||
-                   opponent.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||                   
+                   opponent.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||
                    opponent.pbOwnSide.effects[PBEffects::Mist]>0 ||
                    opponent.pbOwnSide.effects[PBEffects::Safeguard]>0
       score-=30 if opponent.pbOwnSide.effects[PBEffects::Spikes]>0 ||
@@ -1411,7 +1411,7 @@ class PokeBattle_Battle
           types=[]
           for i in 0..PBTypes.maxValue
             next if attacker.pbHasType?(i)
-            types.push(i) if PBTypes.getEffectiveness(atype,i)<2 
+            types.push(i) if PBTypes.getEffectiveness(atype,i)<2
           end
           if types.length==0
             score-=90
@@ -1490,7 +1490,7 @@ class PokeBattle_Battle
         end
       end
       if skill>=PBTrainerAI.highSkill
-        if isConst?(opponent.ability,PBAbilities,:TRUANT) && 
+        if isConst?(opponent.ability,PBAbilities,:TRUANT) &&
            attacker.pbIsOpposing?(opponent.index)
           score-=90
         elsif isConst?(opponent.ability,PBAbilities,:SLOWSTART) &&
@@ -1517,7 +1517,7 @@ class PokeBattle_Battle
           score-=90
         end
         if skill>=PBTrainerAI.highSkill
-          if isConst?(attacker.ability,PBAbilities,:TRUANT) && 
+          if isConst?(attacker.ability,PBAbilities,:TRUANT) &&
              attacker.pbIsOpposing?(opponent.index)
             score+=90
           elsif isConst?(attacker.ability,PBAbilities,:SLOWSTART) &&
@@ -1541,7 +1541,7 @@ class PokeBattle_Battle
         end
       end
       if skill>=PBTrainerAI.highSkill
-        if isConst?(opponent.ability,PBAbilities,:TRUANT) && 
+        if isConst?(opponent.ability,PBAbilities,:TRUANT) &&
            attacker.pbIsOpposing?(opponent.index)
           score-=90
         elsif isConst?(opponent.ability,PBAbilities,:SLOWSTART) &&
@@ -1757,7 +1757,7 @@ class PokeBattle_Battle
     when 0xB8
       score-=90 if attacker.effects[PBEffects::Imprison]
     when 0xB9
-      score-=90 if opponent.effects[PBEffects::Disable]>0 
+      score-=90 if opponent.effects[PBEffects::Disable]>0
     when 0xBA
       score-=90 if opponent.effects[PBEffects::Taunt]>0
     when 0xBB
@@ -1808,9 +1808,9 @@ class PokeBattle_Battle
     when 0xD3
     when 0xD4
       if attacker.hp<=attacker.totalhp/4
-        score-=90 
+        score-=90
       elsif attacker.hp<=attacker.totalhp/2
-        score-=50 
+        score-=50
       end
     when 0xD5, 0xD6
       if attacker.hp==attacker.totalhp
@@ -1893,7 +1893,7 @@ class PokeBattle_Battle
          !opponent.pbCanReduceStatStage?(PBStats::SPATK,attacker)
         score-=100
       elsif attacker.pbNonActivePokemonCount()==0
-        score-=100 
+        score-=100
       else
         score+=(opponent.stages[PBStats::ATTACK]*10)
         score+=(opponent.stages[PBStats::SPATK]*10)
@@ -1936,7 +1936,7 @@ class PokeBattle_Battle
     when 0xEB
       if opponent.effects[PBEffects::Ingrain] ||
          (skill>=PBTrainerAI.highSkill && opponent.hasWorkingAbility(:SUCTIONCUPS))
-        score-=90 
+        score-=90
       else
         party=pbParty(opponent.index)
         ch=0
@@ -2179,7 +2179,7 @@ class PokeBattle_Battle
     when 0x109
     when 0x10A
       score+=20 if attacker.pbOpposingSide.effects[PBEffects::Reflect]>0
-      score+=20 if attacker.pbOpposingSide.effects[PBEffects::AuroraVeil]>0      
+      score+=20 if attacker.pbOpposingSide.effects[PBEffects::AuroraVeil]>0
       score+=20 if attacker.pbOpposingSide.effects[PBEffects::LightScreen]>0
     when 0x10B
       score+=10*(attacker.stages[PBStats::ACCURACY]-opponent.stages[PBStats::EVASION])
@@ -2424,7 +2424,7 @@ class PokeBattle_Battle
         score+=30
         score-=90 if attacker.pbOwnSide.effects[PBEffects::Reflect]>0 ||
                      attacker.pbOwnSide.effects[PBEffects::LightScreen]>0 ||
-                     attacker.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||                     
+                     attacker.pbOwnSide.effects[PBEffects::AuroraVeil]>0 ||
                      attacker.pbOwnSide.effects[PBEffects::Safeguard]>0
       else
         score-=110
@@ -2659,7 +2659,7 @@ class PokeBattle_Battle
       avg+=opponent.stages[PBStats::SPATK]*10
       score+=avg/2
     when 0x152
-      
+
 
     when 0x153 # Sticky Web
       if opponent.pbOwnSide.effects[PBEffects::StickyWeb]
@@ -2672,9 +2672,9 @@ class PokeBattle_Battle
         if attacker.pbNonActivePokemonCount==0
           score*=0.5
         end
-        if opponent.hasWorkingAbility(:UNAWARE) || 
-          opponent.hasWorkingAbility(:COMPETITIVE) || 
-          opponent.hasWorkingAbility(:DEFIANT) || 
+        if opponent.hasWorkingAbility(:UNAWARE) ||
+          opponent.hasWorkingAbility(:COMPETITIVE) ||
+          opponent.hasWorkingAbility(:DEFIANT) ||
           opponent.hasWorkingAbility(:CONTRARY)
           score*=0.1
         end
@@ -2683,17 +2683,17 @@ class PokeBattle_Battle
         end
         if attacker.pbHasMove?(getID(PBMoves,:ELECTROBALL))
           score*=1.5
-        end  
+        end
         if attacker.pbHasMove?(getID(PBMoves,:GYROBALL))
           score*=0.5
-        end   
+        end
       else
-        score-=95 
-      end 
+        score-=95
+      end
 
     when 0x154 #Electric Terrain
       if @field.effects[PBEffects::ElectricTerrain]>0
-        score-=95 
+        score-=95
       else
         if attacker.hasWorkingAbility(:SURGESURFER)
           score*=2
@@ -2701,34 +2701,34 @@ class PokeBattle_Battle
         if attacker.pbHasType?(:ELECTRIC)
           score*=1.2
         end
-        
+
         score*=2 if attacker.pbHasMove?(getID(PBMoves,:RISINGVOLTAGE))
         score*=2 if attacker.pbHasMove?(getID(PBMoves,:TERRAINPULSE))
         score*=1.3 if attacker.hasWorkingItem(:ELECTRICSEED) || attacker.hasWorkingItem(:TERRAINEXTENDER)
-        
+
         score-=40 if attacker.pbHasMove?(getID(PBMoves,:STEELROLLER)) || opponent.pbHasMove?(getID(PBMoves,:STEELROLLER))
-      end 
+      end
 
     when 0x155 #Grassy Terrain
       if @field.effects[PBEffects::GrassyTerrain]>0
-        score-=95 
+        score-=95
       else
         if attacker.hasWorkingAbility(:GRASSPELT)
           score*=2
-        end        
+        end
         if attacker.pbHasType?(:GRASS)
           score*=1.2
         end
-        
+
         score*=2 if attacker.pbHasMove?(getID(PBMoves,:GRASSYGLIDE))
         score*=2 if attacker.pbHasMove?(getID(PBMoves,:TERRAINPULSE))
         score*=1.3 if attacker.hasWorkingItem(:GRASSYSEED) || attacker.hasWorkingItem(:TERRAINEXTENDER)
-        
+
         score-=40 if attacker.pbHasMove?(getID(PBMoves,:STEELROLLER)) || opponent.pbHasMove?(getID(PBMoves,:STEELROLLER))
-      end 
+      end
     when 0x156 #Misty Terrain
       if @field.effects[PBEffects::MistyTerrain]>0
-        score-=95         
+        score-=95
       else
         if attacker.pbHasType?(:FAIRY)
           score*=1.2
@@ -2738,11 +2738,11 @@ class PokeBattle_Battle
         score*=1.3 if attacker.hasWorkingItem(:MISTYSEED) || attacker.hasWorkingItem(:TERRAINEXTENDER)
 
         score-=40 if attacker.pbHasMove?(getID(PBMoves,:STEELROLLER)) || opponent.pbHasMove?(getID(PBMoves,:STEELROLLER))
-      end 
-            
+      end
+
     when 0x159 #Psychic Terrain
       if @field.effects[PBEffects::PsychicTerrain]>0
-        score-=95 
+        score-=95
       else
         if attacker.pbHasType?(:PSYCHIC)
           score*=1.2
@@ -2750,23 +2750,23 @@ class PokeBattle_Battle
         score*=2 if attacker.pbHasMove?(getID(PBMoves,:EXPANDINGFORCE))
         score*=2 if attacker.pbHasMove?(getID(PBMoves,:TERRAINPULSE))
         score*=1.3 if attacker.hasWorkingItem(:PSYCHICSEED) || attacker.hasWorkingItem(:TERRAINEXTENDER)
-        
+
         score-=40 if attacker.pbHasMove?(getID(PBMoves,:STEELROLLER)) || opponent.pbHasMove?(getID(PBMoves,:STEELROLLER))
-      end 
-      
+      end
+
     when 0x157
       score-=90
     when 0x158
       score-=90 if !attacker.pokemon || !attacker.pokemon.belch
     when 0x201 #RISING VOLTAGE
       score+=60 if @field.effects[PBEffects::ElectricTerrain]>0
-      
+
     when 0x211 #GRASSY GLIDE
       score+=60 if @field.effects[PBEffects::GrassyTerrain]>0
-      
+
     when 0x207 #EXPANDING FORCE
       score+=60 if @field.effects[PBEffects::PsychicTerrain]>0
-      
+
     when 0x202 #MISTY EXPLOSION
       reserves=attacker.pbNonActivePokemonCount
       foes=attacker.pbOppositeOpposing.pbNonActivePokemonCount
@@ -2775,14 +2775,14 @@ class PokeBattle_Battle
         score+=60
       end
       score+=60 if @field.effects[PBEffects::MistyTerrain]>0
-      
+
       if attacker.hp==attacker.totalhp
         score*=0.2
       else
         miniscore = attacker.hp*(1.0/attacker.totalhp)
         miniscore = 1-miniscore
         score*=miniscore
-        if attacker.hp*4<attacker.totalhp            
+        if attacker.hp*4<attacker.totalhp
           score*=1.3
           score*=1.4 if attacker.hasWorkingItem(:CUSTAPBERRY)
         end
@@ -2793,9 +2793,9 @@ class PokeBattle_Battle
       end
       score = 0 if pbCheckGlobalAbility(:DAMP)
       if reserves==0 && foes>0
-        score = 0 
+        score = 0
       elsif reserves==0 && foes==0
-        score -= 100 
+        score -= 100
       end
 
     when 0x203 #TERRAIN PULSE
@@ -2809,7 +2809,7 @@ class PokeBattle_Battle
       elsif @field.effects[PBEffects::GrassyTerrain]>0
         score-=50 if attacker.hasWorkingAbility(:GRASSPELT)
         score-=50 if attacker.pbHasType?(:GRASS)
-        
+
         score+=60
       elsif @field.effects[PBEffects::ElectricTerrain]>0
         score-=50 if attacker.hasWorkingAbility(:SURGESURFER)
@@ -3894,9 +3894,9 @@ class PokeBattle_Battle
       c+=attacker.effects[PBEffects::FocusEnergy]
       c+=1 if move.hasHighCriticalRate?
       c+=1 if (attacker.inHyperMode? rescue false) && isConst?(self.type,PBTypes,:SHADOW)
-      c+=2 if isConst?(attacker.species,PBSpecies,:CHANSEY) && 
+      c+=2 if isConst?(attacker.species,PBSpecies,:CHANSEY) &&
               attacker.hasWorkingItem(:LUCKYPUNCH)
-      c+=2 if isConst?(attacker.species,PBSpecies,:FARFETCHD) && 
+      c+=2 if isConst?(attacker.species,PBSpecies,:FARFETCHD) &&
               attacker.hasWorkingItem(:STICK)
       c+=1 if attacker.hasWorkingAbility(:SUPERLUCK)
       c+=1 if attacker.hasWorkingItem(:SCOPELENS)
@@ -3998,7 +3998,7 @@ class PokeBattle_Battle
     totalscore=0
     target=-1
     skill=0
-    wildbattle=!@opponent && pbIsOpposing?(index) && ((attacker.level < WILD_AI_LEVEL) && (!$game_switches[WILD_AI_SWITCH])) 
+    wildbattle=!@opponent && pbIsOpposing?(index) && ((attacker.level < WILD_AI_LEVEL) && (!$game_switches[WILD_AI_SWITCH]))
     if wildbattle # If wild battle
       for i in 0...4
         if pbCanChooseMove?(index,i,false)
@@ -4038,15 +4038,15 @@ class PokeBattle_Battle
                 # If this move can also target the partner, get the partner's
                 # score too
                 s=pbGetMoveScore(attacker.moves[i],attacker,attacker.pbPartner,skill)
-                if (isConst?(attacker.moves[i],PBTypes,:FIRE) && 
+                if (isConst?(attacker.moves[i],PBTypes,:FIRE) &&
                   attacker.pbPartner.hasWorkingAbility(:FLASHFIRE)) ||
                  (isConst?(attacker.moves[i],PBTypes,:WATER) &&
                  (attacker.pbPartner.hasWorkingAbility(:WATERABSORB) ||
                   attacker.pbPartner.hasWorkingAbility(:STORMDRAIN)  ||
-                  attacker.pbPartner.hasWorkingAbility(:DRYSKIN))) ||          
-                 (isConst?(attacker.moves[i],PBTypes,:GRASS) && 
+                  attacker.pbPartner.hasWorkingAbility(:DRYSKIN))) ||
+                 (isConst?(attacker.moves[i],PBTypes,:GRASS) &&
                   attacker.pbPartner.hasWorkingAbility(:SAPSIPPER)) ||
-                 (isConst?(attacker.moves[i],PBTypes,:GROUND) && 
+                 (isConst?(attacker.moves[i],PBTypes,:GROUND) &&
                   attacker.pbPartner.hasWorkingAbility(:LEVITATE)) ||
                  (isConst?(attacker.moves[i],PBTypes,:ELECTRIC) &&
                  (attacker.pbPartner.hasWorkingAbility(:VOLTABSORB) ||
@@ -4232,7 +4232,7 @@ class PokeBattle_Battle
     # Simple "always should if possible"
     return pbCanMegaEvolve?(index)
   end
-  
+
 ################################################################################
 # Decide whether the opponent should Ultra Burst their Pokémon.
 ################################################################################
@@ -4241,13 +4241,13 @@ class PokeBattle_Battle
     return pbCanUltraBurst?(index)
   end
 
-################################################################################    
+################################################################################
 # Decide whether the opponent should use a Z-Move.
 ################################################################################
   def pbEnemyShouldZMove?(index)
-    return pbCanZMove?(index) #Conditions based on effectiveness and type handled later  
-  end    
-  
+    return pbCanZMove?(index) #Conditions based on effectiveness and type handled later
+  end
+
 
 ################################################################################
 # Decide whether the opponent should use an item on the Pokémon.
@@ -4282,9 +4282,9 @@ class PokeBattle_Battle
     hashpitem=false
     for i in items
       next if pbEnemyItemAlreadyUsed?(index,i,items)
-      if isConst?(i,PBItems,:POTION) || 
-         isConst?(i,PBItems,:SUPERPOTION) || 
-         isConst?(i,PBItems,:HYPERPOTION) || 
+      if isConst?(i,PBItems,:POTION) ||
+         isConst?(i,PBItems,:SUPERPOTION) ||
+         isConst?(i,PBItems,:HYPERPOTION) ||
          isConst?(i,PBItems,:MAXPOTION) ||
          isConst?(i,PBItems,:FULLRESTORE)
         hashpitem=true
@@ -4298,9 +4298,9 @@ class PokeBattle_Battle
         return i if battler.hp<=battler.totalhp*2/3 &&
                     (battler.status>0 || battler.effects[PBEffects::Confusion]>0) &&
                     pbAIRandom(10)<3
-      elsif isConst?(i,PBItems,:POTION) || 
-         isConst?(i,PBItems,:SUPERPOTION) || 
-         isConst?(i,PBItems,:HYPERPOTION) || 
+      elsif isConst?(i,PBItems,:POTION) ||
+         isConst?(i,PBItems,:SUPERPOTION) ||
+         isConst?(i,PBItems,:HYPERPOTION) ||
          isConst?(i,PBItems,:MAXPOTION)
         return i if battler.hp<=battler.totalhp/4
         return i if battler.hp<=battler.totalhp/2 && pbAIRandom(10)<3
@@ -4349,7 +4349,7 @@ class PokeBattle_Battle
       if skill>=PBTrainerAI.highSkill
         opponent=@battlers[index].pbOppositeOpposing
         opponent=opponent.pbPartner if opponent.isFainted?
-        if !opponent.isFainted? && opponent.lastMoveUsed>0 && 
+        if !opponent.isFainted? && opponent.lastMoveUsed>0 &&
            (opponent.level-@battlers[index].level).abs<=6
           move=PBMoveData.new(opponent.lastMoveUsed)
           typemod=pbTypeModifier(move.type,@battlers[index],@battlers[index])
@@ -4413,7 +4413,7 @@ class PokeBattle_Battle
       end
     end
     if skill>=PBTrainerAI.highSkill
-      if !@doublebattle && !@battlers[index].pbOppositeOpposing.isFainted? 
+      if !@doublebattle && !@battlers[index].pbOppositeOpposing.isFainted?
         opp=@battlers[index].pbOppositeOpposing
         if (opp.effects[PBEffects::HyperBeam]>0 ||
            (opp.hasWorkingAbility(:TRUANT) &&
@@ -4423,10 +4423,10 @@ class PokeBattle_Battle
       end
     end
     if @rules["suddendeath"]
-      if @battlers[index].hp<=(@battlers[index].totalhp/4) && pbAIRandom(10)<3 && 
+      if @battlers[index].hp<=(@battlers[index].totalhp/4) && pbAIRandom(10)<3 &&
          @battlers[index].turncount>0
         shouldswitch=true
-      elsif @battlers[index].hp<=(@battlers[index].totalhp/2) && pbAIRandom(10)<8 && 
+      elsif @battlers[index].hp<=(@battlers[index].totalhp/2) && pbAIRandom(10)<8 &&
          @battlers[index].turncount>0
         shouldswitch=true
       end
@@ -4552,8 +4552,15 @@ class PokeBattle_Battle
       pbRegisterUltraBurst(index) if pbEnemyShouldUltraBurst?(index)
       if pbEnemyShouldZMove?(index)
         return pbChooseEnemyZMove(index)
-      end            
+      end
+      pbRegisterTeraCristal(index) if fpEnemyShouldTeraCristal?(index)
       pbChooseMoves(index)
+    end
+  end
+
+  def fpEnemyShouldTeraCristal?(index)
+    if @battlers[index].pokemon.tera_ace
+      return true
     end
   end
 
@@ -4570,10 +4577,10 @@ class PokeBattle_Battle
           if move.basedamage>chosenmove.basedamage
             chosenindex=i
             chosenmove=move
-          end          
+          end
         end
       end
-    end  
+    end
     attacker = @battlers[index]
     opponent=attacker.pbOppositeOpposing
     otheropp=opponent.pbPartner
@@ -4590,13 +4597,13 @@ class PokeBattle_Battle
     elsif oppeff1<oppeff2
       pbRegisterZMove(index)
       pbRegisterMove(index,chosenindex,false)
-      pbRegisterTarget(index,otheropp.index)      
+      pbRegisterTarget(index,otheropp.index)
     elsif oppeff1==oppeff2
       pbRegisterZMove(index)
       pbRegisterMove(index,chosenindex,false)
-      pbRegisterTarget(index,opponent.index)      
-    end  
-  end  
+      pbRegisterTarget(index,opponent.index)
+    end
+  end
 ################################################################################
 # Other functions.
 ################################################################################
@@ -4619,7 +4626,7 @@ class PokeBattle_Battle
         varianceTimesN+=deviation*deviation
       end
     end
-    # Using population standard deviation 
+    # Using population standard deviation
     # [(n-1) makes it a sample std dev, would be 0 with only 1 sample]
     return Math.sqrt(varianceTimesN/n)
   end

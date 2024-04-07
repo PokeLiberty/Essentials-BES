@@ -27,7 +27,7 @@ class PokeBattle_Pokemon
   attr_accessor(:name)        # Apodo
   attr_accessor(:exp)         # Puntos de experiencia actuales
   attr_accessor(:happiness)   # Felicidad actual
-  attr_accessor(:status)      # Cambio de estado (PBStatuses) 
+  attr_accessor(:status)      # Cambio de estado (PBStatuses)
   attr_accessor(:statusCount) # Contador de sueño/bandera de tóxico
   attr_accessor(:eggsteps)    # Pasos para eclosionar el huevo, 0 si el Pokémon no es un huevo
   attr_accessor(:moves)       # Movimientos (PBMove)
@@ -52,7 +52,11 @@ class PokeBattle_Pokemon
   attr_accessor(:natureflag)  # Fuerza una naturaleza en particular
   attr_accessor(:shinyflag)   # Fuerza el variocolor shininess (true/false)
   attr_accessor(:ribbons)     # Arreglo de cintas
+  attr_accessor :teratype     # Teratipo del Pokémon
+  attr_accessor :teracristalized # Si es true el Pokémon está teracristalzado
+  attr_accessor :tera_ace #Si es true el Pokémon teracristalizará (solo usado en entrenadores)
   attr_accessor :cool,:beauty,:cute,:smart,:tough,:sheen # Contest stats
+  attr_accessor :original_types
 
   EVLIMIT     = 510   # Máximo de EVs totales
   EVSTATLIMIT = 252   # Másixmo de EVs que puede tener una sola característica
@@ -129,7 +133,7 @@ class PokeBattle_Pokemon
     if value<1 || value>PBExperience::MAXLEVEL
       raise ArgumentError.new(_INTL("El número de nivel ({1}) no es válido.",value))
     end
-    self.exp=PBExperience.pbGetStartExperience(value,self.growthrate) 
+    self.exp=PBExperience.pbGetStartExperience(value,self.growthrate)
   end
 
 # Returns whether this Pokemon is an egg.
@@ -271,7 +275,7 @@ class PokeBattle_Pokemon
     abil=abilityIndex
     return abil!=nil && abil>=2
   end
-  
+
   def hasEventAbility?
     abil=abilityIndex
     return abil!=nil && abil>=3
@@ -572,7 +576,7 @@ class PokeBattle_Pokemon
   end
 
 # Devuelve si este Pokémon tiene la cinta especificada.
-  def hasRibbon?(ribbon) 
+  def hasRibbon?(ribbon)
     @ribbons=[] if !@ribbons
     ribbon=getID(PBRibbons,ribbon) if !ribbon.is_a?(Integer)
     return false if ribbon==0
@@ -627,6 +631,54 @@ class PokeBattle_Pokemon
   end
 
 ################################################################################
+# Teracristalización
+################################################################################
+  def teratype #Devuelve el teratipo del Pokémon
+    if @species==getConst(PBSpecies,:OGERPON)
+      return PBTypes::FIRE if @item==getConst(PBItems,:HEARTHFLAMEMASK)
+      return PBTypes::WATER if @item==getConst(PBItems,:WELLSPRINGMASK)
+      return PBTypes::ROCK if @item==getConst(PBItems,:CORRNERSTONEMASK)
+      return PBTypes::GRASS
+    elsif @species==getConst(PBSpecies,:TERAPAGOS)
+      return getID(PBTypes,:STELLAR)
+    end
+    return @teratype
+  end
+
+  def pbGenerateTeratype
+    avaibletypes=[]
+    for i in 0..PBTypes.maxValue
+      avaibletypes.push(i) if !PBTypes.isPseudoType?(i) && !isConst?(i,PBTypes,:SHADOW)
+    end
+    teratype=avaibletypes.sample
+    return teratype
+  end
+
+  def setTeratype(type) #Setea el teratipo del Pokémon
+    type=getID(PBTypes,type) if type.is_a?(Symbol) || type.is_a?(String)
+    @teratype=type
+  end
+
+  def isTera? #Comprueba si el Pokémon está teracristalizado
+    return self.teracristalized
+  end
+
+  def makeTera #Teracristaiza al Pokémon
+    @teracristalized=true
+  end
+
+  def makeUntera #Desteracristaiza al Pokémon
+    @teracristalized=false
+    if @species==PBSpecies::TERAPAGOS
+      @form=0
+    end
+  end
+
+  def pbPokemonTeratype?(type) #Comprueba si el Pokémon tine cierto teratipo
+    type=getID(PBTypes,type) if type.is_a?(Symbol)
+    return true if @teratype==type
+  end
+################################################################################
 # Otros
 ################################################################################
 # Devuelve si este Pokémon está llevando un objeto.
@@ -673,7 +725,7 @@ class PokeBattle_Pokemon
     end
     return @mail
   end
-  
+
   def species=(value)
     @species    = value
     @name       = PBSpecies.getName(@species)
@@ -950,6 +1002,7 @@ class PokeBattle_Pokemon
     @mail=nil
     @fused=nil
     @ribbons=[]
+    @teratype=pbGenerateTeratype()
     @moves=[]
     self.ballused=0
     self.level=level
@@ -967,6 +1020,7 @@ class PokeBattle_Pokemon
     @obtainMode=0   # Encuentro
     @obtainMode=4 if $game_switches && $game_switches[FATEFUL_ENCOUNTER_SWITCH]
     @hatchedMap=0
+    @original_types=[0,0]
     if withMoves
       atkdata=pbRgssOpen("Data/attacksRS.dat","rb")
       offset=atkdata.getOffset(species-1)

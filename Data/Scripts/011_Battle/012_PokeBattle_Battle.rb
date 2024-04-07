@@ -35,7 +35,7 @@ module PokeBattle_BattleCommon
         end
       end
       oldcurbox=@peer.pbCurrentBox()
-      storedbox=@peer.pbStorePokemon(self.pbPlayer,pokemon) 
+      storedbox=@peer.pbStorePokemon(self.pbPlayer,pokemon)
       creator=@peer.pbGetStorageCreator()
       return if storedbox<0
       curboxname=@peer.pbBoxName(oldcurbox)
@@ -96,8 +96,8 @@ module PokeBattle_BattleCommon
     end
     return ret
   end
-  
-# Retuns: 1 - success at capturing, 
+
+# Retuns: 1 - success at capturing,
 #         0 - fail at capturing and at fetching ball,
 #        -1 - fail at capturing and success at fetching ball
 
@@ -165,7 +165,7 @@ module PokeBattle_BattleCommon
           shakes=4
         else
           x=1 if x<1
-          y = ( 65536 / ((255.0/x)**0.1875) ).floor
+          y = ( 65536/((255.0/x)**0.1875) ).floor
           if USECRITICALCAPTURE && pbRandom(256)<c
             critical=true
             shakes=4 if pbRandom(65536)<y
@@ -281,6 +281,7 @@ class PokeBattle_Battle
   attr_accessor(:lastMoveUsed)    # Last move used
   attr_accessor(:lastMoveUser)    # Last move user
   attr_accessor(:megaEvolution)   # Battle index of each trainer's Pokémon to Mega Evolve
+  attr_accessor :teraCristal      # Battle index of each trainer's Pokémon to Tera Cristal
   attr_accessor(:ultraBurst)      # Battle index of each trainer's Pokémon to Ultra Burst
   attr_accessor(:necrozmaVar)     # Store the form Necrozma was in initially if it bursts
   attr_accessor(:amuletcoin)      # Whether Amulet Coin's effect applies
@@ -295,9 +296,10 @@ class PokeBattle_Battle
   attr_accessor :controlPlayer
 
   include PokeBattle_BattleCommon
-  
+
   MAXPARTYSIZE = 6
   MEGARINGS=[:MEGARING,:MEGABRACELET,:MEGACUFF,:MEGACHARM]
+  TERAORBS=MEGARINGS
   ZRINGS=MEGARINGS
 
   class BattleAbortedException < Exception; end
@@ -379,32 +381,31 @@ class PokeBattle_Battle
     @nextPickupUse   = 0
     @megaEvolution   = []
     @ultraBurst      = []
+    @teraCristal     = []
     @necrozmaVar     = [-1,-1]
+    @zMove           = []
     if @player.is_a?(Array)
       @megaEvolution[0]=[-1]*@player.length
       @ultraBurst[0]   =[-1]*@player.length
+      @teraCristal[0]   =[-1]*@player.length
+      @zMove[0]=[-1]*@player.length
     else
       @megaEvolution[0]=[-1]
       @ultraBurst[0]=[-1]
+      @teraCristal[0]=[-1]
+      @zMove[0]=[-1]
     end
     if @opponent.is_a?(Array)
       @megaEvolution[1]=[-1]*@opponent.length
       @ultraBurst[1]   =[-1]*@opponent.length
-    else
-      @megaEvolution[1]=[-1]
-      @ultraBurst[1]   =[-1]
-    end
-    @zMove           = []
-    if @player.is_a?(Array)
-      @zMove[0]=[-1]*@player.length
-    else
-      @zMove[0]=[-1]
-    end
-    if @opponent.is_a?(Array)
+      @teraCristal[1]   =[-1]*@opponent.length
       @zMove[1]=[-1]*@opponent.length
     else
+      @megaEvolution[1]=[-1]
+      @ultraBurst[1]=[-1]
+      @teraCristal[1]=[-1]
       @zMove[1]=[-1]
-    end        
+    end
     @amuletcoin       = false
     @extramoney       = 0
     @doublemoney      = false
@@ -712,8 +713,16 @@ class PokeBattle_Battle
       return true if $PokemonBag.pbQuantity(i)>0
     end
     return false
-  end    
+  end
 
+  def pbHasTeraOrb(battlerIndex)
+    return true if !pbBelongsToPlayer?(battlerIndex)
+    for i in TERAORBS
+      next if !hasConst?(PBItems,i)
+      return true if $PokemonBag.pbQuantity(i)>0
+    end
+    return false
+  end
 ################################################################################
 # Get party info, manipulate parties. / Obtiene información del equipo,
 ################################################################################
@@ -963,7 +972,7 @@ class PokeBattle_Battle
 
   def zMove
     return @zMove
-  end    
+  end
 
 ################################################################################
 # Attacking. / Atacando
@@ -1127,7 +1136,7 @@ class PokeBattle_Battle
       @choices[idxPokemon][2]=nil
       return
     end
-    if thispkmn.effects[PBEffects::Encore]>0 && 
+    if thispkmn.effects[PBEffects::Encore]>0 &&
        pbCanChooseMove?(idxPokemon,thispkmn.effects[PBEffects::EncoreIndex],false)
       PBDebug.log("[Auto choosing Encore move] #{thispkmn.moves[thispkmn.effects[PBEffects::EncoreIndex]].name}")
       @choices[idxPokemon][0]=1    # "Use move"
@@ -1232,7 +1241,7 @@ class PokeBattle_Battle
         end
         if !quickclaw[i] && !quickdraw[i] && @battlers[i].hasWorkingAbility(:QUICKDRAW)
           if pbRandom(10)<2
-            
+
             quickdraw[i]=true
             pbDisplayBrief(_INTL("¡{1} se mueve primero gracias a Mano Rápida!",
                @battlers[i].pbThis))
@@ -1252,7 +1261,7 @@ class PokeBattle_Battle
       pri=0
       if @choices[i][0]==1 # Chose to use a move
         pri=@choices[i][2].priority
-        pri+=1 if @field.effects[PBEffects::GrassyTerrain]>0 && 
+        pri+=1 if @field.effects[PBEffects::GrassyTerrain]>0 &&
                   @choices[i][2].function == 0x211
         pri+=1 if @battlers[i].hasWorkingAbility(:PRANKSTER) &&
                   @choices[i][2].pbIsStatus?
@@ -1267,13 +1276,13 @@ class PokeBattle_Battle
                   !isConst?(@choices[i][2].id,PBMoves,:PAINSPLIT) &&
                   !isConst?(@choices[i][2].id,PBMoves,:PRESENT) &&
                   !isConst?(@choices[i][2].id,PBMoves,:POLLENPUFF)
-                  
+
         lagging[i]=true if (@battlers[i].hasWorkingAbility(:MYCELIUMMIGHT) && @choices[i][2].pbIsStatus?)
         if @choices[i][2].zmove && (@choices[i][2].pbIsPhysical?(@choices[i][2].type) || @choices[i][2].pbIsSpecial?(@choices[i][2].type))
           pri=0
         end
       end
-                
+
       priorities[i]=pri
       if i==0
         minpri=pri
@@ -1387,7 +1396,7 @@ class PokeBattle_Battle
       end
       if @battlers[idxPokemon].pokemonIndex==pkmnidxTo ||
          @battlers[idxPokemon].pbPartner.pokemonIndex==pkmnidxTo
-        pbDisplayPaused(_INTL("¡{1} ya está en el campo de batalla!",party[pkmnidxTo].name)) if showMessages 
+        pbDisplayPaused(_INTL("¡{1} ya está en el campo de batalla!",party[pkmnidxTo].name)) if showMessages
         return false
       end
     end
@@ -1491,7 +1500,10 @@ class PokeBattle_Battle
     end
     if @zMove[side][owner]==idxPokemon
       @zMove[side][owner]=-1
-    end          
+    end
+    if @teraCristal[side][owner]==idxPokemon
+      @teraCristal[side][owner]=-1
+    end
     return true
   end
 
@@ -1564,7 +1576,7 @@ class PokeBattle_Battle
         switched.push(index)
       else
         switch=false
-        if !pbDisplayConfirm(_INTL("¿Quieres cambiar de Pokémon?")) 
+        if !pbDisplayConfirm(_INTL("¿Quieres cambiar de Pokémon?"))
           switch=(pbRun(index,true)<=0)
         else
           switch=true
@@ -1680,10 +1692,10 @@ class PokeBattle_Battle
       return @scene.pbSwitch(index,lax,cancancel)
     end
   end
-  
+
 ################################################################################
 # Revival Blessing / Plegaria Vital
-################################################################################  
+################################################################################
   def pbCanReviveLax?(idxPokemon,pkmnidxTo,showMessages)
     if pkmnidxTo>=0
       party=pbParty(idxPokemon)
@@ -1704,21 +1716,21 @@ class PokeBattle_Battle
       end
       if @battlers[idxPokemon].pokemonIndex==pkmnidxTo ||
          @battlers[idxPokemon].pbPartner.pokemonIndex==pkmnidxTo
-        pbDisplayPaused(_INTL("¡{1} ya está combatiendo!",party[pkmnidxTo].name)) if showMessages 
+        pbDisplayPaused(_INTL("¡{1} ya está combatiendo!",party[pkmnidxTo].name)) if showMessages
         return false
       end
-    end   
+    end
     return true
   end
-  
+
   def pbCanRevive?(idxPokemon,pkmnidxTo,showMessages,ignoremeanlook=false)
     return true
   end
-    
+
   def pbRevival(index,newpoke)
-    party=pbParty(index)    
+    party=pbParty(index)
     party[newpoke].hp=(party[newpoke].totalhp/2).floor
-    party[newpoke].healStatus       
+    party[newpoke].healStatus
   end
 
   def pbMessagesOnRevival(index,newpoke,newpokename=-1)
@@ -1832,7 +1844,10 @@ class PokeBattle_Battle
     end
     if @zMove[side][owner]==idxPokemon
       @zMove[side][owner]=-1
-    end      
+    end
+    if @teraCristal[side][owner]==idxPokemon
+      @teraCristal[side][owner]=-1
+    end
     return true
   end
 
@@ -1930,7 +1945,7 @@ class PokeBattle_Battle
     if pbIsOpposing?(idxPokemon)
       return 0 if @opponent
       @choices[i][0]=5 # run
-      @choices[i][1]=0 
+      @choices[i][1]=0
       @choices[i][2]=nil
       return -1
     end
@@ -2044,13 +2059,15 @@ class PokeBattle_Battle
   end
 
 ################################################################################
-# Mega Evolve battler. / Mega Evolución 
+# Mega Evolve battler. / Mega Evolución
 ################################################################################
   def pbCanMegaEvolve?(index)
-    
+
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
-    
+
+    return false if @battlers[index].isTera?
+    return false if pbIsZCrystal?(@battlers[index].item) || pbCanZMove?(index)
     return false if $game_switches[NO_MEGA_EVOLUTION]
     return false if !@battlers[index].hasMega?
     #return false if pbIsOpposing?(index) && !@opponent
@@ -2109,6 +2126,54 @@ class PokeBattle_Battle
   end
 
 ################################################################################
+# Teracristalización
+################################################################################
+  def pbCanTeraCristal?(index)
+    return false if @battlers[index].hasMega? || @battlers[index].isMega?
+    return false if @battlers[index].isPrimal?
+    return false if @battlers[index].hasUltra? || @battlers[index].isUltra?
+    return false if pbIsZCrystal?(@battlers[index].item) || pbCanZMove?(index)
+    return false if $game_switches[NO_TERA_CRISTAL]
+    return false if pbIsOpposing?(index) && !@opponent
+    return true if $DEBUG && Input.press?(Input::CTRL)
+    return false if !pbHasTeraOrb(index)
+    side=(pbIsOpposing?(index)) ? 1 : 0
+    owner=pbGetOwnerIndex(index)
+    return false if @teraCristal[side][owner]!=-1
+    return false if @battlers[index].effects[PBEffects::SkyDrop]
+    return true
+  end
+
+  def pbRegisterTeraCristal(index)
+    side=(pbIsOpposing?(index)) ? 1 : 0
+    owner=pbGetOwnerIndex(index)
+    @teraCristal[side][owner]=index
+  end
+
+  def pbTeraCristal(index)
+    teratype=@battlers[index].pokemon.teratype
+    return if !@battlers[index] || !@battlers[index].pokemon
+    return if (@battlers[index].isTera? rescue true)
+    fpShowText("tera") if pbIsOpposing?(index) && defined?(MBD_Data)
+    pbDisplay(_INTL("¡{1} se está rodeando de cristal!",@battlers[index].pbThis))
+    pbCommonAnimation("MegaEvolution",@battlers[index],nil)
+    @battlers[index].pokemon.original_types=[@battlers[index].type1,@battlers[index].type2]
+    @battlers[index].pokemon.makeTera
+    @battlers[index].pbUpdate(true)
+    @scene.pbChangePokemon(@battlers[index],@battlers[index].pokemon)
+    pbCommonAnimation("MegaEvolution2",@battlers[index],nil)
+    typename=PBTypes.getName(teratype)
+    pbDisplay(_INTL("¡{1} ha Teracristalizado al tipo {2}!",@battlers[index].pbThis,typename))
+    fpShowText("tera(player)") if pbBelongsToPlayer?(index) && defined?(MBD_Data)
+    fpShowText("tera(Ogerpon)") if pbBelongsToPlayer?(index) && defined?(MBD_Data) && @battlers[index].species==getConst(PBSpecies,:OGERPON)
+    PBDebug.log("[Teracristalización] #{@battlers[index].pbThis} ha Teracristalizado (#{typename})")
+    side=(pbIsOpposing?(index)) ? 1 : 0
+    owner=pbGetOwnerIndex(index)
+    @teraCristal[side][owner]=-2
+    $PokemonGlobal.teraorb[0]-=1
+  end
+
+################################################################################
 # Primal Revert battler.
 ################################################################################
   def pbPrimalReversion(index)
@@ -2137,6 +2202,7 @@ class PokeBattle_Battle
 # Ultra Burst battler.
 ################################################################################
   def pbCanUltraBurst?(index)
+    return false if @battlers[index].isTera?
     return false if $game_switches[NO_ULTRA_BURST]
     return false if !@battlers[index].hasUltra?
     return false if pbIsOpposing?(index) && !@opponent
@@ -2159,10 +2225,10 @@ class PokeBattle_Battle
     return if !@battlers[index] || !@battlers[index].pokemon
     return if !(@battlers[index].hasUltra? rescue false)
     return if (@battlers[index].isUltra? rescue true)
-    @necrozmaVar = [@battlers[index].pokemonIndex,@battlers[index].form]
+    @necrozmaVar = [@battlers[index].pokemonIndex,@battlers[index].form] if pbBelongsToPlayer?(index)
     ownername=pbGetOwner(index).fullname
     ownername=pbGetOwner(index).name if pbBelongsToPlayer?(index)
-    pbDisplay(_INTL("¡{1} emite una luz cegadora!",@battlers[index].pbThis))    
+    pbDisplay(_INTL("¡{1} emite una luz cegadora!",@battlers[index].pbThis))
     pbCommonAnimation("UltraBurst",@battlers[index],nil)
     @battlers[index].pokemon.makeUltra
     @battlers[index].form=@battlers[index].pokemon.form
@@ -2173,17 +2239,18 @@ class PokeBattle_Battle
     if !ultraname || ultraname==""
       ultraname=_INTL("Ultra {1}",PBSpecies.getName(@battlers[index].pokemon.species))
     end
-    pbDisplay(_INTL("¡{1} ha adoptado una nueva forma gracias a la Ultraexplosión!",@battlers[index].pbThis))    
+    pbDisplay(_INTL("¡{1} ha adoptado una nueva forma gracias a la Ultraexplosión!",@battlers[index].pbThis))
     PBDebug.log("[Ultra Burst] #{@battlers[index].pbThis} became #{ultraname}")
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
     @ultraBurst[side][owner]=-2
   end
-  
+
 ################################################################################
 # Use Z-Move.
 ################################################################################
   def pbCanZMove?(index)
+    return false if @battlers[index].isTera?
     return false if $game_switches[NO_Z_MOVE]
     return false if !@battlers[index].hasZMove?
     return false if !pbHasZRing(index)
@@ -2192,26 +2259,26 @@ class PokeBattle_Battle
     return false if @zMove[side][owner]!=-1
     return true
   end
-  
+
   def pbRegisterZMove(index)
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
     @zMove[side][owner]=index
   end
-  
+
   def pbUseZMove(index,move,crystal)
     return if !@battlers[index] || !@battlers[index].pokemon
     return if !(@battlers[index].hasZMove? rescue false)
     ownername=pbGetOwner(index).fullname
     ownername=pbGetOwner(index).name if pbBelongsToPlayer?(index)
-    pbDisplay(_INTL("¡{1} se envuelve en un halo de Poder Z!",@battlers[index].pbThis))        
-    pbCommonAnimation("ZPower",@battlers[index],nil)        
+    pbDisplay(_INTL("¡{1} se envuelve en un halo de Poder Z!",@battlers[index].pbThis))
+    pbCommonAnimation("ZPower",@battlers[index],nil)
     PokeBattle_ZMoves.new(self,@battlers[index],move,crystal)
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
     @zMove[side][owner]=-2
   end
-  
+
 ################################################################################
 # Call battler.
 ################################################################################
@@ -2260,7 +2327,7 @@ class PokeBattle_Battle
         if !haveexpall
           for j in 0...@party1.length
             next if !@party1[j] || !pbIsOwner?(0,j)
-            expshare+=1 if @party1[j].hp>0 && !@party1[j].isEgg? && 
+            expshare+=1 if @party1[j].hp>0 && !@party1[j].isEgg? &&
                            (isConst?(@party1[j].item,PBItems,:EXPSHARE) ||
                            isConst?(@party1[j].itemInitial,PBItems,:EXPSHARE))
           end
@@ -2437,7 +2504,7 @@ class PokeBattle_Battle
           tempexp1=tempexp2
           curlevel+=1
           if curlevel>newlevel
-            thispoke.calcStats 
+            thispoke.calcStats
             battler.pbUpdate(false) if battler
             @scene.pbRefresh
             break
@@ -2586,7 +2653,7 @@ class PokeBattle_Battle
         pkmn.pbRecoverHP(pkmn.totalhp,false)
         pbDisplayPaused(_INTL("The Z-Power healed {1}!",pkmn.pbThis(true)))
         pkmn.effects[PBEffects::ZHeal]=false
-      end            
+      end
       # Púas
       if pkmn.pbOwnSide.effects[PBEffects::Spikes]>0 && !pkmn.isAirborne?(moldbreaker)
         if !(pkmn.hasWorkingAbility(:MAGICGUARD) || pkmn.hasWorkingItem(:HEAVYDUTYBOOTS))
@@ -2810,7 +2877,7 @@ class PokeBattle_Battle
       @scene.pbEndBattle(@decision)
     end
     if FASTER_BATTLE
-      Graphics.frame_rate = 40 
+      Graphics.frame_rate = 40
       Graphics.frame_rate = 60 if FPS60 && $MKXP
     end
     return @decision
@@ -2853,6 +2920,9 @@ class PokeBattle_Battle
       else
         raise _INTL("Sólo se permite uno o dos Pokémon salvajes en batallas dobles")
       end
+      #if rand(65536)<TERAWILD || $game_switches[ALWAISTERAWILD]
+      #  fpTeracristal(1)
+      #end
 #=====================================================================================
 # Initialize opponents in double battles / Inicializa oponentes en batallas dobles
 #=====================================================================================
@@ -3058,6 +3128,11 @@ class PokeBattle_Battle
       end
     end
     for i in 0...2
+      for j in 0...@teraCristal[i].length
+        @teraCristal[i][j]=-1 if @teraCristal[i][j]>=0
+      end
+    end
+    for i in 0...2
       for j in 0...@ultraBurst[i].length
         @ultraBurst[i][j]=-1 if @ultraBurst[i][j]>=0
       end
@@ -3067,7 +3142,7 @@ class PokeBattle_Battle
     end
     for i in 0...@zMove[1].length
       @zMove[1][i]=-1 if @zMove[1][i]>=0
-    end        
+    end
     for i in 0...4
       break if @decision!=0
       next if @choices[i][0]!=0
@@ -3097,7 +3172,10 @@ class PokeBattle_Battle
                     end
                     if @zMove[side][owner]==i
                       @zMove[side][owner]=-1
-                    end                                          
+                    end
+                    if @teraCristal[side][owner]==i
+                      @teraCristal[side][owner]=-1
+                    end
                     break
                   end
                   next if !pbRegisterMove(i,index)
@@ -3141,7 +3219,7 @@ class PokeBattle_Battle
                 commandDone=true if pbRegisterSwitch(i,pkmn)
               end
             elsif cmd==3   # Run
-              run=pbRun(i) 
+              run=pbRun(i)
               if run>0
                 commandDone=true
                 return
@@ -3157,7 +3235,10 @@ class PokeBattle_Battle
                 end
                 if @zMove[side][owner]==i
                   @zMove[side][owner]=-1
-                end                  
+                end
+                if @teraCristal[side][owner]==i
+                  @teraCristal[side][owner]=-1
+                end
               end
             elsif cmd==4   # Call
               thispkmn=@battlers[i]
@@ -3174,7 +3255,10 @@ class PokeBattle_Battle
               end
               if @zMove[side][owner]==i
                 @zMove[side][owner]=-1
-              end                              
+              end
+              if @teraCristal[side][owner]==i
+                @teraCristal[side][owner]=-1
+              end
               commandDone=true
             elsif cmd==-1   # Go back to first battler's choice
               @megaEvolution[0][0]=-1 if @megaEvolution[0][0]>=0
@@ -3182,7 +3266,9 @@ class PokeBattle_Battle
               @ultraBurst[0][0]=-1 if @ultraBurst[0][0]>=0
               @ultraBurst[1][0]=-1 if @ultraBurst[1][0]>=0
               @zMove[0][0]=-1 if @zMove[0][0]>=0
-              @zMove[1][0]=-1 if @zMove[1][0]>=0         
+              @zMove[1][0]=-1 if @zMove[1][0]>=0
+              @teraCristal[0][0]=-1 if @teraCristal[0][0]>=0
+              @teraCristal[1][0]=-1 if @teraCristal[1][0]>=0
               # Restore the item the player's first Pokémon was due to use
               if @choices[0][0]==3 && $PokemonBag && $PokemonBag.pbCanStore?(@choices[0][1])
                 $PokemonBag.pbStoreItem(@choices[0][1])
@@ -3219,7 +3305,7 @@ class PokeBattle_Battle
       if @zMove[side][owner]==i
         @choices[i][2].zmove=true
       end
-    end      
+    end
     # Calculate priority at this time
     @usepriority=false
     priority=pbPriority(false,true)
@@ -3255,6 +3341,23 @@ class PokeBattle_Battle
     if ultrabursted.length>0
       for i in priority
         i.pbAbilitiesOnSwitchIn(true) if ultrabursted.include?(i.index)
+      end
+    end
+    # TeraCristal
+    teracristalized=[]
+    for i in priority
+      if @choices[i.index][0]==1 && !i.effects[PBEffects::SkipTurn]
+        side=(pbIsOpposing?(i.index)) ? 1 : 0
+        owner=pbGetOwnerIndex(i.index)
+        if @teraCristal[side][owner]==i.index
+          pbTeraCristal(i.index)
+          teracristalized.push(i.index)
+        end
+      end
+    end
+    if teracristalized.length>0
+      for i in priority
+        i.pbAbilitiesOnSwitchIn(true) if teracristalized.include?(i.index)
       end
     end
     # Call at Pokémon
@@ -3421,6 +3524,11 @@ class PokeBattle_Battle
     end
     @usepriority=false  # recalculate priority
     priority=pbPriority(true) # Ignoring Quick Claw here
+    #for i in @battlers
+    #  if pbIsOpposing?(i.index) && i.totalhp/2 > i.hp && i.isTera? && !@opponent
+    #    i.makeUntera
+    #  end
+    #end
     # Weather
     case @weather
     when PBWeather::SUNNYDAY
@@ -3977,7 +4085,7 @@ class PokeBattle_Battle
             pbDisplay(_INTL("¡{1} ha sido dañado por {2}!",i.pbThis,movename))
           end
         end
-      end  
+      end
       if i.isFainted?
         return if !i.pbFaint
       end
@@ -4019,7 +4127,7 @@ class PokeBattle_Battle
         if i.effects[PBEffects::Taunt]==0
           pbDisplay(_INTL("¡El efecto de Mofa de {1} ha pasado!",i.pbThis))
           PBDebug.log("[Fin de efecto] #{i.pbThis} ya no está afectado por Mofa")
-        end 
+        end
       end
     end
     # Otra Vez  /  Encore
@@ -4037,7 +4145,7 @@ class PokeBattle_Battle
             i.effects[PBEffects::Encore]=0
             pbDisplay(_INTL("¡Otra Vez ya no hace efecto en {1}!",i.pbThis))
             PBDebug.log("[Fin de efecto] #{i.pbThis} ya no es afectado por Otra Vez")
-          end 
+          end
         end
       end
     end
@@ -4315,7 +4423,7 @@ class PokeBattle_Battle
         pbDisplay(_INTL("¡La corriente eléctrica desapareció del campo!"))
         PBDebug.log("[End of effect] Electric Terrain ended")
       end
-    end  
+    end
     # Grassy Terrain
     if @field.effects[PBEffects::GrassyTerrain]>0
       @field.effects[PBEffects::GrassyTerrain]-=1
@@ -4375,7 +4483,7 @@ class PokeBattle_Battle
           pbDisplay(_INTL("{1} se tranquilizó.",i.pbThis))
           PBDebug.log("[Fin de efecto] #{i.pbThis} ya no está haciendo alboroto")
         else
-          pbDisplay(_INTL("¡{1} está montando un Alboroto!",i.pbThis)) 
+          pbDisplay(_INTL("¡{1} está montando un Alboroto!",i.pbThis))
         end
       end
     end
@@ -4410,14 +4518,14 @@ class PokeBattle_Battle
           PBStats::SPATK,PBStats::SPDEF,PBStats::ACCURACY,PBStats::EVASION]
           i.stages[j]=i.pbOpposing1.stages[j]
         end
-        pbDisplay(_INTL("¡{1} copió las nuevas características de {2}!",i.pbThis,i.pbOpposing1.pbThis(true)))  
+        pbDisplay(_INTL("¡{1} copió las nuevas características de {2}!",i.pbThis,i.pbOpposing1.pbThis(true)))
       end
       if i.hasWorkingItem(:MIRRORHERB)
         for j in [PBStats::ATTACK,PBStats::DEFENSE,PBStats::SPEED,
           PBStats::SPATK,PBStats::SPDEF,PBStats::ACCURACY,PBStats::EVASION]
           i.stages[j]=i.pbOpposing1.stages[j]
         end
-        pbDisplay(_INTL("¡{1} copió las nuevas características de {2}!",i.pbThis,i.pbOpposing1.pbThis(true)))  
+        pbDisplay(_INTL("¡{1} copió las nuevas características de {2}!",i.pbThis,i.pbOpposing1.pbThis(true)))
         i.pbConsumeItem
       end
       # Bad Dreams
@@ -4463,7 +4571,7 @@ class PokeBattle_Battle
       # Cosecha  /  Harvest
       if i.hasWorkingAbility(:HARVEST) && i.item<=0 && i.pokemon.itemRecycle>0
         if pbIsBerry?(i.pokemon.itemRecycle) &&
-           (pbWeather==PBWeather::SUNNYDAY || 
+           (pbWeather==PBWeather::SUNNYDAY ||
            pbWeather==PBWeather::HARSHSUN || pbRandom(10)<5)
           i.item=i.pokemon.itemRecycle
           i.pokemon.itemRecycle=0
@@ -4473,7 +4581,7 @@ class PokeBattle_Battle
         end
       end
       # Rumia / Cud Chew
-      if i.hasWorkingAbility(:CUDCHEW) 
+      if i.hasWorkingAbility(:CUDCHEW)
         if i.effects[PBEffects::CudChew]==2
           i.item=i.pokemon.itemRecycle
           i.pokemon.itemRecycle=0
@@ -4572,7 +4680,7 @@ class PokeBattle_Battle
         @battlers[i].effects[PBEffects::LockOn]-=1
         @battlers[i].effects[PBEffects::LockOnPos]=-1 if @battlers[i].effects[PBEffects::LockOn]==0
       end
-      @battlers[i].effects[PBEffects::ShellTrap]=false      
+      @battlers[i].effects[PBEffects::ShellTrap]=false
       @battlers[i].effects[PBEffects::Flinch]=false
       @battlers[i].effects[PBEffects::BurningJealousy] = false
       @battlers[i].effects[PBEffects::LashOut] = false

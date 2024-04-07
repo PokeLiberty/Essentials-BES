@@ -1,9 +1,9 @@
 =begin
 -  def pbChooseNewEnemy(index,party)
 Use this method to choose a new Pokémon for the enemy
-The enemy's party is guaranteed to have at least one 
+The enemy's party is guaranteed to have at least one
 choosable member.
-index - Index to the battler to be replaced (use e.g. @battle.battlers[index] to 
+index - Index to the battler to be replaced (use e.g. @battle.battlers[index] to
 access the battler)
 party - Enemy's party
 
@@ -21,13 +21,13 @@ pkmn - PokeBattle_Battler object indicating the Pokémon that fainted
 
 - def pbChooseEnemyCommand(index)
 Use this method to choose a command for the enemy.
-index - Index of enemy battler (use e.g. @battle.battlers[index] to 
+index - Index of enemy battler (use e.g. @battle.battlers[index] to
 access the battler)
 
 - def pbCommandMenu(index)
 Use this method to display the list of commands and choose
 a command for the player.
-index - Index of battler (use e.g. @battle.battlers[index] to 
+index - Index of battler (use e.g. @battle.battlers[index] to
 access the battler)
 Return values:
 0 - Fight
@@ -219,10 +219,10 @@ class FightMenuDisplay
   attr_reader :index
   attr_accessor :megaButton
   attr_accessor :ultraButton
-  attr_accessor :zButton    
-  attr_accessor :dynaButton  
+  attr_accessor :zButton
+  attr_accessor :dynaButton
   attr_accessor :teraButton
-  
+
   def initialize(battler,viewport=nil)
     @display=nil
     if PokeBattle_SceneConstants::USEFIGHTBOX
@@ -244,8 +244,8 @@ class FightMenuDisplay
     @index=0
     @megaButton=0 # 0=don't show, 1=show, 2=pressed
     @ultraButton=0  # 0=don't show, 1=show, 2=pressed
-    @zButton=0    # 0=don't show, 1=show, 2=pressed    
-    @dynaButton=0 # 0=don't show, 1=show, 2=pressed    
+    @zButton=0    # 0=don't show, 1=show, 2=pressed
+    @dynaButton=0 # 0=don't show, 1=show, 2=pressed
     @teraButton=0 # 0=don't show, 1=show, 2=pressed
     if PokeBattle_SceneConstants::USEFIGHTBOX
       @window.opacity=0
@@ -341,6 +341,7 @@ class FightMenuDisplay
   end
 
   def refresh
+    @buttons.pokemon=@battler.pokemon if @battler
     return if !@battler
     commands=[]
     for i in 0...4
@@ -374,6 +375,7 @@ end
 
 class FightMenuButtons < BitmapSprite
   UPPERGAP=46
+  attr_writer :pokemon
 
   def initialize(index=0,moves=nil,viewport=nil)
     super(Graphics.width,96+UPPERGAP,viewport)
@@ -387,6 +389,7 @@ class FightMenuButtons < BitmapSprite
     @zmovebitmap=AnimatedBitmap.new(_INTL("Graphics/#{BATTLE_ROUTE}/battleZMove"))
     @dynamaxbitmap=AnimatedBitmap.new(_INTL("Graphics/#{BATTLE_ROUTE}/battleDynamax"))
     @terastalbitmap=AnimatedBitmap.new(_INTL("Graphics/#{BATTLE_ROUTE}/battleTerastal"))
+    @pokemon
     refresh(index,moves,0,0,0,0,0)
   end
 
@@ -395,6 +398,7 @@ class FightMenuButtons < BitmapSprite
     @typebitmap.dispose
     @megaevobitmap.dispose
     @ultraburstbitmap.dispose
+    @terastalbitmap.dispose
     super
   end
 
@@ -443,19 +447,20 @@ class FightMenuButtons < BitmapSprite
     pbDrawTextPositions(self.bitmap,textpos)
     if megaButton>0
       self.bitmap.blt(200,0,@megaevobitmap.bitmap,Rect.new(0,(megaButton-1)*46,96,46))
-    end
-    if zButton>0
-      self.bitmap.blt(200,0,@zmovebitmap.bitmap,Rect.new(0,(zButton-1)*46,96,46))
-    end    
-    if dynaButton>0
+    elsif dynaButton>0
       self.bitmap.blt(200,0,@dynamaxbitmap.bitmap,Rect.new(0,(dynaButton-1)*46,96,46))
-    end    
-    if teraButton>0 
-      self.bitmap.blt(200,0,@terastalbitmap.bitmap,Rect.new(0,(teraButton-1)*46,96,46))
-    end    
-    if ultraButton>0
+    elsif teraButton>0
+      if teraButton==2
+        terapos=@pokemon.teratype+1
+      else
+        terapos=0
+      end
+      self.bitmap.blt(200,0,@terastalbitmap.bitmap,Rect.new(0,terapos*46,96,46))
+    elsif ultraButton>0
       self.bitmap.blt(200,0,@ultraburstbitmap.bitmap,Rect.new(0,(ultraButton-1)*46,96,46))
-    end 
+    elsif zButton>0
+      self.bitmap.blt(200,0,@zmovebitmap.bitmap,Rect.new(0,(zButton-1)*46,96,46))
+    end
   end
 end
 
@@ -555,15 +560,15 @@ class PokemonDataBox < SpriteWrapper
         @databox=AnimatedBitmap.new("Graphics/#{BATTLE_ROUTE}/battlePlayerBoxD")
         @spriteX=PokeBattle_SceneConstants::PLAYERBOXD1_X
         @spriteY=PokeBattle_SceneConstants::PLAYERBOXD1_Y
-      when 1 
+      when 1
         @databox=AnimatedBitmap.new("Graphics/#{BATTLE_ROUTE}/battleFoeBoxD")
         @spriteX=PokeBattle_SceneConstants::FOEBOXD1_X
         @spriteY=PokeBattle_SceneConstants::FOEBOXD1_Y
-      when 2 
+      when 2
         @databox=AnimatedBitmap.new("Graphics/#{BATTLE_ROUTE}/battlePlayerBoxD")
         @spriteX=PokeBattle_SceneConstants::PLAYERBOXD2_X
         @spriteY=PokeBattle_SceneConstants::PLAYERBOXD2_Y
-      when 3 
+      when 3
         @databox=AnimatedBitmap.new("Graphics/#{BATTLE_ROUTE}/battleFoeBoxD")
         @spriteX=PokeBattle_SceneConstants::FOEBOXD2_X
         @spriteY=PokeBattle_SceneConstants::FOEBOXD2_Y
@@ -576,7 +581,7 @@ class PokemonDataBox < SpriteWrapper
         @spriteY=PokeBattle_SceneConstants::PLAYERBOX_Y
         @showhp=true
         @showexp=true
-      when 1 
+      when 1
         @databox=AnimatedBitmap.new("Graphics/#{BATTLE_ROUTE}/battleFoeBoxS")
         @spriteX=PokeBattle_SceneConstants::FOEBOX_X
         @spriteY=PokeBattle_SceneConstants::FOEBOX_Y
@@ -691,6 +696,8 @@ class PokemonDataBox < SpriteWrapper
       elsif isConst?(@battler.pokemon.species,PBSpecies,:GROUDON)
         imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimalGroudonBox.png",@spritebaseX+140,4,0,0,-1,-1])
       end
+    elsif @battler.isTera?
+      imagepos.push(["Graphics/Pictures/teraTypes.png",@spritebaseX+140,4,0,@battler.type1*32,32,32])
     end
     if @battler.owned && (@battler.index&1)==1
       imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleBoxOwned.png",@spritebaseX+8,36,0,0,-1,-1])
@@ -917,7 +924,7 @@ class PokeballSendOutAnimation
     if @frame>8 && @frame<=16
       color=Color.new(248,248,248,256-(16-@frame)*32)
       @spritehash["enemybase"].color=color
-      @spritehash["playerbase"].color=color   
+      @spritehash["playerbase"].color=color
       @spritehash["battlebg"].color=color
       for i in 0...4
         @spritehash["shadow#{i}"].color=color if @spritehash["shadow#{i}"]
@@ -928,7 +935,7 @@ class PokeballSendOutAnimation
       tone=(24-@frame)*32
       @PokemonBattlerSprite.tone=Tone.new(tone,tone,tone,tone)
       @spritehash["enemybase"].color=color
-      @spritehash["playerbase"].color=color   
+      @spritehash["playerbase"].color=color
       @spritehash["battlebg"].color=color
       for i in 0...4
         @spritehash["shadow#{i}"].color=color if @spritehash["shadow#{i}"]
@@ -1032,7 +1039,7 @@ class PokeballPlayerSendOutAnimation
     if @frame>8 && @frame<=16
       color=Color.new(248,248,248,256-(16-@frame)*32)
       @spritehash["enemybase"].color=color
-      @spritehash["playerbase"].color=color   
+      @spritehash["playerbase"].color=color
       @spritehash["battlebg"].color=color
       for i in 0...4
         @spritehash["shadow#{i}"].color=color if @spritehash["shadow#{i}"]
@@ -1043,7 +1050,7 @@ class PokeballPlayerSendOutAnimation
       tone=(24-@frame)*32
       @PokemonBattlerSprite.tone=Tone.new(tone,tone,tone,tone)
       @spritehash["enemybase"].color=color
-      @spritehash["playerbase"].color=color   
+      @spritehash["playerbase"].color=color
       @spritehash["battlebg"].color=color
       for i in 0...4
         @spritehash["shadow#{i}"].color=color if @spritehash["shadow#{i}"]
@@ -1123,7 +1130,7 @@ class PlayerFadeAnimation
     @sprites["partybarplayer"].opacity-=12
     for i in 0...6
       if @sprites["player#{i}"]
-        @sprites["player#{i}"].opacity-=12 
+        @sprites["player#{i}"].opacity-=12
         @sprites["player#{i}"].x-=8 if @frame>=i*4
       end
     end
@@ -1583,6 +1590,9 @@ class PokeBattle_Scene
       if @sprites["pokemon#{i}"]
         @sprites["pokemon#{i}"].update
       end
+      if @battle.battlers[i].isTera?
+        @sprites["pokemon#{i}"].tone=TERATONES[@battle.battlers[i].pokemon.teratype]
+      end
     end
   end
 
@@ -1751,7 +1761,7 @@ class PokeBattle_Scene
     pbAddSprite("partybarfoe",-400,yvalue,"Graphics/Pictures/battleLineup",@viewport)
     @sprites["partybarfoe"].visible=true
     @partyAnimPhase=0
-  end 
+  end
 
   def partyAnimationFade
     frame=0
@@ -2135,7 +2145,7 @@ class PokeBattle_Scene
     else
       pbPlayCry(@battle.party2[0])   # Play cry for wild Pokémon
       @sprites["battlebox1"].appear
-      @sprites["battlebox3"].appear if @battle.party2.length==2 
+      @sprites["battlebox3"].appear if @battle.party2.length==2
       appearing=true
       begin
         pbGraphicsUpdate
@@ -2146,7 +2156,7 @@ class PokeBattle_Scene
         @sprites["pokemon1"].tone.green+=8 if @sprites["pokemon1"].tone.green<0
         @sprites["pokemon1"].tone.gray+=8 if @sprites["pokemon1"].tone.gray<0
         appearing=@sprites["battlebox1"].appearing
-        if @battle.party2.length==2 
+        if @battle.party2.length==2
           @sprites["pokemon3"].tone.red+=8 if @sprites["pokemon3"].tone.red<0
           @sprites["pokemon3"].tone.blue+=8 if @sprites["pokemon3"].tone.blue<0
           @sprites["pokemon3"].tone.green+=8 if @sprites["pokemon3"].tone.green<0
@@ -2235,7 +2245,7 @@ class PokeBattle_Scene
        @sprites,@battle.battlers[battlerindex],illusionpoke,@battle.doublebattle)
     loop do
       fadeanim.update if fadeanim
-      frame+=1    
+      frame+=1
       if frame==1
         @sprites["battlebox#{battlerindex}"].appear
       end
@@ -2275,10 +2285,10 @@ class PokeBattle_Scene
     pictureBall.moveName(delay,ballbitmap)
     pictureBall.moveOrigin(delay,PictureOrigin::Center)
     # Setting the ball's movement path
-    path=[[0,   146], [10,  134], [21,  122], [30,  112], 
-          [39,  104], [46,   99], [53,   95], [61,   93], 
-          [68,   93], [75,   96], [82,  102], [89,  111], 
-          [94,  121], [100, 134], [106, 150], [111, 166], 
+    path=[[0,   146], [10,  134], [21,  122], [30,  112],
+          [39,  104], [46,   99], [53,   95], [61,   93],
+          [68,   93], [75,   96], [82,  102], [89,  111],
+          [94,  121], [100, 134], [106, 150], [111, 166],
           [116, 183], [120, 199], [124, 216], [127, 238]]
     spriteBall=IconSprite.new(0,0,@viewport)
     spriteBall.visible=false
@@ -2447,7 +2457,7 @@ class PokeBattle_Scene
         pbPlayDecisionSE()
         return -1
       end
-    end 
+    end
   end
 
 # Use this method to display the list of moves for a Pokémon
@@ -2466,14 +2476,14 @@ class PokeBattle_Scene
     cw.megaButton=1 if @battle.pbCanMegaEvolve?(index)
     cw.ultraButton=0
     cw.ultraButton=1 if @battle.pbCanUltraBurst?(index)
+    cw.teraButton=0
+    cw.teraButton=1 if @battle.pbCanTeraCristal?(index)
     cw.zButton=0
     cw.zButton=1 if @battle.pbCanZMove?(index)
-    # NO FUNCIONAN, DEJADOS PARA MEJOR COMPATIBILIDAD 
+    # NO FUNCIONAN, DEJADOS PARA MEJOR COMPATIBILIDAD
     # SOLO PARA EL CASO DE QUE UNO QUIERA PONERLOS
     cw.dynaButton=0
     cw.dynaButton=1 if false
-    cw.teraButton=0
-    cw.teraButton=1 if false
     pbSelectBattler(index)
     pbRefresh
     loop do
@@ -2494,35 +2504,36 @@ class PokeBattle_Scene
         ret=cw.index
         if cw.zButton==2
           if battler.pbCompatibleZMoveFromIndex?(ret)
-            pbPlayDecisionSE() 
+            pbPlayDecisionSE()
             @lastmove[index]=ret
             return ret
           else
-            @battle.pbDisplay(_INTL("¡{1} no es compatible con {2}!",PBMoves.getName(battler.moves[ret]),PBItems.getName(battler.item)))   
-            @lastmove[index]=cw.index        
+            @battle.pbDisplay(_INTL("¡{1} no es compatible con {2}!",PBMoves.getName(battler.moves[ret]),PBItems.getName(battler.item)))
+            @lastmove[index]=cw.index
             return -1
           end
         else
-        pbPlayDecisionSE() 
+        pbPlayDecisionSE()
         @lastmove[index]=ret
         return ret
-        end  
+        end
       elsif Input.trigger?(Input::A)   # Use Mega Evolution
         if @battle.pbCanMegaEvolve?(index) && !pbIsZCrystal?(battler.item)
           @battle.pbRegisterMegaEvolution(index)
           cw.megaButton=2
           pbPlayDecisionSE()
-        end
-        if @battle.pbCanUltraBurst?(index)  # Use Ultra Burst
-          @battle.pbRegisterUltraBurst(index) 
+        elsif @battle.pbCanUltraBurst?(index)  # Use Ultra Burst
+          @battle.pbRegisterUltraBurst(index)
           cw.ultraButton=2
           pbPlayDecisionSE()
-        else
-          if @battle.pbCanZMove?(index)  # Use Z Move
-            @battle.pbRegisterZMove(index)
-            cw.zButton=2
-            pbPlayDecisionSE()
-          end
+        elsif @battle.pbCanTeraCristal?(index)
+          @battle.pbRegisterTeraCristal(index)
+          cw.teraButton=2
+          pbPlayDecisionSE()
+        elsif @battle.pbCanZMove?(index)  # Use Z Move
+          @battle.pbRegisterZMove(index)
+          cw.zButton=2
+          pbPlayDecisionSE()
         end
       elsif Input.trigger?(Input::B)   # Cancel fight menu
         @lastmove[index]=cw.index
@@ -2634,10 +2645,10 @@ class PokeBattle_Scene
     case targettype
     when PBTargets::SingleNonUser
       for i in 0...4
-        if i!=index && !@battle.battlers[i].isFainted? && 
+        if i!=index && !@battle.battlers[i].isFainted? &&
            @battle.battlers[index].pbIsOpposing?(i)
           return i
-        end  
+        end
       end
     when PBTargets::UserOrPartner
       return index
@@ -2660,7 +2671,7 @@ class PokeBattle_Scene
     end
   end
 
-# Use this method to make the player choose a target 
+# Use this method to make the player choose a target
 # for certain moves in double battles.
   def pbChooseTarget(index,targettype)
     pbShowWindow(FIGHTBOX)
@@ -2673,7 +2684,7 @@ class PokeBattle_Scene
     else
       cw.setIndex(0)
     end
-    
+
     curwindow=pbFirstTarget(index,targettype)
     if curwindow==-1
       raise RuntimeError.new(_INTL("Sin objetivo por alguna razón..."))
@@ -2710,7 +2721,7 @@ class PokeBattle_Scene
             break if !@battle.battlers[curwindow].isFainted?
           end
         elsif Input.trigger?(Input::LEFT) || Input.trigger?(Input::UP)
-          loop do 
+          loop do
             case targettype
             when PBTargets::SingleNonUser
               case curwindow
@@ -2783,7 +2794,7 @@ class PokeBattle_Scene
     pbFadeInAndShow(@sprites,visiblesprites)
     return ret
   end
-  
+
   def pbRevivalScene(index,lax,cancancel)
     party=@battle.pbParty(index)
     partypos=@battle.party1order
@@ -3087,7 +3098,7 @@ class PokeBattle_Scene
       # Animación actual no encontrada, se usa animación por defecto según el tipo del movimiento
       move=PBMoveData.new(moveid)
       type=move.type
-      
+
       # BES-T - ANIMACIONES COHERENTES CON LA CATEGORIA
       if move.category==0 #FISICOS
       typedefaultanim=[[:NORMAL,:TACKLE],
@@ -3150,7 +3161,7 @@ class PokeBattle_Scene
                        [:FAIRY,:AROMATICMIST]]
 
       end
-                     
+
       for i in typedefaultanim
         if isConst?(type,PBTypes,i[0]) && hasConst?(PBMoves,i[1])
           noflip=false

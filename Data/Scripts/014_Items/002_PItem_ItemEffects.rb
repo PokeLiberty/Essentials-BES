@@ -143,6 +143,8 @@ ItemHandlers::UseFromBag.add(:TOWNMAP,proc{|item|
    next 1 # Continue
 })
 
+
+
 ItemHandlers::UseFromBag.add(:COINCASE,proc{|item|
    Kernel.pbMessage(_INTL("Fichas: {1}",$PokemonGlobal.coins))
    next 1 # Continue
@@ -164,7 +166,7 @@ ItemHandlers::UseFromBag.add(:EXPALLOFF,proc{|item|
 # UseInField handlers
 #===============================================================================
 
-ItemHandlers::UseInField.add(:HONEY,proc{|item|  
+ItemHandlers::UseInField.add(:HONEY,proc{|item|
    Kernel.pbMessage(_INTL("{1} ha usado {2}.",$Trainer.name,PBItems.getName(item)))
    pbSweetScent
 })
@@ -198,7 +200,7 @@ ItemHandlers::UseInField.add(:BICYCLE,proc{|item|
      if $PokemonGlobal.bicycle
        Kernel.pbDismountBike
      else
-       Kernel.pbMountBike 
+       Kernel.pbMountBike
      end
    end
 })
@@ -262,7 +264,7 @@ ItemHandlers::UseInField.add(:ITEMFINDER,proc{|item|
      else
        direction=$game_player.direction
        if offsetX.abs>offsetY.abs
-         direction=(offsetX<0) ? 4 : 6         
+         direction=(offsetX<0) ? 4 : 6
        else
          direction=(offsetY<0) ? 8 : 2
        end
@@ -297,6 +299,51 @@ ItemHandlers::UseInField.add(:COINCASE,proc{|item|
 #===============================================================================
 # UseOnPokemon handlers
 #===============================================================================
+
+ItemHandlers::UseOnPokemon.add(:NORMALCORE,proc{|item,pokemon,scene|
+  type=0  if isConst?(item,PBItems,:NORMALCORE)
+  type=1  if isConst?(item,PBItems,:FIGHTINGCORE)
+  type=2  if isConst?(item,PBItems,:FLYINGCORE)
+  type=3  if isConst?(item,PBItems,:POISONCORE)
+  type=4  if isConst?(item,PBItems,:GROUNDCORE)
+  type=5  if isConst?(item,PBItems,:ROCKCORE)
+  type=6  if isConst?(item,PBItems,:BUGCORE)
+  type=7  if isConst?(item,PBItems,:GHOSTCORE)
+  type=8  if isConst?(item,PBItems,:STEELCORE)
+  type=10 if isConst?(item,PBItems,:FIRECORE)
+  type=11 if isConst?(item,PBItems,:WATERCORE)
+  type=12 if isConst?(item,PBItems,:GRASSCORE)
+  type=13 if isConst?(item,PBItems,:ELECTRICCORE)
+  type=14 if isConst?(item,PBItems,:PSYCHICCORE)
+  type=15 if isConst?(item,PBItems,:ICECORE)
+  type=16 if isConst?(item,PBItems,:DRAGONCORE)
+  type=17 if isConst?(item,PBItems,:DARKCORE)
+  type=18 if isConst?(item,PBItems,:FAIRYCORE)
+  type=getConst(PBTypes,:STELLAR) if isConst?(item,PBItems,:STELLARCORE)
+  if pokemon.teratype==type || pokemon.species==getConst(PBSpecies,:OGERPON) || pokemon.species==getConst(PBSpecies,:TERAPAGOS)
+    scene.pbDisplay(_INTL("¡No tendrá efecto!"))
+    next false
+  else
+    pokemon.teratype=type
+    scene.pbDisplay(_INTL("El teratipo de {1} cambió a {2}",pokemon.name,PBTypes.getName(type)))
+    next true
+  end
+})
+
+ItemHandlers::UseOnPokemon.copy(:NORMALCORE,:FIGHTINGCORE,:FLYINGCORE,:POISONCORE,:GROUNDCORE,:ROCKCORE,:BUGCORE,
+:GHOSTCORE,:STEELCORE,:FIRECORE,:WATERCORE,:GRASSCORE,:ELECTRICCORE,:PSYCHICCORE,:ICECORE,:DRAGONCORE,
+:DARKCORE,:FAIRYCORE,:STELLARCORE)
+
+ItemHandlers::UseOnPokemon.add(:TERARANDOMITEM,proc{|item,pokemon,scene|
+  loop do
+    newtype = rand(PBTypes.maxValue)
+    break unless [pokemon.teratype,9,getConst(PBTypes,:STELLAR)].include?(newtype)
+  end
+  typename=PBTypes.getName(newtype)
+  scene.pbDisplay(_INTL("El teratipo de {1} ha cambiado a {2}.",pokemon.name,typename))
+  pokemon.teratype=newtype
+})
+
 
 ItemHandlers::UseOnPokemon.add(:FIRESTONE,proc{|item,pokemon,scene|
    if (pokemon.isShadow? rescue false)
@@ -378,8 +425,8 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFWATERS,proc{|item,pokemon,scene|
      }
      next true
    end
-})  
-   
+})
+
 ItemHandlers::UseOnPokemon.add(:POTION,proc{|item,pokemon,scene|
    next pbHPItem(pokemon,20,scene)
 })
@@ -1090,7 +1137,7 @@ ItemHandlers::UseOnPokemon.add(:NSOLARIZER,proc{|item,pokemon,scene|
        if pokemon.fused!=nil
          if pokemon.form==1
            if pokemon.hasItem? && item>0
-             $PokemonBag.pbStoreItem(pokemon.item) 
+             $PokemonBag.pbStoreItem(pokemon.item)
              pokemon.setItem(0)
            end
            if $Trainer.party.length>=6
@@ -1112,7 +1159,7 @@ ItemHandlers::UseOnPokemon.add(:NSOLARIZER,proc{|item,pokemon,scene|
          if chosen>=0
            poke2=$Trainer.party[chosen]
              if poke2.hasItem? && item>0
-               $PokemonBag.pbStoreItem(poke2.item) 
+               $PokemonBag.pbStoreItem(poke2.item)
                poke2.setItem(0)
              end
 
@@ -1150,7 +1197,7 @@ ItemHandlers::UseOnPokemon.add(:NLUNARIZER,proc{|item,pokemon,scene|
        if pokemon.fused!=nil
          if pokemon.form==2
            if pokemon.hasItem? && item>0
-             $PokemonBag.pbStoreItem(pokemon.item) 
+             $PokemonBag.pbStoreItem(pokemon.item)
              pokemon.setItem(0)
            end
            if $Trainer.party.length>=6
@@ -1172,7 +1219,7 @@ ItemHandlers::UseOnPokemon.add(:NLUNARIZER,proc{|item,pokemon,scene|
          if chosen>=0
            poke2=$Trainer.party[chosen]
              if poke2.hasItem? && item>0
-               $PokemonBag.pbStoreItem(poke2.item) 
+               $PokemonBag.pbStoreItem(poke2.item)
                poke2.setItem(0)
              end
            if isConst?(poke2.species,PBSpecies,:LUNALA) && poke2.hp>0 && !poke2.egg?
@@ -1679,7 +1726,7 @@ ItemHandlers::BattleUseOnBattler.add(:XATTACK,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1691,7 +1738,7 @@ ItemHandlers::BattleUseOnBattler.add(:XATTACK2,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1703,7 +1750,7 @@ ItemHandlers::BattleUseOnBattler.add(:XATTACK3,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1714,7 +1761,7 @@ ItemHandlers::BattleUseOnBattler.add(:XATTACK6,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1726,7 +1773,7 @@ ItemHandlers::BattleUseOnBattler.add(:XDEFEND,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1740,7 +1787,7 @@ ItemHandlers::BattleUseOnBattler.add(:XDEFEND2,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1754,7 +1801,7 @@ ItemHandlers::BattleUseOnBattler.add(:XDEFEND3,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1767,7 +1814,7 @@ ItemHandlers::BattleUseOnBattler.add(:XDEFEND6,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1781,7 +1828,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPECIAL,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1795,7 +1842,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPECIAL2,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1809,7 +1856,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPECIAL3,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1822,7 +1869,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPECIAL6,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1836,7 +1883,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPDEF,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1848,7 +1895,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPDEF2,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1860,7 +1907,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPDEF3,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1871,7 +1918,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPDEF6,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1883,7 +1930,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPEED,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1895,7 +1942,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPEED2,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1907,7 +1954,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPEED3,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1918,7 +1965,7 @@ ItemHandlers::BattleUseOnBattler.add(:XSPEED6,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1930,7 +1977,7 @@ ItemHandlers::BattleUseOnBattler.add(:XACCURACY,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1942,7 +1989,7 @@ ItemHandlers::BattleUseOnBattler.add(:XACCURACY2,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1954,7 +2001,7 @@ ItemHandlers::BattleUseOnBattler.add(:XACCURACY3,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -1965,7 +2012,7 @@ ItemHandlers::BattleUseOnBattler.add(:XACCURACY6,proc{|item,battler,scene|
      return true
    else
      scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false  
+     return false
    end
 })
 
@@ -2067,6 +2114,6 @@ ItemHandlers::UseInBattle.add(:POKEDOLL,proc{|item,battler,battle|
 ItemHandlers::UseInBattle.copy(:POKEDOLL,:FLUFFYTAIL,:POKETOY)
 
 ItemHandlers::UseInBattle.addIf(proc{|item| pbIsPokeBall?(item)},
-   proc{|item,battler,battle|  # Any Poké Ball 
+   proc{|item,battler,battle|  # Any Poké Ball
       battle.pbThrowPokeBall(battler.index,item)
 })

@@ -796,7 +796,7 @@
 794,SPICYEXTRACT,Extracto Picante,259,0,GRASS,Status,0,15,0,00,0,e,"Libera un extracto picante que aumenta mucho el Ataque del objetivo, pero reduce mucho su Defensa."
 795,COMEUPPANCE,Resarcimiento,073,1,DARK,Physical,100,10,0,01,0,abf,"Devuelve al rival el último ataque recibido, pero con mucha más fuerza."
 
-796,TERABLAST,Teraexplosión,260,80,NORMAL,Special,100,10,0,00,0,bef,"Si el usuario se ha teracristalizado, ataca con la energía de su teratipo. Compara sus valores de Ataque y Ataque Especial para infligir daño con el más alto de los dos."
+796,TERABLAST,Teraexplosión,263,80,NORMAL,Special,100,10,0,00,0,bef,"Si el usuario se ha teracristalizado, ataca con la energía de su teratipo. Compara sus valores de Ataque y Ataque Especial para infligir daño con el más alto de los dos."
 797,ORDERUP,Oído Cocina,261,80,DRAGON,Physical,100,10,100,00,0,abef,"Ataca con porte gallardo. Si lleva un Tatsugiri en la boca, aumenta una de sus características en función de la forma de este último."
 798,POPULATIONBOMB,Proliferación,262,20,NORMAL,Physical,90,10,0,00,0,befn,"Los congéneres del usuario se agrupan y ejecutan un ataque conjunto que golpea al objetivo de una a diez veces seguidas."
 799,GLAIVERUSH,Asalto Espadón,263,120,DRAGON,Physical,100,5,0,00,0,abef,"Embiste de forma temeraria con todo el cuerpo. En el turno siguiente, los ataques que lance el rival no fallarán y causarán el doble de daño." 

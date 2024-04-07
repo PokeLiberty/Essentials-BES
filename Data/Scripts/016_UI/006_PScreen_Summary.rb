@@ -77,12 +77,14 @@ class PokemonSummaryScene
     @pokemon=@party[@partyindex]
     @sprites={}
     @typebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+    @tera_typebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/teraTypes"))
     @sprites["background2"]=IconSprite.new(0,0,@viewport)
     @sprites["background2"].setBitmap("Graphics/#{SUMMARY_ROUTE}/summarybg")
     @sprites["background"]=IconSprite.new(0,0,@viewport)
     @sprites["overlay"]=BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
     @sprites["pokemon"]=PokemonSprite.new(@viewport)
     @sprites["pokemon"].setPokemonBitmap(@pokemon)
+    @sprites["pokemon"].tone=TERATONES[@pokemon.teratype] if @pokemon.isTera?
     @sprites["pokemon"].mirror=false
     @sprites["pokemon"].color=Color.new(0,0,0,0)
     pbPositionPokemonSprite(@sprites["pokemon"],40,144)
@@ -143,6 +145,7 @@ class PokemonSummaryScene
     pbFadeOutAndHide(@sprites) { pbUpdate }
     pbDisposeSpriteHash(@sprites)
     @typebitmap.dispose
+    @tera_typebitmap.dispose if @tera_typebitmap
     @viewport.dispose
   end
 
@@ -272,11 +275,15 @@ class PokemonSummaryScene
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
     type1rect=Rect.new(0,pokemon.type1*28,64,28)
     type2rect=Rect.new(0,pokemon.type2*28,64,28)
+    teratyperect=Rect.new(0,pokemon.teratype*32,32,32)
     if pokemon.type1==pokemon.type2
       overlay.blt(402,146,@typebitmap.bitmap,type1rect)
     else
       overlay.blt(370,146,@typebitmap.bitmap,type1rect)
       overlay.blt(436,146,@typebitmap.bitmap,type2rect)
+    end
+    if ![getConst(PBSpecies,:OGERPON),getConst(PBSpecies,:TERAPAGOS)].include?(pokemon.species) && !$game_switches[NO_TERA_CRISTAL]
+      overlay.blt(330,142,@tera_typebitmap.bitmap,teratyperect)
     end
     if pokemon.level<PBExperience::MAXLEVEL
       overlay.fill_rect(362,372,(pokemon.exp-startexp)*128/(endexp-startexp),2,Color.new(72,120,160))
@@ -366,15 +373,15 @@ class PokemonSummaryScene
        [_INTL("Objeto"),16,320,0,base,shadow
        ]
     ]
-    if EXPANDED_SUMMARY_INFO 
+    if EXPANDED_SUMMARY_INFO
       textpos.push([_INTL("Amistad:"),256+8,334,0,Color.new(64,64,64),Color.new(176,176,176)])
       amistad=pokemon.happiness/44
       amistad=amistad.floor
     end
-  
+
     nivelamistad=Rect.new(0,amistad*18,128,18)
     overlay.blt(356,334+8,@Amistadbitmap.bitmap,nivelamistad)
-    
+
     if pokemon.hasItem?
       textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
     else
@@ -514,7 +521,7 @@ class PokemonSummaryScene
     abilityname=PBAbilities.getName(pokemon.ability)
     abilitydesc=pbGetMessage(MessageTypes::AbilityDescs,pokemon.ability)
     pokename=@pokemon.name
-    
+
     textpos=[
        [_INTL("CARACTERÍSTICAS"),26,16,0,base,shadow],
        [pokename,46,62,0,base,shadow],
@@ -530,7 +537,7 @@ class PokemonSummaryScene
        [_INTL("Def. Esp."),234,216,0,base,statshadows[4]],
        [_INTL("Velocidad"),234,248,0,base,statshadows[2]],
        ]
-    
+
     if EXPANDED_SUMMARY_INFO
     textpos+=[
        [sprintf("%3d/%3d",pokemon.hp,pokemon.totalhp),344,76,2,Color.new(64,64,64),Color.new(176,176,176)],
@@ -558,7 +565,7 @@ class PokemonSummaryScene
        [sprintf("%d",pokemon.iv[5]),476,216,2,Color.new(64,64,64),Color.new(176,176,176)],
        [sprintf("%d",pokemon.iv[3]),476,248,2,Color.new(64,64,64),Color.new(176,176,176)],
     ]
-    
+
     else
       textpos+=[
          [sprintf("%3d/%3d",pokemon.hp,pokemon.totalhp),456,76,2,Color.new(64,64,64),Color.new(176,176,176)],
@@ -654,23 +661,23 @@ class PokemonSummaryScene
     elsif pokemon.isFemale?
       textpos.push([_INTL("♀"),178,62,0,Color.new(248,56,32),Color.new(224,152,144)])
     end
-    
+
     textpos.push([_INTL("Poder Oculto",abilityname),256+8,334,0,base,shadow])
     hp=pbHiddenPower(pokemon.iv)
     type1rect=Rect.new(0,hp[0]*28,64,28)
     overlay.blt(416-8,334+2,@typebitmap.bitmap,type1rect)
-    
+
     pbDrawTextPositions(overlay,textpos)
 
     #drawTextEx(overlay,224,316,282,2,abilitydesc,Color.new(64,64,64),Color.new(176,176,176))
     pbSetSmallFont(overlay)
     drawFormattedTextEx(overlay,232,112,272,abilitydesc,Color.new(64,64,64),Color.new(176,176,176))
-    
+
     pbSetSystemFont(overlay)
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
-    
 
-    
+
+
     loop do
       Input.update
       Graphics.update
@@ -683,9 +690,9 @@ class PokemonSummaryScene
       end
       pbUpdate
     end
-    
+
   end
-  
+
   def drawPageFour(pokemon)
     overlay=@sprites["overlay"].bitmap
     overlay.clear
@@ -902,7 +909,7 @@ class PokemonSummaryScene
     pbDrawImagePositions(overlay,imagepos)
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
   end
-  
+
   def drawSelectedRibbon(pokemon,ribbonid)
     # Draw all of page five
     drawPageFive(pokemon)
@@ -1037,7 +1044,7 @@ class PokemonSummaryScene
         pbPlayCursorSE()
         drawSelectedMove(@pokemon,0,newmove)
       end
-    end 
+    end
     @sprites["movesel"].visible=false
   end
 
@@ -1126,8 +1133,8 @@ class PokemonSummaryScene
     @sprites["ribbonsel"].visible = false
   end
 
-  
-  
+
+
   def pbGoToPrevious
     if @page!=0
       newindex=@partyindex
@@ -1210,6 +1217,11 @@ class PokemonSummaryScene
           @pokemon=@party[@partyindex]
           @sprites["pokemon"].setPokemonBitmap(@pokemon)
           @sprites["pokemon"].color=Color.new(0,0,0,0)
+          if @pokemon.isTera?
+            @sprites["pokemon"].tone=TERATONES[@pokemon.teratype]
+          else
+            @sprites["pokemon"].tone=Tone.new(0,0,0,0)
+          end
           pbPositionPokemonSprite(@sprites["pokemon"],40,144)
           pbSEStop; pbPlayCry(@pokemon)
           @ribbonOffset = 0
@@ -1223,6 +1235,11 @@ class PokemonSummaryScene
           @pokemon=@party[@partyindex]
           @sprites["pokemon"].setPokemonBitmap(@pokemon)
           @sprites["pokemon"].color=Color.new(0,0,0,0)
+          if @pokemon.isTera?
+            @sprites["pokemon"].tone=TERATONES[@pokemon.teratype]
+          else
+            @sprites["pokemon"].tone=Tone.new(0,0,0,0)
+          end
           pbPositionPokemonSprite(@sprites["pokemon"],40,144)
           pbSEStop; pbPlayCry(@pokemon)
           @ribbonOffset = 0
