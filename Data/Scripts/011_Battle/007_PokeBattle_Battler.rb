@@ -2227,8 +2227,8 @@ class PokeBattle_Battler
         end
         # Dinamo
         if target.hasWorkingAbility(:ELECTROMORPHOSIS)
-          attacker.effects[PBEffects::Charge]=2
-          @battle.pbDisplay(_INTL("¡{1} comenzó a cargar energía!",attacker.pbThis))
+          target.effects[PBEffects::Charge]=2
+          @battle.pbDisplay(_INTL("¡{1} comenzó a cargar energía!",target.pbThis))
         end
         # Surcavientos
         if target.hasWorkingAbility(:WINDRIDER) && move.isWindMove?
