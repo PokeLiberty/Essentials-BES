@@ -488,7 +488,7 @@ def pbDebugMenu
     elsif cmd=="upgradeorb"
       params=ChooseNumberParams.new
       params.setRange(0,999)
-      params.setDefaultValue($PokemonGlobal.teraorb[1])
+      params.setDefaultValue($PokemonGlobal.teraorb[1]) 
       val=Kernel.pbMessageChooseNumber(_INTL("Nuevo máximo de energía del teraorbe."),params)
       pbUpgradeTeraorb(val)
     elsif cmd=="setmoney"

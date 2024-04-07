@@ -1861,18 +1861,21 @@ class PokemonStorageScene
         imagepos.push(["Graphics/Pictures/shiny",156,198,0,0,-1,-1])
       end
       typebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
-      teratypebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/teraTypes"))
       type1rect=Rect.new(0,pokemon.type1*28,64,28)
       type2rect=Rect.new(0,pokemon.type2*28,64,28)
-      teratyperect=Rect.new(0,pokemon.teratype*32,32,32)
+      
       if pokemon.type1==pokemon.type2
         overlay.blt(52,272,typebitmap.bitmap,type1rect)
       else
         overlay.blt(18,272,typebitmap.bitmap,type1rect)
         overlay.blt(88,272,typebitmap.bitmap,type2rect)
       end
-      if ![getConst(PBSpecies,:OGERPON),getConst(PBSpecies,:TERAPAGOS)].include?(pokemon.species) && !$game_switches[NO_TERA_CRISTAL]
-        overlay.blt(66,232,teratypebitmap.bitmap,teratyperect)
+      if pokemon.teratype && pbHasTeraOrb
+        teratypebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/teraTypes"))
+        teratyperect=Rect.new(0,pokemon.teratype*32,32,32)
+        if ![getConst(PBSpecies,:OGERPON),getConst(PBSpecies,:TERAPAGOS)].include?(pokemon.species) && !$game_switches[NO_TERA_CRISTAL]
+          overlay.blt(66,232,teratypebitmap.bitmap,teratyperect)
+        end
       end
       drawMarkings(overlay,70,240,128,20,pokemon.markings)
       pbDrawImagePositions(overlay,imagepos)

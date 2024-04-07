@@ -275,15 +275,17 @@ class PokemonSummaryScene
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
     type1rect=Rect.new(0,pokemon.type1*28,64,28)
     type2rect=Rect.new(0,pokemon.type2*28,64,28)
-    teratyperect=Rect.new(0,pokemon.teratype*32,32,32)
     if pokemon.type1==pokemon.type2
       overlay.blt(402,146,@typebitmap.bitmap,type1rect)
     else
       overlay.blt(370,146,@typebitmap.bitmap,type1rect)
       overlay.blt(436,146,@typebitmap.bitmap,type2rect)
     end
-    if ![getConst(PBSpecies,:OGERPON),getConst(PBSpecies,:TERAPAGOS)].include?(pokemon.species) && !$game_switches[NO_TERA_CRISTAL]
-      overlay.blt(330,142,@tera_typebitmap.bitmap,teratyperect)
+    if pokemon.teratype && pbHasTeraOrb
+      teratyperect=Rect.new(0,pokemon.teratype*32,32,32)
+      if ![getConst(PBSpecies,:OGERPON),getConst(PBSpecies,:TERAPAGOS)].include?(pokemon.species) && !$game_switches[NO_TERA_CRISTAL]
+        overlay.blt(330,142,@tera_typebitmap.bitmap,teratyperect)
+      end
     end
     if pokemon.level<PBExperience::MAXLEVEL
       overlay.fill_rect(362,372,(pokemon.exp-startexp)*128/(endexp-startexp),2,Color.new(72,120,160))

@@ -201,16 +201,24 @@ class Game_Character
   end
 
   def bush_depth
-    return 0 if @tile_id > 0 or @always_on_top
-    if @jump_count <= 0
-      xbehind=(@direction==4) ? @x+1 : (@direction==6) ? @x-1 : @x
-      ybehind=(@direction==8) ? @y+1 : (@direction==2) ? @y-1 : @y
-      return 32 if self.map.deepBush?(@x, @y) and self.map.deepBush?(xbehind, ybehind)
-      if self.map.bush?(@x, @y) #&& (!moving?)
-        return 12 
-      end
+    if @tile_id > 0 or @always_on_top
+      return 0
     end
-    return 0
+    xnext=(@direction==4) ? @x-1 : (@direction==6) ? @x+1 : @x
+    ynext=(@direction==8) ? @y-1 : (@direction==2) ? @y+1 : @y
+
+    xbehind=(@direction==4) ? @x+1 : (@direction==6) ? @x-1 : @x
+    ybehind=(@direction==8) ? @y+1 : (@direction==2) ? @y-1 : @y
+
+    if @jump_count <= 0 and self.map.bush?(@x, @y) and 
+      !self.map.bush?(xbehind, ybehind) and !moving?
+      return 12 
+    elsif @jump_count <= 0 and self.map.bush?(@x, @y) and
+      self.map.bush?(xbehind, ybehind)
+      return 12
+    else
+      return 0
+    end
   end
 
   def terrain_tag

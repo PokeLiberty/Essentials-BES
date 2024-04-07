@@ -104,6 +104,34 @@ TERATONES=[Tone.new(142,143,107,64),#Normal
   Tone.new(0,0,0,0),#Oscuro
   Tone.new(20,111,193,64)]#Astral
 
+  MEGARINGS=[:MEGARING,:MEGABRACELET,:MEGACUFF,:MEGACHARM]
+  TERAORBS=[:TERAORB]
+  ZRINGS=[:ZRING]
+  
+  def pbHasMegaRing
+    for i in MEGARINGS
+      next if !hasConst?(PBItems,i)
+      return true if $PokemonBag.pbQuantity(i)>0
+    end
+    return false
+  end
+
+  def pbHasZRing
+    for i in ZRINGS
+      next if !hasConst?(PBItems,i)
+      return true if $PokemonBag.pbQuantity(i)>0
+    end
+    return false
+  end
+
+  def pbHasTeraOrb
+    for i in TERAORBS
+      next if !hasConst?(PBItems,i)
+      return true if $PokemonBag.pbQuantity(i)>0
+    end
+    return false
+  end
+
 #===============================================================================
 # Shadow Config
 # Te permite escoger nombres de evento donde no aparezcan sombras.

@@ -2023,7 +2023,7 @@ class PokeBattle_Battler
              PBAbilities.getName(target.ability),user.pbThis(true)))
         end
         # Momia
-        if target.hasWorkingAbility(:MUMMY,true) && !user.isFainted?                     # Momia
+        if target.hasWorkingAbility(:MUMMY,true) && !user.isFainted? && !user.hasWorkingItem(:ABILITYSHIELD)
           if !isConst?(user.ability,PBAbilities,:MULTITYPE) &&
              !isConst?(user.ability,PBAbilities,:STANCECHANGE) &&
              !isConst?(user.ability,PBAbilities,:MUMMY) &&
@@ -2034,8 +2034,7 @@ class PokeBattle_Battler
              !isConst?(user.ability,PBAbilities,:POWERCONSTRUCT) &&
              !isConst?(user.ability,PBAbilities,:SHIELDSDOWN) &&
              !isConst?(user.ability,PBAbilities,:RKSSYSTEM)  &&
-             !isConst?(user.ability,PBAbilities,:ZEROTOHERO) &&
-             !user.hasWorkingItem(:ABILITYSHIELD)
+             !isConst?(user.ability,PBAbilities,:ZEROTOHERO)
             PBDebug.log("[Habilidad disparada] La habilidad Momia de #{target.pbThis} ha sido copiada en #{user.pbThis(true)}")
             user.ability=getConst(PBAbilities,:MUMMY) || 0
             @battle.pbDisplay(_INTL("¡{1} ha sido momificado por {2}!",
@@ -2043,7 +2042,7 @@ class PokeBattle_Battler
           end
         end
         # Olor Persistente
-        if target.hasWorkingAbility(:LINGERINGAROMA,true) && !user.isFainted?                     # Momia
+        if target.hasWorkingAbility(:LINGERINGAROMA,true) && !user.isFainted? && !user.hasWorkingItem(:ABILITYSHIELD)
           if !isConst?(user.ability,PBAbilities,:MULTITYPE) &&
              !isConst?(user.ability,PBAbilities,:STANCECHANGE) &&
              !isConst?(user.ability,PBAbilities,:COMATOSE) &&
@@ -2055,8 +2054,7 @@ class PokeBattle_Battler
              !isConst?(user.ability,PBAbilities,:RKSSYSTEM) &&
              !isConst?(user.ability,PBAbilities,:ICEFACE) &&
              !isConst?(user.ability,PBAbilities,:ZEROTOHERO) &&
-             !isConst?(user.ability,PBAbilities,:LINGERINGAROMA) &&
-             !user.hasWorkingItem(:ABILITYSHIELD)
+             !isConst?(user.ability,PBAbilities,:LINGERINGAROMA)
             PBDebug.log("[Habilidad disparada] La habilidad Olor Persistente de #{target.pbThis} ha sido copiada en #{user.pbThis(true)}")
             user.ability=getConst(PBAbilities,:LINGERINGAROMA) || 0
             @battle.pbDisplay(_INTL("¡A {1} se le ha pegado el olor de {2}!",
@@ -2064,7 +2062,7 @@ class PokeBattle_Battler
           end
         end
         # Alma Errante
-        if target.hasWorkingAbility(:WANDERINGSPIRIT,true) && !user.isFainted?
+        if target.hasWorkingAbility(:WANDERINGSPIRIT,true) && !user.isFainted? && !user.hasWorkingItem(:ABILITYSHIELD)
           if !isConst?(user.ability,PBAbilities,:WANDERINGSPIRIT) &&
              !isConst?(user.ability,PBAbilities,:MULTITYPE)       &&
              !isConst?(user.ability,PBAbilities,:STANCECHANGE)    &&
@@ -2075,8 +2073,7 @@ class PokeBattle_Battler
              !isConst?(user.ability,PBAbilities,:RKSSYSTEM)       &&
              !isConst?(user.ability,PBAbilities,:SHIELDSDOWN)     &&
              !isConst?(user.ability,PBAbilities,:ICEFACE)         &&
-             !isConst?(user.ability,PBAbilities,:ZEROTOHERO) &&
-             !user.hasWorkingItem(:ABILITYSHIELD)
+             !isConst?(user.ability,PBAbilities,:ZEROTOHERO)      
             PBDebug.log("[Ability triggered] #{target.pbThis}'s Wandering Spirit swap onto #{user.pbThis(true)}'s Ability")
             tmp=user.ability
             user.ability=target.ability
@@ -2227,8 +2224,8 @@ class PokeBattle_Battler
         end
         # Dinamo
         if target.hasWorkingAbility(:ELECTROMORPHOSIS)
-          attacker.effects[PBEffects::Charge]=2
-          @battle.pbDisplay(_INTL("¡{1} comenzó a cargar energía!",attacker.pbThis))
+          target.effects[PBEffects::Charge]=2
+          @battle.pbDisplay(_INTL("¡{1} comenzó a cargar energía!",target.pbThis))
         end
         # Surcavientos
         if target.hasWorkingAbility(:WINDRIDER) && move.isWindMove?

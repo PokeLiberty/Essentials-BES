@@ -1020,7 +1020,7 @@ class PokeBattle_Pokemon
     @obtainMode=0   # Encuentro
     @obtainMode=4 if $game_switches && $game_switches[FATEFUL_ENCOUNTER_SWITCH]
     @hatchedMap=0
-    @original_types=[0,0]
+    @original_types = [0,0]
     if withMoves
       atkdata=pbRgssOpen("Data/attacksRS.dat","rb")
       offset=atkdata.getOffset(species-1)

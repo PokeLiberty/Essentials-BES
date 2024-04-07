@@ -298,9 +298,10 @@ class PokeBattle_Battle
   include PokeBattle_BattleCommon
 
   MAXPARTYSIZE = 6
-  MEGARINGS=[:MEGARING,:MEGABRACELET,:MEGACUFF,:MEGACHARM]
-  TERAORBS=MEGARINGS
-  ZRINGS=MEGARINGS
+  #MEGARINGS=[:MEGARING,:MEGABRACELET,:MEGACUFF,:MEGACHARM]
+  #TERAORBS=MEGARINGS
+  #ZRINGS=MEGARINGS 
+  # MOVIDO A BES-T Settings
 
   class BattleAbortedException < Exception; end
 
@@ -1081,7 +1082,7 @@ class PokeBattle_Battle
     if thispkmn.effects[PBEffects::GigatonHammer]==2     # Martillo Colosal
       if thismove.function==0x245
         if showMessages
-          pbDisplayPaused(_INTL("¡{1} no puede usar Martillo Colosal dos veces seguidas!",thispkmn.pbThis))
+          pbDisplayPaused(_INTL("¡{1} no puede usar este movimiento dos veces seguidas!",thispkmn.pbThis))
         end
         return false
       end
@@ -2137,6 +2138,8 @@ class PokeBattle_Battle
     return false if pbIsOpposing?(index) && !@opponent
     return true if $DEBUG && Input.press?(Input::CTRL)
     return false if !pbHasTeraOrb(index)
+    return false if !@battlers[index].pokemon.teratype
+    
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
     return false if @teraCristal[side][owner]!=-1
@@ -2154,7 +2157,6 @@ class PokeBattle_Battle
     teratype=@battlers[index].pokemon.teratype
     return if !@battlers[index] || !@battlers[index].pokemon
     return if (@battlers[index].isTera? rescue true)
-    fpShowText("tera") if pbIsOpposing?(index) && defined?(MBD_Data)
     pbDisplay(_INTL("¡{1} se está rodeando de cristal!",@battlers[index].pbThis))
     pbCommonAnimation("MegaEvolution",@battlers[index],nil)
     @battlers[index].pokemon.original_types=[@battlers[index].type1,@battlers[index].type2]
@@ -2164,13 +2166,11 @@ class PokeBattle_Battle
     pbCommonAnimation("MegaEvolution2",@battlers[index],nil)
     typename=PBTypes.getName(teratype)
     pbDisplay(_INTL("¡{1} ha Teracristalizado al tipo {2}!",@battlers[index].pbThis,typename))
-    fpShowText("tera(player)") if pbBelongsToPlayer?(index) && defined?(MBD_Data)
-    fpShowText("tera(Ogerpon)") if pbBelongsToPlayer?(index) && defined?(MBD_Data) && @battlers[index].species==getConst(PBSpecies,:OGERPON)
     PBDebug.log("[Teracristalización] #{@battlers[index].pbThis} ha Teracristalizado (#{typename})")
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
     @teraCristal[side][owner]=-2
-    $PokemonGlobal.teraorb[0]-=1
+    $PokemonGlobal.teraorb[0]-=1 if $PokemonGlobal.teraorb
   end
 
 ################################################################################

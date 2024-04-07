@@ -299,52 +299,6 @@ ItemHandlers::UseInField.add(:COINCASE,proc{|item|
 #===============================================================================
 # UseOnPokemon handlers
 #===============================================================================
-
-ItemHandlers::UseOnPokemon.add(:NORMALCORE,proc{|item,pokemon,scene|
-  type=0  if isConst?(item,PBItems,:NORMALCORE)
-  type=1  if isConst?(item,PBItems,:FIGHTINGCORE)
-  type=2  if isConst?(item,PBItems,:FLYINGCORE)
-  type=3  if isConst?(item,PBItems,:POISONCORE)
-  type=4  if isConst?(item,PBItems,:GROUNDCORE)
-  type=5  if isConst?(item,PBItems,:ROCKCORE)
-  type=6  if isConst?(item,PBItems,:BUGCORE)
-  type=7  if isConst?(item,PBItems,:GHOSTCORE)
-  type=8  if isConst?(item,PBItems,:STEELCORE)
-  type=10 if isConst?(item,PBItems,:FIRECORE)
-  type=11 if isConst?(item,PBItems,:WATERCORE)
-  type=12 if isConst?(item,PBItems,:GRASSCORE)
-  type=13 if isConst?(item,PBItems,:ELECTRICCORE)
-  type=14 if isConst?(item,PBItems,:PSYCHICCORE)
-  type=15 if isConst?(item,PBItems,:ICECORE)
-  type=16 if isConst?(item,PBItems,:DRAGONCORE)
-  type=17 if isConst?(item,PBItems,:DARKCORE)
-  type=18 if isConst?(item,PBItems,:FAIRYCORE)
-  type=getConst(PBTypes,:STELLAR) if isConst?(item,PBItems,:STELLARCORE)
-  if pokemon.teratype==type || pokemon.species==getConst(PBSpecies,:OGERPON) || pokemon.species==getConst(PBSpecies,:TERAPAGOS)
-    scene.pbDisplay(_INTL("¡No tendrá efecto!"))
-    next false
-  else
-    pokemon.teratype=type
-    scene.pbDisplay(_INTL("El teratipo de {1} cambió a {2}",pokemon.name,PBTypes.getName(type)))
-    next true
-  end
-})
-
-ItemHandlers::UseOnPokemon.copy(:NORMALCORE,:FIGHTINGCORE,:FLYINGCORE,:POISONCORE,:GROUNDCORE,:ROCKCORE,:BUGCORE,
-:GHOSTCORE,:STEELCORE,:FIRECORE,:WATERCORE,:GRASSCORE,:ELECTRICCORE,:PSYCHICCORE,:ICECORE,:DRAGONCORE,
-:DARKCORE,:FAIRYCORE,:STELLARCORE)
-
-ItemHandlers::UseOnPokemon.add(:TERARANDOMITEM,proc{|item,pokemon,scene|
-  loop do
-    newtype = rand(PBTypes.maxValue)
-    break unless [pokemon.teratype,9,getConst(PBTypes,:STELLAR)].include?(newtype)
-  end
-  typename=PBTypes.getName(newtype)
-  scene.pbDisplay(_INTL("El teratipo de {1} ha cambiado a {2}.",pokemon.name,typename))
-  pokemon.teratype=newtype
-})
-
-
 ItemHandlers::UseOnPokemon.add(:FIRESTONE,proc{|item,pokemon,scene|
    if (pokemon.isShadow? rescue false)
      scene.pbDisplay(_INTL("No tendrá ningún efecto."))

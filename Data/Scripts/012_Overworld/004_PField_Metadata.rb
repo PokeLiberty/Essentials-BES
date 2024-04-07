@@ -113,7 +113,9 @@ class PokemonGlobalMetadata
     @phoneTime            = 0
     @eventvars            = {}
     @safesave             = false
-    @teraorb=[1,1]
+    @teraorb              ||= [1,1]
+    @tera_trainer         ||= false
+
   end
 
   def bridge
@@ -224,13 +226,17 @@ class PokemonTemp
 end
 
 def pbCharge_TeraOrb
-  $PokemonGlobal.teraorb[0]=$PokemonGlobal.teraorb[1]
+  @teraorb ||= [1,1] if !$PokemonGlobal.teraorb
+  $PokemonGlobal.teraorb[0]=$PokemonGlobal.teraorb[1] if $PokemonGlobal.teraorb
 end
 
 def pbUpgradeTeraorb(grade)
-  $PokemonGlobal.teraorb[1]=grade
+  @teraorb ||= [1,1] if !$PokemonGlobal.teraorb
+  $PokemonGlobal.teraorb[1]=grade if $PokemonGlobal.teraorb
 end
 
 Events.onEndBattle+=proc {|sender,e|
-   $PokemonGlobal.tera_trainer[0]=false
+  decision=e[0]
+  canlose=e[1]
+  $PokemonGlobal.tera_trainer[0]=false if $PokemonGlobal.tera_trainer
 }
