@@ -15608,7 +15608,7 @@ WildItemCommon=RAWSTBERRY
 BattlerPlayerY=22
 BattlerEnemyY=29
 BattlerAltitude=0
-Evolutions=DARMANITAN,LevelForm0,35,DARMANITAN,ItemForm1,ICESTONE
+Evolutions=DARMANITAN,LevelForm0,35,DARMANITAN,ItemForm2,ICESTONE
 [555]
 Name=Darmanitan
 InternalName=DARMANITAN
