@@ -2161,7 +2161,7 @@ class PokeBattle_Battle
     pbCommonAnimation("MegaEvolution",@battlers[index],nil)
     @battlers[index].pokemon.original_types=[@battlers[index].type1,@battlers[index].type2]
     @battlers[index].pokemon.makeTera
-    @battlers[index].pbUpdate(false,true)
+    @battlers[index].pbUpdate(true)
     @scene.pbChangePokemon(@battlers[index],@battlers[index].pokemon)
     pbCommonAnimation("MegaEvolution2",@battlers[index],nil)
     typename=PBTypes.getName(teratype)
