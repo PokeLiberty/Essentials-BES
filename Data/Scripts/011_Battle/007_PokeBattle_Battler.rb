@@ -1783,6 +1783,7 @@ class PokeBattle_Battler
     end
     if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT)
       self.pokemon.form=1
+      @battler.pbUpdate(true)
       @battle.scene.pbChangePokemon(self,@pokemon)
       @battle.pbDisplay(_INTL("¡{1} se transformó!",pbThis))
     end
@@ -2073,7 +2074,7 @@ class PokeBattle_Battler
              !isConst?(user.ability,PBAbilities,:RKSSYSTEM)       &&
              !isConst?(user.ability,PBAbilities,:SHIELDSDOWN)     &&
              !isConst?(user.ability,PBAbilities,:ICEFACE)         &&
-             !isConst?(user.ability,PBAbilities,:ZEROTOHERO)      
+             !isConst?(user.ability,PBAbilities,:ZEROTOHERO)
             PBDebug.log("[Ability triggered] #{target.pbThis}'s Wandering Spirit swap onto #{user.pbThis(true)}'s Ability")
             tmp=user.ability
             user.ability=target.ability

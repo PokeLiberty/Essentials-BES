@@ -300,7 +300,7 @@ class PokeBattle_Battle
   MAXPARTYSIZE = 6
   #MEGARINGS=[:MEGARING,:MEGABRACELET,:MEGACUFF,:MEGACHARM]
   #TERAORBS=MEGARINGS
-  #ZRINGS=MEGARINGS 
+  #ZRINGS=MEGARINGS
   # MOVIDO A BES-T Settings
 
   class BattleAbortedException < Exception; end
@@ -2139,7 +2139,7 @@ class PokeBattle_Battle
     return true if $DEBUG && Input.press?(Input::CTRL)
     return false if !pbHasTeraOrb(index)
     return false if !@battlers[index].pokemon.teratype
-    
+
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
     return false if @teraCristal[side][owner]!=-1
@@ -3344,20 +3344,13 @@ class PokeBattle_Battle
       end
     end
     # TeraCristal
-    teracristalized=[]
     for i in priority
       if @choices[i.index][0]==1 && !i.effects[PBEffects::SkipTurn]
         side=(pbIsOpposing?(i.index)) ? 1 : 0
         owner=pbGetOwnerIndex(i.index)
         if @teraCristal[side][owner]==i.index
           pbTeraCristal(i.index)
-          teracristalized.push(i.index)
         end
-      end
-    end
-    if teracristalized.length>0
-      for i in priority
-        i.pbAbilitiesOnSwitchIn(true) if teracristalized.include?(i.index)
       end
     end
     # Call at Pokémon
