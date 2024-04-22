@@ -1443,7 +1443,7 @@ MultipleForms.register(:NECROZMA,{
   end
 },
 "getUltraForm"=>proc{|pokemon|
-   next 3 if isConst?(pokemon.item,PBItems,:ULTRANECROZIUMZ) && (pokemon.form==1 || pokemon.form==2)
+   next 3 if isConst?(pokemon.item,PBItems,:ULTRANECROZIUMZ) && pokemon.form > 0
    next
 },
 "getUltraName"=>proc{|pokemon|
