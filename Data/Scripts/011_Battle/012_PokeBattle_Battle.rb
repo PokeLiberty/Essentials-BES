@@ -300,7 +300,7 @@ class PokeBattle_Battle
   MAXPARTYSIZE = 6
   #MEGARINGS=[:MEGARING,:MEGABRACELET,:MEGACUFF,:MEGACHARM]
   #TERAORBS=MEGARINGS
-  #ZRINGS=MEGARINGS 
+  #ZRINGS=MEGARINGS
   # MOVIDO A BES-T Settings
 
   class BattleAbortedException < Exception; end
@@ -2139,7 +2139,7 @@ class PokeBattle_Battle
     return true if $DEBUG && Input.press?(Input::CTRL)
     return false if !pbHasTeraOrb(index)
     return false if !@battlers[index].pokemon.teratype
-    
+
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
     return false if @teraCristal[side][owner]!=-1
@@ -2180,20 +2180,12 @@ class PokeBattle_Battle
     return if !@battlers[index] || !@battlers[index].pokemon
     return if !(@battlers[index].hasPrimal? rescue false)
     return if (@battlers[index].isPrimal? rescue true)
-    if isConst?(@battlers[index].pokemon.species,PBSpecies,:KYOGRE)
-      pbCommonAnimation("PrimalKyogre",@battlers[index],nil)
-    elsif isConst?(@battlers[index].pokemon.species,PBSpecies,:GROUDON)
-      pbCommonAnimation("PrimalGroudon",@battlers[index],nil)
-    end
+    pbCommonAnimation("Primal#{PBSpecies.getName(@battlers[index].species)}",@battlers[index],nil)
     @battlers[index].pokemon.makePrimal
     @battlers[index].form=@battlers[index].pokemon.form
     @battlers[index].pbUpdate(true)
     @scene.pbChangePokemon(@battlers[index],@battlers[index].pokemon)
-    if isConst?(@battlers[index].pokemon.species,PBSpecies,:KYOGRE)
-      pbCommonAnimation("PrimalKyogre2",@battlers[index],nil)
-    elsif isConst?(@battlers[index].pokemon.species,PBSpecies,:GROUDON)
-      pbCommonAnimation("PrimalGroudon2",@battlers[index],nil)
-    end
+    pbCommonAnimation("Primal#{PBSpecies.getName(@battlers[index].species)}2",@battlers[index],nil)
     pbDisplay(_INTL("¡{1} ha esperimentado una Regresión Primigenia y ha recobrado su apariencia primitiva!",@battlers[index].pbThis))
     PBDebug.log("[Regresión Primigenia] #{@battlers[index].pbThis} ha recobrado su apariencia primitiva")
   end
@@ -3344,20 +3336,13 @@ class PokeBattle_Battle
       end
     end
     # TeraCristal
-    teracristalized=[]
     for i in priority
       if @choices[i.index][0]==1 && !i.effects[PBEffects::SkipTurn]
         side=(pbIsOpposing?(i.index)) ? 1 : 0
         owner=pbGetOwnerIndex(i.index)
         if @teraCristal[side][owner]==i.index
           pbTeraCristal(i.index)
-          teracristalized.push(i.index)
         end
-      end
-    end
-    if teracristalized.length>0
-      for i in priority
-        i.pbAbilitiesOnSwitchIn(true) if teracristalized.include?(i.index)
       end
     end
     # Call at Pokémon

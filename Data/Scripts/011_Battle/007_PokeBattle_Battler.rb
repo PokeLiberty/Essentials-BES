@@ -1784,6 +1784,7 @@ class PokeBattle_Battler
     end
     if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT)
       self.pokemon.form=1
+      @battler.pbUpdate(true)
       @battle.scene.pbChangePokemon(self,@pokemon)
       @battle.pbDisplay(_INTL("¡{1} se transformó!",pbThis))
     end
@@ -1927,7 +1928,7 @@ class PokeBattle_Battler
   def pbEffectsOnDealingDamage(move,user,target,damage)
     movetype=move.pbType(move.type,user,target)
     if damage>0 && move.isContactMove? && !user.hasWorkingAbility(:LONGREACH) &&
-      !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
+      !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && !move.isPunchingMove?)
       if !target.damagestate.substitute
         # Rizos Rebeldes
         if target.hasWorkingAbility(:TANGLINGHAIR,true)
@@ -2074,7 +2075,7 @@ class PokeBattle_Battler
              !isConst?(user.ability,PBAbilities,:RKSSYSTEM)       &&
              !isConst?(user.ability,PBAbilities,:SHIELDSDOWN)     &&
              !isConst?(user.ability,PBAbilities,:ICEFACE)         &&
-             !isConst?(user.ability,PBAbilities,:ZEROTOHERO)      
+             !isConst?(user.ability,PBAbilities,:ZEROTOHERO)
             PBDebug.log("[Ability triggered] #{target.pbThis}'s Wandering Spirit swap onto #{user.pbThis(true)}'s Ability")
             tmp=user.ability
             user.ability=target.ability
@@ -3514,7 +3515,7 @@ class PokeBattle_Battler
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Movimiento falló] Escudo Real de #{target.pbThis} ha detenido el ataque")
       if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
-        (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
+        (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
         user.pbReduceStat(PBStats::ATTACK,1,nil,false)
       end
       return false
@@ -3526,7 +3527,7 @@ class PokeBattle_Battler
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Movimiento falló] Barrera Espinosa de #{user.pbThis} ha detenido el ataque")
       if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
-         (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?) && !user.isFainted?
+        (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
         @battle.scene.pbDamageAnimation(user,0)
         amt=user.pbReduceHP((user.totalhp/8).floor)
         @battle.pbDisplay(_INTL("¡{1} ha sido dañado!",user.pbThis)) if amt>0
@@ -3540,7 +3541,7 @@ class PokeBattle_Battler
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Move failed] #{user.pbThis}'s Baneful Bunker stopped the attack!")
       if thismove.isContactMove? && !user.isFainted? && user.pbCanPoison?(nil,false) && !user.hasWorkingAbility(:LONGREACH) &&
-         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
+        (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
         PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker")
         user.pbPoison(target,_INTL("¡{1} fue envenenado!",target.pbThis))
       end
@@ -3553,7 +3554,7 @@ class PokeBattle_Battler
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Move failed] #{target.pbThis}'s Obstruct stopped the attack")
       if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) &&
-         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
+         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
         user.pbReduceStat(PBStats::DEFENSE,2,nil,false)
       end
       return false
@@ -3565,7 +3566,7 @@ class PokeBattle_Battler
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Move failed] #{target.pbThis}'s Silktrap stopped the attack")
       if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
-         (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
+        (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
         user.pbReduceStat(PBStats::SPEED,1,nil,false)
       end
       return false
@@ -3577,7 +3578,7 @@ class PokeBattle_Battler
       @battle.successStates[user.index].protected=true
       PBDebug.log("[Move failed] #{user.pbThis}'s Baneful Bunker stopped the attack!")
       if thismove.isContactMove? && !user.isFainted? && user.pbCanBurn?(nil,false) && !user.hasWorkingAbility(:LONGREACH) &&
-         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingAbility(:PUNCHINGGLOVE) && move.isPunchingMove?)
+         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
         PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker")
         user.pbBurn(target,_INTL("¡{1} fue envenenado!",target.pbThis))
       end
@@ -4607,7 +4608,7 @@ class PokeBattle_Battler
             newpoke=choices[@battle.pbRandom(choices.length)]
             newpokename=newpoke
             if isConst?(party[newpoke].ability,PBAbilities,:ILLUSION)
-              newpokename=pbGetLastPokeInTeam(i)
+              newpokename=@battle.pbGetLastPokeInTeam(i)
             end
           switched.push(i)
             @battle.battlers[i].pbResetForm
@@ -4637,7 +4638,7 @@ class PokeBattle_Battler
           newpoke=@battle.pbSwitchInBetween(i,true,false)
           newpokename=newpoke
           if isConst?(@battle.pbParty(i)[newpoke].ability,PBAbilities,:ILLUSION)
-            newpokename=pbGetLastPokeInTeam(i)
+            newpokename=@battle.pbGetLastPokeInTeam(i)
           end
           switched.push(i)
           @battle.battlers[i].pbResetForm
@@ -4659,7 +4660,7 @@ class PokeBattle_Battler
         newpoke=@battle.pbSwitchInBetween(user.index,true,false)
         newpokename=newpoke
         if isConst?(@battle.pbParty(user.index)[newpoke].ability,PBAbilities,:ILLUSION)
-          newpokename=pbGetLastPokeInTeam(user.index)
+          newpokename=@battle.pbGetLastPokeInTeam(user.index)
         end
         user.pbResetForm
         @battle.pbRecallAndReplace(user.index,newpoke,newpokename,true)

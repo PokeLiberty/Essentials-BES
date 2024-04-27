@@ -341,6 +341,7 @@ class FightMenuDisplay
   end
 
   def refresh
+    @buttons.battle=@battler.battle if @battler
     @buttons.pokemon=@battler.pokemon if @battler
     return if !@battler
     commands=[]
@@ -376,6 +377,7 @@ end
 class FightMenuButtons < BitmapSprite
   UPPERGAP=46
   attr_writer :pokemon
+  attr_writer :battle
 
   def initialize(index=0,moves=nil,viewport=nil)
     super(Graphics.width,96+UPPERGAP,viewport)
@@ -417,9 +419,11 @@ class FightMenuButtons < BitmapSprite
       x=((i%2)==0) ? 4 : 192
       y=((i/2)==0) ? 6 : 48
       y+=UPPERGAP
-      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(0,moves[i].type*46,192,46))
+      moveType = getMoveType(moves[i])
+      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(0,moveType*46,192,46))
       textpos.push([_INTL("{1}",moves[i].name),x+96,y+8,2,
-         PokeBattle_SceneConstants::MENUBASECOLOR,PokeBattle_SceneConstants::MENUSHADOWCOLOR])
+                    #PokeBattle_SceneConstants::MENUBASECOLOR,PokeBattle_SceneConstants::MENUSHADOWCOLOR])
+      @buttonbitmap.bitmap.get_pixel(10,moveType*46+34),PokeBattle_SceneConstants::MENUSHADOWCOLOR])
     end
     ppcolors=[
        PokeBattle_SceneConstants::PPTEXTBASECOLOR,PokeBattle_SceneConstants::PPTEXTSHADOWCOLOR,
@@ -434,10 +438,12 @@ class FightMenuButtons < BitmapSprite
       x=((i%2)==0) ? 4 : 192
       y=((i/2)==0) ? 6 : 48
       y+=UPPERGAP
-      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(192,moves[i].type*46,192,46))
-      self.bitmap.blt(416,20+UPPERGAP,@typebitmap.bitmap,Rect.new(0,moves[i].type*28,64,28))
+      moveType = getMoveType(moves[i])
+      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(192,moveType*46,192,46))
+      self.bitmap.blt(416,20+UPPERGAP,@typebitmap.bitmap,Rect.new(0,moveType*28,64,28))
       textpos.push([_INTL("{1}",moves[i].name),x+96,y+8,2,
-         PokeBattle_SceneConstants::MENUBASECOLOR,PokeBattle_SceneConstants::MENUSHADOWCOLOR])
+                   #PokeBattle_SceneConstants::MENUBASECOLOR,PokeBattle_SceneConstants::MENUSHADOWCOLOR])
+      @buttonbitmap.bitmap.get_pixel(10,moveType*46+34),PokeBattle_SceneConstants::MENUSHADOWCOLOR])
       if moves[i].totalpp>0
         ppfraction=(4.0*moves[i].pp/moves[i].totalpp).ceil
         textpos.push([_INTL("PP: {1}/{2}",moves[i].pp,moves[i].totalpp),
@@ -461,6 +467,61 @@ class FightMenuButtons < BitmapSprite
     elsif zButton>0
       self.bitmap.blt(200,0,@zmovebitmap.bitmap,Rect.new(0,(zButton-1)*46,96,46))
     end
+  end
+
+  def getMoveType(move)
+    case move.id
+    when PBMoves::WEATHERBALL
+      case @battle.pbWeather
+      when PBWeather::SUNNYDAY, PBWeather::HARSHSUN;   return PBTypes::FIRE
+      when PBWeather::RAINDANCE, PBWeather::HEAVYRAIN; return PBTypes::WATER
+      when PBWeather::SANDSTORM;                       return PBTypes::ROCK
+      when PBWeather::HAIL;                            return PBTypes::ICE
+      end
+    when PBMoves::HIDDENPOWER
+      return pbHiddenPower(@pokemon.iv)[0]
+    when PBMoves::JUDGMENT, PBMoves::MULTIATTACK
+      return @pokemon.type1
+    when PBMoves::TECHNOBLAST
+      case @pokemon.item
+      when PBItems::CHILLDRIVE; return PBTypes::ICE
+      when PBItems::BURNDRIVE;  return PBTypes::FIRE
+      when PBItems::DOUSEDRIVE; return PBTypes::WATER
+      when PBItems::SHOCKDRIVE; return PBTypes::ELECTRIC
+      end
+    when PBMoves::AURAWHEEL
+      return @pokemon.form==0 ? PBTypes::ELECTRIC : PBTypes::DARK
+    when PBMoves::TERRAINPULSE
+      if @battle.field.effects[PBEffects::ElectricTerrain]>0
+        return (getConst(PBTypes,:ELECTRIC))
+      elsif @battle.field.effects[PBEffects::MistyTerrain]>0
+        return (getConst(PBTypes,:FAIRY))
+      elsif @battle.field.effects[PBEffects::PsychicTerrain]>0
+        return (getConst(PBTypes,:PSYCHIC))
+      elsif @battle.field.effects[PBEffects::GrassyTerrain]>0
+        return (getConst(PBTypes,:GRASS))
+      end
+    when PBMoves::TERABLAST
+      return @pokemon.teratype if @pokemon.isTera?
+    end
+    if @pokemon.ability==PBAbilities::NORMALIZE
+      return PBTypes::NORMAL
+    end
+    if move.type==PBTypes::NORMAL
+      if @pokemon.ability==PBAbilities::AERILATE
+        return PBTypes::FLYING
+      elsif @pokemon.ability==PBAbilities::REFRIGERATE
+        return PBTypes::ICE
+      elsif @pokemon.ability==PBAbilities::PIXILATE
+        return PBTypes::FAIRY
+      elsif @pokemon.ability==PBAbilities::GALVANIZE 
+        return PBTypes::ELECTRIC
+      end
+    end
+    if (@battle.field.effects[PBEffects::IonDeluge] || @battle.field.effects[PBEffects::PlasmaFists]) && isConst?(move.type,PBTypes,:NORMAL)
+      return getConst(PBTypes,:ELECTRIC)
+    end
+    return move.type
   end
 end
 
@@ -690,12 +751,10 @@ class PokemonDataBox < SpriteWrapper
     end
     if @battler.isMega?
       imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleMegaEvoBox.png",@spritebaseX+8,34,0,0,-1,-1])
+    elsif @battler.isUltra?
+      imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleUltraBurstBox.png",@spritebaseX+140,4,0,0,-1,-1])
     elsif @battler.isPrimal?
-      if isConst?(@battler.pokemon.species,PBSpecies,:KYOGRE)
-        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimalKyogreBox.png",@spritebaseX+140,4,0,0,-1,-1])
-      elsif isConst?(@battler.pokemon.species,PBSpecies,:GROUDON)
-        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimalGroudonBox.png",@spritebaseX+140,4,0,0,-1,-1])
-      end
+      imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimal#{PBSpecies.getName(@battler.species)}Box.png",@spritebaseX+140,4,0,0,-1,-1])
     elsif @battler.isTera?
       imagepos.push(["Graphics/Pictures/teraTypes.png",@spritebaseX+140,4,0,@battler.type1*32,32,32])
     end

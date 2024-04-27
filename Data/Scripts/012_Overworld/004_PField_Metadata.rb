@@ -54,7 +54,6 @@ class PokemonGlobalMetadata
   attr_accessor :eventvars
   attr_accessor :safesave
   attr_accessor :teraorb
-  attr_accessor :tera_trainer
 
   def initialize
     @bicycle              = false
@@ -114,7 +113,6 @@ class PokemonGlobalMetadata
     @eventvars            = {}
     @safesave             = false
     @teraorb              ||= [1,1]
-    @tera_trainer         ||= false
 
   end
 
@@ -234,9 +232,3 @@ def pbUpgradeTeraorb(grade)
   @teraorb ||= [1,1] if !$PokemonGlobal.teraorb
   $PokemonGlobal.teraorb[1]=grade if $PokemonGlobal.teraorb
 end
-
-Events.onEndBattle+=proc {|sender,e|
-  decision=e[0]
-  canlose=e[1]
-  $PokemonGlobal.tera_trainer[0]=false if $PokemonGlobal.tera_trainer
-}

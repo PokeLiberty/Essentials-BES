@@ -306,7 +306,13 @@ class PokeBattle_Move
            isConst?(@id,PBMoves,:NIGHTSLASH) ||
            isConst?(@id,PBMoves,:CROSSPOISON) ||
            isConst?(@id,PBMoves,:XSCISSOR) ||
-           isConst?(@id,PBMoves,:BITTERBLADE)
+           isConst?(@id,PBMoves,:BITTERBLADE) ||
+           isConst?(@id,PBMoves,:POPULATIONBOMB) ||
+           isConst?(@id,PBMoves,:KOWTOWCLEAVE) ||
+           isConst?(@id,PBMoves,:MIGHTYCLEAVE) ||
+           isConst?(@id,PBMoves,:PSYBLADE) ||
+           isConst?(@id,PBMoves,:TACHYONCUTTER) 
+           
   end
 
   def isDanceMove?
@@ -320,7 +326,8 @@ class PokeBattle_Move
            isConst?(@id,PBMoves,:LUNARDANCE) ||
            isConst?(@id,PBMoves,:REVELATIONDANCE) ||
            isConst?(@id,PBMoves,:VICTORYDANCE) ||
-           isConst?(@id,PBMoves,:AQUASTEP)
+           isConst?(@id,PBMoves,:AQUASTEP)||
+           isConst?(@id,PBMoves,:CLANGOROUSSOUL)
   end
 
   def isWindMove?
@@ -334,10 +341,11 @@ class PokeBattle_Move
            isConst?(@id,PBMoves,:GUST) ||
            isConst?(@id,PBMoves,:HURRICANE) ||
            isConst?(@id,PBMoves,:ICYWIND) ||
-           isConst?(@id,PBMoves,:OMINOUSWIND) ||
            isConst?(@id,PBMoves,:FAIRYWIND) ||
            isConst?(@id,PBMoves,:PETALBLIZZARD) ||
-           isConst?(@id,PBMoves,:BLIZZARD)
+           isConst?(@id,PBMoves,:BLIZZARD) ||
+           isConst?(@id,PBMoves,:SANDSTORM) ||
+           isConst?(@id,PBMoves,:WHIRLWIND)
   end
 
   def doesBypassIgnorableAbilities?

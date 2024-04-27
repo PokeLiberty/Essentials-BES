@@ -1443,7 +1443,7 @@ MultipleForms.register(:NECROZMA,{
   end
 },
 "getUltraForm"=>proc{|pokemon|
-   next 3 if isConst?(pokemon.item,PBItems,:ULTRANECROZIUMZ) && (pokemon.form==1 || pokemon.form==2)
+   next 3 if isConst?(pokemon.item,PBItems,:ULTRANECROZIUMZ) && pokemon.form > 0
    next
 },
 "getUltraName"=>proc{|pokemon|
@@ -1814,6 +1814,7 @@ MultipleForms.register(:PALAFIN,{
 
 MultipleForms.register(:OGERPON,{
 "getForm"=>proc{|pokemon|
+   f = 0
    f = 1 if isConst?(pokemon.item,PBItems,:WELLSPRINGMASK)
    f = 2 if isConst?(pokemon.item,PBItems,:HEARTHFLAMEMASK)
    f = 3 if isConst?(pokemon.item,PBItems,:CORRNERSTONEMASK)

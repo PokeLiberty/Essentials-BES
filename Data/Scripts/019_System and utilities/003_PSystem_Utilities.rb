@@ -202,7 +202,7 @@ def  pbIsJsonString(str)
   # prevent cases like "truetrue" or "true true" or "true[true]" or "5-2" or "5true"
   otherLiterals=/(true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?)(?! ?[0-9a-z\-\[\{\"])/ #"
   str=str.gsub(otherLiterals,"]").gsub(d,"") #"
-  p str
+  #p str
   return str[ /^[\],:{} ]*$/ ] ? true : false
 end
 

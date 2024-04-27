@@ -626,6 +626,9 @@
 634,HM05,MO05,MO05s,4,0,"Embiste con un gran impulso que puede hacer retroceder. También sirve para remontar cascadas.",4,0,0,WATERFALL
 635,HM06,MO06,MO06s,4,0,"Primer turno: se sumerge en el mar.  Segundo turno: emerge y ataca.",4,0,0,DIVE
 
+640,ZRING,Pulsera Z,Pulseras Z,8,0,"Un anillo misterioso que permite a los Pokémon usar movimientos Z. Requiere tanto la fuerza de voluntad como el poder físico del Entrenador que lo lleva.",0,0,6,
+641,DYNAMAXBAND,Maximuñequera,Maximuñequera,8,0,"Emite una luz que permite a los Pokémon alcanzar el Dynamax cuando se encuentran en un punto de poder.",0,0,6,
+642,TERAORB,Orbe Teracristal,Orbe Teracristal,8,0,"Un orbe que contiene en su interior el poder de teracristalizar. Cuando está cargado de energía, puede usarse para provocar que los Pokémon se terastalicen.",0,0,6,
 643,PROTECTIVEPADS,Paracontacto,Paracontactos,1,0,"Protege al Pokémon de los efectos que le produciría el contacto directo en combate.",0,0,0,
 644,TERRAINEXTENDER,Cubresuelos,Cubresuelos,1,0,"Al llevarlo, prolonga la duración de los campos creados por el Pokémon en el terreno de combate.",0,0,0,
 645,PSYCHICSEED,Semilla Psique,Semillas Psique,1,0,"Aumenta la Defensa Especial del portador si el terreno está cubierto por un Campo Psíquico.",0,0,0,
