@@ -4607,7 +4607,7 @@ class PokeBattle_Battler
             newpoke=choices[@battle.pbRandom(choices.length)]
             newpokename=newpoke
             if isConst?(party[newpoke].ability,PBAbilities,:ILLUSION)
-              newpokename=pbGetLastPokeInTeam(i)
+              newpokename=@battle.pbGetLastPokeInTeam(i)
             end
           switched.push(i)
             @battle.battlers[i].pbResetForm
@@ -4637,7 +4637,7 @@ class PokeBattle_Battler
           newpoke=@battle.pbSwitchInBetween(i,true,false)
           newpokename=newpoke
           if isConst?(@battle.pbParty(i)[newpoke].ability,PBAbilities,:ILLUSION)
-            newpokename=pbGetLastPokeInTeam(i)
+            newpokename=@battle.pbGetLastPokeInTeam(i)
           end
           switched.push(i)
           @battle.battlers[i].pbResetForm
