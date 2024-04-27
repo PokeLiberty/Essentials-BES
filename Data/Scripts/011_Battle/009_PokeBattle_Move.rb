@@ -345,7 +345,7 @@ class PokeBattle_Move
            isConst?(@id,PBMoves,:PETALBLIZZARD) ||
            isConst?(@id,PBMoves,:BLIZZARD) ||
            isConst?(@id,PBMoves,:SANDSTORM) ||
-           isConst?(@id,PBMoves,:WHIRLWIND) ||
+           isConst?(@id,PBMoves,:WHIRLWIND)
   end
 
   def doesBypassIgnorableAbilities?

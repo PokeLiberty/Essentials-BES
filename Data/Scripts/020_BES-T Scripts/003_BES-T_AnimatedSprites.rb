@@ -454,32 +454,6 @@ def pbLoadFakePokemonBitmap(species,boy=false,shiny=false,form=0, back=false)
   return animatedBitmap
 end
 
-# PARA AJUSTAR LOS SPRITES
-
-def adjustBattleSpriteY(sprite,species,index,metrics=nil)
-  ret=0
-  spriteheight=(sprite.bitmap &&
-     !sprite.bitmap.disposed?) ? sprite.bitmap.height : 128
-  spritewidth=(sprite.bitmap &&
-     !sprite.bitmap.disposed?) ? sprite.bitmap.width : 128
-  ret-=spriteheight
-  ret+=getBattleSpriteMetricOffset(species,index,metrics)
-
-  if index==1 || index==3 # Pokémon rival
-    if ANIMATEDFORMAT
-      ret-= spriteheight/2 + spriteheight/4
-    end
-  else                    # Pokémon del jugador
-    if ANIMATEDFORMAT
-      ret-= spriteheight/2
-    else
-      ret+= spriteheight/4 - spriteheight/8
-    end
-  end
-  return ret.floor
-end
-
-
 def pbTrainerSpriteFile(type)
   return nil if !type
   bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%s",getConstantName(PBTrainers,type)) rescue nil
