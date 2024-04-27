@@ -2180,20 +2180,12 @@ class PokeBattle_Battle
     return if !@battlers[index] || !@battlers[index].pokemon
     return if !(@battlers[index].hasPrimal? rescue false)
     return if (@battlers[index].isPrimal? rescue true)
-    if isConst?(@battlers[index].pokemon.species,PBSpecies,:KYOGRE)
-      pbCommonAnimation("PrimalKyogre",@battlers[index],nil)
-    elsif isConst?(@battlers[index].pokemon.species,PBSpecies,:GROUDON)
-      pbCommonAnimation("PrimalGroudon",@battlers[index],nil)
-    end
+    pbCommonAnimation("Primal#{PBSpecies.getName(@battlers[index].species)}",@battlers[index],nil)
     @battlers[index].pokemon.makePrimal
     @battlers[index].form=@battlers[index].pokemon.form
     @battlers[index].pbUpdate(true)
     @scene.pbChangePokemon(@battlers[index],@battlers[index].pokemon)
-    if isConst?(@battlers[index].pokemon.species,PBSpecies,:KYOGRE)
-      pbCommonAnimation("PrimalKyogre2",@battlers[index],nil)
-    elsif isConst?(@battlers[index].pokemon.species,PBSpecies,:GROUDON)
-      pbCommonAnimation("PrimalGroudon2",@battlers[index],nil)
-    end
+    pbCommonAnimation("Primal#{PBSpecies.getName(@battlers[index].species)}2",@battlers[index],nil)
     pbDisplay(_INTL("¡{1} ha esperimentado una Regresión Primigenia y ha recobrado su apariencia primitiva!",@battlers[index].pbThis))
     PBDebug.log("[Regresión Primigenia] #{@battlers[index].pbThis} ha recobrado su apariencia primitiva")
   end

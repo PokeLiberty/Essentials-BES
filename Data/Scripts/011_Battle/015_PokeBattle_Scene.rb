@@ -751,12 +751,10 @@ class PokemonDataBox < SpriteWrapper
     end
     if @battler.isMega?
       imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleMegaEvoBox.png",@spritebaseX+8,34,0,0,-1,-1])
+    elsif @battler.isUltra?
+      imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleUltraBurstBox.png",@spritebaseX+140,4,0,0,-1,-1])
     elsif @battler.isPrimal?
-      if isConst?(@battler.pokemon.species,PBSpecies,:KYOGRE)
-        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimalKyogreBox.png",@spritebaseX+140,4,0,0,-1,-1])
-      elsif isConst?(@battler.pokemon.species,PBSpecies,:GROUDON)
-        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimalGroudonBox.png",@spritebaseX+140,4,0,0,-1,-1])
-      end
+      imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimal#{PBSpecies.getName(@battler.species)}Box.png",@spritebaseX+140,4,0,0,-1,-1])
     elsif @battler.isTera?
       imagepos.push(["Graphics/Pictures/teraTypes.png",@spritebaseX+140,4,0,@battler.type1*32,32,32])
     end
