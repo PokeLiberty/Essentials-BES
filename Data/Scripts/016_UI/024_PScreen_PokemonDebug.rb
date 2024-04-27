@@ -33,7 +33,7 @@ class PokemonScreen
       ],command)
       case command
       ### Cancel ###
-      when -1, 21
+      when -1, 22
         break
       ### HP/Status ###
       when 0
