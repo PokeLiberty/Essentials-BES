@@ -4659,7 +4659,7 @@ class PokeBattle_Battler
         newpoke=@battle.pbSwitchInBetween(user.index,true,false)
         newpokename=newpoke
         if isConst?(@battle.pbParty(user.index)[newpoke].ability,PBAbilities,:ILLUSION)
-          newpokename=pbGetLastPokeInTeam(user.index)
+          newpokename=@battle.pbGetLastPokeInTeam(user.index)
         end
         user.pbResetForm
         @battle.pbRecallAndReplace(user.index,newpoke,newpokename,true)
