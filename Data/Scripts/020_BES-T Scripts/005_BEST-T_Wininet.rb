@@ -126,4 +126,16 @@ module Net
      end
     end
   end
-  
+
+def pbDownloadToString(url)
+  if $joiplay
+    return ""
+  end
+  begin
+    code, headers, content = Net::HTTP.get(url)
+    data = content
+    return data
+  rescue
+    return ""
+  end 
+end
