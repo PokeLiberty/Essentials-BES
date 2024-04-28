@@ -312,7 +312,7 @@ class PokemonLoad
       end
       commands[cmdContinue=commands.length]=_INTL("Continuar") if showContinue
       commands[cmdNewGame=commands.length]=_INTL("Partida Nueva")
-      commands[cmdMysteryGift=commands.length]=_INTL("Regalo Misterioso") if (trainer.mysterygiftaccess rescue false)
+      commands[cmdMysteryGift=commands.length]=_INTL("Regalo Misterioso") if (trainer.mysterygiftaccess rescue false) || MYSTERYGIFTALWAYSSHOW
     else
       commands[cmdNewGame=commands.length]=_INTL("Partida Nueva")
     end
