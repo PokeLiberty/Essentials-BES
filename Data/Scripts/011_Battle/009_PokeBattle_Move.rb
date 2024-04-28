@@ -288,6 +288,7 @@ class PokeBattle_Move
 
   def isRazorMove?
     return isConst?(@id,PBMoves,:AIRCUTTER) ||
+           isConst?(@id,PBMoves,:SECRETSWORD) ||
            isConst?(@id,PBMoves,:RAZORSHELL) ||
            isConst?(@id,PBMoves,:CUT) ||
            isConst?(@id,PBMoves,:FURYCUTTER) ||
@@ -332,6 +333,7 @@ class PokeBattle_Move
 
   def isWindMove?
     return isConst?(@id,PBMoves,:AIRCUTTER) ||
+           isConst?(@id,PBMoves,:TAILWIND) ||
            isConst?(@id,PBMoves,:TWISTER) ||
            isConst?(@id,PBMoves,:SPRINGTIDESTORM) ||
            isConst?(@id,PBMoves,:WILDBOLTSTORM) ||
