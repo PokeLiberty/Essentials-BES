@@ -1752,7 +1752,7 @@ def pbStorePokemon(pokemon)
   end
 end
 
-def pbNicknameAndStore(pokemon)
+def pbNicknameAndStore(pokemon,nick=true)
   if pbBoxesFull?
     Kernel.pbMessage(_INTL("¡No hay espacio para el Pokémon!\1"))
     Kernel.pbMessage(_INTL("¡Las Cajas del PC están llenas y no aceptan ni un Pokémon más!"))
@@ -1760,11 +1760,11 @@ def pbNicknameAndStore(pokemon)
   end
   $Trainer.seen[pokemon.species]=true
   $Trainer.owned[pokemon.species]=true
-  pbNickname(pokemon)
+  pbNickname(pokemon) if nick
   pbStorePokemon(pokemon)
 end
 
-def pbAddPokemon(pokemon,level=nil,seeform=true)
+def pbAddPokemon(pokemon,level=nil,seeform=true,nick=true)
   return if !pokemon || !$Trainer
   if pbBoxesFull?
     Kernel.pbMessage(_INTL("¡No hay espacio para el Pokémon!\1"))
@@ -1779,7 +1779,7 @@ def pbAddPokemon(pokemon,level=nil,seeform=true)
   end
   speciesname=PBSpecies.getName(pokemon.species)
   Kernel.pbMessage(_INTL("¡{1} ha obtenido un {2}!\\se[PokemonGet]\1",$Trainer.name,speciesname))
-  pbNicknameAndStore(pokemon)
+  pbNicknameAndStore(pokemon) if nick
   pbSeenForm(pokemon) if seeform
   return true
 end
@@ -1926,8 +1926,6 @@ def pbSeenForm(poke,gender=0,form=0)
   $Trainer.formlastseen[species]=[] if !$Trainer.formlastseen[species]
   $Trainer.formlastseen[species]=[gender,form] if $Trainer.formlastseen[species]==[]
 end
-
-
 
 ################################################################################
 # Analysing Pokémon
@@ -2094,8 +2092,6 @@ def pbHasEgg?(species)
   return false
 end
 
-
-
 ################################################################################
 # Look through Pokémon in storage, choose a Pokémon in the party
 ################################################################################
@@ -2160,8 +2156,6 @@ def pbChoosePokemonForTrade(variableNumber,nameVarNumber,wanted)
      return !poke.isEgg? && !(poke.isShadow? rescue false) && poke.species==wanted
   })
 end
-
-
 
 ################################################################################
 # Checks through the party for something
@@ -2520,9 +2514,6 @@ def pbConvertItemToPokemon(variable,array)
   end
 end
 
-
-
-
 class PokemonGlobalMetadata
   attr_accessor :trainerRecording
 end
@@ -2536,18 +2527,16 @@ def pbRecordTrainer
   return false
 end
 
-# BES-T Metodo chungo para la guarderia
-def pbNicknameAndStore(pokemon,nick=true)
-  if pbBoxesFull?
-    Kernel.pbMessage(_INTL("¡No hay espacio para el Pokémon!\1"))
-    Kernel.pbMessage(_INTL("¡Las Cajas del PC están llenas y no aceptan ni un Pokémon más!"))
-    return
+#BES-T, permite entregar una cinta a todos los pokémon actualmente en el equipo.
+def giveRibbonToAll(ribbon)
+  for i in 0...$Trainer.party.length
+    poke=$Trainer.party[i]
+    poke.giveRibbon(ribbon)
   end
-  $Trainer.seen[pokemon.species]=true
-  $Trainer.owned[pokemon.species]=true
-  pbNickname(pokemon) if nick
-  pbStorePokemon(pokemon)
+rescue
+  p "Entrega de cinta fallida, revisa que el nombre interno corresponde con uno existente." if $DEBUG
 end
+
 
 #===============================================================================
 #  Extensions for Array objects
@@ -2611,3 +2600,4 @@ class ::Array
   end
   #-----------------------------------------------------------------------------
 end
+
