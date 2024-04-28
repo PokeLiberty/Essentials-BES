@@ -7,8 +7,6 @@
 ################################################################################
 MYSTERYGIFTURL = "https://raw.githubusercontent.com/PokeLiberty/Essentials-BES/main/MysteryGift.txt"
 
-
-
 class PokeBattle_Trainer
   attr_accessor(:mysterygiftaccess)   # Whether MG can be used from load screen
   attr_accessor(:mysterygift)         # Variable that stores downloaded MG data
@@ -23,7 +21,6 @@ class PokeBattle_Trainer
     return @mysterygift
   end
 end
-
 
 
 ################################################################################
