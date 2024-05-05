@@ -386,11 +386,13 @@ ItemHandlers::UseOnPokemon.add(:POTION,proc{|item,pokemon,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:SUPERPOTION,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,50,scene)
+   heal = (USENEWBATTLEMECHANICS) ? 60 : 50
+   next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:HYPERPOTION,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,200,scene)
+   heal = (USENEWBATTLEMECHANICS) ? 120 : 200
+   next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:MAXPOTION,proc{|item,pokemon,scene|
@@ -410,15 +412,18 @@ ItemHandlers::UseOnPokemon.add(:SWEETHEART,proc{|item,pokemon,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:FRESHWATER,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,50,scene)
+   heal = (USENEWBATTLEMECHANICS) ? 30 : 50
+   next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:SODAPOP,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,60,scene)
+   heal = (USENEWBATTLEMECHANICS) ? 50 : 60
+   next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:LEMONADE,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,80,scene)
+heal = (USENEWBATTLEMECHANICS) ? 70 : 80
+next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::UseOnPokemon.add(:MOOMOOMILK,proc{|item,pokemon,scene|
@@ -562,19 +567,21 @@ ItemHandlers::UseOnPokemon.add(:MAXREVIVE,proc{|item,pokemon,scene|
 })
 
 ItemHandlers::UseOnPokemon.add(:ENERGYPOWDER,proc{|item,pokemon,scene|
-   if pbHPItem(pokemon,50,scene)
+  heal = (USENEWBATTLEMECHANICS) ? 60 : 50
+  if pbHPItem(pokemon,heal,scene)
      pokemon.changeHappiness("powder")
      next true
-   end
-   next false
+  end
+  next false
 })
 
 ItemHandlers::UseOnPokemon.add(:ENERGYROOT,proc{|item,pokemon,scene|
-   if pbHPItem(pokemon,200,scene)
-     pokemon.changeHappiness("Energy Root")
-     next true
-   end
-   next false
+  heal = (USENEWBATTLEMECHANICS) ? 120 : 200
+  if pbHPItem(pokemon,heal,scene)
+    pokemon.changeHappiness("powder")
+    next true
+  end
+  next false
 })
 
 ItemHandlers::UseOnPokemon.add(:HEALPOWDER,proc{|item,pokemon,scene|
@@ -1337,11 +1344,13 @@ ItemHandlers::BattleUseOnPokemon.add(:POTION,proc{|item,pokemon,battler,scene|
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:SUPERPOTION,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,50,scene)
+   heal = (USENEWBATTLEMECHANICS) ? 60 : 50
+   next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:HYPERPOTION,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,200,scene)
+  heal = (USENEWBATTLEMECHANICS) ? 120 : 200
+  next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:MAXPOTION,proc{|item,pokemon,battler,scene|
@@ -1361,15 +1370,18 @@ ItemHandlers::BattleUseOnPokemon.add(:SWEETHEART,proc{|item,pokemon,battler,scen
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:FRESHWATER,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,50,scene)
+  heal = (USENEWBATTLEMECHANICS) ? 30 : 50
+  next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:SODAPOP,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,60,scene)
+  heal = (USENEWBATTLEMECHANICS) ? 50 : 60
+  next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:LEMONADE,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,80,scene)
+  heal = (USENEWBATTLEMECHANICS) ? 70 : 80
+  next pbHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:MOOMOOMILK,proc{|item,pokemon,battler,scene|
@@ -1536,15 +1548,17 @@ ItemHandlers::BattleUseOnPokemon.add(:MAXREVIVE,proc{|item,pokemon,battler,scene
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:ENERGYPOWDER,proc{|item,pokemon,battler,scene|
-   if pbBattleHPItem(pokemon,battler,50,scene)
+  heal = (USENEWBATTLEMECHANICS) ? 60 : 50
+  if pbBattleHPItem(pokemon,battler,heal,scene)
      pokemon.changeHappiness("powder")
      next true
-   end
-   next false
+  end
+  next false
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:ENERGYROOT,proc{|item,pokemon,battler,scene|
-   if pbBattleHPItem(pokemon,battler,200,scene)
+  heal = (USENEWBATTLEMECHANICS) ? 120 : 200
+  if pbBattleHPItem(pokemon,battler,heal,scene)
      pokemon.changeHappiness("Energy Root")
      next true
    end
