@@ -232,6 +232,8 @@ def pbTrainerBattle(trainerid,trainername,endspeech,
     Kernel.pbMessage(_INTL("SALTANDO COMBATES...")) if $DEBUG
     return false
   end
+  doublebattle=true if $PokemonTemp.battle_rules["double"] || $PokemonTemp.battle_rules["2v2"]
+  doublebattle=false if $PokemonTemp.battle_rules["single"] || $PokemonTemp.battle_rules["1v1"]
   if !$PokemonTemp.waitingTrainer && $Trainer.ablePokemonCount>1 &&
      pbMapInterpreterRunning?
     thisEvent=pbMapInterpreter.get_character(0)

@@ -3998,7 +3998,8 @@ class PokeBattle_Battle
     totalscore=0
     target=-1
     skill=0
-    wildbattle=!@opponent && pbIsOpposing?(index) && ((attacker.level < WILD_AI_LEVEL) && (!$game_switches[WILD_AI_SWITCH]))
+    wildbattle=!@opponent && pbIsOpposing?(index) && ((attacker.level < WILD_AI_LEVEL) &&
+               !($game_switches[WILD_AI_SWITCH] ||  @rules["hightAI"]))
     if wildbattle # If wild battle
       for i in 0...4
         if pbCanChooseMove?(index,i,false)
@@ -4018,7 +4019,7 @@ class PokeBattle_Battle
         dexdata.close
 
         skill=255 - (rareness-1) # para que hasta los mas comunes tengan un minimo de inteligencia
-        skill=255 if $game_switches[WILD_AI_SWITCH]
+        skill=255 if $game_switches[WILD_AI_SWITCH] ||  @rules["hightAI"]
       end
       opponent=attacker.pbOppositeOpposing
       if @doublebattle && !opponent.isFainted? && !opponent.pbPartner.isFainted?

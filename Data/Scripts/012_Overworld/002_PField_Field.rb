@@ -126,9 +126,9 @@ class LightEffect_Lamp < LightEffect
     @light = Sprite.new(viewport)
     lamp = AnimatedBitmap.new("Graphics/Pictures/LE")
     @light.bitmap = Bitmap.new(128,64)
-    src_rect = Rect.new(0, 0, 64, 64) 
-    @light.bitmap.blt(0, 0, lamp.bitmap, src_rect) 
-    @light.bitmap.blt(20, 0, lamp.bitmap, src_rect) 
+    src_rect = Rect.new(0, 0, 64, 64)
+    @light.bitmap.blt(0, 0, lamp.bitmap, src_rect)
+    @light.bitmap.blt(20, 0, lamp.bitmap, src_rect)
     lamp.dispose
     @light.visible = true
     @light.z = 1000
@@ -202,7 +202,7 @@ class LightEffect_DayNight < LightEffect
                       $game_screen.tone.blue,
                       $game_screen.tone.gray)
     end
-  end  
+  end
 end
 
 
@@ -390,7 +390,7 @@ module Events
   end
 
 # Triggers whenever a wild Pokémon battle ends
-# Parameters: 
+# Parameters:
 # e[0] - Pokémon species
 # e[1] - Pokémon level
 # e[2] - Battle result (1-win, 2-loss, 3-escaped, 4-caught, 5-draw)
@@ -403,7 +403,7 @@ module Events
   end
 
 # Triggers whenever a wild Pokémon is created
-# Parameters: 
+# Parameters:
 # e[0] - Pokémon being created
   def self.onWildPokemonCreate=(v)
     @@OnWildPokemonCreate=v
@@ -414,7 +414,7 @@ module Events
   end
 
 # Triggers whenever an NPC trainer's Pokémon party is loaded
-# Parameters: 
+# Parameters:
 # e[0] - Trainer
 # e[1] - Items possessed by the trainer
 # e[2] - Party
@@ -800,9 +800,13 @@ def pbPrepareBattle(battle)
     battle.weather=PBWeather::SUNNYDAY
     battle.weatherduration=-1
   end
+  if battle.rules["weather"]
+    battle.weather = getConst(PBWeather,battle.rules["weather"])
+    battle.weatherduration = -1
+  end
   battle.shiftStyle=($PokemonSystem.battlestyle==0)
   battle.battlescene=($PokemonSystem.battlescene==0)
-  battle.environment=pbGetEnvironment
+  battle.environment = battle.rules["environment"] ? getConst(PBEnvironment,battle.rules["environment"]) : pbGetEnvironment
 end
 
 def pbGetEnvironment
@@ -835,7 +839,7 @@ def pbGenerateWildPokemon(species,level,isroamer=false)
   firstpoke=$Trainer.firstParty
   chances=[50,10,5]
   chances=[60,20,10] if firstpoke && !firstpoke.isEgg? &&
-                       (isConst?(firstpoke.ability,PBAbilities,:COMPOUNDEYES) || 
+                       (isConst?(firstpoke.ability,PBAbilities,:COMPOUNDEYES) ||
                        isConst?(firstpoke.ability,PBAbilities,:SUPERLUCK))
   itemrnd=rand(100)
   if itemrnd<chances[0] || (items[0]==items[1] && items[1]==items[2])
@@ -884,6 +888,8 @@ def pbWildBattle(species,level,variable=nil,canescape=true,canlose=false)
     $PokemonGlobal.nextBattleBack=nil
     return true
   end
+  canescape = $PokemonTemp.battle_rules["canRun"]
+  canescape = !$PokemonTemp.battle_rules["canotRun"]
   if species.is_a?(String) || species.is_a?(Symbol)
     species=getID(PBSpecies,species)
   end
@@ -904,7 +910,7 @@ def pbWildBattle(species,level,variable=nil,canescape=true,canlose=false)
   battle.cantescape=!canescape
   pbPrepareBattle(battle)
   decision=0
-  pbBattleAnimation(pbGetWildBattleBGM(species)) { 
+  pbBattleAnimation(pbGetWildBattleBGM(species)) {
      pbSceneStandby {
         decision=battle.pbStartBattle(canlose)
      }
@@ -918,8 +924,8 @@ def pbWildBattle(species,level,variable=nil,canescape=true,canlose=false)
      end
      if decision==2 || decision==5 # if loss or draw
        if canlose
-         for i in $Trainer.party; 
-           i.heal; 
+         for i in $Trainer.party;
+           i.heal;
           (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil);
            end
          for i in 0...10
@@ -966,7 +972,7 @@ def pbDoubleWildBattle(species1,level1,species2=nil,level2=nil,variable=nil,cane
   genwildpoke2=pbGenerateWildPokemon(species2,level2) if species2
   Events.onStartBattle.trigger(nil,genwildpoke)
   scene=pbNewBattleScene
-  
+
   if $PokemonGlobal.partner
     othertrainer=PokeBattle_Trainer.new(
        $PokemonGlobal.partner[1],$PokemonGlobal.partner[0])
@@ -1003,7 +1009,7 @@ def pbDoubleWildBattle(species1,level1,species2=nil,level2=nil,variable=nil,cane
   battle.cantescape=!canescape
   pbPrepareBattle(battle)
   decision=0
-  pbBattleAnimation(pbGetWildBattleBGM(species1)) { 
+  pbBattleAnimation(pbGetWildBattleBGM(species1)) {
      pbSceneStandby {
         decision=battle.pbStartBattle(canlose)
      }
@@ -1017,7 +1023,7 @@ def pbDoubleWildBattle(species1,level1,species2=nil,level2=nil,variable=nil,cane
      end
      if decision==2 || decision==5
        if canlose
-         for i in $Trainer.party; 
+         for i in $Trainer.party;
            i.heal; end
           (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil);
          for i in 0...10
@@ -1149,7 +1155,7 @@ end
 
 
 class PokemonTemp
-  attr_accessor :encounterType 
+  attr_accessor :encounterType
   attr_accessor :evolutionLevels
 end
 
@@ -1482,7 +1488,7 @@ def pbCanUseBike?(mapid)
   return true if pbGetMetadata(mapid,MetadataBicycleAlways)
   val=pbGetMetadata(mapid,MetadataBicycle)
   val=pbGetMetadata(mapid,MetadataOutdoor) if val==nil
-  return val ? true : false 
+  return val ? true : false
 end
 
 def Kernel.pbMountBike
@@ -1570,7 +1576,7 @@ def pbFishing(hasencounter,rodtype=1)
     time=2+rand(10)
     time=[time,2+rand(10)].min if speedup
     message=""
-    time.times do 
+    time.times do
       message+=". "
     end
     if pbWaitMessage(msgwindow,time)
@@ -1846,7 +1852,7 @@ def pbCaveEntranceEx(exiting)
     if exiting
       sprite.color=Color.new(255,255,255,j*255/15)
     else
-      sprite.color=Color.new(0,0,0,j*255/15) 
+      sprite.color=Color.new(0,0,0,j*255/15)
     end
     Graphics.update
     Input.update
@@ -2111,7 +2117,7 @@ def Kernel.pbRxdataExists?(file)
   if $RPGVX
     return pbRgssExists?(file+".rvdata")
   else
-    return pbRgssExists?(file+".rxdata") 
+    return pbRgssExists?(file+".rxdata")
   end
 end
 
@@ -2550,7 +2556,7 @@ def pbScrollMap(direction, distance, speed)
         break
       end
       oldx=$game_map.display_x
-      oldy=$game_map.display_y 
+      oldy=$game_map.display_y
     end
   end
 end

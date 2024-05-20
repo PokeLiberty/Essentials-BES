@@ -62,7 +62,6 @@ module PokeBattle_BattleCommon
     end
   end
 
-
   # Ball Fetch
   def tryFetchingBall(ball,safari,firstfailedthrowatsafari)
     ret=0
@@ -122,14 +121,16 @@ module PokeBattle_BattleCommon
       @scene.pbThrowAndDeflect(ball,1)
       pbDisplay(_INTL("¡El entrenador ha bloqueado la Poké Ball!\n¡No seas un ladrón!"))
       ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-    elsif $game_switches[NO_CAPTURE_SWITCH]
+    elsif $game_switches[NO_CAPTURE_SWITCH] || @rules["disablePokeBalls"]
      @scene.pbThrowAndDeflect(ball,1)
      pbDisplay(_INTL("No puedes capturar a este Pokémon."))
     else
       pokemon=battler.pokemon
       species=pokemon.species
-      if $DEBUG && Input.press?(Input::CTRL)
+      if $DEBUG && Input.press?(Input::CTRL) || @rules["alwaysCapture"]
         shakes=4
+      elsif @rules["neverCapture"]
+        shakes=0
       else
         if !rareness
           dexdata=pbOpenDexData
@@ -367,9 +368,20 @@ class PokeBattle_Battle
     @sides           = [PokeBattle_ActiveSide.new,   # Player's side
                         PokeBattle_ActiveSide.new]   # Foe's side
     @field           = PokeBattle_ActiveField.new    # Whole field (gravity/rooms)
-    @environment     = PBEnvironment::None   # e.g. Tall grass, cave, still water
+    @environment     = PBEnvironment::None
+    @rules           = $PokemonTemp.battle_rules || {}
     @weather         = 0
     @weatherduration = 0
+    case @rules["terrain"]
+    when :Electric
+      @field.effects[PBEffects::ElectricTerrain]=999
+    when :Grassy
+      @field.effects[PBEffects::GrassyTerrain]=999
+    when :Misty
+      @field.effects[PBEffects::MistyTerrain]=999
+    when :Psychic
+      @field.effects[PBEffects::PsychicTerrain]=999
+    end
     @switching       = false
     @futuresight     = false
     @choices         = [ [0,0,nil,-1],[0,0,nil,-1],[0,0,nil,-1],[0,0,nil,-1] ]
@@ -414,7 +426,6 @@ class PokeBattle_Battle
     @endspeech2       = ""
     @endspeechwin     = ""
     @endspeechwin2    = ""
-    @rules            = {}
     @turncount        = 0
     @peer             = PokeBattle_BattlePeer.create()
     @priority         = []
@@ -2070,6 +2081,7 @@ class PokeBattle_Battle
     return false if @battlers[index].isTera?
     return false if pbIsZCrystal?(@battlers[index].item) || pbCanZMove?(index)
     return false if $game_switches[NO_MEGA_EVOLUTION]
+    return false if @rules["noMega"]
     return false if !@battlers[index].hasMega?
     #return false if pbIsOpposing?(index) && !@opponent
     return true if $DEBUG && Input.press?(Input::CTRL)
@@ -2135,6 +2147,7 @@ class PokeBattle_Battle
     return false if @battlers[index].hasUltra? || @battlers[index].isUltra?
     return false if pbIsZCrystal?(@battlers[index].item) || pbCanZMove?(index)
     return false if $game_switches[NO_TERA_CRISTAL]
+    return false if @rules["noTera"]
     return false if pbIsOpposing?(index) && !@opponent
     return true if $DEBUG && Input.press?(Input::CTRL)
     return false if !pbHasTeraOrb(index)
@@ -2157,6 +2170,7 @@ class PokeBattle_Battle
     teratype=@battlers[index].pokemon.teratype
     return if !@battlers[index] || !@battlers[index].pokemon
     return if (@battlers[index].isTera? rescue true)
+    fpShowText("tera") if pbIsOpposing?(index) && defined?(MBD_Data)
     pbDisplay(_INTL("¡{1} se está rodeando de cristal!",@battlers[index].pbThis))
     pbCommonAnimation("MegaEvolution",@battlers[index],nil)
     @battlers[index].pokemon.original_types=[@battlers[index].type1,@battlers[index].type2]
@@ -2166,6 +2180,7 @@ class PokeBattle_Battle
     pbCommonAnimation("MegaEvolution2",@battlers[index],nil)
     typename=PBTypes.getName(teratype)
     pbDisplay(_INTL("¡{1} ha Teracristalizado al tipo {2}!",@battlers[index].pbThis,typename))
+    fpShowText("tera(player)") if pbBelongsToPlayer?(index) && defined?(MBD_Data)
     PBDebug.log("[Teracristalización] #{@battlers[index].pbThis} ha Teracristalizado (#{typename})")
     side=(pbIsOpposing?(index)) ? 1 : 0
     owner=pbGetOwnerIndex(index)
@@ -2196,6 +2211,7 @@ class PokeBattle_Battle
   def pbCanUltraBurst?(index)
     return false if @battlers[index].isTera?
     return false if $game_switches[NO_ULTRA_BURST]
+    return false if @rules["noUltra"]
     return false if !@battlers[index].hasUltra?
     return false if pbIsOpposing?(index) && !@opponent
     return true if $DEBUG && Input.press?(Input::CTRL)
@@ -2244,6 +2260,7 @@ class PokeBattle_Battle
   def pbCanZMove?(index)
     return false if @battlers[index].isTera?
     return false if $game_switches[NO_Z_MOVE]
+    return false if @rules["noZ"]
     return false if !@battlers[index].hasZMove?
     return false if !pbHasZRing(index)
     side=(pbIsOpposing?(index)) ? 1 : 0
@@ -2300,6 +2317,7 @@ class PokeBattle_Battle
 ################################################################################
   def pbGainEXP
     return if !@internalbattle
+    return if @rules["noExp"]
     successbegin=true
     for i in 0...4 # Not ordered by priority
       if !@doublebattle && pbIsDoubleBattler?(i)
@@ -3052,6 +3070,19 @@ class PokeBattle_Battle
     elsif @weather==PBWeather::STRONGWINDS
       pbCommonAnimation("StrongWinds",nil,nil)
       pbDisplay(_INTL("Las misteriosas turbulencias continúan con fuerza..."))
+    end
+    if @field.effects[PBEffects::ElectricTerrain]>0
+      #pbCommonAnimation("",nil,nil)
+      pbDisplay(_INTL("¡Se ha formado un campo de corriente eléctrica en el campo de batalla!"))
+    elsif @field.effects[PBEffects::GrassyTerrain]>0
+      #pbCommonAnimation("",nil,nil)
+      pbDisplay(_INTL("¡El terreno de combate se ha cubierto de hierba!"))
+    elsif @field.effects[PBEffects::MistyTerrain]>0
+      #pbCommonAnimation("",nil,nil)
+      pbDisplay(_INTL("¡La niebla ha envuelto el terreno de combate!"))
+    elsif @field.effects[PBEffects::PsychicTerrain]>0
+      #pbCommonAnimation("",nil,nil)
+      pbDisplay(_INTL("¡El campo de batalla se volvió extraño!"))
     end
     pbOnActiveAll   # Habilidades
     @turncount=0
@@ -4407,6 +4438,8 @@ class PokeBattle_Battle
       if @field.effects[PBEffects::ElectricTerrain]==0
         pbDisplay(_INTL("¡La corriente eléctrica desapareció del campo!"))
         PBDebug.log("[End of effect] Electric Terrain ended")
+      else
+        pbDisplay(_INTL("¡La corriente eléctrica permanece en el campo!"))
       end
     end
     # Grassy Terrain
@@ -4415,6 +4448,8 @@ class PokeBattle_Battle
       if @field.effects[PBEffects::GrassyTerrain]==0
         pbDisplay(_INTL("¡La hierba desapareció del campo!"))
         PBDebug.log("[End of effect] Grassy Terrain ended")
+      else
+        pbDisplay(_INTL("¡La hierba permanece en el campo!"))
       end
     end
     # Misty Terrain
@@ -4423,6 +4458,8 @@ class PokeBattle_Battle
       if @field.effects[PBEffects::MistyTerrain]==0
         pbDisplay(_INTL("¡La niebla desapareció del campo!"))
         PBDebug.log("[End of effect] Misty Terrain ended")
+      else
+        pbDisplay(_INTL("¡La niebla permanece en el campo!"))
       end
     end
     # Psychic Terrain
@@ -4431,6 +4468,8 @@ class PokeBattle_Battle
       if @field.effects[PBEffects::PsychicTerrain]==0
         pbDisplay(_INTL("¡La sensación extraña desapareció del campo!"))
         PBDebug.log("[End of effect] Psychic Terrain ended")
+      else
+        pbDisplay(_INTL("¡La sensación extraña permanece en el campo!"))
       end
     end
     # Cuerpo Maldito / Perish Body
@@ -4732,7 +4771,7 @@ class PokeBattle_Battle
           pbDisplayPaused(@endspeech2.gsub(/\\[Pp][Nn]/,self.pbPlayer.name))
         end
         # Se calcula el dinero ganado por la victoria
-        if @internalbattle
+        if @internalbattle && !@rules["noMoney"]
           tmoney=0
           if @opponent.is_a?(Array)             # Batallas dobles
             maxlevel1=0; maxlevel2=0; limit=pbSecondPartyBegin(1)
@@ -4793,7 +4832,7 @@ class PokeBattle_Battle
         multiplier=[8,16,24,36,48,60,80,100,120]
         moneylost*=multiplier[[multiplier.length-1,self.pbPlayer.numbadges].min]
         moneylost=self.pbPlayer.money if moneylost>self.pbPlayer.money
-        moneylost=0 if $game_switches[NO_MONEY_LOSS]
+        moneylost=0 if $game_switches[NO_MONEY_LOSS] || @rules["noMoney"]
         oldmoney=self.pbPlayer.money
         self.pbPlayer.money-=moneylost
         lostmoney=oldmoney-self.pbPlayer.money
@@ -4857,6 +4896,7 @@ class PokeBattle_Battle
       i.itemInitial=i.itemRecycle=0
       i.belch=false
     end
+    $PokemonTemp.battle_rules={}
     return @decision
   end
 end
