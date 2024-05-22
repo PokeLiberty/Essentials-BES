@@ -4150,7 +4150,7 @@ def pbCompileAllData(mustcompile)
   pbCompileTrainerEvents(mustcompile)
 
   yield(_INTL("Finalizando compilación"))
-   Win32API.SetWindowText(System.game_title+ " - DEBUG")
+   Win32API.SetWindowText(System.game_title+ " - DEBUG") if $MKXP
 end
 
 begin
