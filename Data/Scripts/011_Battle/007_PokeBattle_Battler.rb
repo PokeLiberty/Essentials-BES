@@ -1475,7 +1475,7 @@ class PokeBattle_Battler
       PBDebug.log("[Habilidad disparada] Intimidación de #{pbThis}")
       for i in 0...4
         if pbIsOpposing?(i) && !@battle.battlers[i].isFainted?
-          if @battle.battlers[i].pbReduceStatWithCause(PBStats::EVASION,1,@battle.battlers[i],PBAbilities.getName(@battle.battlers[i].ability))
+          if @battle.battlers[i].pbReduceStatWithCause(PBStats::EVASION,1,@battle.battlers[i],PBAbilities.getName(ability))
             PBDebug.log("[Ability triggered] Néctar dulce de #{pbThis} ")
           end
         end
