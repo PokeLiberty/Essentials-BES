@@ -375,14 +375,14 @@ class PokemonSummaryScene
        [_INTL("Objeto"),16,320,0,base,shadow
        ]
     ]
+    
+    amistad=pokemon.happiness/44
+    amistad=amistad.floor
     if EXPANDED_SUMMARY_INFO
       textpos.push([_INTL("Amistad:"),256+8,334,0,Color.new(64,64,64),Color.new(176,176,176)])
-      amistad=pokemon.happiness/44
-      amistad=amistad.floor
+      nivelamistad=Rect.new(0,amistad*18,128,18)
+      overlay.blt(356,334+8,@Amistadbitmap.bitmap,nivelamistad)
     end
-
-    nivelamistad=Rect.new(0,amistad*18,128,18)
-    overlay.blt(356,334+8,@Amistadbitmap.bitmap,nivelamistad)
 
     if pokemon.hasItem?
       textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
