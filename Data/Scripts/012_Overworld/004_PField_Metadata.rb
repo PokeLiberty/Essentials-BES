@@ -206,6 +206,7 @@ class PokemonTemp
   attr_accessor :pokemonPhoneData
   attr_accessor :lastbattle
   attr_accessor :flydata
+  attr_accessor :battle_rules
 
   def initialize
     @menuLastChoice         = 0
@@ -220,6 +221,7 @@ class PokemonTemp
     @pokemonPhoneData       = nil
     @lastbattle             = nil
     @flydata                = nil
+    @battle_rules           = {}
   end
 end
 
@@ -231,4 +233,9 @@ end
 def pbUpgradeTeraorb(grade)
   @teraorb ||= [1,1] if !$PokemonGlobal.teraorb
   $PokemonGlobal.teraorb[1]=grade if $PokemonGlobal.teraorb
+end
+
+def setBattleRule(key,arg=true)
+  $PokemonTemp.battle_rules={} if !$PokemonTemp.battle_rules
+  $PokemonTemp.battle_rules[key] = arg
 end

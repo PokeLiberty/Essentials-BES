@@ -514,7 +514,7 @@ class FightMenuButtons < BitmapSprite
         return PBTypes::ICE
       elsif @pokemon.ability==PBAbilities::PIXILATE
         return PBTypes::FAIRY
-      elsif @pokemon.ability==PBAbilities::GALVANIZE 
+      elsif @pokemon.ability==PBAbilities::GALVANIZE
         return PBTypes::ELECTRIC
       end
     end
@@ -1761,6 +1761,7 @@ class PokeBattle_Scene
     if $PokemonGlobal && $PokemonGlobal.nextBattleBack
       backdrop=$PokemonGlobal.nextBattleBack
     end
+    backdrop = $PokemonTemp.battle_rules["backdrop"] || backdrop
     # Choose bases
     base=""
     trialname=""
@@ -1771,6 +1772,7 @@ class PokeBattle_Scene
     elsif $PokemonGlobal.surfing
       trialname="Water"
     end
+    trialname = $PokemonTemp.battle_rules["base"] || trialname
     if pbResolveBitmap(sprintf("Graphics/Battlebacks/playerbase"+backdrop+trialname))
       base=trialname
     end

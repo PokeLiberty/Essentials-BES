@@ -11,6 +11,10 @@ Events.onWildPokemonCreate+=proc {|sender,e|
    if $game_switches[SHINY_WILD_POKEMON_SWITCH]
      pokemon.makeShiny
    end
+   if $PokemonTemp.battle_rules["wildTera"]
+    pokemon.tera_ace=true
+    pokemon.teratype=getConst(PBTypes,$PokemonTemp.battle_rules["wildTera"])
+   end
 }
 
 # Used in the random dungeon map.  Makes the levels of all wild Pokémon in that
@@ -56,4 +60,3 @@ Events.onWildPokemonCreate+=proc {
      pokemon.makeShiny
    end
 }
-
