@@ -1466,8 +1466,32 @@ MultipleForms.register(:NECROZMA,{
 }
 })
 
+# TOXEL
+MultipleForms.register(:TOXEL,{
+"getFormOnCreation"=>proc{|pokemon|
+   natures=[:LONELY,:BOLD,:RELAXED,:TIMID,:SERIOUS,:MODEST,
+            :MILD,:QUIET,:BASHFUL,:CALM,:GENTLE,:CAREFUL]
+   lowkey=false
+   for i in natures
+     if isConst?(pokemon.nature,PBNatures,i); lowkey=true; break; end
+   end
+   next 1 if lowkey
+   next 0
+}
+})
+
 # TOXTRICITY
 MultipleForms.register(:TOXTRICITY,{
+"getFormOnCreation"=>proc{|pokemon|
+   natures=[:LONELY,:BOLD,:RELAXED,:TIMID,:SERIOUS,:MODEST,
+            :MILD,:QUIET,:BASHFUL,:CALM,:GENTLE,:CAREFUL]
+   lowkey=false
+   for i in natures
+     if isConst?(pokemon.nature,PBNatures,i); lowkey=true; break; end
+   end
+   next 1 if lowkey
+   next 0
+},
 "getAbilityList"=>proc{|pokemon|
    next if pokemon.form==0
    next [[getID(PBAbilities,:PUNKROCK),0],

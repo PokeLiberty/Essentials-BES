@@ -633,81 +633,16 @@ class PokemonEvolutionScene
     sprite2.oy=s2y
     alpha=0
     for j in 0...26
-      if sprite.pbHasType?(:GRASS) || sprite.pbHasType?(:BUG)
-        sprite.color.red=92
-        sprite.color.green=255
-        sprite.color.blue=45
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      elsif sprite.pbHasType?(:DARK) || sprite.pbHasType?(:POISON) || sprite.pbHasType?(:GHOST)
-        sprite.color.red=29
-        sprite.color.green=10
-        sprite.color.blue=47
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      elsif sprite.pbHasType?(:ICE) || sprite.pbHasType?(:FLYING)
-        sprite.color.red=0
-        sprite.color.green=220
-        sprite.color.blue=230
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      elsif sprite.pbHasType?(:ELECTRIC)
-        sprite.color.red=255
-        sprite.color.green=255
-        sprite.color.blue=0
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      elsif sprite.pbHasType?(:FIRE) || sprite.pbHasType?(:FIGHTING)
-        sprite.color.red=200
-        sprite.color.green=0
-        sprite.color.blue=0
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      elsif sprite.pbHasType?(:ROCK) || sprite.pbHasType?(:GROUND)
-        sprite.color.red=148
-        sprite.color.green=124
-        sprite.color.blue=75
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      elsif sprite.pbHasType?(:STEEL) || sprite.pbHasType?(:NORMAL)
-        sprite.color.red=250
-        sprite.color.green=250
-        sprite.color.blue=250
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      elsif sprite.pbHasType?(:PSYCHIC) || sprite.pbHasType?(:FAIRY)
-        sprite.color.red=255
-        sprite.color.green=0
-        sprite.color.blue=250
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      elsif sprite.pbHasType?(:WATER)
-        sprite.color.red=0
-        sprite.color.green=51
-        sprite.color.blue=255
-        sprite.color.alpha=255
-        sprite.color=sprite.color
-        alpha+=5
-      else#
-        sprite.color.red=255
-        sprite.color.green=255 
-        sprite.color.blue=255
-        sprite.color.alpha=alpha
-        sprite.color=sprite.color
-        sprite2.color=sprite.color
-        sprite2.color.alpha=255
-        sprite.update
-        sprite2.update
-        alpha+=5
-      end#
+      sprite.color.red=255
+      sprite.color.green=255 
+      sprite.color.blue=255
+      sprite.color.alpha=alpha
+      sprite.color=sprite.color
+      sprite2.color=sprite.color
+      sprite2.color.alpha=255
+      sprite.update
+      sprite2.update
+      alpha+=5
     end
     totaltempo=0
     currenttempo=25
@@ -715,81 +650,12 @@ class PokemonEvolutionScene
     while totaltempo<maxtempo
       for j in 0...currenttempo
         if alpha<255
-          if sprite2.pbHasType?(:GRASS) || sprite2.pbHasType?(:BUG)
-            sprite2.color.red=92
-            sprite2.color.green=255
-            sprite2.color.blue=45
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          elsif sprite2.pbHasType?(:DARK) || sprite2.pbHasType?(:POISON) || sprite2.pbHasType?(:GHOST)
-            sprite2.color.red=29
-            sprite2.color.green=10
-            sprite2.color.blue=47
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          elsif sprite2.pbHasType?(:ICE) || sprite2.pbHasType?(:FLYING)
-            sprite2.color.red=0
-            sprite2.color.green=220
-            sprite2.color.blue=230
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          elsif sprite2.pbHasType?(:ELECTRIC)
-            sprite2.color.red=255
-            sprite2.color.green=255
-            sprite2.color.blue=0
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          elsif sprite2.pbHasType?(:FIRE) || sprite2.pbHasType?(:FIGHTING)
-            sprite2.color.red=200
-            sprite2.color.green=0
-            sprite2.color.blue=0
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          elsif sprite2.pbHasType?(:ROCK) || sprite2.pbHasType?(:GROUND)
-            sprite2.color.red=148
-            sprite2.color.green=124
-            sprite2.color.blue=75
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          elsif sprite2.pbHasType?(:STEEL) || sprite2.pbHasType?(:NORMAL)
-            sprite2.color.red=250
-            sprite2.color.green=250
-            sprite2.color.blue=250
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          elsif sprite2.pbHasType?(:PSYCHIC) || sprite2.pbHasType?(:FAIRY)
-            sprite2.color.red=255
-            sprite2.color.green=0
-            sprite2.color.blue=250
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          elsif sprite2.pbHasType?(:WATER)
-            sprite2.color.red=0
-            sprite2.color.green=51
-            sprite2.color.blue=255
-            sprite2.color.alpha=255
-            sprite2.color=sprite2.color
-            alpha+=5
-          else#
-            sprite2.color.red=255
-            sprite2.color.green=255 
-            sprite2.color.blue=255
-            sprite2.color.alpha=alpha
-            sprite2.color=sprite2.color
-            sprite2.color=sprite2.color
-            sprite2.color.alpha=255
-            sprite2.update
-            sprite2.update
-            alpha+=5
-          end#
+          sprite.color.red=255
+          sprite.color.green=255 
+          sprite.color.blue=255
+          sprite.color.alpha=alpha
+          sprite.color=sprite.color
+          alpha+=10
         end
         sprite.zoom=[1.1*(currenttempo-j-1)/currenttempo,1.0].min
         sprite2.zoom=[1.1*(j+1)/currenttempo,1.0].min
@@ -812,7 +678,7 @@ class PokemonEvolutionScene
     @metafile2=sprite2
   end
 
-# Inicia la pantalla de evolución con el Pokémon dado y la especie nueva.
+  # Inicia la pantalla de evolución con el Pokémon dado y la especie nueva.
   public
 
   def pbUpdate(animating=false)
@@ -995,7 +861,9 @@ class PokemonEvolutionScene
       $Trainer.seen[@newspecies]=true
       $Trainer.owned[@newspecies]=true
       pbSeenForm(@pokemon)
+
       @pokemon.name=newspeciesname if @pokemon.name==oldspeciesname
+
       @pokemon.calcStats
       # Revisa los movimientos de la especie nueva
       movelist=@pokemon.getMoveList
@@ -1047,9 +915,6 @@ def pbMiniCheckEvolution(pokemon,evonib,level,poke)
   when PBEvolution::HappinessDay
     return poke if pokemon.happiness>=220 && PBDayNight.isDay?
   when PBEvolution::HappinessNight
-    if isConst?(pokemon.species,PBSpecies,:KUBFU)
-      pokemon.form=1 if pokemon.happiness>=220 && PBDayNight.isNight?
-    end
     return poke if pokemon.happiness>=220 && PBDayNight.isNight?
   when PBEvolution::HappinessMoveType
     if pokemon.happiness>=220
@@ -1058,29 +923,21 @@ def pbMiniCheckEvolution(pokemon,evonib,level,poke)
       end
     end
   when PBEvolution::Level
-    if isConst?(pokemon.species,PBSpecies,:CUBONE) && pokemon.obtainMap==22 && PBDayNight.isNight?
+    if isConst?(pokemon.species,PBSpecies,:CUBONE) && ALOLA_MAPS.include?($game_map.map_id) && PBDayNight.isNight?
       pokemon.form=1 if level>=level
-    elsif isConst?(pokemon.species,PBSpecies,:KOFFING) && pokemon.obtainMap==32
+    elsif isConst?(pokemon.species,PBSpecies,:KOFFING) && GALAR_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level>=level
-    elsif isConst?(pokemon.species,PBSpecies,:QUILAVA) && pokemon.obtainMap==33
+    elsif isConst?(pokemon.species,PBSpecies,:QUILAVA) && HISUI_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level>=level
-    elsif isConst?(pokemon.species,PBSpecies,:DEWOTT) && pokemon.obtainMap==33
+    elsif isConst?(pokemon.species,PBSpecies,:DEWOTT) && HISUI_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level>=level
-    elsif isConst?(pokemon.species,PBSpecies,:DARTRIX) && pokemon.obtainMap==33
+    elsif isConst?(pokemon.species,PBSpecies,:DARTRIX) && HISUI_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level>=level
-    elsif isConst?(pokemon.species,PBSpecies,:RUFFLET) && pokemon.obtainMap==33
+    elsif isConst?(pokemon.species,PBSpecies,:RUFFLET) && HISUI_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level>=level
-    elsif isConst?(pokemon.species,PBSpecies,:GOOMY) && pokemon.obtainMap==33
+    elsif isConst?(pokemon.species,PBSpecies,:GOOMY) && HISUI_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level>=level
-    elsif isConst?(pokemon.species,PBSpecies,:BERGMITE) && pokemon.obtainMap==33
-      pokemon.form=1 if level>=level
-    elsif isConst?(pokemon.species,PBSpecies,:TOXEL) && (pokemon.nature==PBNatures::LONELY ||
-      pokemon.nature==PBNatures::BOLD || pokemon.nature==PBNatures::RELAXED || 
-      pokemon.nature==PBNatures::TIMID || pokemon.nature==PBNatures::SERIOUS ||
-      pokemon.nature==PBNatures::MODEST || pokemon.nature==PBNatures::MILD ||
-      pokemon.nature==PBNatures::QUIET || pokemon.nature==PBNatures::BASHFUL ||
-      pokemon.nature==PBNatures::CALM || pokemon.nature==PBNatures::GENTLE ||
-      pokemon.nature==PBNatures::CAREFUL)
+    elsif isConst?(pokemon.species,PBSpecies,:BERGMITE) && HISUI_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level>=level
     end
     return poke if pokemon.level>=level
@@ -1136,7 +993,7 @@ def pbMiniCheckEvolution(pokemon,evonib,level,poke)
     return poke if pokemon.item==level && pokemon.form==2
   when PBEvolution::HasMove
     for i in 0...4
-      if isConst?(pokemon.species,PBSpecies,:MIMEJR) && pokemon.obtainMap==32
+      if isConst?(pokemon.species,PBSpecies,:MIMEJR) && GALAR_MAPS.include?($game_map.map_id)
         pokemon.form=1 if pokemon.moves[i].id==level
       end
       return poke if pokemon.moves[i].id==level
@@ -1210,11 +1067,11 @@ def pbMiniCheckEvolutionItem(pokemon,evonib,level,poke,item)
   # Revisa si se ha usado un objeto en el Pokémon (por ejemplo, una piedra evolutiva)
   case evonib
   when PBEvolution::Item
-    if isConst?(pokemon.species,PBSpecies,:PIKACHU) && pokemon.obtainMap==22
+    if isConst?(pokemon.species,PBSpecies,:PIKACHU) && ALOLA_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level==item
-    elsif isConst?(pokemon.species,PBSpecies,:EXEGGCUTE) && pokemon.obtainMap==22
+    elsif isConst?(pokemon.species,PBSpecies,:EXEGGCUTE) && ALOLA_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level==item
-    elsif isConst?(pokemon.species,PBSpecies,:PETILIL) && pokemon.obtainMap==33
+    elsif isConst?(pokemon.species,PBSpecies,:PETILIL) && HISUI_MAPS.include?($game_map.map_id)
       pokemon.form=1 if level==item
     end
     return poke if level==item  
