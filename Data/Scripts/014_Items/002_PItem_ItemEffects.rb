@@ -1345,12 +1345,12 @@ ItemHandlers::BattleUseOnPokemon.add(:POTION,proc{|item,pokemon,battler,scene|
 
 ItemHandlers::BattleUseOnPokemon.add(:SUPERPOTION,proc{|item,pokemon,battler,scene|
    heal = (USENEWBATTLEMECHANICS) ? 60 : 50
-   next pbHPItem(pokemon,heal,scene)
+   next pbBattleHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:HYPERPOTION,proc{|item,pokemon,battler,scene|
   heal = (USENEWBATTLEMECHANICS) ? 120 : 200
-  next pbHPItem(pokemon,heal,scene)
+  next pbBattleHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:MAXPOTION,proc{|item,pokemon,battler,scene|
@@ -1371,17 +1371,17 @@ ItemHandlers::BattleUseOnPokemon.add(:SWEETHEART,proc{|item,pokemon,battler,scen
 
 ItemHandlers::BattleUseOnPokemon.add(:FRESHWATER,proc{|item,pokemon,battler,scene|
   heal = (USENEWBATTLEMECHANICS) ? 30 : 50
-  next pbHPItem(pokemon,heal,scene)
+  next pbBattleHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:SODAPOP,proc{|item,pokemon,battler,scene|
   heal = (USENEWBATTLEMECHANICS) ? 50 : 60
-  next pbHPItem(pokemon,heal,scene)
+  next pbBattleHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:LEMONADE,proc{|item,pokemon,battler,scene|
   heal = (USENEWBATTLEMECHANICS) ? 70 : 80
-  next pbHPItem(pokemon,heal,scene)
+  next pbBattleHPItem(pokemon,heal,scene)
 })
 
 ItemHandlers::BattleUseOnPokemon.add(:MOOMOOMILK,proc{|item,pokemon,battler,scene|
