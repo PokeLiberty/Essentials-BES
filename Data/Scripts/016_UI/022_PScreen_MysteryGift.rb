@@ -5,9 +5,7 @@
 # This url is the location of an example Mystery Gift file.
 # You should change it to your file's url once you upload it.
 ################################################################################
-MYSTERYGIFTURL = "http://images1.wikia.nocookie.net/pokemonessentials/images/e/e7/MysteryGift.txt"
-
-
+MYSTERYGIFTURL = "https://raw.githubusercontent.com/PokeLiberty/Essentials-BES/main/MysteryGift.txt"
 
 class PokeBattle_Trainer
   attr_accessor(:mysterygiftaccess)   # Whether MG can be used from load screen
@@ -23,7 +21,6 @@ class PokeBattle_Trainer
     return @mysterygift
   end
 end
-
 
 
 ################################################################################

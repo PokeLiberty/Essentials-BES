@@ -1340,7 +1340,7 @@ class Interpreter
       return true
     end
     # Force move route
-    @parameters[1].list << RPG::MoveCommand.new(PBMoveRoute::Script, ["force_end_of_movement"])
+    @parameters[1].list << RPG::MoveCommand.new(PBMoveRoute::Script, ["force_end_of_movement"]) rescue nil
     character.force_move_route(@parameters[1])
     # Continue
     return true

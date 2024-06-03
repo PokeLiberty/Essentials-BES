@@ -728,7 +728,7 @@ class PokeBattle_Pokemon
 
   def species=(value)
     @species    = value
-    @name       = PBSpecies.getName(@species)
+    #@name       = PBSpecies.getName(@species) 
     @level      = nil   # In case growth rate is different for the new species
     @forcedForm = nil
     calcStats

@@ -1473,11 +1473,10 @@ class PokeBattle_Battler
     end
     # Néctar dulce
     if self.hasWorkingAbility(:SUPERSWEETSYRUP) && onactive
-      PBDebug.log("[Habilidad disparada] Intimidación de #{pbThis}")
       for i in 0...4
         if pbIsOpposing?(i) && !@battle.battlers[i].isFainted?
-          if @battle.battlers[i].pbReduceStatWithCause(PBStats::EVASION,1,@battle.battlers[i],PBAbilities.getName(@battle.battlers[i].ability))
-            PBDebug.log("[Ability triggered] Néctar dulce de #{target.pbThis} ")
+          if @battle.battlers[i].pbReduceStatWithCause(PBStats::EVASION,1,self,PBAbilities.getName(ability))
+            PBDebug.log("[Habilidad disparada] Néctar dulce de #{pbThis}")
           end
         end
       end

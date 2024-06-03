@@ -12349,88 +12349,6 @@ class PokeBattle_Move_258 < PokeBattle_Move
 end
 
 ################################################################################
-# Aumenta el Ataque del objetivo en 2 niveles y reduce su Defensa en 2 niveles.
-# Spicy Extract / Extracto Picante
-################################################################################
-class PokeBattle_Move_259 < PokeBattle_Move
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if !opponent.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self) &&
-       !opponent.pbCanReduceStatStage?(PBStats::DEFENSE,attacker,false,self)
-      @battle.pbDisplay(_INTL("¡Las características de {1} no cambiarán más!",opponent.pbThis))
-      return -1
-    end
-    pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
-    showanim=true
-    if opponent.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
-      opponent.pbIncreaseStat(PBStats::ATTACK,2,attacker,false,self,showanim)
-    end
-    if opponent.pbCanReduceStatStage?(PBStats::DEFENSE,attacker,false,self)
-      opponent.pbReduceStat(PBStats::DEFENSE,2,attacker,false,self,showanim)
-    end
-    return 0
-  end
-end
-
-################################################################################
-# Puede aumentar Ataque (forma 0).
-# Puede aumentar Defensa (forma 1).
-# Puede aumentar Velocidad (forma 2).
-# Oído Cocina / Order Up
-################################################################################
-class PokeBattle_Move_261 < PokeBattle_Move
-  def pbAdditionalEffect(attacker,opponent)
-    if attacker.pbPartner.form==0
-      showanim=true
-      if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
-        showanim=false
-      end
-    elsif attacker.pbPartner.form==1
-      showanim=true
-      if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
-        showanim=false
-      end
-    elsif attacker.pbPartner.form==2
-      showanim=true
-      if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,attacker,false,self)
-        attacker.pbIncreaseStat(PBStats::SPEED,1,attacker,false,self,showanim)
-        showanim=false
-      end
-    end
-  end
-end
-
-################################################################################
-# Golpea 10 veces. La potencia se multiplica por el número de golpes.
-# (Proliferación / Population Bomb)
-# Se revisa la precisión para cada golpe.
-################################################################################
-class PokeBattle_Move_262 < PokeBattle_Move
-  def pbIsMultiHit
-    return true
-  end
-
-  def pbNumHits(attacker)
-    return 10
-  end
-
-  def successCheckPerHit?
-    return @checks
-  end
-end
-
-################################################################################
-# En el turno siguiente, los ataques que lance el rival no fallarán y causarán el doble de daño.
-# Asalto espadón / Glaive Rush
-################################################################################
-class PokeBattle_Move_263 < PokeBattle_Move
-  def pbAdditionalEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    attacker.effects[PBEffects::GlaiveRush]=true if opponent.damagestate.calcdamage>0
-  end
-end
-
-################################################################################
 # Reduce el Ataque Especial del usuario en 2 niveles.
 ################################################################################
 class PokeBattle_Move_264 < PokeBattle_Move
@@ -13038,5 +12956,87 @@ class PokeBattle_Move_263 < PokeBattle_Move
       end
     end
     return super(attacker,opponent,hitnum,alltargets,showanimation)
+  end
+end
+
+################################################################################
+# Puede aumentar Ataque (forma 0).
+# Puede aumentar Defensa (forma 1).
+# Puede aumentar Velocidad (forma 2).
+# Oído Cocina / Order Up
+################################################################################
+class PokeBattle_Move_268 < PokeBattle_Move
+  def pbAdditionalEffect(attacker,opponent)
+    if attacker.pbPartner.form==0
+      showanim=true
+      if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
+        showanim=false
+      end
+    elsif attacker.pbPartner.form==1
+      showanim=true
+      if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
+        showanim=false
+      end
+    elsif attacker.pbPartner.form==2
+      showanim=true
+      if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,attacker,false,self)
+        attacker.pbIncreaseStat(PBStats::SPEED,1,attacker,false,self,showanim)
+        showanim=false
+      end
+    end
+  end
+end
+
+################################################################################
+# Golpea 10 veces. La potencia se multiplica por el número de golpes.
+# (Proliferación / Population Bomb)
+# Se revisa la precisión para cada golpe.
+################################################################################
+class PokeBattle_Move_269 < PokeBattle_Move
+  def pbIsMultiHit
+    return true
+  end
+
+  def pbNumHits(attacker)
+    return 10
+  end
+
+  def successCheckPerHit?
+    return @checks
+  end
+end
+
+################################################################################
+# En el turno siguiente, los ataques que lance el rival no fallarán y causarán el doble de daño.
+# Asalto espadón / Glaive Rush
+################################################################################
+class PokeBattle_Move_270 < PokeBattle_Move
+  def pbAdditionalEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    attacker.effects[PBEffects::GlaiveRush]=true if opponent.damagestate.calcdamage>0
+  end
+end
+
+################################################################################
+# Aumenta el Ataque del objetivo en 2 niveles y reduce su Defensa en 2 niveles.
+# Spicy Extract / Extracto Picante
+################################################################################
+class PokeBattle_Move_271 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if !opponent.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self) &&
+       !opponent.pbCanReduceStatStage?(PBStats::DEFENSE,attacker,false,self)
+      @battle.pbDisplay(_INTL("¡Las características de {1} no cambiarán más!",opponent.pbThis))
+      return -1
+    end
+    pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
+    showanim=true
+    if opponent.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
+      opponent.pbIncreaseStat(PBStats::ATTACK,2,attacker,false,self,showanim)
+    end
+    if opponent.pbCanReduceStatStage?(PBStats::DEFENSE,attacker,false,self)
+      opponent.pbReduceStat(PBStats::DEFENSE,2,attacker,false,self,showanim)
+    end
+    return 0
   end
 end

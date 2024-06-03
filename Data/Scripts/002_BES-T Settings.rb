@@ -43,18 +43,13 @@ GRASS_NO_ANIM             = false
 
 
 #===============================================================================
-# Arreglo de posiciones en sprites animados.
-# Activalo si vas a usar sprites animados y o los que tienes no se posicionan correctamente.
-#===============================================================================
-ANIMATEDFORMAT = false
-
-#===============================================================================
 # Interfaces
 # Aquí se configuran las rutas de las carpetas de interfaces.
 # En caso de que uses el formato antiguo o quieras ponerlas en otro sitio.
 # El formato por defecto esta inspirado en la versión 17.
 # * Información del menú summary expandida.
 # * Elimina las opciones para cambiar la textbox desde opciones.
+# * Muestra la opción de regalo misterioso desde el menu de Load, sin necesidad de activarlo durante la partida.
 #===============================================================================
 
 BAG_ROUTE      = "Pictures/Bag"
@@ -67,7 +62,8 @@ STORAGE_ROUTE  = "Pictures/Storage"
 SUMMARY_ROUTE  = "Pictures/Summary"
 
 EXPANDED_SUMMARY_INFO = true
-NO_TETXBOX_OPTIONS = true
+NO_TETXBOX_OPTIONS    = true
+MYSTERYGIFTALWAYSSHOW = false
 
 #===============================================================================
 # Gimmicks
