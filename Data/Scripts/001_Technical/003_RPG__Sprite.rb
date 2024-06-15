@@ -212,13 +212,13 @@ class SpriteAnimation
       end
       case timing.flash_scope
       when 1
-        self.flash(timing.flash_color, timing.flash_duration * 2)
+        self.flash(timing.flash_color, timing.flash_duration * getWaitFramerate)
       when 2
         if self.viewport != nil
-          self.viewport.flash(timing.flash_color, timing.flash_duration * 2)
+          self.viewport.flash(timing.flash_color, timing.flash_duration * getWaitFramerate2)
         end
       when 3
-        self.flash(nil, timing.flash_duration * 2)
+        self.flash(nil, timing.flash_duration * getWaitFramerate)
       end
     end
   end

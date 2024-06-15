@@ -2514,18 +2514,18 @@ end
 # Screen effects
 #===============================================================================
 def pbToneChangeAll(tone, duration)
-  $game_screen.start_tone_change(tone,duration * 2)
+  $game_screen.start_tone_change(tone,duration * getWaitFramerate)
   for picture in $game_screen.pictures
-    picture.start_tone_change(tone,duration * 2) if picture
+    picture.start_tone_change(tone,duration * getWaitFramerate) if picture
   end
 end
 
 def pbShake(power,speed,frames)
-  $game_screen.start_shake(power,speed,frames * 2)
+  $game_screen.start_shake(power,speed,frames * getWaitFramerate)
 end
 
 def pbFlash(color,frames)
-  $game_screen.start_flash(color,frames * 2)
+  $game_screen.start_flash(color,frames * getWaitFramerate)
 end
 
 def pbScrollMap(direction, distance, speed)

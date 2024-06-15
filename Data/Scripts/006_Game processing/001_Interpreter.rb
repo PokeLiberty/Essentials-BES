@@ -1,3 +1,8 @@
+def getWaitFramerate #BES-T
+  fps = (Graphics.frame_rate>=60) ? 3 : 2
+  return fps
+end
+
 #===============================================================================
 # ** Interpreter
 #-------------------------------------------------------------------------------
@@ -20,11 +25,6 @@ class Interpreter
     end
     # Clear inner situation of interpreter
     clear
-  end
-
-  def getWaitFramerate #BES-T
-    fps = (Graphics.frame_rate>=60) ? 3 : 2
-    return fps
   end
   
   def clear
