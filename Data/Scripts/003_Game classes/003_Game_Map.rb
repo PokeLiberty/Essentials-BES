@@ -386,6 +386,7 @@ class Game_Map
     for event in self.events.values
       return event.id if event.x == x and event.y == y
     end
+    return nil
   end
 
   def start_scroll(direction, distance, speed)
