@@ -4049,8 +4049,9 @@ class PokeBattle_Battler
       # Efectos adicionales
       if target.damagestate.calcdamage>0 &&
          !user.hasWorkingAbility(:SHEERFORCE) &&
+         !target.hasWorkingItem(:COVERTCLOAK) &&
          (user.hasMoldBreaker || !target.hasWorkingAbility(:SHIELDDUST) ||
-         thismove.doesBypassIgnorableAbilities?) || !target.hasWorkingItem(:COVERTCLOAK)
+         thismove.doesBypassIgnorableAbilities?)
         addleffect=thismove.addlEffect
         addleffect*=2 if (user.hasWorkingAbility(:SERENEGRACE) ||
                          user.pbOwnSide.effects[PBEffects::Rainbow]>0) &&
@@ -4080,8 +4081,8 @@ class PokeBattle_Battler
       break if target.isFainted?
       # Hace retroceder al objetivo
       if target.damagestate.calcdamage>0 && !target.damagestate.substitute
-        if (user.hasMoldBreaker || !target.hasWorkingAbility(:SHIELDDUST) ||
-          thismove.doesBypassIgnorableAbilities?) || !target.hasWorkingItem(:COVERTCLOAK)
+        if !target.hasWorkingItem(:COVERTCLOAK) && (user.hasMoldBreaker || !target.hasWorkingAbility(:SHIELDDUST) ||
+          thismove.doesBypassIgnorableAbilities?)
           canflinch=false
           if (user.hasWorkingItem(:KINGSROCK) || user.hasWorkingItem(:RAZORFANG)) &&
              thismove.canKingsRock?
