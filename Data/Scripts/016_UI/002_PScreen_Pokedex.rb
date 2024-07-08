@@ -382,7 +382,8 @@ class PokemonPokedexScene
     @sprites["owned"].windowskin=nil
     @sprites["owned"].baseColor=Color.new(88,88,80)
     @sprites["owned"].shadowColor=Color.new(168,184,184)
-    addBackgroundPlane(@sprites,"searchbg",_INTL("pokedexSearchbg"),@viewport)
+    @sprites["searchbg"]=IconSprite.new(0,0,@viewport)
+    @sprites["searchbg"].setBitmap(sprintf("Graphics/#{POKEDEX_ROUTE}/pokedexSearchbg"))
     @sprites["searchbg"].visible=false
     @searchResults=false
 =begin
