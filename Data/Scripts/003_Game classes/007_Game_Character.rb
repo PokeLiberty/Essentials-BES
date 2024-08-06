@@ -10,7 +10,7 @@ class Game_Character
   attr_reader   :opacity   
   attr_reader   :blend_type 
   attr_reader   :direction  
-  attr_reader   :pattern    
+  attr_accessor :pattern  
   attr_reader   :move_route_forcing   
   attr_accessor :through            
   attr_accessor :animation_id       
