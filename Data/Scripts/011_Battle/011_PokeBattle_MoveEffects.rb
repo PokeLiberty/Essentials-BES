@@ -7508,7 +7508,8 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
     @battle.pbDisplay(_INTL("¡{1} lanzó {2}!",attacker.pbThis,PBItems.getName(attacker.item)))
     ret=super(attacker,opponent,hitnum,alltargets,showanimation)
     if opponent.damagestate.calcdamage>0 && !opponent.damagestate.substitute &&
-       (attacker.hasMoldBreaker || !opponent.hasWorkingAbility(:SHIELDDUST) || !opponent.hasWorkingItem(:COVERTCLOAK))
+       !opponent.hasWorkingItem(:COVERTCLOAK) &&
+       (attacker.hasMoldBreaker || !opponent.hasWorkingAbility(:SHIELDDUST))
       if pbIsBerry?(@item)
         opponent.pbActivateBerryEffect(attacker.item,false)
       elsif attacker.hasWorkingItem(:FLAMEORB)
