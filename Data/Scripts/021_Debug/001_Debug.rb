@@ -694,7 +694,7 @@ def pbDebugMenu
             else
               curmap=$PokemonGlobal.roamPosition[i]
               if curmap
-                mapinfos=$RPGVX ? load_data("Data/MapInfos.rvdata") : load_data("Data/MapInfos.rxdata")
+                mapinfos=load_data("Data/MapInfos.rxdata")
                 text+=_INTL("{1} (Nv.{2}) está vagando por el mapa {3} ({4}){5}",
                    PBSpecies.getName(getID(PBSpecies,poke[0])),poke[1],curmap,
                    mapinfos[curmap].name,(curmap==$game_map.map_id) ? _INTL("(este mapa)") : "")

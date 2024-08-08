@@ -264,8 +264,7 @@ class PokemonLoad
     savefile = RTP.getSaveFileName("Game.rxdata")
     #FontInstaller.install #DISABLED - BES
     data_system = pbLoadRxData("Data/System")
-    mapfile=$RPGVX ? sprintf("Data/Map%03d.rvdata",data_system.start_map_id) :
-                     sprintf("Data/Map%03d.rxdata",data_system.start_map_id)
+    mapfile=sprintf("Data/Map%03d.rxdata",data_system.start_map_id)
     if data_system.start_map_id==0 || !pbRgssExists?(mapfile)
       Kernel.pbMessage(_INTL("No se estableció una posición inicial en el mapa.\1"))
       Kernel.pbMessage(_INTL("El juego no puede continuar."))

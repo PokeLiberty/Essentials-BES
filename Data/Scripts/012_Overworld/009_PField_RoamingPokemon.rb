@@ -92,7 +92,7 @@ end
 
 Events.onMapChange+=proc {|sender,e|
    return if !$PokemonGlobal
-   mapinfos=$RPGVX ? load_data("Data/MapInfos.rvdata") : load_data("Data/MapInfos.rxdata")
+   mapinfos=load_data("Data/MapInfos.rxdata")
    return if $game_map && mapinfos && e[0]>0 && mapinfos[e[0]] &&
              mapinfos[e[0]].name && $game_map.name==mapinfos[e[0]].name
    pbRoamPokemon
@@ -193,7 +193,7 @@ EncounterModifier.register(proc {|encounter|
       end
       roamermeta=pbGetMetadata(currentArea,MetadataMapPosition)
       possiblemaps=[]
-      mapinfos=$RPGVX ? load_data("Data/MapInfos.rvdata") : load_data("Data/MapInfos.rxdata")
+      mapinfos=load_data("Data/MapInfos.rxdata")
       for j in 1...mapinfos.length
         jmeta=pbGetMetadata(j,MetadataMapPosition)
         if mapinfos[j] && mapinfos[j].name==$game_map.name &&
