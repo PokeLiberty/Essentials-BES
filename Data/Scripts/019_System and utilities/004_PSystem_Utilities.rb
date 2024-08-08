@@ -51,7 +51,7 @@ def pbTrainerName(name=nil,outfit=0)
   $Trainer=PokeBattle_Trainer.new(trname,trainertype)
   $Trainer.outfit=outfit
   if trname==nil
-    trname=pbEnterPlayerName(_INTL("¿Cuál es tu nombre?"),0,7)
+    trname=pbEnterPlayerName(_INTL("¿Cuál es tu nombre?"),0,12)
     if trname==""
       gender=pbGetTrainerTypeGender(trainertype)
       trname=pbSuggestTrainerName(gender)
@@ -164,7 +164,7 @@ def pbNickname(pokemon)
   speciesname=PBSpecies.getName(pokemon.species)
   if Kernel.pbConfirmMessage(_INTL("¿Quieres ponerle un mote a {1}?",speciesname))
     helptext=_INTL("Apodo de {1}",speciesname)
-    newname=pbEnterPokemonName(helptext,0,10,"",pokemon)
+    newname=pbEnterPokemonName(helptext,0,12,"",pokemon)
     pokemon.name=newname if newname!=""
   end
 end
