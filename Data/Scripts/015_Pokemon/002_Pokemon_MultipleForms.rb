@@ -874,7 +874,6 @@ MultipleForms.register(:THUNDURUS,{
 })
 
 # LANDORUS
-
 MultipleForms.register(:LANDORUS,{
 "getBaseStats"=>proc{|pokemon|
    next if pokemon.form==0    # Forma Avatar
@@ -1835,6 +1834,13 @@ MultipleForms.register(:PALAFIN,{
 }
 })
 
+# FLABEBE, FLOETTE, FLORGES
+MultipleForms.register(:TATSUGIRI,{
+"getFormOnCreation"=>proc{|pokemon|
+   next rand(2)
+},
+})
+
 
 MultipleForms.register(:OGERPON,{
 "getForm"=>proc{|pokemon|
@@ -1882,3 +1888,4 @@ MultipleForms.register(:TERAPAGOS,{
 }
 
 })
+

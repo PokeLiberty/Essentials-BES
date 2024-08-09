@@ -74,7 +74,7 @@ module PokeBattle_SceneConstants
   # Coordinates of the centre bottom of the player's battler's sprite
   # Is also the centre middle of its shadow
   PLAYERBATTLER_X   = 128
-  PLAYERBATTLER_Y   = Graphics.height - 64
+  PLAYERBATTLER_Y   = Graphics.height - 64 + 32
   PLAYERBATTLERD1_X = PLAYERBATTLER_X - 48
   PLAYERBATTLERD1_Y = PLAYERBATTLER_Y
   PLAYERBATTLERD2_X = PLAYERBATTLER_X + 32
@@ -119,4 +119,10 @@ module PokeBattle_SceneConstants
   FOCUSUSER_Y   = 224   # 188
   FOCUSTARGET_X = 384   # 352
   FOCUSTARGET_Y = 96    # 108, 98
+
+  # BES-T
+  # Colorea las letras de los movimientos segun los colores usados en el botón de combate.
+  # Desactivalo si usas cajas customizadas.
+  COLOREDTYPE = false
+
 end

@@ -378,4 +378,4 @@ LANGUAGES = [
 # * Indica si los nombres son ingresados directamente desde el teclado (true) o
 #      seleccionando una a una las teclas como en los juegos oficiales (false).
 #===============================================================================
-USEKEYBOARDTEXTENTRY = false
+USEKEYBOARDTEXTENTRY = true
