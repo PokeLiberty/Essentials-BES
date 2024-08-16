@@ -12651,14 +12651,17 @@ end
 # Cuantos más golpes haya recibido el usuario, mayor será la potencia del movimiento.
 # (Puño Furia/Rage Fist)
 ################################################################################
-class PokeBattle_Move_251 < PokeBattle_Move
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    ret=super(attacker,opponent,hitnum,alltargets,showanimation)
-    attacker.effects[PBEffects::RageFist]=true if ret>0
+class PokeBattle_Move_268 < PokeBattle_Move
+  def pbBaseDamage(basedmg,attacker,opponent)
+    ret=350 if attacker.effects[PBEffects::RageFist]>=6
+    ret=300 if attacker.effects[PBEffects::RageFist]==5
+    ret=250 if attacker.effects[PBEffects::RageFist]==4
+    ret=200 if attacker.effects[PBEffects::RageFist]==3
+    ret=150 if attacker.effects[PBEffects::RageFist]==2
+    ret=100 if attacker.effects[PBEffects::RageFist]==1
+    ret=50 if attacker.effects[PBEffects::RageFist]==0
     return ret
   end
-  # (Controlado en pbProcessMoveAgainstTarget de Battler): Sube el Ataque en 1 nivel cada
-  #  vez que pierde PS debido a un movimiento.
 end
 
 ################################################################################
