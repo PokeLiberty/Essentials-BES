@@ -973,7 +973,7 @@ class PokemonEntryScene
     @sprites["helpwindow"].visible=USEKEYBOARD
     @sprites["helpwindow"].baseColor=Color.new(16,24,32)
     @sprites["helpwindow"].shadowColor=Color.new(168,184,184)
-    addBackgroundPlane(@sprites,"background","#{NAMING_ROUTE}/naming2bg",@viewport)
+    addBackgroundPlane(@sprites,"background","Naming/naming2bg",@viewport)
     case subject
     when 1   # Player
       if $PokemonGlobal
