@@ -283,7 +283,7 @@
 283,STRENGTH,Fuerza,000,80,NORMAL,Physical,100,15,0,00,0,abef,"Potente puñetazo. Fuera de combate sirve para mover piedras."
 284,TRIATTACK,Triataque,017,80,NORMAL,Special,100,10,20,00,0,bef,"Ataque triple que puede paralizar, quemar o congelar al objetivo."
 285,CRUSHCLAW,Garra Brutal,043,75,NORMAL,Physical,95,10,50,00,0,abef,"Hace trizas al objetivo con garras afiladas y puede bajar su Defensa."
-286,RELICSONG,Canto Arcaico,003,75,NORMAL,Special,100,10,100,04,0,befk,"Ataca conmoviendo a los rivales de alrededor con un antiguo canto. Puede dormirlos."
+286,RELICSONG,Canto Arcaico,003,75,NORMAL,Special,100,10,10,04,0,befk,"Ataca conmoviendo a los rivales de alrededor con un antiguo canto. Puede dormirlos."
 287,CHIPAWAY,Guardia Baja,0A9,70,NORMAL,Physical,100,20,0,00,0,abef,"Un ataque que busca los puntos débiles del objetivo y puede causarle daño aunque cambien sus características."
 288,DIZZYPUNCH,Puño Mareo,013,70,NORMAL,Physical,100,10,20,00,0,abefj,"Rítmicos puñetazos que pueden causar confusión."
 289,FACADE,Imagen,07E,70,NORMAL,Physical,100,20,0,00,0,abef,"Ataca con el doble de potencia si el usuario está quemado, paralizado o envenenado."
