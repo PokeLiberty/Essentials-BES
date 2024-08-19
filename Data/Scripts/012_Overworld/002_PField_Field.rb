@@ -1660,7 +1660,7 @@ Events.onMapChange+=proc {|sender,e|
   $PokemonEncounters.setup($game_map.map_id) if $PokemonEncounters
   $PokemonGlobal.visitedMaps[$game_map.map_id]=true
   if oldid!=0 && oldid!=$game_map.map_id
-    mapinfos=$RPGVX ? load_data("Data/MapInfos.rvdata") : load_data("Data/MapInfos.rxdata")
+    mapinfos=load_data("Data/MapInfos.rxdata")
     weather=pbGetMetadata($game_map.map_id,MetadataWeather)
     if $game_map.name!=mapinfos[oldid].name
       $game_screen.weather(weather[0],8,20) if weather && rand(100)<weather[1]
@@ -1675,7 +1675,7 @@ Events.onMapChanging+=proc {|sender,e|
   newmapID=e[0]
   newmap=e[1]
   # Undo the weather ($game_map still refers to the old map)
-  mapinfos=$RPGVX ? load_data("Data/MapInfos.rvdata") : load_data("Data/MapInfos.rxdata")
+  mapinfos=load_data("Data/MapInfos.rxdata")
   if newmapID>0
     oldweather=pbGetMetadata($game_map.map_id,MetadataWeather)
     if $game_map.name!=mapinfos[newmapID].name
@@ -1733,7 +1733,7 @@ Events.onMapSceneChange+=proc{|sender,e|
           nosignpost=true if NOSIGNPOSTS[2*i+1]==$PokemonGlobal.mapTrail[1] && NOSIGNPOSTS[2*i]==$game_map.map_id
           break if nosignpost
         end
-        mapinfos=$RPGVX ? load_data("Data/MapInfos.rvdata") : load_data("Data/MapInfos.rxdata")
+        mapinfos=load_data("Data/MapInfos.rxdata")
         oldmapname=mapinfos[$PokemonGlobal.mapTrail[1]].name
         nosignpost=true if $game_map.name==oldmapname
       end
@@ -2114,11 +2114,7 @@ def pbRecord(text,maxtime=30.0)
 end
 
 def Kernel.pbRxdataExists?(file)
-  if $RPGVX
-    return pbRgssExists?(file+".rvdata")
-  else
-    return pbRgssExists?(file+".rxdata")
-  end
+  return pbRgssExists?(file+".rxdata")
 end
 
 

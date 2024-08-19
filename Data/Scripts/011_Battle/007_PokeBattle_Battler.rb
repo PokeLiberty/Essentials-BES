@@ -553,7 +553,7 @@ class PokeBattle_Battler
     @effects[PBEffects::Mimicry]          = [nil, nil]
     @effects[PBEffects::RevivalBlessing]  = false
     @effects[PBEffects::Silktrap]         = false
-    @effects[PBEffects::RageFist]         = false
+    @effects[PBEffects::RageFist]         = 0
     @effects[PBEffects::BurningBulwark]   = false
     @effects[PBEffects::Commander]        = 0
     @effects[PBEffects::GlaiveRush]       = false
@@ -2131,6 +2131,7 @@ class PokeBattle_Battler
     end
     if damage>0
       if !target.damagestate.substitute
+        target.effects[PBEffects::RageFist]+=1
         # Cadena Tóxica
         if user.hasWorkingAbility(:TOXICCHAIN,true) &&
            target.pbCanPoison?(nil,false) && @battle.pbRandom(10)<3
@@ -3592,16 +3593,18 @@ class PokeBattle_Battler
       PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos basados en polvo por alguna razón")
       return false
     end
+    # Cuerpo Aureo
+    if thismove.pbIsStatus? && !thismove.doesBypassIgnorableAbilities? &&
+      !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD)
+      showAbilityMessage(target)
+      @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
+      PBDebug.log("[Habilidad disparada] Cuerpo Áureo de #{target.pbThis}")
+      return false
+    end
     if thismove.basedamage>0 && thismove.function!=0x02 &&                     # Combate
        thismove.function!=0x111                                                # Premonición
       type=thismove.pbType(thismove.type,user,target)
       typemod=thismove.pbTypeModifier(type,user,target)
-      #Cuerpo Aureo
-      if (thismove.pbIsStatus? && thismove.doesBypassIgnorableAbilities?) &&
-         !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD)
-
-         @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
-      end
       # Inmunidad a movimientos de tipo Tierra en base a Pokémon en el aire
       if isConst?(type,PBTypes,:GROUND) && target.isAirborne?(user.hasMoldBreaker ||
         thismove.doesBypassIgnorableAbilities?) &&

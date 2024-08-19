@@ -124,11 +124,11 @@ class SpriteAnimation
   end
 
   def update
-    if @_animation != nil and (Graphics.frame_count % 4 == 0)
+    if @_animation != nil and (Graphics.frame_count % getWaitFramerate == 0)
       @_animation_duration -= 1
       update_animation
     end
-    if @_loop_animation != nil and (Graphics.frame_count % 4 == 0)
+    if @_loop_animation != nil and (Graphics.frame_count % getWaitFramerate == 0)
       update_loop_animation
       @_loop_animation_index += 1
       @_loop_animation_index %= @_loop_animation.frame_max

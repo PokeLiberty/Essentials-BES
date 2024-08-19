@@ -421,9 +421,9 @@ class FightMenuButtons < BitmapSprite
       y+=UPPERGAP
       moveType = getMoveType(moves[i])
       self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(0,moveType*46,192,46))
+      basecolor = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,moveType*46+34) : PokeBattle_SceneConstants::MENUBASECOLOR
       textpos.push([_INTL("{1}",moves[i].name),x+96,y+8,2,
-                    #PokeBattle_SceneConstants::MENUBASECOLOR,PokeBattle_SceneConstants::MENUSHADOWCOLOR])
-      @buttonbitmap.bitmap.get_pixel(10,moveType*46+34),PokeBattle_SceneConstants::MENUSHADOWCOLOR])
+                    basecolor,PokeBattle_SceneConstants::MENUSHADOWCOLOR])
     end
     ppcolors=[
        PokeBattle_SceneConstants::PPTEXTBASECOLOR,PokeBattle_SceneConstants::PPTEXTSHADOWCOLOR,
@@ -441,9 +441,9 @@ class FightMenuButtons < BitmapSprite
       moveType = getMoveType(moves[i])
       self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(192,moveType*46,192,46))
       self.bitmap.blt(416,20+UPPERGAP,@typebitmap.bitmap,Rect.new(0,moveType*28,64,28))
+      basecolor = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,moveType*46+34) : PokeBattle_SceneConstants::MENUBASECOLOR
       textpos.push([_INTL("{1}",moves[i].name),x+96,y+8,2,
-                   #PokeBattle_SceneConstants::MENUBASECOLOR,PokeBattle_SceneConstants::MENUSHADOWCOLOR])
-      @buttonbitmap.bitmap.get_pixel(10,moveType*46+34),PokeBattle_SceneConstants::MENUSHADOWCOLOR])
+                    basecolor,PokeBattle_SceneConstants::MENUSHADOWCOLOR])
       if moves[i].totalpp>0
         ppfraction=(4.0*moves[i].pp/moves[i].totalpp).ceil
         textpos.push([_INTL("PP: {1}/{2}",moves[i].pp,moves[i].totalpp),

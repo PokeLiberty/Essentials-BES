@@ -1274,3 +1274,85 @@ module UIHelper
     return ret
   end
 end
+
+################################################################################
+# Implements methods that act on arrays of items.  Each element in an item
+# array is itself an array of [itemID, itemCount].
+# Used by the Bag, PC item storage, and Triple Triad.
+################################################################################
+module ItemStorageHelper
+  # Returns the quantity of the given item in the items array, maximum size per slot, and item ID
+  def self.pbQuantity(items,maxsize,item)
+    ret=0
+    for i in 0...maxsize
+      itemslot=items[i]
+      if itemslot && itemslot[0]==item
+        ret+=itemslot[1]
+      end
+    end
+    return ret
+  end
+
+  # Deletes an item from items array, maximum size per slot, item, and number of items to delete
+  def self.pbDeleteItem(items,maxsize,item,qty)
+    raise "Invalid value for qty: #{qty}" if qty<0
+    return true if qty==0
+    ret=false
+    for i in 0...maxsize
+      itemslot=items[i]
+      if itemslot && itemslot[0]==item
+        amount=[qty,itemslot[1]].min
+        itemslot[1]-=amount
+        qty-=amount
+        items[i]=nil if itemslot[1]==0
+        if qty==0
+          ret=true
+          break
+        end
+      end
+    end
+    items.compact!
+    return ret
+  end
+
+  def self.pbCanStore?(items,maxsize,maxPerSlot,item,qty)
+    raise "Invalid value for qty: #{qty}" if qty<0
+    return true if qty==0
+    for i in 0...maxsize
+      itemslot=items[i]
+      if !itemslot
+        qty-=[qty,maxPerSlot].min
+        return true if qty==0
+      elsif itemslot[0]==item && itemslot[1]<maxPerSlot
+        newamt=itemslot[1]
+        newamt=[newamt+qty,maxPerSlot].min
+        qty-=(newamt-itemslot[1])
+        return true if qty==0
+      end
+    end
+    return false
+  end
+
+  def self.pbStoreItem(items,maxsize,maxPerSlot,item,qty,sorting=false)
+    raise "Invalid value for qty: #{qty}" if qty<0
+    return true if qty==0
+    for i in 0...maxsize
+      itemslot=items[i]
+      if !itemslot
+        items[i]=[item,[qty,maxPerSlot].min]
+        qty-=items[i][1]
+        if sorting
+          items.sort! if POCKETAUTOSORT[$ItemData[item][ITEMPOCKET]]
+        end
+        return true if qty==0
+      elsif itemslot[0]==item && itemslot[1]<maxPerSlot
+        newamt=itemslot[1]
+        newamt=[newamt+qty,maxPerSlot].min
+        qty-=(newamt-itemslot[1])
+        itemslot[1]=newamt
+        return true if qty==0
+      end
+    end
+    return false
+  end
+end

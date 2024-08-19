@@ -38,7 +38,7 @@ class Game_Map
 
   def setup(map_id)
     @map_id = map_id
-    @map=load_data(sprintf("Data/Map%03d.%s", map_id,$RPGVX ? "rvdata" : "rxdata"))
+    @map=load_data(sprintf("Data/Map%03d.%s", map_id,"rxdata"))
     tileset = $data_tilesets[@map.tileset_id]
     @tileset_name = tileset.tileset_name
     @autotile_names = tileset.autotile_names

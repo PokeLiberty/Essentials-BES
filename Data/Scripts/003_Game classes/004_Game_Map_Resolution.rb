@@ -1,8 +1,8 @@
 class Game_Map
   TILEWIDTH = 32
   TILEHEIGHT = 32
-  XSUBPIXEL = $RPGVX ? 8 : 4
-  YSUBPIXEL = $RPGVX ? 8 : 4
+  XSUBPIXEL = 4
+  YSUBPIXEL = 4
 
   def self.realResX
     return XSUBPIXEL * TILEWIDTH
