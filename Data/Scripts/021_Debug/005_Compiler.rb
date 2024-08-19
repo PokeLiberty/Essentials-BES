@@ -4070,8 +4070,8 @@ def pbImportNewMaps
   maxOrder=0
   # Excluye los mapas encontrados en mapinfos
   for id in mapinfos.keys
-    next if !mapinfos.id
-    if mapfiles[id]
+    next if !mapinfos.
+    if mapfiles[id]object_id
       mapfiles.delete(id)
     end
     maxOrder=[maxOrder,mapinfos[id].order].max
