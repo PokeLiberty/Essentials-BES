@@ -371,6 +371,7 @@ module BitmapCache
     cached=true
     path=canonicalize(path)
     objPath=fromCache(path)
+    
     if !objPath
       @cleancounter = ((@cleancounter || 0) + 1)%10
       if @cleancounter == 0
@@ -381,18 +382,24 @@ module BitmapCache
           end
         end
       end
-      begin
-        bm = BitmapWrapper.new(path)
-      rescue Hangup
+
+      # Avoid trying to load bitmaps that don't exist
+      if path[/\/$/]
+        bm = BitmapWrapper.new(32,32)
+      else
         begin
           bm = BitmapWrapper.new(path)
+        rescue Hangup
+          begin
+            bm = BitmapWrapper.new(path)
+          rescue
+            raise _INTL("Failed to load the bitmap located at: {1}",path) if !failsafe
+            bm = BitmapWrapper.new(32,32)
+          end
         rescue
           raise _INTL("Failed to load the bitmap located at: {1}",path) if !failsafe
           bm = BitmapWrapper.new(32,32)
         end
-      rescue
-        raise _INTL("Failed to load the bitmap located at: {1}",path) if !failsafe
-        bm = BitmapWrapper.new(32,32)
       end
       objPath=bm
       @cache[path]=objPath
