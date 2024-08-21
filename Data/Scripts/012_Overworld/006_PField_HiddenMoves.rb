@@ -540,7 +540,7 @@ def pbEndSurf(xOffset,yOffset)
 end
 
 def Kernel.pbTransferSurfing(mapid,xcoord,ycoord,direction=$game_player.direction)
-  pbFadeOutIn {
+  pbFadeOutIn(99999) {
   $game_temp.player_new_map_id    = mapid
   $game_temp.player_new_x         = xcoord
   $game_temp.player_new_y         = ycoord
