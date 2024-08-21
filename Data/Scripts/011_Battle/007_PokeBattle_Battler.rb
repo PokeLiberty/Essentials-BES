@@ -4025,7 +4025,7 @@ class PokeBattle_Battler
       # Disguise
       if target.hasWorkingAbility(:DISGUISE) &&
         isConst?(target.species,PBSpecies,:MIMIKYU) && target.form==0 &&
-        thismove.pbIsDamaging? && !target.damagestate.substitute &&
+        thismove.pbIsDamaging? && !(user.effects[PBEffects::TwoTurnAttack] > 0) && !target.damagestate.substitute && thismove
         !user.hasMoldBreaker && !thismove.doesBypassIgnorableAbilities?
         PBDebug.log("[Ability triggered] #{target.pbThis}'s Disguise ended")
         @battle.pbDisplay(_INTL("¡El disfraz ha actuado como señuelo!"))
