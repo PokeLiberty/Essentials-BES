@@ -34,22 +34,14 @@ class Game_Event < Game_Character
   end
 
   def over_trigger?
-    if @character_name != "" and not @through
-      return false
-    end
-    if @event.name=="HiddenItem"
-      return false
-    end
-    unless self.map.passable?(@x, @y, 0)
-      return false
-    end
+    return false if @character_name!="" and not @through
+    return false if @event.name=="HiddenItem"
+    return false if !self.map.passable?(@x, @y, 0, $game_player)
     return true
   end
 
   def start
-    if @list.size > 1
-      @starting = true
-    end
+    @starting = true if @list.size > 1
   end
 
   def erase
@@ -71,15 +63,11 @@ class Game_Event < Game_Character
   end
 
   def pbCheckEventTriggerAfterTurning
-    if $game_system.map_interpreter.running? || @starting
-      return
-    end
-    if @event.name[/^Trainer\((\d+)\)$/]
+    return if $game_system.map_interpreter.running? || @starting
+    if @event.name[/Trainer\((\d+)\)/]
       distance=$~[1].to_i
-      if @trigger == 2 and pbEventCanReachPlayer?(self,$game_player,distance)
-         if not jumping? and not over_trigger?
-           start
-         end
+      if @trigger==2 && pbEventCanReachPlayer?(self,$game_player,distance)
+        start if !jumping? && !over_trigger?
       end
     end
   end
@@ -231,9 +219,7 @@ class Game_Event < Game_Character
   end
 
   def check_event_trigger_touch(x, y)
-    if $game_system.map_interpreter.running?
-      return
-    end
+    return if $game_system.map_interpreter.running?
     return if @trigger!=2
     return if x != $game_player.x || y != $game_player.y
     if not jumping? and not over_trigger?
