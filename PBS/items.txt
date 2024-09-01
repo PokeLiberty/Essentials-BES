@@ -675,7 +675,7 @@
 
 685,BUGINIUMZ,Insectostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Bicho.",5,0,8
 686,DARKINIUMZ,Nictostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Siniestro.",5,0,8
-687,DRAGONIUMZ,Dracostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Dragon.",7,0,8
+687,DRAGONIUMZ,Dracostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Dragon.",5,0,8
 688,ELECTRIUMZ,Electrostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Eléctrico.",5,0,8
 689,FAIRIUMZ,Feeristal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Hada.",5,0,8
 690,FIGHTINIUMZ,Lizastal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Lucha.",5,0,8
