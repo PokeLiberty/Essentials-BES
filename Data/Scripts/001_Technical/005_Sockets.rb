@@ -573,7 +573,7 @@ def pbDownloadData(url, filename=nil, depth=0)
     host=$1
     path=$2
     path="/" if path.length==0
-    request="GET #{path} HTTP/1.1\nUser-Agent: #{userAgent}\nPragma: no-cache\nHost: #{host}\nProxy-Connection: Close\n\n"
+    request="GET #{path} HTTP/1.1\r\nUser-Agent: #{userAgent}\r\nPragma: no-cache\r\nHost: #{host}\r\nProxy-Connection: Close\r\n\r\n"
     return pbHttpRequest(host, request, filename, depth)
   end
   return ""

@@ -768,7 +768,7 @@ end
 def pbHideVisibleObjects
   visibleObjects=[]
   ObjectSpace.each_object(Sprite){|o|
-     if !o.disposed? && o.visible
+     if !o.disposed? && o.visible && (!$ResizeBorder || $ResizeBorder.sprite.bitmap!=o.bitmap)
        visibleObjects.push(o)
        o.visible=false
      end

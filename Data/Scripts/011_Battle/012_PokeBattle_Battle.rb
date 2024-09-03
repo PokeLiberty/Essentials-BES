@@ -100,152 +100,149 @@ module PokeBattle_BattleCommon
 #         0 - fail at capturing and at fetching ball,
 #        -1 - fail at capturing and success at fetching ball
 
-  def pbThrowPokeBall(idxPokemon,ball,rareness=nil,showplayer=false,safari=false,firstfailedthrowatsafari=false)
-    ret=0
-    itemname=PBItems.getName(ball)
-    battler=nil
-    if pbIsOpposing?(idxPokemon)
-      battler=self.battlers[idxPokemon]
-    else
-      battler=self.battlers[idxPokemon].pbOppositeOpposing
-    end
-    if battler.isFainted?
-      battler=battler.pbPartner
-    end
-    pbDisplayBrief(_INTL("{1} usó una {2}.",self.pbPlayer.name,itemname))
-    if battler.isFainted?
-      pbDisplay(_INTL("Pero no hay objetivo..."))
-      return tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-    end
-    if @opponent && (!pbIsSnagBall?(ball) || !battler.isShadow?)
-      @scene.pbThrowAndDeflect(ball,1)
-      pbDisplay(_INTL("¡El entrenador ha bloqueado la Poké Ball!\n¡No seas un ladrón!"))
-      ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-    elsif $game_switches[NO_CAPTURE_SWITCH] || @rules["disablePokeBalls"]
-     @scene.pbThrowAndDeflect(ball,1)
-     pbDisplay(_INTL("No puedes capturar a este Pokémon."))
-    else
-      pokemon=battler.pokemon
-      species=pokemon.species
-      if $DEBUG && Input.press?(Input::CTRL) || @rules["alwaysCapture"]
-        shakes=4
-      elsif @rules["neverCapture"]
-        shakes=0
-      else
-        if !rareness
-          dexdata=pbOpenDexData
-          pbDexDataOffset(dexdata,species,16)
-          rareness=dexdata.fgetb # Get rareness from dexdata file
-          dexdata.close
-        end
-        a=battler.totalhp
-        b=battler.hp
-        rareness=BallHandlers.modifyCatchRate(ball,rareness,self,battler)
-        x=(((a*3-b*2)*rareness)/(a*3)).floor
-        if battler.status==PBStatuses::SLEEP || battler.status==PBStatuses::FROZEN
-          x=(x*2.5).floor
-        elsif battler.status!=0
-          x=(x*1.5).floor
-        end
-        c=0
-        if $Trainer
-          if $Trainer.pokedexOwned>600
-            c=(x*2.5/6).floor
-          elsif $Trainer.pokedexOwned>450
-            c=(x*2/6).floor
-          elsif $Trainer.pokedexOwned>300
-            c=(x*1.5/6).floor
-          elsif $Trainer.pokedexOwned>150
-            c=(x*1/6).floor
-          elsif $Trainer.pokedexOwned>30
-            c=(x*0.5/6).floor
-          end
-        end
-        shakes=0; critical=false
-        if x>255 || BallHandlers.isUnconditional?(ball,self,battler)
-          shakes=4
-        else
-          x=1 if x<1
-          y = ( 65536/((255.0/x)**0.1875) ).floor
-          if USECRITICALCAPTURE && pbRandom(256)<c
-            critical=true
-            shakes=4 if pbRandom(65536)<y
-          else
-            shakes+=1 if pbRandom(65536)<y
-            shakes+=1 if pbRandom(65536)<y && shakes==1
-            shakes+=1 if pbRandom(65536)<y && shakes==2
-            shakes+=1 if pbRandom(65536)<y && shakes==3
-          end
-        end
-      end
-      PBDebug.log("[Poké Ball lanzada] #{itemname}, #{shakes} sacudidas (4=captura)")
-      @scene.pbThrow(ball,(critical) ? 1 : shakes,critical,battler.index,showplayer)
-      case shakes
-      when 0
-        pbDisplay(_INTL("¡Oh no! ¡El Pokémon se ha escapado!"))
-        BallHandlers.onFailCatch(ball,self,battler)
-        ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-      when 1
-        pbDisplay(_INTL("¡Vaya! ¡Parecía que ya estaba capturado!"))
-        BallHandlers.onFailCatch(ball,self,battler)
-        ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-      when 2
-        pbDisplay(_INTL("¡Aargh! ¡Casi lo tenías!"))
-        BallHandlers.onFailCatch(ball,self,battler)
-        ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-      when 3
-        pbDisplay(_INTL("¡Uy! ¡Estuvo demasiado cerca!"))
-        BallHandlers.onFailCatch(ball,self,battler)
-        ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-      when 4
-        pbDisplayBrief(_INTL("¡Sí! ¡{1} ha sido capturado!",pokemon.name))
-        @scene.pbThrowSuccess
-        if pbIsSnagBall?(ball) && @opponent
-          pbRemoveFromParty(battler.index,battler.pokemonIndex)
-          battler.pbReset
-          battler.participants=[]
-        else
-          @decision=4
-        end
-        if pbIsSnagBall?(ball)
-          pokemon.ot=self.pbPlayer.name
-          pokemon.trainerID=self.pbPlayer.id
-        end
-        BallHandlers.onCatch(ball,self,pokemon)
-        pokemon.ballused=pbGetBallType(ball)
-        pokemon.makeUnmega rescue nil
-        pokemon.makeUnprimal rescue nil
-        pokemon.makeUnultra rescue nil
-        pokemon.revertOtherForms rescue nil
-        pokemon.pbRecordFirstMoves
-        if GAINEXPFORCAPTURE
-          battler.captured=true
-          pbGainEXP
-          battler.captured=false
-        end
-        if !self.pbPlayer.hasOwned?(species)
-          self.pbPlayer.setOwned(species)
-          if $Trainer.pokedex
-            pbDisplayPaused(_INTL("Se agregaron los datos de {1} en la Pokédex.",pokemon.name))
-            @scene.pbShowPokedex(species)
-          end
-        end
-        @scene.pbHideCaptureBall
-        if pbIsSnagBall?(ball) && @opponent
-          pokemon.pbUpdateShadowMoves rescue nil
-          @snaggedpokemon.push(pokemon)
-        else
-          pbStorePokemon(pokemon)
-        end
-        ret=1
-      end
-    end
-    return ret
+def pbThrowPokeBall(idxPokemon,ball,rareness=nil,showplayer=false,safari=false,firstfailedthrowatsafari=false)
+  ret=0
+  itemname=PBItems.getName(ball)
+  battler=nil
+  if pbIsOpposing?(idxPokemon)
+    battler=self.battlers[idxPokemon]
+  else
+    battler=self.battlers[idxPokemon].pbOppositeOpposing
   end
+  if battler.isFainted?
+    battler=battler.pbPartner
+  end
+  pbDisplayBrief(_INTL("{1} usó una {2}.",self.pbPlayer.name,itemname))
+  if battler.isFainted?
+    pbDisplay(_INTL("Pero no hay objetivo..."))
+    return tryFetchingBall(ball,safari,firstfailedthrowatsafari)
+  end
+  if @opponent && (!pbIsSnagBall?(ball) || !battler.isShadow?)
+    @scene.pbThrowAndDeflect(ball,1)
+    pbDisplay(_INTL("¡El entrenador ha bloqueado la Poké Ball!\n¡No seas un ladrón!"))
+    ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
+  elsif $game_switches[NO_CAPTURE_SWITCH] || @rules["disablePokeBalls"]
+   @scene.pbThrowAndDeflect(ball,1)
+   pbDisplay(_INTL("No puedes capturar a este Pokémon."))
+  else
+    pokemon=battler.pokemon
+    species=pokemon.species
+    if $DEBUG && Input.press?(Input::CTRL) || @rules["alwaysCapture"]
+      shakes=4
+    elsif @rules["neverCapture"]
+      shakes=0
+    else
+      if !rareness
+        dexdata=pbOpenDexData
+        pbDexDataOffset(dexdata,species,16)
+        rareness=dexdata.fgetb # Get rareness from dexdata file
+        dexdata.close
+      end
+      a=battler.totalhp
+      b=battler.hp
+      rareness=BallHandlers.modifyCatchRate(ball,rareness,self,battler)
+      x=(((a*3-b*2)*rareness)/(a*3)).floor
+      if battler.status==PBStatuses::SLEEP || battler.status==PBStatuses::FROZEN
+        x=(x*2.5).floor
+      elsif battler.status!=0
+        x=(x*1.5).floor
+      end
+      c=0
+      if $Trainer
+        if $Trainer.pokedexOwned>600
+          c=(x*2.5/6).floor
+        elsif $Trainer.pokedexOwned>450
+          c=(x*2/6).floor
+        elsif $Trainer.pokedexOwned>300
+          c=(x*1.5/6).floor
+        elsif $Trainer.pokedexOwned>150
+          c=(x*1/6).floor
+        elsif $Trainer.pokedexOwned>30
+          c=(x*0.5/6).floor
+        end
+      end
+      shakes=0; critical=false
+      if x>255 || BallHandlers.isUnconditional?(ball,self,battler)
+        shakes=4
+      else
+        x=1 if x<1
+        y = ( 65536/((255.0/x)**0.1875) ).floor
+        if USECRITICALCAPTURE && pbRandom(256)<c
+          critical=true
+          shakes=4 if pbRandom(65536)<y
+        else
+          shakes+=1 if pbRandom(65536)<y
+          shakes+=1 if pbRandom(65536)<y && shakes==1
+          shakes+=1 if pbRandom(65536)<y && shakes==2
+          shakes+=1 if pbRandom(65536)<y && shakes==3
+        end
+      end
+    end
+    PBDebug.log("[Poké Ball lanzada] #{itemname}, #{shakes} sacudidas (4=captura)")
+    @scene.pbThrow(ball,shakes,critical,battler.index,showplayer)
+    case shakes
+    when 0
+      pbDisplay(_INTL("¡Oh no! ¡El Pokémon se ha escapado!"))
+      BallHandlers.onFailCatch(ball,self,battler)
+      ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
+    when 1
+      pbDisplay(_INTL("¡Vaya! ¡Parecía que ya estaba capturado!"))
+      BallHandlers.onFailCatch(ball,self,battler)
+      ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
+    when 2
+      pbDisplay(_INTL("¡Aargh! ¡Casi lo tenías!"))
+      BallHandlers.onFailCatch(ball,self,battler)
+      ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
+    when 3
+      pbDisplay(_INTL("¡Uy! ¡Estuvo demasiado cerca!"))
+      BallHandlers.onFailCatch(ball,self,battler)
+      ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
+    when 4
+      pbDisplayBrief(_INTL("¡Sí! ¡{1} ha sido capturado!",pokemon.name))
+      @scene.pbThrowSuccess
+      if pbIsSnagBall?(ball) && @opponent
+        pbRemoveFromParty(battler.index,battler.pokemonIndex)
+        battler.pbReset
+        battler.participants=[]
+      else
+        @decision=4
+      end
+      if pbIsSnagBall?(ball)
+        pokemon.ot=self.pbPlayer.name
+        pokemon.trainerID=self.pbPlayer.id
+      end
+      BallHandlers.onCatch(ball,self,pokemon)
+      pokemon.ballused=pbGetBallType(ball)
+      pokemon.makeUnmega rescue nil
+      pokemon.makeUnprimal rescue nil
+      pokemon.makeUnultra rescue nil
+      pokemon.revertOtherForms rescue nil
+      pokemon.pbRecordFirstMoves
+      if GAINEXPFORCAPTURE
+        battler.captured=true
+        pbGainEXP
+        battler.captured=false
+      end
+      if !self.pbPlayer.hasOwned?(species)
+        self.pbPlayer.setOwned(species)
+        if $Trainer.pokedex
+          pbDisplayPaused(_INTL("Se agregaron los datos de {1} en la Pokédex.",pokemon.name))
+          @scene.pbShowPokedex(species)
+        end
+      end
+      @scene.pbHideCaptureBall
+      if pbIsSnagBall?(ball) && @opponent
+        pokemon.pbUpdateShadowMoves rescue nil
+        @snaggedpokemon.push(pokemon)
+      else
+        pbStorePokemon(pokemon)
+      end
+      ret=1
+    end
+  end
+  return ret
 end
-
-
-
+end
 
 ################################################################################
 # Main battle class.

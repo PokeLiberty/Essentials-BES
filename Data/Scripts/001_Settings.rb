@@ -85,7 +85,7 @@ USEMOVECATEGORY       = true
 USENEWBATTLEMECHANICS = true
 USESCALEDEXPFORMULA   = true
 NOSPLITEXP            = true
-USECRITICALCAPTURE    = false # NO ACTIVAR, BUGEADO
+USECRITICALCAPTURE    = true
 GAINEXPFORCAPTURE     = true
 
 #===============================================================================
