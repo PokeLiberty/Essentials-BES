@@ -560,6 +560,10 @@ class PokeBattle_Battler
     @effects[PBEffects::ShedTail]         = false
     @effects[PBEffects::SaltCure]         = false
     @effects[PBEffects::SyrupBomb]        = 0
+
+    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    @effects[PBEffects::Protosynthesis]   = 0
+    @effects[PBEffects::BoosterEnergy]    = false
   end
 
   def pbUpdate(fullchange=false)
@@ -825,6 +829,15 @@ class PokeBattle_Battler
     if self.status==PBStatuses::PARALYSIS && !self.hasWorkingAbility(:QUICKFEET)
       speedmult=(speedmult/4).round
     end
+    
+    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    # Aumento de velocidad
+    if ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || self.effects[PBEffects::BoosterEnergy]))             ||   # Paleosítensis
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.effects[PBEffects::BoosterEnergy]))) &&   # Quark Drive       
+        @effects[PBEffects::Protosynthesis] == PBStats::SPEED
+      speedmult=(speedmult*1.5).round
+    end
+    
     if @battle.internalbattle && @battle.pbOwnedByPlayer?(@index) &&
        @battle.pbPlayer.numbadges>=BADGESBOOSTSPEED
       speedmult=(speedmult*1.1).round
@@ -1377,64 +1390,25 @@ class PokeBattle_Battler
         end
       end
     end
-    # Paleosítensis
-    if self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || self.hasWorkingItem(:BOOSTERENERGY)) && onactive
-      if self.attack >= self.defense &&
-        self.attack >= self.spatk &&
-        self.attack >= self.spdef &&
-        self.attack >= self.speed
-        if pbIncreaseStatWithCause(PBStats::ATTACK,1,self,PBAbilities.getName(ability))
-         PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Attack)")
-        end
-      elsif self.defense >= self.spatk &&
-          self.defense >= self.spdef &&
-          self.defense >= self.speed
-          if pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Defense)")
-        end
-      elsif self.spatk >= self.spdef &&
-        self.spatk >= self.speed
-          if pbIncreaseStatWithCause(PBStats::SPATK,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Special Attack)")
-        end
-      elsif self.spdef >= self.speed
-          if pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Special Defense)")
-        end
+    
+    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    # Activación de Protosíntesis y Carga Cuark.
+    if @effects[PBEffects::Protosynthesis] <= 0 && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || self.hasWorkingItem(:BOOSTERENERGY))) ||           # Paleosítensis
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY))))  # Quark Drive      
+      stagemult = [1, 1.5, 2, 2.5, 3, 3.5, 4, 0.25, 0.28, 0.33, 0.40, 0.50, 0.67]
+      stats = [@attack, @defense, @speed, @spatk, @spdef].each_with_index.map { |stat, i| 
+        stat * stagemult[@stages[i + 1]]
+      }
+      stats = [stats[2], stats[4], stats[3], stats[1], stats[0]] # Cambia el orden de las stats para que sea el mismo que en los juegos oficiales en caso de tener el mismo valor.
+      max = stats.each_with_index.max
+      @effects[PBEffects::Protosynthesis]=[3, 5, 4, 2, 1][max[1]] # Revierte los cambios de índice para que sea el mismo que en Essentials.
+      if self.hasWorkingItem(:BOOSTERENERGY) && !(self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY) ||
+                                                  self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0))
+        @effects[PBEffects::BoosterEnergy] = true 
+        @battle.pbDisplay(_INTL("{1} de {2} aumentó su {3} gracias a {4}!", PBAbilities.getName(self.ability), pbThis, PBStats.getName(@effects[PBEffects::Protosynthesis]), PBItems.getName(self.item)))
+        self.pbConsumeItem
       else
-        if pbIncreaseStatWithCause(PBStats::SPEED,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Speed)")
-        end
-      end
-    end
-    # Carga Cuark
-    if self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY)) && onactive
-      if self.attack >= self.defense &&
-        self.attack >= self.spatk &&
-        self.attack >= self.spdef &&
-        self.attack >= self.speed
-        if pbIncreaseStatWithCause(PBStats::ATTACK,1,self,PBAbilities.getName(ability))
-         PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Attack)")
-        end
-      elsif self.defense >= self.spatk &&
-          self.defense >= self.spdef &&
-          self.defense >= self.speed
-          if pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Defense)")
-        end
-      elsif self.spatk >= self.spdef &&
-        self.spatk >= self.speed
-          if pbIncreaseStatWithCause(PBStats::SPATK,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Special Attack)")
-        end
-      elsif self.spdef >= self.speed
-          if pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Special Defense)")
-        end
-      else
-        if pbIncreaseStatWithCause(PBStats::SPEED,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Speed)")
-        end
+        @battle.pbDisplay(_INTL("{1} de {2} aumentó su {3}!", PBAbilities.getName(self.ability), pbThis, PBStats.getName(@effects[PBEffects::Protosynthesis])))
       end
     end
 
