@@ -1095,8 +1095,7 @@ end
 def pbCheckEvolutionEx(pokemon)
   return -1 if pokemon.species<=0 || pokemon.isEgg?
   return -1 if isConst?(pokemon.species,PBSpecies,:PICHU) && pokemon.form==1
-  return -1 if isConst?(pokemon.item,PBItems,:EVERSTONE) &&
-               !isConst?(pokemon.species,PBSpecies,:KADABRA) # Recrea un bug de los juegos oficiales, donde Kadabra evoluciona con con Piedra Eterna
+  return -1 if isConst?(pokemon.item,PBItems,:EVERSTONE)
   ret=-1
   for form in pbGetEvolvedFormData(pokemon.species)
     ret=yield pokemon,form[0],form[1],form[2]
