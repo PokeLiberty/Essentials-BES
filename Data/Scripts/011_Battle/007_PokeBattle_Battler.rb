@@ -1392,6 +1392,12 @@ class PokeBattle_Battler
     end
     
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    # Resetea el efecto cuando se pase el clima/campo
+    if (!@effects[PBEffects::BoosterEnergy] && @effects[PBEffects::Protosynthesis] > 0) && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather != PBWeather::SUNNYDAY)) ||            # Paleosítensis
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]<=0)))                                                                                    # Quark Drive    
+      @effects[PBEffects::Protosynthesis] = 0
+    end
+
     # Activación de Protosíntesis y Carga Cuark.
     if @effects[PBEffects::Protosynthesis] <= 0 && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || self.hasWorkingItem(:BOOSTERENERGY))) ||           # Paleosítensis
         (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY))))  # Quark Drive      
