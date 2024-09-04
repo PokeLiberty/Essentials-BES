@@ -88,8 +88,6 @@ class PokeBattle_Pokemon
   end
  end
 
-
-
  # Mega Evoluciones XY ############################################################
 
  MultipleForms.register(:VENUSAUR,{
@@ -112,6 +110,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1555 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -144,6 +145,9 @@ class PokeBattle_Pokemon
     next 1105 if pokemon.form==2
     next 1005 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -163,6 +167,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1011 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -182,6 +189,9 @@ class PokeBattle_Pokemon
  "height"=>proc{|pokemon|
     next 12 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -201,6 +211,9 @@ class PokeBattle_Pokemon
  "height"=>proc{|pokemon|
     next 14 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -220,6 +233,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1000 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -247,6 +263,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 590 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -270,6 +289,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 3050 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -293,6 +315,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 790 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -330,6 +355,9 @@ class PokeBattle_Pokemon
     next 1270 if pokemon.form==2
     next 330 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -349,6 +377,9 @@ class PokeBattle_Pokemon
  "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:MOLDBREAKER),0]] if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -372,6 +403,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1250 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -395,6 +429,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 625 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -418,6 +455,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 495 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -441,6 +481,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 2550 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -456,6 +499,9 @@ class PokeBattle_Pokemon
  "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:SPEEDBOOST),0]] if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -471,6 +517,9 @@ class PokeBattle_Pokemon
  "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:PIXILATE),0]] if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -494,6 +543,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 235 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -521,6 +573,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 3950 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -536,6 +591,9 @@ class PokeBattle_Pokemon
  "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:PUREPOWER),0]] if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -559,6 +617,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 440 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -582,6 +643,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 130 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -601,6 +665,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 490 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -616,6 +683,9 @@ class PokeBattle_Pokemon
  "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:SANDFORCE),0]] if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -639,6 +709,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 575 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -662,6 +735,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1850 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -687,6 +763,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 405 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -710,31 +789,11 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 505 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
-
- #MultipleForms.register(:SLOWBRO,{
- #"getMegaForm"=>proc{|pokemon|
- #   next 2 if isConst?(pokemon.item,PBItems,:SLOWBRONITE)
- #   next
- #},
- #"getBaseStats"=>proc{|pokemon|
- #   next [95,75,180,30,130,80] if pokemon.form==2
- #   next
- #},
- #"getAbilityList"=>proc{|pokemon|
- #   next [[getID(PBAbilities,:SHELLARMOR),0]] if pokemon.form==2
- #   next
- #},
- #"height"=>proc{|pokemon|
- #   next 20 if pokemon.form==2
- #   next
- #},
- #"weight"=>proc{|pokemon|
- #   next 1200 if pokemon.form==2
- #   next
- #}
- #})
 
  MultipleForms.register(:STEELIX,{
  "getMegaForm"=>proc{|pokemon|
@@ -756,6 +815,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 7400 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -783,6 +845,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 552 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -806,6 +871,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1020 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -825,6 +893,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1610 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -848,6 +919,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1303 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -871,6 +945,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 3205 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -894,6 +971,9 @@ class PokeBattle_Pokemon
  "height"=>proc{|pokemon|
     next 15 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -917,6 +997,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 3502 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -940,6 +1023,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 1126 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -963,6 +1049,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 9429 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -982,6 +1071,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 520 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -1001,6 +1093,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 700 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -1027,6 +1122,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 3920 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -1054,6 +1152,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 283 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -1073,6 +1174,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 564 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -1100,6 +1204,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 320 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -1123,6 +1230,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 278 if pokemon.form==1
     next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -1150,6 +1260,9 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 4300 if pokemon.form==1
     next
+ },
+ "getUnprimalForm"=>proc{|pokemon|
+   next 0
  }
  })
 
@@ -1177,5 +1290,8 @@ class PokeBattle_Pokemon
  "weight"=>proc{|pokemon|
     next 9997 if pokemon.form==1
     next
+ },
+ "getUnprimalForm"=>proc{|pokemon|
+   next 0
  }
  })

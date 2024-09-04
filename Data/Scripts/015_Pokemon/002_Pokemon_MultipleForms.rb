@@ -685,7 +685,7 @@ MultipleForms.register(:SHAYMIN,{
 },
 "height"=>proc{|pokemon|
    next if pokemon.form==0 # Forma Tierra
-   next 69                 # Forma Cielo
+   next 52                 # Forma Cielo
 },
 "weight"=>proc{|pokemon|
    next if pokemon.form==0 # Forma Tierra

@@ -191,7 +191,7 @@ def zodiac(month,day)
   ]
   for i in 0...12
     return i if month==time[i*4] && day>=time[i*4+1]
-    return i if month==time[i*4+2] && day<=time[i*4+2]
+    return i if month==time[i*4+2] && day<=time[i*4+3]
   end
   return 0
 end

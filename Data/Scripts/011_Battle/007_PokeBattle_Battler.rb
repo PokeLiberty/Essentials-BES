@@ -3718,9 +3718,6 @@ class PokeBattle_Battler
   def pbTryUseMove(choice,thismove,turneffects)
     return true if turneffects[PBEffects::PassedTrying]
     # TODO: Devolver true si el ataque ya ha sido reflejado por Capa Mágica una vez
-    if !turneffects[PBEffects::SkipAccuracyCheck]
-      return false if !pbObedienceCheck?(choice)
-    end
     if @effects[PBEffects::SkyDrop]              # No hay mensajes aquí intencionalmente
       PBDebug.log("[Movimiento falló] #{pbThis} no puede usar #{thismove.name} debido a Caída Libre")
       return false
@@ -3882,6 +3879,9 @@ class PokeBattle_Battler
           return false
         end
       end
+    end
+    if !turneffects[PBEffects::SkipAccuracyCheck]
+      return false if !pbObedienceCheck?(choice)
     end
     turneffects[PBEffects::PassedTrying]=true
     return true
@@ -4375,6 +4375,8 @@ class PokeBattle_Battler
       @battle.pbJudge #      @battle.pbSwitch
       return
     end
+    thismove=choice[2]   # Disobedience may have changed the move to be used
+    return if !thismove || thismove.id==0   # if move was not chosen
     if !turneffects[PBEffects::SpecialUsage]
       if !pbReducePP(thismove)
         @battle.pbDisplay(_INTL("¡{1} usó\r\n{2}!",pbThis,thismove.name))
