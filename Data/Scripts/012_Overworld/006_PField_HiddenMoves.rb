@@ -815,7 +815,7 @@ Events.onAction+=proc{|sender,e|
            end
          end
        end
-       if $MapFactory.getTerrainTag(divemap,$game_player.x,$game_player.y)==PBTerrain::DeepWater
+       if divemap && $MapFactory.getTerrainTag(divemap,$game_player.x,$game_player.y)==PBTerrain::DeepWater
          Kernel.pbSurfacing
          return
        end

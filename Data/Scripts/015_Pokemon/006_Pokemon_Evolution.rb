@@ -646,7 +646,7 @@ class PokemonEvolutionScene
     end
     totaltempo=0
     currenttempo=25
-    maxtempo=7*Graphics.frame_rate
+    maxtempo= 7 * (FPS60 ? 60 : 40)
     while totaltempo<maxtempo
       for j in 0...currenttempo
         if alpha<255
@@ -1095,8 +1095,8 @@ end
 def pbCheckEvolutionEx(pokemon)
   return -1 if pokemon.species<=0 || pokemon.isEgg?
   return -1 if isConst?(pokemon.species,PBSpecies,:PICHU) && pokemon.form==1
-  #return -1 if isConst?(pokemon.item,PBItems,:EVERSTONE) &&
-  #             !isConst?(pokemon.species,PBSpecies,:KADABRA)
+  return -1 if isConst?(pokemon.item,PBItems,:EVERSTONE) &&
+               !isConst?(pokemon.species,PBSpecies,:KADABRA) # Recrea un bug de los juegos oficiales, donde Kadabra evoluciona con con Piedra Eterna
   ret=-1
   for form in pbGetEvolvedFormData(pokemon.species)
     ret=yield pokemon,form[0],form[1],form[2]

@@ -5603,7 +5603,8 @@ class PokeBattle_Move_0BF < PokeBattle_Move
 
   def pbOnStartUse(attacker)
     @calcbasedmg=@basedamage
-    @checks=!attacker.hasWorkingAbility(:SKILLLINK)
+    # Issue #14: Dado trucado no está programado - albertomcastro4
+    @checks=!(attacker.hasWorkingAbility(:SKILLLINK) || attacker.hasWorkingItem(:LOADEDDICE))
     return true
   end
 
@@ -5626,6 +5627,8 @@ class PokeBattle_Move_0C0 < PokeBattle_Move
 
   def pbNumHits(attacker)
     hitchances=[2,2,3,3,4,5]
+    # Issue #14: Dado trucado no está programado - albertomcastro4
+    hitchances = [4,5] if attacker.hasWorkingItem(:LOADEDDICE)
     ret=hitchances[@battle.pbRandom(hitchances.length)]
     ret=5 if attacker.hasWorkingAbility(:SKILLLINK)
     return ret
@@ -12907,7 +12910,19 @@ class PokeBattle_Move_272 < PokeBattle_Move
     return 10
   end
 
+  # Issue #14: Dado trucado no está programado - albertomcastro4
+  # Si tienes Dado Trucado, los 4 primeros golpes siempre aciertan. A partir del 4, se verifica la precisión. 
+  def pbOnStartUse(attacker)
+    @skill_link = attacker.hasWorkingAbility(:SKILLLINK)
+    @loaded_dice = attacker.hasWorkingItem(:LOADEDDICE)
+    @checks = !(@skill_link || @loaded_dice)
+    @num_hits = 0
+    return true
+  end
+
   def successCheckPerHit?
+    @num_hits += 1
+    @checks = true if @num_hits >= 4 && (@loaded_dice && !@skill_link)
     return @checks
   end
 end
