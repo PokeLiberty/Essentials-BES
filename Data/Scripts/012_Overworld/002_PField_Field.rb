@@ -877,6 +877,66 @@ def pbGenerateWildPokemon(species,level,isroamer=false)
   return genwildpoke
 end
 
+def pbWildBattlePoke(poke,variable=nil,canescape=true,canlose=false)
+  species = poke.species
+  level = poke.level
+  
+  if (Input.press?(Input::CTRL) && $DEBUG) || $Trainer.pokemonCount==0
+    if $Trainer.pokemonCount>0
+      Kernel.pbMessage(_INTL("SALTANDO BATALLA..."))
+    end
+    pbSet(variable,1)
+    $PokemonGlobal.nextBattleBGM=nil
+    $PokemonGlobal.nextBattleME=nil
+    $PokemonGlobal.nextBattleBack=nil
+    return true
+  end
+  canescape = $PokemonTemp.battle_rules["canRun"]
+  canescape = !$PokemonTemp.battle_rules["canotRun"]
+  
+  genwildpoke=poke
+  Events.onStartBattle.trigger(nil,genwildpoke)
+  scene=pbNewBattleScene
+  battle=PokeBattle_Battle.new(scene,$Trainer.party,[genwildpoke],$Trainer,nil)
+  battle.internalbattle=true
+  battle.cantescape=!canescape
+  pbPrepareBattle(battle)
+  decision=0
+  pbBattleAnimation(pbGetWildBattleBGM(species)) {
+     pbSceneStandby {
+        decision=battle.pbStartBattle(canlose)
+     }
+     for i in $Trainer.party; (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil); end
+     if $PokemonGlobal.partner
+       pbHealAll
+       for i in $PokemonGlobal.partner[3]
+         i.heal
+        (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil);
+       end
+     end
+     if decision==2 || decision==5 # if loss or draw
+       if canlose
+         for i in $Trainer.party;
+           i.heal;
+          (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil);
+           end
+         for i in 0...10
+           Graphics.update
+         end
+#       else
+#         $game_system.bgm_unpause
+#         $game_system.bgs_unpause
+#         Kernel.pbStartOver
+       end
+     end
+     Events.onEndBattle.trigger(nil,decision,canlose)
+  }
+  Input.update
+  pbSet(variable,decision)
+  Events.onWildBattleEnd.trigger(nil,species,level,decision)
+  return (decision!=2)
+end
+
 def pbWildBattle(species,level,variable=nil,canescape=true,canlose=false)
   if (Input.press?(Input::CTRL) && $DEBUG) || $Trainer.pokemonCount==0
     if $Trainer.pokemonCount>0
