@@ -832,8 +832,8 @@ class PokeBattle_Battler
     
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     # Aumento de velocidad
-    if ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || self.effects[PBEffects::BoosterEnergy]))             ||   # Paleosítensis
-        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.effects[PBEffects::BoosterEnergy]))) &&   # Quark Drive       
+    if ((self.hasWorkingAbility(:PROTOSYNTHESIS) && ((([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather) && !self.hasWorkingItem(:UTILITYUMBRELLA))) || self.effects[PBEffects::BoosterEnergy]))              ||   # Paleosítensis
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.effects[PBEffects::BoosterEnergy]))) &&                                                                                    # Quark Drive       
         @effects[PBEffects::Protosynthesis] == PBStats::SPEED
       speedmult=(speedmult*1.5).round
     end
@@ -1393,13 +1393,13 @@ class PokeBattle_Battler
     
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     # Resetea el efecto cuando se pase el clima/campo
-    if (!@effects[PBEffects::BoosterEnergy] && @effects[PBEffects::Protosynthesis] > 0) && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather != PBWeather::SUNNYDAY)) ||            # Paleosítensis
-        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]<=0)))                                                                                    # Quark Drive    
+    if (!@effects[PBEffects::BoosterEnergy] && @effects[PBEffects::Protosynthesis] > 0) && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (![PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather) || self.hasWorkingItem(:UTILITYUMBRELLA))) || # Paleosítensis
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]<=0)))                                                                                                          # Quark Drive    
       @effects[PBEffects::Protosynthesis] = 0
     end
 
     # Activación de Protosíntesis y Carga Cuark.
-    if @effects[PBEffects::Protosynthesis] <= 0 && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || self.hasWorkingItem(:BOOSTERENERGY))) ||           # Paleosítensis
+    if @effects[PBEffects::Protosynthesis] <= 0 && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather) && !self.hasWorkingItem(:UTILITYUMBRELLA)) || self.hasWorkingItem(:BOOSTERENERGY))) ||           # Paleosítensis
         (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY))))  # Quark Drive      
       stagemult = [1, 1.5, 2, 2.5, 3, 3.5, 4, 0.25, 0.28, 0.33, 0.40, 0.50, 0.67]
       stats = [@attack, @defense, @speed, @spatk, @spdef].each_with_index.map { |stat, i| 
