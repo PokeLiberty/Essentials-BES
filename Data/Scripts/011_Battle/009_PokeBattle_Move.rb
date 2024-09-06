@@ -1241,8 +1241,8 @@ class PokeBattle_Move
     
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     # Aumentos del ataque
-    if ((attacker.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || attacker.effects[PBEffects::BoosterEnergy]))             ||   # Paleosítensis
-        (attacker.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || attacker.effects[PBEffects::BoosterEnergy]))) &&   # Quark Drive   
+    if ((attacker.hasWorkingAbility(:PROTOSYNTHESIS) && (([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather)) || attacker.effects[PBEffects::BoosterEnergy]))  ||   # Paleosítensis
+        (attacker.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || attacker.effects[PBEffects::BoosterEnergy])))                                           &&   # Quark Drive   
         [PBStats::ATTACK, PBStats::SPATK].include?(attacker.effects[PBEffects::Protosynthesis])
       atkmult=(atkmult*1.3).round if attacker.effects[PBEffects::Protosynthesis] == PBStats::ATTACK && pbIsPhysical?(type)
       atkmult=(atkmult*1.5).round if attacker.effects[PBEffects::Protosynthesis] == PBStats::SPATK && pbIsSpecial?(type)
@@ -1342,8 +1342,8 @@ class PokeBattle_Move
     
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     # Aumentos de la defensa
-    if ((attacker.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || attacker.effects[PBEffects::BoosterEnergy]))             ||   # Paleosítensis
-        (attacker.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || attacker.effects[PBEffects::BoosterEnergy]))) &&   # Quark Drive   
+    if !attacker.hasMoldBreaker && ((opponent.hasWorkingAbility(:PROTOSYNTHESIS) && (([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather)) || opponent.effects[PBEffects::BoosterEnergy]))   ||   # Paleosítensis
+        (opponent.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || opponent.effects[PBEffects::BoosterEnergy])))                                                                        &&   # Quark Drive   
         [PBStats::DEFENSE, PBStats::SPDEF].include?(opponent.effects[PBEffects::Protosynthesis])
       defmult=(defmult*1.3).round if pbIsSpecial?(type) && opponent.effects[PBEffects::Protosynthesis] == PBStats::SPDEF
       defmult=(defmult*1.3).round if pbIsPhysical?(type) && opponent.effects[PBEffects::Protosynthesis] == PBStats::DEFENSE
