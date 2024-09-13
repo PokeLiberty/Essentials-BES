@@ -390,7 +390,8 @@ class BattleChallengeData
     @numRounds=numRounds
     btTrainers=pbGetBTTrainers(pbBattleChallenge.currentChallenge)
     while @trainers.length<@numRounds
-      newtrainer=pbBattleChallengeTrainer(@wins+@trainers.length,btTrainers)
+      #newtrainer=pbBattleChallengeTrainer(@wins+@trainers.length,btTrainers) #BES-T Elimina la limitacion al tener listas de entrenadores más cortas.
+      newtrainer=rand(btTrainers.length-1)
       found=false
       for tr in @trainers
         found=true if tr==newtrainer
