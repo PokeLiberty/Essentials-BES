@@ -23,6 +23,8 @@
 # * Indica si quieres que la hierba alta suene cuando la pisas.
 # * Indica si quieres que la hierba no tenga animacion.
 #      Puede ayudar con el rendimiento y queda mejor con tiles de hierba más modernos.
+# * Divisor para las ventas en la tienda. Default: 2. 
+#      Las generaciones más recientes usan el 4.
 #===============================================================================
 FPS60                     = true
 NO_CAPTURE_SWITCH         = 36
@@ -41,7 +43,7 @@ LEVEL_DAYCARE             = false
 GRASS_SOUND               = true
 GRASS_NO_ANIM             = false
 
-
+SELL_ITEMPRICE = 2
 #===============================================================================
 # Interfaces
 # Aquí se configuran las rutas de las carpetas de interfaces.
