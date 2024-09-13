@@ -28154,7 +28154,7 @@ Pokedex=Según se dice, el resquemor de un practicante de la ceremonia del té q
 BattlerPlayerY=0
 BattlerEnemyY=27
 BattlerAltitude=0
-Evolutions=SINISTCHA,Item,CRACKEDPOT
+Evolutions=SINISTCHA,Item,UNREMARKABLETEACUP
 [1013]
 Name=Sinistcha
 InternalName=SINISTCHA

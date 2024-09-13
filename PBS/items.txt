@@ -618,6 +618,7 @@
 616,AUSPICIOUSARMOR,Armadura Auspiciosa,Armaduras Auspiciosas,1,3000,"Curiosa armadura que hace evolucionar a una determinada especie de Pokémon. En su interior alberga sentimientos auspiciosos.",0,0,0,
 617,MALICIOUSARMOR,Armadura Maldita,Armaduras Malditas,1,3000,"Curiosa armadura que hace evolucionar a una determinada especie de Pokémon. En su interior alberga sentimientos de rencor.",0,0,0,
 618,LEADERSCREST,Distintivo Líder,Distintivos Líderes,1,5000,"Fragmento de lo que parece una cuchilla desgastada. Solo la llevan los Bisharp que lideran grupos de Pawniard.",1,0,0,
+619,UNREMARKABLETEACUP,Cuenco Mediocre,Cuencos Mediocres,1,100,"Cuenco mediocre que hace evolucionar a determinadas especies de Pokémon.",1,0,0,
 
 630,HM01,MO01,MO01s,4,0,"Corta con garras, guadañas, etc. También sirve para cortar árboles finos.",4,0,0,CUT
 631,HM02,MO02,MO02s,4,0,"1° turno: vuela.                                   2° turno: ataca. Fuera de combate, permite ir a sitios conocidos.",4,0,0,FLY
