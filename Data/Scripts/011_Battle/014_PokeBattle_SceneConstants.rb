@@ -95,7 +95,7 @@ module PokeBattle_SceneConstants
 
   # Centre middle of the foe's side base graphic
   FOEBASEX    = FOEBATTLER_X
-  FOEBASEY    = FOEBATTLER_Y
+  FOEBASEY    = (Graphics.height * 3/4) - 112
   
   # Coordinates of the centre bottom of the player's sprite
   PLAYERTRAINER_X   = PLAYERBATTLER_X
