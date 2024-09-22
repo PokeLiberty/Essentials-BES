@@ -1056,7 +1056,7 @@ class PokeBattle_Move
     end
     if attacker.effects[PBEffects::Charge]>0 && isConst?(type,PBTypes,:ELECTRIC)
       damagemult=(damagemult*2.0).round
-      attacker.effects[PBEffects::Charge]-=1 if USENEWBATTLEMECHANICS
+      attacker.effects[PBEffects::Charge]=0 if USENEWBATTLEMECHANICS
     end
     if isConst?(type,PBTypes,:FIRE)
       for i in 0...4
