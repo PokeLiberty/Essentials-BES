@@ -4714,7 +4714,7 @@ class PokeBattle_Battle
       @battlers[i].effects[PBEffects::HelpingHand]=false
       @battlers[i].effects[PBEffects::MagicCoat]=false
       @battlers[i].effects[PBEffects::Snatch]=false
-      @battlers[i].effects[PBEffects::Charge]-=1 if @battlers[i].effects[PBEffects::Charge]>0
+      @battlers[i].effects[PBEffects::Charge]-=1 if @battlers[i].effects[PBEffects::Charge]>0  && !USENEWBATTLEMECHANICS
       @battlers[i].lastHPLost=0
       @battlers[i].tookDamage=false
       @battlers[i].lastAttacker.clear
