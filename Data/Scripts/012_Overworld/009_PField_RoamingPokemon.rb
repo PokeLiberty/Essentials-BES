@@ -143,20 +143,7 @@ def pbRoamingPokemonBattle(species,level)
      pbSceneStandby {
         decision=battle.pbStartBattle
      }
-     for i in $Trainer.party; (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); end
-     if $PokemonGlobal.partner
-       pbHealAll
-       for i in $PokemonGlobal.partner[3]
-         i.heal
-         i.makeUnmega rescue nil
-         i.makeUnprimal rescue nil
-       end
-     end
-#     if decision==2 || decision==5
-#       $game_system.bgm_unpause
-#       $game_system.bgs_unpause
-#       Kernel.pbStartOver
-#     end
+     pbAfterBattle(decision,false)
      Events.onEndBattle.trigger(nil,decision,false)
   }
   Input.update
