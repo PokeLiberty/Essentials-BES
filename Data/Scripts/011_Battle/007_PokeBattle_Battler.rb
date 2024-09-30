@@ -1,4 +1,5 @@
 $zygardeform=-1 # Records, eventually, to what form should Zygarde return after battle
+$consumedItems = {} # BES-T Almacena los items usados por el Pokémon.
 class PokeBattle_Battler
   attr_reader :battle
   attr_reader :pokemon
@@ -2620,6 +2621,11 @@ class PokeBattle_Battler
     itemname=PBItems.getName(self.item)
     @pokemon.itemRecycle=self.item if recycle
     @pokemon.itemInitial=0 if @pokemon.itemInitial==self.item
+    if USENEWBATTLEMECHANICS # BES-T Recuperar objetos usados excepto Bayas
+      if !pbIsBerry?(self.item)
+        $consumedItems[self.pokemon] = self.item unless self.item<=0
+      end
+    end
     if pickup
       @effects[PBEffects::PickupItem]=self.item
       @effects[PBEffects::PickupUse]=@battle.nextPickupUse

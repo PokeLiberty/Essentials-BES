@@ -4893,6 +4893,13 @@ class PokeBattle_Battle
       i.itemInitial=i.itemRecycle=0
       i.belch=false
     end
+    if USENEWBATTLEMECHANICS # BES-T Recuperar objetos usados excepto Bayas
+      for i in $Trainer.party 
+        itemToReplenish = $consumedItems[i]
+        i.item = itemToReplenish if itemToReplenish && i.item<=0
+      end
+      $consumedItems.clear
+    end
     $PokemonTemp.battle_rules={}
     return @decision
   end
