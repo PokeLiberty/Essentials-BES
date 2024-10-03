@@ -1,15 +1,4 @@
 #===============================================================================
-# class Object
-#===============================================================================
-class Object
-  alias full_inspect inspect unless method_defined?(:full_inspect)
-
-  def inspect
-    return "#<#{self.class}>"
-  end
-end
-
-#===============================================================================
 # class Class
 #===============================================================================
 class Class
@@ -19,11 +8,46 @@ class Class
 end
 
 #===============================================================================
+# module Comparable
+#===============================================================================
+unless Comparable.method_defined? :clamp
+  module Comparable
+    def clamp(min, max)
+      if max - min < 0
+        raise ArgumentError("min argument must be smaller than max argument")
+      end
+      return (self > max) ? max : (self < min) ? min : self
+    end
+  end
+end
+
+#===============================================================================
+# class Boolean
+#===============================================================================
+class Boolean
+  def to_i
+    return self ? 1 : 0
+  end
+end
+
+#===============================================================================
 # class String
 #===============================================================================
 class String
+
+  def starts_with?(str)
+    proc = (self[0...str.length] == str) if self.length >= str.length
+    return proc || false
+  end
+
+  def ends_with?(str)
+    e = self.length - 1
+    proc = (self[(e-str.length)...e] == str) if self.length >= str.length
+    return proc || false
+  end
+
   def starts_with_vowel?
-    return ["a", "e", "i", "o", "u"].include?(self[0].downcase)
+    return ['a', 'e', 'i', 'o', 'u'].include?(self[0, 1].downcase)
   end
 
   def first(n = 1); return self[0...n]; end
@@ -37,7 +61,7 @@ class String
     width -= bitmap.text_size("...").width
     string_width = 0
     text = []
-    string.scan(/./).each do |char|
+    for char in string.scan(/./)
       wdh = bitmap.text_size(char).width
       next if (wdh + string_width) > width
       string_width += wdh
@@ -45,7 +69,7 @@ class String
     end
     text.push("...") if text.length < string.length
     new_string = ""
-    text.each do |char|
+    for char in text
       new_string += char
     end
     return new_string
@@ -78,19 +102,50 @@ class Numeric
 end
 
 #===============================================================================
+# class Integer
+#===============================================================================
+class Integer
+  # Returns an array containing each digit of the number in turn.
+  def digits(base = 10)
+    quotient, remainder = divmod(base)
+    return (quotient == 0) ? [remainder] : quotient.digits(base).push(remainder)
+  end
+end
+
+#===============================================================================
 # class Array
 #===============================================================================
 class Array
-  def ^(other)   # xor of two arrays
-    return (self | other) - (self & other)
-  end
-
   def swap(val1, val2)
     index1 = self.index(val1)
     index2 = self.index(val2)
     self[index1] = val2
     self[index2] = val1
   end
+
+  def first
+    return self[0]
+  end
+
+  def last
+    return self[self.length-1]
+  end
+
+  def ^(other)   # xor of two arrays
+    return (self | other) - (self & other)
+  end
+
+  def shuffle
+    dup.shuffle!
+  end unless method_defined? :shuffle
+
+  def shuffle!
+    (size - 1).times do |i|
+      r = i + rand(size - i)
+      self[i], self[r] = self[r], self[i]
+    end
+    self
+  end unless method_defined? :shuffle!
 end
 
 #===============================================================================
@@ -380,9 +435,8 @@ class << Kernel
         return oldRand(a)
       end
     elsif a.nil?
-      return oldRand(b)
+      return (b) ? oldRand(b) : oldRand(2)
     end
-    return oldRand
   end
 end
 
