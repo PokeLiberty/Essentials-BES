@@ -461,10 +461,19 @@ class Messages
   end
 
   def setMessages(type,array)
-    arr=[]
     @messages=[] if !@messages
+    arr=[]
     for i in 0...array.length
       arr[i]=(array[i]) ? array[i] : ""
+    end
+    @messages[type]=arr
+  end
+
+  def addMessages(type,array)
+    @messages=[] if !@messages
+    arr=(@messages[type]) ? @messages[type] : []
+    for i in 0...array.length
+      arr[i]=(array[i]) ? array[i] : (arr[i]) ? arr[i] : ""
     end
     @messages[type]=arr
   end
@@ -636,6 +645,10 @@ module MessageTypes
 
   def self.setMessages(type,array)
     @@messages.setMessages(type,array)
+  end
+
+  def self.addMessages(type,array)
+    @@messages.addMessages(type,array)
   end
 
   def self.createHash(type,array)

@@ -58,8 +58,6 @@ class MoveSelectionSprite < SpriteWrapper
   end
 end
 
-
-
 class PokemonSummaryScene
   def pbPokerus(pkmn)
     return pkmn.pokerusStage
@@ -70,6 +68,13 @@ class PokemonSummaryScene
   end
 
   def pbStartScene(party,partyindex)
+    
+    @base=Color.new(248,248,248)
+    @shadow=Color.new(47,46,54)
+ 
+    @base2=Color.new(64,64,64)
+    @shadow2=Color.new(176,176,176)
+    
     @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
     @viewport.z=99999
     @party=party
@@ -127,7 +132,17 @@ class PokemonSummaryScene
     @sprites={}
     @page=3
     @typebitmap=AnimatedBitmap.new(_INTL("Graphics/Pictures/types"))
+
+    @base=Color.new(248,248,248)
+    @shadow=Color.new(47,46,54)
+    
+    @base2=Color.new(248,248,248)
+    @shadow2=Color.new(78,83,100)
+    
+    @sprites["background2"]=IconSprite.new(0,0,@viewport)
+    @sprites["background2"].setBitmap("Graphics/#{SUMMARY_ROUTE}/summarybg")
     @sprites["background"]=IconSprite.new(0,0,@viewport)
+
     @sprites["overlay"]=BitmapSprite.new(Graphics.width,Graphics.height,@viewport)
     @sprites["pokeicon"]=PokemonBoxIcon.new(@pokemon,@viewport)
     @sprites["pokeicon"].x=14
@@ -204,11 +219,9 @@ class PokemonSummaryScene
       imagepos.push(["Graphics/#{SUMMARY_ROUTE}/summaryShadowBar",242,280,0,0,(shadowfract*248).floor,-1])
     end
     pbDrawImagePositions(overlay,imagepos)
-    base=Color.new(248,248,248)
-    shadow=Color.new(104,104,104)
     pbSetSystemFont(overlay)
-    numberbase=(pokemon.isShiny?) ? Color.new(248,56,32) : Color.new(64,64,64)
-    numbershadow=(pokemon.isShiny?) ? Color.new(224,152,144) : Color.new(176,176,176)
+    numberbase=(pokemon.isShiny?) ? Color.new(248,56,32) : @base2
+    numbershadow=(pokemon.isShiny?) ? Color.new(224,152,144) : @shadow2
     publicID=pokemon.publicID
     speciesname=PBSpecies.getName(pokemon.species)
     growthrate=pokemon.growthrate
@@ -216,25 +229,25 @@ class PokemonSummaryScene
     endexp=PBExperience.pbGetStartExperience(pokemon.level+1,growthrate)
     pokename=@pokemon.name
     textpos=[
-       [_INTL("DATOS"),26,16,0,base,shadow],
-       [pokename,46,62,0,base,shadow],
-       [pokemon.level.to_s,46,92,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Objeto"),16,320,0,base,shadow],
-       [_ISPRINTF("N° Dex"),238,80,0,base,shadow],
+       [_INTL("DATOS"),26,16,0,@base,@shadow],
+       [pokename,46,62,0,@base,@shadow],
+       [pokemon.level.to_s,46,92,0,@base2,@shadow2],
+       [_INTL("Objeto"),16,320,0,@base,@shadow],
+       [_ISPRINTF("N° Dex"),238,80,0,@base,@shadow],
        [sprintf("%03d",pokemon.species),435,80,2,numberbase,numbershadow],
-       [_INTL("Especie"),238,112,0,base,shadow],
-       [speciesname,435,112,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Tipo"),238,144,0,base,shadow],
-       [_INTL("EO"),238,176,0,base,shadow],
-       [_INTL("N° ID"),238,208,0,base,shadow],
+       [_INTL("Especie"),238,112,0,@base,@shadow],
+       [speciesname,435,112,2,@base2,@shadow2],
+       [_INTL("Tipo"),238,144,0,@base,@shadow],
+       [_INTL("EO"),238,176,0,@base,@shadow],
+       [_INTL("N° ID"),238,208,0,@base,@shadow],
     ]
     if pokemon.hasItem?
-      textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([PBItems.getName(pokemon.item),16,352,0,@base2,@shadow2])
     else
       textpos.push([_INTL("Ninguno"),16,352,0,Color.new(184,184,160),Color.new(208,208,200)])
     end
     if (pokemon.isShadow? rescue false)
-      textpos.push([_INTL("Medidor del Corazón"),238,240,0,base,shadow])
+      textpos.push([_INTL("Medidor del Corazón"),238,240,0,@base,@shadow])
       heartmessage=[_INTL("¡La puerta de su corazón está abierta! ¡Hacer purificación definitiva!"),
                     _INTL("La puerta de su corazón está casi abierta del todo."),
                     _INTL("La puerta de su corazón está bastante abierta."),
@@ -245,15 +258,15 @@ class PokemonSummaryScene
       memo=sprintf("<c3=404040,B0B0B0>%s\n",heartmessage)
       drawFormattedTextEx(overlay,238,304,276,memo)
     else
-      textpos.push([_INTL("Puntos de Experiencia"),238,240,0,base,shadow])
-      textpos.push([sprintf("%d",pokemon.exp),488,272,1,Color.new(64,64,64),Color.new(176,176,176)])
-      textpos.push([_INTL("Para subir de nivel"),238,304,0,base,shadow])
-      textpos.push([sprintf("%d",endexp-pokemon.exp),488,336,1,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([_INTL("Puntos de Experiencia"),238,240,0,@base,@shadow])
+      textpos.push([sprintf("%d",pokemon.exp),488,272,1,@base2,@shadow2])
+      textpos.push([_INTL("Para subir de nivel"),238,304,0,@base,@shadow])
+      textpos.push([sprintf("%d",endexp-pokemon.exp),488,336,1,@base2,@shadow2])
     end
     idno=(pokemon.ot=="") ? "?????" : sprintf("%05d",publicID)
-    textpos.push([idno,435,208,2,Color.new(64,64,64),Color.new(176,176,176)])
+    textpos.push([idno,435,208,2,@base2,@shadow2])
     if pokemon.ot==""
-      textpos.push([_INTL("PRESTADO"),435,176,2,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([_INTL("PRESTADO"),435,176,2,@base2,@shadow2])
     else
       ownerbase=Color.new(64,64,64)
       ownershadow=Color.new(176,176,176)
@@ -302,16 +315,14 @@ class PokemonSummaryScene
     ballimage=sprintf("Graphics/#{SUMMARY_ROUTE}/summaryball%02d",@pokemon.ballused)
     imagepos.push([ballimage,14,60,0,0,-1,-1])
     pbDrawImagePositions(overlay,imagepos)
-    base=Color.new(248,248,248)
-    shadow=Color.new(104,104,104)
     pbSetSystemFont(overlay)
     textpos=[
-       [_INTL("NOTAS ENTRENADOR"),26,16,0,base,shadow],
-       [pokemon.name,46,62,0,base,shadow],
-       [_INTL("Objeto"),16,320,0,base,shadow]
+       [_INTL("NOTAS ENTRENADOR"),26,16,0,@base,@shadow],
+       [pokemon.name,46,62,0,@base,@shadow],
+       [_INTL("Objeto"),16,320,0,@base,@shadow]
     ]
     if pokemon.hasItem?
-      textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([PBItems.getName(pokemon.item),16,352,0,@base2,@shadow2])
     else
       textpos.push([_INTL("Ninguno"),16,352,0,Color.new(184,184,160),Color.new(208,208,200)])
     end
@@ -369,23 +380,22 @@ class PokemonSummaryScene
     naturename=PBNatures.getName(pokemon.nature)
     pokename=@pokemon.name
     textpos=[
-       [_INTL("NOTAS ENTRENADOR"),26,16,0,base,shadow],
-       [pokename,46,62,0,base,shadow],
-       [pokemon.level.to_s,46,92,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Objeto"),16,320,0,base,shadow
-       ]
+       [_INTL("NOTAS ENTRENADOR"),26,16,0,@base,@shadow],
+       [pokename,46,62,0,@base,@shadow],
+       [pokemon.level.to_s,46,92,0,@base2,@shadow2],
+       [_INTL("Objeto"),16,320,0,@base,@shadow]
     ]
     
     amistad=pokemon.happiness/44
     amistad=amistad.floor
     if EXPANDED_SUMMARY_INFO
-      textpos.push([_INTL("Amistad:"),256+8,334,0,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([_INTL("Amistad:"),256+8,334,0,@base2,@shadow2])
       nivelamistad=Rect.new(0,amistad*18,128,18)
       overlay.blt(356,334+8,@Amistadbitmap.bitmap,nivelamistad)
     end
 
     if pokemon.hasItem?
-      textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([PBItems.getName(pokemon.item),16,352,0,@base2,@shadow2])
     else
       textpos.push([_INTL("Ninguno"),16,352,0,Color.new(184,184,160),Color.new(208,208,200)])
     end
@@ -484,7 +494,7 @@ class PokemonSummaryScene
                       ][bestiv*5+pokemon.iv[bestiv]%5]
       memo+=sprintf("<c3=404040,B0B0B0>%s\n",characteristic)
     end
-    drawFormattedTextEx(overlay,232,78,276,memo)
+    drawFormattedTextEx(overlay,232,78,276,memo,@base2,@shadow2)
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
   end
 
@@ -509,10 +519,8 @@ class PokemonSummaryScene
     ballimage=sprintf("Graphics/#{SUMMARY_ROUTE}/summaryball%02d",@pokemon.ballused)
     imagepos.push([ballimage,14,60,0,0,-1,-1])
     pbDrawImagePositions(overlay,imagepos)
-    base=Color.new(248,248,248)
-    shadow=Color.new(104,104,104)
     statshadows=[]
-    for i in 0...5; statshadows[i]=shadow; end
+    for i in 0...5; statshadows[i]=@shadow; end
     if !(pokemon.isShadow? rescue false) || pokemon.heartStage<=3
       natup=(pokemon.nature/5).floor
       natdn=(pokemon.nature%5).floor
@@ -525,61 +533,60 @@ class PokemonSummaryScene
     pokename=@pokemon.name
 
     textpos=[
-       [_INTL("CARACTERÍSTICAS"),26,16,0,base,shadow],
-       [pokename,46,62,0,base,shadow],
-       [pokemon.level.to_s,46,92,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Objeto"),16,320,0,base,shadow],
-       [_INTL("Habilidad"),224,284,0,base,shadow],
-       [abilityname,342,284,0,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("CARACTERÍSTICAS"),26,16,0,@base,@shadow],
+       [pokename,46,62,0,@base,@shadow],
+       [pokemon.level.to_s,46,92,0,@base2,@shadow2],
+       [_INTL("Objeto"),16,320,0,@base,@shadow],
+       [_INTL("Habilidad"),224,284,0,@base,@shadow],
+       [abilityname,342,284,0,@base2,@shadow2],
 
-       [_INTL("PS"),234,76,0,base,shadow],
-       [_INTL("Ataque"),234,120,0,base,statshadows[0]],
-       [_INTL("Defensa"),234,152,0,base,statshadows[1]],
-       [_INTL("At. Esp."),234,184,0,base,statshadows[3]],
-       [_INTL("Def. Esp."),234,216,0,base,statshadows[4]],
-       [_INTL("Velocidad"),234,248,0,base,statshadows[2]],
+       [_INTL("PS"),234,76+4,0,@base,@shadow],
+       [_INTL("Ataque"),234,120,0,@base,statshadows[0]],
+       [_INTL("Defensa"),234,152,0,@base,statshadows[1]],
+       [_INTL("At. Esp."),234,184,0,@base,statshadows[3]],
+       [_INTL("Def. Esp."),234,216,0,@base,statshadows[4]],
+       [_INTL("Velocidad"),234,248,0,@base,statshadows[2]],
        ]
 
     if EXPANDED_SUMMARY_INFO
     textpos+=[
-       [sprintf("%3d/%3d",pokemon.hp,pokemon.totalhp),344,76,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.attack),366,120,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.defense),366,152,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.spatk),366,184,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.spdef),366,216,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.speed),366,248,2,Color.new(64,64,64),Color.new(176,176,176)],
+       [sprintf("%3d/%3d",pokemon.hp,pokemon.totalhp),344,76,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.attack),366,120,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.defense),366,152,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.spatk),366,184,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.spdef),366,216,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.speed),366,248,2,@base2,@shadow2],
     ]
     #EV
     textpos+=[
-       [sprintf("%d",pokemon.ev[0]),424,76,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.ev[1]),424,120,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.ev[2]),424,152,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.ev[4]),424,184,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.ev[5]),424,216,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.ev[3]),424,248,2,Color.new(64,64,64),Color.new(176,176,176)],
+       [sprintf("%d",pokemon.ev[0]),424,76,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.ev[1]),424,120,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.ev[2]),424,152,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.ev[4]),424,184,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.ev[5]),424,216,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.ev[3]),424,248,2,@base2,@shadow2],
     ]
     #IV
     textpos+=[
-       [sprintf("%d",pokemon.iv[0]),476,76,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.iv[1]),476,120,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.iv[2]),476,152,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.iv[4]),476,184,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.iv[5]),476,216,2,Color.new(64,64,64),Color.new(176,176,176)],
-       [sprintf("%d",pokemon.iv[3]),476,248,2,Color.new(64,64,64),Color.new(176,176,176)],
+       [sprintf("%d",pokemon.iv[0]),476,76,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.iv[1]),476,120,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.iv[2]),476,152,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.iv[4]),476,184,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.iv[5]),476,216,2,@base2,@shadow2],
+       [sprintf("%d",pokemon.iv[3]),476,248,2,@base2,@shadow2],
     ]
-
     else
       textpos+=[
-         [sprintf("%3d/%3d",pokemon.hp,pokemon.totalhp),456,76,2,Color.new(64,64,64),Color.new(176,176,176)],
-         [sprintf("%d",pokemon.attack),456,120,2,Color.new(64,64,64),Color.new(176,176,176)],
-         [sprintf("%d",pokemon.defense),456,152,2,Color.new(64,64,64),Color.new(176,176,176)],
-         [sprintf("%d",pokemon.spatk),456,184,2,Color.new(64,64,64),Color.new(176,176,176)],
-         [sprintf("%d",pokemon.spdef),456,216,2,Color.new(64,64,64),Color.new(176,176,176)],
-         [sprintf("%d",pokemon.speed),456,248,2,Color.new(64,64,64),Color.new(176,176,176)],
+         [sprintf("%3d/%3d",pokemon.hp,pokemon.totalhp),456,76,2,@base2,@shadow2],
+         [sprintf("%d",pokemon.attack),456,120,2,@base2,@shadow2],
+         [sprintf("%d",pokemon.defense),456,152,2,@base2,@shadow2],
+         [sprintf("%d",pokemon.spatk),456,184,2,@base2,@shadow2],
+         [sprintf("%d",pokemon.spdef),456,216,2,@base2,@shadow2],
+         [sprintf("%d",pokemon.speed),456,248,2,@base2,@shadow2],
       ]
     end
     if pokemon.hasItem?
-      textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([PBItems.getName(pokemon.item),16,352,0,@base2,@shadow2])
     else
       textpos.push([_INTL("Ninguno"),16,352,0,Color.new(184,184,160),Color.new(208,208,200)])
     end
@@ -591,9 +598,9 @@ class PokemonSummaryScene
     pbDrawTextPositions(overlay,textpos)
     pbSetSmallFont(overlay)
     if EXPANDED_SUMMARY_INFO
-      drawTextEx(overlay,224,316,282,2,"Presiona C para más información.",Color.new(64,64,64),Color.new(176,176,176))
+      drawTextEx(overlay,224,316,282,2,"Presiona C para más información.",@base2,@shadow2)
     else
-      drawTextEx(overlay,224,316,282,2,abilitydesc,Color.new(64,64,64),Color.new(176,176,176))
+      drawTextEx(overlay,224,316,282,2,abilitydesc,@base2,@shadow2)
     end
     pbSetSystemFont(overlay)
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
@@ -632,10 +639,8 @@ class PokemonSummaryScene
     ballimage=sprintf("Graphics/#{SUMMARY_ROUTE}/summaryball%02d",@pokemon.ballused)
     imagepos.push([ballimage,14,60,0,0,-1,-1])
     pbDrawImagePositions(overlay,imagepos)
-    base=Color.new(248,248,248)
-    shadow=Color.new(104,104,104)
     statshadows=[]
-    for i in 0...5; statshadows[i]=shadow; end
+    for i in 0...5; statshadows[i]=@shadow; end
     if !(pokemon.isShadow? rescue false) || pokemon.heartStage<=3
       natup=(pokemon.nature/5).floor
       natdn=(pokemon.nature%5).floor
@@ -647,14 +652,14 @@ class PokemonSummaryScene
     abilitydesc=pbGetMessage(MessageTypes::AbilityDescs,pokemon.ability)
     pokename=@pokemon.name
     textpos=[
-       [_INTL("CARACTERÍSTICAS"),26,16,0,base,shadow],
-       [pokename,46,62,0,base,shadow],
-       [pokemon.level.to_s,46,92,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Objeto"),16,320,0,base,shadow],
-       [abilityname,232,76,0,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("CARACTERÍSTICAS"),26,16,0,@base,@shadow],
+       [pokename,46,62,0,@base,@shadow],
+       [pokemon.level.to_s,46,92,0,@base2,@shadow2],
+       [_INTL("Objeto"),16,320,0,@base,@shadow],
+       [abilityname,232,76,0,@base2,@shadow2],
     ]
     if pokemon.hasItem?
-      textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([PBItems.getName(pokemon.item),16,352,0,@base2,@shadow2])
     else
       textpos.push([_INTL("Ninguno"),16,352,0,Color.new(184,184,160),Color.new(208,208,200)])
     end
@@ -664,16 +669,16 @@ class PokemonSummaryScene
       textpos.push([_INTL("♀"),178,62,0,Color.new(248,56,32),Color.new(224,152,144)])
     end
 
-    textpos.push([_INTL("Poder Oculto",abilityname),256+8,334,0,base,shadow])
+    textpos.push([_INTL("Poder Oculto",abilityname),256+8,334,0,@base,@shadow])
     hp=pbHiddenPower(pokemon.iv)
     type1rect=Rect.new(0,hp[0]*28,64,28)
     overlay.blt(416-8,334+2,@typebitmap.bitmap,type1rect)
 
     pbDrawTextPositions(overlay,textpos)
 
-    #drawTextEx(overlay,224,316,282,2,abilitydesc,Color.new(64,64,64),Color.new(176,176,176))
+    #drawTextEx(overlay,224,316,282,2,abilitydesc,@base2,@shadow2)
     pbSetSmallFont(overlay)
-    drawFormattedTextEx(overlay,232,112,272,abilitydesc,Color.new(64,64,64),Color.new(176,176,176))
+    drawFormattedTextEx(overlay,232,112,272,abilitydesc,@base2,@shadow2)
 
     pbSetSystemFont(overlay)
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
@@ -718,18 +723,16 @@ class PokemonSummaryScene
     ballimage=sprintf("Graphics/#{SUMMARY_ROUTE}/summaryball%02d",@pokemon.ballused)
     imagepos.push([ballimage,14,60,0,0,-1,-1])
     pbDrawImagePositions(overlay,imagepos)
-    base=Color.new(248,248,248)
-    shadow=Color.new(104,104,104)
     pbSetSystemFont(overlay)
     pokename=@pokemon.name
     textpos=[
-       [_INTL("MOVIMIENTOS"),26,16,0,base,shadow],
-       [pokename,46,62,0,base,shadow],
-       [pokemon.level.to_s,46,92,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Objeto"),16,320,0,base,shadow]
+       [_INTL("MOVIMIENTOS"),26,16,0,@base,@shadow],
+       [pokename,46,62,0,@base,@shadow],
+       [pokemon.level.to_s,46,92,0,@base2,@shadow2],
+       [_INTL("Objeto"),16,320,0,@base,@shadow]
     ]
     if pokemon.hasItem?
-      textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([PBItems.getName(pokemon.item),16,352,0,@base2,@shadow2])
     else
       textpos.push([_INTL("Ninguno"),16,352,0,Color.new(184,184,160),Color.new(208,208,200)])
     end
@@ -746,16 +749,16 @@ class PokemonSummaryScene
         imagepos.push(["Graphics/Pictures/types",248,yPos+2,0,
            pokemon.moves[i].type*28,64,28])
         textpos.push([PBMoves.getName(pokemon.moves[i].id),316,yPos,0,
-           Color.new(64,64,64),Color.new(176,176,176)])
+        @base2,@shadow2])
         if pokemon.moves[i].totalpp>0
           textpos.push([_ISPRINTF("PP"),342,yPos+32,0,
-             Color.new(64,64,64),Color.new(176,176,176)])
+          @base2,@shadow2])
           textpos.push([sprintf("%d/%d",pokemon.moves[i].pp,pokemon.moves[i].totalpp),
-             460,yPos+32,1,Color.new(64,64,64),Color.new(176,176,176)])
+             460,yPos+32,1,@base2,@shadow2])
         end
       else
-        textpos.push(["-",316,yPos,0,Color.new(64,64,64),Color.new(176,176,176)])
-        textpos.push(["--",442,yPos+32,1,Color.new(64,64,64),Color.new(176,176,176)])
+        textpos.push(["-",316,yPos,0,@base2,@shadow2])
+        textpos.push(["--",442,yPos+32,1,@base2,@shadow2])
       end
       yPos+=64
     end
@@ -780,9 +783,9 @@ class PokemonSummaryScene
     move=moveid
     textpos=[
        [basedamage<=1 ? basedamage==1 ? "???" : "---" : sprintf("%d",basedamage),
-          216,154,1,Color.new(64,64,64),Color.new(176,176,176)],
+          216,154,1,@base2,@shadow2],
        [accuracy==0 ? "---" : sprintf("%d",accuracy),
-          216,186,1,Color.new(64,64,64),Color.new(176,176,176)]
+          216,186,1,@base2,@shadow2]
     ]
     pbDrawTextPositions(overlay,textpos)
     imagepos=[["Graphics/Pictures/category",166,124,0,category*28,64,28]]
@@ -790,25 +793,23 @@ class PokemonSummaryScene
     pbSetSmallFont(overlay)
     drawTextEx(overlay,4,218,240,5,
        pbGetMessage(MessageTypes::MoveDescriptions,moveid),
-       Color.new(64,64,64),Color.new(176,176,176))
+       @base2,@shadow2)
     pbSetSystemFont(overlay)
   end
 
   def drawMoveSelection(pokemon,moveToLearn)
     overlay=@sprites["overlay"].bitmap
     overlay.clear
-    base=Color.new(248,248,248)
-    shadow=Color.new(104,104,104)
     @sprites["background"].setBitmap("Graphics/#{SUMMARY_ROUTE}/summary4details")
     if moveToLearn!=0
       @sprites["background"].setBitmap("Graphics/#{SUMMARY_ROUTE}/summary4learning")
     end
     pbSetSystemFont(overlay)
     textpos=[
-       [_INTL("MOVIMIENTOS"),26,16,0,base,shadow],
-       [_INTL("CATEGORÍA"),20,122,0,base,shadow],
-       [_INTL("POTENCIA"),20,154,0,base,shadow],
-       [_INTL("PRECISIÓN"),20,186,0,base,shadow]
+       [_INTL("MOVIMIENTOS"),26,16,0,@base,@shadow],
+       [_INTL("CATEGORÍA"),20,122,0,@base,@shadow],
+       [_INTL("POTENCIA"),20,154,0,@base,@shadow],
+       [_INTL("PRECISIÓN"),20,186,0,@base,@shadow]
     ]
     type1rect=Rect.new(0,pokemon.type1*28,64,28)
     type2rect=Rect.new(0,pokemon.type2*28,64,28)
@@ -834,16 +835,16 @@ class PokemonSummaryScene
           imagepos.push(["Graphics/Pictures/types",248,yPos+2,0,
              moveobject.type*28,64,28])
           textpos.push([PBMoves.getName(moveobject.id),316,yPos,0,
-             Color.new(64,64,64),Color.new(176,176,176)])
+             @base2,@shadow2])
           if moveobject.totalpp>0
             textpos.push([_ISPRINTF("PP"),342,yPos+32,0,
-               Color.new(64,64,64),Color.new(176,176,176)])
+               @base2,@shadow2])
             textpos.push([sprintf("%d/%d",moveobject.pp,moveobject.totalpp),
-               460,yPos+32,1,Color.new(64,64,64),Color.new(176,176,176)])
+               460,yPos+32,1,@base2,@shadow2])
           end
         else
-          textpos.push(["-",316,yPos,0,Color.new(64,64,64),Color.new(176,176,176)])
-          textpos.push(["--",442,yPos+32,1,Color.new(64,64,64),Color.new(176,176,176)])
+          textpos.push(["-",316,yPos,0,@base2,@shadow2])
+          textpos.push(["--",442,yPos+32,1,@base2,@shadow2])
         end
       end
       yPos+=64
@@ -878,15 +879,15 @@ class PokemonSummaryScene
     pbSetSystemFont(overlay)
     pokename=@pokemon.name
     textpos=[
-       [_INTL("CINTAS"),26,16,0,base,shadow],
-       [pokename,46,62,0,base,shadow],
-       [pokemon.level.to_s,46,92,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [_INTL("Objeto"),16,320,0,base,shadow],
-       [_INTL("Número de Cintas:"),234,332,0,Color.new(64,64,64),Color.new(176,176,176)],
-       [@pokemon.ribbonCount.to_s,450,332,1,Color.new(64,64,64),Color.new(176,176,176)],
+       [_INTL("CINTAS"),26,16,0,@base,@shadow],
+       [pokename,46,62,0,@base,@shadow],
+       [pokemon.level.to_s,46,92,0,@base2,@shadow2],
+       [_INTL("Objeto"),16,320,0,@base,@shadow],
+       [_INTL("Número de Cintas:"),234,332,0,@base2,@shadow2],
+       [@pokemon.ribbonCount.to_s,450,332,1,@base2,@shadow2],
     ]
     if pokemon.hasItem?
-      textpos.push([PBItems.getName(pokemon.item),16,352,0,Color.new(64,64,64),Color.new(176,176,176)])
+      textpos.push([PBItems.getName(pokemon.item),16,352,0,@base2,@shadow2])
     else
       textpos.push([_INTL("Ninguno"),16,352,0,Color.new(184,184,160),Color.new(208,208,200)])
     end
@@ -918,8 +919,8 @@ class PokemonSummaryScene
     # Set various values
     overlay = @sprites["overlay"].bitmap
     pbSetSystemFont(overlay)
-    base   = Color.new(64,64,64)
-    shadow = Color.new(176,176,176)
+    base   = @base2
+    shadow = @shadow2
     nameBase   = Color.new(248,248,248)
     nameShadow = Color.new(104,104,104)
     # Get data for selected ribbon
@@ -936,7 +937,7 @@ class PokemonSummaryScene
     ]
     pbDrawTextPositions(overlay,textpos)
     # Draw selected ribbon's description
-    drawTextEx(overlay,18,318,480,2,desc,base,shadow)
+    drawTextEx(overlay,18,318,480,2,desc,@base,@shadow)
   end
 
   def pbChooseMoveToForget(moveToLearn)

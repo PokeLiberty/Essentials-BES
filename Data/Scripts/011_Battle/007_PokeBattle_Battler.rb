@@ -1,4 +1,5 @@
 $zygardeform=-1 # Records, eventually, to what form should Zygarde return after battle
+$consumedItems = {} # BES-T Almacena los items usados por el Pokémon.
 class PokeBattle_Battler
   attr_reader :battle
   attr_reader :pokemon
@@ -553,13 +554,17 @@ class PokeBattle_Battler
     @effects[PBEffects::Mimicry]          = [nil, nil]
     @effects[PBEffects::RevivalBlessing]  = false
     @effects[PBEffects::Silktrap]         = false
-    @effects[PBEffects::RageFist]         = false
+    @effects[PBEffects::RageFist]         = 0
     @effects[PBEffects::BurningBulwark]   = false
     @effects[PBEffects::Commander]        = 0
     @effects[PBEffects::GlaiveRush]       = false
     @effects[PBEffects::ShedTail]         = false
     @effects[PBEffects::SaltCure]         = false
     @effects[PBEffects::SyrupBomb]        = 0
+
+    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    @effects[PBEffects::Protosynthesis]   = 0
+    @effects[PBEffects::BoosterEnergy]    = false
   end
 
   def pbUpdate(fullchange=false)
@@ -825,6 +830,15 @@ class PokeBattle_Battler
     if self.status==PBStatuses::PARALYSIS && !self.hasWorkingAbility(:QUICKFEET)
       speedmult=(speedmult/4).round
     end
+    
+    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    # Aumento de velocidad
+    if ((self.hasWorkingAbility(:PROTOSYNTHESIS) && ((([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather))) || self.effects[PBEffects::BoosterEnergy]))              ||   # Paleosítensis
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.effects[PBEffects::BoosterEnergy]))) &&                                                                                    # Quark Drive       
+        @effects[PBEffects::Protosynthesis] == PBStats::SPEED
+      speedmult=(speedmult*1.5).round
+    end
+    
     if @battle.internalbattle && @battle.pbOwnedByPlayer?(@index) &&
        @battle.pbPlayer.numbadges>=BADGESBOOSTSPEED
       speedmult=(speedmult*1.1).round
@@ -1378,64 +1392,31 @@ class PokeBattle_Battler
         end
       end
     end
-    # Paleosítensis
-    if self.hasWorkingAbility(:PROTOSYNTHESIS) && (@battle.weather==PBWeather::SUNNYDAY || self.hasWorkingItem(:BOOSTERENERGY)) && onactive
-      if self.attack >= self.defense &&
-        self.attack >= self.spatk &&
-        self.attack >= self.spdef &&
-        self.attack >= self.speed
-        if pbIncreaseStatWithCause(PBStats::ATTACK,1,self,PBAbilities.getName(ability))
-         PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Attack)")
-        end
-      elsif self.defense >= self.spatk &&
-          self.defense >= self.spdef &&
-          self.defense >= self.speed
-          if pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Defense)")
-        end
-      elsif self.spatk >= self.spdef &&
-        self.spatk >= self.speed
-          if pbIncreaseStatWithCause(PBStats::SPATK,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Special Attack)")
-        end
-      elsif self.spdef >= self.speed
-          if pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Special Defense)")
-        end
-      else
-        if pbIncreaseStatWithCause(PBStats::SPEED,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Speed)")
-        end
-      end
+    
+    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    # Resetea el efecto cuando se pase el clima/campo
+    if (!@effects[PBEffects::BoosterEnergy] && @effects[PBEffects::Protosynthesis] > 0) && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (![PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather))) || # Paleosítensis
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]<=0)))                                                                                                          # Quark Drive    
+      @effects[PBEffects::Protosynthesis] = 0
     end
-    # Carga Cuark
-    if self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY)) && onactive
-      if self.attack >= self.defense &&
-        self.attack >= self.spatk &&
-        self.attack >= self.spdef &&
-        self.attack >= self.speed
-        if pbIncreaseStatWithCause(PBStats::ATTACK,1,self,PBAbilities.getName(ability))
-         PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Attack)")
-        end
-      elsif self.defense >= self.spatk &&
-          self.defense >= self.spdef &&
-          self.defense >= self.speed
-          if pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Defense)")
-        end
-      elsif self.spatk >= self.spdef &&
-        self.spatk >= self.speed
-          if pbIncreaseStatWithCause(PBStats::SPATK,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Special Attack)")
-        end
-      elsif self.spdef >= self.speed
-          if pbIncreaseStatWithCause(PBStats::SPDEF,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Special Defense)")
-        end
+
+    # Activación de Protosíntesis y Carga Cuark.
+    if @effects[PBEffects::Protosynthesis] <= 0 && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather) || self.hasWorkingItem(:BOOSTERENERGY)))) ||           # Paleosítensis
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY))))  # Quark Drive      
+      stagemult = [1, 1.5, 2, 2.5, 3, 3.5, 4, 0.25, 0.28, 0.33, 0.40, 0.50, 0.67]
+      stats = [@attack, @defense, @speed, @spatk, @spdef].each_with_index.map { |stat, i| 
+        stat * stagemult[@stages[i + 1]]
+      }
+      stats = [stats[2], stats[4], stats[3], stats[1], stats[0]] # Cambia el orden de las stats para que sea el mismo que en los juegos oficiales en caso de tener el mismo valor.
+      max = stats.each_with_index.max
+      @effects[PBEffects::Protosynthesis]=[3, 5, 4, 2, 1][max[1]] # Revierte los cambios de índice para que sea el mismo que en Essentials.
+      if self.hasWorkingItem(:BOOSTERENERGY) && !(self.hasWorkingAbility(:PROTOSYNTHESIS) && ([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather)) ||
+                                                  self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0))
+        @effects[PBEffects::BoosterEnergy] = true 
+        @battle.pbDisplay(_INTL("{1} de {2} aumentó su {3} gracias a {4}!", PBAbilities.getName(self.ability), pbThis, PBStats.getName(@effects[PBEffects::Protosynthesis]), PBItems.getName(self.item)))
+        self.pbConsumeItem
       else
-        if pbIncreaseStatWithCause(PBStats::SPEED,1,self,PBAbilities.getName(ability))
-          PBDebug.log("[Ability triggered] #{pbThis}'s Beast Boost (raising Speed)")
-        end
+        @battle.pbDisplay(_INTL("{1} de {2} aumentó su {3}!", PBAbilities.getName(self.ability), pbThis, PBStats.getName(@effects[PBEffects::Protosynthesis])))
       end
     end
 
@@ -2132,6 +2113,7 @@ class PokeBattle_Battler
     end
     if damage>0
       if !target.damagestate.substitute
+        target.effects[PBEffects::RageFist]+=1
         # Cadena Tóxica
         if user.hasWorkingAbility(:TOXICCHAIN,true) &&
            target.pbCanPoison?(nil,false) && @battle.pbRandom(10)<3
@@ -2640,6 +2622,11 @@ class PokeBattle_Battler
     itemname=PBItems.getName(self.item)
     @pokemon.itemRecycle=self.item if recycle
     @pokemon.itemInitial=0 if @pokemon.itemInitial==self.item
+    if USENEWBATTLEMECHANICS # BES-T Recuperar objetos usados excepto Bayas
+      if !pbIsBerry?(self.item)
+        $consumedItems[self.pokemon] = self.item unless self.item<=0
+      end
+    end
     if pickup
       @effects[PBEffects::PickupItem]=self.item
       @effects[PBEffects::PickupUse]=@battle.nextPickupUse
@@ -3593,16 +3580,18 @@ class PokeBattle_Battler
       PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos basados en polvo por alguna razón")
       return false
     end
+    # Cuerpo Aureo
+    if thismove.pbIsStatus? && !thismove.doesBypassIgnorableAbilities? &&
+      !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD)
+      showAbilityMessage(target)
+      @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
+      PBDebug.log("[Habilidad disparada] Cuerpo Áureo de #{target.pbThis}")
+      return false
+    end
     if thismove.basedamage>0 && thismove.function!=0x02 &&                     # Combate
        thismove.function!=0x111                                                # Premonición
       type=thismove.pbType(thismove.type,user,target)
       typemod=thismove.pbTypeModifier(type,user,target)
-      #Cuerpo Aureo
-      if (thismove.pbIsStatus? && thismove.doesBypassIgnorableAbilities?) &&
-         !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD)
-
-         @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
-      end
       # Inmunidad a movimientos de tipo Tierra en base a Pokémon en el aire
       if isConst?(type,PBTypes,:GROUND) && target.isAirborne?(user.hasMoldBreaker ||
         thismove.doesBypassIgnorableAbilities?) &&
@@ -3716,9 +3705,6 @@ class PokeBattle_Battler
   def pbTryUseMove(choice,thismove,turneffects)
     return true if turneffects[PBEffects::PassedTrying]
     # TODO: Devolver true si el ataque ya ha sido reflejado por Capa Mágica una vez
-    if !turneffects[PBEffects::SkipAccuracyCheck]
-      return false if !pbObedienceCheck?(choice)
-    end
     if @effects[PBEffects::SkyDrop]              # No hay mensajes aquí intencionalmente
       PBDebug.log("[Movimiento falló] #{pbThis} no puede usar #{thismove.name} debido a Caída Libre")
       return false
@@ -3881,6 +3867,9 @@ class PokeBattle_Battler
         end
       end
     end
+    if !turneffects[PBEffects::SkipAccuracyCheck]
+      return false if !pbObedienceCheck?(choice)
+    end
     turneffects[PBEffects::PassedTrying]=true
     return true
   end
@@ -4023,7 +4012,7 @@ class PokeBattle_Battler
       # Disguise
       if target.hasWorkingAbility(:DISGUISE) &&
         isConst?(target.species,PBSpecies,:MIMIKYU) && target.form==0 &&
-        thismove.pbIsDamaging? && !target.damagestate.substitute &&
+        thismove.pbIsDamaging? && !(user.effects[PBEffects::TwoTurnAttack] > 0) && !target.damagestate.substitute && thismove
         !user.hasMoldBreaker && !thismove.doesBypassIgnorableAbilities?
         PBDebug.log("[Ability triggered] #{target.pbThis}'s Disguise ended")
         @battle.pbDisplay(_INTL("¡El disfraz ha actuado como señuelo!"))
@@ -4373,6 +4362,8 @@ class PokeBattle_Battler
       @battle.pbJudge #      @battle.pbSwitch
       return
     end
+    thismove=choice[2]   # Disobedience may have changed the move to be used
+    return if !thismove || thismove.id==0   # if move was not chosen
     if !turneffects[PBEffects::SpecialUsage]
       if !pbReducePP(thismove)
         @battle.pbDisplay(_INTL("¡{1} usó\r\n{2}!",pbThis,thismove.name))

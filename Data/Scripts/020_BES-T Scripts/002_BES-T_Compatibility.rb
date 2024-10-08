@@ -85,28 +85,6 @@ def pbCryFile(pokemon,form=0)
   return nil
 end
 
-def pbAfterBattle(decision,canlose)
-  for i in $Trainer.party
-    (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil)
-  end
-  if $PokemonGlobal.partner
-    pbHealAll
-    for i in $PokemonGlobal.partner[3]
-      i.heal
-      (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil)
-    end
-  end
-  if decision==2 || decision==5 # if loss or draw
-    if canlose
-      for i in $Trainer.party; i.heal; end
-      for i in 0...10
-        Graphics.update
-      end
-    end
-  end
-  Events.onEndBattle.trigger(nil,decision,canlose)
-end
-
 class PokemonTemp
   attr_accessor :pokemonFormsData
   attr_accessor :surfJump

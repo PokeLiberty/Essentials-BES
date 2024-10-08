@@ -65,14 +65,10 @@ def moveThrough(follower,direction)
   oldThrough=follower.through
   follower.through=true
   case direction
-  when 2 # down
-    follower.move_down
-  when 4 # left
-    follower.move_left
-  when 6 # right
-    follower.move_right
-  when 8 # up
-    follower.move_up
+  when 2; follower.move_down # down
+  when 4; follower.move_left # left
+  when 6; follower.move_right # right
+  when 8; follower.move_up # up
   end 
   follower.through=oldThrough
 end
@@ -91,14 +87,10 @@ def moveFancy(follower,direction)
     oldThrough=follower.through
     follower.through=true
     case direction
-    when 2 # down
-      follower.move_down
-    when 4 # left
-      follower.move_left
-    when 6 # right
-      follower.move_right
-    when 8 # up
-      follower.move_up
+    when 2; follower.move_down # down
+    when 4; follower.move_left # left
+    when 6; follower.move_right # right
+    when 8; follower.move_up # up
     end 
     follower.through=oldThrough
   end
@@ -158,19 +150,14 @@ class DependentEvents
       commonEvent=Game_CommonEvent.new(eventData[9])
       rpgEvent.pages[0].list=commonEvent.list
     end
-    newEvent=Game_Event.new(eventData[0],rpgEvent,
-       $MapFactory.getMap(eventData[2]))
+    newEvent=Game_Event.new(eventData[0],rpgEvent,$MapFactory.getMap(eventData[2]))
     newEvent.character_name=eventData[6]
     newEvent.character_hue=eventData[7]
     case eventData[5] # direction
-    when 2 # down
-      newEvent.turn_down
-    when 4 # left
-      newEvent.turn_left
-    when 6 # right
-      newEvent.turn_right
-    when 8 # up
-      newEvent.turn_up
+    when 2; newEvent.turn_down # down
+    when 4; newEvent.turn_left # left
+    when 6; newEvent.turn_right # right
+    when 8; newEvent.turn_up # up
     end
     return newEvent
   end
@@ -406,7 +393,9 @@ class DependentEvents
       events[i][5]=event.direction
     end
     # Check event triggers
-    if Input.trigger?(Input::C) && !pbMapInterpreterRunning?
+    if Input.trigger?(Input::C) && !$game_temp.in_menu && !$game_temp.in_battle &&
+       !$game_player.move_route_forcing && !$game_temp.message_window_showing &&
+       !pbMapInterpreterRunning?
       # Get position of tile facing the player
       facingTile=$MapFactory.getFacingTile()
       self.eachEvent {|e,d|
@@ -560,8 +549,6 @@ class DependentEventSprites
     @disposed
   end
 end
-
-
 
 Events.onSpritesetCreate+=proc{|sender,e|
    spriteset=e[0] # Spriteset being created

@@ -95,7 +95,7 @@ module PokeBattle_SceneConstants
 
   # Centre middle of the foe's side base graphic
   FOEBASEX    = FOEBATTLER_X
-  FOEBASEY    = FOEBATTLER_Y
+  FOEBASEY    = (Graphics.height * 3/4) - 112
   
   # Coordinates of the centre bottom of the player's sprite
   PLAYERTRAINER_X   = PLAYERBATTLER_X
@@ -123,6 +123,14 @@ module PokeBattle_SceneConstants
   # BES-T
   # Colorea las letras de los movimientos segun los colores usados en el botón de combate.
   # Desactivalo si usas cajas customizadas.
-  COLOREDTYPE = false
+  COLOREDTYPE     = true
+  # Añade los textos de Luchar, Pokémon, Bolsa, Huir, etc... por script.
+  # Desactivalo si usas cajas customizadas.
+  CMD_BUTTON_TEXT = false
+  # Añade outlines a todos los textos en los botones de combate.
+  CMD_OUTLINE     = false
+  # Añade outlines a todos los textos que aparecen en el databox de cada pokémon.
+  # Recomendado en interfaces estilo Blanco y Negro, recuerda editar los colores del texto!
+  DTBOX_OUTLINE     = false
 
 end

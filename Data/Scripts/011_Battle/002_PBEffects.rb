@@ -141,7 +141,12 @@ begin
     Commander          = 146
     GlaiveRush         = 147
     ShedTail           = 148
+    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    # El efecto de Protosíntesis también controla Carga Cuark. 
+    Protosynthesis     = 150
+    BoosterEnergy      = 151 
     
+
     ZHeal              = 149
     
     ############################################################################

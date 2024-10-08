@@ -2512,7 +2512,7 @@ class PokeBattle_Battle
         if battler.pbHasType?(:GRASS) && !battler.isAirborne? &&
            (!battler.pbTooHigh?(PBStats::ATTACK) || !battler.pbTooHigh?(PBStats::SPATK))
           count+=1
-          if attacker.pbIsOpposing?(battler)
+          if attacker.pbIsOpposing?(i)
             score-=20
           else
             score-=attacker.stages[PBStats::ATTACK]*10
@@ -2527,7 +2527,7 @@ class PokeBattle_Battle
         battler=@battlers[i]
         if battler.pbHasType?(:GRASS) && !battler.pbTooHigh?(PBStats::DEFENSE)
           count+=1
-          if attacker.pbIsOpposing?(battler)
+          if attacker.pbIsOpposing?(i)
             score-=20
           else
             score-=attacker.stages[PBStats::DEFENSE]*10
@@ -2544,7 +2544,7 @@ class PokeBattle_Battle
            !battler.pbTooLow?(PBStats::SPATK) ||
            !battler.pbTooLow?(PBStats::SPEED))
           count+=1
-          if attacker.pbIsOpposing?(battler)
+          if attacker.pbIsOpposing?(i)
             score+=attacker.stages[PBStats::ATTACK]*10
             score+=attacker.stages[PBStats::SPATK]*10
             score+=attacker.stages[PBStats::SPEED]*10

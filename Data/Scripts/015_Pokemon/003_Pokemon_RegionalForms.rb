@@ -1299,6 +1299,9 @@ MultipleForms.register(:SLOWBRO,{
      movelist[i]=getConst(PBMoves,movelist[i])
    end
    next movelist
+},
+"getUnmegaForm"=>proc{|pokemon|
+   next 0 if pokemon.form==2
 }
 })
 

@@ -289,29 +289,29 @@ end
 #===============================================================================
 def pbTrainerSpriteFile(type)
   return nil if !type
-  bitmapFileName=sprintf("Graphics/Characters/trainer%s",getConstantName(PBTrainers,type)) rescue nil
+  bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%s",getConstantName(PBTrainers,type)) rescue nil
   if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Characters/trainer%03d",type)
+    bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%03d",type)
   end
   return bitmapFileName
 end
 
 def pbTrainerSpriteBackFile(type)
   return nil if !type
-  bitmapFileName=sprintf("Graphics/Characters/trback%s",getConstantName(PBTrainers,type)) rescue nil
+  bitmapFileName=sprintf("Graphics/Battlers/Trainers/trback%s",getConstantName(PBTrainers,type)) rescue nil
   if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Characters/trback%03d",type)
+    bitmapFileName=sprintf("Graphics/Battlers/Trainers/trback%03d",type)
   end
   return bitmapFileName
 end
 
 def pbPlayerSpriteFile(type)
   return nil if !type
-  outfit = ($Trainer) ? $Trainer.outfit : 0
-  bitmapFileName=sprintf("Graphics/Characters/trainer%s_%d",
+  outfit=$Trainer ? $Trainer.outfit : 0
+  bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%s_%d",
      getConstantName(PBTrainers,type),outfit) rescue nil
   if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Characters/trainer%03d_%d",type,outfit)
+    bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%03d_%d",type,outfit)
     if !pbResolveBitmap(bitmapFileName)
       bitmapFileName=pbTrainerSpriteFile(type)
     end
@@ -321,11 +321,11 @@ end
 
 def pbPlayerSpriteBackFile(type)
   return nil if !type
-  outfit = ($Trainer) ? $Trainer.outfit : 0
-  bitmapFileName=sprintf("Graphics/Characters/trback%s_%d",
+  outfit=$Trainer ? $Trainer.outfit : 0
+  bitmapFileName=sprintf("Graphics/Battlers/Trainers/trback%s_%d",
      getConstantName(PBTrainers,type),outfit) rescue nil
   if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Characters/trback%03d_%d",type,outfit)
+    bitmapFileName=sprintf("Graphics/Battlers/Trainers/trback%03d_%d",type,outfit)
     if !pbResolveBitmap(bitmapFileName)
       bitmapFileName=pbTrainerSpriteBackFile(type)
     end

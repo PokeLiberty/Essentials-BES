@@ -279,7 +279,6 @@ class ParticleEffect_Event < ParticleEffect
       maxX+=@bmwidth
       maxY+=@bmheight
       if maxX<0 || maxY<0 || minX>=Graphics.width || minY>=Graphics.height
-        echo "skipped"
         return
       end
     end

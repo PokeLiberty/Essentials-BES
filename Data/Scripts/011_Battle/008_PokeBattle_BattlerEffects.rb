@@ -264,12 +264,12 @@ class PokeBattle_Battler
         @battle.pbDisplay(_INTL("¡{1} ha sido envenenado!",pbThis))
       end
     end
-    begin
-      if attacker.hasWorkingAbility(:POISONPUPPETEER) && self.pbCanConfuse?(attacker,false)
-        self.pbConfuse
-        @battle.pbDisplay(_INTL("¡{1} se encuentra confuso!",pbThis))
-      end
-    rescue;end
+
+    if attacker && (attacker.hasWorkingAbility(:POISONPUPPETEER) && self.pbCanConfuse?(attacker,false))
+      self.pbConfuse
+      @battle.pbDisplay(_INTL("¡{1} se encuentra confuso!",pbThis))
+    end
+
     if toxic
       PBDebug.log("[Cambio de estado] #{pbThis} ha sido gravemente envenenado")
     else

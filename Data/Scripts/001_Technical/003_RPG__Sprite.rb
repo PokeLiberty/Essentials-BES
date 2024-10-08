@@ -215,7 +215,7 @@ class SpriteAnimation
         self.flash(timing.flash_color, timing.flash_duration * getWaitFramerate)
       when 2
         if self.viewport != nil
-          self.viewport.flash(timing.flash_color, timing.flash_duration * getWaitFramerate2)
+          self.viewport.flash(timing.flash_color, timing.flash_duration * getWaitFramerate)
         end
       when 3
         self.flash(nil, timing.flash_duration * getWaitFramerate)

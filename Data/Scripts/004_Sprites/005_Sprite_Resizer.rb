@@ -594,6 +594,8 @@ end
 
 
 class ScreenBorder
+  attr_reader :sprite
+
   def initialize
     initializeInternal
     refresh

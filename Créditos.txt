@@ -3,7 +3,6 @@ Si faltan creditos de alguien reportad.
 Créditos:
 
 - Pokémon Essentials -
-
 · Flameguru
 · Poccil
 · Maruno
@@ -11,7 +10,6 @@ Créditos:
 - Recopilación -
 · Pira
 · Clara
-
 
 - PBS - 
 · Alexandrite
@@ -56,7 +54,6 @@ Créditos:
 · Princess-Phoenix
 · Kidkatt
 · Zender1752
-
 
 - Scripts -
 

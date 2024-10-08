@@ -169,7 +169,7 @@ class Spriteset_Map
     @playersprite=playersprite
     @reflectedSprites.push(ReflectedSprite.new(playersprite,$game_player,@viewport1))
     @character_sprites.push(playersprite)
-    @weather = RPG::Weather.new(@viewport1a)
+    @weather = RPG::Weather.new(@viewport1)
     @picture_sprites = []
     for i in 1..50
       @picture_sprites.push(Sprite_Picture.new(@viewport2,$game_screen.pictures[i]))
@@ -302,18 +302,22 @@ class Spriteset_Map
        self.map==$game_map || $game_player.x<=0 || $game_player.y<=0 ||
        ($game_map && ($game_player.x>=$game_map.width ||
        $game_player.y>=$game_map.height)))
-    if self.map!=$game_map
-      @weather.max-=2 if @weather.max>0
-      @weather.max=0 if @weather.max<0
-      @weather.type = 0 if @weather.max==0
-      @weather.ox = 0 if @weather.max==0
-      @weather.oy = 0 if @weather.max==0
-    else
-      @weather.type = $game_screen.weather_type
-      @weather.max = $game_screen.weather_max
-      @weather.ox = @map.display_x / 4
-      @weather.oy = @map.display_y / 4
-    end
+       if self.map!=$game_map
+        if @weather.max>0
+          @weather.max -= 2
+          if @weather.max<=0
+            @weather.max  = 0
+            @weather.type = 0
+            @weather.ox   = 0
+            @weather.oy   = 0
+          end
+        end
+      else
+        @weather.type = $game_screen.weather_type
+        @weather.max  = $game_screen.weather_max
+        @weather.ox   = @map.display_x/4
+        @weather.oy   = @map.display_y/4
+      end
     @weather.update
     for sprite in @picture_sprites
       sprite.update

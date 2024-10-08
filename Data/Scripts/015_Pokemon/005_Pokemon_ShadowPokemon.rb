@@ -525,10 +525,10 @@ class PokeBattle_Battler
     __shadow_pbInitPokemon(*arg)
     # Llamado en batalla
     if self.isShadow?
-      if hasConst?(PBTypes,:SHADOW)
-        self.type1=getID(PBTypes,:SHADOW)
-        self.type2=getID(PBTypes,:SHADOW)
-      end
+      #if hasConst?(PBTypes,:SHADOW)
+      #  self.type1=getID(PBTypes,:SHADOW)
+      #  self.type2=getID(PBTypes,:SHADOW)
+      #end
       self.pokemon.adjustHeart(-30) if @battle.pbOwnedByPlayer?(@index)
     end
   end

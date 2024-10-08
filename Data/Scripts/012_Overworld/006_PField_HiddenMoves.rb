@@ -540,18 +540,17 @@ def pbEndSurf(xOffset,yOffset)
 end
 
 def Kernel.pbTransferSurfing(mapid,xcoord,ycoord,direction=$game_player.direction)
-  pbFadeOutIn(99999){
-     $game_temp.player_new_map_id=mapid
-     $game_temp.player_new_x=xcoord
-     $game_temp.player_new_y=ycoord
-     $game_temp.player_new_direction=direction
-     Kernel.pbCancelVehicles
-     $PokemonGlobal.surfing=true
-     Kernel.pbUpdateVehicle
-     $scene.transfer_player(false)
-     $game_map.autoplay
-     $game_map.refresh
-  }
+  pbFadeOutIn(99999) {
+  $game_temp.player_new_map_id    = mapid
+  $game_temp.player_new_x         = xcoord
+  $game_temp.player_new_y         = ycoord
+  $game_temp.player_new_direction = direction
+  $scene.transfer_player(false)
+  $PokemonGlobal.surfing=true
+  Kernel.pbUpdateVehicle
+  $game_map.autoplay
+  $game_map.refresh
+}
 end
 
 Events.onAction+=proc{|sender,e|
@@ -816,7 +815,7 @@ Events.onAction+=proc{|sender,e|
            end
          end
        end
-       if $MapFactory.getTerrainTag(divemap,$game_player.x,$game_player.y)==PBTerrain::DeepWater
+       if divemap && $MapFactory.getTerrainTag(divemap,$game_player.x,$game_player.y)==PBTerrain::DeepWater
          Kernel.pbSurfacing
          return
        end

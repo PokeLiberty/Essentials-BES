@@ -604,11 +604,11 @@
 602,BLUNDERPOLICY,Seguro Fallo,Seguros Fallo,1,100,"Aumenta mucho la Velocidad cuando el Pokémon erra el movimiento debido a la precisión.",0,0,0,
 603,THROATSPRAY,Espray Bucal,Espráis Bucales,1,100,"Aumenta el Ataque Especial al emplear un movimiento que se sirva del sonido.",0,0,0,
 604,GALARICACUFF,Brazal Galanuez,Brazales Galanuez,1,100,"Un brazalete hecho de Ramas de Galanuez trenzadas. Los Slowpoke de Galar lo adoran.",1,0,0,
-605,EXPCANDYXS,Caramelo Exp. XS,Caramelos Exp. XS,1,20,"Caramelo energético que aumenta ligerísimamente los Puntos de Experiencia de un Pokémon.",1,0,0,
-606,EXPCANDYS,Caramelo Exp. S,Caramelos Exp. S,1,240,"Caramelo energético que aumenta ligeramente los Puntos de Experiencia de un Pokémon.",1,0,0,
-607,EXPCANDYM,Caramelo Exp. M,Caramelos Exp. M,1,1000,"Caramelo energético que aumenta los Puntos de Experiencia de un Pokémon.",1,0,0,
-608,EXPCANDYL,Caramelo Exp. L,Caramelos Exp. L,1,3000,"Caramelo energético que aumenta bastante los Puntos de Experiencia de un Pokémon.",1,0,0,
-609,EXPCANDYXL,Caramelo Exp. XL,Caramelos Exp. XL,1,10000,"Caramelo energético que aumenta mucho los Puntos de Experiencia de un Pokémon.",1,0,0,
+605,EXPCANDYXS,Caramelo Exp. XS,Caramelos Exp. XS,2,20,"Caramelo energético que aumenta ligerísimamente los Puntos de Experiencia de un Pokémon.",1,0,0,
+606,EXPCANDYS,Caramelo Exp. S,Caramelos Exp. S,2,240,"Caramelo energético que aumenta ligeramente los Puntos de Experiencia de un Pokémon.",1,0,0,
+607,EXPCANDYM,Caramelo Exp. M,Caramelos Exp. M,2,1000,"Caramelo energético que aumenta los Puntos de Experiencia de un Pokémon.",1,0,0,
+608,EXPCANDYL,Caramelo Exp. L,Caramelos Exp. L,2,3000,"Caramelo energético que aumenta bastante los Puntos de Experiencia de un Pokémon.",1,0,0,
+609,EXPCANDYXL,Caramelo Exp. XL,Caramelos Exp. XL,2,10000,"Caramelo energético que aumenta mucho los Puntos de Experiencia de un Pokémon.",1,0,0,
 610,GALARICAWREATH,Corona Galanuez,Coronas Galanuez,1,100,"Una corona hecha de Ramas de Galanuez trenzadas. Los Slowpoke de Galar se ponen contentísimos cuando la llevan puesta.",1,0,0,
 611,ABILITYPATCH,Parche Habilidad,Parches Habilidad,1,10000,"Parche que permite cambiar la habilidad de un Pokémon a otra menos común.",1,0,0,
 612,REINSOFUNITY,Riendas Unión,Riendas Unión,8,0,"Riendas que permiten el entendimiento mutuo entre aquellos que están unidos.",5,0,6,
@@ -618,6 +618,7 @@
 616,AUSPICIOUSARMOR,Armadura Auspiciosa,Armaduras Auspiciosas,1,3000,"Curiosa armadura que hace evolucionar a una determinada especie de Pokémon. En su interior alberga sentimientos auspiciosos.",0,0,0,
 617,MALICIOUSARMOR,Armadura Maldita,Armaduras Malditas,1,3000,"Curiosa armadura que hace evolucionar a una determinada especie de Pokémon. En su interior alberga sentimientos de rencor.",0,0,0,
 618,LEADERSCREST,Distintivo Líder,Distintivos Líderes,1,5000,"Fragmento de lo que parece una cuchilla desgastada. Solo la llevan los Bisharp que lideran grupos de Pawniard.",1,0,0,
+619,UNREMARKABLETEACUP,Cuenco Mediocre,Cuencos Mediocres,1,100,"Cuenco mediocre que hace evolucionar a determinadas especies de Pokémon.",1,0,0,
 
 630,HM01,MO01,MO01s,4,0,"Corta con garras, guadañas, etc. También sirve para cortar árboles finos.",4,0,0,CUT
 631,HM02,MO02,MO02s,4,0,"1° turno: vuela.                                   2° turno: ataca. Fuera de combate, permite ir a sitios conocidos.",4,0,0,FLY
@@ -675,7 +676,7 @@
 
 685,BUGINIUMZ,Insectostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Bicho.",5,0,8
 686,DARKINIUMZ,Nictostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Siniestro.",5,0,8
-687,DRAGONIUMZ,Dracostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Dragon.",7,0,8
+687,DRAGONIUMZ,Dracostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Dragon.",5,0,8
 688,ELECTRIUMZ,Electrostal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Eléctrico.",5,0,8
 689,FAIRIUMZ,Feeristal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Hada.",5,0,8
 690,FIGHTINIUMZ,Lizastal Z,,6,0,"Cristal que confiere el Poder Z a los movimientos de tipo Lucha.",5,0,8
@@ -711,7 +712,7 @@
 720,FAIRYFEATHER,Pluma feérica,Plumas feéricas,1,3000,"Pluma mágica que fortalece los ataques de tipo Hada. Debe llevarlo un Pokémon.",0,0,0,
 721,EXPALL,Repartir Exp,Repartir Exp,8,0,"Todo el equipo obtiene Puntos de Experiencia conseguidos en el combate sin participar en él.",2,0,6,
 722,EXPALLOFF,Repartir Exp,Repartir Exp,8,0,"Todo el equipo obtiene Puntos de Experiencia conseguidos en el combate sin participar en él. Actualmente apagado.",2,0,6,
-723,LINKINGCORD,Cordón unión,Cordón unión,6,2100,"Cordón que emite una singular energía capaz de transmitir una extraña sensación de conexión. Ciertos Pokémon lo adoran.",1,0,0,
+723,LINKINGCORD,Cordón unión,Cordón unión,1,2100,"Cordón que emite una singular energía capaz de transmitir una extraña sensación de conexión. Ciertos Pokémon lo adoran.",1,0,0,
 
 731,NORMALCORE,Prisma Normal,Prismas Normal,1,5000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Normal.",1,0,0,
 732,FIGHTINGCORE,Prisma Lucha,Prismas Lucha,1,5000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Lucha.",1,0,0,

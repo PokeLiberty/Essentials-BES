@@ -973,7 +973,7 @@ class PokemonEntryScene
     @sprites["helpwindow"].visible=USEKEYBOARD
     @sprites["helpwindow"].baseColor=Color.new(16,24,32)
     @sprites["helpwindow"].shadowColor=Color.new(168,184,184)
-    addBackgroundPlane(@sprites,"background","naming2bg",@viewport)
+    addBackgroundPlane(@sprites,"background","Naming/naming2bg",@viewport)
     case subject
     when 1   # Player
       if $PokemonGlobal
@@ -1014,10 +1014,13 @@ class PokemonEntryScene
         pbDrawTextPositions(@sprites["gender"].bitmap,textpos)
       end
     when 3   # Storage box
-      @sprites["subject"]=IconSprite.new(0,0,@viewport)
-      @sprites["subject"].setBitmap("Graphics/#{NAMING_ROUTE}/namingStorage")
-      @sprites["subject"].x=68
-      @sprites["subject"].y=32
+      @sprites["subject"]=TrainerWalkingCharSprite.new(nil,@viewport)
+      @sprites["subject"].altcharset="Graphics/#{NAMING_ROUTE}/namingStorage"
+      @sprites["subject"].animspeed=4
+      charwidth=@sprites["subject"].bitmap.width
+      charheight=@sprites["subject"].bitmap.height
+      @sprites["subject"].x = 44*2 - charwidth/8
+      @sprites["subject"].y = 26*2 - charheight/2
     when 4   # NPC
       @sprites["shadow"]=IconSprite.new(0,0,@viewport)
       @sprites["shadow"].setBitmap("Graphics/#{NAMING_ROUTE}/namingShadow")

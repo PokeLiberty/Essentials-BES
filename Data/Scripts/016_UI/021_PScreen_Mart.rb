@@ -77,145 +77,6 @@ class PokemonMartAdapter
   end
 end
 
-
-
-#===============================================================================
-# Abstraction layer for RPG Maker XP/VX
-# Won't be used if $PokemonBag exists
-#===============================================================================
-class RpgxpMartAdapter
-  def getMoney
-    return $game_party.gold
-  end
-
-  def setMoney(value)
-    $game_party.gain_gold(-$game_party.gold)
-    $game_party.gain_gold(value)
-  end
-
-  def getPrice(item,selling=false)
-    return item.price
-  end
-
-  def getItemIcon(item)
-    return nil if !item
-    if item==0
-      return sprintf("Graphics/Icons/itemBack")
-    elsif item.respond_to?("icon_index")
-      return "Graphics/System/IconSet"
-    else
-      return sprintf("Graphics/Icons/%s",item.icon_name)
-    end
-  end
-
-  def getItemIconRect(item)
-    if item && item.respond_to?("icon_index")
-      ix=item.icon_index % 16 * 24
-      iy=item.icon_index / 16 * 24
-      return Rect.new(ix,iy,24,24)
-    else
-      return Rect.new(0,0,32,32)
-    end
-  end
-
-  def getInventory()
-    data = []
-    for i in 1...$data_items.size
-      if getQuantity($data_items[i]) > 0
-        data.push($data_items[i])
-      end
-    end
-    for i in 1...$data_weapons.size
-      if getQuantity($data_weapons[i]) > 0
-        data.push($data_weapons[i])
-     end
-    end
-    for i in 1...$data_armors.size
-      if getQuantity($data_armors[i]) > 0
-        data.push($data_armors[i])
-      end
-    end
-    return data
-  end
-
-  def canSell?(item)
-    return item ? item.price>0 : false
-  end
-
-  def getName(item)
-    return item ? item.name : ""
-  end
-
-  def getDisplayName(item)
-    return item ? item.name : ""
-  end
-
-  def getDisplayPrice(item,selling=false)
-    price=item.price
-    return _ISPRINTF("{1:d}",price)
-  end
-
-  def getDescription(item)
-    return item ? item.description : ""
-  end
-
-  def addItem(item)
-    ret=(getQuantity(item)<99)
-    if $game_party.respond_to?("gain_weapon")
-      case item
-      when RPG::Item
-        $game_party.gain_item(item.id, 1) if ret
-      when RPG::Weapon
-        $game_party.gain_weapon(item.id, 1) if ret
-      when RPG::Armor
-        $game_party.gain_armor(item.id, 1) if ret
-      end
-    else
-      $game_party.gain_item(item,1) if ret
-    end
-    return ret
-  end
-
-  def getQuantity(item)
-    ret=0
-    if $game_party.respond_to?("weapon_number")
-      case item
-      when RPG::Item
-        ret=$game_party.item_number(item.id)
-      when RPG::Weapon
-        ret=($game_party.weapon_number(item.id))
-      when RPG::Armor
-        ret=($game_party.armor_number(item.id))
-      end
-    else
-      return $game_party.item_number(item)
-    end
-    return ret
-  end
-
-  def showQuantity?(item)
-    return true
-  end
-
-  def removeItem(item)
-    ret=(getQuantity(item)>0)
-    if $game_party.respond_to?("lose_weapon")
-      case item
-      when RPG::Item
-        $game_party.lose_item(item.id, 1) if ret
-      when RPG::Weapon
-        $game_party.lose_weapon(item.id, 1) if ret
-      when RPG::Armor
-        $game_party.lose_armor(item.id, 1) if ret
-      end
-    else
-      $game_party.lose_item(item,1) if ret
-    end
-    return ret
-  end
-end
-
-
 #===============================================================================
 # Buy and Sell adapters
 #===============================================================================
@@ -260,8 +121,6 @@ class SellAdapter # :nodoc:
     return true
   end
 end
-
-
 
 #===============================================================================
 # Pokémon Mart
@@ -347,8 +206,9 @@ class PokemonMartScene
     @sprites["itemtextwindow"].y=Graphics.height-96-16
     @sprites["itemtextwindow"].width=Graphics.width-64
     @sprites["itemtextwindow"].height=128
-    @sprites["itemtextwindow"].baseColor=Color.new(248,248,248)
-    @sprites["itemtextwindow"].shadowColor=Color.new(0,0,0)
+    colors=getDefaultTextColors(@sprites["itemtextwindow"].windowskin)
+    @sprites["itemtextwindow"].baseColor=colors[0]
+    @sprites["itemtextwindow"].shadowColor=colors[1]
     @sprites["itemtextwindow"].visible=true
     @sprites["itemtextwindow"].viewport=@viewport
     @sprites["itemtextwindow"].windowskin=nil
@@ -366,8 +226,9 @@ class PokemonMartScene
     @sprites["moneywindow"].y=0
     @sprites["moneywindow"].width=190
     @sprites["moneywindow"].height=96
-    @sprites["moneywindow"].baseColor=Color.new(88,88,80)
-    @sprites["moneywindow"].shadowColor=Color.new(168,184,184)
+    colors=getDefaultTextColors(@sprites["moneywindow"].windowskin)
+    @sprites["moneywindow"].baseColor=colors[0]
+    @sprites["moneywindow"].shadowColor=colors[1]
     pbDeactivateWindows(@sprites)
     @buying=buying
     pbRefresh
@@ -415,8 +276,9 @@ class PokemonMartScene
     @sprites["moneywindow"].y=0
     @sprites["moneywindow"].width=186
     @sprites["moneywindow"].height=96
-    @sprites["moneywindow"].baseColor=Color.new(88,88,80)
-    @sprites["moneywindow"].shadowColor=Color.new(168,184,184)
+    colors=getDefaultTextColors(@sprites["moneywindow"].windowskin)
+    @sprites["moneywindow"].baseColor=colors[0]
+    @sprites["moneywindow"].shadowColor=colors[1]
     pbDeactivateWindows(@sprites)
     @buying=false
     pbRefresh
@@ -552,7 +414,7 @@ class PokemonMartScene
     ret=0
     helpwindow=@sprites["helpwindow"]
     itemprice=@adapter.getPrice(item,!@buying)
-    itemprice/=2 if !@buying
+    itemprice/=SELL_ITEMPRICE if !@buying
     pbDisplay(helptext,true)
     using(numwindow=Window_AdvancedTextPokemon.new("")){ # Showing number of items
        qty=@adapter.getQuantity(item)
@@ -562,14 +424,16 @@ class PokemonMartScene
           numwindow.viewport=@viewport
           numwindow.width=224
           numwindow.height=64
-          numwindow.baseColor=Color.new(88,88,80)
-          numwindow.shadowColor=Color.new(168,184,184)
+          colors=getDefaultTextColors(numwindow.windowskin)
+          numwindow.baseColor=colors[0]
+          numwindow.shadowColor=colors[1]
           inbagwindow.visible=@buying
           inbagwindow.viewport=@viewport
           inbagwindow.width=190
           inbagwindow.height=64
-          inbagwindow.baseColor=Color.new(88,88,80)
-          inbagwindow.shadowColor=Color.new(168,184,184)
+          colors=getDefaultTextColors(inbagwindow.windowskin)
+          inbagwindow.baseColor=colors[0]
+          inbagwindow.shadowColor=colors[1]
           inbagwindow.text=_ISPRINTF("Llevas:<r>{1:d}  ",qty)
           numwindow.text=_ISPRINTF("x{1:d}<r>$ {2:d}",curnumber,curnumber*itemprice)
           pbBottomRight(numwindow)
@@ -657,10 +521,7 @@ class PokemonMartScene
   end
 end
 
-
 #######################################################
-
-
 class PokemonMartScreen
   def initialize(scene,stock)
     @scene=scene
@@ -737,6 +598,7 @@ class PokemonMartScreen
           end
         end
         @stock.compact!
+        pbSEPlay("SlotsCoin")
         pbDisplayPaused(_INTL("¡Aquí tienes!\r\n¡Gracias!"))
         if $PokemonBag
           if quantity>=10 && pbIsPokeBall?(item) &&  hasConst?(PBItems,:PREMIERBALL)
@@ -772,14 +634,16 @@ class PokemonMartScreen
         @scene.pbHideMoney
         next
       end
-      price/=2
+      price/=SELL_ITEMPRICE
       price*=qty
       if pbConfirm(_INTL("Puedo pagarte ${1}.\r\n¿Te parece bien?",price))
         @adapter.setMoney(@adapter.getMoney()+price)
         for i in 0...qty
           @adapter.removeItem(item)
         end
+        pbSEPlay("SlotsCoin")
         pbDisplayPaused(_INTL("Entregaste {1}.\nRecibiste ${2} por la venta.",itemname,price))
+        @scene.pbRefresh
       end
       @scene.pbHideMoney
     end
@@ -821,8 +685,7 @@ def pbPokemonMart(stock,speech=nil,cantsell=false)
       Kernel.pbMessage(_INTL("¡Vuelve cuando quieras!"))
       break
     end
-    cmd=Kernel.pbMessage(
-       _INTL("¿En qué más puedo ayudarte?"),commands,cmdQuit+1)
+    cmd=Kernel.pbMessage(_INTL("¿En qué más puedo ayudarte?"),commands,cmdQuit+1)
   end
   $game_temp.clear_mart_prices
 end
@@ -846,12 +709,9 @@ end
 
 class Interpreter
   def getItem(p)
-    if p[0]==0
-      return $data_items[p[1]]
-    elsif p[0]==1
-      return $data_weapons[p[1]]
-    elsif p[0]==2
-      return $data_armors[p[1]]
+    if p[0]==0; return $data_items[p[1]]
+    elsif p[0]==1; return $data_weapons[p[1]]
+    elsif p[0]==2; return $data_armors[p[1]]
     end
     return nil
   end
@@ -897,12 +757,9 @@ end
 
 class Game_Interpreter
   def getItem(p)
-    if p[0]==0
-      return $data_items[p[1]]
-    elsif p[0]==1
-      return $data_weapons[p[1]]
-    elsif p[0]==2
-      return $data_armors[p[1]]
+    if p[0]==0; return $data_items[p[1]]
+    elsif p[0]==1; return $data_weapons[p[1]]
+    elsif p[0]==2; return $data_armors[p[1]]
     end
     return nil
   end

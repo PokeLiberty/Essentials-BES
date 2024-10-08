@@ -685,7 +685,7 @@ MultipleForms.register(:SHAYMIN,{
 },
 "height"=>proc{|pokemon|
    next if pokemon.form==0 # Forma Tierra
-   next 69                 # Forma Cielo
+   next 52                 # Forma Cielo
 },
 "weight"=>proc{|pokemon|
    next if pokemon.form==0 # Forma Tierra
@@ -1422,7 +1422,7 @@ MultipleForms.register(:NECROZMA,{
    case pokemon.form
    when 1; next getID(PBTypes,:STEEL)  # Forma Dusk
    when 2; next getID(PBTypes,:GHOST)  # Forma Dawn
-   when 3: next getID(PBTypes,:DRAGON) # Forma Ultra
+   when 3; next getID(PBTypes,:DRAGON) # Forma Ultra
    end
 },
 "getAbilityList"=>proc{|pokemon|

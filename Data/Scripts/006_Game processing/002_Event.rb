@@ -116,11 +116,16 @@ end
 # associated ID, which can be anything that can be used as a key in a hash.
 #===============================================================================
 class HandlerHash
-  def initialize(mod)
-    @mod=mod
+  def initialize(mod=nil)
+    @mod=mod if mod
     @hash={}
     @addIfs=[]
     @symbolCache={}
+  end
+
+  def [](id)
+    return @hash[id] if id && @hash[id]
+    return nil
   end
 
   def fromSymbol(sym)
@@ -156,11 +161,11 @@ class HandlerHash
     @addIfs.push([condProc,handler])
   end
 
-  def add(sym,handler) # 'sym' can be an ID or symbol
+  def add(sym,handler=nil) # 'sym' can be an ID or symbol
     id=fromSymbol(sym)
-    @hash[id]=handler if id
+    @hash[id]=handler if id && handler
     symbol=toSymbol(sym)
-    @hash[symbol]=handler if symbol
+    @hash[symbol]=handler if symbol && handler
   end
 
   def copy(src,*dests)
@@ -170,6 +175,27 @@ class HandlerHash
         self.add(dest,handler)
       end
     end
+  end
+
+  def remove(key)
+    @hash.delete(key)
+  end
+
+  def clear
+    @hash.clear
+  end
+
+  def each
+    @hash.each_pair { |key, value| yield key, value }
+  end
+
+  def keys
+    return @hash.keys.clone
+  end
+
+  def trigger(sym,*args)
+    handler=self[sym]
+    return handler ? handler.call(fromSymbol(sym),*args) : nil
   end
 
   def [](sym) # 'sym' can be an ID or symbol
@@ -190,15 +216,6 @@ class HandlerHash
       end
     end
     return ret
-  end
-
-  def trigger(sym,*args)
-    handler=self[sym]
-    return handler ? handler.call(fromSymbol(sym),*args) : nil
-  end
-
-  def clear
-    @hash.clear
   end
 end
 
@@ -298,7 +315,7 @@ module MenuHandlers
   @@handlers = {}
 
   def self.add(menu, option, hash)
-    @@handlers[menu] = HandlerHash.new if !@@handlers.has_key?(menu)
+    @@handlers[menu]=HandlerHash.new if !@@handlers.has_key?(menu)
     @@handlers[menu].add(option, hash)
   end
 

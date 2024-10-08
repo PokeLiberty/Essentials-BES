@@ -5,94 +5,6 @@ POKEMONSPRITESCALE = 2
 # used to scale the backsprite for battle perspective (200%)
 BACKSPRITESCALE = 3
 
-class DynamicPokemonSprite
-  attr_accessor :shadow
-  attr_accessor :sprite
-  attr_accessor :showshadow
-  attr_accessor :status
-  attr_accessor :hidden
-  attr_accessor :fainted
-  attr_accessor :anim
-  attr_accessor :charged
-  attr_accessor :isShadow
-  attr_reader :loaded
-  attr_reader :selected
-  attr_reader :isSub
-  attr_reader :viewport
-  attr_reader :pulse
-
-def initialize(doublebattle,index,viewport=nil)
-    @viewport=viewport
-    @metrics=load_data("Data/metrics.dat")
-    @selected=0
-    @frame=0
-    @frame2=0
-    @frame3=0
-    
-    @status=0
-    @loaded=false
-    @charged=false
-    @index=index
-    @doublebattle=doublebattle
-    @showshadow=true
-    @altitude=0
-    @yposition=0
-    @shadow=Sprite.new(@viewport)
-    @sprite=Sprite.new(@viewport)
-      back=(@index%2==0)
-    @substitute=AnimatedBitmapWrapper.new("Graphics/Battlers/"+(back ? "substitute_back" : "substitute"),POKEMONSPRITESCALE)
-    @overlay=Sprite.new(@viewport)
-    @isSub=false
-    @lock=false
-    @pokemon=nil
-    @still=false
-    @hidden=false
-    @fainted=false
-    @anim=false
-    @isShadow=false
-    
-    @fp = {}
-    
-    @pulse = 8
-    @k = 1
-  end
-
-  def setPokemonBitmap(pokemon,back=false,species=nil)
-    return if !pokemon || pokemon.nil?
-    @pokemon = pokemon
-    @isShadow = true if @pokemon.isShadow?
-    @altitude = @metrics[2][pokemon.species]
-    if back
-      @yposition = @metrics[0][pokemon.species]
-      @altitude *= 0.5
-    else
-      @yposition = @metrics[1][pokemon.species]
-    end
-    scale = back ? BACKSPRITESCALE : POKEMONSPRITESCALE
-
-    if !species.nil?
-      @bitmap = pbLoadPokemonBitmapSpecies(pokemon,species,back,scale)
-    else
-      @bitmap = pbLoadPokemonBitmap(pokemon,back,scale)
-    end
-    @sprite.bitmap = @bitmap.bitmap.clone
-    @shadow.bitmap = @bitmap.bitmap.clone
-    @sprite.ox = @bitmap.width/2
-    @sprite.oy = @bitmap.height
-    @sprite.oy += @altitude
-    @sprite.oy -= @yposition
-    @sprite.oy -= pokemon.formOffsetY if pokemon.respond_to?(:formOffsetY)
-    
-    @fainted = false
-    @loaded = true
-    @hidden = false
-    self.visible = true
-    @pulse = 8
-    @k = 1
-    self.formatShadow
-  end
-end
-
 class AnimatedBitmapWrapper
   attr_reader :width
   attr_reader :height
@@ -114,7 +26,7 @@ class AnimatedBitmapWrapper
     @animationFinish = false
     @totalFrames = 0
     @currentIndex = 0
-    @speed = 1
+    @speed = (Graphics.frame_rate>=60) ? 3 : 2
       # 0 - not moving at all
       # 1 - normal speed
       # 2 - medium speed
@@ -313,9 +225,7 @@ def pbLoadPokemonBitmapSpecies(pokemon, species, back=false, scale=POKEMONSPRITE
                                                pokemon.isShiny?,
                                               (pokemon.form rescue 0),
                                               (pokemon.isShadow? rescue false)])    
-  end
-  #p missingPokeSpriteError(pokemon,back) if bitmapFileName.nil?
-  
+  end  
   bitmapFileName=sprintf("Graphics/Battlers/000") if bitmapFileName.nil?
   
   
@@ -363,16 +273,6 @@ def pbLoadSpeciesBitmap(species,female=false,form=0,shiny=false,shadow=false,bac
     ret = AnimatedBitmapWrapper.new(bitmapFileName,scale)
   end
   return ret
-end
-
-# returns error message upon missing sprites
-def missingPokeSpriteError(pokemon,back)
-  error_b = back ? "Back" : "Front"
-  error_b += "Shiny"                  if pokemon.isShiny?
-  error_b += "/Female/"               if pokemon.isFemale?
-  error_b += " shadow"                if pokemon.isShadow?
-  error_b += " form #{pokemon.form} " if pokemon.form > 0
-  return "Woops, looks like you're missing the #{error_b} sprite for #{PBSpecies.getName(pokemon.species)}!" if $DEBUG
 end
 
 # new methods of handing Pokemon sprite name references
@@ -435,11 +335,9 @@ def pbPokemonBitmapFile(species, shiny, back=false)
     folder += "Front/"
   end
   name = sprintf("#{folder}%s",getConstantName(PBSpecies,species)) rescue nil
-  
   ret = pbResolveBitmap(name)
   return ret if ret
   name = sprintf("#{folder}%03d",species)
-
   return pbResolveBitmap(name)
 end
 
@@ -450,52 +348,5 @@ def pbLoadFakePokemonBitmap(species,boy=false,shiny=false,form=0, back=false)
                                               form,
                                               false])    
   animatedBitmap=AnimatedBitmapWrapper.new(bitmapFileName)
-#  echo("#{bitmapFileName}")
   return animatedBitmap
-end
-
-def pbTrainerSpriteFile(type)
-  return nil if !type
-  bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%s",getConstantName(PBTrainers,type)) rescue nil
-  if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%03d",type)
-  end
-  return bitmapFileName
-end
-
-def pbTrainerSpriteBackFile(type)
-  return nil if !type
-  bitmapFileName=sprintf("Graphics/Battlers/Trainers/trback%s",getConstantName(PBTrainers,type)) rescue nil
-  if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Battlers/Trainers/trback%03d",type)
-  end
-  return bitmapFileName
-end
-
-def pbPlayerSpriteFile(type)
-  return nil if !type
-  outfit=$Trainer ? $Trainer.outfit : 0
-  bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%s_%d",
-     getConstantName(PBTrainers,type),outfit) rescue nil
-  if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Battlers/Trainers/trainer%03d_%d",type,outfit)
-    if !pbResolveBitmap(bitmapFileName)
-      bitmapFileName=pbTrainerSpriteFile(type)
-    end
-  end
-  return bitmapFileName
-end
-
-def pbPlayerSpriteBackFile(type)
-  return nil if !type
-  outfit=$Trainer ? $Trainer.outfit : 0
-  bitmapFileName=sprintf("Graphics/Battlers/Trainers/trback%s_%d",
-     getConstantName(PBTrainers,type),outfit) rescue nil
-  if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Battlers/Trainers/trback%03d_%d",type,outfit)
-    if !pbResolveBitmap(bitmapFileName)
-      bitmapFileName=pbTrainerSpriteBackFile(type)
-    end
-  end
-  return bitmapFileName
 end
