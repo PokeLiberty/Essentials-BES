@@ -1161,13 +1161,13 @@ Events.onStepTakenTransferPossible+=proc {|sender,e|
         end
         if i.hp==1 && !POISONFAINTINFIELD
           i.status=0
-          Kernel.pbMessage(_INTL("¡{1} ha sobrevivido al envenenamiento!\\n¡El veneno ha desaparecido!\\1",i.name))
+          Kernel.pbMessage(_INTL("¡{1} ha sobrevivido al envenenamiento!<br>¡El veneno ha desaparecido!\\1",i.name))
           next
         end
         i.hp-=1
         if i.hp==1 && !POISONFAINTINFIELD
           i.status=0
-          Kernel.pbMessage(_INTL("¡{1} ha sobrevivido al envenenamiento!\\n¡El veneno ha desaparecido!\\1",i.name))
+          Kernel.pbMessage(_INTL("¡{1} ha sobrevivido al envenenamiento!<br>¡El veneno ha desaparecido!\\1",i.name))
         end
         if i.hp==0
           i.changeHappiness("faint")
@@ -1419,7 +1419,7 @@ def pbFishing(hasencounter,rodtype=1)
     end
     if rand(100)<bitechance && hasencounter
       frames=rand(21)+20
-      if !pbWaitForInput(msgwindow,message+_INTL("\r\n¡Oh! ¡Han picado!"),frames)
+      if !pbWaitForInput(msgwindow,message+_INTL("<br>¡Oh! ¡Han picado!"),frames)
         pbFishingEnd
         $game_player.setDefaultCharName(nil,oldpattern)
         Kernel.pbMessageDisplay(msgwindow,_INTL("El Pokémon ha escapado..."))
@@ -1893,7 +1893,7 @@ def pbRecord(text,maxtime=30.0)
   delay=2
   delay.times do |i|
     Kernel.pbMessageDisplay(msgwindow,
-      _ISPRINTF("Recording in {1:d} second(s)...\nPress ESC to cancel.",delay-i),false)
+      _ISPRINTF("Recording in {1:d} second(s)...<br>Press ESC to cancel.",delay-i),false)
     Graphics.frame_rate.times do
       Graphics.update
       Input.update
@@ -1908,7 +1908,7 @@ def pbRecord(text,maxtime=30.0)
     end
   end
   Kernel.pbMessageDisplay(msgwindow,
-     _INTL("GRABANDO\nPresione ESC para cancelar."),false)
+     _INTL("GRABANDO<br>Presione ESC para cancelar."),false)
   if beginRecordUI
     frames=(maxtime*Graphics.frame_rate).to_i
     frames.times do
@@ -1962,7 +1962,7 @@ def Kernel.pbItemBall(item,quantity=1)
   pocket=pbGetPocket(item)
   if $PokemonBag.pbStoreItem(item,quantity)   # Si el objeto puede ser levantado
     if $ItemData[item][ITEMUSE]==3 || $ItemData[item][ITEMUSE]==4
-      Kernel.pbMessage(_INTL("\\se[ItemGet]¡{1} ha encontrado \\c[1]{2}\\c[0]!\\nÉsta contiene \\c[1]{3}\\c[0].\\wtnp[30]",
+      Kernel.pbMessage(_INTL("\\se[ItemGet]¡{1} ha encontrado \\c[1]{2}\\c[0]!<br>Ésta contiene \\c[1]{3}\\c[0].\\wtnp[30]",
          $Trainer.name,itemname,PBMoves.getName($ItemData[item][ITEMMACHINE])))
     elsif isConst?(item,PBItems,:LEFTOVERS)
       Kernel.pbMessage(_INTL("\\se[ItemGet]¡{1} ha encontrado unos \\c[1]{2}\\c[0]!\\wtnp[30]",$Trainer.name,itemname))
@@ -1971,7 +1971,7 @@ def Kernel.pbItemBall(item,quantity=1)
     else
       Kernel.pbMessage(_INTL("\\se[ItemGet]¡{1} ha encontrado un \\c[1]{2}\\c[0]!\\wtnp[30]",$Trainer.name,itemname))
     end
-    Kernel.pbMessage(_INTL("{1} puso \\c[1]{2}\\c[0]\r\nen el bolsillo <icon=bagPocket#{pocket}>\\c[1]{3}\\c[0].",
+    Kernel.pbMessage(_INTL("{1} puso \\c[1]{2}\\c[0]<br>en el bolsillo <icon=bagPocket#{pocket}>\\c[1]{3}\\c[0].",
        $Trainer.name,itemname,PokemonBag.pocketNames()[pocket]))
     return true
   else   # No se puede agregar el objeto
@@ -1997,7 +1997,7 @@ def Kernel.pbReceiveItem(item,quantity=1)
   itemname=(quantity>1) ? PBItems.getNamePlural(item) : PBItems.getName(item)
   pocket=pbGetPocket(item)
   if $ItemData[item][ITEMUSE]==3 || $ItemData[item][ITEMUSE]==4
-    Kernel.pbMessage(_INTL("\\se[ItemGet]¡Has obtenido \\c[1]{1}\\c[0]!\\nÉsta contiene \\c[1]{2}\\c[0].\\wtnp[30]",
+    Kernel.pbMessage(_INTL("\\se[ItemGet]¡Has obtenido \\c[1]{1}\\c[0]!<br>Ésta contiene \\c[1]{2}\\c[0].\\wtnp[30]",
        itemname,PBMoves.getName($ItemData[item][ITEMMACHINE])))
   elsif isConst?(item,PBItems,:LEFTOVERS)
     Kernel.pbMessage(_INTL("\\se[ItemGet]¡Has obtenido unos \\c[1]{1}\\c[0]!\\wtnp[30]",itemname))
@@ -2007,7 +2007,7 @@ def Kernel.pbReceiveItem(item,quantity=1)
     Kernel.pbMessage(_INTL("\\se[ItemGet]¡Has obtenido \\c[1]{1}\\c[0]!\\wtnp[30]",itemname))
   end
   if $PokemonBag.pbStoreItem(item,quantity)   # Si el objeto puede ser agregado
-    Kernel.pbMessage(_INTL("{1} puso \\c[1]{2}\\c[0]\r\nen el bolsillo <icon=bagPocket#{pocket}>\\c[1]{3}\\c[0].",
+    Kernel.pbMessage(_INTL("{1} puso \\c[1]{2}\\c[0]<br>en el bolsillo <icon=bagPocket#{pocket}>\\c[1]{3}\\c[0].",
        $Trainer.name,itemname,PokemonBag.pocketNames()[pocket]))
     return true
   end

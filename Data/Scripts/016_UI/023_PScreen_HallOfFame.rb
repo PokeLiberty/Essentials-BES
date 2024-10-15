@@ -349,7 +349,7 @@ class HallOfFameScene
     @sprites["messagebox"].width=192 if @sprites["messagebox"].width<192
     @sprites["msgwindow"]=Kernel.pbCreateMessageWindow(@viewport)
     Kernel.pbMessageDisplay(@sprites["msgwindow"],
-        _INTL("¡Campeón de la Liga!\n¡Felicitaciones!\\^"))
+        _INTL("¡Campeón de la Liga!<br>¡Felicitaciones!\\^"))
   end  
 
   BASECOLOR   = Color.new(248,248,248)

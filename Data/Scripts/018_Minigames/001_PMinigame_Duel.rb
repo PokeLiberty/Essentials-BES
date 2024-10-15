@@ -11,7 +11,7 @@ class DuelWindow < Window_AdvancedTextPokemon # :nodoc:
 
   def duelRefresh
     color= @isenemy ? "<ar><c2=043c3aff>" : "<c2=65467b14>"
-    self.text=_INTL("{1}{2}<c2=06644bd2>\r\nHP: {3}",color,fmtescape(@name),@hp)
+    self.text=_INTL("{1}{2}<c2=06644bd2><br>HP: {3}",color,fmtescape(@name),@hp)
   end
 
   def initialize(name,isenemy)

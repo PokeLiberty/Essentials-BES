@@ -417,7 +417,7 @@ p berryData if Input.trigger?(Input::CTRL)
       end
     else
       # Gen 3 planting mechanics
-      if Kernel.pbConfirmMessage(_INTL("Es un suelo blando y fértil.\n¿Quieres plantar una Baya?"))
+      if Kernel.pbConfirmMessage(_INTL("Es un suelo blando y fértil.<br>¿Quieres plantar una Baya?"))
         pbFadeOutIn(99999){
            scene=PokemonBag_Scene.new
            screen=PokemonBagScreen.new(scene,$PokemonBag)
@@ -481,13 +481,13 @@ p berryData if Input.trigger?(Input::CTRL)
     end
     itemname=(berrycount>1) ? PBItems.getNamePlural(berry) : PBItems.getName(berry)
     if berrycount>1
-      message=_INTL("¡El arbusto de {2} ha dado {1} bayas!\n¿Quieres cosecharlas?",berrycount,itemname)
+      message=_INTL("¡El arbusto de {2} ha dado {1} bayas!<br>¿Quieres cosecharlas?",berrycount,itemname)
     else
-      message=_INTL("¡El arbusto de {1} ha dado una baya!\n¿Quieres cosecharlas?",itemname)
+      message=_INTL("¡El arbusto de {1} ha dado una baya!<br>¿Quieres cosecharlas?",itemname)
     end
     if Kernel.pbConfirmMessage(message)
       if !$PokemonBag.pbCanStore?(berry,berrycount)
-        Kernel.pbMessage(_INTL("Qué mal...\nLa mochila está llena."))
+        Kernel.pbMessage(_INTL("Qué mal...<br>La mochila está llena."))
         return
       end
       $PokemonBag.pbStoreItem(berry,berrycount)
@@ -550,13 +550,13 @@ def pbPickBerry(berry,qty=1)
   end
   itemname=(qty>1) ? PBItems.getNamePlural(berry) : PBItems.getName(berry)
   if qty>1
-    message=_INTL("¡El arbusto de {2} ha dado {1} bayas!\n¿Quieres cosecharlas?",qty,itemname)
+    message=_INTL("¡El arbusto de {2} ha dado {1} bayas!<br>¿Quieres cosecharlas?",qty,itemname)
   else
-    message=_INTL("¡El arbusto de {1} ha dado una baya!\n¿Quieres cosecharlas?",itemname)
+    message=_INTL("¡El arbusto de {1} ha dado una baya!<br>¿Quieres cosecharlas?",itemname)
   end
   if Kernel.pbConfirmMessage(message)
     if !$PokemonBag.pbCanStore?(berry,qty)
-      Kernel.pbMessage(_INTL("Malísimo...\nLa Mochila está llena."))
+      Kernel.pbMessage(_INTL("Qué mal...<br>La Mochila está llena."))
       return
     end
     $PokemonBag.pbStoreItem(berry,qty)

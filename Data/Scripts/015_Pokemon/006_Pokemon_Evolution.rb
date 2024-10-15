@@ -802,7 +802,7 @@ class PokemonEvolutionScene
     pbBGMStop()
     pbPlayCry(@pokemon)
     Kernel.pbMessageDisplay(@sprites["msgwindow"],
-       _INTL("\\se[]¿Y esto?\r\n¡{1} está evolucionando!\\^",@pokemon.name)) { pbUpdate }
+       _INTL("\\se[]¿Y esto?<br>¡{1} está evolucionando!\\^",@pokemon.name)) { pbUpdate }
     Kernel.pbMessageWaitForInput(@sprites["msgwindow"],100,true) { pbUpdate }
     pbPlayDecisionSE()
     oldstate=pbSaveSpriteState(@sprites["rsprite1"])
@@ -826,7 +826,7 @@ class PokemonEvolutionScene
     pbFlashInOut(canceled,oldstate,oldstate2)
     if canceled
       Kernel.pbMessageDisplay(@sprites["msgwindow"],
-         _INTL("¿Qué?\r\n¡Se detuvo la evolución de {1}!",@pokemon.name)) { pbUpdate }
+         _INTL("¿Qué?<br>¡Se detuvo la evolución de {1}!",@pokemon.name)) { pbUpdate }
     else
       frames=pbCryFrameLength(@newspecies)
       pbBGMStop()

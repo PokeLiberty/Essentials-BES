@@ -298,7 +298,7 @@ class PokeBattle_BugContestBattle < PokeBattle_Battle
     if pbBugContestState.lastPokemon
       lastPokemon=pbBugContestState.lastPokemon
       pbDisplayPaused(_INTL("Ya has capturado un {1}.",lastPokemon.name))
-      helptext=_INTL("POKéMON ANTERIOR:\n {1} Nv{2} MáxPS: {3}\nESTE POKÉMON:\n {4} Nv{5} MáxPS: {6}",
+      helptext=_INTL("POKéMON ANTERIOR:<br> {1} Nv{2} MáxPS: {3}<br>ESTE POKÉMON:<br> {4} Nv{5} MáxPS: {6}",
          lastPokemon.name,lastPokemon.level,lastPokemon.totalhp,
          pokemon.name,pokemon.level,pokemon.totalhp
       )

@@ -496,7 +496,7 @@ def Kernel.pbSurf
     (HIDDENMOVESCOUNTBADGES ? $Trainer.numbadges>=BADGEFORSURF : $Trainer.badges[BADGEFORSURF])
     movefinder=Kernel.pbCheckMove(:SURF)
     if $DEBUG || movefinder
-      if Kernel.pbConfirmMessage(_INTL("El agua tiene buena pinta...\n¿Quieres navegar sobre ella?"))
+      if Kernel.pbConfirmMessage(_INTL("El agua tiene buena pinta...<br>¿Quieres navegar sobre ella?"))
         speciesname=!movefinder ? $Trainer.name : movefinder.name
         Kernel.pbMessage(_INTL("¡{1} ha usado Surf!",speciesname))
         pbHiddenMoveAnimation(movefinder)

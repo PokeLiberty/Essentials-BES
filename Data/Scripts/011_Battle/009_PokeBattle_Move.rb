@@ -1765,7 +1765,7 @@ class PokeBattle_Move
   # 0 si el ataque debería proceder con su efecto
   # 1 si el ataque debería terminar con éxito
   # 2 if Bide is storing energy
-    @battle.pbDisplayBrief(_INTL("¡{1} ha usado\r\n{2}!",attacker.pbThis,name))
+    @battle.pbDisplayBrief(_INTL("¡{1} ha usado<br>{2}!",attacker.pbThis,name))
     return 0
   end
 

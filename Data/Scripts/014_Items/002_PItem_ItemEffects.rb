@@ -249,7 +249,7 @@ ItemHandlers::UseInField.add(:SUPERROD,proc{|item|
 ItemHandlers::UseInField.add(:ITEMFINDER,proc{|item|
    event=pbClosestHiddenItem
    if !event
-     Kernel.pbMessage(_INTL("... ... ... ...¡Nada!\r\nNo responde."))
+     Kernel.pbMessage(_INTL("... ... ... ...¡Nada!<br>No responde."))
    else
      offsetX=event.x-$game_player.x
      offsetY=event.y-$game_player.y
@@ -279,7 +279,7 @@ ItemHandlers::UseInField.add(:ITEMFINDER,proc{|item|
          end
          pbUpdateSceneMap
        end
-       Kernel.pbMessage(_INTL("¡Alto!\n¡El {1} está respondiendo!\1",PBItems.getName(item)))
+       Kernel.pbMessage(_INTL("¡El {1} está respondiendo!\1",PBItems.getName(item)))
        Kernel.pbMessage(_INTL("¡Hay algo enterrado muy cerca!"))
      end
    end
@@ -1264,9 +1264,9 @@ ItemHandlers::UseOnPokemon.add(:EXPCANDYXS,proc{|item,pokemon,scene|
        spatkdiff=pokemon.spatk-spatkdiff
        spdefdiff=pokemon.spdef-spdefdiff
        totalhpdiff=pokemon.totalhp-totalhpdiff
-       pbTopRightWindow(_INTL("PS Máx.<r>+{1}\r\nAtaque<r>+{2}\r\nDefensa<r>+{3}\r\nAt. Esp.<r>+{4}\r\nDef. Esp.<r>+{5}\r\nVelocidad<r>+{6}",
+       pbTopRightWindow(_INTL("PS Máx.<r>+{1}<br>Ataque<r>+{2}<br>Defensa<r>+{3}<br>At. Esp.<r>+{4}<br>Def. Esp.<r>+{5}<br>Velocidad<r>+{6}",
           totalhpdiff,attackdiff,defensediff,spatkdiff,spdefdiff,speeddiff))
-       pbTopRightWindow(_INTL("PS Máx.<r>{1}\r\nAtaque<r>{2}\r\nDefensa<r>{3}\r\nAt. Esp.<r>{4}\r\nDef. Esp.<r>{5}\r\nVelocidad<r>{6}",
+       pbTopRightWindow(_INTL("PS Máx.<r>{1}<br>Ataque<r>{2}<br>Defensa<r>{3}<br>At. Esp.<r>{4}<br>Def. Esp.<r>{5}<br>Velocidad<r>{6}",
           pokemon.totalhp,pokemon.attack,pokemon.defense,pokemon.spatk,pokemon.spdef,pokemon.speed))
        movelist=pokemon.getMoveList
        for i in movelist

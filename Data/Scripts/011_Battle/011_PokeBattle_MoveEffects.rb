@@ -6338,7 +6338,7 @@ end
 class PokeBattle_Move_0D4 < PokeBattle_Move
   def pbDisplayUseMessage(attacker)
     if attacker.effects[PBEffects::Bide]==0
-      @battle.pbDisplayBrief(_INTL("¡{1} ha usado\r\n{2}!",attacker.pbThis,name))
+      @battle.pbDisplayBrief(_INTL("¡{1} ha usado<br>{2}!",attacker.pbThis,name))
       attacker.effects[PBEffects::Bide]=2
       attacker.effects[PBEffects::BideDamage]=0
       attacker.effects[PBEffects::BideTarget]=-1

@@ -304,7 +304,7 @@ class SlotMachineScene
         Kernel.pbMessage(_INTL("Tienes el máximo número de fichas."))
         break
       elsif $PokemonGlobal.coins==0
-        Kernel.pbMessage(_INTL("Te has quedado sin fichas.\n¡Fin del juego!"))
+        Kernel.pbMessage(_INTL("Te has quedado sin fichas.<br>¡Fin del juego!"))
         break
       elsif @gameRunning # Reels are spinning
         @sprites["window1"].setBitmap(sprintf("Graphics/Pictures/Slot Machine/stop"))

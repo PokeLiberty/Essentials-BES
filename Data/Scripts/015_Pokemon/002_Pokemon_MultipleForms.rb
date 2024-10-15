@@ -566,7 +566,7 @@ MultipleForms.register(:ROTOM,{
          newmovename=PBMoves.getName(getID(PBMoves,newmove))
          pokemon.moves[hasoldmove]=PBMove.new(getID(PBMoves,newmove))
          Kernel.pbMessage(_INTL("\\se[]1,\\wt[4] 2,\\wt[4] y...\\wt[8] ...\\wt[8] ...\\wt[8] ¡Puf!\\se[balldrop]\1"))
-         Kernel.pbMessage(_INTL("{1} ha olvidado cómo\r\nusar {2}.\1",pokemon.name,oldmovename))
+         Kernel.pbMessage(_INTL("{1} ha olvidado cómo<br>usar {2}.\1",pokemon.name,oldmovename))
          Kernel.pbMessage(_INTL("Y...\1"))
          Kernel.pbMessage(_INTL("\\se[]¡{1} ha aprendido {2}!\\se[MoveLearnt]",pokemon.name,newmovename))
        else
@@ -1757,7 +1757,7 @@ MultipleForms.register(:CALYREX,{
          newmovename=PBMoves.getName(getID(PBMoves,newmove))
          pokemon.moves[hasoldmove]=PBMove.new(getID(PBMoves,newmove))
          Kernel.pbMessage(_INTL("\\se[]1,\\wt[4] 2,\\wt[4] y...\\wt[8] ...\\wt[8] ...\\wt[8] ¡Puf!\\se[balldrop]\1"))
-         Kernel.pbMessage(_INTL("{1} ha olvidado cómo\r\nusar {2}.\1",pokemon.name,oldmovename))
+         Kernel.pbMessage(_INTL("{1} ha olvidado cómo<br>usar {2}.\1",pokemon.name,oldmovename))
          Kernel.pbMessage(_INTL("Y...\1"))
          Kernel.pbMessage(_INTL("\\se[]¡{1} ha aprendido {2}!\\se[MoveLearnt]",pokemon.name,newmovename))
        else

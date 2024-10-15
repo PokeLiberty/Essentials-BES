@@ -255,7 +255,7 @@ class PokemonSummaryScene
                     _INTL("La puerta de su corazón está apenas abierta."),
                     _INTL("La puerta está fuertemente cerrada.")
                     ][pokemon.heartStage]
-      memo=sprintf("<c3=404040,B0B0B0>%s\n",heartmessage)
+      memo=sprintf("<c3=404040,B0B0B0>%s<br>",heartmessage)
       drawFormattedTextEx(overlay,238,304,276,memo)
     else
       textpos.push([_INTL("Puntos de Experiencia"),238,240,0,@base,@shadow])
@@ -332,22 +332,22 @@ class PokemonSummaryScene
       month=pbGetAbbrevMonthName(pokemon.timeReceived.mon)
       date=pokemon.timeReceived.day
       year=pokemon.timeReceived.year
-      memo+=_INTL("<c3=404040,B0B0B0>{2} de {1} de {3}\n",month,date,year)
+      memo+=_INTL("<c3=404040,B0B0B0>{2} de {1} de {3}<br>",month,date,year)
     end
     mapname=pbGetMapNameFromId(pokemon.obtainMap)
     if (pokemon.obtainText rescue false) && pokemon.obtainText!=""
       mapname=pokemon.obtainText
     end
     if mapname && mapname!=""
-      memo+=_INTL("<c3=404040,B0B0B0>Un extraño Huevo Pokémon hallado por la <c3=F83820,E09890>{1}<c3=404040,B0B0B0>.\n",mapname)
+      memo+=_INTL("<c3=404040,B0B0B0>Un extraño Huevo Pokémon hallado por la <c3=F83820,E09890>{1}<c3=404040,B0B0B0>.<br>",mapname)
     end
-    memo+="<c3=404040,B0B0B0>\n"
-    memo+=_INTL("<c3=404040,B0B0B0>\"Estado del Huevo\"\n")
+    memo+="<c3=404040,B0B0B0><br>"
+    memo+=_INTL("<c3=404040,B0B0B0>\"Estado del Huevo\"<br>")
     eggstate=_INTL("Parece que a este Huevo le tomará mucho tiempo abrirse.")
     eggstate=_INTL("¿Qué saldrá? Aún le queda para abrirse.") if pokemon.eggsteps<10200
     eggstate=_INTL("A veces se mueve. Debería abrirse pronto.") if pokemon.eggsteps<2550
     eggstate=_INTL("Está haciendo ruidos. ¡Está a punto de abrirse!") if pokemon.eggsteps<1275
-    memo+=sprintf("<c3=404040,B0B0B0>%s\n",eggstate)
+    memo+=sprintf("<c3=404040,B0B0B0>%s<br>",eggstate)
     drawFormattedTextEx(overlay,232,78,276,memo)
     drawMarkings(overlay,15,291,72,20,pokemon.markings)
   end
@@ -408,22 +408,22 @@ class PokemonSummaryScene
     memo=""
     shownature=(!(pokemon.isShadow? rescue false)) || pokemon.heartStage<=3
     if shownature
-      memo+=_INTL("<c3=404040,B0B0B0>Naturaleza <c3=F83820,E09890>{1}<c3=404040,B0B0B0>.\n",naturename)
+      memo+=_INTL("<c3=404040,B0B0B0>Naturaleza <c3=F83820,E09890>{1}<c3=404040,B0B0B0>.<br>",naturename)
     end
     if pokemon.timeReceived
       month=pbGetAbbrevMonthName(pokemon.timeReceived.mon)
       date=pokemon.timeReceived.day
       year=pokemon.timeReceived.year
-      memo+=_INTL("<c3=404040,B0B0B0>{2} de {1} de {3}\n",month,date,year)
+      memo+=_INTL("<c3=404040,B0B0B0>{2} de {1} de {3}<br>",month,date,year)
     end
     mapname=pbGetMapNameFromId(pokemon.obtainMap)
     if (pokemon.obtainText rescue false) && pokemon.obtainText!=""
       mapname=pokemon.obtainText
     end
     if mapname && mapname!=""
-      memo+=sprintf("<c3=F83820,E09890>%s\n",mapname)
+      memo+=sprintf("<c3=F83820,E09890>%s<br>",mapname)
     else
-      memo+=_INTL("<c3=F83820,E09890>Faraway place\n")
+      memo+=_INTL("<c3=F83820,E09890>Faraway place<br>")
     end
     if pokemon.obtainMode
       mettext=[_INTL("Encontrado con Nv. {1}.",pokemon.obtainLevel),
@@ -432,23 +432,23 @@ class PokemonSummaryScene
                "",
                _INTL("Lo conocí en un encuentro fatídico en Nv. {1}.",pokemon.obtainLevel)
                ][pokemon.obtainMode]
-      memo+=sprintf("<c3=404040,B0B0B0>%s\n",mettext)
+      memo+=sprintf("<c3=404040,B0B0B0>%s<br>",mettext)
       if pokemon.obtainMode==1 # hatched
         if pokemon.timeEggHatched
           month=pbGetAbbrevMonthName(pokemon.timeEggHatched.mon)
           date=pokemon.timeEggHatched.day
           year=pokemon.timeEggHatched.year
-          memo+=_INTL("<c3=404040,B0B0B0>{2} de {1} de {3}\n",month,date,year)
+          memo+=_INTL("<c3=404040,B0B0B0>{2} de {1} de {3}<br>",month,date,year)
         end
         mapname=pbGetMapNameFromId(pokemon.hatchedMap)
         if mapname && mapname!=""
-          memo+=sprintf("<c3=F83820,E09890>%s\n",mapname)
+          memo+=sprintf("<c3=F83820,E09890>%s<br>",mapname)
         else
-          memo+=_INTL("<c3=F83820,E09890>Faraway place\n")
+          memo+=_INTL("<c3=F83820,E09890>Faraway place<br>")
         end
-        memo+=_INTL("<c3=404040,B0B0B0>Huevo eclosionado.\n")
+        memo+=_INTL("<c3=404040,B0B0B0>Huevo eclosionado.<br>")
       else
-        memo+="<c3=404040,B0B0B0>\n"
+        memo+="<c3=404040,B0B0B0><br>"
       end
     end
     if shownature
@@ -492,7 +492,7 @@ class PokemonSummaryScene
                       _INTL("Odia perder."),            # Hates to lose
                       _INTL("Tiene mal genio.")         # Somewhat stubborn
                       ][bestiv*5+pokemon.iv[bestiv]%5]
-      memo+=sprintf("<c3=404040,B0B0B0>%s\n",characteristic)
+      memo+=sprintf("<c3=404040,B0B0B0>%s<br>",characteristic)
     end
     drawFormattedTextEx(overlay,232,78,276,memo,@base2,@shadow2)
     drawMarkings(overlay,15,291,72,20,pokemon.markings)

@@ -263,7 +263,7 @@ def pbDownloadMysteryGift(trainer)
   addBackgroundPlane(sprites,"background","mysteryGiftbg",viewport)
   pbFadeInAndShow(sprites)
   sprites["msgwindow"]=Kernel.pbCreateMessageWindow
-  Kernel.pbMessageDisplay(sprites["msgwindow"],_INTL("Buscando regalos.\nEspere un momento...\\wtnp[0]"))
+  Kernel.pbMessageDisplay(sprites["msgwindow"],_INTL("Buscando regalos.<br>Espere un momento...\\wtnp[0]"))
   string=pbDownloadToString(MYSTERYGIFTURL)  
   if string==""
     Kernel.pbMessageDisplay(sprites["msgwindow"],_INTL("No hay regalos nuevos disponibles."))
@@ -415,7 +415,7 @@ def pbReceiveMysteryGift(id)
       item=gift[2]; qty=gift[1]
       itemname=(qty>1) ? PBItems.getNamePlural(item) : PBItems.getName(item)
       if $ItemData[item][ITEMUSE]==3 || $ItemData[item][ITEMUSE]==4
-        Kernel.pbMessage(_INTL("\\se[ItemGet]¡{1} ha recibido \\c[1]{2}\\c[0]!\\nÉste contiene \\c[1]{3}\\c[0].\\wtnp[30]",
+        Kernel.pbMessage(_INTL("\\se[ItemGet]¡{1} ha recibido \\c[1]{2}\\c[0]!<br>Éste contiene \\c[1]{3}\\c[0].\\wtnp[30]",
            $Trainer.name,itemname,PBMoves.getName($ItemData[item][ITEMMACHINE])))
       elsif isConst?(item,PBItems,:LEFTOVERS)
         Kernel.pbMessage(_INTL("\\se[ItemGet]¡{1} ha recibido unos \\c[1]{2}\\c[0]!\\wtnp[30]",$Trainer.name,itemname))

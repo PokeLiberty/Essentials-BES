@@ -236,7 +236,7 @@ class PokemonLoad
       if Kernel.pbConfirmMessageSerious(_INTL("¿Borrar todos los datos guardados?"))
         Kernel.pbMessage(_INTL("Una vez que los datos sean borrados, no hay forma de recuperarlos.\1"))
         if Kernel.pbConfirmMessageSerious(_INTL("¿Borrar los datos guardados de todos modos?"))
-          Kernel.pbMessage(_INTL("Borrando todos los datos.\r\nNo apagues la consola.\\wtnp[0]"))
+          Kernel.pbMessage(_INTL("Borrando todos los datos.<br>No apagues la consola.\\wtnp[0]"))
           begin; File.delete(savefile); rescue; end
           begin; File.delete(savefile+".bak"); rescue; end
           Kernel.pbMessage(_INTL("El archivo guardado fue borrado."))

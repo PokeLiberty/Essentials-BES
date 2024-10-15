@@ -119,7 +119,7 @@ def pbThrowPokeBall(idxPokemon,ball,rareness=nil,showplayer=false,safari=false,f
   end
   if @opponent && (!pbIsSnagBall?(ball) || !battler.isShadow?)
     @scene.pbThrowAndDeflect(ball,1)
-    pbDisplay(_INTL("¡El entrenador ha bloqueado la Poké Ball!\n¡No seas un ladrón!"))
+    pbDisplay(_INTL("¡El entrenador ha bloqueado la Poké Ball!<br>¡No seas un ladrón!"))
     ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
   elsif $game_switches[NO_CAPTURE_SWITCH] || @rules["disablePokeBalls"]
    @scene.pbThrowAndDeflect(ball,1)
@@ -1668,7 +1668,7 @@ class PokeBattle_Battle
       elsif opposing.hp>=(opposing.totalhp/4)
         pbDisplayBrief(_INTL("¡Ya lo tienes, {1}!",party[newpokename].name))
       else
-        pbDisplayBrief(_INTL("¡Tu rival está débil!\n¡Termínalo, {1}!",party[newpokename].name))
+        pbDisplayBrief(_INTL("¡Tu rival está débil!<br>¡Termínalo, {1}!",party[newpokename].name))
       end
       PBDebug.log("[Sacar Pokémon] El jugador envió a #{party[newpokename].name} en posición #{index}")
     else
@@ -1681,7 +1681,7 @@ class PokeBattle_Battle
 #       raise BattleAbortedException.new
 #     end
       owner=pbGetOwner(index)
-      pbDisplayBrief(_INTL("¡{1} envió\r\na {2}!",owner.fullname,party[newpokename].name))
+      pbDisplayBrief(_INTL("¡{1} envió<br>a {2}!",owner.fullname,party[newpokename].name))
       PBDebug.log("[Sacar Pokémon] Rival envió a #{party[newpokename].name} en posición #{index}")
     end
   end
@@ -1762,7 +1762,7 @@ class PokeBattle_Battle
     battler=nil
     name=pbGetOwner(userPkmn.index).fullname
     name=pbGetOwner(userPkmn.index).name if pbBelongsToPlayer?(userPkmn.index)
-    pbDisplayBrief(_INTL("{1} ha usado\r\n{2}.",name,PBItems.getName(item)))
+    pbDisplayBrief(_INTL("{1} ha usado<br>{2}.",name,PBItems.getName(item)))
     PBDebug.log("[Objeto usado] El jugador ha usado #{PBItems.getName(item)} en #{pokemon.name}")
     ret=false
     if pokemon.isEgg?
@@ -1872,7 +1872,7 @@ class PokeBattle_Battle
       end
     end
     itemname=PBItems.getName(item)
-    pbDisplayBrief(_INTL("¡{1} ha usado\r\n{2}!",opponent.fullname,itemname))
+    pbDisplayBrief(_INTL("¡{1} ha usado<br>{2}!",opponent.fullname,itemname))
     PBDebug.log("[Objeto usado] El rival ha usado #{itemname} en #{battler.pbThis(true)}")
     if isConst?(item,PBItems,:POTION)
       battler.pbRecoverHP(20,true)
@@ -2604,7 +2604,7 @@ class PokeBattle_Battle
       if !@battlers[i].isFainted?
         if @battlers[i].isShadow? && pbIsOpposing?(i)
           pbCommonAnimation("Shadow",@battlers[i],nil)
-          pbDisplay(_INTL("¡Alto!\n¡Un Pokémon Oscuro!"))
+          pbDisplay(_INTL("¡Alto!<br>¡Un Pokémon Oscuro!"))
         end
       end
     end
@@ -2632,7 +2632,7 @@ class PokeBattle_Battle
       end
       if pkmn.isShadow? && pbIsOpposing?(pkmn.index)
         pbCommonAnimation("Shadow",pkmn,nil)
-        pbDisplay(_INTL("¡Alto!\n¡Un Pokémon Oscuro!"))
+        pbDisplay(_INTL("¡Alto!<br>¡Un Pokémon Oscuro!"))
       end
       # Deseo Cura
       if pkmn.effects[PBEffects::HealingWish]
@@ -2922,7 +2922,7 @@ class PokeBattle_Battle
         pbSetSeen(@party2[0])
         pbSetSeen(@party2[1])
         @scene.pbStartBattle(self)
-        pbDisplayPaused(_INTL("¡Aparecieron {1} y\r\n{2} salvajes!",
+        pbDisplayPaused(_INTL("¡Un {1} y<br>{2} salvajes te cortan el paso!",
            @party2[0].name,@party2[1].name))
       else
         raise _INTL("Sólo se permite uno o dos Pokémon salvajes en batallas dobles")
@@ -2950,19 +2950,19 @@ class PokeBattle_Battle
       end
       @scene.pbStartBattle(self)
       if @opponent.is_a?(Array)
-        pbDisplayPaused(_INTL("¡{1} y {2}\r\nte desafían!",@opponent[0].fullname,@opponent[1].fullname))
+        pbDisplayPaused(_INTL("¡{1} y {2}<br>te desafían!",@opponent[0].fullname,@opponent[1].fullname))
         sendout1=pbFindNextUnfainted(@party2,0,pbSecondPartyBegin(1))
         raise _INTL("El oponente 1 no tiene ningún Pokémon saludable") if sendout1<0
         sendout2=pbFindNextUnfainted(@party2,pbSecondPartyBegin(1))
         raise _INTL("El oponente 2 no tiene ningún Pokémon saludable") if sendout2<0
         @battlers[1].pbInitialize(@party2[sendout1],sendout1,false)
-        pbDisplayBrief(_INTL("¡{1} envió\r\na {2}!",@opponent[0].fullname,@battlers[1].name))
+        pbDisplayBrief(_INTL("¡{1} envió<br>a {2}!",@opponent[0].fullname,@battlers[1].name))
         pbSendOut(1,@party2[sendout1])
         @battlers[3].pbInitialize(@party2[sendout2],sendout2,false)
-        pbDisplayBrief(_INTL("¡{1} envió\r\na {2}!",@opponent[1].fullname,@battlers[3].name))
+        pbDisplayBrief(_INTL("¡{1} envió<br>a {2}!",@opponent[1].fullname,@battlers[3].name))
         pbSendOut(3,@party2[sendout2])
       else
-        pbDisplayPaused(_INTL("¡{1}\r\nte desafía!",@opponent.fullname))
+        pbDisplayPaused(_INTL("¡{1}<br>te desafía!",@opponent.fullname))
         sendout1=pbFindNextUnfainted(@party2,0)
         sendout2=pbFindNextUnfainted(@party2,sendout1+1)
         if sendout1<0 || sendout2<0
@@ -2970,7 +2970,7 @@ class PokeBattle_Battle
         end
         @battlers[1].pbInitialize(@party2[sendout1],sendout1,false)
         @battlers[3].pbInitialize(@party2[sendout2],sendout2,false)
-        pbDisplayBrief(_INTL("¡{1} envió\r\na {2} y {3}!",
+        pbDisplayBrief(_INTL("¡{1} envió<br>a {2} y {3}!",
            @opponent.fullname,@battlers[1].name,@battlers[3].name))
         pbSendOut(1,@party2[sendout1])
         pbSendOut(3,@party2[sendout2])
@@ -2991,9 +2991,9 @@ class PokeBattle_Battle
       end
       trainerpoke=@party2[sendout]
       @scene.pbStartBattle(self)
-      pbDisplayPaused(_INTL("¡{1}\r\nte desafía!",@opponent.fullname))
+      pbDisplayPaused(_INTL("¡{1}<br>te desafía!",@opponent.fullname))
       @battlers[1].pbInitialize(trainerpoke,sendout,false)
-      pbDisplayBrief(_INTL("¡{1} envió\r\na {2}!",@opponent.fullname,@battlers[1].name))
+      pbDisplayBrief(_INTL("¡{1} envió<br>a {2}!",@opponent.fullname,@battlers[1].name))
       pbSendOut(1,trainerpoke)
     end
 #===================================================================================
@@ -3007,7 +3007,7 @@ class PokeBattle_Battle
         p _INTL("El jugador 2 no tiene ningún Pokémon saludable") if sendout2<0 && $DEBUG
         @battlers[0].pbInitialize(@party1[sendout1],sendout1,false)
         @battlers[2].pbInitialize(@party1[sendout2],sendout2,false)
-        pbDisplayBrief(_INTL("¡{1} envió\r\na {2}! ¡Adelante, {3}!",
+        pbDisplayBrief(_INTL("¡{1} envió<br>a {2}! ¡Adelante, {3}!",
            @player[1].fullname,@battlers[2].name,@battlers[0].name))
         pbSetSeen(@party1[sendout1])
         pbSetSeen(@party1[sendout2])
@@ -3395,7 +3395,7 @@ class PokeBattle_Battle
           pbDisplayBrief(_INTL("¡{1} saca a {2}!",owner.fullname,i.name))
           PBDebug.log("[Sacar Pokémon] Oponente sacó #{i.pbThis(true)}")
         else
-          pbDisplayBrief(_INTL("¡{1}, cambio!\r\n¡Vuelve aquí!",i.name))
+          pbDisplayBrief(_INTL("¡{1}, cambio!<br>¡Vuelve aquí!",i.name))
           PBDebug.log("[Sacar Pokémon] Jugador sacó #{i.pbThis(true)}")
         end
         i.effects[PBEffects::PerishBody]=0 # Reset Perish Body if has one
@@ -4758,7 +4758,7 @@ class PokeBattle_Battle
         if @opponent.is_a?(Array)
           pbDisplayPaused(_INTL("¡{1} ha derrotado a {2} y {3}!",self.pbPlayer.name,@opponent[0].fullname,@opponent[1].fullname))
         else
-          pbDisplayPaused(_INTL("¡{1} ha derrotado a\r\n{2}!",self.pbPlayer.name,@opponent.fullname))
+          pbDisplayPaused(_INTL("¡{1} ha derrotado a<br>{2}!",self.pbPlayer.name,@opponent.fullname))
         end
         @scene.pbShowOpponent(0)
         pbDisplayPaused(@endspeech.gsub(/\\[Pp][Nn]/,self.pbPlayer.name))
@@ -4798,7 +4798,7 @@ class PokeBattle_Battle
           self.pbPlayer.money+=tmoney
           moneygained=self.pbPlayer.money-oldmoney
           if moneygained>0
-            pbDisplayPaused(_INTL("¡{1} ha obtenido ${2}\r\npor la victoria!",self.pbPlayer.name,tmoney))
+            pbDisplayPaused(_INTL("¡{1} ha obtenido ${2}<br>por la victoria!",self.pbPlayer.name,tmoney))
           end
         end
       end
@@ -4837,7 +4837,7 @@ class PokeBattle_Battle
           if @opponent.is_a?(Array)
             pbDisplayPaused(_INTL("¡{1} ha perdido contra {2} y {3}!",self.pbPlayer.name,@opponent[0].fullname,@opponent[1].fullname))
           else
-            pbDisplayPaused(_INTL("¡{1} ha perdido contra\r\n{2}!",self.pbPlayer.name,@opponent.fullname))
+            pbDisplayPaused(_INTL("¡{1} ha perdido contra<br>{2}!",self.pbPlayer.name,@opponent.fullname))
           end
           if moneylost>0
             pbDisplayPaused(_INTL("{1} ha entregado ${2} al ganador...",self.pbPlayer.name,lostmoney))
@@ -4845,7 +4845,7 @@ class PokeBattle_Battle
           end
         else
           if moneylost>0
-            pbDisplayPaused(_INTL("{1} entró en pánico y dejó caer\r\n${2}...",self.pbPlayer.name,lostmoney))
+            pbDisplayPaused(_INTL("{1} entró en pánico y dejó caer<br>${2}...",self.pbPlayer.name,lostmoney))
             pbDisplayPaused(_INTL("...")) if !canlose
           end
         end

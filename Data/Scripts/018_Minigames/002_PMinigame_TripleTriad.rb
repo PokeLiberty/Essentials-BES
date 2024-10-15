@@ -284,7 +284,7 @@ class TriadScene
   end
 
   def pbViewOpponentCards(numCards)
-    @sprites["helpwindow"].text=_INTL("Check opponent's cards.")
+    @sprites["helpwindow"].text=_INTL("Comprueba las cartas del oponente.")
     choice=0
     lastChoice=-1
     loop do
@@ -323,9 +323,9 @@ class TriadScene
 
   def pbPlayerChooseCard(numCards)
     if @battle.openHand
-      @sprites["helpwindow"].text=_INTL("Choose a card, or check opponent with Z.")
+      @sprites["helpwindow"].text=_INTL("Escoge una carta o comprueba las del oponente con Z.")
     else
-      @sprites["helpwindow"].text=_INTL("Choose a card.")
+      @sprites["helpwindow"].text=_INTL("Escoge una carta.")
     end
     choice=0
     lastChoice=-1
@@ -358,7 +358,7 @@ class TriadScene
       elsif Input.trigger?(Input::A) && @battle.openHand
         pbPlayDecisionSE()
         pbViewOpponentCards(numCards)
-        @sprites["helpwindow"].text=_INTL("Choose a card, or check opponent with Z.")
+        @sprites["helpwindow"].text=_INTL("Escoge una carta o comprueba las del oponente con Z.")
         choice=0
         lastChoice=-1
       end
@@ -419,7 +419,7 @@ class TriadScene
   end
 
   def pbPlayerPlaceCard(card, cardIndex)
-    @sprites["helpwindow"].text=_INTL("Place the card.")
+    @sprites["helpwindow"].text=_INTL("Coloca la carta.")
     choice=0
     boardX=0
     boardY=0
@@ -486,7 +486,7 @@ class TriadScene
       commands.push(_INTL("{1} x{2}",PBSpecies.getName(item[0]),item[1]))
     end
     command=Window_CommandPokemonEx.newWithSize(commands,0,0,256,Graphics.height-64,@viewport)
-    @sprites["helpwindow"].text=_INTL("Choose {1} cards to use for this duel.",@battle.maxCards)
+    @sprites["helpwindow"].text=_INTL("Escoge {1} cartas para usar en esta partida.",@battle.maxCards)
     preview=Sprite.new(@viewport)
     preview.z=4
     preview.x=276
@@ -554,12 +554,12 @@ class TriadScene
           @sprites["player#{i}"].visible=(i<chosenCards.length)
         end
         if chosenCards.length==@battle.maxCards
-          @sprites["helpwindow"].text=_INTL("{1} cards have been chosen.",@battle.maxCards)
+          @sprites["helpwindow"].text=_INTL("{1} cartas han sido escogidas.",@battle.maxCards)
           command.visible=false
           command.active=false
           preview.visible=false
         else
-          @sprites["helpwindow"].text=_INTL("Choose {1} cards to use for this duel.",@battle.maxCards)
+          @sprites["helpwindow"].text=_INTL("Escoge {1} cartas para usar en esta partida.",@battle.maxCards)
           command.visible=true
           command.active=true
           preview.visible=true
@@ -701,13 +701,13 @@ class TriadScreen
 # pass the parameters to pbStartScene.
   def pbStartScreen(opponentName,minLevel,maxLevel,rules=nil,oppdeck=nil,prize=nil)
     if minLevel<0 || minLevel>9
-      raise _INTL("Minimum level must be 0 through 9.")
+      raise "Minimum level must be 0 through 9."
     end
     if maxLevel<0 || maxLevel>9
-      raise _INTL("Maximum level must be 0 through 9.")
+      raise "Maximum level must be 0 through 9."
     end
     if maxLevel<minLevel
-      raise _INTL("Maximum level shouldn't be less than the minimum level.")
+      raise "Maximum level shouldn't be less than the minimum level."
     end
     if rules && rules.is_a?(Array) && rules.length>0
       for rule in rules
@@ -736,7 +736,7 @@ class TriadScreen
       count+=item[1] # Add item count to total count
     end
     @board=[]
-    @playerName=$Trainer ? $Trainer.name : "Trainer"
+    @playerName=$Trainer ? $Trainer.name : "Jugador"
     @opponentName=opponentName
     for i in 0...@width*@height
       square=TriadSquare.new
@@ -750,7 +750,7 @@ class TriadScreen
     @scene.pbStartScene(self) # (param1, param2)
     # Check whether there are enough cards.
     if count<self.maxCards
-      @scene.pbDisplayPaused(_INTL("You don't have enough cards."))
+      @scene.pbDisplayPaused(_INTL("No tienes cartas suficientes."))
       @scene.pbEndScene
       return 0
     end
@@ -772,7 +772,7 @@ class TriadScreen
       for i in oppdeck
         card=getID(PBSpecies,i)
         if card<=0
-          @scene.pbDisplayPaused(_INTL("Opponent has an illegal card, \"{1}\".",i))
+          @scene.pbDisplayPaused(_INTL("El oponente tiene una carta ilegal, \"{1}\".",i))
           @scene.pbEndScene
           return 0
         end
@@ -825,14 +825,14 @@ class TriadScreen
     originalOpponentCards=opponentCards.clone
     @scene.pbNotifyCards(cards.clone,opponentCards.clone)
     @scene.pbShowOpponentCards(opponentCards)
-    @scene.pbDisplay(_INTL("Choosing the starting player..."))
+    @scene.pbDisplay(_INTL("Escogiendo quién va primero..."))
     @scene.pbUpdateScore
     playerTurn=false
     if rand(2)==0
-      @scene.pbDisplay(_INTL("{1} will go first.",@playerName))
+      @scene.pbDisplay(_INTL("{1} irá primero.",@playerName))
       playerTurn=true
     else
-      @scene.pbDisplay(_INTL("{1} will go first.",@opponentName))
+      @scene.pbDisplay(_INTL("{1} irá primero.",@opponentName))
       playerTurn=false
     end
     for i in 0...@width*@height
@@ -848,7 +848,7 @@ class TriadScreen
         end
       else
         # Opponent's turn
-        @scene.pbDisplay(_INTL("{1} is making a move...",@opponentName))    
+        @scene.pbDisplay(_INTL("{1} está pensando su jugada...",@opponentName))    
         scores=[]
         for cardIndex in 0...opponentCards.length
           square=TriadSquare.new
@@ -874,7 +874,7 @@ class TriadScreen
         } 
         scores=scores[0,opponentCards.length] # Get the best results
         if scores.length==0
-          @scene.pbDisplay(_INTL("{1} can't move somehow...",@opponentName))
+          @scene.pbDisplay(_INTL("{1} no puede colocar...",@opponentName))
           playerTurn=!playerTurn
           continue
         end
@@ -910,7 +910,7 @@ class TriadScreen
     end
     result=0
     if playerCount==opponentCount
-      @scene.pbDisplayPaused(_INTL("The game is a draw."))
+      @scene.pbDisplayPaused(_INTL("¡El resultado es... Empate!"))
       result=3
       case @trade
       when 1
@@ -926,16 +926,17 @@ class TriadScreen
             $PokemonGlobal.triads.pbStoreItem(board[i].card.species)
           end
         end
-        @scene.pbDisplayPaused(_INTL("Kept all cards of your color."))
+        @scene.pbDisplayPaused(_INTL("Conservas todas tus cartas de tu color."))
       end
     elsif playerCount>opponentCount
-      @scene.pbDisplayPaused(_INTL("{1} won against {2}.",@playerName,@opponentName))
+      pbMEPlay("Victory - Wild")
+      @scene.pbDisplayPaused(_INTL("{1} ha ganado contra {2}.",@playerName,@opponentName))
       result=1
       if prize
         card=getID(PBSpecies,prize)
         if card>0 && $PokemonGlobal.triads.pbStoreItem(card)
           cardname=PBSpecies.getName(card)
-          @scene.pbDisplayPaused(_INTL("Got opponent's {1} card.",cardname))
+          @scene.pbDisplayPaused(_INTL("Conseguiste la carta de {1}.",cardname))
         end
       else
         case @trade
@@ -944,7 +945,7 @@ class TriadScreen
           card=originalOpponentCards[rand(originalOpponentCards.length)]
           if $PokemonGlobal.triads.pbStoreItem(card)
             cardname=PBSpecies.getName(card)
-            @scene.pbDisplayPaused(_INTL("Got opponent's {1} card.",cardname))
+            @scene.pbDisplayPaused(_INTL("Conseguiste la carta de {1}.",cardname))
           end
         when 1
           # Keep only cards of your color
@@ -959,17 +960,18 @@ class TriadScreen
               $PokemonGlobal.triads.pbStoreItem(board[i].card.species)
             end
           end
-          @scene.pbDisplayPaused(_INTL("Kept all cards of your color."))
+          @scene.pbDisplayPaused(_INTL("Conservas todas tus cartas de tu color."))
         when 2
           # Gain all opponent's cards
           for card in originalOpponentCards
             $PokemonGlobal.triads.pbStoreItem(card)
           end
-          @scene.pbDisplayPaused(_INTL("Got all opponent's cards."))
+          @scene.pbDisplayPaused(_INTL("Conseguiste todas las cartas del oponente."))
         end
       end
+      pbMEStop
     else
-      @scene.pbDisplayPaused(_INTL("{1} lost against {2}.",@playerName,@opponentName))
+      @scene.pbDisplayPaused(_INTL("{1} perdió contra {2}.",@playerName,@opponentName))
       result=2
       case @trade
       when 0
@@ -977,7 +979,7 @@ class TriadScreen
         card=originalCards[rand(originalCards.length)]
         $PokemonGlobal.triads.pbDeleteItem(card)
         cardname=PBSpecies.getName(card)
-        @scene.pbDisplayPaused(_INTL("Opponent won your {1} card.",cardname))
+        @scene.pbDisplayPaused(_INTL("El oponente consiguió tu carta de {1}.",cardname))
       when 1
         # Keep only cards of your color
         for card in originalCards
@@ -991,13 +993,13 @@ class TriadScreen
             $PokemonGlobal.triads.pbStoreItem(board[i].card.species)
           end
         end
-        @scene.pbDisplayPaused(_INTL("Kept all cards of your color.",cardname))
+        @scene.pbDisplayPaused(_INTL("Te quedas con todas las cartas de tu color.",cardname))
       when 2
         # Lose all your cards
         for card in originalCards
           $PokemonGlobal.triads.pbDeleteItem(card)
         end
-        @scene.pbDisplayPaused(_INTL("Opponent won all your cards."))
+        @scene.pbDisplayPaused(_INTL("Tu oponente consiguió todas tus cartas."))
       end
     end
     @scene.pbEndScene
@@ -1090,7 +1092,7 @@ def pbBuyTriads
     end
   end
   if commands.length==0
-    Kernel.pbMessage(_INTL("There are no cards that you can buy.")) 
+    Kernel.pbMessage(_INTL("No puedes comprar ninguna carta.")) 
     return
   end
   commands.sort!{|a,b| 
@@ -1109,7 +1111,7 @@ def pbBuyTriads
   cmdwindow.z=99999
   moneyString=_INTL("${1}",$Trainer.money)
   goldwindow=Window_UnformattedTextPokemon.newWithSize(
-     _INTL("Money:\n{1}",moneyString),0,0,32,32)
+     _INTL("Dinero:<br>{1}",moneyString),0,0,32,32)
   goldwindow.resizeToFit(goldwindow.text,Graphics.width)
   goldwindow.y=0
   goldwindow.x=Graphics.width-goldwindow.width
@@ -1134,7 +1136,7 @@ def pbBuyTriads
         cmdwindow.active=false
         cmdwindow.update
         if $Trainer.money<price
-          Kernel.pbMessage(_INTL("You don't have enough money."))
+          Kernel.pbMessage(_INTL("No tienes dinero suficientes."))
           break
         end
         maxafford=(price<=0) ? 99 : $Trainer.money/price
@@ -1144,24 +1146,24 @@ def pbBuyTriads
         params.setInitialValue(1)
         params.setCancelValue(0)
         quantity=Kernel.pbMessageChooseNumber(
-           _INTL("The {1} card?  Certainly.\r\nHow many would you like?",itemname),params)
+           _INTL("¿La carta de {1}?  Por supuesto.<br>¿Cuantas quieres?",itemname),params)
         if quantity>0
           price*=quantity
-          if !Kernel.pbConfirmMessage(_INTL("{1}, and you want {2}.\r\nThat will be ${3}. OK?",itemname,quantity,price))
+          if !Kernel.pbConfirmMessage(_INTL("{1}, y quieres {2}.<br>Eso serán ${3}. ¿Vale?",itemname,quantity,price))
             break
           end
           if $Trainer.money<price
-            Kernel.pbMessage(_INTL("You don't have enough money."))
+            Kernel.pbMessage(_INTL("No tienes dinero suficientes."))
             break
           end
           if !$PokemonGlobal.triads.pbCanStore?(item,quantity)
-            Kernel.pbMessage(_INTL("You have no room for more cards."))
+            Kernel.pbMessage(_INTL("No tienes espacio para más cartas."))
           else
             $PokemonGlobal.triads.pbStoreItem(item,quantity)
             $Trainer.money-=price
             moneyString=_INTL("${1}",$Trainer.money)
-            goldwindow.text=_INTL("Money:\n{1}",moneyString)
-            Kernel.pbMessage(_INTL("Here you are!\r\nThank you!"))
+            goldwindow.text=_INTL("Money:<br>{1}",moneyString)
+            Kernel.pbMessage(_INTL("¡Aquí tienes!<br>¡Gracias!"))
           end
         end
       end
@@ -1181,9 +1183,9 @@ def pbSellTriads
     speciesname=PBSpecies.getName(item[0])
     commands.push(_INTL("{1} x{2}",speciesname,item[1]))
   end
-  commands.push(_INTL("CANCEL"))
+  commands.push(_INTL("SALIR"))
   if commands.length==1
-    Kernel.pbMessage(_INTL("You have no cards."))
+    Kernel.pbMessage(_INTL("No tienes cartas."))
     return
   end
   # Scroll right before showing screen
@@ -1192,7 +1194,7 @@ def pbSellTriads
   cmdwindow.z=99999
   moneyString=_INTL("${1}",$Trainer.money)
   goldwindow=Window_UnformattedTextPokemon.newWithSize(
-     _INTL("Money:\n{1}",moneyString),0,0,32,32)
+     _INTL("Dinero:<br>{1}",moneyString),0,0,32,32)
   goldwindow.resizeToFit(goldwindow.text,Graphics.width)
   goldwindow.y=0
   goldwindow.x=Graphics.width-goldwindow.width
@@ -1220,7 +1222,7 @@ def pbSellTriads
         quantity=$PokemonGlobal.triads.pbQuantity(item)
         price=TriadCard.new(item).price
         if price==0
-          pbDisplayPaused(_INTL("The {1} card?  Oh, no.\r\nI can't buy that.",itemname))
+          pbDisplayPaused(_INTL("¿La carta de {1}?  Oh, no.<br>No puedo comprarla.",itemname))
           break
         end
         cmdwindow.active=false
@@ -1231,24 +1233,24 @@ def pbSellTriads
           params.setInitialValue(1)
           params.setCancelValue(0)
           quantity=Kernel.pbMessageChooseNumber(
-             _INTL("The {1} card?  How many would you like to sell?",itemname),params)
+             _INTL("¿La carta de {1}?  ¿Cuántas quieres vender?",itemname),params)
         end
         if quantity>0
           price/=4
           price*=quantity
-          if Kernel.pbConfirmMessage(_INTL("I can pay ${1}. Would that be OK?",price))
+          if Kernel.pbConfirmMessage(_INTL("Por esa carta puedo darte ${1}. ¿Te parece bien?",price))
             $Trainer.money+=price
             moneyString=_INTL("${1}",$Trainer.money)
-            goldwindow.text=_INTL("Money:\n{1}",moneyString)
+            goldwindow.text=_INTL("Dinero:<br>{1}",moneyString)
             $PokemonGlobal.triads.pbDeleteItem(item,quantity)
-            Kernel.pbMessage(_INTL("Turned over the {1} card and received ${2}.",itemname,price))
+            Kernel.pbMessage(_INTL("Vendiste la carta de {1} y recibiste ${2} a cambio.",itemname,price))
             commands=[]
             for i in 0...$PokemonGlobal.triads.length
               item=$PokemonGlobal.triads[i]
               speciesname=PBSpecies.getName(item[0])
               commands.push(_INTL("{1} x{2}",speciesname,item[1]))
             end
-            commands.push(_INTL("CANCEL"))
+            commands.push(_INTL("SALIR"))
             cmdwindow.commands=commands
             break
           end
@@ -1270,9 +1272,9 @@ def pbTriadList
     speciesname=PBSpecies.getName(item[0])
     commands.push(_INTL("{1} x{2}",speciesname,item[1]))
   end
-  commands.push(_INTL("CANCEL"))
+  commands.push(_INTL("SALIR"))
   if commands.length==1
-    Kernel.pbMessage(_INTL("You have no cards."))
+    Kernel.pbMessage(_INTL("No tienes cartas."))
     return
   end
   cmdwindow=Window_CommandPokemonEx.newWithSize(commands,0,0,256,Graphics.height)
@@ -1308,6 +1310,8 @@ def pbTriadList
       end
     end
   end
+  Input.update
+  pbDisposeSpriteHash(@sprites)
   cmdwindow.dispose
   sprite.dispose
 end
@@ -1320,6 +1324,9 @@ def pbTriadDuel(name,minLevel,maxLevel,rules=nil,oppdeck=nil,prize=nil)
      ret=screen.pbStartScreen(name,minLevel,maxLevel,rules,oppdeck,prize)
   }
   return ret
+rescue
+  p "Hubo un error al generar el oponente" if $DEBUG
+  return false
 end
 
 def pbGiveTriadCard(species,quantity=1)

@@ -226,7 +226,7 @@ class PokeBattle_Scene
   end
 
   def pbBattleArenaBattlers(battler1,battler2)
-    Kernel.pbMessage(_INTL("ÁRBITRO: ¡{1} VS {2}!\n¡Que comience el combate!\\wtnp[20]",
+    Kernel.pbMessage(_INTL("ÁRBITRO: ¡{1} VS {2}!<br>¡Que comience el combate!\\wtnp[20]",
        battler1.name,battler2.name)) { pbUpdate }
   end
 
@@ -265,15 +265,15 @@ class PokeBattle_Scene
       end
       updateJudgment(infowindow,1,battler1,battler2,ratings1,ratings2)
       Kernel.pbMessageDisplay(msgwindow,
-         _INTL("REFEREE: Judging category 1, Mind!\nThe Pokemon showing the most guts!\\wtnp[40]")) { 
+         _INTL("ÁRBITRO: Categoría 1 de evaluación: ¡Mental!<br>¡El Pokémon que muestra más agallas!\\wtnp[40]")) { 
          pbUpdate; dimmingvp.update; infowindow.update } 
       updateJudgment(infowindow,2,battler1,battler2,ratings1,ratings2)
       Kernel.pbMessageDisplay(msgwindow,
-         _INTL("REFEREE: Judging category 2, Skill!\nThe Pokemon using moves the best!\\wtnp[40]")) { 
+         _INTL("ÁRBITRO: Categoría 2 de evaluación: ¡Habilidad!<br>¡El Pokémon que usa los mejores movimientos!\\wtnp[40]")) { 
          pbUpdate; dimmingvp.update; infowindow.update } 
       updateJudgment(infowindow,3,battler1,battler2,ratings1,ratings2)
       Kernel.pbMessageDisplay(msgwindow,
-         _INTL("REFEREE: Judging category 3, Body!\nThe Pokemon with the most vitality!\\wtnp[40]")) { 
+         _INTL("ÁRBITRO: Categoría 3 de evaluación: ¡Cuerpo!<br>¡El Pokémon con más vitalidad!\\wtnp[40]")) { 
          pbUpdate; dimmingvp.update; infowindow.update }
       total1=0
       total2=0
@@ -283,16 +283,16 @@ class PokeBattle_Scene
       end
       if total1==total2
         Kernel.pbMessageDisplay(msgwindow,
-           _INTL("REFEREE: Judgment: {1} to {2}!\nWe have a draw!\\wtnp[40]",total1,total2)) { 
+           _INTL("REFEREE: Judgment: {1} to {2}!<br>We have a draw!\\wtnp[40]",total1,total2)) { 
           pbUpdate; dimmingvp.update; infowindow.update }
       elsif total1>total2
         Kernel.pbMessageDisplay(msgwindow,
-           _INTL("REFEREE: Judgment: {1} to {2}!\nThe winner is {3}'s {4}!\\wtnp[40]",
+           _INTL("REFEREE: Judgment: {1} to {2}!<br>The winner is {3}'s {4}!\\wtnp[40]",
            total1,total2,@battle.pbGetOwner(battler1.index).name,battler1.name)) { 
            pbUpdate; dimmingvp.update; infowindow.update }
       else
         Kernel.pbMessageDisplay(msgwindow,
-           _INTL("REFEREE: Judgment: {1} to {2}!\nThe winner is {3}!\\wtnp[40]",
+           _INTL("REFEREE: Judgment: {1} to {2}!<br>The winner is {3}!\\wtnp[40]",
            total1,total2,battler2.name)) { 
            pbUpdate; dimmingvp.update; infowindow.update }
       end

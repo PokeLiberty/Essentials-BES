@@ -3575,7 +3575,7 @@ class PokeBattle_Battler
        (!user.hasMoldBreaker && target.hasWorkingAbility(:OVERCOAT) &&
        !thismove.doesBypassIgnorableAbilities?) ||
        target.hasWorkingItem(:SAFETYGOGGLES))
-      @battle.pbDisplay(_INTL("No ha afectado a\r\n{1}...",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("No ha afectado a<br>{1}...",target.pbThis(true)))
       PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos basados en polvo por alguna razón")
       return false
     end
@@ -3624,7 +3624,7 @@ class PokeBattle_Battler
         return false
       end
       if typemod==0
-        @battle.pbDisplay(_INTL("No afecta a\r\n{1}...",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("No afecta a<br>{1}...",target.pbThis(true)))
         PBDebug.log("[Movimiento falló] Inmunidad por tipo")
         return false
       end
@@ -4365,7 +4365,7 @@ class PokeBattle_Battler
     return if !thismove || thismove.id==0   # if move was not chosen
     if !turneffects[PBEffects::SpecialUsage]
       if !pbReducePP(thismove)
-        @battle.pbDisplay(_INTL("¡{1} usó\r\n{2}!",pbThis,thismove.name))
+        @battle.pbDisplay(_INTL("¡{1} usó<br>{2}!",pbThis,thismove.name))
         @battle.pbDisplay(_INTL("¡Pero no le quedan PP al movimiento!"))
         self.lastMoveUsed=-1
         self.lastMoveUsedType=-1

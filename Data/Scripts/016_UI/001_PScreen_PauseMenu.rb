@@ -123,17 +123,17 @@ class PokemonMenu
       if SAFARISTEPS<=0
         @scene.pbShowInfo(_INTL("Balls: {1}",pbSafariState.ballcount))
       else
-        @scene.pbShowInfo(_INTL("Pasos: {1}/{2}\nBalls: {3}",pbSafariState.steps,SAFARISTEPS,pbSafariState.ballcount))
+        @scene.pbShowInfo(_INTL("Pasos: {1}/{2}<br>Balls: {3}",pbSafariState.steps,SAFARISTEPS,pbSafariState.ballcount))
       end
       commands[cmdQuit=commands.length]=_INTL("Salir")
     elsif pbInBugContest?
       if pbBugContestState.lastPokemon
-        @scene.pbShowInfo(_INTL("Capturado: {1}\nNivel: {2}\nBalls: {3}",
+        @scene.pbShowInfo(_INTL("Capturado: {1}<br>Nivel: {2}<br>Balls: {3}",
            PBSpecies.getName(pbBugContestState.lastPokemon.species),
            pbBugContestState.lastPokemon.level,
            pbBugContestState.ballcount))
       else
-        @scene.pbShowInfo(_INTL("Capturado: Ninguno\nBalls: {1}",pbBugContestState.ballcount))
+        @scene.pbShowInfo(_INTL("Capturado: Ninguno<br>Balls: {1}",pbBugContestState.ballcount))
       end
       commands[cmdQuit=commands.length]=_INTL("Salir")
     else

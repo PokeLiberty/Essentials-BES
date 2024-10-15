@@ -657,10 +657,10 @@ class PokemonPokedexScene
     ]
     helptexts=[
        _INTL("Búsqueda según los parámetros seleccionados."),[
-          _INTL("Listar por primer letra del nombre.\r\nSólamente los vistos."),
-          _INTL("Listar por color del cuerpo.\r\nSólamente los vistos."),
-          _INTL("Listar por tipo.\r\nSólamente atrapados."),
-          _INTL("Listar por tipo.\r\nSólamente atrapados."),
+          _INTL("Listar por primer letra del nombre.<br>Sólamente los vistos."),
+          _INTL("Listar por color del cuerpo.<br>Sólamente los vistos."),
+          _INTL("Listar por tipo.<br>Sólamente atrapados."),
+          _INTL("Listar por tipo.<br>Sólamente atrapados."),
           _INTL("Seleccionar el modo de listado."),
           _INTL("Ejecutar búsqueda."),
        ],

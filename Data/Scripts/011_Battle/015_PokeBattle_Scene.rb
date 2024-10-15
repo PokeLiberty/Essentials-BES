@@ -3428,14 +3428,14 @@ class PokeBattle_Scene
 
   def pbLevelUp(pokemon,battler,oldtotalhp,oldattack,olddefense,oldspeed,
                 oldspatk,oldspdef)
-    pbTopRightWindow(_INTL("PS Máx.<r>+{1}\r\nAtaque<r>+{2}\r\nDefensa<r>+{3}\r\nAt. Esp<r>+{4}\r\nDef. Esp<r>+{5}\r\nVelocidad<r>+{6}",
+    pbTopRightWindow(_INTL("PS Máx.<r>+{1}<br>Ataque<r>+{2}<br>Defensa<r>+{3}<br>At. Esp<r>+{4}<br>Def. Esp<r>+{5}<br>Velocidad<r>+{6}",
        pokemon.totalhp-oldtotalhp,
        pokemon.attack-oldattack,
        pokemon.defense-olddefense,
        pokemon.spatk-oldspatk,
        pokemon.spdef-oldspdef,
        pokemon.speed-oldspeed))
-    pbTopRightWindow(_INTL("PS Máx.<r>{1}\r\nAtaque<r>{2}\r\nDefensa<r>{3}\r\nAt. Esp<r>{4}\r\nDef. Esp<r>{5}\r\nVelocidad<r>{6}",
+    pbTopRightWindow(_INTL("PS Máx.<r>{1}<br>Ataque<r>{2}<br>Defensa<r>{3}<br>At. Esp<r>{4}<br>Def. Esp<r>{5}<br>Velocidad<r>{6}",
        pokemon.totalhp,pokemon.attack,pokemon.defense,pokemon.spatk,pokemon.spdef,pokemon.speed))
   end
 

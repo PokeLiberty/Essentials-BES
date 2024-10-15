@@ -33,7 +33,7 @@ def pbCanUsePokeRadar?
   return true if $DEBUG && Input.press?(Input::CTRL)
   # No se puede usar el Radar si no está completamente cargado
   if $PokemonGlobal.pokeradarBattery && $PokemonGlobal.pokeradarBattery>0
-    Kernel.pbMessage(_INTL("¡Se ha agotado la batería!\nPara recargarlo, necesitas caminar otros {1} pasos.",
+    Kernel.pbMessage(_INTL("¡Se ha agotado la batería!<br>Para recargarlo, necesitas caminar otros {1} pasos.",
        $PokemonGlobal.pokeradarBattery))
     return false
   end

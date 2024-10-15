@@ -145,7 +145,7 @@ def pbCallTrainer(trtype,trname)
   if trainer
     if trainer.length==8
       if $game_player && $game_map.map_id==trainer[6]
-        Kernel.pbMessage(_INTL("El entrenador está cerca.\n¡Háblale en persona!"))
+        Kernel.pbMessage(_INTL("El entrenador está cerca.<br>¡Háblale en persona!"))
         return
       end
       callerregion=pbGetMetadata(trainer[6],MetadataMapPosition)
@@ -158,7 +158,7 @@ def pbCallTrainer(trtype,trname)
       pbPhoneCall(call,trainer)
     else
       if !pbCommonEvent(trtype)
-        Kernel.pbMessage(_INTL("No se definieron mensajes de {1}.\nNo se puedo llamar al evento común {2}.",trainer[2],trtype))
+        Kernel.pbMessage(_INTL("No se definieron mensajes de {1}.<br>No se puedo llamar al evento común {2}.",trainer[2],trtype))
       end
     end
   end
@@ -475,5 +475,5 @@ def pbPhoneCall(call,phonenum)
     end
     Kernel.pbMessage(messages[i])
   end
-  Kernel.pbMessage(_INTL("¡Clic!\\wt[10]\n......\\wt[5] ......\\1"))
+  Kernel.pbMessage(_INTL("¡Clic!\\wt[10]<br>......\\wt[5] ......\\1"))
 end

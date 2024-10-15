@@ -15,7 +15,7 @@ def pbPurify(pokemon,scene)
     pokemon.pbUpdateShadowMoves()
     for i in 0...4
       if pokemon.moves[i].id!=0 && pokemon.moves[i].id!=oldmoves[i]
-        scene.pbDisplay(_INTL("¡{1} ha recuperado el movimiento \n{2}!",
+        scene.pbDisplay(_INTL("¡{1} ha recuperado el movimiento <br>{2}!",
            pokemon.name,PBMoves.getName(pokemon.moves[i].id)))
       end
     end
@@ -207,7 +207,7 @@ def pbRaiseHappinessAndReduceHeart(pokemon,scene,amount)
     return false
   elsif pokemon.happiness==255
     pokemon.adjustHeart(-amount)
-    scene.pbDisplay(_INTL("¡{1} te adora!\nLa puerta de su corazón se ha abierto un poco.",pokemon.name))
+    scene.pbDisplay(_INTL("¡{1} te adora!<br>La puerta de su corazón se ha abierto un poco.",pokemon.name))
     pbReadyToPurify(pokemon)
     return true
   elsif pokemon.heartgauge==0
@@ -217,7 +217,7 @@ def pbRaiseHappinessAndReduceHeart(pokemon,scene,amount)
   else
     pokemon.changeHappiness("vitamin")
     pokemon.adjustHeart(-amount)
-    scene.pbDisplay(_INTL("{1} se ha vuelto amistoso.\nLa puerta de su corazón se ha abierto un poco.",pokemon.name))
+    scene.pbDisplay(_INTL("{1} se ha vuelto amistoso.<br>La puerta de su corazón se ha abierto un poco.",pokemon.name))
     pbReadyToPurify(pokemon)
     return true
   end
@@ -566,7 +566,7 @@ class PokeBattle_Battler
     if p.isShadow? && !p.hypermode
       if @battle.pbRandom(p.heartgauge)<=PokeBattle_Pokemon::HEARTGAUGESIZE/4
         p.hypermode=true
-        @battle.pbDisplay(_INTL("¡{1} se encuentra en un estado emocional estraordinario!\n¡Ha entrado en Retroestado!",self.pbThis))
+        @battle.pbDisplay(_INTL("¡{1} se encuentra en un estado emocional estraordinario!<br>¡Ha entrado en Retroestado!",self.pbThis))
       end
     end
   end

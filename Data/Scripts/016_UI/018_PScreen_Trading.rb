@@ -160,18 +160,18 @@ class PokemonTradeScene
     speciesname1=PBSpecies.getName(@pokemon.species)
     speciesname2=PBSpecies.getName(@pokemon2.species)
     Kernel.pbMessageDisplay(@sprites["msgwindow"],
-       _ISPRINTF("{1:s}\r\nID: {2:05d}   EO: {3:s}\\wtnp[0]",
+       _ISPRINTF("{1:s}<br>ID: {2:05d}   EO: {3:s}\\wtnp[0]",
        @pokemon.name,@pokemon.publicID,@pokemon.ot)) { pbUpdate }
     Kernel.pbMessageWaitForInput(@sprites["msgwindow"],100,true) { pbUpdate }
     pbPlayDecisionSE()
     pbScene1
     Kernel.pbMessageDisplay(@sprites["msgwindow"],
-       _INTL("Por el {2} de {1},\r\n{3} envía a {4}.\1",@trader1,speciesname1,@trader2,speciesname2)) { pbUpdate }
+       _INTL("Por el {2} de {1},<br>{3} envía a {4}.\1",@trader1,speciesname1,@trader2,speciesname2)) { pbUpdate }
     Kernel.pbMessageDisplay(@sprites["msgwindow"],
        _INTL("{1} se despide de {2}.",@trader2,speciesname2)) { pbUpdate }
     pbScene2
     Kernel.pbMessageDisplay(@sprites["msgwindow"],
-       _ISPRINTF("{1:s}\r\nID: {2:05d}   EO: {3:s}\1",
+       _ISPRINTF("{1:s}<br>ID: {2:05d}   EO: {3:s}\1",
        @pokemon2.name,@pokemon2.publicID,@pokemon2.ot)) { pbUpdate }
     Kernel.pbMessageDisplay(@sprites["msgwindow"],
        _INTL("¡Cuida bien de {1}!",speciesname2)) { pbUpdate }

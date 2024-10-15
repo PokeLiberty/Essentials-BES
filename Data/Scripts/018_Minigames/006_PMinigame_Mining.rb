@@ -491,7 +491,7 @@ class MiningGameScene
 
   def pbMain
     pbSEPlay("MiningPing")
-    Kernel.pbMessage(_INTL("Something pinged in the wall!\n{1} confirmed!",@items.length))
+    Kernel.pbMessage(_INTL("Parece que hay algo en el muro.<br>¡{1} objetos confirmados!",@items.length))
     loop do
       update
       Graphics.update
@@ -521,7 +521,7 @@ class MiningGameScene
         @sprites["cursor"].visible=false
         pbWait(30)
         pbSEPlay("MiningAllFound")
-        Kernel.pbMessage(_INTL("Everything was dug up!"))
+        Kernel.pbMessage(_INTL("¡Se ha extraido todo!"))
         break
       end
       # Input
@@ -554,7 +554,7 @@ class MiningGameScene
       elsif Input.trigger?(Input::C) # Hit
         pbHit
       elsif Input.trigger?(Input::B) # Quit
-        break if Kernel.pbConfirmMessage(_INTL("Are you sure you want to give up?"))
+        break if Kernel.pbConfirmMessage(_INTL("¿Quieres rendirte?"))
       end
     end
     pbGiveItems
@@ -564,10 +564,10 @@ class MiningGameScene
     if @itemswon.length>0
       for i in @itemswon
         if $PokemonBag.pbStoreItem(i)
-          Kernel.pbMessage(_INTL("One {1} was obtained.\\se[MiningItemGet]\\wtnp[30]",
+          Kernel.pbMessage(_INTL("Consigues {1}.\\wtnp[30]\\se[MiningItemGet]\\wtnp[30]",
              PBItems.getName(i)))
         else
-          Kernel.pbMessage(_INTL("One {1} was found, but you have no room for it.",
+          Kernel.pbMessage(_INTL("Consigues {1}, pero no tienes espacio para llevartelo.",
              PBItems.getName(i)))
         end
       end

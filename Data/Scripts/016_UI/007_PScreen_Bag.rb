@@ -1018,7 +1018,7 @@ end
 
 class WithdrawItemScene < ItemStorageScene
   def initialize
-    super(_INTL("Sacar\nobjeto"))
+    super(_INTL("Sacar<br>objeto"))
   end
 end
 
@@ -1026,7 +1026,7 @@ end
 
 class TossItemScene < ItemStorageScene
   def initialize
-    super(_INTL("Tirar\nobjeto"))
+    super(_INTL("Tirar<br>objeto"))
   end
 end
 
