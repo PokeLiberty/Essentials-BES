@@ -3178,7 +3178,11 @@ class Window_DrawableCommand < SpriteWindow_SelectableEx
   def initialize(x,y,width,height,viewport=nil)
     super(x,y,width,height)
     self.viewport=viewport if viewport
-    @selarrow=AnimatedBitmap.new("Graphics/Pictures/selarrow")
+    if isDarkWindowskin(self.windowskin)
+      @selarrow = AnimatedBitmap.new("Graphics/Pictures/selarrowwhite")
+    else
+      @selarrow = AnimatedBitmap.new("Graphics/Pictures/selarrow")
+    end
     @index=0
     colors=getDefaultTextColors(self.windowskin)
     @baseColor=colors[0]
