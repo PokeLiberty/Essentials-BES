@@ -849,39 +849,49 @@ class SpriteWindow_DebugRight < Window_DrawableCommand
     super(0, 0, Graphics.width, Graphics.height)
   end
 
-  def shadowtext(x,y,w,h,t,align=0)
-    width=self.contents.text_size(t).width
-    if align==2
-      x+=(w-width)
-    elsif align==1
-      x+=(w/2)-(width/2)
+  def shadowtext(x,y,w,h,t,align=0,colors=0)
+    width = self.contents.text_size(t).width
+    if align==1 # Right aligned
+      x += (w-width)
+    elsif align==2 # Centre aligned
+      x += (w/2)-(width/2)
     end
-    pbDrawShadowText(self.contents,x,y,[width,w].max,h,t,
-       Color.new(12*8,12*8,12*8),Color.new(26*8,26*8,25*8))
+    base = Color.new(12*8,12*8,12*8)
+    if colors==1 # Red
+      base = Color.new(168,48,56)
+    elsif colors==2 # Green
+      base = Color.new(0,144,0)
+    end
+    pbDrawShadowText(self.contents,x,y,[width,w].max,h,t,base,Color.new(26*8,26*8,25*8))
   end
 
   def drawItem(index,count,rect)
     pbSetNarrowFont(self.contents)
-    if @mode == 0
+    colors = 0; codeswitch = false
+    if @mode==0
       name = $data_system.switches[index+1]
-      status = $game_switches[index+1] ? "[ON]" : "[OFF]"
+      codeswitch = (name[/^s\:/])
+      val = (codeswitch) ? (eval($~.post_match) rescue nil) : $game_switches[index+1]
+      if val==nil; status = "[-]"; colors = 0; codeswitch = true
+      elsif val; status = "[ON]"; colors = 2
+      else; status = "[OFF]"; colors = 1
+      end
     else
       name = $data_system.variables[index+1]
       status = $game_variables[index+1].to_s
+      status = "\"__\"" if !status || status==""
     end
-    if name == nil
-      name = ''
-    end
-    id_text = sprintf("%04d:", index+1)
+    name = '' if name==nil
+    id_text = sprintf("%04d:",index+1)
     width = self.contents.text_size(id_text).width
-    rect=drawCursor(index,rect)
-    totalWidth=rect.width
-    idWidth=totalWidth*15/100
-    nameWidth=totalWidth*65/100
-    statusWidth=totalWidth*20/100
-    self.shadowtext(rect.x, rect.y, idWidth, rect.height, id_text)
-    self.shadowtext(rect.x+idWidth, rect.y, nameWidth, rect.height, name)
-    self.shadowtext(rect.x+idWidth+nameWidth, rect.y, statusWidth, rect.height, status, 2)
+    rect = drawCursor(index,rect)
+    totalWidth = rect.width
+    idWidth     = totalWidth*15/100
+    nameWidth   = totalWidth*65/100
+    statusWidth = totalWidth*20/100
+    self.shadowtext(rect.x,rect.y,idWidth,rect.height,id_text)
+    self.shadowtext(rect.x+idWidth,rect.y,nameWidth,rect.height,name,0,(codeswitch) ? 1 : 0)
+    self.shadowtext(rect.x+idWidth+nameWidth,rect.y,statusWidth,rect.height,status,1,colors)
   end
 
   def itemCount
