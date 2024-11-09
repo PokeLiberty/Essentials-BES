@@ -540,12 +540,12 @@ class PokemonSummaryScene
        [_INTL("Habilidad"),224,284,0,@base,@shadow],
        [abilityname,342,284,0,@base2,@shadow2],
 
-       [_INTL("PS"),234,76+4,0,@base,@shadow],
-       [_INTL("Ataque"),234,120,0,@base,statshadows[0]],
-       [_INTL("Defensa"),234,152,0,@base,statshadows[1]],
-       [_INTL("At. Esp."),234,184,0,@base,statshadows[3]],
-       [_INTL("Def. Esp."),234,216,0,@base,statshadows[4]],
-       [_INTL("Velocidad"),234,248,0,@base,statshadows[2]],
+       [_INTL(PBStats.getName(0,true)),234,76+4,0,@base,@shadow], #PS
+       [_INTL(PBStats.getName(1,true)),234,120,0,@base,statshadows[0]], #Ataque
+       [_INTL(PBStats.getName(2,true)),234,152,0,@base,statshadows[1]], #Defensa
+       [_INTL(PBStats.getName(4,true)),234,184,0,@base,statshadows[3]], #Ataque Especial
+       [_INTL(PBStats.getName(5,true)),234,216,0,@base,statshadows[4]], #Defensa Especial
+       [_INTL(PBStats.getName(3,true)),234,248,0,@base,statshadows[2]], #Velocidad
        ]
 
     if EXPANDED_SUMMARY_INFO

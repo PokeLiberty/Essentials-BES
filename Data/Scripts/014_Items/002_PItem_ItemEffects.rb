@@ -1264,9 +1264,9 @@ ItemHandlers::UseOnPokemon.add(:EXPCANDYXS,proc{|item,pokemon,scene|
        spatkdiff=pokemon.spatk-spatkdiff
        spdefdiff=pokemon.spdef-spdefdiff
        totalhpdiff=pokemon.totalhp-totalhpdiff
-       pbTopRightWindow(_INTL("PS Máx.<r>+{1}<br>Ataque<r>+{2}<br>Defensa<r>+{3}<br>At. Esp.<r>+{4}<br>Def. Esp.<r>+{5}<br>Velocidad<r>+{6}",
+       pbTopRightWindow(_INTL("#{PBStats.getName(0,true)} Máx.<r>+{1}<br>#{PBStats.getName(1,true)}<r>+{2}<br>#{PBStats.getName(2,true)}<r>+{3}<br>#{PBStats.getName(4,true)}<r>+{4}<br>#{PBStats.getName(5,true)}<r>+{5}<br>#{PBStats.getName(3,true)}<r>+{6}",
           totalhpdiff,attackdiff,defensediff,spatkdiff,spdefdiff,speeddiff))
-       pbTopRightWindow(_INTL("PS Máx.<r>{1}<br>Ataque<r>{2}<br>Defensa<r>{3}<br>At. Esp.<r>{4}<br>Def. Esp.<r>{5}<br>Velocidad<r>{6}",
+       pbTopRightWindow(_INTL("#{PBStats.getName(0,true)} Máx.<r>+{1}<br>#{PBStats.getName(1,true)}<r>+{2}<br>#{PBStats.getName(2,true)}<r>+{3}<br>#{PBStats.getName(4,true)}<r>+{4}<br>#{PBStats.getName(5,true)}<r>+{5}<br>#{PBStats.getName(3,true)}<r>+{6}",
           pokemon.totalhp,pokemon.attack,pokemon.defense,pokemon.spatk,pokemon.spdef,pokemon.speed))
        movelist=pokemon.getMoveList
        for i in movelist
