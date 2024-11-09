@@ -60,6 +60,12 @@ class CommandMenuDisplay
     @msgbox.windowskin=nil
     @title=""
     @buttons=nil
+    # BES-T Info combate
+    @statinfo=IconSprite.new(0,0,viewport)
+    @statinfo.setBitmap("Graphics/Pictures/Battle/infoStats")
+    @statinfo.y=PokeBattle_SceneConstants::INFOBUTTON_Y
+    @statinfo.x=PokeBattle_SceneConstants::INFOBUTTON_X
+    
     if PokeBattle_SceneConstants::USECOMMANDBOX
       @window.opacity=0
       @window.x=Graphics.width
@@ -73,6 +79,7 @@ class CommandMenuDisplay
     @msgbox.x=value
     @display.x=value if @display
     @buttons.x=value if @buttons
+    @statinfo.x=value if @statinfo # BES-T
   end
 
   def y; @window.y; end
@@ -81,6 +88,7 @@ class CommandMenuDisplay
     @msgbox.y=value
     @display.y=value if @display
     @buttons.y=value if @buttons
+    @statinfo.y=value if @statinfo # BES-T
   end
 
   def z; @window.z; end
@@ -89,6 +97,7 @@ class CommandMenuDisplay
     @msgbox.z=value
     @display.z=value if @display
     @buttons.z=value+1 if @buttons
+    @statinfo.z=value+2 if @statinfo # BES-T
   end
 
   def ox; @window.ox; end
@@ -97,6 +106,7 @@ class CommandMenuDisplay
     @msgbox.ox=value
     @display.ox=value if @display
     @buttons.ox=value if @buttons
+    @statinfo.ox=value if @statinfo # BES-T
   end
 
   def oy; @window.oy; end
@@ -105,6 +115,7 @@ class CommandMenuDisplay
     @msgbox.oy=value
     @display.oy=value if @display
     @buttons.oy=value if @buttons
+    @statinfo.oy=value if @statinfo # BES-T
   end
 
   def visible; @window.visible; end
@@ -113,6 +124,7 @@ class CommandMenuDisplay
     @msgbox.visible=value
     @display.visible=value if @display
     @buttons.visible=value if @buttons
+    @statinfo.visible=value if @statinfo # BES-T
   end
 
   def color; @window.color; end
@@ -121,6 +133,7 @@ class CommandMenuDisplay
     @msgbox.color=value
     @display.color=value if @display
     @buttons.color=value if @buttons
+    @statinfo.color=value if @statinfo # BES-T
   end
 
   def disposed?
@@ -133,6 +146,7 @@ class CommandMenuDisplay
     @window.dispose
     @display.dispose if @display
     @buttons.dispose if @buttons
+    @statinfo.dispose if @statinfo # BES-T
   end
 
   def index; @window.index; end
@@ -151,6 +165,7 @@ class CommandMenuDisplay
     @msgbox.refresh
     @window.refresh
     @buttons.refresh(self.index,self.mode) if @buttons
+    @statinfo.refresh if @statinfo # BES-T
   end
 
   def update
@@ -158,6 +173,7 @@ class CommandMenuDisplay
     @window.update
     @display.update if @display
     @buttons.update(self.index,self.mode) if @buttons
+    @statinfo.update if @statinfo # BES-T
   end
 end
 
@@ -2581,6 +2597,8 @@ class PokeBattle_Scene
       elsif Input.trigger?(Input::B) && index==2 && @lastcmd[0]!=2 # Cancel
         pbPlayDecisionSE()
         return -1
+      elsif Input.trigger?(Input::L) #Q
+        pbShowBattleInfo(@battle)
       end
     end
   end
@@ -2664,6 +2682,8 @@ class PokeBattle_Scene
         @lastmove[index]=cw.index
         pbPlayCancelSE()
         return -1
+      elsif Input.trigger?(Input::L) #Q
+        pbShowBattleInfo(@battle)
       end
     end
   end
