@@ -248,7 +248,7 @@ class CommandMenuButtons < BitmapSprite
       if PokeBattle_SceneConstants::CMD_BUTTON_TEXT
         cmdText = @commandtext[cmdarray[i]].upcase if @commandtext
         basecolor   = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,cmdarray[i]*46+32) : PokeBattle_SceneConstants::MENUBASECOLOR
-        shadowcolor = PokeBattle_SceneConstants::MENUSHADOWCOLOR
+        shadowcolor = PokeBattle_SceneConstants::MENUSHADOWCOLORACTIVE
         textpos.push([_INTL("{1}",cmdText),x+64,y+8,2,
                     basecolor,shadowcolor,PokeBattle_SceneConstants::CMD_OUTLINE])
       end
@@ -456,6 +456,19 @@ class FightMenuButtons < BitmapSprite
     refresh(index,moves,megaButton,ultraButton,zButton,dynaButton,teraButton)
   end
 
+  def getMoveName(move)
+    movename = move.name
+    if PokeBattle_SceneConstants::SHORTEN_MOVES && movename.length > 16
+      # Elimina la palabra "de" y los espacios extra
+      movename = movename.gsub(" de ", " ")
+      if movename.length > 16 #Corta de nuevo si sigue siendo muy grande
+        movename = movename[0..12] + "..."
+      end
+      return movename
+    end
+    return movename
+  end
+  
   def refresh(index,moves,megaButton,ultraButton,zButton,dynaButton,teraButton)
     return if !moves
     self.bitmap.clear
@@ -468,9 +481,10 @@ class FightMenuButtons < BitmapSprite
       y=((i/2)==0) ? 6 : 48
       y+=UPPERGAP
       moveType = getMoveType(moves[i])
+      movename = getMoveName(moves[i])
       self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(0,moveType*46,192,46))
       basecolor = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,moveType*46+34) : PokeBattle_SceneConstants::MENUBASECOLOR
-      textpos.push([_INTL("{1}",moves[i].name),x+96,y+8,2,
+      textpos.push([_INTL("{1}",movename),x+96,y+8,2,
                     basecolor,PokeBattle_SceneConstants::MENUSHADOWCOLOR,
                     PokeBattle_SceneConstants::CMD_OUTLINE])
     end
@@ -488,11 +502,13 @@ class FightMenuButtons < BitmapSprite
       y=((i/2)==0) ? 6 : 48
       y+=UPPERGAP
       moveType = getMoveType(moves[i])
+      movename = getMoveName(moves[i])
+      
       self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(192,moveType*46,192,46))
       self.bitmap.blt(416,20+UPPERGAP,@typebitmap.bitmap,Rect.new(0,moveType*28,64,28))
       basecolor = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,moveType*46+34) : PokeBattle_SceneConstants::MENUBASECOLOR
-      textpos.push([_INTL("{1}",moves[i].name),x+96,y+8,2,
-                    basecolor,PokeBattle_SceneConstants::MENUSHADOWCOLOR,
+      textpos.push([_INTL("{1}",movename),x+96,y+8,2,
+                    basecolor,PokeBattle_SceneConstants::MENUSHADOWCOLORACTIVE,
                     PokeBattle_SceneConstants::CMD_OUTLINE])
       if moves[i].totalpp>0
         ppfraction=(4.0*moves[i].pp/moves[i].totalpp).ceil
@@ -1769,7 +1785,7 @@ class PokeBattle_Scene
     # Called whenever a new round begins.
     @battlestart=false
   end
-
+  
   def pbShowOpponent(index)
     if @battle.opponent
       if @battle.opponent.is_a?(Array)
@@ -1802,7 +1818,7 @@ class PokeBattle_Scene
       @sprites["trainer"].x+=6
     end
   end
-
+  
   def pbShowHelp(text)
     @sprites["helpwindow"].resizeToFit(text,Graphics.width)
     @sprites["helpwindow"].y=0
@@ -3049,7 +3065,8 @@ class PokeBattle_Scene
       sprite.update
     end
   end
-
+  
+  #Animación para un pokémon salvaje huyendo. #BES-T
   def pbHideWild(pkmn)
     @sprites["shadow#{pkmn.index}"].visible=false
     pkmnsprite=@sprites["pokemon#{pkmn.index}"]
@@ -3073,7 +3090,7 @@ class PokeBattle_Scene
     end
     @sprites["battlebox#{pkmn.index}"].visible=false
   end
-
+  
 # This method is called whenever a Pokémon faints.
   def pbFainted(pkmn)
     frames=pbCryFrameLength(pkmn.pokemon)
@@ -3403,11 +3420,42 @@ class PokeBattle_Scene
     end
   end
 
+  def pbToggleDataboxes(toggle = false)
+    unless toggle
+      8.times do
+        @sprites["battlebox0"].opacity-=32 if @sprites["battlebox0"]
+        @sprites["battlebox1"].opacity-=32 if @sprites["battlebox1"]
+        @sprites["battlebox2"].opacity-=32 if @sprites["battlebox2"]
+        @sprites["battlebox3"].opacity-=32 if @sprites["battlebox3"]
+        pbGraphicsUpdate
+        pbInputUpdate
+        pbFrameUpdate
+      end
+      for i in 0...3
+        @sprites["battlebox#{i}"].opacity = 0 if @sprites["battlebox#{i}"]
+      end
+    else
+      8.times do
+        @sprites["battlebox0"].opacity+=32 if @sprites["battlebox0"]
+        @sprites["battlebox1"].opacity+=32 if @sprites["battlebox1"]
+        @sprites["battlebox2"].opacity+=32 if @sprites["battlebox2"]
+        @sprites["battlebox3"].opacity+=32 if @sprites["battlebox3"]
+        pbGraphicsUpdate
+        pbInputUpdate
+        pbFrameUpdate
+      end
+      for i in 0...3
+        @sprites["battlebox#{i}"].opacity = 255 if @sprites["battlebox#{i}"]
+      end
+    end
+  end
+
   def pbAnimation(moveid,user,target,hitnum=0)
     animid=pbFindAnimation(moveid,user.index,hitnum)
     return if !animid
     anim=animid[0]
     animations=$pkmn_animations
+    pbToggleDataboxes if PokeBattle_SceneConstants::HIDE_DATABOXES_DURING_MOVES
     pbSaveShadows {
        if animid[1] # On opposing side and using OppMove animation
          pbAnimationCore(animations[anim],target,user,true)
@@ -3415,6 +3463,7 @@ class PokeBattle_Scene
          pbAnimationCore(animations[anim],user,target)
        end
     }
+    pbToggleDataboxes(true) if PokeBattle_SceneConstants::HIDE_DATABOXES_DURING_MOVES
     if PBMoveData.new(moveid).function==0x69 && user && target # Transform
       # Change form to transformed version
       pbChangePokemon(user,target.pokemon)
@@ -3721,5 +3770,60 @@ class PokeBattle_Scene
                !picturePlayer.running? && !pictureAnger.running?
     end
     spriteBall.dispose
+  end
+  
+#===============================================================================
+# BES-T  MUSICA AL TENER VIDA BAJA
+#===============================================================================
+  # Inicializar el estado de baja vida en la batalla
+  alias pbStartBattle_lHP pbStartBattle
+  def pbStartBattle(battle)
+    pbStartBattle_lHP(battle)
+    @lowHPBGM = false   
+  end
+  
+  # Restaurar música al cambiar un Pokémon y verificar si el siguiente necesita la música de baja vida
+  alias pbRecall_lHP pbRecall
+  def pbRecall(battlerindex)
+    pbRecall_lHP(battlerindex)
+    $game_system.bgm_restore if @lowHPBGM
+    @lowHPBGM = false
+  end
+  
+  # Revisar la música al enviar un Pokémon
+  alias pbSendOut_lHP pbSendOut
+  def pbSendOut(battlerindex, pkmn)
+    pbSendOut_lHP(battlerindex, pkmn)
+    pkmn = @battle.battlers[battlerindex]
+    pbLowHPMusic(pkmn)
+  end
+  
+  # Método para gestionar la música de baja vida
+  def pbLowHPMusic(pkmn)
+    return if !PokeBattle_SceneConstants::PLAY_LOW_HP_MUSIC
+    return if @battle.doublebattle
+    track = PokeBattle_SceneConstants::LOW_HP_MUSIC_FILE
+    
+    # Solo reproducir si el Pokémon tiene vida baja y aún no se ha activado
+    if pkmn.hp > 0 && (pkmn.hp <= pkmn.totalhp / 4)
+      unless @lowHPBGM
+        $game_system.bgm_memorize
+        pbBGMPlay(track)
+        @lowHPBGM = true
+      end
+    else
+      # Restaurar música si el Pokémon tiene suficiente vida
+      if @lowHPBGM
+        $game_system.bgm_restore
+        @lowHPBGM = false
+      end
+    end
+  end
+  
+  # Revisar la música al cambiar el HP del Pokémon
+  alias pbHPChanged_lHP pbHPChanged
+  def pbHPChanged(pkmn, oldhp, anim = false)
+    pbHPChanged_lHP(pkmn, oldhp, anim)
+    pbLowHPMusic(pkmn) if pkmn.index % 2 == 0
   end
 end

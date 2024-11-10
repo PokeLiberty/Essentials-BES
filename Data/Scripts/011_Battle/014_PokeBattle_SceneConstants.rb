@@ -5,8 +5,8 @@ module PokeBattle_SceneConstants
   # Text colors
   MESSAGEBASECOLOR        = Color.new(80,80,88)
   MESSAGESHADOWCOLOR      = Color.new(160,160,168)
-  MENUBASECOLOR           = MESSAGEBASECOLOR
-  MENUSHADOWCOLOR         = MESSAGESHADOWCOLOR
+  MENUBASECOLOR           = Color.new(248,248,248)
+  MENUSHADOWCOLOR         = Color.new(48,48,48)
   BOXTEXTBASECOLOR        = Color.new(72,72,72)
   BOXTEXTSHADOWCOLOR      = Color.new(184,184,184)
   PPTEXTBASECOLOR         = MESSAGEBASECOLOR        # More than 1/2 of total PP
@@ -123,14 +123,30 @@ module PokeBattle_SceneConstants
   # BES-T
   # Colorea las letras de los movimientos segun los colores usados en el botón de combate.
   # Desactivalo si usas cajas customizadas.
-  COLOREDTYPE     = true
+  COLOREDTYPE     = false
   # Añade los textos de Luchar, Pokémon, Bolsa, Huir, etc... por script.
   # Desactivalo si usas cajas customizadas.
-  CMD_BUTTON_TEXT = false
+  CMD_BUTTON_TEXT = true
   # Añade outlines a todos los textos en los botones de combate.
-  CMD_OUTLINE     = false
+  CMD_OUTLINE     = true
+  # Cambia el color del sombreado/outline del texto al ser seleccionado.
+  MENUSHADOWCOLORACTIVE = Color.new(120,120,128)
+
+  
   # Añade outlines a todos los textos que aparecen en el databox de cada pokémon.
   # Recomendado en interfaces estilo Blanco y Negro, recuerda editar los colores del texto!
   DTBOX_OUTLINE     = false
+  
+  # Oculta temporalmente las Databox al usar movimientos.
+  HIDE_DATABOXES_DURING_MOVES = true
+  
+  # Añade la opción de reproducir una canción cuando la vida de tu pokémon está baja.
+  PLAY_LOW_HP_MUSIC = true
+  LOW_HP_MUSIC_FILE = "Battle low HP"
 
+  # Recorta los nombres de movimientos que superan los 16 caracteres. 
+  # Primero elimina los " de ", si puede, y si sigue siendo muy largo acorta y añade "..."
+  # Al usar el movimiento el nombre se muestra completo.
+  SHORTEN_MOVES = true
+  
 end
