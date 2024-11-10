@@ -1977,6 +1977,7 @@ class PokeBattle_Battle
       return 0
     end
     if $DEBUG && Input.press?(Input::CTRL)
+      pbSEPlay("Battle flee")
       pbDisplayPaused(_INTL("¡Escapaste sin problemas!"))
       @decision=3
       return 1
@@ -1990,11 +1991,13 @@ class PokeBattle_Battle
       return 0
     end
     if thispkmn.pbHasType?(:GHOST) && USENEWBATTLEMECHANICS
+      pbSEPlay("Battle flee")
       pbDisplayPaused(_INTL("¡Escapaste sin problemas!"))
       @decision=3
       return 1
     end
     if thispkmn.hasWorkingAbility(:RUNAWAY)
+      pbSEPlay("Battle flee")
       if duringBattle
         pbDisplayPaused(_INTL("¡Escapaste sin problemas!"))
       else
@@ -2004,6 +2007,7 @@ class PokeBattle_Battle
       return 1
     end
     if thispkmn.hasWorkingItem(:SMOKEBALL)
+      pbSEPlay("Battle flee")
       if duringBattle
         pbDisplayPaused(_INTL("¡Escapaste sin problemas!"))
       else
