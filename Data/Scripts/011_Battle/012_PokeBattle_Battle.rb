@@ -1932,7 +1932,7 @@ class PokeBattle_Battle
 ################################################################################
   def pbCanRun?(idxPokemon)
     return false if @opponent
-    return false if @cantescape && !pbIsOpposing?(idsPokemon)
+    return false if @cantescape && !pbIsOpposing?(idxPokemon)
     thispkmn=@battlers[idxPokemon]
     return true if thispkmn.pbHasType?(:GHOST) && USENEWBATTLEMECHANICS
     return true if thispkmn.hasWorkingItem(:SMOKEBALL)

@@ -3050,6 +3050,30 @@ class PokeBattle_Scene
     end
   end
 
+  def pbHideWild(pkmn)
+    @sprites["shadow#{pkmn.index}"].visible=false
+    pkmnsprite=@sprites["pokemon#{pkmn.index}"]
+    20.times do
+      pbGraphicsUpdate
+      pbInputUpdate
+      pbFrameUpdate
+      if pkmnsprite
+        pkmnsprite.opacity-=(255/20)
+      end
+    end
+    if pkmnsprite
+      pkmnsprite.visible=false
+    end
+    pbSEPlay("Battle flee")
+    8.times do
+      @sprites["battlebox#{pkmn.index}"].opacity-=32
+      pbGraphicsUpdate
+      pbInputUpdate
+      pbFrameUpdate
+    end
+    @sprites["battlebox#{pkmn.index}"].visible=false
+  end
+
 # This method is called whenever a Pokémon faints.
   def pbFainted(pkmn)
     frames=pbCryFrameLength(pkmn.pokemon)

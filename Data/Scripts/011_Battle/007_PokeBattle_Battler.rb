@@ -4769,6 +4769,7 @@ class PokeBattle_Battler
     if !@battle.opponent && @battle.pbIsOpposing?(self.index) &&
        @battle.rules["alwaysflee"] && @battle.pbCanRun?(self.index)
       pbBeginTurn(choice)
+      @battle.scene.pbHideWild(self)
       @battle.pbDisplay(_INTL("¡{1} ha huido!",self.pbThis))
       @battle.decision=3
       pbEndTurn(choice)
