@@ -684,3 +684,22 @@ ItemHandlers::UseOnPokemon.add(:TERARANDOMITEM,proc{|item,pokemon,scene|
   pokemon.teratype=newtype
 })
 
+##################################################################################
+# BES-T MO ITEMS    
+# Traido desde la base de Pira, son objetos que no estan en el PBS, dejados por compatibilidad.
+##################################################################################
+ItemHandlers::UseFromBag.add(:PICKAXE,proc{|item| next canUseRockSmash? ? 2:0 })
+
+ItemHandlers::UseInField.add(:PICKAXE,proc{|item| useRockSmash if canUseRockSmash?})
+
+ItemHandlers::UseFromBag.add(:SHEARS,proc{|item| next canUseCut? ? 2:0 })
+
+ItemHandlers::UseInField.add(:SHEARS,proc{|item| useCut if canUseCut?})
+
+ItemHandlers::UseFromBag.add(:GLOVES,proc{|item| next canUseStrength? ? 2:0 })
+
+ItemHandlers::UseInField.add(:GLOVES,proc{|item| useStrength if canUseStrength?})
+
+ItemHandlers::UseFromBag.add(:SURFBOARD,proc{|item| next canUseSurf? ? 2:0 })
+
+ItemHandlers::UseInField.add(:SURFBOARD,proc{|item| useSurf if canUseSurf?})

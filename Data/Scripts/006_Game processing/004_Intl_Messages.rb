@@ -376,6 +376,7 @@ class Messages
   end
 
   def self.normalizeValue(value)
+    value = value.to_s
     if value[/[\r\n\t\x01]|^[\[\]]/]
       ret=value.clone
       ret.gsub!(/\r/,"<<r>>")

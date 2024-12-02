@@ -156,7 +156,8 @@ end
 ################################################################################
 EncounterModifier.register(proc {|encounter|
    if !$PokemonEncounters.isRegularGrass? || 
-      !$PokemonEncounters.isEncounterPossibleHere?
+     !$PokemonEncounters.isEncounterPossibleHere? ||
+     $PokemonGlobal.partner
      pbPokeRadarCancel
      return encounter
    end
@@ -168,7 +169,7 @@ EncounterModifier.register(proc {|encounter|
        s=g[3] if g[2]==grass
      end
      if $PokemonTemp.pokeradar[2]>0
-       if s==2 || rand(100)<24+25*grass   # 24%, 49%, 74%, 99%
+      if s==2 || rand(100)<86+grass*4+($PokemonTemp.pokeradar[2]/4).floor
          # Continue the chain
          encounter=[$PokemonTemp.pokeradar[0],$PokemonTemp.pokeradar[1]]
        else
@@ -207,8 +208,7 @@ Events.onWildBattleEnd+=proc {|sender,e|
    species=e[0]
    level=e[1]
    decision=e[2]
-   if !$PokemonEncounters.isRegularGrass? ||
-      ($PokemonGlobal && $PokemonGlobal.bicycle)
+  if !$PokemonEncounters.isRegularGrass? || ($PokemonGlobal && $PokemonGlobal.bicycle)
      pbPokeRadarCancel
      return
    end
@@ -248,9 +248,10 @@ Events.onMapChange+=proc {|sender,e|
 # Item handlers
 ################################################################################
 ItemHandlers.addUseInField(:POKERADAR, proc {
+  next 0 if !pbCanUsePokeRadar?
    next pbUsePokeRadar
 })
 
 ItemHandlers.addUseFromBag(:POKERADAR, proc {
-   next pbCanUsePokeRadar? ? 2 : 0
+  next (pbCanUsePokeRadar?) ? 2 : 0
 })

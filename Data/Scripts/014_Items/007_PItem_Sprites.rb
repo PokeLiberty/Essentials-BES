@@ -14,7 +14,10 @@ class ItemIconSprite < SpriteWrapper
     @frame=0
     self.x=x
     self.y=y
+    @forceitemchange = true
     self.item=item
+    @forceitemchange = false
+    @blankzero = false
   end
 
   def width
@@ -24,6 +27,13 @@ class ItemIconSprite < SpriteWrapper
 
   def height
     return (self.bitmap && !self.bitmap.disposed?) ? self.bitmap.height : 0
+  end
+
+  def blankzero=(val)
+    @blankzero = val
+    @forceitemchange = true
+    self.item = @item
+    @forceitemchange = false
   end
 
   def setOffset(offset=PictureOrigin::Center)
@@ -52,10 +62,11 @@ class ItemIconSprite < SpriteWrapper
   end
 
   def item=(value)
+    return if @item==value && !@forceitemchange
     @item=value
     @animbitmap.dispose if @animbitmap
     @animbitmap=nil
-    if @item
+    if @item && !(@item==0 && @blankzero)
       @animbitmap=AnimatedBitmap.new(pbItemIconFile(value))
       self.bitmap=@animbitmap.bitmap
       if self.bitmap.height==ANIMICONSIZE
@@ -95,5 +106,51 @@ class ItemIconSprite < SpriteWrapper
       end
     end
     @updating=false
+  end
+end
+
+#===============================================================================
+# Item held icon (used in the party screen)
+#===============================================================================
+class HeldItemIconSprite < SpriteWrapper
+  def initialize(x,y,pokemon,viewport=nil)
+    super(viewport)
+    self.x = x
+    self.y = y
+    @pokemon = pokemon
+    @item = 0
+    self.item = @pokemon.item
+  end
+
+  def pokemon=(value)
+    @pokemon = value
+    self.item = @pokemon.item
+  end
+
+  def item=(value)
+    return if @item==value
+    @item = value
+    @animbitmap.dispose if @animbitmap
+    @animbitmap = nil
+    if @item && @item>0
+      @animbitmap = AnimatedBitmap.new(pbHeldItemIconFile(value))
+      self.bitmap = @animbitmap.bitmap
+    else
+      self.bitmap = nil
+    end
+  end
+
+  def dispose
+    @animbitmap.dispose if @animbitmap
+    super
+  end
+
+  def update
+    super
+    self.item = @pokemon.item
+    if @animbitmap
+      @animbitmap.update
+      self.bitmap = @animbitmap.bitmap
+    end
   end
 end

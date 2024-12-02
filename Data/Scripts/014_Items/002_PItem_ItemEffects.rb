@@ -10,7 +10,6 @@
 #                     3 = usado, objeto consumido
 #                     4 = cierra la mochila para usarlo, objeto consumido
 #===============================================================================
-
 def pbRepel(item,steps)
   if $PokemonGlobal.repel>0
     Kernel.pbMessage(_INTL("Pero todavía tiene efecto el último Repente utilizado."))
@@ -27,22 +26,6 @@ ItemHandlers::UseFromBag.add(:REPEL,proc{|item| pbRepel(item,100) })
 ItemHandlers::UseFromBag.add(:SUPERREPEL,proc{|item| pbRepel(item,200) })
 
 ItemHandlers::UseFromBag.add(:MAXREPEL,proc{|item| pbRepel(item,250) })
-
-ItemHandlers::UseFromBag.add(:PICKAXE,proc{|item| next canUseRockSmash? ? 2:0 })
-
-ItemHandlers::UseInField.add(:PICKAXE,proc{|item| useRockSmash if canUseRockSmash?})
-
-ItemHandlers::UseFromBag.add(:SHEARS,proc{|item| next canUseCut? ? 2:0 })
-
-ItemHandlers::UseInField.add(:SHEARS,proc{|item| useCut if canUseCut?})
-
-ItemHandlers::UseFromBag.add(:GLOVES,proc{|item| next canUseStrength? ? 2:0 })
-
-ItemHandlers::UseInField.add(:GLOVES,proc{|item| useStrength if canUseStrength?})
-
-ItemHandlers::UseFromBag.add(:SURFBOARD,proc{|item| next canUseSurf? ? 2:0 })
-
-ItemHandlers::UseInField.add(:SURFBOARD,proc{|item| useSurf if canUseSurf?})
 
 Events.onStepTaken+=proc {
    if !PBTerrain.isIce?($game_player.terrain_tag)   # No debería contar cuando se desplaza sobre el hielo
@@ -142,8 +125,6 @@ ItemHandlers::UseFromBag.add(:TOWNMAP,proc{|item|
    pbShowMap(-1,false)
    next 1 # Continue
 })
-
-
 
 ItemHandlers::UseFromBag.add(:COINCASE,proc{|item|
    Kernel.pbMessage(_INTL("Fichas: {1}",$PokemonGlobal.coins))
@@ -381,62 +362,26 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFWATERS,proc{|item,pokemon,scene|
    end
 })
 
+#BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::UseOnPokemon.add(:POTION,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,20,scene)
+  heal = 20 #Si no encuentra objeto, cura como si fuese una poción.
+            #Afecta a Zumo de bayas, corazón dulce y caramelo furia.
+  heal = (USENEWBATTLEMECHANICS) ? 60 : 50 if isConst?(item,PBItems,:SUPERPOTION)
+  heal = (USENEWBATTLEMECHANICS) ? 120 : 200 if isConst?(item,PBItems,:HYPERPOTION)
+  heal = (pokemon.totalhp-pokemon.hp) if isConst?(item,PBItems,:MAXPOTION)
+  heal = (USENEWBATTLEMECHANICS) ? 30 : 50 if isConst?(item,PBItems,:FRESHWATER)
+  heal = (USENEWBATTLEMECHANICS) ? 50 : 60 if isConst?(item,PBItems,:SODAPOP)
+  heal = (USENEWBATTLEMECHANICS) ? 70 : 80 if isConst?(item,PBItems,:LEMONADE)
+  heal = 100 if isConst?(item,PBItems,:MOOMOOMILK)
+  heal = 10 if isConst?(item,PBItems,:ORANBERRY)
+  heal = (pokemon.totalhp/4).floor if isConst?(item,PBItems,:SITRUSBERRY)
+
+  next pbHPItem(pokemon,heal,scene)
 })
 
-ItemHandlers::UseOnPokemon.add(:SUPERPOTION,proc{|item,pokemon,scene|
-   heal = (USENEWBATTLEMECHANICS) ? 60 : 50
-   next pbHPItem(pokemon,heal,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:HYPERPOTION,proc{|item,pokemon,scene|
-   heal = (USENEWBATTLEMECHANICS) ? 120 : 200
-   next pbHPItem(pokemon,heal,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:MAXPOTION,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,pokemon.totalhp-pokemon.hp,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:BERRYJUICE,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,20,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:RAGECANDYBAR,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,20,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:SWEETHEART,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,20,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:FRESHWATER,proc{|item,pokemon,scene|
-   heal = (USENEWBATTLEMECHANICS) ? 30 : 50
-   next pbHPItem(pokemon,heal,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:SODAPOP,proc{|item,pokemon,scene|
-   heal = (USENEWBATTLEMECHANICS) ? 50 : 60
-   next pbHPItem(pokemon,heal,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:LEMONADE,proc{|item,pokemon,scene|
-heal = (USENEWBATTLEMECHANICS) ? 70 : 80
-next pbHPItem(pokemon,heal,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:MOOMOOMILK,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,100,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:ORANBERRY,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,10,scene)
-})
-
-ItemHandlers::UseOnPokemon.add(:SITRUSBERRY,proc{|item,pokemon,scene|
-   next pbHPItem(pokemon,(pokemon.totalhp/4).floor,scene)
-})
+ItemHandlers::UseOnPokemon.copy(:POTION,:SUPERPOTION,:HYPERPOTION,:MAXPOTION,
+  :BERRYJUICE,:RAGECANDYBAR,:SWEETHEART,:FRESHWATER,:SODAPOP,:LEMONADE,
+  :MOOMOOMILK,:ORANBERRY,:SITRUSBERRY)
 
 ItemHandlers::UseOnPokemon.add(:AWAKENING,proc{|item,pokemon,scene|
    if pokemon.hp<=0 || pokemon.status!=PBStatuses::SLEEP
@@ -909,69 +854,27 @@ ItemHandlers::UseOnPokemon.add(:GRACIDEA,proc{|item,pokemon,scene|
    end
 })
 
+#BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::UseOnPokemon.add(:REDNECTAR,proc{|item,pokemon,scene|
-   if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=0
-     if pokemon.hp>0
-       pokemon.form=0
-       scene.pbRefresh
-       scene.pbDisplay(_INTL("¡{1} ha cambiado de forma!",pokemon.name))
-       next true
-     else
-       scene.pbDisplay(_INTL("No se puede usar en un Pokémon debilitado."))
-     end
-   else
-     scene.pbDisplay(_INTL("No tuvo efecto."))
-     next false
-   end
+  form = 0
+  form = 1 if isConst?(item,PBItems,:YELLOWNECTAR)
+  form = 2 if isConst?(item,PBItems,:PINKNECTAR)
+  form = 3 if isConst?(item,PBItems,:PURPLENECTAR)
+  if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=form
+    if pokemon.hp>0
+      pokemon.form=form
+      scene.pbRefresh
+      scene.pbDisplay(_INTL("¡{1} ha cambiado de forma!",pokemon.name))
+      next true
+    else
+      scene.pbDisplay(_INTL("No se puede usar en un Pokémon debilitado."))
+    end
+  else
+    scene.pbDisplay(_INTL("No tuvo efecto."))
+    next false
+  end
 })
-
-ItemHandlers::UseOnPokemon.add(:YELLOWNECTAR,proc{|item,pokemon,scene|
-   if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=1
-     if pokemon.hp>0
-       pokemon.form=1
-       scene.pbRefresh
-       scene.pbDisplay(_INTL("¡{1} ha cambiado de forma!",pokemon.name))
-       next true
-     else
-       scene.pbDisplay(_INTL("No se puede usar en un Pokémon debilitado."))
-     end
-   else
-     scene.pbDisplay(_INTL("No tuvo efecto."))
-     next false
-   end
-})
-
-ItemHandlers::UseOnPokemon.add(:PINKNECTAR,proc{|item,pokemon,scene|
-   if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=2
-     if pokemon.hp>0
-       pokemon.form=2
-       scene.pbRefresh
-       scene.pbDisplay(_INTL("¡{1} ha cambiado de forma!",pokemon.name))
-       next true
-     else
-       scene.pbDisplay(_INTL("No se puede usar en un Pokémon debilitado."))
-     end
-   else
-     scene.pbDisplay(_INTL("No tuvo efecto."))
-     next false
-   end
-})
-
-ItemHandlers::UseOnPokemon.add(:PURPLENECTAR,proc{|item,pokemon,scene|
-   if isConst?(pokemon.species,PBSpecies,:ORICORIO) && pokemon.form!=3
-     if pokemon.hp>0
-       pokemon.form=3
-       scene.pbRefresh
-       scene.pbDisplay(_INTL("¡{1} ha cambiado de forma!",pokemon.name))
-       next true
-     else
-       scene.pbDisplay(_INTL("No se puede usar en un Pokémon debilitado."))
-     end
-   else
-     scene.pbDisplay(_INTL("No tuvo efecto."))
-     next false
-   end
-})
+ItemHandlers::UseOnPokemon.copy(:REDNECTAR,:YELLOWNECTAR,:PINKNECTAR,:PURPLENECTAR)
 
 ItemHandlers::UseOnPokemon.add(:REVEALGLASS,proc{|item,pokemon,scene|
    if (isConst?(pokemon.species,PBSpecies,:TORNADUS) ||
@@ -1338,63 +1241,26 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH,proc{|item,pokemon,scene|
 #===============================================================================
 # BattleUseOnPokemon handlers
 #===============================================================================
-
+#BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::BattleUseOnPokemon.add(:POTION,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,20,scene)
-})
+  heal = 20 #Si no encuentra objeto, cura como si fuese una poción.
+            #Afecta a Zumo de bayas, corazón dulce y caramelo furia.
+  heal = (USENEWBATTLEMECHANICS) ? 60 : 50 if isConst?(item,PBItems,:SUPERPOTION)
+  heal = (USENEWBATTLEMECHANICS) ? 120 : 200 if isConst?(item,PBItems,:HYPERPOTION)
+  heal = (pokemon.totalhp-pokemon.hp) if isConst?(item,PBItems,:MAXPOTION)
+  heal = (USENEWBATTLEMECHANICS) ? 30 : 50 if isConst?(item,PBItems,:FRESHWATER)
+  heal = (USENEWBATTLEMECHANICS) ? 50 : 60 if isConst?(item,PBItems,:SODAPOP)
+  heal = (USENEWBATTLEMECHANICS) ? 70 : 80 if isConst?(item,PBItems,:LEMONADE)
+  heal = 100 if isConst?(item,PBItems,:MOOMOOMILK)
+  heal = 10 if isConst?(item,PBItems,:ORANBERRY)
+  heal = (pokemon.totalhp/4).floor if isConst?(item,PBItems,:SITRUSBERRY)
 
-ItemHandlers::BattleUseOnPokemon.add(:SUPERPOTION,proc{|item,pokemon,battler,scene|
-   heal = (USENEWBATTLEMECHANICS) ? 60 : 50
-   next pbBattleHPItem(pokemon,battler,heal,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:HYPERPOTION,proc{|item,pokemon,battler,scene|
-  heal = (USENEWBATTLEMECHANICS) ? 120 : 200
   next pbBattleHPItem(pokemon,battler,heal,scene)
 })
 
-ItemHandlers::BattleUseOnPokemon.add(:MAXPOTION,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,pokemon.totalhp-pokemon.hp,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:BERRYJUICE,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,20,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:RAGECANDYBAR,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,20,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:SWEETHEART,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,20,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:FRESHWATER,proc{|item,pokemon,battler,scene|
-  heal = (USENEWBATTLEMECHANICS) ? 30 : 50
-  next pbBattleHPItem(pokemon,battler,heal,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:SODAPOP,proc{|item,pokemon,battler,scene|
-  heal = (USENEWBATTLEMECHANICS) ? 50 : 60
-  next pbBattleHPItem(pokemon,battler,heal,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:LEMONADE,proc{|item,pokemon,battler,scene|
-  heal = (USENEWBATTLEMECHANICS) ? 70 : 80
-  next pbBattleHPItem(pokemon,battler,heal,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:MOOMOOMILK,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,100,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:ORANBERRY,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,10,scene)
-})
-
-ItemHandlers::BattleUseOnPokemon.add(:SITRUSBERRY,proc{|item,pokemon,battler,scene|
-   next pbBattleHPItem(pokemon,battler,(pokemon.totalhp/4).floor,scene)
-})
+ItemHandlers::BattleUseOnPokemon.copy(:POTION,:SUPERPOTION,:HYPERPOTION,:MAXPOTION,
+  :BERRYJUICE,:RAGECANDYBAR,:SWEETHEART,:FRESHWATER,:SODAPOP,:LEMONADE,
+  :MOOMOOMILK,:ORANBERRY,:SITRUSBERRY)
 
 ItemHandlers::BattleUseOnPokemon.add(:AWAKENING,proc{|item,pokemon,battler,scene|
    if pokemon.hp<=0 || pokemon.status!=PBStatuses::SLEEP
@@ -1685,343 +1551,73 @@ ItemHandlers::BattleUseOnPokemon.copy(:YELLOWFLUTE,:PERSIMBERRY)
 #===============================================================================
 # BattleUseOnBattler handlers
 #===============================================================================
-
+#BES-T Edición y optimización del codigo de los objetos de batalla, ahora usan bastante menos código.
 ItemHandlers::BattleUseOnBattler.add(:XATTACK,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::ATTACK,battler,false)
-     battler.pbIncreaseStat(PBStats::ATTACK,1,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
+  statbuff=[PBStats::ATTACK,1]  #Si no encuentra usa el efecto de Ataque X
+  statbuff=[PBStats::ATTACK,2]  if isConst?(item,PBItems,:XATTACK2)
+  statbuff=[PBStats::ATTACK,3]  if isConst?(item,PBItems,:XATTACK3)
+  statbuff=[PBStats::ATTACK,6]  if isConst?(item,PBItems,:XATTACK6)
+  
+  statbuff=[PBStats::DEFENSE,1] if isConst?(item,PBItems,:XDEFEND) || isConst?(item,PBItems,:XDEFENSE)
+  statbuff=[PBStats::DEFENSE,2] if isConst?(item,PBItems,:XDEFEND2) || isConst?(item,PBItems,:XDEFENSE2)
+  statbuff=[PBStats::DEFENSE,3] if isConst?(item,PBItems,:XDEFEND3) || isConst?(item,PBItems,:XDEFENSE3)
+  statbuff=[PBStats::DEFENSE,6] if isConst?(item,PBItems,:XDEFEND6) || isConst?(item,PBItems,:XDEFENSE6)
+  
+  statbuff=[PBStats::SPATK,1] if isConst?(item,PBItems,:XSPECIAL) || isConst?(item,PBItems,:XSPATK)
+  statbuff=[PBStats::SPATK,2] if isConst?(item,PBItems,:XSPECIAL2) || isConst?(item,PBItems,:XSPATK2)
+  statbuff=[PBStats::SPATK,3] if isConst?(item,PBItems,:XSPECIAL3) || isConst?(item,PBItems,:XSPATK3)
+  statbuff=[PBStats::SPATK,6] if isConst?(item,PBItems,:XSPECIAL6) || isConst?(item,PBItems,:XSPATK6)
+
+  statbuff=[PBStats::SPDEF,1] if isConst?(item,PBItems,:XSPDEF) 
+  statbuff=[PBStats::SPDEF,2] if isConst?(item,PBItems,:XSPDEF2)
+  statbuff=[PBStats::SPDEF,3] if isConst?(item,PBItems,:XSPDEF3)
+  statbuff=[PBStats::SPDEF,6] if isConst?(item,PBItems,:XSPDEF6)
+
+  statbuff=[PBStats::SPEED,1] if isConst?(item,PBItems,:XSPEED) 
+  statbuff=[PBStats::SPEED,2] if isConst?(item,PBItems,:XSPEED2)
+  statbuff=[PBStats::SPEED,3] if isConst?(item,PBItems,:XSPEED3)
+  statbuff=[PBStats::SPEED,6] if isConst?(item,PBItems,:XSPEED6)
+  
+  statbuff=[PBStats::ACCURACY,1] if isConst?(item,PBItems,:XACCURACY) 
+  statbuff=[PBStats::ACCURACY,2] if isConst?(item,PBItems,:XACCURACY2)
+  statbuff=[PBStats::ACCURACY,3] if isConst?(item,PBItems,:XACCURACY3)
+  statbuff=[PBStats::ACCURACY,6] if isConst?(item,PBItems,:XACCURACY6)
+
+  playername=battler.battle.pbPlayer.name
+  scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
+  if battler.pbCanIncreaseStatStage?(statbuff[0],battler,false)
+    battler.pbIncreaseStat(statbuff[0],statbuff[1],battler,true)
+    return true
+  else
+    scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
+    return false
+  end
 })
 
-ItemHandlers::BattleUseOnBattler.add(:XATTACK2,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::ATTACK,battler,false)
-     battler.pbIncreaseStat(PBStats::ATTACK,2,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
+ItemHandlers::BattleUseOnBattler.copy(:XATTACK,:XATTACK2,:XATTACK3,:XATTACK6,
+  :XDEFEND,:XDEFEND2,:XDEFEND3,:XDEFEND6,:XDEFENSE,:XDEFENSE2,:XDEFENSE3,:XDEFENSE6,
+  :XSPECIAL,:XSPECIAL2,:XSPECIAL3,:XSPECIAL6,:XSPATK,:XSPATK2,:XSPATK3,:XSPATK6,
+  :XSPDEF,:XSPDEF2,:XSPDEF3,:XSPDEF6,:XSPEED,:XSPEED2,:XSPEED3,:XSPEED6,
+  :XACCURACY,:XACCURACY2,:XACCURACY3,:XACCURACY6)
 
-ItemHandlers::BattleUseOnBattler.add(:XATTACK3,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::ATTACK,battler,false)
-     battler.pbIncreaseStat(PBStats::ATTACK,3,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XATTACK6,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbIncreaseStatWithCause(PBStats::ATTACK,6,battler,PBItems.getName(item))
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XDEFEND,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::DEFENSE,battler,false)
-     battler.pbIncreaseStat(PBStats::DEFENSE,1,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.copy(:XDEFEND,:XDEFENSE)
-
-ItemHandlers::BattleUseOnBattler.add(:XDEFEND2,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::DEFENSE,battler,false)
-     battler.pbIncreaseStat(PBStats::DEFENSE,2,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.copy(:XDEFEND2,:XDEFENSE2)
-
-ItemHandlers::BattleUseOnBattler.add(:XDEFEND3,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::DEFENSE,battler,false)
-     battler.pbIncreaseStat(PBStats::DEFENSE,3,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.copy(:XDEFEND3,:XDEFENSE3)
-
-ItemHandlers::BattleUseOnBattler.add(:XDEFEND6,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbIncreaseStatWithCause(PBStats::DEFENSE,6,battler,PBItems.getName(item))
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.copy(:XDEFEND6,:XDEFENSE6)
-
-ItemHandlers::BattleUseOnBattler.add(:XSPECIAL,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPATK,battler,false)
-     battler.pbIncreaseStat(PBStats::SPATK,1,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.copy(:XSPECIAL,:XSPATK)
-
-ItemHandlers::BattleUseOnBattler.add(:XSPECIAL2,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPATK,battler,false)
-     battler.pbIncreaseStat(PBStats::SPATK,2,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.copy(:XSPECIAL2,:XSPATK2)
-
-ItemHandlers::BattleUseOnBattler.add(:XSPECIAL3,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPATK,battler,false)
-     battler.pbIncreaseStat(PBStats::SPATK,3,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.copy(:XSPECIAL3,:XSPATK3)
-
-ItemHandlers::BattleUseOnBattler.add(:XSPECIAL6,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbIncreaseStatWithCause(PBStats::SPATK,6,battler,PBItems.getName(item))
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.copy(:XSPECIAL6,:XSPATK6)
-
-ItemHandlers::BattleUseOnBattler.add(:XSPDEF,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPDEF,battler,false)
-     battler.pbIncreaseStat(PBStats::SPDEF,1,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XSPDEF2,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPDEF,battler,false)
-     battler.pbIncreaseStat(PBStats::SPDEF,2,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XSPDEF3,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPDEF,battler,false)
-     battler.pbIncreaseStat(PBStats::SPDEF,3,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XSPDEF6,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbIncreaseStatWithCause(PBStats::SPDEF,6,battler,PBItems.getName(item))
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XSPEED,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPEED,battler,false)
-     battler.pbIncreaseStat(PBStats::SPEED,1,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XSPEED2,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPEED,battler,false)
-     battler.pbIncreaseStat(PBStats::SPEED,2,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XSPEED3,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::SPEED,battler,false)
-     battler.pbIncreaseStat(PBStats::SPEED,3,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XSPEED6,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbIncreaseStatWithCause(PBStats::SPEED,6,battler,PBItems.getName(item))
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XACCURACY,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::ACCURACY,battler,false)
-     battler.pbIncreaseStat(PBStats::ACCURACY,1,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XACCURACY2,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::ACCURACY,battler,false)
-     battler.pbIncreaseStat(PBStats::ACCURACY,2,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XACCURACY3,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbCanIncreaseStatStage?(PBStats::ACCURACY,battler,false)
-     battler.pbIncreaseStat(PBStats::ACCURACY,3,battler,true)
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:XACCURACY6,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.pbIncreaseStatWithCause(PBStats::ACCURACY,6,battler,PBItems.getName(item))
-     return true
-   else
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   end
-})
 
 ItemHandlers::BattleUseOnBattler.add(:DIREHIT,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.effects[PBEffects::FocusEnergy]>=1
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   else
-     battler.effects[PBEffects::FocusEnergy]=1
-     scene.pbDisplay(_INTL("¡{1} se está preparando para luchar!",battler.pbThis))
-     return true
-   end
+  turns=1  if isConst?(item,PBItems,:DIREHIT)
+  turns=2  if isConst?(item,PBItems,:DIREHIT2)
+  turns=3  if isConst?(item,PBItems,:DIREHIT3)
+  playername=battler.battle.pbPlayer.name
+  scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
+  if battler.effects[PBEffects::FocusEnergy]>=turns
+    scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
+    return false
+  else
+    battler.effects[PBEffects::FocusEnergy]=turns
+    scene.pbDisplay(_INTL("¡{1} se está preparando para luchar!",battler.pbThis))
+    return true
+  end
 })
 
-ItemHandlers::BattleUseOnBattler.add(:DIREHIT2,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.effects[PBEffects::FocusEnergy]>=2
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   else
-     battler.effects[PBEffects::FocusEnergy]=2
-     scene.pbDisplay(_INTL("¡{1} se está preparando para luchar!",battler.pbThis))
-     return true
-   end
-})
-
-ItemHandlers::BattleUseOnBattler.add(:DIREHIT3,proc{|item,battler,scene|
-   playername=battler.battle.pbPlayer.name
-   scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-   if battler.effects[PBEffects::FocusEnergy]>=3
-     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-     return false
-   else
-     battler.effects[PBEffects::FocusEnergy]=3
-     scene.pbDisplay(_INTL("¡{1} se está preparando para luchar!",battler.pbThis))
-     return true
-   end
-})
+ItemHandlers::BattleUseOnBattler.copy(:DIREHIT,:DIREHIT2,:DIREHIT3)
 
 ItemHandlers::BattleUseOnBattler.add(:GUARDSPEC,proc{|item,battler,scene|
    playername=battler.battle.pbPlayer.name
@@ -2059,12 +1655,12 @@ ItemHandlers::BattleUseOnBattler.addIf(proc{|item|
    battle=battler.battle
    if !battler.pbOpposing1.isFainted? && !battler.pbOpposing2.isFainted?
      if !pbIsSnagBall?(item)
-       scene.pbDisplay(_INTL("¡Esto no es bueno! ¡No se puede apuntar cuando hay más de un Pokémon!"))
+       scene.pbDisplay(_INTL("¡No se puede apuntar cuando hay más de un Pokémon!"))
        return false
      end
    end
    if battle.pbPlayer.party.length>=6 && $PokemonStorage.full?
-     scene.pbDisplay(_INTL("¡No hay espacio en la PC!"))
+     scene.pbDisplay(_INTL("¡No hay espacio en el PC!"))
      return false
    end
    return true
