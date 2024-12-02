@@ -1771,6 +1771,7 @@ class PokeBattle_Battle
       for i in 0...4
         if !pbIsOpposing?(i) && @battlers[i].pokemonIndex==pkmnIndex
           battler=@battlers[i]
+          pbCommonAnimation("UseItem",@battlers[i],nil) rescue nil
         end
       end
       ret=ItemHandlers.triggerBattleUseOnPokemon(item,pokemon,battler,scene)
@@ -1788,6 +1789,7 @@ class PokeBattle_Battle
 # Uses an item on an active Pokémon.
   def pbUseItemOnBattler(item,index,userPkmn,scene)
     PBDebug.log("[Objeto usado] El jugador ha usado #{PBItems.getName(item)} en #{@battlers[index].pbThis(true)}")
+    pbCommonAnimation("UseItem",@battlers[index],nil) rescue nil
     ret=ItemHandlers.triggerBattleUseOnBattler(item,@battlers[index],scene)
     if !ret && pbBelongsToPlayer?(userPkmn.index)
       if $PokemonBag.pbCanStore?(item)
@@ -2061,6 +2063,7 @@ class PokeBattle_Battle
     end
     ret=1
     if pbAIRandom(256)<rate
+      pbSEPlay("Battle flee")
       pbDisplayPaused(_INTL("¡Escapaste sin problemas!"))
       @decision=3
     else
