@@ -364,18 +364,21 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFWATERS,proc{|item,pokemon,scene|
 
 #BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::UseOnPokemon.add(:POTION,proc{|item,pokemon,scene|
-  heal = 20 #Si no encuentra objeto, cura como si fuese una poción.
-            #Afecta a Zumo de bayas, corazón dulce y caramelo furia.
-  heal = (USENEWBATTLEMECHANICS) ? 60 : 50 if isConst?(item,PBItems,:SUPERPOTION)
-  heal = (USENEWBATTLEMECHANICS) ? 120 : 200 if isConst?(item,PBItems,:HYPERPOTION)
-  heal = (pokemon.totalhp-pokemon.hp) if isConst?(item,PBItems,:MAXPOTION)
-  heal = (USENEWBATTLEMECHANICS) ? 30 : 50 if isConst?(item,PBItems,:FRESHWATER)
-  heal = (USENEWBATTLEMECHANICS) ? 50 : 60 if isConst?(item,PBItems,:SODAPOP)
-  heal = (USENEWBATTLEMECHANICS) ? 70 : 80 if isConst?(item,PBItems,:LEMONADE)
-  heal = 100 if isConst?(item,PBItems,:MOOMOOMILK)
-  heal = 10 if isConst?(item,PBItems,:ORANBERRY)
-  heal = (pokemon.totalhp/4).floor if isConst?(item,PBItems,:SITRUSBERRY)
+  heal_map = {
+    :POTION       => 20,
+    :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
+    :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
+    :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
+    :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
+    :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
+    :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
+    :MOOMOOMILK   => 100,
+    :ORANBERRY    => 10,
+    :SITRUSBERRY  => (pokemon.totalhp / 4).floor
+  }
 
+  heal = heal_map[item] || 20 #Si no encuentra objeto, cura como si fuese una poción.
+                              #Afecta a Zumo de bayas, corazón dulce y caramelo furia.
   next pbHPItem(pokemon,heal,scene)
 })
 
@@ -1243,18 +1246,21 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH,proc{|item,pokemon,scene|
 #===============================================================================
 #BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::BattleUseOnPokemon.add(:POTION,proc{|item,pokemon,battler,scene|
-  heal = 20 #Si no encuentra objeto, cura como si fuese una poción.
-            #Afecta a Zumo de bayas, corazón dulce y caramelo furia.
-  heal = (USENEWBATTLEMECHANICS) ? 60 : 50 if isConst?(item,PBItems,:SUPERPOTION)
-  heal = (USENEWBATTLEMECHANICS) ? 120 : 200 if isConst?(item,PBItems,:HYPERPOTION)
-  heal = (pokemon.totalhp-pokemon.hp) if isConst?(item,PBItems,:MAXPOTION)
-  heal = (USENEWBATTLEMECHANICS) ? 30 : 50 if isConst?(item,PBItems,:FRESHWATER)
-  heal = (USENEWBATTLEMECHANICS) ? 50 : 60 if isConst?(item,PBItems,:SODAPOP)
-  heal = (USENEWBATTLEMECHANICS) ? 70 : 80 if isConst?(item,PBItems,:LEMONADE)
-  heal = 100 if isConst?(item,PBItems,:MOOMOOMILK)
-  heal = 10 if isConst?(item,PBItems,:ORANBERRY)
-  heal = (pokemon.totalhp/4).floor if isConst?(item,PBItems,:SITRUSBERRY)
-
+  heal_map = {
+    :POTION       => 20,
+    :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
+    :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
+    :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
+    :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
+    :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
+    :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
+    :MOOMOOMILK   => 100,
+    :ORANBERRY    => 10,
+    :SITRUSBERRY  => (pokemon.totalhp / 4).floor
+  }
+  
+  heal = heal_map[item] || 20 #Si no encuentra objeto, cura como si fuese una poción.
+                              #Afecta a Zumo de bayas, corazón dulce y caramelo furia.
   next pbBattleHPItem(pokemon,battler,heal,scene)
 })
 
@@ -1552,45 +1558,37 @@ ItemHandlers::BattleUseOnPokemon.copy(:YELLOWFLUTE,:PERSIMBERRY)
 # BattleUseOnBattler handlers
 #===============================================================================
 #BES-T Edición y optimización del codigo de los objetos de batalla, ahora usan bastante menos código.
-ItemHandlers::BattleUseOnBattler.add(:XATTACK,proc{|item,battler,scene|
-  statbuff=[PBStats::ATTACK,1]  #Si no encuentra usa el efecto de Ataque X
-  statbuff=[PBStats::ATTACK,2]  if isConst?(item,PBItems,:XATTACK2)
-  statbuff=[PBStats::ATTACK,3]  if isConst?(item,PBItems,:XATTACK3)
-  statbuff=[PBStats::ATTACK,6]  if isConst?(item,PBItems,:XATTACK6)
+ItemHandlers::BattleUseOnBattler.add(:XATTACK, proc { |item, battler, scene|
+  stat_buff_map = {
+    :XATTACK    => [PBStats::ATTACK, (USENEWBATTLEMECHANICS) ? 2 : 1], :XATTACK2  => [PBStats::ATTACK, 2],
+    :XATTACK3   => [PBStats::ATTACK, 3], :XATTACK6  => [PBStats::ATTACK, 6],
+    :XDEFEND    => [PBStats::DEFENSE, (USENEWBATTLEMECHANICS) ? 2 : 1], :XDEFENSE  => [PBStats::DEFENSE, (USENEWBATTLEMECHANICS) ? 2 : 1],
+    :XDEFEND2   => [PBStats::DEFENSE, 2], :XDEFENSE2 => [PBStats::DEFENSE, 2],
+    :XDEFEND3   => [PBStats::DEFENSE, 3], :XDEFENSE3 => [PBStats::DEFENSE, 3],
+    :XDEFEND6   => [PBStats::DEFENSE, 6], :XDEFENSE6 => [PBStats::DEFENSE, 6],
+    :XSPECIAL   => [PBStats::SPATK, 1(USENEWBATTLEMECHANICS) ? 2 : 1],   :XSPATK    => [PBStats::SPATK, (USENEWBATTLEMECHANICS) ? 2 : 1],
+    :XSPECIAL2  => [PBStats::SPATK, 2],   :XSPATK2   => [PBStats::SPATK, 2],
+    :XSPECIAL3  => [PBStats::SPATK, 3],   :XSPATK3   => [PBStats::SPATK, 3],
+    :XSPECIAL6  => [PBStats::SPATK, 6],   :XSPATK6   => [PBStats::SPATK, 6],
+    :XSPDEF     => [PBStats::SPDEF, (USENEWBATTLEMECHANICS) ? 2 : 1],   :XSPDEF2   => [PBStats::SPDEF, 2],
+    :XSPDEF3    => [PBStats::SPDEF, 3],   :XSPDEF6   => [PBStats::SPDEF, 6],
+    :XSPEED     => [PBStats::SPEED, 1],   :XSPEED2   => [PBStats::SPEED, 2],
+    :XSPEED3    => [PBStats::SPEED, 3],   :XSPEED6   => [PBStats::SPEED, 6],
+    :XACCURACY  => [PBStats::ACCURACY, (USENEWBATTLEMECHANICS) ? 2 : 1], :XACCURACY2 => [PBStats::ACCURACY, 2],
+    :XACCURACY3 => [PBStats::ACCURACY, 3], :XACCURACY6 => [PBStats::ACCURACY, 6]
+  }
   
-  statbuff=[PBStats::DEFENSE,1] if isConst?(item,PBItems,:XDEFEND) || isConst?(item,PBItems,:XDEFENSE)
-  statbuff=[PBStats::DEFENSE,2] if isConst?(item,PBItems,:XDEFEND2) || isConst?(item,PBItems,:XDEFENSE2)
-  statbuff=[PBStats::DEFENSE,3] if isConst?(item,PBItems,:XDEFEND3) || isConst?(item,PBItems,:XDEFENSE3)
-  statbuff=[PBStats::DEFENSE,6] if isConst?(item,PBItems,:XDEFEND6) || isConst?(item,PBItems,:XDEFENSE6)
-  
-  statbuff=[PBStats::SPATK,1] if isConst?(item,PBItems,:XSPECIAL) || isConst?(item,PBItems,:XSPATK)
-  statbuff=[PBStats::SPATK,2] if isConst?(item,PBItems,:XSPECIAL2) || isConst?(item,PBItems,:XSPATK2)
-  statbuff=[PBStats::SPATK,3] if isConst?(item,PBItems,:XSPECIAL3) || isConst?(item,PBItems,:XSPATK3)
-  statbuff=[PBStats::SPATK,6] if isConst?(item,PBItems,:XSPECIAL6) || isConst?(item,PBItems,:XSPATK6)
+  statbuff = stat_buff_map[item] || [PBStats::ATTACK, 1] # Por defecto, Ataque X
+  playername = "<c3=#{PokeBattle_SceneConstants::TRNAMECOLOR}>#{battler.battle.pbPlayer.name}</c3>"
+  itemname   = "<c3=#{PokeBattle_SceneConstants::TRNAMECOLOR}>#{PBItems.getName(item)}</c3>"
+  scene.pbDisplay(_INTL("{1} ha usado {2}.", playername, itemname))
 
-  statbuff=[PBStats::SPDEF,1] if isConst?(item,PBItems,:XSPDEF) 
-  statbuff=[PBStats::SPDEF,2] if isConst?(item,PBItems,:XSPDEF2)
-  statbuff=[PBStats::SPDEF,3] if isConst?(item,PBItems,:XSPDEF3)
-  statbuff=[PBStats::SPDEF,6] if isConst?(item,PBItems,:XSPDEF6)
-
-  statbuff=[PBStats::SPEED,1] if isConst?(item,PBItems,:XSPEED) 
-  statbuff=[PBStats::SPEED,2] if isConst?(item,PBItems,:XSPEED2)
-  statbuff=[PBStats::SPEED,3] if isConst?(item,PBItems,:XSPEED3)
-  statbuff=[PBStats::SPEED,6] if isConst?(item,PBItems,:XSPEED6)
-  
-  statbuff=[PBStats::ACCURACY,1] if isConst?(item,PBItems,:XACCURACY) 
-  statbuff=[PBStats::ACCURACY,2] if isConst?(item,PBItems,:XACCURACY2)
-  statbuff=[PBStats::ACCURACY,3] if isConst?(item,PBItems,:XACCURACY3)
-  statbuff=[PBStats::ACCURACY,6] if isConst?(item,PBItems,:XACCURACY6)
-
-  playername=battler.battle.pbPlayer.name
-  scene.pbDisplay(_INTL("{1} ha usado {2}.",playername,PBItems.getName(item)))
-  if battler.pbCanIncreaseStatStage?(statbuff[0],battler,false)
-    battler.pbIncreaseStat(statbuff[0],statbuff[1],battler,true)
-    return true
+  if battler.pbCanIncreaseStatStage?(statbuff[0], battler, false)
+    battler.pbIncreaseStat(statbuff[0], statbuff[1], battler, true)
+    next true
   else
     scene.pbDisplay(_INTL("¡Pero no tuvo ningún efecto!"))
-    return false
+    next false
   end
 })
 

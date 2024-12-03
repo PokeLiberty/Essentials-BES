@@ -1780,7 +1780,7 @@ class PokeBattle_Battle
       if $PokemonBag.pbCanStore?(item)
         $PokemonBag.pbStoreItem(item)
       else
-        raise _INTL("De alguna forma no se pudo devolver el objeto sin usar a la mochila.")
+        p _INTL("De alguna forma no se pudo devolver el objeto sin usar a la mochila.")
       end
     end
     return ret
@@ -1795,7 +1795,7 @@ class PokeBattle_Battle
       if $PokemonBag.pbCanStore?(item)
         $PokemonBag.pbStoreItem(item)
       else
-        raise _INTL("De alguna forma no se pudo devolver el objeto sin usar a la mochila.")
+        p _INTL("De alguna forma no se pudo devolver el objeto sin usar a la mochila.")
       end
     end
     return ret
@@ -1812,7 +1812,7 @@ class PokeBattle_Battle
             if $PokemonBag.pbCanStore?(idxItem)
               $PokemonBag.pbStoreItem(idxItem)
             else
-              raise _INTL("Por alguna razón, no se pudo devolver el objeto a la mochila.")
+              p _INTL("Por alguna razón, no se pudo devolver el objeto a la mochila.")
             end
           end
           return false
@@ -1824,21 +1824,17 @@ class PokeBattle_Battle
         if ItemHandlers.triggerBattleUseOnBattler(idxItem,@battlers[idxPokemon],self)
           # Using Poké Balls or Poké Doll only
           ItemHandlers.triggerUseInBattle(idxItem,@battlers[idxPokemon],self)
-          if @doublebattle
-            @battlers[idxPokemon+2].effects[PBEffects::SkipTurn]=true
-          end
+          @battlers[idxPokemon+2].effects[PBEffects::SkipTurn]=true if @doublebattle
         else
           if $PokemonBag.pbCanStore?(idxItem)
             $PokemonBag.pbStoreItem(idxItem)
           else
-            raise _INTL("De alguna forma no se pudo devolver el objeto sin usar a la mochila.")
+            p _INTL("De alguna forma no se pudo devolver el objeto sin usar a la mochila.")
           end
           return false
         end
       else
-        if ItemHandlers.triggerBattleUseOnBattler(idxItem,@battlers[idxPokemon],self)
-          pbDisplay(_INTL("¡Es imposible apuntar sin concentrarse!"))
-        end
+        pbDisplay(_INTL("¡Es imposible apuntar sin concentrarse!")) if ItemHandlers.triggerBattleUseOnBattler(idxItem,@battlers[idxPokemon],self)
         return false
       end
     end
@@ -1847,87 +1843,82 @@ class PokeBattle_Battle
     @choices[idxPokemon][2]=idxTarget # Índice del Pokémon sobre el que se usará
     side=(pbIsOpposing?(idxPokemon)) ? 1 : 0
     owner=pbGetOwnerIndex(idxPokemon)
-    if @megaEvolution[side][owner]==idxPokemon
-      @megaEvolution[side][owner]=-1
-    end
-    if @ultraBurst[side][owner]==idxPokemon
-      @ultraBurst[side][owner]=-1
-    end
-    if @zMove[side][owner]==idxPokemon
-      @zMove[side][owner]=-1
-    end
-    if @teraCristal[side][owner]==idxPokemon
-      @teraCristal[side][owner]=-1
-    end
+    @megaEvolution[side][owner]=-1 if @megaEvolution[side][owner]==idxPokemon
+    @ultraBurst[side][owner]=-1 if @ultraBurst[side][owner]==idxPokemon
+    @zMove[side][owner]=-1 if @zMove[side][owner]==idxPokemon
+    @teraCristal[side][owner]=-1 if @teraCristal[side][owner]==idxPokemon
     return true
   end
-
-  def pbEnemyUseItem(item,battler)
+  # BES-T Editado para mejor manejo y poder añadir nuevos objetos rápidamente.
+  def pbEnemyUseItem(item, battler)
     return 0 if !@internalbattle
-    items=pbGetOwnerItems(battler.index)
+    items = pbGetOwnerItems(battler.index)
     return if !items
-    opponent=pbGetOwner(battler.index)
-    for i in 0...items.length
-      if items[i]==item
-        items.delete_at(i)
-        break
-      end
+    opponent = pbGetOwner(battler.index)
+  
+    # Elimina el ítem usado del inventario
+    if items.include?(item)
+      items.delete_at(items.index(item))
     end
-    itemname=PBItems.getName(item)
-    pbDisplayBrief(_INTL("¡{1} ha usado<br>{2}!",opponent.fullname,itemname))
+  
+    itemname = PBItems.getName(item)
+    pbDisplayBrief(_INTL("¡{1} ha usado<br>{2}!", opponent.fullname, itemname))
     PBDebug.log("[Objeto usado] El rival ha usado #{itemname} en #{battler.pbThis(true)}")
-    if isConst?(item,PBItems,:POTION)
-      battler.pbRecoverHP(20,true)
-      pbDisplay(_INTL("Los PS de {1} fueron restaurados.",battler.pbThis))
-    elsif isConst?(item,PBItems,:SUPERPOTION)
-      battler.pbRecoverHP(50,true)
-      pbDisplay(_INTL("Los PS de {1} fueron restaurados.",battler.pbThis))
-    elsif isConst?(item,PBItems,:HYPERPOTION)
-      battler.pbRecoverHP(200,true)
-      pbDisplay(_INTL("Los PS de {1} fueron restaurados.",battler.pbThis))
-    elsif isConst?(item,PBItems,:MAXPOTION)
-      battler.pbRecoverHP(battler.totalhp-battler.hp,true)
-      pbDisplay(_INTL("Los PS de {1} fueron restaurados.",battler.pbThis))
-    elsif isConst?(item,PBItems,:FULLRESTORE)
-      fullhp=(battler.hp==battler.totalhp)
-      battler.pbRecoverHP(battler.totalhp-battler.hp,true)
-      battler.status=0; battler.statusCount=0
-      battler.effects[PBEffects::Confusion]=0
+  
+    heal_map = {
+      :POTION       => 20,
+      :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
+      :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
+      :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
+      :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
+      :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
+      :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
+      :MOOMOOMILK   => 100,
+      :ORANBERRY    => 10,
+      :SITRUSBERRY  => (pokemon.totalhp / 4).floor,
+
+      :ENERGYPOWDER  => (USENEWBATTLEMECHANICS) ? 60 : 50,
+      :ENERGYROOT    => (USENEWBATTLEMECHANICS) ? 120 : 200
+    }
+
+    pbCommonAnimation("UseItem",battler,nil) rescue nil
+    if healing_items.keys.any? { |key| isConst?(item, PBItems, key) }
+      heal_amount = healing_items.detect { |key, _| isConst?(item, PBItems, key) }[1]
+      battler.pbRecoverHP(heal_amount, true)
+      pbDisplay(_INTL("Los PS de {1} fueron restaurados.", battler.pbThis))
+    elsif isConst?(item, PBItems, :FULLRESTORE)
+      fullhp = (battler.hp == battler.totalhp)
+      battler.pbRecoverHP(battler.totalhp - battler.hp, true)
+      battler.status = 0
+      battler.statusCount = 0
+      battler.effects[PBEffects::Confusion] = 0
       if fullhp
-        pbDisplay(_INTL("¡{1} se puso saludable!",battler.pbThis))
+        pbDisplay(_INTL("{1} ha recuperado su salud.", battler.pbThis))
       else
-        pbDisplay(_INTL("Los PS de {1} fueron restaurados.",battler.pbThis))
+        pbDisplay(_INTL("Los PS de {1} fueron restaurados.", battler.pbThis))
       end
-    elsif isConst?(item,PBItems,:FULLHEAL)
-      battler.status=0; battler.statusCount=0
-      battler.effects[PBEffects::Confusion]=0
-      pbDisplay(_INTL("¡{1} se puso saludable!",battler.pbThis))
-    elsif isConst?(item,PBItems,:XATTACK)
-      if battler.pbCanIncreaseStatStage?(PBStats::ATTACK,battler)
-        battler.pbIncreaseStat(PBStats::ATTACK,1,battler,true)
-      end
-    elsif isConst?(item,PBItems,:XDEFEND)
-      if battler.pbCanIncreaseStatStage?(PBStats::DEFENSE,battler)
-        battler.pbIncreaseStat(PBStats::DEFENSE,1,battler,true)
-      end
-    elsif isConst?(item,PBItems,:XSPEED)
-      if battler.pbCanIncreaseStatStage?(PBStats::SPEED,battler)
-        battler.pbIncreaseStat(PBStats::SPEED,1,battler,true)
-      end
-    elsif isConst?(item,PBItems,:XSPECIAL)
-      if battler.pbCanIncreaseStatStage?(PBStats::SPATK,battler)
-        battler.pbIncreaseStat(PBStats::SPATK,1,battler,true)
-      end
-    elsif isConst?(item,PBItems,:XSPDEF)
-      if battler.pbCanIncreaseStatStage?(PBStats::SPDEF,battler)
-        battler.pbIncreaseStat(PBStats::SPDEF,1,battler,true)
-      end
-    elsif isConst?(item,PBItems,:XACCURACY)
-      if battler.pbCanIncreaseStatStage?(PBStats::ACCURACY,battler)
-        battler.pbIncreaseStat(PBStats::ACCURACY,1,battler,true)
+    elsif isConst?(item, PBItems, :FULLHEAL) || isConst?(item, PBItems, :HEALPOWDER)
+      battler.status = 0
+      battler.statusCount = 0
+      battler.effects[PBEffects::Confusion] = 0
+      pbDisplay(_INTL("{1} ha recuperado su salud.", battler.pbThis))
+    else
+      # Items que aumentan stats
+      stat_items = {
+        :XATTACK    => PBStats::ATTACK,
+        :XDEFEND    => PBStats::DEFENSE,
+        :XSPEED     => PBStats::SPEED,
+        :XSPECIAL   => PBStats::SPATK,
+        :XSPDEF     => PBStats::SPDEF,
+        :XACCURACY  => PBStats::ACCURACY
+      }
+      stat_item = stat_items.detect { |key, _| isConst?(item, PBItems, key) }
+      if stat_item && battler.pbCanIncreaseStatStage?(stat_item[1], battler)
+        battler.pbIncreaseStat(stat_item[1], (USENEWBATTLEMECHANICS) ? 2 : 1, battler, true)
       end
     end
   end
+  
 
 ################################################################################
 # Fleeing from battle. / Huyendo de la batalla
