@@ -1249,21 +1249,21 @@ class PokeBattle_Battle
 				next if effect.nil?
 				next if !effect
 				case j
-				when PBEffects::AuroraVeil         then ret[i]["Velo Aurora"]     = (PBMoves.getName(PBMoves::AURORAVEIL) + " (" + effect.to_s + ")") if effect != 0
-				when PBEffects::EchoedVoiceCounter then ret[i]["Contador Eco Voz"]= _INTL("Contador Eco Voz ({1})",effect.to_s) if effect != 0
-				when PBEffects::LightScreen        then ret[i]["Pantalla Luz"]    = (PBMoves.getName(PBMoves::LIGHTSCREEN) + " (" + effect.to_s + ")") if effect != 0
-				when PBEffects::LuckyChant         then ret[i]["Conjuro"]         = (PBMoves.getName(PBMoves::LUCKYCHANT) + " (" + effect.to_s + ")") if effect != 0
-				when PBEffects::Reflect            then ret[i]["Reflejo"]         = (PBMoves.getName(PBMoves::REFLECT) + " (" + effect.to_s + ")") if effect != 0
-				when PBEffects::Safeguard          then ret[i]["Velo Sagrado"]    = (PBMoves.getName(PBMoves::SAFEGUARD) + " (" + effect.to_s + ")") if effect != 0
-				when PBEffects::Spikes             then ret[i]["Púas"]            = (PBMoves.getName(PBMoves::SPIKES) + " (" + effect.to_s + ")") if effect != 0
-				when PBEffects::StealthRock        then ret[i]["Trampa Rocas"]    = PBMoves.getName(PBMoves::STEALTHROCK)
-				when PBEffects::StickyWeb          then ret[i]["Red viscosa"]     = PBMoves.getName(PBMoves::STICKYWEB)
-				when PBEffects::Swamp              then ret[i]["Ciénaga"]         = _INTL("Pantano({1})",effect.to_s) if effect != 0
-				when PBEffects::SeaOfFire          then ret[i]["Mar de fuego"]    = _INTL("Mar de Llamas({1})",effect.to_s) if effect != 0
-				when PBEffects::Rainbow            then ret[i]["Arcoíris"]        = _INTL("Arcoíris ({1})",effect.to_s) if effect != 0
-				when PBEffects::Tailwind           then ret[i]["Viento afín"]     = (PBMoves.getName(PBMoves::TAILWIND) + " (" + effect.to_s + ")") if effect != 0
-				when PBEffects::ToxicSpikes        then ret[i]["Púas Tóxicas"]    = (PBMoves.getName(PBMoves::TOXICSPIKES) + " (" + effect.to_s + ")") if effect != 0
-				
+				when PBEffects::AuroraVeil         then ret[i]["Velo Aurora"]      = (PBMoves.getName(PBMoves::AURORAVEIL) + " (" + effect.to_s + ")") if effect != 0
+				when PBEffects::EchoedVoiceCounter then ret[i]["Contador Eco Voz"] = _INTL("Contador Eco Voz ({1})",effect.to_s) if effect != 0
+				when PBEffects::LightScreen        then ret[i]["Pantalla Luz"]     = (PBMoves.getName(PBMoves::LIGHTSCREEN) + " (" + effect.to_s + ")") if effect != 0
+				when PBEffects::LuckyChant         then ret[i]["Conjuro"]          = (PBMoves.getName(PBMoves::LUCKYCHANT) + " (" + effect.to_s + ")") if effect != 0
+				when PBEffects::Reflect            then ret[i]["Reflejo"]          = (PBMoves.getName(PBMoves::REFLECT) + " (" + effect.to_s + ")") if effect != 0
+				when PBEffects::Safeguard          then ret[i]["Velo Sagrado"]     = (PBMoves.getName(PBMoves::SAFEGUARD) + " (" + effect.to_s + ")") if effect != 0
+				when PBEffects::Spikes             then ret[i]["Púas"]             = (PBMoves.getName(PBMoves::SPIKES) + " (" + effect.to_s + ")") if effect != 0
+				when PBEffects::StealthRock        then ret[i]["Trampa Rocas"]     = PBMoves.getName(PBMoves::STEALTHROCK)
+				when PBEffects::StickyWeb          then ret[i]["Red viscosa"]      = PBMoves.getName(PBMoves::STICKYWEB)
+				when PBEffects::Swamp              then ret[i]["Ciénaga"]          = _INTL("Pantano({1})",effect.to_s) if effect != 0
+				when PBEffects::SeaOfFire          then ret[i]["Mar de fuego"]     = _INTL("Mar de Llamas({1})",effect.to_s) if effect != 0
+				when PBEffects::Rainbow            then ret[i]["Arcoíris"]         = _INTL("Arcoíris ({1})",effect.to_s) if effect != 0
+				when PBEffects::Tailwind           then ret[i]["Viento afín"]      = (PBMoves.getName(PBMoves::TAILWIND) + " (" + effect.to_s + ")") if effect != 0
+				when PBEffects::ToxicSpikes        then ret[i]["Púas Tóxicas"]     = (PBMoves.getName(PBMoves::TOXICSPIKES) + " (" + effect.to_s + ")") if effect != 0
+				when PBEffects::FaintedAlly        then ret[i]["FaintedAlly"]      = _INTL("Aliado Derrotado ({1})",effect.to_s) if effect != 0
         end
 			}
 		}
@@ -1281,6 +1281,7 @@ class PokeBattle_Battle
     opponent[:pkmn].each_with_index { |pkmn, i| @pkmn[2*i+1] = pkmn }
     
 		@pkmn.each_with_index { |pos, i|
+      begin #Añadido por Clara, deberia evitar crashes si no encuentra un efecto.
 			pkmn = @battlers[i]
 			ret << {}
 			next unless pkmn && !pkmn.isFainted? && pos
@@ -1318,52 +1319,60 @@ class PokeBattle_Battle
       
       if effect
         case j
-          when PBEffects::FutureSight   then ret[i]["Premonición contador"] = PBMoves.getName(PBMoves::FUTURESIGHT) + "(" + effect.to_s + ")" if effect != 0
-          when PBEffects::WishAmount    then ret[i]["Deseo Cantidad"]       = PBMoves.getName(PBMoves::WISH) + "(" + effect.to_s + " PS)" if (effect != 0 && wishReady)
-          when PBEffects::Bide          then ret[i]["Venganza"]             = PBMoves.getName(PBMoves::BIDE) +  "(" + venganza.to_s + ")" if effect != 0
-          when PBEffects::Charge        then ret[i]["Carga"]                = PBMoves.getName(PBMoves::CHARGE) if effect != 0
-          when PBEffects::Confusion     then ret[i]["Confusion"]            = _INTL("Confuso") if effect != 0
-          when PBEffects::Curse         then ret[i]["Maldicion"]            = _INTL("Maldición") if effect
-          when PBEffects::DefenseCurl   then ret[i]["Rizo Defensa"]         = PBMoves.getName(PBMoves::DEFENSECURL) if effect
-          when PBEffects::DestinyBond   then ret[i]["DestinyBond"]          = PBMoves.getName(PBMoves::DESTINYBOND) if effect
-          when PBEffects::Embargo       then ret[i]["Embargo"]              = PBMoves.getName(PBMoves::EMBARGO) if effect != 0
-          when PBEffects::Foresight     then ret[i]["Foresight"]            = PBMoves.getName(PBMoves::FORESIGHT) if effect
-          when PBEffects::FuryCutter    then ret[i]["FuryCutter"]           = PBMoves.getName(PBMoves::FURYCUTTER) + "(" + effect.to_s + ")" if effect != 0
-          when PBEffects::ProtectRate   then ret[i]["ProtectRate"]          = _INTL("Protegido({1})",protsTotales.to_s) if effect != 1
-          when PBEffects::HealBlock     then ret[i]["HealBlock"]            = PBMoves.getName(PBMoves::HEALBLOCK) if effect != 0
-          when PBEffects::HyperBeam     then ret[i]["HyperBeam"]            = _INTL("Necesita descansar") if effect != 0
-          when PBEffects::Imprison      then ret[i]["Imprison"]             = PBMoves.getName(PBMoves::IMPRISON) if effect
-          when PBEffects::Ingrain       then ret[i]["Ingrain"]              = PBMoves.getName(PBMoves::INGRAIN) if effect
-          when PBEffects::LeechSeed     then ret[i]["LeechSeed"]            = PBMoves.getName(PBMoves::LEECHSEED) if effect != -1
-          when PBEffects::LockOn        then ret[i]["LockOn"]               = PBMoves.getName(PBMoves::LOCKON) if effect != 0
-          when PBEffects::MagnetRise    then ret[i]["MagnetRise"]           = PBMoves.getName(PBMoves::MAGNETRISE) if effect != 0
-          when PBEffects::MeanLook      then ret[i]["MeanLook"]             = PBMoves.getName(PBMoves::MEANLOOK) if effect != -1
-          when PBEffects::Minimize      then ret[i]["Minimize"]             = PBMoves.getName(PBMoves::MINIMIZE) if effect
-          when PBEffects::MiracleEye    then ret[i]["MiracleEye"]           = PBMoves.getName(PBMoves::MIRACLEYE) if effect
-          when PBEffects::Nightmare     then ret[i]["Nightmare"]            = PBMoves.getName(PBMoves::NIGHTMARE) if effect
-          when PBEffects::PerishSong    then ret[i]["PerishSong"]           = PBMoves.getName(PBMoves::PERISHSONG) + "(" + effect.to_s + ")" if effect != 0
-          when PBEffects::PowerTrick    then ret[i]["PowerTrick"]           = PBMoves.getName(PBMoves::POWERTRICK) if effect
-          when PBEffects::Rage          then ret[i]["Rage"]                 = PBMoves.getName(PBMoves::RAGE) if effect
-          when PBEffects::Rollout       then ret[i]["Rollout"]              = PBMoves.getName(PBMoves::ROLLOUT) + "(" + desenrollar.to_s + ")" if effect != 0 
-          when PBEffects::SmackDown     then ret[i]["SmackDown"]            = PBMoves.getName(PBMoves::SMACKDOWN) if effect
-          when PBEffects::Stockpile     then ret[i]["Stockpile"]            = PBMoves.getName(PBMoves::STOCKPILE) + "(" + effect.to_s + ")" if effect != 0
-          when PBEffects::Taunt         then ret[i]["Taunt"]                = PBMoves.getName(PBMoves::TAUNT) if effect != 0
-          when PBEffects::Telekinesis   then ret[i]["Telekinesis"]          = PBMoves.getName(PBMoves::TELEKINESIS) if effect != 0
-          when PBEffects::Transform     then ret[i]["Transform"]            = PBMoves.getName(PBMoves::TRANSFORM) if effect
-          when PBEffects::Unburden      then ret[i]["Unburden"]             = PBMoves.getName(PBMoves::UNBURDEN) if effect
-          when PBEffects::Uproar        then ret[i]["Uproar"]               = PBMoves.getName(PBMoves::UPROAR) if effect != 0
-          when PBEffects::WeightChange  then ret[i]["WeightChange"]         = _INTL("Peso reducido") if effect != 0
-          when PBEffects::Yawn          then ret[i]["Yawn"]                 = _INTL("Somnoliento") if effect != 0
-          when PBEffects::LaserFocus    then ret[i]["LaserFocus"]           = PBMoves.getName(PBMoves::LASERFOCUS) if effect != 0
-          when PBEffects::ThroatChop    then ret[i]["ThroatChop"]           = _INTL("Silenciado") if effect != 0
-          when PBEffects::JawLock       then ret[i]["JawLock"]              = PBMoves.getName(PBMoves::JAWLOCK) if effect
-          when PBEffects::TarShot       then ret[i]["TarShot"]              = PBMoves.getName(PBMoves::TARSHOT) if effect
-          when PBEffects::Octolock      then ret[i]["Octolock"]             = PBMoves.getName(PBMoves::OCTOLOCK) if effect
-          when PBEffects::PerishBody    then ret[i]["PerishBody"]           = PBMoves.getName(PBMoves::PERISHSONG) + "(" + effect.to_s + ")" if effect != 0
-          when PBEffects::NoRetreat     then ret[i]["NoRetreat"]            = PBMoves.getName(PBMoves::NORETREAT) if effect
+          when PBEffects::FutureSight    then ret[i]["Premonición contador"] = PBMoves.getName(PBMoves::FUTURESIGHT) + "(" + effect.to_s + ")" if effect != 0
+          when PBEffects::WishAmount     then ret[i]["Deseo Cantidad"]       = PBMoves.getName(PBMoves::WISH) + "(" + effect.to_s + " PS)" if (effect != 0 && wishReady)
+          when PBEffects::Bide           then ret[i]["Venganza"]             = PBMoves.getName(PBMoves::BIDE) +  "(" + venganza.to_s + ")" if effect != 0
+          when PBEffects::Charge         then ret[i]["Carga"]                = PBMoves.getName(PBMoves::CHARGE) if effect != 0
+          when PBEffects::Confusion      then ret[i]["Confusion"]            = _INTL("Confuso") if effect != 0
+          when PBEffects::Curse          then ret[i]["Maldicion"]            = _INTL("Maldición") if effect
+          when PBEffects::DefenseCurl    then ret[i]["Rizo Defensa"]         = PBMoves.getName(PBMoves::DEFENSECURL) if effect
+          when PBEffects::DestinyBond    then ret[i]["DestinyBond"]          = PBMoves.getName(PBMoves::DESTINYBOND) if effect
+          when PBEffects::Embargo        then ret[i]["Embargo"]              = PBMoves.getName(PBMoves::EMBARGO) if effect != 0
+          when PBEffects::Foresight      then ret[i]["Foresight"]            = PBMoves.getName(PBMoves::FORESIGHT) if effect
+          when PBEffects::FuryCutter     then ret[i]["FuryCutter"]           = PBMoves.getName(PBMoves::FURYCUTTER) + "(" + effect.to_s + ")" if effect != 0
+          when PBEffects::ProtectRate    then ret[i]["ProtectRate"]          = _INTL("Protegido({1})",protsTotales.to_s) if effect != 1
+          when PBEffects::HealBlock      then ret[i]["HealBlock"]            = PBMoves.getName(PBMoves::HEALBLOCK) if effect != 0
+          when PBEffects::HyperBeam      then ret[i]["HyperBeam"]            = _INTL("Necesita descansar") if effect != 0
+          when PBEffects::Imprison       then ret[i]["Imprison"]             = PBMoves.getName(PBMoves::IMPRISON) if effect
+          when PBEffects::Ingrain        then ret[i]["Ingrain"]              = PBMoves.getName(PBMoves::INGRAIN) if effect
+          when PBEffects::LeechSeed      then ret[i]["LeechSeed"]            = PBMoves.getName(PBMoves::LEECHSEED) if effect != -1
+          when PBEffects::LockOn         then ret[i]["LockOn"]               = PBMoves.getName(PBMoves::LOCKON) if effect != 0
+          when PBEffects::MagnetRise     then ret[i]["MagnetRise"]           = PBMoves.getName(PBMoves::MAGNETRISE) if effect != 0
+          when PBEffects::MeanLook       then ret[i]["MeanLook"]             = _INTL("Atrapado") if effect != -1
+          when PBEffects::Minimize       then ret[i]["Minimize"]             = PBMoves.getName(PBMoves::MINIMIZE) if effect
+          when PBEffects::MiracleEye     then ret[i]["MiracleEye"]           = PBMoves.getName(PBMoves::MIRACLEYE) if effect
+          when PBEffects::Nightmare      then ret[i]["Nightmare"]            = PBMoves.getName(PBMoves::NIGHTMARE) if effect
+          when PBEffects::PerishSong     then ret[i]["PerishSong"]           = PBMoves.getName(PBMoves::PERISHSONG) + "(" + effect.to_s + ")" if effect != 0
+          when PBEffects::PowerTrick     then ret[i]["PowerTrick"]           = PBMoves.getName(PBMoves::POWERTRICK) if effect
+          when PBEffects::Rage           then ret[i]["Rage"]                 = PBMoves.getName(PBMoves::RAGE) if effect
+          when PBEffects::Rollout        then ret[i]["Rollout"]              = PBMoves.getName(PBMoves::ROLLOUT) + "(" + desenrollar.to_s + ")" if effect != 0 
+          when PBEffects::SmackDown      then ret[i]["SmackDown"]            = PBMoves.getName(PBMoves::SMACKDOWN) if effect
+          when PBEffects::Stockpile      then ret[i]["Stockpile"]            = PBMoves.getName(PBMoves::STOCKPILE) + "(" + effect.to_s + ")" if effect != 0
+          when PBEffects::Taunt          then ret[i]["Taunt"]                = PBMoves.getName(PBMoves::TAUNT) if effect != 0
+          when PBEffects::Telekinesis    then ret[i]["Telekinesis"]          = PBMoves.getName(PBMoves::TELEKINESIS) if effect != 0
+          when PBEffects::Transform      then ret[i]["Transform"]            = PBMoves.getName(PBMoves::TRANSFORM) if effect
+          when PBEffects::Unburden       then ret[i]["Unburden"]             = PBMoves.getName(PBMoves::UNBURDEN) if effect
+          when PBEffects::Uproar         then ret[i]["Uproar"]               = PBMoves.getName(PBMoves::UPROAR) if effect != 0
+          when PBEffects::WeightChange   then ret[i]["WeightChange"]         = _INTL("Peso reducido") if effect != 0
+          when PBEffects::Yawn           then ret[i]["Yawn"]                 = _INTL("Somnoliento") if effect != 0
+          when PBEffects::LaserFocus     then ret[i]["LaserFocus"]           = PBMoves.getName(PBMoves::LASERFOCUS) if effect != 0
+          when PBEffects::ThroatChop     then ret[i]["ThroatChop"]           = _INTL("Silenciado") if effect != 0
+          when PBEffects::JawLock        then ret[i]["JawLock"]              = PBMoves.getName(PBMoves::JAWLOCK) if effect
+          when PBEffects::TarShot        then ret[i]["TarShot"]              = PBMoves.getName(PBMoves::TARSHOT) if effect
+          when PBEffects::Octolock       then ret[i]["Octolock"]             = PBMoves.getName(PBMoves::OCTOLOCK) if effect
+          when PBEffects::PerishBody     then ret[i]["PerishBody"]           = PBMoves.getName(PBMoves::PERISHSONG) + "(" + effect.to_s + ")" if effect != 0
+          when PBEffects::NoRetreat      then ret[i]["NoRetreat"]            = PBMoves.getName(PBMoves::NORETREAT) if effect
+          when PBEffects::Metronome      then ret[i]["Metronome"]            = PBItems.getName(getID(PBItems,:METRONOME)) + "(" + effect.to_s + ")" if effect != 0
+          when PBEffects::RageFist       then ret[i]["RageFist"]             = PBMoves.getName(PBMoves::RAGEFIST) + "(" + effect.to_s + ")" if effect != 0
+          when PBEffects::Commander      then ret[i]["Commander"]            = PBAbilities.getName(PBAbilities::COMMANDER) if effect != 0
+          when PBEffects::GlaiveRush     then ret[i]["GlaiveRush"]           = _INTL("Vulnerable") if effect
+          when PBEffects::SaltCure       then ret[i]["SaltCure"]             = PBMoves.getName(PBMoves::SALTCURE) if effect
+          when PBEffects::SyrupBomb      then ret[i]["SyrupBomb"]            = PBMoves.getName(PBMoves::SYRUPBOMB) + "(" + effect.to_s + ")" if effect != 0
+          when PBEffects::Protosynthesis then ret[i]["Protosynthesis"]       = _INTL("Potenciado") if effect != 0
         end
       end
 			}
+    rescue;end
 		}
 		return ret
 	end

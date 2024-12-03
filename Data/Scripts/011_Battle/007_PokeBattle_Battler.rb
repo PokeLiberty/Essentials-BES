@@ -561,8 +561,6 @@ class PokeBattle_Battler
     @effects[PBEffects::ShedTail]         = false
     @effects[PBEffects::SaltCure]         = false
     @effects[PBEffects::SyrupBomb]        = 0
-
-    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     @effects[PBEffects::Protosynthesis]   = 0
     @effects[PBEffects::BoosterEnergy]    = false
   end
@@ -828,7 +826,7 @@ class PokeBattle_Battler
       speedmult=(speedmult/2).round
     end
     if self.status==PBStatuses::PARALYSIS && !self.hasWorkingAbility(:QUICKFEET)
-      speedmult=(speedmult/4).round
+      speedmult=(speedmult/(USENEWBATTLEMECHANICS ? 2 : 4)).round
     end
     
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4

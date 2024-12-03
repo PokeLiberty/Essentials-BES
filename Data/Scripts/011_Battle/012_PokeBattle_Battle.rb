@@ -3987,9 +3987,9 @@ class PokeBattle_Battle
           PBDebug.log("[Daño por estado] #{i.pbThis} recibió daño por la quemadura")
           if i.hasWorkingAbility(:HEATPROOF)               # Ignífugo
             PBDebug.log("[Habilidad disparada] Ignífugo de #{i.pbThis}")
-            i.pbReduceHP((i.totalhp/16).floor)
+            i.pbReduceHP((i.totalhp/(USENEWBATTLEMECHANICS ? 32 : 16)).floor)
           else
-            i.pbReduceHP((i.totalhp/8).floor)
+            i.pbReduceHP((i.totalhp/(USENEWBATTLEMECHANICS ? 16 : 8)).floor)
           end
         end
         i.pbContinueStatus
