@@ -1148,49 +1148,12 @@ ItemHandlers::UseOnPokemon.add(:EXPCANDYXS,proc{|item,pokemon,scene|
      curlevel=pokemon.level
      scene.pbDisplay(_INTL("¡Tu Pokémon ganó Puntos de Experiencia!"))
      if newlevel==curlevel
-       pokemon.exp=newexp
-       pokemon.calcStats
-       scene.pbRefresh
+      pokemon.exp=newexp
+      pokemon.calcStats
+      scene.pbRefresh
      else
-       attackdiff=pokemon.attack
-       defensediff=pokemon.defense
-       speeddiff=pokemon.speed
-       spatkdiff=pokemon.spatk
-       spdefdiff=pokemon.spdef
-       totalhpdiff=pokemon.totalhp
-       oldlevel=pokemon.level
-       pokemon.level=newlevel
-#       pokemon.changeHappiness("levelup")
-       pokemon.calcStats
-       scene.pbRefresh
-       Kernel.pbMessage(_INTL("\\se[Pkmn level up]¡{1} subió al nivel {2}!",pokemon.name,pokemon.level))
-       attackdiff=pokemon.attack-attackdiff
-       defensediff=pokemon.defense-defensediff
-       speeddiff=pokemon.speed-speeddiff
-       spatkdiff=pokemon.spatk-spatkdiff
-       spdefdiff=pokemon.spdef-spdefdiff
-       totalhpdiff=pokemon.totalhp-totalhpdiff
-       pbTopRightWindow(_INTL("#{PBStats.getName(0,true)} Máx.<r>+{1}<br>#{PBStats.getName(1,true)}<r>+{2}<br>#{PBStats.getName(2,true)}<r>+{3}<br>#{PBStats.getName(4,true)}<r>+{4}<br>#{PBStats.getName(5,true)}<r>+{5}<br>#{PBStats.getName(3,true)}<r>+{6}",
-          totalhpdiff,attackdiff,defensediff,spatkdiff,spdefdiff,speeddiff))
-       pbTopRightWindow(_INTL("#{PBStats.getName(0,true)} Máx.<r>+{1}<br>#{PBStats.getName(1,true)}<r>+{2}<br>#{PBStats.getName(2,true)}<r>+{3}<br>#{PBStats.getName(4,true)}<r>+{4}<br>#{PBStats.getName(5,true)}<r>+{5}<br>#{PBStats.getName(3,true)}<r>+{6}",
-          pokemon.totalhp,pokemon.attack,pokemon.defense,pokemon.spatk,pokemon.spdef,pokemon.speed))
-       movelist=pokemon.getMoveList
-       for i in movelist
-         if i[0]>oldlevel && i[0]<=pokemon.level
-           pbLearnMove(pokemon,i[1],true)
-         end
-       end
-       newspecies=pbCheckEvolution(pokemon)
-       if newspecies>0
-         pbFadeOutInWithMusic(99999){
-            evo=PokemonEvolutionScene.new
-            evo.pbStartScreen(pokemon,newspecies)
-            evo.pbEvolution
-            evo.pbEndScreen
-         }
-       end
-       pokemon.exp=newexp
-       scene.pbRefresh
+      pbChangeLevel(pokemon,newlevel,scene,false)
+      scene.pbHardRefresh
      end
      next true
    end
