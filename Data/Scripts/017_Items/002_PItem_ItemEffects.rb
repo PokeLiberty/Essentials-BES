@@ -1529,7 +1529,7 @@ ItemHandlers::BattleUseOnBattler.add(:XATTACK, proc { |item, battler, scene|
     :XDEFEND2   => [PBStats::DEFENSE, 2], :XDEFENSE2 => [PBStats::DEFENSE, 2],
     :XDEFEND3   => [PBStats::DEFENSE, 3], :XDEFENSE3 => [PBStats::DEFENSE, 3],
     :XDEFEND6   => [PBStats::DEFENSE, 6], :XDEFENSE6 => [PBStats::DEFENSE, 6],
-    :XSPECIAL   => [PBStats::SPATK, 1(USENEWBATTLEMECHANICS) ? 2 : 1],   :XSPATK    => [PBStats::SPATK, (USENEWBATTLEMECHANICS) ? 2 : 1],
+    :XSPECIAL   => [PBStats::SPATK, (USENEWBATTLEMECHANICS) ? 2 : 1],   :XSPATK    => [PBStats::SPATK, (USENEWBATTLEMECHANICS) ? 2 : 1],
     :XSPECIAL2  => [PBStats::SPATK, 2],   :XSPATK2   => [PBStats::SPATK, 2],
     :XSPECIAL3  => [PBStats::SPATK, 3],   :XSPATK3   => [PBStats::SPATK, 3],
     :XSPECIAL6  => [PBStats::SPATK, 6],   :XSPATK6   => [PBStats::SPATK, 6],
