@@ -1542,8 +1542,8 @@ ItemHandlers::BattleUseOnBattler.add(:XATTACK, proc { |item, battler, scene|
   }
   
   statbuff = stat_buff_map[item] || [PBStats::ATTACK, 1] # Por defecto, Ataque X
-  playername = "<c3=#{PokeBattle_SceneConstants::TRNAMECOLOR}>#{battler.battle.pbPlayer.name}</c3>"
-  itemname   = "<c3=#{PokeBattle_SceneConstants::TRNAMECOLOR}>#{PBItems.getName(item)}</c3>"
+  playername = battler.battle.pbPlayer.name
+  itemname   = PBItems.getName(item)
   scene.pbDisplay(_INTL("{1} ha usado {2}.", playername, itemname))
 
   if battler.pbCanIncreaseStatStage?(statbuff[0], battler, false)
