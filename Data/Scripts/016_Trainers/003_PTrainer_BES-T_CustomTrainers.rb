@@ -40,12 +40,15 @@ end
 # Does not depend on defined trainers, only on trainer types
 # ------------------------------------------------------------------------------
 def createTrainer(trainerid,trainername,party,items=[])
-  
   name = pbGetMessageFromHash(MessageTypes::TrainerNames, trainername)
+  if trainerid.is_a?(String) || trainerid.is_a?(Symbol)
+    pbTrainerTypeCheck(trainerid)
+    return false if !hasConst?(PBTrainers,trainerid)
+    trainerid=PBTrainers.const_get(trainerid)
+  end
   opponent = PokeBattle_Trainer.new(name, trainerid)
   opponent.setForeignID($Trainer) if $Trainer
   opponent.party = party
-  
   return [opponent,items,party]
 end
 
