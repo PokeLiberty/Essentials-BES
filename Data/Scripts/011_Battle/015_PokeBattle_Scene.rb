@@ -200,7 +200,6 @@ class CommandMenuButtons < BitmapSprite
       _INTL("Cebo"),    #7
       _INTL("Ball"),    #8
     ]
-    
   end
 
   def dispose
@@ -225,15 +224,17 @@ class CommandMenuButtons < BitmapSprite
     when 3
       cmdarray=[0,8,1,3] # Bug Catching Contest
     end
+    buttonWidth = 130
+    buttonHeight = 46
     for i in 0...4
       next if i==index
-      x=((i%2)==0) ? 0 : 126
-      y=((i/2)==0) ? 6 : 48
-      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(0,cmdarray[i]*46,130,46))
+      x=((i%2)==0) ? 0 : buttonWidth
+      y=((i/2)==0) ? 6 : buttonHeight+2
+      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(0,cmdarray[i]*46,buttonWidth,buttonHeight))
       
       if PokeBattle_SceneConstants::CMD_BUTTON_TEXT
         cmdText = @commandtext[cmdarray[i]].upcase if @commandtext
-        basecolor   = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,cmdarray[i]*46+32) : PokeBattle_SceneConstants::MENUBASECOLOR
+        basecolor   = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,cmdarray[i]*buttonHeight+32) : PokeBattle_SceneConstants::MENUBASECOLOR
         shadowcolor = PokeBattle_SceneConstants::MENUSHADOWCOLOR
         textpos.push([_INTL("{1}",cmdText),x+64,y+8,2,
                     basecolor,shadowcolor,PokeBattle_SceneConstants::CMD_OUTLINE])
@@ -241,13 +242,13 @@ class CommandMenuButtons < BitmapSprite
     end
     for i in 0...4
       next if i!=index
-      x=((i%2)==0) ? 0 : 126
-      y=((i/2)==0) ? 6 : 48
-      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(130,cmdarray[i]*46,130,46))
+      x=((i%2)==0) ? 0 : buttonWidth
+      y=((i/2)==0) ? 6 : buttonHeight+2
+      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(buttonWidth,cmdarray[i]*buttonHeight,buttonWidth,buttonHeight))
       
       if PokeBattle_SceneConstants::CMD_BUTTON_TEXT
         cmdText = @commandtext[cmdarray[i]].upcase if @commandtext
-        basecolor   = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,cmdarray[i]*46+32) : PokeBattle_SceneConstants::MENUBASECOLOR
+        basecolor   = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,cmdarray[i]*buttonHeight+32) : PokeBattle_SceneConstants::MENUBASECOLOR
         shadowcolor = PokeBattle_SceneConstants::MENUSHADOWCOLORACTIVE
         textpos.push([_INTL("{1}",cmdText),x+64,y+8,2,
                     basecolor,shadowcolor,PokeBattle_SceneConstants::CMD_OUTLINE])
@@ -474,16 +475,18 @@ class FightMenuButtons < BitmapSprite
     self.bitmap.clear
     moveboxes=_INTL("Graphics/#{BATTLE_ROUTE}/battleFightButtons")
     textpos=[]
+    buttonWidth = 192
+    buttonHeight = 46
     for i in 0...4
       next if i==index
       next if moves[i].id==0
-      x=((i%2)==0) ? 4 : 192
-      y=((i/2)==0) ? 6 : 48
+      x=((i%2)==0) ? 4 : buttonWidth 
+      y=((i/2)==0) ? 6 : buttonHeight+2
       y+=UPPERGAP
       moveType = getMoveType(moves[i])
       movename = getMoveName(moves[i])
-      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(0,moveType*46,192,46))
-      basecolor = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,moveType*46+34) : PokeBattle_SceneConstants::MENUBASECOLOR
+      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(0,moveType*buttonHeight, buttonWidth ,buttonHeight))
+      basecolor = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,moveType*buttonHeight+34) : PokeBattle_SceneConstants::MENUBASECOLOR
       textpos.push([_INTL("{1}",movename),x+96,y+8,2,
                     basecolor,PokeBattle_SceneConstants::MENUSHADOWCOLOR,
                     PokeBattle_SceneConstants::CMD_OUTLINE])
@@ -498,15 +501,15 @@ class FightMenuButtons < BitmapSprite
     for i in 0...4
       next if i!=index
       next if moves[i].id==0
-      x=((i%2)==0) ? 4 : 192
-      y=((i/2)==0) ? 6 : 48
+      x=((i%2)==0) ? 4 : buttonWidth 
+      y=((i/2)==0) ? 6 : buttonHeight+2
       y+=UPPERGAP
       moveType = getMoveType(moves[i])
       movename = getMoveName(moves[i])
       
-      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(192,moveType*46,192,46))
+      self.bitmap.blt(x,y,@buttonbitmap.bitmap,Rect.new(buttonWidth,moveType*buttonHeight,buttonWidth,buttonHeight))
       self.bitmap.blt(416,20+UPPERGAP,@typebitmap.bitmap,Rect.new(0,moveType*28,64,28))
-      basecolor = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,moveType*46+34) : PokeBattle_SceneConstants::MENUBASECOLOR
+      basecolor = PokeBattle_SceneConstants::COLOREDTYPE ? @buttonbitmap.bitmap.get_pixel(10,moveType*buttonHeight+34) : PokeBattle_SceneConstants::MENUBASECOLOR
       textpos.push([_INTL("{1}",movename),x+96,y+8,2,
                     basecolor,PokeBattle_SceneConstants::MENUSHADOWCOLORACTIVE,
                     PokeBattle_SceneConstants::CMD_OUTLINE])
@@ -612,6 +615,7 @@ class SafariDataBox < SpriteWrapper
     self.bitmap=@contents
     self.visible=false
     self.z=50
+    pbSetSystemFont(self.bitmap)
     refresh
   end
 
@@ -676,11 +680,7 @@ class PokemonDataBox < SpriteWrapper
     @currenthp=0
     @endhp=0
     @expflash=0
-    if (@battler.index&1)==0 # if player's Pokémon
-      @spritebaseX=34
-    else
-      @spritebaseX=16
-    end
+    @spritebaseX = ((@battler.index&1)==0) ? 34 : 16  # Player's/foe's
     if doublebattle
       case @battler.index
       when 0
@@ -771,11 +771,7 @@ class PokemonDataBox < SpriteWrapper
     refresh
     self.visible=true
     self.opacity=255
-    if (@battler.index&1)==0 # if player's Pokémon
-      self.x=@spriteX+320
-    else
-      self.x=@spriteX-320
-    end
+    self.x = ((@battler.index&1)==0) ? @spriteX+320 : @spriteX-320  # Player's/foe's
     self.y=@spriteY
     @appearing=true
   end
@@ -789,6 +785,7 @@ class PokemonDataBox < SpriteWrapper
     pokename=@battler.name
     pbSetSystemFont(self.bitmap)
     
+    textpos = []
     imagepos=[]
     if @battler.isShiny?
       shinyX=206
@@ -872,7 +869,7 @@ class PokemonDataBox < SpriteWrapper
 
   def update
     super
-    @frame+=1
+    @frame = (@frame+1)%24
     if @animatingHP
       if @currenthp<@endhp
         @currenthp+=[1,(@battler.totalhp/PokeBattle_SceneConstants::HPGAUGESIZE).floor].max
@@ -923,6 +920,7 @@ class PokemonDataBox < SpriteWrapper
         end
       end
     end
+    # Move data box onto the screen
     if @appearing
       if (@battler.index&1)==0 # if player's Pokémon
         self.x-=12
@@ -939,10 +937,12 @@ class PokemonDataBox < SpriteWrapper
     self.x=@spriteX
     self.y=@spriteY
     # Data box bobbing while Pokémon is selected
-    if ((@frame/10).floor&1)==1 && @selected==1   # Choosing commands for this Pokémon
-      self.y=@spriteY+2
-    elsif ((@frame/10).floor&1)==1 && @selected==2   # When targeted or damaged
-      self.y=@spriteY+2
+    if @selected==1 || @selected==2   # Choosing commands/targeted or damaged
+      if (@frame/6).floor==1
+        self.y = @spriteY-2
+      elsif (@frame/6).floor==3
+        self.y=@spriteY+2
+      end
     end
   end
 end
@@ -1088,8 +1088,6 @@ class PokeballSendOutAnimation
     end
   end
 end
-
-
 
 #===============================================================================
 # Shows the player's (or partner's) Pokémon being thrown out.  It appears at
@@ -1432,7 +1430,8 @@ def pokeballThrow(ball,shakes,critical,targetBattler,scene,battler,burst=-1,show
   pictureBall.moveSE(pictureBall.totalDuration,"Audio/SE/balldrop")
   picturePoke.moveXY(0,pictureBall.totalDuration,center[0],ballendy)
   delay=pictureBall.totalDuration+18# if shakes==0
-  [shakes,3].min.times do
+  numshakes = (critical) ? 1 : [shakes,3].min
+  numshakes.times do
     pictureBall.moveSE(delay,"Audio/SE/ballshake")
     pictureBall.moveXY(3,delay,center[0]-8,ballendy)
     pictureBall.moveAngle(3,delay,20) # positive means counterclockwise
@@ -1670,7 +1669,7 @@ class PokeBattle_Scene
       return
     end
     cw=@sprites["messagewindow"]
-    cw.text=_ISPRINTF("{1:s}\1",msg)
+    cw.text=_INTL("{1}\1",msg)
     loop do
       pbGraphicsUpdate
       pbInputUpdate
@@ -2519,7 +2518,7 @@ class PokeBattle_Scene
   end
 
   def pbMoveString(move)
-    ret=_INTL("{1}",move.name)
+    ret=move.name
     typename=PBTypes.getName(move.type)
     if move.id>0
       ret+=_INTL(" ({1}) PP: {2}/{3}",typename,move.pp,move.totalpp)
@@ -2830,6 +2829,7 @@ class PokeBattle_Scene
       @sprites["battlebox#{i}"].update
       @sprites["pokemon#{i}"].update
     end
+    pbFrameUpdate
   end
 
 # Use this method to make the player choose a target
@@ -2853,7 +2853,6 @@ class PokeBattle_Scene
     loop do
       pbGraphicsUpdate
       pbInputUpdate
-      pbFrameUpdate
       pbUpdateSelected(curwindow)
       if Input.trigger?(Input::C)
         pbUpdateSelected(-1)
@@ -3411,6 +3410,7 @@ class PokeBattle_Scene
   end
 
   def pbCommonAnimation(animname,user,target,hitnum=0)
+    $pkmn_animations=load_data("Data/PkmnAnimations.rxdata") if $pkmn_animations
     animations=$pkmn_animations
     for i in 0...animations.length
       if animations[i] && animations[i].name=="Common:"+animname
@@ -3454,6 +3454,7 @@ class PokeBattle_Scene
     animid=pbFindAnimation(moveid,user.index,hitnum)
     return if !animid
     anim=animid[0]
+    $pkmn_animations=load_data("Data/PkmnAnimations.rxdata") if $pkmn_animations
     animations=$pkmn_animations
     pbToggleDataboxes if PokeBattle_SceneConstants::HIDE_DATABOXES_DURING_MOVES
     pbSaveShadows {
@@ -3564,6 +3565,7 @@ class PokeBattle_Scene
   def pbThrow(ball,shakes,critical,targetBattler,showplayer=false)
     @briefmessage=false
     burst=-1
+    $pkmn_animations=load_data("Data/PkmnAnimations.rxdata") if $pkmn_animations
     animations=$pkmn_animations
     for i in 0...2
       t=(i==0) ? ball : 0
