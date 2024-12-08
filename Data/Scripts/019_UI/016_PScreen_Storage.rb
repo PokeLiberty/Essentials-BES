@@ -2322,6 +2322,7 @@ class PokemonStorageScreen
        _INTL("Saltar"),
        _INTL("Paisaje"),
        _INTL("Nombre"),
+       _INTL("Liberar Caja"),
        _INTL("Salir"),
     ]
     command = pbShowCommands(
@@ -2346,7 +2347,38 @@ class PokemonStorageScreen
       end
     when 2
       @scene.pbBoxName(_INTL("¿Nombre de la Caja?"),0,12)
+    when 3
+      pbMassRelease(@storage.currentBox)
     end
+  end
+
+  def pbMassRelease(box)
+    released_count = 0
+    command = pbShowCommands(_INTL("¿Quieres liberar a todos los Pokémon de la Caja?"),[_INTL("No"),_INTL("Sí")])
+    if command==1
+      for i in 0...@storage.maxPokemon(box)
+        pokemon = @storage[box, i]
+        next if !pokemon || pokemon.egg? || pokemon.mail 
+        #next if isConst?(pokemon.species, PBSpecies, :MEW) #Ejemplo para no liberar a cierto pokémon.
+        pkmnname = pokemon.name
+        if pokemon.item > 0 # Recupera el objeto equipado si lleva alguno.
+          itemname = PBItems.getName(pokemon.item)
+          if $PokemonBag.pbStoreItem(pokemon.item)
+            #pbDisplay(_INTL("Guardaste {1} en tu bolsa.", itemname))
+          end
+        end
+        @storage.pbDelete(box, i)
+        @scene.pbHardRefresh
+        released_count += 1
+        pbWait(1)
+      end
+      if released_count > 0
+        pbDisplay(_INTL("¡Has liberado {1} Pokémon de esta caja!", released_count))
+      else
+        pbDisplay(_INTL("No hay Pokémon válidos para liberar en esta caja."))
+      end
+    end
+    @scene.pbRefresh
   end
 
   def pbChoosePokemon(party=nil)
