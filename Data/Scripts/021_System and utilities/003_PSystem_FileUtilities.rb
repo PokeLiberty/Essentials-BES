@@ -370,6 +370,14 @@ def pbResolveAudioSE(file)
   return nil
 end
 
+def pbResolveAudioBGS(file)
+  return nil if !file
+  if RTP.exists?("Audio/BGS/"+file,["",".wav",".mp3",".ogg"])
+    return RTP.getPath("Audio/BGS/"+file,["",".wav",".mp3",".ogg"])
+  end
+  return nil
+end
+
 def pbCryFrameLength(pokemon,form=0,pitch=nil)
   return 0 if !pokemon
   pitch=100 if !pitch

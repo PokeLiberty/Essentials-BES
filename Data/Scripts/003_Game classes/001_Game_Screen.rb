@@ -83,6 +83,20 @@ class Game_Screen
   #-----------------------------------------------------------------------------
   def weather(type, power, duration)
     @weather_type_target = type
+    if @weather_type_target == 0 # None
+      pbBGSFade(duration)
+    elsif @weather_type_target == 1 # Rain
+      pbBGSPlay("Rain") if pbResolveAudioBGS("Rain")
+    elsif @weather_type_target == 2 # Storm
+      pbBGSPlay("Storm") if pbResolveAudioBGS("Storm")
+    elsif @weather_type_target == 3 # Snow
+      pbBGSPlay("Snow") if pbResolveAudioBGS("Snow")
+    elsif @weather_type_target == 4 # Sandstorm
+      pbBGSPlay("Sandstorm") if pbResolveAudioBGS("Sandstorm")
+    elsif @weather_type_target == 5 # Sunny
+      # is this one honestly even necessary?
+      pbBGSPlay("Sunny") if pbResolveAudioBGS("Rain")
+    end
     if @weather_type_target != 0
       @weather_type = @weather_type_target
     end
@@ -97,6 +111,8 @@ class Game_Screen
       @weather_max = @weather_max_target
     end
   end
+
+
   #-----------------------------------------------------------------------------
   # * Frame Update
   #-----------------------------------------------------------------------------
