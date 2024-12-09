@@ -41,14 +41,17 @@ end
 # ------------------------------------------------------------------------------
 def createTrainer(trainerid,trainername,party,items=[])
   name = pbGetMessageFromHash(MessageTypes::TrainerNames, trainername)
+  
   if trainerid.is_a?(String) || trainerid.is_a?(Symbol)
     pbTrainerTypeCheck(trainerid)
     return false if !hasConst?(PBTrainers,trainerid)
     trainerid=PBTrainers.const_get(trainerid)
   end
+  
   opponent = PokeBattle_Trainer.new(name, trainerid)
   opponent.setForeignID($Trainer) if $Trainer
   opponent.party = party
+  
   return [opponent,items,party]
 end
 
@@ -170,8 +173,9 @@ def customTrainerBattle(trainer,endspeech,doublebattle=false,canlose=false)
   pbPrepareBattle(battle)
   restorebgm=true
   decision=0
-  pbBattleAnimation(trainerbgm,trainer[0].trainertype,trainer[0].name) { 
-     pbSceneStandby {
+  tr = [trainer]; tr.push($PokemonTemp.waitingTrainer[0]) if $PokemonTemp.waitingTrainer
+  pbBattleAnimation(trainerbgm,(battle.doublebattle) ? 3 : 1,tr) {
+    pbSceneStandby {
         decision=battle.pbStartBattle(canlose)
      }
     pbAfterBattle(decision,canlose)

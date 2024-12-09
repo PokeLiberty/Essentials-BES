@@ -482,112 +482,88 @@ def pbSceneStandby
   end
 end
 
-def pbBattleAnimation(bgm=nil,trainerid=-1,trainername="")
-  handled=false
-  playingBGS=nil
-  playingBGM=nil
+def pbBattleAnimation(bgm=nil,battletype=0,foe=nil)
+  $game_temp.in_battle = true
+  handled = false
+  viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+  viewport.z = 99999
+  # Set up audio
+  playingBGS = nil
+  playingBGM = nil
   if $game_system && $game_system.is_a?(Game_System)
-    playingBGS=$game_system.getPlayingBGS
-    playingBGM=$game_system.getPlayingBGM
+    playingBGS = $game_system.getPlayingBGS
+    playingBGM = $game_system.getPlayingBGM
     $game_system.bgm_pause
     $game_system.bgs_pause
   end
   pbMEFade(0.25)
   pbWait(10)
   pbMEStop
-  if bgm
-    pbBGMPlay(bgm)
-  else
-    pbBGMPlay(pbGetWildBattleBGM(0))
-  end
-  viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
-  viewport.z=99999
-# Fade to gray a few times.
-  viewport.color=Color.new(17*8,17*8,17*8)
-  3.times do
-    viewport.color.alpha=0
-    6.times do
-      viewport.color.alpha+=30
-      Graphics.update
-      Input.update
-      pbUpdateSceneMap
-    end
-    6.times do
-      viewport.color.alpha-=30
-      Graphics.update
-      Input.update
-      pbUpdateSceneMap
-    end
-  end
-  if $game_temp.background_bitmap
-    $game_temp.background_bitmap.dispose
-  end
-  $game_temp.background_bitmap=Graphics.snap_to_bitmap
+  # Play battle music
+  bgm = pbGetWildBattleBGM(0) if !bgm
+  pbBGMPlay(bgm)
+  # Take screenshot of game, for use in some animations
+  $game_temp.background_bitmap.dispose if $game_temp.background_bitmap
+  $game_temp.background_bitmap = Graphics.snap_to_bitmap
   # Check for custom battle intro animations
-  handled=pbBattleAnimationOverride(viewport,trainerid,trainername)
+  handled = pbBattleAnimationOverride(viewport,battletype,foe)
   # Default battle intro animation
   if !handled
-    if Sprite.method_defined?(:wave_amp) && rand(15)==0
-      viewport.color=Color.new(0,0,0,255)
-      sprite = Sprite.new
-      bitmap=Graphics.snap_to_bitmap
-      bm=bitmap.clone
-      sprite.z=99999
-      sprite.bitmap = bm
-      sprite.wave_speed=500
-      for i in 0..25
-        sprite.opacity-=10
-        sprite.wave_amp+=60
-        sprite.update
-        sprite.wave_speed+=30
-        2.times do
-          Graphics.update
-        end
-      end
-      bitmap.dispose
-      bm.dispose
-      sprite.dispose
-    elsif Bitmap.method_defined?(:radial_blur) && rand(15)==0
-      viewport.color=Color.new(0,0,0,255)
-      sprite = Sprite.new
-      bitmap=Graphics.snap_to_bitmap
-      bm=bitmap.clone
-      sprite.z=99999
-      sprite.bitmap = bm
-      for i in 0..15
-        bm.radial_blur(i,2)
-        sprite.opacity-=15
-        2.times do
-          Graphics.update
-        end
-      end
-      bitmap.dispose
-      bm.dispose
-      sprite.dispose
-    elsif rand(10)==0 # Custom transition method
-      scroll=["ScrollDown","ScrollLeft","ScrollRight","ScrollUp",
-              "ScrollDownRight","ScrollDownLeft","ScrollUpRight","ScrollUpLeft"]
-      Graphics.freeze
-      viewport.color=Color.new(0,0,0,255)
-      Graphics.transition(50,sprintf("Graphics/Transitions/%s",scroll[rand(scroll.length)]))
-    else
-      transitions=[
-         # Transitions with graphic files
-         "021-Normal01","022-Normal02",
-         "Battle","battle1","battle2","battle3","battle4",
-         "computertr","computertrclose",
-         "hexatr","hexatrc","hexatzr",
-         "Image1","Image2","Image3","Image4",
-         # Custom transition methods
-         "Splash","Random_stripe_v","Random_stripe_h",
-         "RotatingPieces","ShrinkingPieces",
-         "BreakingGlass","Mosaic","zoomin"
-      ]
-      rnd=rand(transitions.length)
-      Graphics.freeze
-      viewport.color=Color.new(0,0,0,255)
-      Graphics.transition(40,sprintf("Graphics/Transitions/%s",transitions[rnd]))
+    # Determine which animation is played
+    location = 0   # 0=outside, 1=inside, 2=cave, 3=water
+    if $PokemonGlobal && ($PokemonGlobal.surfing || $PokemonGlobal.diving)
+      location = 3
+    elsif $PokemonTemp.encounterType &&
+       ($PokemonTemp.encounterType==EncounterTypes::OldRod ||
+       $PokemonTemp.encounterType==EncounterTypes::GoodRod ||
+       $PokemonTemp.encounterType==EncounterTypes::SuperRod)
+      location = 3
+    elsif $PokemonEncounters && $PokemonEncounters.isCave?
+      location = 2
+    elsif !pbGetMetadata($game_map.map_id,MetadataOutdoor)
+      location = 1
     end
+    anim = ""
+    if PBDayNight.isDay?
+      case battletype
+      when 0, 2 # Wild, double wild
+        anim = ["SnakeSquares","DiagonalBubbleTL","DiagonalBubbleBR","RisingSplash"][location]
+      when 1 # Trainer
+        anim = ["TwoBallPass","ThreeBallDown","BallDown","WavyThreeBallUp"][location]
+      when 3 # Double trainer
+        anim = "FourBallBurst"
+      end
+    else
+      case battletype
+      when 0, 2 # Wild, double wild
+        anim = ["SnakeSquares","DiagonalBubbleBR","DiagonalBubbleBR","RisingSplash"][location]
+      when 1 # Trainer
+        anim = ["SpinBallSplit","BallDown","BallDown","WavySpinBall"][location]
+      when 3 # Double trainer
+        anim = "FourBallBurst"
+      end
+    end
+    # Initial screen flashing
+    if location==2 || PBDayNight.isNight?
+      viewport.color = Color.new(0,0,0)         # Fade to black a few times
+    else
+      viewport.color = Color.new(255,255,255)   # Fade to white a few times
+    end
+    2.times do
+      viewport.color.alpha = 0
+      mult = 1
+      16.times do
+        viewport.color.alpha += 32*mult
+        mult *= -1 if viewport.color.alpha>=255 || viewport.color.alpha<=0
+        Graphics.update
+        pbUpdateSceneMap
+      end
+    end
+    # Play main animation
+    Graphics.freeze
+    Graphics.transition(Graphics.frame_rate*1.25,sprintf("Graphics/Transitions/%s",anim))
+    viewport.color = Color.new(0,0,0,255)   # Ensure screen is black
+    # Slight pause after animation before starting up the battle scene
     5.times do
       Graphics.update
       Input.update
@@ -595,23 +571,26 @@ def pbBattleAnimation(bgm=nil,trainerid=-1,trainername="")
     end
   end
   pbPushFade
+  # Yield to the battle scene
   yield if block_given?
+  # After the battle
   pbPopFade
   if $game_system && $game_system.is_a?(Game_System)
     $game_system.bgm_resume(playingBGM)
     $game_system.bgs_resume(playingBGS)
   end
-  $PokemonGlobal.nextBattleBGM=nil
-  $PokemonGlobal.nextBattleME=nil
-  $PokemonGlobal.nextBattleBack=nil
+  $PokemonGlobal.nextBattleBGM  = nil
+  $PokemonGlobal.nextBattleME   = nil
+  $PokemonGlobal.nextBattleBack = nil
   $PokemonEncounters.clearStepCount
   for j in 0..17
-    viewport.color=Color.new(0,0,0,(17-j)*15)
+    viewport.color = Color.new(0,0,0,(17-j)*15)
     Graphics.update
     Input.update
     pbUpdateSceneMap
   end
   viewport.dispose
+  $game_temp.in_battle = false
 end
 
 # Alias and use this method if you want to add a custom battle intro animation
@@ -620,7 +599,7 @@ end
 # screen.
 # When the custom animation has finished, the screen should have faded to black
 # somehow.
-def pbBattleAnimationOverride(viewport,trainerid=-1,trainername="")
+def pbBattleAnimationOverride(viewport,battletype=0,foe=nil)
   # The following example runs a common event that ought to do a custom
   # animation if some condition is true:
   #
@@ -631,155 +610,157 @@ def pbBattleAnimationOverride(viewport,trainerid=-1,trainername="")
   #
   ##### VS. animation, by Luka S.J. #####
   ##### Tweaked by Maruno           #####
-  if trainerid>=0
-    tbargraphic=sprintf("Graphics/Transitions/vsBar%s",getConstantName(PBTrainers,trainerid)) rescue nil
-    tbargraphic=sprintf("Graphics/Transitions/vsBar%d",trainerid) if !pbResolveBitmap(tbargraphic)
-    tgraphic=sprintf("Graphics/Transitions/vsTrainer%s",getConstantName(PBTrainers,trainerid)) rescue nil
-    tgraphic=sprintf("Graphics/Transitions/vsTrainer%d",trainerid) if !pbResolveBitmap(tgraphic)
-    if pbResolveBitmap(tbargraphic) && pbResolveBitmap(tgraphic)
-      outfit=$Trainer ? $Trainer.outfit : 0
-      # Set up
-      viewplayer=Viewport.new(0,Graphics.height/3,Graphics.width/2,128)
-      viewplayer.z=viewport.z
-      viewopp=Viewport.new(Graphics.width/2,Graphics.height/3,Graphics.width/2,128)
-      viewopp.z=viewport.z
-      viewvs=Viewport.new(0,0,Graphics.width,Graphics.height)
-      viewvs.z=viewport.z
-      xoffset=(Graphics.width/2)/10
-      xoffset=xoffset.round
-      xoffset=xoffset*10
-      fade=Sprite.new(viewport)
-      fade.bitmap=BitmapCache.load_bitmap("Graphics/Transitions/vsFlash")
-      fade.tone=Tone.new(-255,-255,-255)
-      fade.opacity=100
-      overlay=Sprite.new(viewport)
-      overlay.bitmap=Bitmap.new(Graphics.width,Graphics.height)
-      pbSetSystemFont(overlay.bitmap)
-      bar1=Sprite.new(viewplayer)
-      pbargraphic=sprintf("Graphics/Transitions/vsBar%s_%d",getConstantName(PBTrainers,$Trainer.trainertype),outfit) rescue nil
-      pbargraphic=sprintf("Graphics/Transitions/vsBar%d_%d",$Trainer.trainertype,outfit) if !pbResolveBitmap(pbargraphic)
-      if !pbResolveBitmap(pbargraphic)
-        pbargraphic=sprintf("Graphics/Transitions/vsBar%s",getConstantName(PBTrainers,$Trainer.trainertype)) rescue nil
+  if (battletype==1 || battletype==3) && foe.length==1   # Against single trainer
+    trainerid = (foe[0][0].trainertype rescue -1)
+    if trainerid>=0
+      tbargraphic = sprintf("Graphics/Transitions/vsBar%s",getConstantName(PBTrainers,trainerid)) rescue nil
+      tbargraphic = sprintf("Graphics/Transitions/vsBar%d",trainerid) if !pbResolveBitmap(tbargraphic)
+      tgraphic    = sprintf("Graphics/Transitions/vsTrainer%s",getConstantName(PBTrainers,trainerid)) rescue nil
+      tgraphic    = sprintf("Graphics/Transitions/vsTrainer%d",trainerid) if !pbResolveBitmap(tgraphic)
+      if pbResolveBitmap(tbargraphic) && pbResolveBitmap(tgraphic)
+        outfit = ($Trainer) ? $Trainer.outfit : 0
+        # Set up
+        viewplayer = Viewport.new(0,Graphics.height/3,Graphics.width/2,128)
+        viewplayer.z = viewport.z
+        viewopp = Viewport.new(Graphics.width/2,Graphics.height/3,Graphics.width/2,128)
+        viewopp.z = viewport.z
+        viewvs = Viewport.new(0,0,Graphics.width,Graphics.height)
+        viewvs.z = viewport.z
+        fade = Sprite.new(viewport)
+        fade.bitmap  = BitmapCache.load_bitmap("Graphics/Transitions/vsFlash")
+        fade.tone    = Tone.new(-255,-255,-255)
+        fade.opacity = 100
+        overlay = Sprite.new(viewport)
+        overlay.bitmap = Bitmap.new(Graphics.width,Graphics.height)
+        pbSetSystemFont(overlay.bitmap)
+        pbargraphic = sprintf("Graphics/Transitions/vsBar%s_%d",getConstantName(PBTrainers,$Trainer.trainertype),outfit) rescue nil
+        pbargraphic = sprintf("Graphics/Transitions/vsBar%d_%d",$Trainer.trainertype,outfit) if !pbResolveBitmap(pbargraphic)
+        if !pbResolveBitmap(pbargraphic)
+          pbargraphic = sprintf("Graphics/Transitions/vsBar%s",getConstantName(PBTrainers,$Trainer.trainertype)) rescue nil
+        end
+        pbargraphic = sprintf("Graphics/Transitions/vsBar%d",$Trainer.trainertype) if !pbResolveBitmap(pbargraphic)
+        xoffset = (((Graphics.width/2)/10).round)*10
+        bar1 = Sprite.new(viewplayer)
+        bar1.bitmap = BitmapCache.load_bitmap(pbargraphic)
+        bar1.x      = -xoffset
+        bar2 = Sprite.new(viewopp)
+        bar2.bitmap = BitmapCache.load_bitmap(tbargraphic)
+        bar2.x      = xoffset
+        vs = Sprite.new(viewvs)
+        vs.bitmap  = BitmapCache.load_bitmap("Graphics/Transitions/vs")
+        vs.ox      = vs.bitmap.width/2
+        vs.oy      = vs.bitmap.height/2
+        vs.x       = Graphics.width/2
+        vs.y       = Graphics.height/1.5
+        vs.visible = false
+        flash = Sprite.new(viewvs)
+        flash.bitmap  = BitmapCache.load_bitmap("Graphics/Transitions/vsFlash")
+        flash.opacity = 0
+        # Animation
+        10.times do
+          bar1.x += xoffset/10
+          bar2.x -= xoffset/10
+          pbWait(1)
+        end
+        pbSEPlay("Vs flash")
+        pbSEPlay("Vs sword")
+        flash.opacity = 255
+        bar1.dispose
+        bar2.dispose
+        bar1 = AnimatedPlane.new(viewplayer)
+        bar1.bitmap = BitmapCache.load_bitmap(pbargraphic)
+        bar2 = AnimatedPlane.new(viewopp)
+        bar2.bitmap = BitmapCache.load_bitmap(tbargraphic)
+        pgraphic = sprintf("Graphics/Transitions/vsTrainer%s_%d",getConstantName(PBTrainers,$Trainer.trainertype),outfit) rescue nil
+        pgraphic = sprintf("Graphics/Transitions/vsTrainer%d_%d",$Trainer.trainertype,outfit) if !pbResolveBitmap(pgraphic)
+        if !pbResolveBitmap(pgraphic)
+          pgraphic = sprintf("Graphics/Transitions/vsTrainer%s",getConstantName(PBTrainers,$Trainer.trainertype)) rescue nil
+        end
+        pgraphic = sprintf("Graphics/Transitions/vsTrainer%d",$Trainer.trainertype) if !pbResolveBitmap(pgraphic)
+        player = Sprite.new(viewplayer)
+        player.bitmap = BitmapCache.load_bitmap(pgraphic)
+        player.x      = -xoffset
+        trainer = Sprite.new(viewopp)
+        trainer.bitmap = BitmapCache.load_bitmap(tgraphic)
+        trainer.x      = xoffset
+        trainer.tone   = Tone.new(-255,-255,-255)
+        25.times do
+          flash.opacity -= 51 if flash.opacity>0
+          bar1.ox -= 16
+          bar2.ox += 16
+          pbWait(1)
+        end
+        11.times do
+          bar1.ox -= 16
+          bar2.ox += 16
+          player.x += xoffset/10
+          trainer.x -= xoffset/10
+          pbWait(1)
+        end
+        2.times do
+          bar1.ox -= 16
+          bar2.ox += 16
+          player.x -= xoffset/20
+          trainer.x += xoffset/20
+          pbWait(1)
+        end
+        10.times do
+          bar1.ox -= 16
+          bar2.ox += 16
+          pbWait(1)
+        end
+        val = 2
+        flash.opacity = 255
+        vs.visible = true
+        trainer.tone = Tone.new(0,0,0)
+        trainername = foe[0][0].name
+        textpos = [
+           [$Trainer.name,Graphics.width/4,(Graphics.height/1.5)+10,2,
+              Color.new(248,248,248),Color.new(12*6,12*6,12*6)],
+           [trainername,(Graphics.width/4)+(Graphics.width/2),(Graphics.height/1.5)+10,2,
+              Color.new(248,248,248),Color.new(12*6,12*6,12*6)]
+        ]
+        pbDrawTextPositions(overlay.bitmap,textpos)
+        pbSEPlay("Vs sword")
+        70.times do
+          bar1.ox -= 16
+          bar2.ox += 16
+          flash.opacity -= 25.5 if flash.opacity>0
+          vs.x += val
+          vs.y -= val
+          val = 2 if vs.x<=(Graphics.width/2)-2
+          val = -2 if vs.x>=(Graphics.width/2)+2
+          pbWait(1)
+        end
+        30.times do
+          bar1.ox -= 16
+          bar2.ox += 16
+          vs.zoom_x += 0.2
+          vs.zoom_y += 0.2
+          pbWait(1)
+        end
+        flash.tone = Tone.new(-255,-255,-255)
+        10.times do
+          bar1.ox -= 16
+          bar2.ox += 16
+          flash.opacity += 25.5
+          pbWait(1)
+        end
+        # End
+        player.dispose
+        trainer.dispose
+        flash.dispose
+        vs.dispose
+        bar1.dispose
+        bar2.dispose
+        overlay.dispose
+        fade.dispose
+        viewvs.dispose
+        viewopp.dispose
+        viewplayer.dispose
+        viewport.color = Color.new(0,0,0,255)
+        return true
       end
-      pbargraphic=sprintf("Graphics/Transitions/vsBar%d",$Trainer.trainertype) if !pbResolveBitmap(pbargraphic)
-      bar1.bitmap=BitmapCache.load_bitmap(pbargraphic)
-      bar1.x=-xoffset
-      bar2=Sprite.new(viewopp)
-      bar2.bitmap=BitmapCache.load_bitmap(tbargraphic)
-      bar2.x=xoffset
-      vs=Sprite.new(viewvs)
-      vs.bitmap=BitmapCache.load_bitmap("Graphics/Transitions/vs")
-      vs.ox=vs.bitmap.width/2
-      vs.oy=vs.bitmap.height/2
-      vs.x=Graphics.width/2
-      vs.y=Graphics.height/1.5
-      vs.visible=false
-      flash=Sprite.new(viewvs)
-      flash.bitmap=BitmapCache.load_bitmap("Graphics/Transitions/vsFlash")
-      flash.opacity=0
-      # Animation
-      10.times do
-        bar1.x+=xoffset/10
-        bar2.x-=xoffset/10
-        pbWait(1)
-      end
-      pbSEPlay("Flash2")
-      pbSEPlay("Sword2")
-      flash.opacity=255
-      bar1.dispose
-      bar2.dispose
-      bar1=AnimatedPlane.new(viewplayer)
-      bar1.bitmap=BitmapCache.load_bitmap(pbargraphic)
-      player=Sprite.new(viewplayer)
-      pgraphic=sprintf("Graphics/Transitions/vsTrainer%s_%d",getConstantName(PBTrainers,$Trainer.trainertype),outfit) rescue nil
-      pgraphic=sprintf("Graphics/Transitions/vsTrainer%d_%d",$Trainer.trainertype,outfit) if !pbResolveBitmap(pgraphic)
-      if !pbResolveBitmap(pgraphic)
-        pgraphic=sprintf("Graphics/Transitions/vsTrainer%s",getConstantName(PBTrainers,$Trainer.trainertype)) rescue nil
-      end
-      pgraphic=sprintf("Graphics/Transitions/vsTrainer%d",$Trainer.trainertype) if !pbResolveBitmap(pgraphic)
-      player.bitmap=BitmapCache.load_bitmap(pgraphic)
-      player.x=-xoffset
-      bar2=AnimatedPlane.new(viewopp)
-      bar2.bitmap=BitmapCache.load_bitmap(tbargraphic)
-      trainer=Sprite.new(viewopp)
-      trainer.bitmap=BitmapCache.load_bitmap(tgraphic)
-      trainer.x=xoffset
-      trainer.tone=Tone.new(-255,-255,-255)
-      25.times do
-        flash.opacity-=51 if flash.opacity>0
-        bar1.ox-=16
-        bar2.ox+=16
-        pbWait(1)
-      end
-      11.times do
-        bar1.ox-=16
-        bar2.ox+=16
-        player.x+=xoffset/10
-        trainer.x-=xoffset/10
-        pbWait(1)
-      end
-      2.times do
-        bar1.ox-=16
-        bar2.ox+=16
-        player.x-=xoffset/20
-        trainer.x+=xoffset/20
-        pbWait(1)
-      end
-      10.times do
-        bar1.ox-=16
-        bar2.ox+=16
-        pbWait(1)
-      end
-      val=2
-      flash.opacity=255
-      vs.visible=true
-      trainer.tone=Tone.new(0,0,0)
-      textpos=[
-         [_INTL("{1}",$Trainer.name),Graphics.width/4,(Graphics.height/1.5)+10,2,
-            Color.new(248,248,248),Color.new(12*6,12*6,12*6)],
-         [_INTL("{1}",trainername),(Graphics.width/4)+(Graphics.width/2),(Graphics.height/1.5)+10,2,
-            Color.new(248,248,248),Color.new(12*6,12*6,12*6)]
-      ]
-      pbDrawTextPositions(overlay.bitmap,textpos)
-      pbSEPlay("Sword2")
-      70.times do
-        bar1.ox-=16
-        bar2.ox+=16
-        flash.opacity-=25.5 if flash.opacity>0
-        vs.x+=val
-        vs.y-=val
-        val=2 if vs.x<=(Graphics.width/2)-2
-        val=-2 if vs.x>=(Graphics.width/2)+2
-        pbWait(1)
-      end
-      30.times do
-        bar1.ox-=16
-        bar2.ox+=16
-        vs.zoom_x+=0.2
-        vs.zoom_y+=0.2
-        pbWait(1)
-      end
-      flash.tone=Tone.new(-255,-255,-255)
-      10.times do
-        bar1.ox-=16
-        bar2.ox+=16
-        flash.opacity+=25.5
-        pbWait(1)
-      end
-      # End
-      player.dispose
-      trainer.dispose
-      flash.dispose
-      vs.dispose
-      bar1.dispose
-      bar2.dispose
-      overlay.dispose
-      fade.dispose
-      viewvs.dispose
-      viewopp.dispose
-      viewplayer.dispose
-      viewport.color=Color.new(0,0,0,255)
-      return true
     end
   end
   return false

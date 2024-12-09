@@ -33,15 +33,6 @@ module Graphics
 
   def self.update
     update_KGC_SpecialTransition
-=begin
-    if Graphics.frame_count%40==0
-      count=0
-      ObjectSpace.each_object(Object) {|o|
-        count += 1
-      }
-      echo("Objects: #{count}\r\n")
-    end
-=end
     @@transition.update if @@transition && !@@transition.disposed?
     @@transition = nil if @@transition && @@transition.disposed? 
   end
@@ -904,8 +895,6 @@ class RisingSplash
   end
 end
 
-
-
 #===============================================================================
 # HGSS trainer outdoor day
 #===============================================================================
@@ -1215,8 +1204,6 @@ class ThreeBallDown
     @duration -= 1
   end
 end
-
-
 
 #===============================================================================
 # HGSS trainer indoor night
