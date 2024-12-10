@@ -200,107 +200,48 @@ class PokemonEncounters
   end
 
   def pbEncounteredPokemon(enctype,tries=1)
-    if enctype<0 || enctype>EncounterTypes::EnctypeChances.length
-      raise ArgumentError.new(_INTL("Tipo de encuentro fuera de rango"))
-    end
+    raise ArgumentError.new(_INTL("Tipo de encuentro fuera de rango")) if enctype < 0 || enctype > EncounterTypes::EnctypeChances.length
     return nil if @enctypes[enctype]==nil
     encounters=@enctypes[enctype]
     chances=EncounterTypes::EnctypeChances[enctype]
     firstpoke=$Trainer.firstParty
-    if firstpoke && !firstpoke.isEgg? && rand(2)==0
-      if isConst?(firstpoke.ability,PBAbilities,:STATIC) || isConst?(firstpoke.ability,PBAbilities,:LIGHTINGROD)
-        newencs=[]; newchances=[]
-        dexdata=pbOpenDexData
-        for i in 0...encounters.length
-          pbDexDataOffset(dexdata,encounters[i][0],8)
-          t1=dexdata.fgetb
-          t2=dexdata.fgetb
-          if isConst?(t1,PBTypes,:ELECTRIC) || isConst?(t2,PBTypes,:ELECTRIC)
-            newencs.push(encounters[i])
-            newchances.push(chances[i])
+    if firstpoke && !firstpoke.isEgg? && rand(100)<50 #Ajusta la probabilidad aquí.
+      ability_to_type = [
+        [:STATIC,       :ELECTRIC],
+        [:LIGHTNINGROD, :ELECTRIC],
+        [:MAGNETPULL,   :STEEL],
+        [:FLASHFIRE,    :FIRE],
+        [:STORMDRAIN,   :WATER],
+        [:HARVEST,      :GRASS]
+      ]
+      ability_to_type.each do |ability, type|
+        if isConst?(firstpoke.ability, PBAbilities, ability)
+          newencs=[]; newchances=[]
+          dexdata=pbOpenDexData
+          for i in 0...encounters.length
+            pbDexDataOffset(dexdata,encounters[i][0],8)
+            t1=dexdata.fgetb
+            t2=dexdata.fgetb
+            if isConst?(t1, PBTypes, type) || isConst?(t2, PBTypes, type)
+              newencs.push(encounters[i])
+              newchances.push(100)  # Asignar un 100% de probabilidad
+            else
+              newchances.push(0)    # Los demás Pokémon tienen 0% de probabilidad
+            end
           end
-        end
-        dexdata.close
-        if newencs.length>0
-          encounters=newencs
-          chances=newchances
-        end
-      end
-      if isConst?(firstpoke.ability,PBAbilities,:MAGNETPULL)
-        newencs=[]; newchances=[]
-        dexdata=pbOpenDexData
-        for i in 0...encounters.length
-          pbDexDataOffset(dexdata,encounters[i][0],8)
-          t1=dexdata.fgetb
-          t2=dexdata.fgetb
-          if isConst?(t1,PBTypes,:STEEL) || isConst?(t2,PBTypes,:STEEL)
-            newencs.push(encounters[i])
-            newchances.push(chances[i])
+          dexdata.close
+          if newencs.length>0
+            encounters=newencs
+            chances=newchances
           end
-        end
-        dexdata.close
-        if newencs.length>0
-          encounters=newencs
-          chances=newchances
-        end
-      end
-      if isConst?(firstpoke.ability,PBAbilities,:FLASHFIRE)
-        newencs=[]; newchances=[]
-        dexdata=pbOpenDexData
-        for i in 0...encounters.length
-          pbDexDataOffset(dexdata,encounters[i][0],8)
-          t1=dexdata.fgetb
-          t2=dexdata.fgetb
-          if isConst?(t1,PBTypes,:FIRE) || isConst?(t2,PBTypes,:FIRE)
-            newencs.push(encounters[i])
-            newchances.push(chances[i])
-          end
-        end
-        dexdata.close
-        if newencs.length>0
-          encounters=newencs
-          chances=newchances
-        end
-      end
-      if isConst?(firstpoke.ability,PBAbilities,:STORMDRAIN)
-        newencs=[]; newchances=[]
-        dexdata=pbOpenDexData
-        for i in 0...encounters.length
-          pbDexDataOffset(dexdata,encounters[i][0],8)
-          t1=dexdata.fgetb
-          t2=dexdata.fgetb
-          if isConst?(t1,PBTypes,:WATER) || isConst?(t2,PBTypes,:WATER)
-            newencs.push(encounters[i])
-            newchances.push(chances[i])
-          end
-        end
-        dexdata.close
-        if newencs.length>0
-          encounters=newencs
-          chances=newchances
-        end
-      end
-      if isConst?(firstpoke.ability,PBAbilities,:HARVEST)
-        newencs=[]; newchances=[]
-        dexdata=pbOpenDexData
-        for i in 0...encounters.length
-          pbDexDataOffset(dexdata,encounters[i][0],8)
-          t1=dexdata.fgetb
-          t2=dexdata.fgetb
-          if isConst?(t1,PBTypes,:HARVEST) || isConst?(t2,PBTypes,:HARVEST)
-            newencs.push(encounters[i])
-            newchances.push(chances[i])
-          end
-        end
-        dexdata.close
-        if newencs.length>0
-          encounters=newencs
-          chances=newchances
         end
       end
     end
+    # Calcular el total de probabilidades y elegir un Pokémon
     chancetotal=0
     chances.each {|a| chancetotal+=a}
+    # Si no hay Pokémon con probabilidades válidas, devolver nil
+    return nil if chancetotal==0
     rnd=0
     tries.times do
       r=rand(chancetotal)
@@ -319,10 +260,10 @@ class PokemonEncounters
     return nil if !encounter
     level=encounter[1]+rand(1+encounter[2]-encounter[1])
     if $Trainer.firstParty && !$Trainer.firstParty.isEgg? &&
-       (isConst?($Trainer.firstParty.ability,PBAbilities,:HUSTLE) ||
-       isConst?($Trainer.firstParty.ability,PBAbilities,:VITALSPIRIT) ||
-       isConst?($Trainer.firstParty.ability,PBAbilities,:PRESSURE)) &&
-       rand(2)==0
+        (isConst?($Trainer.firstParty.ability,PBAbilities,:HUSTLE) ||
+        isConst?($Trainer.firstParty.ability,PBAbilities,:VITALSPIRIT) ||
+        isConst?($Trainer.firstParty.ability,PBAbilities,:PRESSURE)) &&
+        rand(2)==0
       level2=encounter[1]+rand(1+encounter[2]-encounter[1])
       level=[level,level2].max
     end
