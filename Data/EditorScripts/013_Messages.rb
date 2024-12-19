@@ -1117,27 +1117,43 @@ def itemIconTag(item)
 end
 
 def getSkinColor(windowskin,color,isDarkSkin)
-  if !windowskin || windowskin.disposed? || 
+  if !windowskin || windowskin.disposed? ||
      windowskin.width!=128 || windowskin.height!=128
-    textcolors=[
-       isDarkSkin ? shadowc3tag(MessageConfig::LIGHTTEXTBASE, MessageConfig::LIGHTTEXTSHADOW) :
-                    shadowc3tag(MessageConfig::DARKTEXTBASE, MessageConfig::DARKTEXTSHADOW),
-       "<c2=7E105D08>",   # Red
-       "<c2=421F2117>",   # Blue
-       "<c2=43F022E8>",   # Green
-       "<c2=7FF05EE8>",   # Yellow
-       "<c2=7E1F5D17>",   # Magenta
-       "<c2=43FF22F7>",   # Cyan
-       "<c2=63184210>",   # Grey
-       "<c2=7FFF5EF7>"    # White
+    # Base color, shadow color (these are reversed on dark windowskins)
+    textcolors = [
+       "0070F8","78B8E8",   # 1  Blue
+       "E82010","F8A8B8",   # 2  Red
+       "60B048","B0D090",   # 3  Green
+       "48D8D8","A8E0E0",   # 4  Cyan
+       "D038B8","E8A0E0",   # 5  Magenta
+       "E8D020","F8E888",   # 6  Yellow
+       "A0A0A8","D0D0D8",   # 7  Grey
+       "F0F0F8","C8C8D0",   # 8  White
+       "9040E8","B8A8E0",   # 9  Purple
+       "F89818","F8C898",   # 10 Orange
+       colorToRgb32(MessageConfig::DARKTEXTBASE),
+          colorToRgb32(MessageConfig::DARKTEXTSHADOW),   # 11 Dark default
+       colorToRgb32(MessageConfig::LIGHTTEXTBASE),
+          colorToRgb32(MessageConfig::LIGHTTEXTSHADOW)   # 12 Light default
     ]
-    color=0 if color>textcolors.length
-    return textcolors[color]
-  else # VX windowskin
-    color=0 if color>=32
+    if color==0 || color>textcolors.length/2   # No special colour, use default
+      if isDarkSkin   # Dark background, light text
+        return shadowc3tag(MessageConfig::LIGHTTEXTBASE,MessageConfig::LIGHTTEXTSHADOW)
+      end
+      # Light background, dark text
+      return shadowc3tag(MessageConfig::DARKTEXTBASE,MessageConfig::DARKTEXTSHADOW)
+    end
+    # Special colour as listed above
+    if isDarkSkin && color!=12   # Dark background, light text
+      return sprintf("<c3=%s,%s>",textcolors[2*(color-1)+1],textcolors[2*(color-1)])
+    end
+    # Light background, dark text
+    return sprintf("<c3=%s,%s>",textcolors[2*(color-1)],textcolors[2*(color-1)+1])
+  else   # VX windowskin
+    color = 0 if color>=32
     x = 64 + (color % 8) * 8
     y = 96 + (color / 8) * 8
-    pixel=windowskin.get_pixel(x, y)
+    pixel = windowskin.get_pixel(x, y)
     return shadowctagFromColor(pixel)
   end
 end

@@ -594,18 +594,12 @@ module RPG
     attr_accessor :pitch
 
     def initialize(name = "", volume = 100, pitch = 100)
-      if name.include?(".wav")
-        name=name.gsub!(".wav","") 
-      end
-      if name.include?(".WAV")
-        name=name.gsub!(".WAV","") 
-      end
-      if name.include?(".mp3")
-        name=name.gsub!(".mp3","") 
-      end
-      if name.include?(".MP3")
-        name=name.gsub!(".MP3","") 
-      end
+      name=name.gsub!(".wav","") if name.include?(".wav")
+      name=name.gsub!(".WAV","") if name.include?(".WAV")
+      name=name.gsub!(".mp3","") if name.include?(".mp3")
+      name=name.gsub!(".MP3","") if name.include?(".MP3")
+      name=name.gsub!(".ogg","") if name.include?(".ogg")
+      name=name.gsub!(".OGG","") if name.include?(".OGG")
       @name = name
       @volume = volume
       @pitch = pitch

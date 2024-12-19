@@ -332,7 +332,7 @@ class TextField < UIControl
     for i in 65..90
       if Input.repeatex?(i)
         shift=(Input.press?(Input::SHIFT)) ? 0x41 : 0x61
-        insert((shift+(i-65)).chr)
+        insert((shift+i-65).chr)
         return
       end
     end
@@ -1348,7 +1348,11 @@ class SpriteFrame < InvalidatableSprite
     @previous=previous
     @locked=false
     @selected=false
+    @selcolor=Color.new(0,0,0)
+    @unselcolor=Color.new(220,220,220)
+    @prevcolor=Color.new(64,128,192)
     @contents=Bitmap.new(128,128)
+    self.z = (@previous) ? 49 : 50
     @iconbitmap=AnimatedBitmap.new("Graphics/Pictures/animFrameIcon")
     self.bitmap=@contents
     self.invalidate
@@ -1359,19 +1363,35 @@ class SpriteFrame < InvalidatableSprite
     super
   end
 
+  def sprite=(value)
+    @sprite=value
+    self.invalidate
+  end
+
+  def locked=(value)
+    @locked=value
+    self.invalidate
+  end
+
+  def selected=(value)
+    @selected=value
+    self.invalidate
+  end
+
   def refresh
-    selcolor=Color.new(0,0,0)
-    unselcolor=Color.new(220,220,220)
-    prevcolor=Color.new(64,128,192)
     @contents.clear
+    self.z = (@previous) ? 49 : (@selected) ? 51 : 50
+    # Draw frame
     color=(@previous) ? prevcolor : (@selected) ? selcolor : unselcolor
     @contents.fill_rect(0,0,128,1,color)
     @contents.fill_rect(0,127,128,1,color)
     @contents.fill_rect(0,0,1,128,color)
     @contents.fill_rect(127,0,1,128,color)
+    # Determine frame number graphic to use from @iconbitmap
     yoffset=(@previous) ? 64 : 0
     bmrect=Rect.new((@id%10)*16,yoffset+(@id/10)*16,16,16)
     @contents.blt(0,0,@iconbitmap.bitmap,bmrect)
+    # Draw padlock if frame is locked
     if @locked && !@previous
       bmrect=Rect.new(0,48,16,16)
       @contents.blt(16,0,@iconbitmap.bitmap,bmrect)
@@ -2303,6 +2323,10 @@ def pbSelectSE(canvas,audio)
       pbSEStop()
     end
     if maxsizewindow.changed?(5) # OK
+      filename = File.basename(filename,".wav")
+      filename = File.basename(filename,".mp3")
+      filename = File.basename(filename,".ogg")
+      filename = File.basename(filename,".wma")
       audio.name=filename
       audio.volume=maxsizewindow.value(1)
       audio.pitch=maxsizewindow.value(2)
@@ -2710,12 +2734,7 @@ def pbHelpWindow
     Graphics.update
     Input.update
     cmdwin.update
-    if Input.trigger?(Input::C)
-      break
-    end
-    if Input.trigger?(Input::B)
-      break
-    end
+    break if Input.trigger?(Input::B)|| Input.trigger?(Input::C)
   end
   cmdwin.dispose
 end
@@ -2746,9 +2765,7 @@ def pbSelectAnim(canvas,animwin)
     cmdwin.update
     bmpwin.update
     ctlwin.update
-    if ctlwin.changed?(0)
-      bmpwin.hue=ctlwin.value(0)
-    end
+    bmpwin.hue=ctlwin.value(0) if ctlwin.changed?(0)
     if (Input.trigger?(Input::C) || (cmdwin.doubleclick? rescue false)) && animfiles.length>0
       bitmap=AnimatedBitmap.new("Graphics/Animations/"+cmdwin.commands[cmdwin.index],ctlwin.value(0)).deanimate
       canvas.animation.graphic=cmdwin.commands[cmdwin.index]
@@ -2994,6 +3011,7 @@ class ControlPointSprite < SpriteWrapper
       return
     end
     mouse=Mouse::getMousePos(true)
+    return if !mouse
     self.x=[[mouse[0],0].max,512].min
     self.y=[[mouse[1],0].max,384].min
   end
@@ -3001,8 +3019,9 @@ class ControlPointSprite < SpriteWrapper
   def hittest?
     return true if !self.visible
     mouse=Mouse::getMousePos(true)
-    return true if mouse[0]>=self.x && mouse[0]<self.x+6 &&
-                   mouse[1]>=self.y && mouse[1]<self.y+6
+    return false if !mouse
+    return mouse[0]>=self.x && mouse[0]<self.x+6 &&
+           mouse[1]>=self.y && mouse[1]<self.y+6
   end
 
   def inspect
@@ -3105,8 +3124,8 @@ class PointPath
       return ret
     end
     step=1.0/frames
-    t=0.0;
-    for i in 0..frames+1
+    t=0.0
+    (frames+2).times do
       point=pointOnPath(t)
       if roundValues
         ret.addPoint(point[0].round,point[1].round)
@@ -3189,7 +3208,7 @@ def curveToPointPath(curve,numpoints)
   path=PointPath.new
   step=1.0/(numpoints-1)
   t=0.0
-  for i in 0...numpoints
+  numpoints.times do
     point=getCurvePoint(curve,t)
     path.addPoint(point[0],point[1])
     t+=step
@@ -3212,7 +3231,7 @@ def pbDefinePath(canvas)
     Graphics.update
     Input.update
     sliderwin2.update
-    if sliderwin2.changed?(0)
+    if sliderwin2.changed?(0) # Number of frames
       if path
         path=path.smoothPointPath(sliderwin2.value(0),false)
         i=0

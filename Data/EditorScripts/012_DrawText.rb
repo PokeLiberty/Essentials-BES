@@ -1072,14 +1072,45 @@ def fmtescape(text)
   return text
 end
 
-def drawFormattedTextEx(bitmap,x,y,width,text,baseColor=nil,shadowColor=nil)
+def drawFormattedTextEx(bitmap,x,y,width,text,baseColor=nil,shadowColor=nil,lineheight = 32)
   base=!baseColor ? Color.new(12*8,12*8,12*8) : baseColor.clone
   shadow=!shadowColor ? Color.new(26*8,26*8,25*8) : shadowColor.clone
   text="<c2="+colorToRgb16(base)+colorToRgb16(shadow)+">"+text
-  chars=getFormattedText(bitmap,x,y,width,-1,text,32)
+  chars=getFormattedText(bitmap,x,y,width,-1,text,lineheight)
   drawFormattedChars(bitmap,chars)
 end
 
+def renderMultiLine(bitmap,xDst,yDst,normtext,maxheight,baseColor,shadowColor)
+  for i in 0...normtext.length
+    width=normtext[i][3]
+    textx=normtext[i][1]+xDst
+    texty=normtext[i][2]+yDst
+    if shadowColor
+      height=normtext[i][4]
+      text=normtext[i][0]
+      bitmap.font.color=shadowColor
+      bitmap.draw_text(textx-2,texty-2,width,height,text,0)
+      bitmap.draw_text(textx,texty-2,width,height,text,0)
+      bitmap.draw_text(textx+2,texty-2,width,height,text,0)
+      bitmap.draw_text(textx-2,texty,width,height,text,0)
+      bitmap.draw_text(textx+2,texty,width,height,text,0)
+      bitmap.draw_text(textx-2,texty+2,width,height,text,0)
+      bitmap.draw_text(textx,texty+2,width,height,text,0)
+      bitmap.draw_text(textx+2,texty+2,width,height,text,0)
+    end
+    if baseColor
+      height=normtext[i][4]
+      text=normtext[i][0]
+      bitmap.font.color=baseColor
+      bitmap.draw_text(textx,texty,width,height,text,0)
+    end
+  end
+end
+
+def drawTextExMulti(bitmap,x,y,width,numlines,text,baseColor,shadowColor)
+  normtext=getLineBrokenChunks(bitmap,text,width,nil,true)
+  renderMultiLine(bitmap,x,y,normtext,numlines*32,baseColor,shadowColor)
+end
 # Deprecated -- not to be used in new code
 def coloredToFormattedText(text,baseColor=nil,shadowColor=nil)
   base=!baseColor ? Color.new(12*8,12*8,12*8) : baseColor.clone

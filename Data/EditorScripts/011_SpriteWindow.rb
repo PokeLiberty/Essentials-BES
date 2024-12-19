@@ -1232,7 +1232,7 @@ end
 # pbFadeOutIn(z) { block }
 # Fades out the screen before a block is run and fades it back in after the
 # block exits.  z indicates the z-coordinate of the viewport used for this effect
-def pbFadeOutIn(z,nofadeout=false)
+def pbFadeOutIn(z=99999,nofadeout=false, r=0, g=0, b=0)
   col=Color.new(0,0,0,0)
   viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
   viewport.z=z
@@ -3169,7 +3169,11 @@ class Window_DrawableCommand < SpriteWindow_SelectableEx
   def initialize(x,y,width,height,viewport=nil)
     super(x,y,width,height)
     self.viewport=viewport if viewport
+    if isDarkWindowskin(self.windowskin)
+      @selarrow = AnimatedBitmap.new("Graphics/Pictures/selarrowwhite")
+    else
     @selarrow=AnimatedBitmap.new("Graphics/Pictures/selarrow")
+    end
     @index=0
     colors=getDefaultTextColors(self.windowskin)
     @baseColor=colors[0]

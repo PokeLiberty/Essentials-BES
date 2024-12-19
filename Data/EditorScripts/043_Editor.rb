@@ -51,15 +51,13 @@ module MakeshiftConsts
   end
 end
 
-
-
 def pbGetTypeConst(i)
   ret=MakeshiftConsts.get(MessageTypes::Types,i,PBTypes)
   if !ret
     ret=["NORMAL","FIGHTING","FLYING","POISON","GROUND",
          "ROCK","BUG","GHOST","STEEL","QMARKS",
          "FIRE","WATER","GRASS","ELECTRIC",
-         "PSYCHIC","ICE","DRAGON","DARK"][i]
+         "PSYCHIC","ICE","DRAGON","DARK","FAIRY"][i]
   end
   return ret
 end
@@ -71,11 +69,17 @@ def pbGetEvolutionConst(i)
      "Silcoon","Cascoon","Ninjask","Shedinja","Beauty",
      "ItemMale","ItemFemale","DayHoldItem","NightHoldItem","HasMove",
      "HasInParty","LevelMale","LevelFemale","Location","TradeSpecies",
-     "Custom1","Custom2","Custom3","Custom4","Custom5","Custom6","Custom7"
+     "LevelDay","LevelNight","LevelDarkInParty","LevelRain","HappinessMoveType",
+     "LevelForm0","LevelForm1","LevelForm2","ItemForm0","ItemForm1","ItemForm2",
+     "HappinessForm0","HappinessForm1","HappinessForm2","LevelDayForm0",
+     "LevelDayForm1","LevelDayForm2","LevelNightForm0","LevelNightForm1",
+     "LevelNightForm2","HoldItemForm0","HoldItemForm1","HoldItemForm2",
+     "LevelDayTime","Crits","HasMoveForm0","HasMoveForm1","HasMoveForm2"
   ]
   i=0 if i>=ret.length || i<0
   return ret[i]
 end
+
 
 def pbGetEggGroupConst(i)
   ret=["Undiscovered",

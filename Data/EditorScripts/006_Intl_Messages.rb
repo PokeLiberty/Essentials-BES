@@ -56,7 +56,7 @@ def pbSetTextMessages
             neednewline=false
           end
           if list.code == 101
-            lastitem+="#{list.parameters[0]}" if !$RPGVX
+            lastitem+="#{list.parameters[0]}"
             neednewline=true
           elsif list.code == 102
             for k in 0...list.parameters[0].length
@@ -107,7 +107,7 @@ def pbSetTextMessages
         t = Time.now.to_i
         Graphics.update
       end
-      filename=sprintf("Data/Map%03d.%s",id,$RPGVX ? "rvdata" : "rxdata")
+      filename=sprintf("Data/Map%03d.%s",id,"rxdata")
       next if !pbRgssExists?(filename)
       map = load_data(filename)
       items=[]
@@ -132,7 +132,7 @@ def pbSetTextMessages
                 neednewline=false
               end
               if list.code == 101
-                lastitem+="#{list.parameters[0]}" if !$RPGVX
+                lastitem+="#{list.parameters[0]}"
                 neednewline=true
               elsif list.code == 102
                 for k in 0...list.parameters[0].length
@@ -376,6 +376,7 @@ class Messages
   end
 
   def self.normalizeValue(value)
+    value = value.to_s
     if value[/[\r\n\t\x01]|^[\[\]]/]
       ret=value.clone
       ret.gsub!(/\r/,"<<r>>")
@@ -461,14 +462,22 @@ class Messages
   end
 
   def setMessages(type,array)
-    arr=[]
     @messages=[] if !@messages
+    arr=[]
     for i in 0...array.length
       arr[i]=(array[i]) ? array[i] : ""
     end
     @messages[type]=arr
   end
 
+  def addMessages(type,array)
+    @messages=[] if !@messages
+    arr=(@messages[type]) ? @messages[type] : []
+    for i in 0...array.length
+      arr[i]=(array[i]) ? array[i] : (arr[i]) ? arr[i] : ""
+    end
+    @messages[type]=arr
+  end
   def self.createHash(type,array)
     arr=OrderedHash.new
     for i in 0...array.length
@@ -638,6 +647,9 @@ module MessageTypes
     @@messages.setMessages(type,array)
   end
 
+  def self.addMessages(type,array)
+    @@messages.addMessages(type,array)
+  end
   def self.createHash(type,array)
     Messages.createHash(type,array)
   end
