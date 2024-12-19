@@ -332,7 +332,7 @@ class TextField < UIControl
     for i in 65..90
       if Input.repeatex?(i)
         shift=(Input.press?(Input::SHIFT)) ? 0x41 : 0x61
-        insert((shift+i-65).chr)
+        insert((shift+(i-65)).chr)
         return
       end
     end
@@ -1348,11 +1348,7 @@ class SpriteFrame < InvalidatableSprite
     @previous=previous
     @locked=false
     @selected=false
-    @selcolor=Color.new(0,0,0)
-    @unselcolor=Color.new(220,220,220)
-    @prevcolor=Color.new(64,128,192)
     @contents=Bitmap.new(128,128)
-    self.z = (@previous) ? 49 : 50
     @iconbitmap=AnimatedBitmap.new("Graphics/Pictures/animFrameIcon")
     self.bitmap=@contents
     self.invalidate
@@ -1363,35 +1359,19 @@ class SpriteFrame < InvalidatableSprite
     super
   end
 
-  def sprite=(value)
-    @sprite=value
-    self.invalidate
-  end
-
-  def locked=(value)
-    @locked=value
-    self.invalidate
-  end
-
-  def selected=(value)
-    @selected=value
-    self.invalidate
-  end
-
   def refresh
+    selcolor=Color.new(0,0,0)
+    unselcolor=Color.new(220,220,220)
+    prevcolor=Color.new(64,128,192)
     @contents.clear
-    self.z = (@previous) ? 49 : (@selected) ? 51 : 50
-    # Draw frame
     color=(@previous) ? prevcolor : (@selected) ? selcolor : unselcolor
     @contents.fill_rect(0,0,128,1,color)
     @contents.fill_rect(0,127,128,1,color)
     @contents.fill_rect(0,0,1,128,color)
     @contents.fill_rect(127,0,1,128,color)
-    # Determine frame number graphic to use from @iconbitmap
     yoffset=(@previous) ? 64 : 0
     bmrect=Rect.new((@id%10)*16,yoffset+(@id/10)*16,16,16)
     @contents.blt(0,0,@iconbitmap.bitmap,bmrect)
-    # Draw padlock if frame is locked
     if @locked && !@previous
       bmrect=Rect.new(0,48,16,16)
       @contents.blt(16,0,@iconbitmap.bitmap,bmrect)
@@ -2765,7 +2745,9 @@ def pbSelectAnim(canvas,animwin)
     cmdwin.update
     bmpwin.update
     ctlwin.update
-    bmpwin.hue=ctlwin.value(0) if ctlwin.changed?(0)
+    if ctlwin.changed?(0)
+      bmpwin.hue=ctlwin.value(0)
+    end
     if (Input.trigger?(Input::C) || (cmdwin.doubleclick? rescue false)) && animfiles.length>0
       bitmap=AnimatedBitmap.new("Graphics/Animations/"+cmdwin.commands[cmdwin.index],ctlwin.value(0)).deanimate
       canvas.animation.graphic=cmdwin.commands[cmdwin.index]

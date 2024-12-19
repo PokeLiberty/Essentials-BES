@@ -65,6 +65,10 @@ def pbBGMPlay(param,volume=nil,pitch=nil)
         b.play; return
       end
     end
+    param.name = File.basename(param.name,".wav")
+    param.name = File.basename(param.name,".mp3")
+    param.name = File.basename(param.name,".ogg")
+    param.name = File.basename(param.name,".wma")
     Audio.bgm_play(canonicalize("Audio/BGM/"+param.name),param.volume,param.pitch)
   end
 rescue
@@ -116,6 +120,10 @@ def pbMEPlay(param,volume=nil,pitch=nil)
         b.play; return
       end
     end
+    param.name = File.basename(param.name,".wav")
+    param.name = File.basename(param.name,".mp3")
+    param.name = File.basename(param.name,".ogg")
+    param.name = File.basename(param.name,".wma")
     Audio.me_play(canonicalize("Audio/ME/"+param.name),param.volume,param.pitch)
   end
 end
@@ -165,6 +173,10 @@ def pbBGSPlay(param,volume=nil,pitch=nil)
         b.play; return
       end
     end
+    param.name = File.basename(param.name,".wav")
+    param.name = File.basename(param.name,".mp3")
+    param.name = File.basename(param.name,".ogg")
+    param.name = File.basename(param.name,".wma")
     Audio.bgs_play(canonicalize("Audio/BGS/"+param.name),param.volume,param.pitch)
   end
 end
@@ -214,6 +226,10 @@ def pbSEPlay(param,volume=nil,pitch=nil)
         b.play; return
       end
     end
+    param.name = File.basename(param.name,".wav")
+    param.name = File.basename(param.name,".mp3")
+    param.name = File.basename(param.name,".ogg")
+    param.name = File.basename(param.name,".wma")
     Audio.se_play(canonicalize("Audio/SE/"+param.name),param.volume,param.pitch)
   end
 rescue
