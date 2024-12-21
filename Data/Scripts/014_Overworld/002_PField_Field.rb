@@ -1135,7 +1135,7 @@ Events.onStepTakenTransferPossible+=proc {|sender,e|
     flashed=false
     for i in $Trainer.party
       if i.status==PBStatuses::POISON && i.hp>0 && !i.isEgg? &&
-        (!isConst?(i.ability,PBAbilities,:IMMUNITY) && !isConst?(i.ability,PBAbilities,:POISONHEAL))
+        (!isConst?(i.ability,PBAbilities,:IMMUNITY) || !isConst?(i.ability,PBAbilities,:POISONHEAL))
         if !flashed
           $game_screen.start_flash(Color.new(255,0,0,128), 4)
           flashed=true
