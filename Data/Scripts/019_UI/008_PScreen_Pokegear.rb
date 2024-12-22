@@ -1,25 +1,30 @@
-class PokegearButton < SpriteWrapper
+#===============================================================================
+#
+#===============================================================================
+class PokegearButton < Sprite
   attr_reader :index
   attr_reader :name
-  attr_accessor :selected
+  attr_reader :selected
 
-  def initialize(x,y,name="",index=0,viewport=nil)
+  TEXT_BASE_COLOR = Color.new(248, 248, 248)
+  TEXT_SHADOW_COLOR = Color.new(40, 40, 40)
+
+  def initialize(command, x, y, viewport = nil)
     super(viewport)
-    @index=index
-    @name=name
-    @selected=false
-    fembutton=pbResolveBitmap(sprintf("Graphics/#{POKEGEAR_ROUTE}/pokegearButtonf"))
-    if $Trainer.isFemale? && fembutton
-      @button=AnimatedBitmap.new("Graphics/#{POKEGEAR_ROUTE}/pokegearButtonf")
+    @image = command[0]
+    @name  = command[1]
+    @selected = false
+    if $Trainer.isFemale? && pbResolveBitmap("Graphics/#{POKEGEAR_ROUTE}/pokegearButtonf")
+      @button = AnimatedBitmap.new("Graphics/#{POKEGEAR_ROUTE}/pokegearButtonf")
     else
-      @button=AnimatedBitmap.new("Graphics/#{POKEGEAR_ROUTE}/pokegearButton")
+      @button = AnimatedBitmap.new("Graphics/#{POKEGEAR_ROUTE}/pokegearButton")
     end
-    @contents=BitmapWrapper.new(@button.width,@button.height)
-    self.bitmap=@contents
-    self.x=x
-    self.y=y
+    @contents = Bitmap.new(@button.width, @button.height)
+    self.bitmap = @contents
+    self.x = x - (@button.width / 2)
+    self.y = y
+    pbSetSystemFont(self.bitmap)
     refresh
-    update
   end
 
   def dispose
@@ -28,137 +33,164 @@ class PokegearButton < SpriteWrapper
     super
   end
 
+  def selected=(val)
+    oldsel = @selected
+    @selected = val
+    refresh if oldsel != val
+  end
+
   def refresh
     self.bitmap.clear
-    self.bitmap.blt(0,0,@button.bitmap,Rect.new(0,0,@button.width,@button.height))
-    pbSetSystemFont(self.bitmap)
-    textpos=[          # Name is written on both unselected and selected buttons
-       [@name,self.bitmap.width/2,10,2,Color.new(248,248,248),Color.new(40,40,40)],
-       [@name,self.bitmap.width/2,62,2,Color.new(248,248,248),Color.new(40,40,40)]
+    rect = Rect.new(0, 0, @button.width, @button.height / 2)
+    rect.y = @button.height / 2 if @selected
+    self.bitmap.blt(0, 0, @button.bitmap, rect)
+    textpos = [
+      [@name, rect.width / 2, (rect.height / 2) - 10, 2, TEXT_BASE_COLOR, TEXT_SHADOW_COLOR]
     ]
-    pbDrawTextPositions(self.bitmap,textpos)
-    icon=sprintf("Graphics/#{POKEGEAR_ROUTE}/pokegear"+@name)
+    pbDrawTextPositions(self.bitmap, textpos)
+    icon=sprintf("Graphics/#{POKEGEAR_ROUTE}/pokegear"+@image)
     imagepos=[         # Icon is put on both unselected and selected buttons
        [icon,18,10,0,0,-1,-1],
-       [icon,18,62,0,0,-1,-1]
+       #[icon,18,62,0,0,-1,-1]
     ]
     pbDrawImagePositions(self.bitmap,imagepos)
   end
-
-  def update
-    if self.selected
-      self.src_rect.set(0,self.bitmap.height/2,self.bitmap.width,self.bitmap.height/2)
-    else
-      self.src_rect.set(0,0,self.bitmap.width,self.bitmap.height/2)
-    end
-    super
-  end
 end
 
-
-
 #===============================================================================
-# - Scene_Pokegear
-#-------------------------------------------------------------------------------
-# Modified By Harshboy
-# Modified by Peter O.
-# Also Modified By OblivionMew
-# Overhauled by Maruno
+#
 #===============================================================================
 class Scene_Pokegear
-  #-----------------------------------------------------------------------------
-  # initialize
-  #-----------------------------------------------------------------------------
-  def initialize(menu_index = 0)
-    @menu_index = menu_index
+  def pbUpdate
+    @commands.length.times do |i|
+      @sprites["button#{i}"].selected = (i == @index)
+    end
+    pbUpdateSpriteHash(@sprites)
   end
-  #-----------------------------------------------------------------------------
-  # main
-  #-----------------------------------------------------------------------------
-  def main
-    commands=[]
-# OPTIONS - If you change these, you should also change update_command below.
-    @cmdMap=-1
-    @cmdPhone=-1
-    @cmdJukebox=-1
-    commands[@cmdMap=commands.length]=_INTL("Mapa")
-    commands[@cmdPhone=commands.length]=_INTL("Teléfono") if $PokemonGlobal.phoneNumbers &&
-                                                          $PokemonGlobal.phoneNumbers.length>0
-    commands[@cmdJukebox=commands.length]=_INTL("Radio")
 
-    @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
-    @viewport.z=99999
-    @button=AnimatedBitmap.new("Graphics/#{POKEGEAR_ROUTE}/pokegearButton")
-    @sprites={}
-    @sprites["background"] = IconSprite.new(0,0)
-    femback=pbResolveBitmap(sprintf("Graphics/#{POKEGEAR_ROUTE}/pokegearbgf"))
-    if $Trainer.isFemale? && femback
+  def pbStartScene(commands)
+    @commands = commands
+    @index = 0
+    @viewport = Viewport.new(0, 0, Graphics.width, Graphics.height)
+    @viewport.z = 99999
+    @sprites = {}
+    @sprites["background"] = IconSprite.new(0, 0, @viewport)
+    if $Trainer.isFemale? && pbResolveBitmap("Graphics/#{POKEGEAR_ROUTE}/pokegearbgf")
       @sprites["background"].setBitmap("Graphics/#{POKEGEAR_ROUTE}/pokegearbgf")
     else
       @sprites["background"].setBitmap("Graphics/#{POKEGEAR_ROUTE}/pokegearbg")
     end
-    @sprites["command_window"] = Window_CommandPokemon.new(commands,160)
-    @sprites["command_window"].visible = false
-    @sprites["command_window"].index = @menu_index
-    for i in 0...commands.length
-      x=118
-      y=196 - (commands.length*24) + (i*48)
-      @sprites["button#{i}"]=PokegearButton.new(x,y,commands[i],i,@viewport)
-      @sprites["button#{i}"].selected=(i==@sprites["command_window"].index)
-      @sprites["button#{i}"].update
+    @commands.length.times do |i|
+      @sprites["button#{i}"] = PokegearButton.new(@commands[i], Graphics.width / 2, 0, @viewport)
+      button_height = @sprites["button#{i}"].bitmap.height / 2
+      @sprites["button#{i}"].y = ((Graphics.height - (@commands.length * button_height)) / 2) + (i * button_height)
     end
-    Graphics.transition
+    pbFadeInAndShow(@sprites) { pbUpdate }
+  end
+
+  def pbScene
+    ret = -1
     loop do
       Graphics.update
       Input.update
-      update
-      if $scene != self
+      pbUpdate
+      if Input.trigger?(Input::B)
+        pbPlayCloseMenuSE
         break
+      elsif Input.trigger?(Input::C)
+        pbPlayDecisionSE
+        ret = @index
+        break
+      elsif Input.trigger?(Input::UP)
+        pbPlayCursorSE if @commands.length > 1
+        @index -= 1
+        @index = @commands.length - 1 if @index < 0
+      elsif Input.trigger?(Input::DOWN)
+        pbPlayCursorSE if @commands.length > 1
+        @index += 1
+        @index = 0 if @index >= @commands.length
       end
     end
-    Graphics.freeze
+    return ret
+  end
+
+  def pbEndScene
+    pbFadeOutAndHide(@sprites) { pbUpdate }
+    dispose
+  end
+
+  def dispose
     pbDisposeSpriteHash(@sprites)
-  end
-  #-----------------------------------------------------------------------------
-  # update the scene
-  #-----------------------------------------------------------------------------
-  def update
-    for i in 0...@sprites["command_window"].commands.length
-      sprite=@sprites["button#{i}"]
-      sprite.selected=(i==@sprites["command_window"].index) ? true : false
-    end
-    pbUpdateSpriteHash(@sprites)
-    #update command window and the info if it's active
-    if @sprites["command_window"].active
-      update_command
-      return
-    end
-  end
-  #-----------------------------------------------------------------------------
-  # update the command window
-  #-----------------------------------------------------------------------------
-  def update_command
-    if Input.trigger?(Input::B)
-      pbPlayCancelSE()
-      $scene = Scene_Map.new
-      return
-    end
-    if Input.trigger?(Input::C)
-      if @cmdMap>=0 && @sprites["command_window"].index==@cmdMap
-        pbPlayDecisionSE()
-        pbShowMap(-1,false)
-      end
-      if @cmdPhone>=0 && @sprites["command_window"].index==@cmdPhone
-        pbPlayDecisionSE()
-        pbFadeOutIn(99999) {
-           PokemonPhoneScene.new.start
-        }
-      end
-      if @cmdJukebox>=0 && @sprites["command_window"].index==@cmdJukebox
-        pbPlayDecisionSE()
-        $scene = Scene_Jukebox.new
-      end
-      return
-    end
+    @viewport.dispose
   end
 end
+
+#===============================================================================
+#
+#===============================================================================
+class PokemonPokegearScreen
+  def initialize(scene)
+    @scene = scene
+  end
+
+  def pbStartScreen
+    # Get all commands
+    command_list = []
+    commands = []
+    MenuHandlers.each_available(:pokegear_menu) do |option, hash, name|
+      command_list.push([hash["icon_name"] || "", name])
+      commands.push(hash)
+    end
+    @scene.pbStartScene(command_list)
+    # Main loop
+    end_scene = false
+    loop do
+      choice = @scene.pbScene
+      if choice < 0
+        end_scene = true
+        break
+      end
+      break if commands[choice]["effect"].call(@scene)
+    end
+    @scene.pbEndScene if end_scene
+  end
+end
+
+#===============================================================================
+#
+#===============================================================================
+MenuHandlers.add(:pokegear_menu, :map, {
+  "name"      => _INTL("Mapa"),
+  "icon_name" => "map",
+  "order"     => 10,
+  "effect"    => proc { |menu|
+    pbShowMap(-1,false)
+  }
+})
+
+MenuHandlers.add(:pokegear_menu, :phone, {
+  "name"      => _INTL("Teléfono"),
+  "icon_name" => "phone",
+  "order"     => 20,
+  "condition" => proc { next if $PokemonGlobal.phoneNumbers.length>0 },
+  "effect"    => proc { |menu|
+    pbFadeOutIn do
+       PokemonPhoneScene.new.start
+    end
+    next false
+  }
+})
+
+MenuHandlers.add(:pokegear_menu, :jukebox, {
+  "name"      => _INTL("Jukebox"),
+  "icon_name" => "jukebox",
+  "order"     => 30,
+  "effect"    => proc { |menu|
+    pbFadeOutIn do
+      scene = Scene_Jukebox.new
+      screen = PokemonJukeboxScreen.new(scene)
+      screen.pbStartScreen
+    end
+    next false
+  }
+})

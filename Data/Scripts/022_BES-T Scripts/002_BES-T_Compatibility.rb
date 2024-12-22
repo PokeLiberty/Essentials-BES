@@ -23,7 +23,6 @@ class MoveRelearner_Scene < MoveRelearnerScene; end
 class PokemonMart_Scene < PokemonMartScene; end
 class HallOfFame_Scene < HallOfFameScene; end
 ################################################################################
-
 def pbGetFSpeciesFromForm(species,form=0)
   return species
 end

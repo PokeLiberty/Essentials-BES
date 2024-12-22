@@ -1,158 +1,132 @@
-#===============================================================================
-# ** Scene_iPod
-# ** Created by xLeD (Scene_Jukebox)
-# ** Modified by Harshboy
-#-------------------------------------------------------------------------------
-#  This class performs menu screen processing.
-#===============================================================================
 class Scene_Jukebox
-  #-----------------------------------------------------------------------------
-  # * Object Initialization
-  #     menu_index : command cursor's initial position
-  #-----------------------------------------------------------------------------
-  def initialize(menu_index = 0)
-    @menu_index = menu_index
+  def pbUpdate
+    pbUpdateSpriteHash(@sprites)
   end
-  #-----------------------------------------------------------------------------
-  # * Main Processing
-  #-----------------------------------------------------------------------------
-  def main
-    # Make song command window
-    fadein = true
-    # Makes the text window
-    @sprites={}
-    @viewport=Viewport.new(0,0,Graphics.width,Graphics.height)
-    @viewport.z=99999
-    @sprites["background"] = IconSprite.new(0,0)
+
+  def pbStartScene(commands)
+    @commands = commands
+    @viewport = Viewport.new(0,0,Graphics.width,Graphics.height)
+    @viewport.z = 99999
+    @sprites = {}
+    @sprites["background"] = IconSprite.new(0,0,@viewport)
     @sprites["background"].setBitmap("Graphics/Pictures/jukeboxbg")
-    @sprites["background"].z=255
-    @choices=[
-       _INTL("Marcha"),
-       _INTL("Nana"),
-       _INTL("Oak"),
-       _INTL("Personalizar"),
-       _INTL("Salir")
-    ]
-    @sprites["header"]=Window_UnformattedTextPokemon.newWithSize(_INTL("Radio"),
-       2,-18,128,64,@viewport)
-    @sprites["header"].baseColor=Color.new(248,248,248)
-    @sprites["header"].shadowColor=Color.new(0,0,0)
-    @sprites["header"].windowskin=nil
-    @sprites["command_window"] = Window_CommandPokemon.new(@choices,324)
-    @sprites["command_window"].windowskin=nil
-    @sprites["command_window"].index = @menu_index
-    @sprites["command_window"].height = 224
-    @sprites["command_window"].width = 324
-    @sprites["command_window"].x = 94
-    @sprites["command_window"].y = 92
-    @sprites["command_window"].z = 256
-    @custom=false
-    # Execute transition
-    Graphics.transition
-    # Main loop
+    @sprites["header"] = Window_UnformattedTextPokemon.newWithSize(
+       _INTL("Jukebox"),2,-18,128,64,@viewport)
+    @sprites["header"].baseColor   = Color.new(248,248,248)
+    @sprites["header"].shadowColor = Color.new(0,0,0)
+    @sprites["header"].windowskin  = nil
+    @sprites["commands"] = Window_CommandPokemon.newWithSize(@commands,
+       94,92,324,224,@viewport)
+    @sprites["commands"].windowskin = nil
+    pbFadeInAndShow(@sprites) { pbUpdate }
+  end
+
+  def pbScene
+    ret = -1
     loop do
-      # Update game screen
       Graphics.update
-      # Update input information
       Input.update
-      # Frame update
-      update
-      # Abort loop if screen is changed
-      if $scene != self
+      pbUpdate
+      if Input.trigger?(Input::B)
+        break
+      elsif Input.trigger?(Input::C)
+        ret = @sprites["commands"].index
         break
       end
     end
-    # Prepares for transition
-    Graphics.freeze
-    # Disposes the windows
+    return ret
+  end
+
+  def pbSetCommands(newcommands,newindex)
+    @sprites["commands"].commands = (!newcommands) ? @commands : newcommands
+    @sprites["commands"].index    = newindex
+  end
+
+  def pbEndScene
+    pbFadeOutAndHide(@sprites) { pbUpdate }
     pbDisposeSpriteHash(@sprites)
     @viewport.dispose
   end
-  #-----------------------------------------------------------------------------
-  # * Frame Update
-  #-----------------------------------------------------------------------------
-  def update
-    # Update windows
-    pbUpdateSpriteHash(@sprites)
-    if @custom
-      updateCustom
-    else
-      update_command
-    end
-    return
-  end
-  #-----------------------------------------------------------------------------
-  # * Frame Update (when command window is active)
-  #-----------------------------------------------------------------------------
-  def updateCustom
-    if Input.trigger?(Input::B)
-      @sprites["command_window"].commands=@choices
-      @sprites["command_window"].index=3
-      @custom=false
-      return
-    end
-    if Input.trigger?(Input::C)
-      $PokemonMap.whiteFluteUsed=false if $PokemonMap
-      $PokemonMap.blackFluteUsed=false if $PokemonMap
-      if @sprites["command_window"].index==0
-        $game_system.setDefaultBGM(nil)
-      else
-        $game_system.setDefaultBGM(
-           @sprites["command_window"].commands[@sprites["command_window"].index]
-        )        
-      end
-    end
+end
+
+
+
+class PokemonJukeboxScreen
+  def initialize(scene)
+    @scene = scene
   end
 
-  def update_command
-    # If B button was pressed
-    if Input.trigger?(Input::B)
-      pbPlayCancelSE()
-      # Switch to map screen
-      $scene = Scene_Pokegear.new
-      return
-    end
-    # If C button was pressed
-    if Input.trigger?(Input::C)
-      # Branch by command window cursor position
-      case @sprites["command_window"].index
-      when 0
-        pbPlayDecisionSE()
+  def pbStartScreen
+    commands = []
+    cmdMarch   = -1
+    cmdLullaby = -1
+    cmdOak     = -1
+    cmdCustom  = -1
+    commands[cmdMarch = commands.length]   = _INTL("March")
+    commands[cmdLullaby = commands.length] = _INTL("Lullaby")
+    commands[cmdOak = commands.length]     = _INTL("Oak")
+    commands[cmdCustom = commands.length]  = _INTL("Custom")
+    commands[commands.length]              = _INTL("Exit")
+    @scene.pbStartScene(commands)
+    loop do
+      cmd = @scene.pbScene
+      if cmd<0
+        pbPlayCloseMenuSE
+        break
+      elsif cmdMarch>=0 && cmd==cmdMarch
+        pbPlayDecisionSE
         pbBGMPlay("Radio - March", 100, 100)
-        $PokemonMap.whiteFluteUsed=true if $PokemonMap
-        $PokemonMap.blackFluteUsed=false if $PokemonMap
-      when 1
-        pbPlayDecisionSE()
+        $PokemonMap.whiteFluteUsed = true if $PokemonMap
+        $PokemonMap.blackFluteUsed = false if $PokemonMap
+      elsif cmdLullaby>=0 && cmd==cmdLullaby
+        pbPlayDecisionSE
         pbBGMPlay("Radio - Lullaby", 100, 100)
-        $PokemonMap.blackFluteUsed=true if $PokemonMap
-        $PokemonMap.whiteFluteUsed=false if $PokemonMap
-      when 2
-        pbPlayDecisionSE()
+        $PokemonMap.blackFluteUsed = true if $PokemonMap
+        $PokemonMap.whiteFluteUsed = false if $PokemonMap
+      elsif cmdOak>=0 && cmd==cmdOak
+        pbPlayDecisionSE
         pbBGMPlay("Radio - Oak", 100, 100)
-        $PokemonMap.whiteFluteUsed=false if $PokemonMap
-        $PokemonMap.blackFluteUsed=false if $PokemonMap
-      when 3
-        files=[_INTL("(Default)")]
-        Dir.chdir("Audio/BGM/"){
-           Dir.glob("*.mp3"){|f| files.push(f) }
-           Dir.glob("*.MP3"){|f| files.push(f) }
-           Dir.glob("*.ogg"){|f| files.push(f) }
-           Dir.glob("*.OGG"){|f| files.push(f) }
-           Dir.glob("*.wav"){|f| files.push(f) }
-           Dir.glob("*.WAV"){|f| files.push(f) }
-           Dir.glob("*.mid"){|f| files.push(f) }
-           Dir.glob("*.MID"){|f| files.push(f) }
-           Dir.glob("*.midi"){|f| files.push(f) }
-           Dir.glob("*.MIDI"){|f| files.push(f) }
+        $PokemonMap.whiteFluteUsed = false if $PokemonMap
+        $PokemonMap.blackFluteUsed = false if $PokemonMap
+      elsif cmdCustom>=0 && cmd==cmdCustom
+        pbPlayDecisionSE
+        files = [_INTL("(Default)")]
+        Dir.chdir("Audio/BGM/") {
+          Dir.glob("*.mp3") { |f| files.push(f) }
+          Dir.glob("*.MP3") { |f| files.push(f) }
+          Dir.glob("*.ogg") { |f| files.push(f) }
+          Dir.glob("*.OGG") { |f| files.push(f) }
+          Dir.glob("*.wav") { |f| files.push(f) }
+          Dir.glob("*.WAV") { |f| files.push(f) }
+          Dir.glob("*.mid") { |f| files.push(f) }
+          Dir.glob("*.MID") { |f| files.push(f) }
+          Dir.glob("*.midi") { |f| files.push(f) }
+          Dir.glob("*.MIDI") { |f| files.push(f) }
         }
-        @sprites["command_window"].commands=files
-        @sprites["command_window"].index=0
-        @custom=true
-      when 4
-        pbPlayDecisionSE()
-        $scene = Scene_Pokegear.new
+        @scene.pbSetCommands(files,0)
+        loop do
+          cmd2 = @scene.pbScene
+          if cmd2<0
+            pbPlayCancelSE
+            break
+          elsif cmd2==0
+            pbPlayDecisionSE
+            $game_system.setDefaultBGM(nil)
+            $PokemonMap.whiteFluteUsed = false if $PokemonMap
+            $PokemonMap.blackFluteUsed = false if $PokemonMap
+          else
+            pbPlayDecisionSE
+            $game_system.setDefaultBGM(files[cmd2])
+            $PokemonMap.whiteFluteUsed = false if $PokemonMap
+            $PokemonMap.blackFluteUsed = false if $PokemonMap
+          end
+        end
+        @scene.pbSetCommands(nil,cmdCustom)
+      else   # Exit
+        pbPlayCloseMenuSE
+        break
       end
-      return
     end
+    @scene.pbEndScene
   end
 end

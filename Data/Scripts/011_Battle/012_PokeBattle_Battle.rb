@@ -2872,7 +2872,10 @@ class PokeBattle_Battle
 # Núcleo del combate.
 ################################################################################
   def pbStartBattle(canlose=false)
-    Graphics.frame_rate = 80 if FASTER_BATTLE
+    pbAllowSpeedup
+    if FASTER_BATTLE
+      Graphics.frame_rate = 80
+    end
     PBDebug.log("")
     PBDebug.log("******************************************")
     begin
@@ -2881,8 +2884,9 @@ class PokeBattle_Battle
       @decision=0
       @scene.pbEndBattle(@decision)
     end
+    pbDisallowSpeedup if (!$DEBUG || SKIPTEXT_DEBUG)
     if FASTER_BATTLE
-      Graphics.frame_rate = 40
+      Graphics.frame_rate = 40 
       Graphics.frame_rate = 60 if FPS60 && $MKXP
     end
     return @decision

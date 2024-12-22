@@ -124,9 +124,6 @@ module Input
     if trigger?(Input::F7)
       pbDebugF7
     end
-    if trigger?(Input::ALT)
-      pbTurbo()
-    end
   end
 end
 

@@ -95,3 +95,8 @@ class Win32API
     return [width,height]
   end
 end
+
+# Well done for finding this place.
+# DO NOT EDIT THESE
+ESSENTIALS_VERSION = "BES3"
+ERROR_TEXT = ""
