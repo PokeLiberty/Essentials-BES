@@ -1,8 +1,8 @@
-# Fondos usados en los créditos. Se encuentran en la carpeta Graphics/Titles/
+# Backgrounds to show in credits. Found in Graphics/Titles/ folder
 CreditsBackgroundList = ["credits1","credits2","credits3","credits4","credits5"]
-CreditsMusic          = "begin"
-CreditsScrollSpeed    = 1             # Al menos 1; mantenlo menor a 5 para que se pueda leer.
-CreditsFrequency      = 8             # Cantidad de segundos por cambio de créditos.
+CreditsMusic          = "Credits"
+CreditsScrollSpeed    = 2
+CreditsFrequency      = 9   # Number of seconds per credits slide
 CREDITS_OUTLINE       = Color.new(0,0,128, 255)
 CREDITS_SHADOW        = Color.new(0,0,0, 100)
 CREDITS_FILL          = Color.new(255,255,255, 255)
@@ -10,115 +10,193 @@ CREDITS_FILL          = Color.new(255,255,255, 255)
 #==============================================================================
 # * Scene_Credits
 #------------------------------------------------------------------------------
-# Desplazamiento de los créditos que se definan abajo. Autor original desconocido.
+# Scrolls the credits you make below. Original Author unknown.
 #
-## Editado por MiDas Mike de forma que no se reproduce sobre el Title, sino que
-# se ejecuta llamándolo de la siguiente forma:
+## Edited by MiDas Mike so it doesn't play over the Title, but runs by calling
+# the following:
 #    $scene = Scene_Credits.new
 #
-## Edición nueva 3/6/2007 11:14 PM por AvatarMonkeyKirby.
-# Bueno, lo que hice es cambiar la parte del script que se suponía que terminaba
-# automáticamente los crétidos de forma que ahora realmente termina. Si, ahora
-# terminarán cuando los créditos hayan pasado. Así que, con esto, las personas a
-# las que debes agradecer ahora son: Unknown, MiDas Mike, and AvatarMonkeyKirby.
-#                                             -sinceramente tuyo,
-#                                               Tu Amado
-# Oh si, además agregué una línea al final que desvanece la música de fondo de
-# forma más rápida y suave.
+## New Edit 3/6/2007 11:14 PM by AvatarMonkeyKirby.
+# Ok, what I've done is changed the part of the script that was supposed to make
+# the credits automatically end so that way they actually end! Yes, they will
+# actually end when the credits are finished! So, that will make the people you
+# should give credit to now is: Unknown, MiDas Mike, and AvatarMonkeyKirby.
+#                                             -sincerly yours,
+#                                               Your Beloved
+# Oh yea, and I also added a line of code that fades out the BGM so it fades
+# sooner and smoother.
 #
-## Edición nueva 24/1/2012 por Maruno.
-# Agregué la posibilidad de partir una línea en dos partes iguales con <s>, con
-# cada mital alineadas hacia el centro. Por favor, ponerme en los créditos si
-# lo usas.
+## New Edit 24/1/2012 by Maruno.
+# Added the ability to split a line into two halves with <s>, with each half
+# aligned towards the centre. Please also credit me if used.
 #
-## Edición nueva 22/2/2012 por Maruno.
-# Los creditos ahora se desplazan apropiadamente cuando se está usando un
-# zoom de 0.5. Ahora se puede definir la música. Los créditos no se pueden
-# omitir la primera vez que pasan.
+## New Edit 22/2/2012 by Maruno.
+# Credits now scroll properly when played with a zoom factor of 0.5. Music can
+# now be defined. Credits can't be skipped during their first play.
+#
+## New Edit 25/3/2020 by Maruno.
+# Scroll speed is now independent of frame rate. Now supports non-integer values
+# for CreditsScrollSpeed.
+#
+## New Edit 21/8/2020 by Marin.
+# Now automatically inserts the credits from the plugins that have been
+# registered through the PluginManager module.
 #==============================================================================
 
 class Scene_Credits
 
-# La siguiente sección de código son los créditos.
-# ¡Comienza a editar!
+# This next piece of code is the credits.
+#Start Editing
 CREDIT=<<_END_
 
-Tus créditos van aquí.
+Your credits go here.
 
-Tus créditos van aquí.
+Your credits go here.
 
-Tus créditos van aquí.
+Your credits go here.
 
-Tus créditos van aquí.
+Your credits go here.
 
-Tus créditos van aquí.
+Your credits go here.
 
-
-
+{INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
 "Pokémon Essentials" fue creado por:
 Flameguru
 Poccil (Peter O.)
 Maruno
 
-Con contribuciones de:
-AvatarMonkeyKirby<s>Luka S.J.
+With contributions from:
+AvatarMonkeyKirby<s>Marin
 Boushy<s>MiDas Mike
 Brother1440<s>Near Fantastica
 FL.<s>PinkMan
 Genzai Kawakami<s>Popper
-Harshboy<s>Rataime
-help-14<s>SoundSpawn
-IceGod64<s>the__end
-Jacob O. Wobbrock<s>Venom12
-KitsuneKouta<s>Wachunga
-Lisa Anthony<s>xLeD
+help-14<s>Rataime
+IceGod64<s>SoundSpawn
+Jacob O. Wobbrock<s>the__end
+KitsuneKouta<s>Venom12
+Lisa Anthony<s>Wachunga
+Luka S.J.<s>Golisopod User
+Savordez<s>SoundSpawn
+the__end<s>Venom12
+
 y a todos los que dieron su ayuda
 
+"mkxp-z" by:
+Roza,
+Based on "mkxp" by Ancurio et al.
 
+"Essentials BES" fue creado gracias a aportaciones de:
 
-"RPG Maker XP" de:
+- Recopilación -
+Pira<s>Clara
+
+- PBS - 
+Alexandrite<s>Clara
+Jaizu<s>Nero
+
+- Sprites y otros gráficos-
+Smogon Sprite Project
+leParagon<s>N-Kin
+fishbowlsoul90<s>MrDollSteak
+BlackWhiteRobin<s>Wobblebuns
+princessofmusic<s>Z-nogyroP
+MyMarshlands<s>MBCMechachu
+Megax Rocker<s>JaegerLucciano23
+academico95<s>KajiAtsui
+Chaos Rush<s>BlackstarG5
+mangamanga<s>HeXeR
+Tetra<s>goranthegreat
+Trev<s>xiechayghe
+Alfpixel<s>Ezerart
+SrGio<s>SageDeoxys
+DarkusShadow<s>LarryTurbo
+Princess-Phoenix<s>Kidkatt
+Zender1752
+
+- Scripts -
+Alberto<s>Selfish
+Pira<s>WolfPP
+Rot8er_ConeX<s>Mybusiness
+BlackOutG5<s>Telemetius
+rigbycwts<s>MotoxChmpn10
+Crystal Noel<s>Zerokid
+Clara<s>Slaqueen/Ele-nya
+Jonas930<s>derFischae
+Marcello <s>Zumi
+Ice Cream Sand Witch<s>Bezier
+Amethyst<s>Jan 
+Sardines<s>Inuki
+pKa<s>Deo
+FL<s>Luka SJ
+Bezier<s>FiaPlay
+Stochastic<s>DerxwnaKapsyla
+bo4p5687<s>Skyflyer
+
+- Otros -
+MasterYuri<s>ENLS
+
+"RPG Maker XP" by:
 Enterbrain
 
-Pokémon es propiedad de:
+Pokémon is owned by:
 The Pokémon Company
 Nintendo
-Socios de Game Freak
+Affiliated with Game Freak
 
-Éste es un juego hecho por fans sin fines de lucro.
-No se pretende incumplir derechos de autor.
-¡Por favor, apoya a los juegos oficiales!
+This is a non-profit fan-made game.
+No copyright infringements intended.
+Please support the official games!
 
 _END_
-# ¡Dejar de editar aquí!
+#Stop Editing
 
   def main
-#---------------------------------
-# Configuración del fondo animado
-#---------------------------------
+#-------------------------------
+# Animated Background Setup
+#-------------------------------
     @sprite = IconSprite.new(0,0)
     @backgroundList = CreditsBackgroundList
-    @backgroundGameFrameCount = 0
-    # Number of game frames per background frame.
-    @backgroundG_BFrameCount = CreditsFrequency * Graphics.frame_rate
+    @frameCounter = 0
+    # Number of game frames per background frame
+    @framesPerBackground = CreditsFrequency * Graphics.frame_rate
     @sprite.setBitmap("Graphics/Titles/"+@backgroundList[0])
-#-----------------------------------------
-# Configuración del texto de los créditos
-#-----------------------------------------
+#------------------
+# Credits text Setup
+#------------------
+    plugin_credits = ""
+    PluginManager.plugins.each do |plugin|
+      pcred = PluginManager.credits(plugin)
+      plugin_credits << "\"#{plugin}\" version #{PluginManager.version(plugin)}\n"
+      if pcred.size >= 5
+        plugin_credits << pcred[0] + "\n"
+        i = 1
+        until i >= pcred.size
+          plugin_credits << pcred[i] + "<s>" + (pcred[i + 1] || "") + "\n"
+          i += 2
+        end
+      else
+        pcred.each do |name|
+          plugin_credits << name + "\n"
+        end
+      end
+      plugin_credits << "\n"
+    end
+    CREDIT.gsub!(/\{INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE\}/, plugin_credits)
     credit_lines = CREDIT.split(/\n/)
     credit_bitmap = Bitmap.new(Graphics.width,32 * credit_lines.size)
     credit_lines.each_index do |i|
       line = credit_lines[i]
       line = line.split("<s>")
-      # LÍNEA NUEVA: Si utilizas el kit en tu juego propio, deberías quitar esta línea
-      pbSetSystemFont(credit_bitmap) # <--- Esta línea ha sido agregada
-      x = 0
+      # LINE ADDED: If you use in your own game, you should remove this line
+      pbSetSystemFont(credit_bitmap) # <--- This line was added
       xpos = 0
-      align = 1     # Alineación al centro
+      align = 1 # Centre align
       linewidth = Graphics.width
       for j in 0...line.length
         if line.length>1
           xpos = (j==0) ? 0 : 20 + Graphics.width/2
-          align = (j==0) ? 2 : 0    # Alineación derecha : izquierda
+          align = (j==0) ? 2 : 0 # Right align : left align
           linewidth = Graphics.width/2 - 20
         end
         credit_bitmap.font.color = CREDITS_SHADOW
@@ -136,53 +214,41 @@ _END_
         credit_bitmap.draw_text(xpos,i * 32,linewidth,32,line[j],align)
       end
     end
-    @trim=Graphics.height/10
+    @trim = Graphics.height/10
+    @realOY = -(Graphics.height-@trim)   # -430
+    @oyChangePerFrame = CreditsScrollSpeed*20.0/Graphics.frame_rate
     @credit_sprite = Sprite.new(Viewport.new(0,@trim,Graphics.width,Graphics.height-(@trim*2)))
     @credit_sprite.bitmap = credit_bitmap
-    @credit_sprite.z = 9998
-    @credit_sprite.oy = -(Graphics.height-@trim) #-430
-    @frame_index = 0
+    @credit_sprite.z      = 9998
+    @credit_sprite.oy     = @realOY
     @bg_index = 0
-    @pixels_banked = 0
-    @zoom_adjustment = 1/$ResizeFactor
+    @zoom_adjustment = 1.0/$ResizeFactor
     @last_flag = false
-#---------------
-# Configuración
-#---------------
-    #Detiene todas las pistas menos la música de fondo.
+#--------
+# Setup
+#--------
+    # Stops all audio but background music
     previousBGM = $game_system.getPlayingBGM
-    pbMEStop()
-    pbBGSStop()
-    pbSEStop()
+    pbMEStop
+    pbBGSStop
+    pbSEStop
     pbBGMFade(2.0)
     pbBGMPlay(CreditsMusic)
-    Graphics.transition
+    Graphics.transition(20)
     loop do
       Graphics.update
       Input.update
       update
-      if $scene != self
-        break
-      end
+      break if $scene != self
     end
     Graphics.freeze
     @sprite.dispose
     @credit_sprite.dispose
-    $PokemonGlobal.creditsPlayed=true
+    $PokemonGlobal.creditsPlayed = true
     pbBGMPlay(previousBGM)
   end
 
-# Revisa si el mapa de bit de los créditos ha alcanzado su punto final
-  def last?
-    if @frame_index > (@credit_sprite.bitmap.height + Graphics.height + (@trim/2))
-      $scene = ($game_map) ? Scene_Map.new : nil
-      pbBGMFade(2.0)
-      return true
-    end
-    return false
-  end
-
-# Revisa si los créditos deberían ser cancelados
+  # Check if the credits should be cancelled
   def cancel?
     if Input.trigger?(Input::C) && $PokemonGlobal.creditsPlayed
       $scene = Scene_Map.new
@@ -192,21 +258,33 @@ _END_
     return false
   end
 
+  # Checks if credits bitmap has reached its ending point
+  def last?
+    if @realOY > @credit_sprite.bitmap.height + @trim
+      $scene = ($game_map) ? Scene_Map.new : nil
+      pbBGMFade(2.0)
+      return true
+    end
+    return false
+  end
+
   def update
-    @backgroundGameFrameCount += 1
-    if @backgroundGameFrameCount >= @backgroundG_BFrameCount        # Diapositiva siguiente
-      @backgroundGameFrameCount = 0
+    @frameCounter += 1
+    # Go to next slide
+    if @frameCounter >= @framesPerBackground
+      @frameCounter -= @framesPerBackground
       @bg_index += 1
       @bg_index = 0 if @bg_index >= @backgroundList.length
       @sprite.setBitmap("Graphics/Titles/"+@backgroundList[@bg_index])
     end
     return if cancel?
     return if last?
-    @pixels_banked += CreditsScrollSpeed
-    if @pixels_banked>=@zoom_adjustment
-      @credit_sprite.oy += (@pixels_banked - @pixels_banked%@zoom_adjustment)
-      @pixels_banked = @pixels_banked%@zoom_adjustment
-    end
-    @frame_index += CreditsScrollSpeed    # Esto debería corregir el problema de finalización automática
+    @realOY += @oyChangePerFrame
+    @credit_sprite.oy = @realOY
   end
+end
+
+def pbCreditScreen
+  $scene=Scene_Credits.new
+  $scene.main
 end

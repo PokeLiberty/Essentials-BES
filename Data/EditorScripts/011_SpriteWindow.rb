@@ -1165,16 +1165,19 @@ end
 #  4 - Base color
 #  5 - Shadow color
 def pbDrawTextPositions(bitmap,textpos)
-  for i in textpos
+  textpos.each do |i|
     textsize=bitmap.text_size(i[0])
     x=i[1]
     y=i[2]
-    if i[3]==true || i[3]==1 # right align
+    case i[3]
+    when :right, true, 1   # right align
       x-=textsize.width
-    elsif i[3]==2 # centered
+    when :center, 2   # centered
       x-=(textsize.width/2)
     end
-    if i[6]==true || i[6]==1 # outline text
+    i[6] = :none if !i[5]   # No shadow color given, draw plain text
+    case i[6]
+    when :outline, true, 1   # outline text
       pbDrawOutlineText(bitmap,x,y,textsize.width,textsize.height,i[0],i[4],i[5])
     else
       pbDrawShadowText(bitmap,x,y,textsize.width,textsize.height,i[0],i[4],i[5])
@@ -1187,8 +1190,8 @@ def pbDrawImagePositions(bitmap,textpos)
     srcbitmap=AnimatedBitmap.new(pbBitmapName(i[0]))
     x=i[1]
     y=i[2]
-    srcx=i[3]
-    srcy=i[4]
+    srcx=i[3] || 0
+    srcy=i[4] || 0
     width=i[5]>=0 ? i[5] : srcbitmap.width
     height=i[6]>=0 ? i[6] : srcbitmap.height
     srcrect=Rect.new(srcx,srcy,width,height)
