@@ -16,7 +16,7 @@
 #      Puede ser incompatible con cambios de Framerate o el turbo.
 # * Indica si quieres que el Turbo este activado siempre(Alt), pero que solo funcione con el debug.
 #      Si se desactiva, funcionara en cualquier situación.
-# * Indica si quieres que el Text Skip activado solo en el modo turbo, tecla Q.
+# * Indica si quieres que el Text Skip activado solo en el modo debug, tecla Q.
 # * Indica si quieres que los pokémon ganan Experiencia en la guardería(true) o no (false).
 #
 # * Indica si quieres que la hierba no cubra al personaje cuando se mueve.
@@ -37,13 +37,13 @@ MENU_NICKNAME             = true
 MENU_MOVERELEANER         = true
 FASTER_BATTLE             = false
 TURBO_DEBUG               = false
-SKIPTEXT_DEBUG            = true
+SKIPTEXT_DEBUG            = false
 LEVEL_DAYCARE             = false
 
 GRASS_SOUND               = true
 GRASS_NO_ANIM             = false
 
-SELL_ITEMPRICE = 2
+SELL_ITEMPRICE            = 2
 #===============================================================================
 # Interfaces
 # Aquí se configuran las rutas de las carpetas de interfaces.

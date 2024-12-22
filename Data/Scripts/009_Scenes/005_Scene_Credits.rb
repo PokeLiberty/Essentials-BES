@@ -60,7 +60,7 @@ Your credits go here.
 Your credits go here.
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
-"Pokémon Essentials" fue creado por:
+"Pokémon Essentials" was created by:
 Flameguru
 Poccil (Peter O.)
 Maruno
@@ -76,65 +76,10 @@ IceGod64<s>SoundSpawn
 Jacob O. Wobbrock<s>the__end
 KitsuneKouta<s>Venom12
 Lisa Anthony<s>Wachunga
-Luka S.J.<s>Golisopod User
-Savordez<s>SoundSpawn
-the__end<s>Venom12
+Luka S.J.<s>
+and everyone else who helped out
 
-y a todos los que dieron su ayuda
 
-"mkxp-z" by:
-Roza,
-Based on "mkxp" by Ancurio et al.
-
-"Essentials BES" fue creado gracias a aportaciones de:
-
-- Recopilación -
-Pira<s>Clara
-
-- PBS - 
-Alexandrite<s>Clara
-Jaizu<s>Nero
-
-- Sprites y otros gráficos-
-Smogon Sprite Project
-leParagon<s>N-Kin
-fishbowlsoul90<s>MrDollSteak
-BlackWhiteRobin<s>Wobblebuns
-princessofmusic<s>Z-nogyroP
-MyMarshlands<s>MBCMechachu
-Megax Rocker<s>JaegerLucciano23
-academico95<s>KajiAtsui
-Chaos Rush<s>BlackstarG5
-mangamanga<s>HeXeR
-Tetra<s>goranthegreat
-Trev<s>xiechayghe
-Alfpixel<s>Ezerart
-SrGio<s>SageDeoxys
-DarkusShadow<s>LarryTurbo
-Princess-Phoenix<s>Kidkatt
-Zender1752
-
-- Scripts -
-Alberto<s>Selfish
-Pira<s>WolfPP
-Rot8er_ConeX<s>Mybusiness
-BlackOutG5<s>Telemetius
-rigbycwts<s>MotoxChmpn10
-Crystal Noel<s>Zerokid
-Clara<s>Slaqueen/Ele-nya
-Jonas930<s>derFischae
-Marcello <s>Zumi
-Ice Cream Sand Witch<s>Bezier
-Amethyst<s>Jan 
-Sardines<s>Inuki
-pKa<s>Deo
-FL<s>Luka SJ
-Bezier<s>FiaPlay
-Stochastic<s>DerxwnaKapsyla
-bo4p5687<s>Skyflyer
-
-- Otros -
-MasterYuri<s>ENLS
 
 "RPG Maker XP" by:
 Enterbrain
@@ -282,9 +227,4 @@ _END_
     @realOY += @oyChangePerFrame
     @credit_sprite.oy = @realOY
   end
-end
-
-def pbCreditScreen
-  $scene=Scene_Credits.new
-  $scene.main
 end

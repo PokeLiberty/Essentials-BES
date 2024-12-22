@@ -128,7 +128,7 @@ class PokeBattle_Trainer
 
   def isMale?; return self.gender==0; end
   def isFemale?; return self.gender==1; end
-
+    
   def pokemonParty
     return @party.find_all {|item| item && !item.isEgg? }
   end

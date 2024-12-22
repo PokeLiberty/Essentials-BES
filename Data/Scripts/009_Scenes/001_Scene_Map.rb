@@ -200,7 +200,7 @@ class Scene_Map
     sscreen.pbStartPokemonMenu
     $game_temp.in_menu = false
   end
-
+  
   def call_debug
     $game_temp.debug_calling = false
     pbPlayDecisionSE()

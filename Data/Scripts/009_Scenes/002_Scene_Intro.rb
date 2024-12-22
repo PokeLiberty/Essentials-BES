@@ -112,9 +112,7 @@ class Scene_Intro
   def initialize(pics, splash = nil)
     @pics=pics
     @splash=splash
-    if !$pkmn_animations
-      $pkmn_animations = load_data("Data/PkmnAnimations.rxdata")
-    end
+    $pkmn_animations = load_data("Data/PkmnAnimations.rxdata") if !$pkmn_animations
   end
 
   def main

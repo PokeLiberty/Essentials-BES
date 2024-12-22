@@ -444,7 +444,7 @@ module CheckStatsInBattle
         # Último mov. usado
         string = _INTL("Último movimiento: ")
         x = xystat[stat.size-1][0]
-        y = 308
+        y = 304
         text << [_INTL("{1}",string), x, y, 0, PokeBattle_SceneConstants::INFO2BASECOLOR,PokeBattle_SceneConstants::INFO2SHADOWCOLOR]
         string = "#{PBMoves.getName(@pkmn[@position].lastMoveUsed)}"
         string = "---" if @pkmn[@position].lastMoveUsed == -1

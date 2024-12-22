@@ -1165,19 +1165,16 @@ end
 #  4 - Base color
 #  5 - Shadow color
 def pbDrawTextPositions(bitmap,textpos)
-  textpos.each do |i|
+  for i in textpos
     textsize=bitmap.text_size(i[0])
     x=i[1]
     y=i[2]
-    case i[3]
-    when :right, true, 1   # right align
+    if i[3]==true || i[3]==1 # right align
       x-=textsize.width
-    when :center, 2   # centered
+    elsif i[3]==2 # centered
       x-=(textsize.width/2)
     end
-    i[6] = :none if !i[5]   # No shadow color given, draw plain text
-    case i[6]
-    when :outline, true, 1   # outline text
+    if i[6]==true || i[6]==1 # outline text
       pbDrawOutlineText(bitmap,x,y,textsize.width,textsize.height,i[0],i[4],i[5])
     else
       pbDrawShadowText(bitmap,x,y,textsize.width,textsize.height,i[0],i[4],i[5])
@@ -1199,8 +1196,6 @@ def pbDrawImagePositions(bitmap,textpos)
     srcbitmap.dispose
   end
 end
-
-
 
 class Game_Temp
   attr_accessor :fadestate
