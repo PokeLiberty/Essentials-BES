@@ -5948,6 +5948,7 @@ class PokeBattle_Move_0C9 < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     if @immediate || attacker.effects[PBEffects::TwoTurnAttack]>0
       pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
+      @battle.scene.pbVanishSprite(attacker) # BES- T Sprite Vuelo
       @battle.pbDisplay(_INTL("¡{1} voló muy alto!",attacker.pbThis))
     end
     if @immediate
@@ -5956,6 +5957,7 @@ class PokeBattle_Move_0C9 < PokeBattle_Move
       attacker.pbConsumeItem
     end
     return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
+    @battle.scene.pbUnVanishSprite(attacker) # BES- T Sprite Vuelo
     return super(attacker,opponent,hitnum,alltargets,showanimation)
   end
 end
@@ -5964,7 +5966,7 @@ end
 
 ################################################################################
 # Ataque de dos turnos. Se salta el primer turno, ataca el segundo.
-# (Escavar)
+# (Excavar/Dig)
 # (Controlado en pbSuccessCheck de Battler): Es semi-invulnerable durante el uso.
 ################################################################################
 class PokeBattle_Move_0CA < PokeBattle_Move
@@ -5980,6 +5982,7 @@ class PokeBattle_Move_0CA < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     if @immediate || attacker.effects[PBEffects::TwoTurnAttack]>0
       pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
+      @battle.scene.pbVanishSprite(attacker) # BES- T Sprite Vuelo
       @battle.pbDisplay(_INTL("¡{1} se ha ocultado bajo tierra!",attacker.pbThis))
     end
     if @immediate
@@ -5988,6 +5991,7 @@ class PokeBattle_Move_0CA < PokeBattle_Move
       attacker.pbConsumeItem
     end
     return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
+    @battle.scene.pbUnVanishSprite(attacker) # BES- T Sprite Vuelo
     return super(attacker,opponent,hitnum,alltargets,showanimation)
   end
 end
@@ -6012,6 +6016,7 @@ class PokeBattle_Move_0CB < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     if @immediate || attacker.effects[PBEffects::TwoTurnAttack]>0
       pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
+      @battle.scene.pbVanishSprite(attacker) # BES- T Sprite Vuelo
       @battle.pbDisplay(_INTL("¡{1} se ha ocultado bajo el agua!",attacker.pbThis))
     end
     if @immediate
@@ -6031,6 +6036,7 @@ class PokeBattle_Move_0CB < PokeBattle_Move
       PBDebug.log("[Form changed] #{attacker.pbThis} changed to form #{attacker.form}")
     end
     return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
+    @battle.scene.pbUnVanishSprite(attacker) # BES- T Sprite Vuelo
     return super(attacker,opponent,hitnum,alltargets,showanimation)
   end
 end
@@ -6060,6 +6066,7 @@ class PokeBattle_Move_0CC < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     if @immediate || attacker.effects[PBEffects::TwoTurnAttack]>0
       pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
+      @battle.scene.pbVanishSprite(attacker) # BES- T Sprite Vuelo
       @battle.pbDisplay(_INTL("¡{1} saltó muy alto!",attacker.pbThis))
     end
     if @immediate
@@ -6068,6 +6075,7 @@ class PokeBattle_Move_0CC < PokeBattle_Move
       attacker.pbConsumeItem
     end
     return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
+    @battle.scene.pbUnVanishSprite(attacker) # BES- T Sprite Vuelo
     return super(attacker,opponent,hitnum,alltargets,showanimation)
   end
 
@@ -6101,6 +6109,7 @@ class PokeBattle_Move_0CD < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     if @immediate || attacker.effects[PBEffects::TwoTurnAttack]>0
       pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
+      @battle.scene.pbVanishSprite(attacker) # BES- T Sprite Vuelo
       @battle.pbDisplay(_INTL("¡{1} ha desaparecido!",attacker.pbThis))
     end
     if @immediate
@@ -6109,6 +6118,7 @@ class PokeBattle_Move_0CD < PokeBattle_Move
       attacker.pbConsumeItem
     end
     return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
+    @battle.scene.pbUnVanishSprite(attacker) # BES- T Sprite Vuelo
     ret=super(attacker,opponent,hitnum,alltargets,showanimation)
     if ret>0
       opponent.effects[PBEffects::ProtectNegation]=true
@@ -6118,7 +6128,52 @@ class PokeBattle_Move_0CD < PokeBattle_Move
   end
 end
 
+################################################################################
+# Movimiento de dos turnos. Desaparece del campo el primer turno.
+# Ataca en el segundo turno.
+# (Golpe Fantasma/Phantom Force)
+# Es invulnerable durante el uso.
+# Este turno, ignora movimientos del objetivo como Detección, Escudo Real,
+# Escudo Tatami, Protección y Barrera Espinosa. Si tiene éxito, los anula este turno.
+# Causa el doble de daño y tiene precisión perfecta si el objetivo ha usado Reducción.
+################################################################################
+class PokeBattle_Move_14D < PokeBattle_Move
+  def pbTwoTurnAttack(attacker)
+    @immediate=false
+    if !@immediate && attacker.hasWorkingItem(:POWERHERB)
+      @immediate=true
+    end
+    return false if @immediate
+    return attacker.effects[PBEffects::TwoTurnAttack]==0
+  end
 
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if @immediate || attacker.effects[PBEffects::TwoTurnAttack]>0
+      pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
+      @battle.scene.pbVanishSprite(attacker) # BES- T Sprite Vuelo
+      @battle.pbDisplay(_INTL("¡{1} desaparece en un abrir y cerrar de ojos!",attacker.pbThis))
+    end
+    if @immediate
+      @battle.pbCommonAnimation("UseItem",attacker,nil)
+      @battle.pbDisplay(_INTL("¡{1} ya está listo gracias a la Hierba Única!",attacker.pbThis))
+      attacker.pbConsumeItem
+    end
+    return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
+    @battle.scene.pbUnVanishSprite(attacker) # BES- T Sprite Vuelo
+    ret=super(attacker,opponent,hitnum,alltargets,showanimation)
+    if ret>0
+      opponent.effects[PBEffects::ProtectNegation]=true
+      opponent.pbOwnSide.effects[PBEffects::CraftyShield]=false
+    end
+    return ret
+  end
+
+  def tramplesMinimize?(param=1)
+    return true if param==1 && USENEWBATTLEMECHANICS # Perfect accuracy
+    return true if param==2 # Double damage
+    return false
+  end
+end
 
 ################################################################################
 # Ataque de dos turnos. Se salta el primer turno, ataca el segundo.
@@ -6149,12 +6204,13 @@ class PokeBattle_Move_0CE < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     if attacker.effects[PBEffects::TwoTurnAttack]>0
       pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
-      @battle.pbDisplay(_INTL("{1} took {2} into the sky!",attacker.pbThis,opponent.pbThis(true)))
+      @battle.pbDisplay(_INTL("¡{1} se ha llevado al {2} por los aires!",attacker.pbThis,opponent.pbThis(true)))
+      @battle.scene.pbVanishSprite(attacker)
       opponent.effects[PBEffects::SkyDrop]=true
     end
     return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
     ret=super
-    @battle.pbDisplay(_INTL("{1} was freed from the Sky Drop!",opponent.pbThis))
+    @battle.pbDisplay(_INTL("El {1} se ha liberado de Caída Libre!",opponent.pbThis))
     opponent.effects[PBEffects::SkyDrop]=false
     return ret
   end
@@ -6166,8 +6222,6 @@ class PokeBattle_Move_0CE < PokeBattle_Move
     return super
   end
 end
-
-
 
 ################################################################################
 # Movimiento de trampa. Atrapa por 5 o 6 rondas.
@@ -9769,54 +9823,6 @@ class PokeBattle_Move_14C < PokeBattle_Move
 end
 
 
-
-################################################################################
-# Movimiento de dos turnos. Desaparece del campo el primer turno.
-# Ataca en el segundo turno.
-# (Golpe Fantasma/Phantom Force)
-# Es invulnerable durante el uso.
-# Este turno, ignora movimientos del objetivo como Detección, Escudo Real,
-# Escudo Tatami, Protección y Barrera Espinosa. Si tiene éxito, los anula este turno.
-# Causa el doble de daño y tiene precisión perfecta si el objetivo ha usado Reducción.
-################################################################################
-class PokeBattle_Move_14D < PokeBattle_Move
-  def pbTwoTurnAttack(attacker)
-    @immediate=false
-    if !@immediate && attacker.hasWorkingItem(:POWERHERB)
-      @immediate=true
-    end
-    return false if @immediate
-    return attacker.effects[PBEffects::TwoTurnAttack]==0
-  end
-
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if @immediate || attacker.effects[PBEffects::TwoTurnAttack]>0
-      pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
-      @battle.pbDisplay(_INTL("¡{1} desaparece en un abrir y cerrar de ojos!",attacker.pbThis))
-    end
-    if @immediate
-      @battle.pbCommonAnimation("UseItem",attacker,nil)
-      @battle.pbDisplay(_INTL("¡{1} ya está listo gracias a la Hierba Única!",attacker.pbThis))
-      attacker.pbConsumeItem
-    end
-    return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
-    ret=super(attacker,opponent,hitnum,alltargets,showanimation)
-    if ret>0
-      opponent.effects[PBEffects::ProtectNegation]=true
-      opponent.pbOwnSide.effects[PBEffects::CraftyShield]=false
-    end
-    return ret
-  end
-
-  def tramplesMinimize?(param=1)
-    return true if param==1 && USENEWBATTLEMECHANICS # Perfect accuracy
-    return true if param==2 # Double damage
-    return false
-  end
-end
-
-
-
 ################################################################################
 # Movimiento de dos turnos. Salta el primer turno. En el segundo, se incrementan
 # el Ataque Especial, Defensa Especial y Velocidad del usuario en 2 niveles cada uno.
@@ -13058,5 +13064,11 @@ end
 # Teraclúster
 ################################################################################
 class PokeBattle_Move_279 < PokeBattle_Move
-
+  def pbModifyType(type,attacker,opponent)
+    type=getConst(PBTypes,:NORMAL) || 0
+    if isConst?(attacker.species,PBSpecies,:TERAPAGOS) && attacker.isTera?
+      type=getConst(PBTypes,:STELLAR) || 0
+    end
+    return type
+  end
 end

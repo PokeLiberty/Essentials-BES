@@ -2217,4 +2217,24 @@ class PokeBattle_Scene
     pbHPChanged_lHP(pkmn, oldhp, anim)
     pbLowHPMusic(pkmn) if pkmn.index % 2 == 0
   end
+
+  #===============================================================================
+  # BES-T  SPRITE DESAPARECE AL USAR VUELO O SIMILARES
+  #===============================================================================
+
+  #El resto de las ediciones están en PokeBattle_MoveEffects
+  def pbVanishSprite(pkmn)
+    pkmnsprite=@sprites["pokemon#{pkmn.index}"]
+    pkmnsprite.visible = false
+    pbUpdate    
+  end
+  
+  def pbUnVanishSprite(pkmn)
+    pkmnsprite=@sprites["pokemon#{pkmn.index}"]
+    pkmnsprite.visible = true
+    pbUpdate    
+  end  
+
+
+
 end

@@ -611,20 +611,11 @@ end
 
 # BES-T MOVIMIENTOS MT Y TUTOR COMPATIBLES MEJORADOS
 # Toma la lista entera de movimientos que el pokemon aprende y la contrasta con las MT.
-
-#def pbSpeciesCompatible?(species,move)
-#  ret=false
-#  return false if species<=0
-#  data=load_data("Data/tm.dat")
-#  return false if !data[move]
-#  return data[move].any? {|item| item==species }
-#end
-
 def pbSpeciesCompatible?(species,move)
   ret=false
   return false if species<=0
-  data=load_data("Data/tm.dat") unless $pkmn_tmMoves
-  $pkmn_tmMoves = data #Carga en "caché" las MT para evitar ciertos tiempos de carga.
+  $pkmn_tmMoves =load_data("Data/tm.dat") if !$pkmn_tmMoves #Carga en "caché" las MT para evitar ciertos tiempos de carga.
+  data = $pkmn_tmMoves 
   return true if data[move] && data[move].any? {|item| item==species }
   movelist=[]
   atkdata=pbRgssOpen("Data/attacksRS.dat","rb")
@@ -654,7 +645,14 @@ def pbSpeciesCompatible?(species,move)
   }
   atkdata.close
   return movelist.include?(move)
+rescue
+  ret=false
+  return false if species<=0
+  data=load_data("Data/tm.dat")
+  return false if !data[move]
+  return data[move].any? {|item| item==species }
 end
+
 
 #===============================================================================
 # Use an item from the Bag and/or on a Pokémon

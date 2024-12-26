@@ -1759,9 +1759,9 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡{1} no rinde todo lo que podría!",
          pbThis,PBAbilities.getName(self.ability)))
     end
-    if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT)
+    if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT) && self.pokemon.form=0
       self.pokemon.form=1
-      @battler.pbUpdate(true)
+      (@battler.pbUpdate(true) rescue nil)
       @battle.scene.pbChangePokemon(self,@pokemon)
       @battle.pbDisplay(_INTL("¡{1} se transformó!",pbThis))
     end
@@ -4424,6 +4424,10 @@ class PokeBattle_Battler
     user=pbFindUser(choice,targets)
     #Change to two targets for expanding force with psychic terrain
     if isConst?(thismove.id,PBMoves,:EXPANDINGFORCE) && @battle.field.effects[PBEffects::PsychicTerrain]>0 && !user.isAirborne? && @battle.doublebattle
+      targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
+    end
+    #Teracúster golpe a ambos si es Terapagos
+    if isConst?(thismove.id,PBMoves,:TERASTARSTORM) && (isConst?(user.species,PBSpecies,:TERAPAGOS) && user.isTera?) && @battle.doublebattle
       targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
     end
     # Battle Arena only - assume failure
