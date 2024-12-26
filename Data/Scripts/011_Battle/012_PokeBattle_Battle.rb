@@ -2884,7 +2884,7 @@ class PokeBattle_Battle
       @decision=0
       @scene.pbEndBattle(@decision)
     end
-    pbDisallowSpeedup if (!$DEBUG || SKIPTEXT_DEBUG)
+    pbDisallowSpeedup if (!$DEBUG || TURBO_DEBUG)
     if FASTER_BATTLE
       Graphics.frame_rate = 40 
       Graphics.frame_rate = 60 if FPS60 && $MKXP

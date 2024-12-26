@@ -73,7 +73,7 @@ $GameSpeed = 0
 $frame = 0
 
 $CanToggle = false
-$CanToggle = true if ($DEBUG || SKIPTEXT_DEBUG)
+$CanToggle = true if ($DEBUG || TURBO_DEBUG)
 
 module Graphics
   class << Graphics
