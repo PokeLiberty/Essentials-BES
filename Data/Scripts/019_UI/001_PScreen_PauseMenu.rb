@@ -115,6 +115,7 @@ class PokemonMenu
     @scene.pbStartScene
     # Show extra info window if relevant
     pbShowInfo
+    pbSetViableDexes
     # Get all commands
     command_list = []
     commands = []
