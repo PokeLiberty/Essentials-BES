@@ -8,8 +8,14 @@
 # Make all wild Pokémon shiny while a certain Switch is ON (see Settings).
 Events.onWildPokemonCreate+=proc {|sender,e|
    pokemon=e[0]
-   if $game_switches[SHINY_WILD_POKEMON_SWITCH]
+   if $game_switches[SHINY_WILD_POKEMON_SWITCH] || $PokemonTemp.battle_rules["wildShiny"]
      pokemon.makeShiny
+   end
+   if $PokemonTemp.battle_rules["wildShadow"]
+    pokemon.makeShadow()
+   end
+   if $PokemonTemp.battle_rules["wildForm"]
+    pokemon.form = $PokemonTemp.battle_rules["wildForm"]
    end
    if $PokemonTemp.battle_rules["wildTera"]
     pokemon.tera_ace=true
