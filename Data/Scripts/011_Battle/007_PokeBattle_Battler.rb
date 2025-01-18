@@ -828,15 +828,15 @@ class PokeBattle_Battler
     if self.status==PBStatuses::PARALYSIS && !self.hasWorkingAbility(:QUICKFEET)
       speedmult=(speedmult/(USENEWBATTLEMECHANICS ? 2 : 4)).round
     end
-    
+
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     # Aumento de velocidad
     if ((self.hasWorkingAbility(:PROTOSYNTHESIS) && ((([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather))) || self.effects[PBEffects::BoosterEnergy]))              ||   # Paleosítensis
-        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.effects[PBEffects::BoosterEnergy]))) &&                                                                                    # Quark Drive       
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.effects[PBEffects::BoosterEnergy]))) &&                                                                                    # Quark Drive
         @effects[PBEffects::Protosynthesis] == PBStats::SPEED
       speedmult=(speedmult*1.5).round
     end
-    
+
     if @battle.internalbattle && @battle.pbOwnedByPlayer?(@index) &&
        @battle.pbPlayer.numbadges>=BADGESBOOSTSPEED
       speedmult=(speedmult*1.1).round
@@ -1389,19 +1389,19 @@ class PokeBattle_Battler
         end
       end
     end
-    
+
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     # Resetea el efecto cuando se pase el clima/campo
     if (!@effects[PBEffects::BoosterEnergy] && @effects[PBEffects::Protosynthesis] > 0) && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (![PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather))) || # Paleosítensis
-        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]<=0)))                                                                                                          # Quark Drive    
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]<=0)))                                                                                                          # Quark Drive
       @effects[PBEffects::Protosynthesis] = 0
     end
 
     # Activación de Protosíntesis y Carga Cuark.
     if @effects[PBEffects::Protosynthesis] <= 0 && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather) || self.hasWorkingItem(:BOOSTERENERGY)))) ||           # Paleosítensis
-        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY))))  # Quark Drive      
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY))))  # Quark Drive
       stagemult = [1, 1.5, 2, 2.5, 3, 3.5, 4, 0.25, 0.28, 0.33, 0.40, 0.50, 0.67]
-      stats = [@attack, @defense, @speed, @spatk, @spdef].each_with_index.map { |stat, i| 
+      stats = [@attack, @defense, @speed, @spatk, @spdef].each_with_index.map { |stat, i|
         stat * stagemult[@stages[i + 1]]
       }
       stats = [stats[2], stats[4], stats[3], stats[1], stats[0]] # Cambia el orden de las stats para que sea el mismo que en los juegos oficiales en caso de tener el mismo valor.
@@ -1409,7 +1409,7 @@ class PokeBattle_Battler
       @effects[PBEffects::Protosynthesis]=[3, 5, 4, 2, 1][max[1]] # Revierte los cambios de índice para que sea el mismo que en Essentials.
       if self.hasWorkingItem(:BOOSTERENERGY) && !(self.hasWorkingAbility(:PROTOSYNTHESIS) && ([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather)) ||
                                                   self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0))
-        @effects[PBEffects::BoosterEnergy] = true 
+        @effects[PBEffects::BoosterEnergy] = true
         @battle.pbDisplay(_INTL("{1} de {2} aumentó su {3} gracias a {4}!", PBAbilities.getName(self.ability), pbThis, PBStats.getName(@effects[PBEffects::Protosynthesis]), PBItems.getName(self.item)))
         self.pbConsumeItem
       else
@@ -1761,7 +1761,7 @@ class PokeBattle_Battler
     end
     if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT) && self.pokemon.form=0
       self.pokemon.form=1
-      (@battler.pbUpdate(true) rescue nil)
+      (self.pbUpdate(true) rescue nil)
       @battle.scene.pbChangePokemon(self,@pokemon)
       @battle.pbDisplay(_INTL("¡{1} se transformó!",pbThis))
     end
