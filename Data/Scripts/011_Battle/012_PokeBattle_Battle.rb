@@ -1869,17 +1869,18 @@ class PokeBattle_Battle
       :POTION       => 20,
       :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
       :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
-      :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
+      :MAXPOTION    => (battler.totalhp - battler.hp),
       :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
       :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
       :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
       :MOOMOOMILK   => 100,
       :ORANBERRY    => 10,
-      :SITRUSBERRY  => (pokemon.totalhp / 4).floor,
+      :SITRUSBERRY  => (battler.totalhp / 4).floor,
 
       :ENERGYPOWDER  => (USENEWBATTLEMECHANICS) ? 60 : 50,
       :ENERGYROOT    => (USENEWBATTLEMECHANICS) ? 120 : 200
     }
+
 
     pbCommonAnimation("UseItem",battler,nil) rescue nil
     if healing_items.keys.any? { |key| isConst?(item, PBItems, key) }

@@ -10,6 +10,8 @@ end
 
 
 module Input
+
+  #Teclas remapeables con F1
   DOWN  = 2
   LEFT  = 4
   RIGHT = 6
@@ -22,6 +24,8 @@ module Input
   Z     = 16
   L     = 17
   R     = 18
+
+  #Teclas funcionales con MKXP, pero no remapeables
   SHIFT = 21
   CTRL  = 22
   ALT   = 23
@@ -30,6 +34,8 @@ module Input
   F7    = 27
   F8    = 28
   F9    = 29
+
+  #Teclas no remapeables, deben usar un formato distinto para funcionar con $MKXP
   F3    = 30
   F4    = 31
   
@@ -37,11 +43,11 @@ module Input
   USE      = C
   BACK     = B
   ACTION   = A
-  JUMPUP   = X
-  JUMPDOWN = Y
+  JUMPUP   = L
+  JUMPDOWN = R
   SPECIAL  = Z
-  AUX1     = L
-  AUX2     = R
+  AUX1     = X
+  AUX2     = Y
   
   ITEMKEYS      = [Input::F5,Input::F4,Input::F3]
   ITEMKEYSNAMES = [_INTL("F5"),_INTL("F4"),_INTL("F3")]
@@ -96,52 +102,29 @@ module Input
 
   def self.buttonToKey(button)
     case button
-    when Input::DOWN
-      return [0x28] # Down
-    when Input::LEFT
-      return [0x25] # Left
-    when Input::RIGHT
-      return [0x27] # Right
-    when Input::UP
-      return [0x26] # Up
-    when Input::A, Input::ACTION
-      return [0x5A,0x10] # Z, Shift
-    when Input::B, Input::BACK
-      return [0x58,0x1B] # X, ESC 
-    when Input::C, Input::USE
-      return [0x43,0x0D,0x20] # C, ENTER, Space
-    when Input::X, Input::JUMPUP
-      return [0x41] # A
-    when Input::Y, Input::JUMPDOWN
-      return [0x53] # S
-    when Input::Z, Input::SPECIAL
-      return [0x44] # D
-    when Input::L, Input::AUX1
-      return [0x51,0x21] # Q, Page Up
-    when Input::R, Input::AUX2
-      return [0x57,0x22] # W, Page Down
-    when Input::SHIFT
-      return [0x10] # Shift
-    when Input::CTRL
-      return [0x11] # Ctrl
-    when Input::ALT
-      return [0x12] # Alt
-    when Input::F3
-      return [0x72] # F3
-    when Input::F4
-      return [0x73] # F4
-    when Input::F5
-      return [0x74] # F5
-    when Input::F6
-      return [0x75] # F6
-    when Input::F7
-      return [0x76] # F7
-    when Input::F8
-      return [0x77] # F8
-    when Input::F9
-      return [0x78] # F9
-    else
-      return []
+    when Input::DOWN;                return [0x28] # Down
+    when Input::LEFT;                return [0x25] # Left
+    when Input::RIGHT;               return [0x27] # Right
+    when Input::UP;                  return [0x26] # Up
+    when Input::A, Input::ACTION;    return [0x5A,0x10] # Z, Shift
+    when Input::B, Input::BACK;      return [0x58,0x1B] # X, ESC 
+    when Input::C, Input::USE;       return [0x43,0x0D,0x20] # C, ENTER, Space
+    when Input::X, Input::AUX1;      return [0x41] # A
+    when Input::Y, Input::AUX2;      return [0x53] # S
+    when Input::Z, Input::SPECIAL;   return [0x44] # D
+    when Input::L, Input::JUMPUP ;   return [0x51,0x21] # Q, Page Up
+    when Input::R, Input::JUMPDOWN ; return [0x57,0x22] # W, Page Down
+    when Input::SHIFT;               return [0x10] # Shift
+    when Input::CTRL;                return [0x11] # Ctrl
+    when Input::ALT;                 return [0x12] # Alt
+    when Input::F3;                  return [0x72] # F3
+    when Input::F4;                  return [0x73] # F4
+    when Input::F5;                  return [0x74] # F5
+    when Input::F6;                  return [0x75] # F6
+    when Input::F7;                  return [0x76] # F7
+    when Input::F8;                  return [0x77] # F8
+    when Input::F9;                  return [0x78] # F9
+    else; return []
     end
   end
 
