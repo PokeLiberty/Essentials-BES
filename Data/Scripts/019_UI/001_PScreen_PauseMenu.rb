@@ -138,6 +138,35 @@ class PokemonMenu
   end
 end
 
+#Añade la información del safari/captura de bichos.
+class PokemonMenu
+  alias_method :__original_pbShowInfo, :pbShowInfo unless method_defined?(:__original_pbShowInfo)
+
+  def pbShowInfo
+    __original_pbShowInfo
+    if pbInSafari?
+      safari_info = if SAFARISTEPS > 0
+                      _INTL("Pasos: {1}/{2}\nBalls: {3}",pbSafariState.steps,SAFARISTEPS,pbSafariState.ballcount)
+                    else
+                      _INTL("Balls: {1}",pbSafariState.ballcount)
+                    end
+      return @scene.pbShowInfo(safari_info)
+    end
+
+    if pbInBugContest?
+      if pbBugContestState.lastPokemon
+        contest_info = _INTL("Capturado: {1}\nNivel: {2}\nBalls: {3}",
+                             PBSpecies.getName(pbBugContestState.lastPokemon.species),
+                             pbBugContestState.lastPokemon.level,
+                             pbBugContestState.ballcount)
+      else
+        contest_info = _INTL("Capturado: None\nBalls: {1}", pbBugContestState.ballcount)
+      end
+      return @scene.pbShowInfo(contest_info)
+    end
+  end
+end
+
 #===============================================================================
 # Pause menu commands.
 #===============================================================================
