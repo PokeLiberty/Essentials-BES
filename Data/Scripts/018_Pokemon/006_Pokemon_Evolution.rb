@@ -1058,7 +1058,7 @@ def pbMiniCheckEvolution(pokemon,evonib,level,poke)
       return poke if pokemon.level>=level && PBDayNight.isDay?
     end  
   when PBEvolution::Crits # Sirfetch'd
-    return poke if $criticosFarf>=3 && pokemon.form==1
+    return poke if ($criticosFarf && $criticosFarf>=3) && pokemon.form==1
   end
   return -1
 end
