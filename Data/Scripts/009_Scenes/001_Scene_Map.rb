@@ -139,18 +139,15 @@ class Scene_Map
         $game_temp.menu_beep = true
       end
     end
-    #if Input.trigger?(Input::F5)
-    #  unless pbMapInterpreterRunning? || $game_player.moving?
-    #    $PokemonTemp.keyItemCalling = true if $PokemonTemp
-    #  end
-    #end
+
     unless pbMapInterpreterRunning?
       for keyNumber in 0...Input::ITEMKEYS.size
-        if Input.trigger?(Input::ITEMKEYS[keyNumber]) && $PokemonTemp
+        if (!$MKXP ? Input.trigger?(Input::ITEMKEYS[keyNumber]) : Input.triggerex?(Input::ITEMKEYS[keyNumber])) && $PokemonTemp
           $PokemonTemp.keyItemCalling = keyNumber 
         end
       end
     end
+
     if Input.trigger?(Input::A)
       if !pbMapInterpreterRunning? && $PokemonGlobal && $PokemonSystem && $PokemonSystem.runstyle==1
         $PokemonGlobal.runtoggle=!$PokemonGlobal.runtoggle
