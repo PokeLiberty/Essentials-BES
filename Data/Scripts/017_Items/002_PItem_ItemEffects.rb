@@ -1204,6 +1204,46 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH,proc{|item,pokemon,scene|
    next false
 })
 
+ItemHandlers::UseOnPokemon.add(:SERIOUSMINT,proc{|item,pokemon,scene|
+  nat = :SERIOUS
+  nat = :ADAMANT if isConst?(item,PBItems,:ADAMANTMINT)
+  nat = :BOLD    if isConst?(item,PBItems,:BOLDMINT)
+  nat = :BRAVE   if isConst?(item,PBItems,:BRAVEMINT)
+  nat = :CALM    if isConst?(item,PBItems,:CALMMINT)
+  nat = :CAREFUL if isConst?(item,PBItems,:CAREFULMINT)
+  nat = :GENTLE  if isConst?(item,PBItems,:GENTLEMINT)
+  nat = :HASTY   if isConst?(item,PBItems,:HASTYMINT)
+  nat = :IMPISH  if isConst?(item,PBItems,:IMPISHMINT)
+  nat = :JOLLY   if isConst?(item,PBItems,:JOLLYMINT)
+  nat = :LAX     if isConst?(item,PBItems,:LAXMINT)
+  nat = :LONELY  if isConst?(item,PBItems,:LONELYMINT)
+  nat = :MILD    if isConst?(item,PBItems,:MILDMINT)
+  nat = :MODEST  if isConst?(item,PBItems,:MODESTMINT)
+  nat = :NAIVE   if isConst?(item,PBItems,:NAIVEMINT)
+  nat = :NAUGHTY if isConst?(item,PBItems,:NAUGHTYMINT)
+  nat = :BOLD    if isConst?(item,PBItems,:BOLDMINT)
+  nat = :QUIET   if isConst?(item,PBItems,:QUIETMINT)
+  nat = :RASH    if isConst?(item,PBItems,:RASHMINT)
+  nat = :RELAXED if isConst?(item,PBItems,:RELAXEDMINT)
+  nat = :SASSY   if isConst?(item,PBItems,:SASSYMINT)
+  nat = :TIMID   if isConst?(item,PBItems,:TIMIDMINT)
+  
+  if pokemon.nature==(nat)
+    scene.pbDisplay(_INTL("No tendrá ningún efecto."))
+  else
+    pokemon.setNature(nat)
+    pokemon.calcStats
+    scene.pbDisplay(_INTL("{1} se comio la {2}.",pokemon.name,PBItems.getName(item)))
+  end
+
+})
+
+ItemHandlers::UseOnPokemon.copy(:SERIOUSMINT,:ADAMANTMINT,:BOLDMINT,:BRAVEMINT,
+                                :CALMMINT,:CAREFULMINT,:GENTLEMINT,:HASTYMINT,
+                                :IMPISHMINT,:JOLLYMINT,:LAXMINT,:LONELYMINT,:MILDMINT,
+                                :MODESTMINT,:NAIVEMINT,:NAUGHTYMINT,:QUIETMINT,
+                                :RASHMINT,:RELAXEDMINT,:SASSYMINT,:TIMIDMINT)
+
 #===============================================================================
 # BattleUseOnPokemon handlers
 #===============================================================================

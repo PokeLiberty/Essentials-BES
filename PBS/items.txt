@@ -742,3 +742,28 @@
 752,HEARTHFLAMEMASK,Máscara Horno,Máscaras Horno,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Fuego durante las batallas.",0,0,0,
 753,WELLSPRINGMASK,Máscara Fuente,Máscaras Fuente,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Agua durante las batallas.",0,0,0,
 754,CORRNERSTONEMASK,Máscara Cimiento,Máscaras Cimiento,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Roca durante las batallas.",0,0,0,
+
+755,LONELYMINT,Menta Huraña,Mentas Hurañas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Defensa.",1,0,0,
+756,ADANANTMINT,Menta Firme,Mentas Firmes,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Ataque Especial.",1,0,0,
+757,NAUGHTYMINT,Menta Pícara,Mentas Pícaras,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Defensa Especial.",1,0,0,
+758,BRAVEMINT,Menta Audaz,Mentas Audazes,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Velocidad.",1,0,0,
+759,BOLDMINT,Menta Osada,Mentas Osadas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa, en detrimento de su Ataque.",1,0,0,
+760,IMPISHMINT,Menta Agitada,Mentas Agitadas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa, en detrimento de su Ataque Especial.",1,0,0,
+761,LAXMINT,Menta Floja,Mentas Flojas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa, en detrimento de su Defensa Especial.",1,0,0,
+762,RELAXEDMINT,Menta Plácida,Mentas Plácidas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa, en detrimento de su Velocidad.",1,0,0,
+763,MODESTMINT,Menta Modesta,Mentas Modestas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque Especial, en detrimento de su Ataque.",1,0,0,
+764,MILDMINT,Menta Afable,Mentas Afables,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque Especial, en detrimento de su Defensa.",1,0,0,
+765,RASHMINT,Menta Alocada,Mentas Alocadas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque Especial, en detrimento de su Defensa Especial.",1,0,0,
+766,QUIETMINT,Menta Mansa,Menta Mansa,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque Especial, en detrimento de su Velocidad.",1,0,0,
+767,CALMMINT,Menta Serena,Mentas Serenas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa Especial, en detrimento de su Ataque.",1,0,0,
+768,GENTLEMINT,Menta Amable,Mentas Amables,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa Especial, en detrimento de su Defensa.",1,0,0,
+769,CAREFULMINT,Menta Cauta,Mentas Cautas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa Especial, en detrimento de su Ataque Especial.",1,0,0,
+770,SASSYMINT,Menta Grosera,Mentas Groseras,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa Especial, en detrimento de su Velocidad.",1,0,0,
+771,TIMIDMINT,Menta Miedosa,Mentas Miedosas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Ataque.",1,0,0,
+772,HASTYMINT,Menta Activa,Mentas Activas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Defensa.",1,0,0,
+773,JOLLYMINT,Menta Alegre,Mentas Alegres,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Ataque Especial.",1,0,0,
+774,NAIVEMINT,Menta Ingenua,Mentas Ingenuas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Defensa Especial.",1,0,0,
+775,SERIOUSMINT,Mentas Serias,Mentas Serias,2,9800,"Cuando un Pokémon percibe su aroma, su Ataque, su Defensa, su Ataque Especial, su Defensa Especial y su Velocidad crecen de forma uniforme.",1,0,0,
+
+
+
