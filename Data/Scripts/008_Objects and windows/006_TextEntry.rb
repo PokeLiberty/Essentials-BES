@@ -630,7 +630,7 @@ class Window_MultilineTextEntry < SpriteWindow_Base
     elsif Input.repeatex?(13)
       self.insert("\n")
       return
-    elsif Input.repeatex?(8) || Input.repeatex?(0x2E)
+    elsif (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.triggerex?(:BACKSPACE))
       # Backspace
       self.delete
       return
@@ -783,8 +783,10 @@ class Window_TextEntry_Keyboard < Window_TextEntry
       return
     end
     # Backspace
-    if Input.repeatex?(8) || Input.repeatex?(0x2E)
+    if (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.triggerex?(:BACKSPACE))
       self.delete if @helper.cursor > 0
+      return
+    elsif (!$MKXP ? Input.repeatex?(13) : Input.triggerex?(:RETURN))
       return
     end
     if !@toUnicode
@@ -1040,11 +1042,11 @@ class PokemonEntryScene
     loop do
       Graphics.update
       Input.update
-      if Input.triggerex?(0x1B) && @minlength==0
+      if (!$MKXP ? Input.triggerex?(0x1B) : Input.triggerex?(:ESCAPE)) && @minlength==0
         ret=""
         break
       end
-      if Input.triggerex?(13) && @sprites["entry"].text.length>=@minlength
+      if (!$MKXP ? Input.triggerex?(13) : Input.triggerex?(:RETURN)) && @sprites["entry"].text.length>=@minlength
         ret=@sprites["entry"].text
         break
       end
