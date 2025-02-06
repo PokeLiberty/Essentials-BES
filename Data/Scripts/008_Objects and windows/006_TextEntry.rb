@@ -630,7 +630,7 @@ class Window_MultilineTextEntry < SpriteWindow_Base
     elsif Input.repeatex?(13)
       self.insert("\n")
       return
-    elsif (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.triggerex?(:BACKSPACE))
+    elsif if (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.repeatex?(:BACKSPACE))
       # Backspace
       self.delete
       return
@@ -766,27 +766,30 @@ class Window_TextEntry_Keyboard < Window_TextEntry
     self.refresh if ((@frame%10)==0)
     return if !self.active
     # Moving cursor
-    if Input.repeat?(Input::LEFT)
-      if @helper.cursor > 0
-        @helper.cursor-=1
-        @frame=0
-        self.refresh
-      end
-      return
-    end
-    if Input.repeat?(Input::RIGHT)
-      if @helper.cursor < self.text.scan(/./m).length
-        @helper.cursor+=1
-        @frame=0
-        self.refresh
-      end
-      return
-    end
+    # Clara Was Here, "fix" teclado así solo pilla las teclas de flecha, incluso si cambias los controles.
+    if (!$MKXP ? Input.repeat?(0x25) : Input.repeatex?(:LEFT)) || 
+      (!$MKXP ? Input.trigger?(0x25) : Input.triggerex?(:LEFT)) #(Input::LEFT)
+     if @helper.cursor > 0
+       @helper.cursor-=1
+       @frame=0
+       self.refresh
+     end
+     return
+   end
+   if (!$MKXP ? Input.repeat?(0x27) : Input.repeatex?(:RIGHT)) || 
+      (!$MKXP ? Input.trigger?(0x27) : Input.triggerex?(:RIGHT)) #(Input::RIGHT)
+     if @helper.cursor < self.text.scan(/./m).length
+       @helper.cursor+=1
+       @frame=0
+       self.refresh
+     end
+     return
+   end
     # Backspace
-    if (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.triggerex?(:BACKSPACE))
+    if (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.repeatex?(:BACKSPACE))
       self.delete if @helper.cursor > 0
       return
-    elsif (!$MKXP ? Input.repeatex?(13) : Input.triggerex?(:RETURN))
+    elsif (!$MKXP ? Input.repeatex?(13) : Input.repeatex?(:RETURN))
       return
     end
     if !@toUnicode
