@@ -630,7 +630,7 @@ class Window_MultilineTextEntry < SpriteWindow_Base
     elsif Input.repeatex?(13)
       self.insert("\n")
       return
-    elsif if (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.repeatex?(:BACKSPACE))
+    elsif (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.repeatex?(:BACKSPACE))
       # Backspace
       self.delete
       return
