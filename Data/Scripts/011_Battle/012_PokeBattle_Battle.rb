@@ -1865,7 +1865,7 @@ class PokeBattle_Battle
     pbDisplayBrief(_INTL("¡{1} ha usado<br>{2}!", opponent.fullname, itemname))
     PBDebug.log("[Objeto usado] El rival ha usado #{itemname} en #{battler.pbThis(true)}")
   
-    heal_map = {
+    healing_items = {
       :POTION       => 20,
       :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
       :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
