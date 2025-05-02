@@ -826,7 +826,7 @@ class PokeBattle_Move
       damagemult=(damagemult*1.5).round
     end
     if attacker.hasWorkingAbility(:TRANSISTOR) && isConst?(type,PBTypes,:ELECTRIC)
-      damagemult=(damagemult*1.5).round
+      damagemult=(damagemult*1.3).round
     end
     if attacker.hasWorkingAbility(:DRAGONSMAW) && isConst?(type,PBTypes,:DRAGON)
       damagemult=(damagemult*1.5).round

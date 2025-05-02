@@ -121,15 +121,15 @@ def pbThrowPokeBall(idxPokemon,ball,rareness=nil,showplayer=false,safari=false,f
     @scene.pbThrowAndDeflect(ball,1)
     pbDisplay(_INTL("¡El entrenador ha bloqueado la Poké Ball!<br>¡No seas un ladrón!"))
     ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-  elsif $game_switches[NO_CAPTURE_SWITCH] || @rules["disablePokeBalls"]
+  elsif $game_switches[NO_CAPTURE_SWITCH] || (@rules && @rules["disablePokeBalls"])
    @scene.pbThrowAndDeflect(ball,1)
    pbDisplay(_INTL("No puedes capturar a este Pokémon."))
   else
     pokemon=battler.pokemon
     species=pokemon.species
-    if $DEBUG && Input.press?(Input::CTRL) || @rules["alwaysCapture"]
+    if $DEBUG && Input.press?(Input::CTRL) || (@rules && @rules["alwaysCapture"])
       shakes=4
-    elsif @rules["neverCapture"]
+    elsif (@rules && @rules["neverCapture"])
       shakes=0
     else
       if !rareness
