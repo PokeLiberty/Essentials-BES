@@ -6187,38 +6187,43 @@ class PokeBattle_Move_0CE < PokeBattle_Move
     return true
   end
 
-  def pbMoveFailed(attacker,opponent)
-    ret=false
-    ret=true if opponent.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(attacker)
-    ret=true if opponent.effects[PBEffects::TwoTurnAttack]>0
-    ret=true if opponent.effects[PBEffects::SkyDrop] && attacker.effects[PBEffects::TwoTurnAttack]>0
-    ret=true if !opponent.pbIsOpposing?(attacker.index)
-    ret=true if USENEWBATTLEMECHANICS && opponent.weight(attacker)>=2000
+  def pbMoveFailed(attacker, opponent)
+    ret = false
+    ret = true if opponent.effects[PBEffects::Substitute] > 0 && !ignoresSubstitute?(attacker)
+    ret = true if opponent.effects[PBEffects::TwoTurnAttack] > 0
+    ret = true if opponent.effects[PBEffects::SkyDrop] && attacker.effects[PBEffects::TwoTurnAttack] > 0
+    ret = true if !opponent.pbIsOpposing?(attacker.index)
+    ret = true if USENEWBATTLEMECHANICS && opponent.weight(attacker) >= 2000
     return ret
   end
 
   def pbTwoTurnAttack(attacker)
-    return attacker.effects[PBEffects::TwoTurnAttack]==0
+    return attacker.effects[PBEffects::TwoTurnAttack] == 0
   end
 
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if attacker.effects[PBEffects::TwoTurnAttack]>0
-      pbShowAnimation(@id,attacker,opponent,1,alltargets,showanimation) # Charging anim
-      @battle.pbDisplay(_INTL("¡{1} se ha llevado al {2} por los aires!",attacker.pbThis,opponent.pbThis(true)))
-      @battle.scene.pbVanishSprite(attacker)
-      opponent.effects[PBEffects::SkyDrop]=true
+  def pbEffect(attacker, opponent, hitnum = 0, alltargets = nil, showanimation = true)
+    # Primera fase: preparación del ataque
+    if attacker.effects[PBEffects::TwoTurnAttack] == 0
+      pbShowAnimation(@id, attacker, opponent, 1, alltargets, showanimation) # Charging anim
+      @battle.pbDisplay(_INTL("¡{1} se ha llevado al {2} por los aires!", attacker.pbThis, opponent.pbThis(true)))
+      @battle.scene.pbVanishSprite(opponent)
+      opponent.effects[PBEffects::SkyDrop] = true
+      attacker.effects[PBEffects::TwoTurnAttack] = @id
+      return 0
     end
-    return 0 if attacker.effects[PBEffects::TwoTurnAttack]>0
-    ret=super
-    @battle.pbDisplay(_INTL("El {1} se ha liberado de Caída Libre!",opponent.pbThis))
-    opponent.effects[PBEffects::SkyDrop]=false
+    # Segunda fase: ejecución del ataque
+    ret = super(attacker, opponent, hitnum, alltargets, showanimation)
+    # Limpiar efectos después del ataque
+    @battle.pbDisplay(_INTL("¡El {1} se ha liberado de Caída Libre!", opponent.pbThis))
+    opponent.effects[PBEffects::SkyDrop] = false
+    attacker.effects[PBEffects::TwoTurnAttack] = 0
     return ret
   end
 
-  def pbTypeModifier(type,attacker,opponent)
+  def pbTypeModifier(type, attacker, opponent)
     return 0 if opponent.pbHasType?(:FLYING)
     return 0 if !attacker.hasMoldBreaker &&
-       opponent.hasWorkingAbility(:LEVITATE) && !opponent.effects[PBEffects::SmackDown]
+                opponent.hasWorkingAbility(:LEVITATE) && !opponent.effects[PBEffects::SmackDown]
     return super
   end
 end
@@ -7510,7 +7515,7 @@ class PokeBattle_Move_0F7 < PokeBattle_Move
              :FOCUSSASH, :FULLINCENSE, :GREENSCARF, :LAGGINGTAIL, :LAXINCENSE,
              :LEFTOVERS, :LUCKINCENSE, :MENTALHERB, :METALPOWDER, :MUSCLEBAND,
              :ODDINCENSE, :PINKSCARF, :POWERHERB, :PUREINCENSE, :QUICKPOWDER,
-             :REAPERCLOAK, :REDCARD, :REDSCARF, :RINGTARGET, :ROCKINCENSE,
+             :REAPERCLOTH, :REDCARD, :REDSCARF, :RINGTARGET, :ROCKINCENSE,
              :ROSEINCENSE, :SEAINCENSE, :SHEDSHELL, :SILKSCARF, :SILVERPOWDER,
              :SMOOTHROCK, :SOFTSAND, :SOOTHEBELL, :WAVEINCENSE, :WHITEHERB,
              :WIDELENS, :WISEGLASSES, :YELLOWSCARF, :ZOOMLENS, :ELECTRICSEED,
