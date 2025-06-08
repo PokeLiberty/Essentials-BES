@@ -7444,199 +7444,213 @@ end
 # Lanzamiento / Fling
 ################################################################################
 class PokeBattle_Move_0F7 < PokeBattle_Move
+  # Optimized fling array with better organization and Ruby 1.8.7 compatibility
   def flingarray
-    return {
-       130 => [:IRONBALL],
-       100 => [:ARMORFOSSIL,:CLAWFOSSIL,:COVERFOSSIL,:DOMEFOSSIL,:HARDSTONE,
-               :HELIXFOSSIL,:JAWFOSSIL,:OLDAMBER,:PLUMEFOSSIL,:RAREBONE,
-               :ROOTFOSSIL,:SAILFOSSIL,:SKULLFOSSIL],
-        90 => [:DEEPSEATOOTH,:DRACOPLATE,:DREADPLATE,:EARTHPLATE,:FISTPLATE,
-               :FLAMEPLATE,:GRIPCLAW,:ICICLEPLATE,:INSECTPLATE,:IRONPLATE,
-               :MEADOWPLATE,:MINDPLATE,:PIXIEPLATE,:SKYPLATE,:SPLASHPLATE,
-               :SPOOKYPLATE,:STONEPLATE,:THICKCLUB,:TOXICPLATE,:ZAPPLATE],
-        80 => [:ASSAULTVEST,:BLUNDERPOLICY,:CRACKEDPOT,:DAWNSTONE,:DUSKSTONE,
-               :EJECTPACK,:ELECTIRIZER,:MAGMARIZER,:ODDKEYSTONE,:OVALSTONE,
-               :PROTECTOR,:QUICKCLAW,:RAZORCLAW,:ROOMSERVICE,:SAFETYGOGGLES,
-               :SHINYSTONE,:STICKYBARB,:UTILITYUMBRELLA,:WEAKNESSPOLICY,
-               :MALICIOUSARMOR,:AUSPICIOUSARMOR,:LEADERSCREST],
-        70 => [:BURNDRIVE,:CHILLDRIVE,:DOUSEDRIVE,:DRAGONFANG,:POISONBARB,
-               :POWERANKLET,:POWERBAND,:POWERBELT,:POWERBRACER,:POWERLENS,
-               :POWERWEIGHT,:SHOCKDRIVE],
-        60 => [:ADAMANTORB,:DAMPROCK,:GRISEOUSORB,:HEATROCK,:LUSTROUSORB,
-               :MACHOBRACE,:ROCKYHELMET,:STICK,:BLACKAUGURITE,:PEATBLOCK],
-        50 => [:DUBIOUSDISC,:SHARPBEAK],
-        40 => [:EVIOLITE,:ICYROCK,:LUCKYPUNCH],
-        30 => [:ABILITYCAPSULE,:ABILITYURGE,:ABSORBBULB,:AMAZEMULCH,:AMULETCOIN,
-               :ANTIDOTE,:AWAKENING,:BALMMUSHROOM,:BERRYJUICE,:BIGMUSHROOM,
-               :BIGNUGGET,:BIGPEARL,:BINDINGBAND,:BLACKBELT,:BLACKFLUTE,
-               :BLACKGLASSES,:BLACKSLUDGE,:BLUEFLUTE,:BLUESHARD,:BOOSTMULCH,
-               :BURNHEAL,:CALCIUM,:CARBOS,:CASTELIACONE,:CELLBATTERY,
-               :CHARCOAL,:CLEANSETAG,:COMETSHARD,:DAMPMULCH,:DEEPSEASCALE,
-               :DIREHIT,:DIREHIT2,:DIREHIT3,:DRAGONSCALE,:EJECTBUTTON,
-               :ELIXIR,:ENERGYPOWDER,:ENERGYROOT,:ESCAPEROPE,:ETHER,
-               :EVERSTONE,:EXPSHARE,:FIRESTONE,:FLAMEORB,:FLOATSTONE,
-               :FLUFFYTAIL,:FRESHWATER,:FULLHEAL,:FULLRESTORE,:GALARICACUFF,
-               :GALARICAWREATH,:GOOEYMULCH,:GREENSHARD,:GROWTHMULCH,:GUARDSPEC,
-               :HEALPOWDER,:HEARTSCALE,
-               :HEAVYDUTYBOOTS,:HONEY,:HPUP,:HYPERPOTION,:ICEHEAL,:ICESTONE,
-               :IRON,:ITEMDROP,:ITEMURGE,:KINGSROCK,:LAVACOOKIE,:LEAFSTONE,
-               :LEMONADE,:LIFEORB,:LIGHTBALL,:LIGHTCLAY,:LUCKYEGG,
-               :LUMINOUSMOSS,:LUMIOSEGALETTE,:MAGNET,:MAXELIXIR,:MAXETHER,
-               :MAXPOTION,:MAXREPEL,:MAXREVIVE,:METALCOAT,:METRONOME,
-               :MIRACLESEED,:MOOMOOMILK,:MOONSTONE,:MYSTICWATER,:NEVERMELTICE,
-               :NUGGET,:OLDGATEAU,:PARALYZEHEAL,:PARLYZHEAL,:PASSORB,
-               :PEARL,:PEARLSTRING,:POKEDOLL,:POKETOY,:POTENCIATOR,:POTION,
-               :PPMAX,:PPUP,:PRISMSCALE,:PROTEIN,:RAGECANDYBAR,
-               :RARECANDY,:RAZORFANG,:REDFLUTE,:REDSHARD,:RELICBAND,
-               :RELICCOPPER,:RELICCROWN,:RELICGOLD,:RELICSILVER,:RELICSTATUE,
-               :RELICVASE,:REPEL,:RESETURGE,:REVIVALHERB,:REVIVE,
-               :RICHMULCH,:SACHET,:SACREDASH,:SCOPELENS,:SHALOURSABLE,
-               :SHELLBELL,:SHOALSALT,:SHOALSHELL,:SMOKEBALL,:SNOWBALL,
-               :SODAPOP,:SOULDEW,:SPELLTAG,:STABLEMULCH,:STARDUST,
-               :STARPIECE,:SUNSTONE,:SUPERPOTION,:SUPERREPEL,:SURPRISEMULCH,
-               :SWEETAPPLE,:SWEETHEART,:TARTAPPLE,
-               :THUNDERSTONE,:TINYMUSHROOM,:TOXICORB,:TWISTEDSPOON,:UPGRADE,
-               :WATERSTONE,:WHIPPEDDREAM,:WHITEFLUTE,:XACCURACY,
-               :XACCURACY2,:XACCURACY3,:XACCURACY6,:XATTACK,:XATTACK2,
-               :XATTACK3,:XATTACK6,:XDEFEND,:XDEFEND2,:XDEFEND3,
-               :XDEFEND6,:XDEFENSE,:XDEFENSE2,:XDEFENSE3,:XDEFENSE6,
-               :XSPDEF,:XSPDEF2,:XSPDEF3,:XSPDEF6,:XSPATK,
-               :XSPATK2,:XSPATK3,:XSPATK6,:XSPECIAL,:XSPECIAL2,
-               :XSPECIAL3,:XSPECIAL6,:XSPEED,:XSPEED2,:XSPEED3,
-               :XSPEED6,:YELLOWFLUTE,:YELLOWSHARD,:ZINC],
-        20 => [:CLEVERWING,:GENIUSWING,:HEALTHWING,:MUSCLEWING,:PRETTYWING,
-               :RESISTWING,:SWIFTWING],
-        10 => [:AIRBALLOON,:BIGROOT,:BLUESCARF,:BRIGHTPOWDER,:CHOICEBAND,
-               :CHOICESCARF,:CHOICESPECS,:DESTINYKNOT,:EXPERTBELT,:FOCUSBAND,
-               :FOCUSSASH,:FULLINCENSE,:GREENSCARF,:LAGGINGTAIL,:LAXINCENSE,
-               :LEFTOVERS,:LUCKINCENSE,:MENTALHERB,:METALPOWDER,:MUSCLEBAND,
-               :ODDINCENSE,:PINKSCARF,:POWERHERB,:PUREINCENSE,:QUICKPOWDER,
-               :REAPERCLOTH,:REDCARD,:REDSCARF,:RINGTARGET,:ROCKINCENSE,
-               :ROSEINCENSE,:SEAINCENSE,:SHEDSHELL,:SILKSCARF,:SILVERPOWDER,
-               :SMOOTHROCK,:SOFTSAND,:SOOTHEBELL,:WAVEINCENSE,:WHITEHERB,
-               :WIDELENS,:WISEGLASSES,:YELLOWSCARF,:ZOOMLENS,:ELECTRICSEED,
-               :GRASSYSEED,:MISTYSEED,:PSYCHICSEED]
+    @flingarray ||= {
+      130 => [:IRONBALL],
+      100 => [:ARMORFOSSIL, :CLAWFOSSIL, :COVERFOSSIL, :DOMEFOSSIL, :HARDSTONE,
+              :HELIXFOSSIL, :JAWFOSSIL, :OLDAMBER, :PLUMEFOSSIL, :RAREBONE,
+              :ROOTFOSSIL, :SAILFOSSIL, :SKULLFOSSIL],
+      90 => [:DEEPSEATOOTH, :DRACOPLATE, :DREADPLATE, :EARTHPLATE, :FISTPLATE,
+             :FLAMEPLATE, :GRIPCLAW, :ICICLEPLATE, :INSECTPLATE, :IRONPLATE,
+             :MEADOWPLATE, :MINDPLATE, :PIXIEPLATE, :SKYPLATE, :SPLASHPLATE,
+             :SPOOKYPLATE, :STONEPLATE, :THICKCLUB, :TOXICPLATE, :ZAPPLATE],
+      80 => [:ASSAULTVEST, :BLUNDERPOLICY, :CRACKEDPOT, :DAWNSTONE, :DUSKSTONE,
+             :EJECTPACK, :ELECTIRIZER, :MAGMARIZER, :ODDKEYSTONE, :OVALSTONE,
+             :PROTECTOR, :QUICKCLAW, :RAZORCLAW, :ROOMSERVICE, :SAFETYGOGGLES,
+             :SHINYSTONE, :STICKYBARB, :UTILITYUMBRELLA, :WEAKNESSPOLICY,
+             :MALICIOUSARMOR, :AUSPICIOUSARMOR, :LEADERSCREST],
+      70 => [:BURNDRIVE, :CHILLDRIVE, :DOUSEDRIVE, :DRAGONFANG, :POISONBARB,
+             :POWERANKLET, :POWERBAND, :POWERBELT, :POWERBRACER, :POWERLENS,
+             :POWERWEIGHT, :SHOCKDRIVE],
+      60 => [:ADAMANTORB, :DAMPROCK, :GRISEOUSORB, :HEATROCK, :LUSTROUSORB,
+             :MACHOBRACE, :ROCKYHELMET, :STICK, :BLACKAUGURITE, :PEATBLOCK],
+      50 => [:DUBIOUSDISC, :SHARPBEAK],
+      40 => [:EVIOLITE, :ICYROCK, :LUCKYPUNCH],
+      30 => [:ABILITYCAPSULE, :ABILITYURGE, :ABSORBBULB, :AMAZEMULCH, :AMULETCOIN,
+             :ANTIDOTE, :AWAKENING, :BALMMUSHROOM, :BERRYJUICE, :BIGMUSHROOM,
+             :BIGNUGGET, :BIGPEARL, :BINDINGBAND, :BLACKBELT, :BLACKFLUTE,
+             :BLACKGLASSES, :BLACKSLUDGE, :BLUEFLUTE, :BLUESHARD, :BOOSTMULCH,
+             :BURNHEAL, :CALCIUM, :CARBOS, :CASTELIACONE, :CELLBATTERY,
+             :CHARCOAL, :CLEANSETAG, :COMETSHARD, :DAMPMULCH, :DEEPSEASCALE,
+             :DIREHIT, :DIREHIT2, :DIREHIT3, :DRAGONSCALE, :EJECTBUTTON,
+             :ELIXIR, :ENERGYPOWDER, :ENERGYROOT, :ESCAPEROPE, :ETHER,
+             :EVERSTONE, :EXPSHARE, :FIRESTONE, :FLAMEORB, :FLOATSTONE,
+             :FLUFFYTAIL, :FRESHWATER, :FULLHEAL, :FULLRESTORE, :GALARICACUFF,
+             :GALARICAWREATH, :GOOEYMULCH, :GREENSHARD, :GROWTHMULCH, :GUARDSPEC,
+             :HEALPOWDER, :HEARTSCALE, :HEAVYDUTYBOOTS, :HONEY, :HPUP, 
+             :HYPERPOTION, :ICEHEAL, :ICESTONE, :IRON, :ITEMDROP, :ITEMURGE, 
+             :KINGSROCK, :LAVACOOKIE, :LEAFSTONE, :LEMONADE, :LIFEORB, 
+             :LIGHTBALL, :LIGHTCLAY, :LUCKYEGG, :LUMINOUSMOSS, :LUMIOSEGALETTE, 
+             :MAGNET, :MAXELIXIR, :MAXETHER, :MAXPOTION, :MAXREPEL, :MAXREVIVE, 
+             :METALCOAT, :METRONOME, :MIRACLESEED, :MOOMOOMILK, :MOONSTONE, 
+             :MYSTICWATER, :NEVERMELTICE, :NUGGET, :OLDGATEAU, :PARALYZEHEAL, 
+             :PARLYZHEAL, :PASSORB, :PEARL, :PEARLSTRING, :POKEDOLL, :POKETOY, 
+             :POTENCIATOR, :POTION, :PPMAX, :PPUP, :PRISMSCALE, :PROTEIN, 
+             :RAGECANDYBAR, :RARECANDY, :RAZORFANG, :REDFLUTE, :REDSHARD, 
+             :RELICBAND, :RELICCOPPER, :RELICCROWN, :RELICGOLD, :RELICSILVER, 
+             :RELICSTATUE, :RELICVASE, :REPEL, :RESETURGE, :REVIVALHERB, 
+             :REVIVE, :RICHMULCH, :SACHET, :SACREDASH, :SCOPELENS, 
+             :SHALOURSABLE, :SHELLBELL, :SHOALSALT, :SHOALSHELL, :SMOKEBALL, 
+             :SNOWBALL, :SODAPOP, :SOULDEW, :SPELLTAG, :STABLEMULCH, 
+             :STARDUST, :STARPIECE, :SUNSTONE, :SUPERPOTION, :SUPERREPEL, 
+             :SURPRISEMULCH, :SWEETAPPLE, :SWEETHEART, :TARTAPPLE,
+             :THUNDERSTONE, :TINYMUSHROOM, :TOXICORB, :TWISTEDSPOON, :UPGRADE,
+             :WATERSTONE, :WHIPPEDDREAM, :WHITEFLUTE, :XACCURACY, :XACCURACY2, 
+             :XACCURACY3, :XACCURACY6, :XATTACK, :XATTACK2, :XATTACK3, 
+             :XATTACK6, :XDEFEND, :XDEFEND2, :XDEFEND3, :XDEFEND6, :XDEFENSE, 
+             :XDEFENSE2, :XDEFENSE3, :XDEFENSE6, :XSPDEF, :XSPDEF2, :XSPDEF3, 
+             :XSPDEF6, :XSPATK, :XSPATK2, :XSPATK3, :XSPATK6, :XSPECIAL, 
+             :XSPECIAL2, :XSPECIAL3, :XSPECIAL6, :XSPEED, :XSPEED2, :XSPEED3,
+             :XSPEED6, :YELLOWFLUTE, :YELLOWSHARD, :ZINC],
+      20 => [:CLEVERWING, :GENIUSWING, :HEALTHWING, :MUSCLEWING, :PRETTYWING,
+             :RESISTWING, :SWIFTWING],
+      10 => [:AIRBALLOON, :BIGROOT, :BLUESCARF, :BRIGHTPOWDER, :CHOICEBAND,
+             :CHOICESCARF, :CHOICESPECS, :DESTINYKNOT, :EXPERTBELT, :FOCUSBAND,
+             :FOCUSSASH, :FULLINCENSE, :GREENSCARF, :LAGGINGTAIL, :LAXINCENSE,
+             :LEFTOVERS, :LUCKINCENSE, :MENTALHERB, :METALPOWDER, :MUSCLEBAND,
+             :ODDINCENSE, :PINKSCARF, :POWERHERB, :PUREINCENSE, :QUICKPOWDER,
+             :REAPERCLOAK, :REDCARD, :REDSCARF, :RINGTARGET, :ROCKINCENSE,
+             :ROSEINCENSE, :SEAINCENSE, :SHEDSHELL, :SILKSCARF, :SILVERPOWDER,
+             :SMOOTHROCK, :SOFTSAND, :SOOTHEBELL, :WAVEINCENSE, :WHITEHERB,
+             :WIDELENS, :WISEGLASSES, :YELLOWSCARF, :ZOOMLENS, :ELECTRICSEED,
+             :GRASSYSEED, :MISTYSEED, :PSYCHICSEED]
     }
   end
-
-  def pbMoveFailed(attacker,opponent)
-    return true if attacker.item==0 ||
-                   @battle.pbIsUnlosableItem(attacker,attacker.item) ||
+  
+  # Check if move can be used
+  def pbMoveFailed(attacker, opponent)
+    # Check basic failure conditions
+    return true if attacker.item == 0 ||
+                   @battle.pbIsUnlosableItem(attacker, attacker.item) ||
                    pbIsPokeBall?(attacker.item) ||
-                   @battle.field.effects[PBEffects::MagicRoom]>0 ||
+                   @battle.field.effects[PBEffects::MagicRoom] > 0 ||
                    attacker.hasWorkingAbility(:KLUTZ) ||
-                   attacker.effects[PBEffects::Embargo]>0
-    for i in flingarray.keys
-      if flingarray[i]
-        for j in flingarray[i]
-          return false if isConst?(attacker.item,PBItems,j)
-        end
+                   attacker.effects[PBEffects::Embargo] > 0
+
+    # Check if item is flingable
+    return false if getFlingPower(attacker.item) > 1
+    # Check berry conditions with proper Unnerve handling
+    if pbIsBerry?(attacker.item)
+      opponents = []
+      opponents.push(attacker.pbOpposing1) if attacker.pbOpposing1
+      opponents.push(attacker.pbOpposing2) if attacker.pbOpposing2
+      
+      unnerve_active = opponents.any? do |opp|
+        opp && (opp.hasWorkingAbility(:UNNERVE) ||
+                opp.hasWorkingAbility(:ASONE1) ||
+                opp.hasWorkingAbility(:ASONE2))
       end
+      
+      return !unnerve_active
     end
-    return false if pbIsBerry?(attacker.item) &&
-                    !attacker.pbOpposing1.hasWorkingAbility(:UNNERVE) &&
-                    !attacker.pbOpposing2.hasWorkingAbility(:UNNERVE) &&
-                    !attacker.pbOpposing1.hasWorkingAbility(:ASONE1) &&
-                    !attacker.pbOpposing2.hasWorkingAbility(:ASONE1) &&
-                    !attacker.pbOpposing1.hasWorkingAbility(:ASONE2) &&
-                    !attacker.pbOpposing2.hasWorkingAbility(:ASONE2)
     return true
   end
-
-  def pbBaseDamage(basedmg,attacker,opponent)
-    return 10 if pbIsBerry?(attacker.item)
-    return 80 if pbIsMegaStone?(attacker.item)
-    for i in flingarray.keys
-      if flingarray[i]
-        for j in flingarray[i]
-          return i if isConst?(attacker.item,PBItems,j)
-        end
-      end
+    
+  def pbBaseDamage(basedmg, attacker, opponent)
+    getFlingPower(attacker.item)
+  end
+  
+  def getFlingPower(item)
+    return 10 if pbIsBerry?(item)
+    return 80 if pbIsMegaStone?(item)
+    flingarray.each do |power, items|
+      return power if items.any? { |i| isConst?(item, PBItems, i) }
     end
     return 1
   end
-
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if attacker.item==0
+  
+  # Main effect method
+  def pbEffect(attacker, opponent, hitnum = 0, alltargets = nil, showanimation = true)
+    if attacker.item == 0
       @battle.pbDisplay(_INTL("¡Pero falló!"))
       return 0
     end
-    attacker.effects[PBEffects::Unburden]=true
-    @battle.pbDisplay(_INTL("¡{1} lanzó {2}!",attacker.pbThis,PBItems.getName(attacker.item)))
-    ret=super(attacker,opponent,hitnum,alltargets,showanimation)
-    if opponent.damagestate.calcdamage>0 && !opponent.damagestate.substitute &&
+    thrownItem = attacker.item
+    attacker.effects[PBEffects::Unburden] = true
+    @battle.pbDisplay(_INTL("¡{1} lanzó {2}!", attacker.pbThis, PBItems.getName(thrownItem)))
+    ret = super(attacker, opponent, hitnum, alltargets, showanimation)
+    # Apply additional effects if damage was dealt
+    if opponent.damagestate.calcdamage > 0 && 
+       !opponent.damagestate.substitute &&
        !opponent.hasWorkingItem(:COVERTCLOAK) &&
        (attacker.hasMoldBreaker || !opponent.hasWorkingAbility(:SHIELDDUST))
-      if pbIsBerry?(@item)
-        opponent.pbActivateBerryEffect(attacker.item,false)
-      elsif attacker.hasWorkingItem(:FLAMEORB)
-        if opponent.pbCanBurn?(attacker,false,self)
-          opponent.pbBurn(attacker)
-        end
-      elsif attacker.hasWorkingItem(:KINGSROCK) ||
-            attacker.hasWorkingItem(:RAZORFANG)
-        opponent.pbFlinch(attacker)
-      elsif attacker.hasWorkingItem(:LIGHTBALL)
-        if opponent.pbCanParalyze?(attacker,false,self)
-          opponent.pbParalyze(attacker)
-        end
-      elsif attacker.hasWorkingItem(:MENTALHERB)
-        if opponent.effects[PBEffects::Attract]>=0
-          opponent.pbCureAttract
-          @battle.pbDisplay(_INTL("¡{1} dejó de estar enamorado!",opponent.pbThis))
-        end
-        if opponent.effects[PBEffects::Taunt]>0
-          opponent.effects[PBEffects::Taunt]=0
-          @battle.pbDisplay(_INTL("¡La Mofa de {1} se terminó!",opponent.pbThis))
-        end
-        if opponent.effects[PBEffects::Encore]>0
-          opponent.effects[PBEffects::Encore]=0
-          opponent.effects[PBEffects::EncoreMove]=0
-          opponent.effects[PBEffects::EncoreIndex]=0
-          @battle.pbDisplay(_INTL("¡Los efectos de Otra Vez de {1} se terminaron!",opponent.pbThis))
-        end
-        if opponent.effects[PBEffects::Torment]
-          opponent.effects[PBEffects::Torment]=false
-          @battle.pbDisplay(_INTL("¡Los efectos de Tormento de {1} se terminaron!",opponent.pbThis))
-        end
-        if opponent.effects[PBEffects::Disable]>0
-          opponent.effects[PBEffects::Disable]=0
-          @battle.pbDisplay(_INTL("¡{1} ya no está desactivado!",opponent.pbThis))
-        end
-        if opponent.effects[PBEffects::HealBlock]>0
-          opponent.effects[PBEffects::HealBlock]=0
-          @battle.pbDisplay(_INTL("¡Los efectos de Anticura de {1} se terminaron!",opponent.pbThis))
-        end
-      elsif attacker.hasWorkingItem(:POISONBARB)
-        if opponent.pbCanPoison?(attacker,false,self)
-          opponent.pbPoison(attacker)
-        end
-      elsif attacker.hasWorkingItem(:TOXICORB)
-        if opponent.pbCanPoison?(attacker,false,self)
-          opponent.pbPoison(attacker,nil,true)
-        end
-      elsif attacker.hasWorkingItem(:WHITEHERB)
-        while true
-          reducedstats=false
-          for i in [PBStats::ATTACK,PBStats::DEFENSE,
-                    PBStats::SPEED,PBStats::SPATK,PBStats::SPDEF,
-                    PBStats::EVASION,PBStats::ACCURACY]
-            if opponent.stages[i]<0
-              opponent.stages[i]=0; reducedstats=true
-            end
-          end
-          break if !reducedstats
-          @battle.pbDisplay(_INTL("¡El estado de {1} volvió a la normalidad!",
-             opponent.pbThis(true)))
-        end
-      end
+      
+      applyThrownItemEffect(attacker, opponent, thrownItem)
     end
+    # Consume the item
     attacker.pbConsumeItem
     return ret
   end
+  
+  # Apply thrown item effects
+  def applyThrownItemEffect(attacker, opponent, item)
+    if pbIsBerry?(item)
+      opponent.pbActivateBerryEffect(item, false)
+    elsif isConst?(item, PBItems, :FLAMEORB)
+      opponent.pbBurn(attacker) if opponent.pbCanBurn?(attacker, false, self)
+    elsif isConst?(item, PBItems, :KINGSROCK) || isConst?(item, PBItems, :RAZORFANG)
+      opponent.pbFlinch(attacker)
+    elsif isConst?(item, PBItems, :LIGHTBALL)
+      opponent.pbParalyze(attacker) if opponent.pbCanParalyze?(attacker, false, self)
+    elsif isConst?(item, PBItems, :MENTALHERB)
+      applyMentalHerbEffects(opponent)
+    elsif isConst?(item, PBItems, :POISONBARB)
+      opponent.pbPoison(attacker) if opponent.pbCanPoison?(attacker, false, self)
+    elsif isConst?(item, PBItems, :TOXICORB)
+      opponent.pbPoison(attacker, nil, true) if opponent.pbCanPoison?(attacker, false, self)
+    elsif isConst?(item, PBItems, :WHITEHERB)
+      applyWhiteHerbEffects(opponent)
+    end
+  end
+
+  # Apply Mental Herb effects
+  def applyMentalHerbEffects(pokemon)
+    effects_cured = []
+    if pokemon.effects[PBEffects::Attract] >= 0
+      pokemon.pbCureAttract
+      effects_cured << _INTL("¡{1} dejó de estar enamorado!", pokemon.pbThis)
+    end
+    if pokemon.effects[PBEffects::Taunt] > 0
+      pokemon.effects[PBEffects::Taunt] = 0
+      effects_cured << _INTL("¡La Mofa de {1} se terminó!", pokemon.pbThis)
+    end
+    if pokemon.effects[PBEffects::Encore] > 0
+      pokemon.effects[PBEffects::Encore] = 0
+      pokemon.effects[PBEffects::EncoreMove] = 0
+      pokemon.effects[PBEffects::EncoreIndex] = 0
+      effects_cured << _INTL("¡Los efectos de Otra Vez de {1} se terminaron!", pokemon.pbThis)
+    end
+    if pokemon.effects[PBEffects::Torment]
+      pokemon.effects[PBEffects::Torment] = false
+      effects_cured << _INTL("¡Los efectos de Tormento de {1} se terminaron!", pokemon.pbThis)
+    end
+    if pokemon.effects[PBEffects::Disable] > 0
+      pokemon.effects[PBEffects::Disable] = 0
+      effects_cured << _INTL("¡{1} ya no está desactivado!", pokemon.pbThis)
+    end
+    if pokemon.effects[PBEffects::HealBlock] > 0
+      pokemon.effects[PBEffects::HealBlock] = 0
+      effects_cured << _INTL("¡Los efectos de Anticura de {1} se terminaron!", pokemon.pbThis)
+    end
+    # Display all cured effects
+    effects_cured.each { |msg| @battle.pbDisplay(msg) }
+  end
+  # Apply White Herb effects
+  def applyWhiteHerbEffects(pokemon)
+    stats_restored = false
+    [PBStats::ATTACK, PBStats::DEFENSE, PBStats::SPEED, 
+     PBStats::SPATK, PBStats::SPDEF, PBStats::EVASION, PBStats::ACCURACY].each do |stat|
+      if pokemon.stages[stat] < 0
+        pokemon.stages[stat] = 0
+        stats_restored = true
+      end
+    end
+    if stats_restored
+      @battle.pbDisplay(_INTL("¡El estado de {1} volvió a la normalidad!", pokemon.pbThis(true)))
+    end
+  end
 end
-
-
 
 ################################################################################
 # Durante 5 rondas, el objetivo no puede usar el objeto que lleva, el objeto
