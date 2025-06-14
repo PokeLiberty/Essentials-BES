@@ -1298,7 +1298,7 @@ class PokemonStorageScene
         @storage.currentBox = nextbox
         pbUpdateOverlay(selection)
         pbSetMosaic(selection)
-      elsif Input.trigger?(Input::F5)   # Jump to box name
+      elsif (!$MKXP ? Input.trigger?(Input::F5) : Input.triggerex?(Input::F5)) # Jump to box name
         if selection!=-1
           pbPlayCursorSE
           selection = -1

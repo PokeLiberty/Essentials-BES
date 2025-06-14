@@ -1598,7 +1598,7 @@ class PokemonEntryScene2
       elsif Input.trigger?(Input::A)
         @cursorpos=OK
         @sprites["cursor"].setCursorPos(@cursorpos)
-      elsif Input.trigger?(Input::F5)
+      elsif (!$MKXP ? Input.trigger?(Input::F5) : Input.triggerex?(Input::F5))
         pbChangeTab
       end
     end
