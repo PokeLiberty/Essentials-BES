@@ -12,10 +12,12 @@
 module PokeBattle_BattleCommon
   def pbStorePokemon(pokemon)
     if !(pokemon.isShadow? rescue false)
-      if pbDisplayConfirm(_INTL("¿Quieres ponerle un mote a {1}?",pokemon.name))
-        species=PBSpecies.getName(pokemon.species)
-        nickname=@scene.pbNameEntry(_INTL("Mote de {1}",species),pokemon)
-        pokemon.name=nickname if nickname!=""
+      if $PokemonSystem.givenicknames == 0
+        if pbDisplayConfirm(_INTL("¿Quieres ponerle un mote a {1}?",pokemon.name))
+          species=PBSpecies.getName(pokemon.species)
+          nickname=@scene.pbNameEntry(_INTL("Mote de {1}",species),pokemon)
+          pokemon.name=nickname if nickname!=""
+        end
       end
     end
     if self.pbPlayer.party.length<6
@@ -23,15 +25,17 @@ module PokeBattle_BattleCommon
       return
     else
       pokemon2 = -1
-      if pbDisplayConfirm(_INTL("¿Te gustaría añadir a {1} a tu equipo?",pokemon.name))
-        pbDisplayPaused(_INTL("Selecciona un Pokémon para intercambiar."))
-        pbChoosePokemon(1,2)
-        poke = pbGet(1)
-        if poke != -1
-          pokemon2 = pokemon
-          pokemon = self.pbPlayer.party[poke]
-          pbRemovePokemonAt(poke)
-          self.pbPlayer.party[self.pbPlayer.party.length]=pokemon2
+      if $PokemonSystem.sendtoboxes == 0
+        if pbDisplayConfirm(_INTL("¿Te gustaría añadir a {1} a tu equipo?",pokemon.name))
+          pbDisplayPaused(_INTL("Selecciona un Pokémon para intercambiar."))
+          pbChoosePokemon(1,2)
+          poke = pbGet(1)
+          if poke != -1
+            pokemon2 = pokemon
+            pokemon = self.pbPlayer.party[poke]
+            pbRemovePokemonAt(poke)
+            self.pbPlayer.party[self.pbPlayer.party.length]=pokemon2
+          end
         end
       end
       oldcurbox=@peer.pbCurrentBox()

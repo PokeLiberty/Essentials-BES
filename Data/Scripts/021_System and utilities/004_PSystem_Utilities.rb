@@ -161,11 +161,13 @@ def pbBoxesFull?
 end
 
 def pbNickname(pokemon)
-  speciesname=PBSpecies.getName(pokemon.species)
-  if Kernel.pbConfirmMessage(_INTL("¿Quieres ponerle un mote a {1}?",speciesname))
-    helptext=_INTL("Apodo de {1}",speciesname)
-    newname=pbEnterPokemonName(helptext,0,12,"",pokemon)
-    pokemon.name=newname if newname!=""
+  if $PokemonSystem.givenicknames == 0
+    speciesname=PBSpecies.getName(pokemon.species)
+    if Kernel.pbConfirmMessage(_INTL("¿Quieres ponerle un mote a {1}?",speciesname))
+      helptext=_INTL("Apodo de {1}",speciesname)
+      newname=pbEnterPokemonName(helptext,0,12,"",pokemon)
+      pokemon.name=newname if newname!=""
+    end
   end
 end
 
@@ -180,15 +182,17 @@ def pbStorePokemon(pokemon)
     $Trainer.party[$Trainer.party.length]=pokemon
   else
     pokemon2 = -1
-    if Kernel.pbConfirmMessageSerious(_INTL("¿Te gustaría añadir a {1} a tu equipo?",pokemon.name))
-      Kernel.pbMessage(_INTL("Selecciona un Pokémon para intercambiar."))
-      pbChoosePokemon(1,2)
-      poke = pbGet(1)
-      if poke != -1
-        pokemon2 = pokemon
-        pokemon = $Trainer.pokemonParty[poke]
-        pbRemovePokemonAt(poke)
-        $Trainer.party[$Trainer.party.length] = pokemon2
+    if $PokemonSystem.sendtoboxes == 0
+      if Kernel.pbConfirmMessageSerious(_INTL("¿Te gustaría añadir a {1} a tu equipo?",pokemon.name))
+        Kernel.pbMessage(_INTL("Selecciona un Pokémon para intercambiar."))
+        pbChoosePokemon(1,2)
+        poke = pbGet(1)
+        if poke != -1
+          pokemon2 = pokemon
+          pokemon = $Trainer.pokemonParty[poke]
+          pbRemovePokemonAt(poke)
+          $Trainer.party[$Trainer.party.length] = pokemon2
+        end
       end
     end
     oldcurbox=$PokemonStorage.currentBox
