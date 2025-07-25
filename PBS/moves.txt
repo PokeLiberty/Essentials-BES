@@ -826,7 +826,7 @@
 831,ALLURINGVOICE,Canto Encantador,260,80,FAIRY,Special,100,5,100,04,0,befk,"Ataca con un canto angelical y, si las características del objetivo han aumentado en ese turno, lo deja confuso." 
 832,TEMPERFLARE,Cólera Ardiente,CF16,75,FIRE,Physical,100,10,0,00,0,abef,"Arremete contra el objetivo tras dejarse llevar por la ira. Su potencia se duplica si el movimiento del usuario falló en el turno anterior."
 833,SUPERCELLSLAM,Plancha Voltaica,10B,100,ELECTRIC,Physical,95,15,0,00,0,abefl,"El usuario electrifica su cuerpo y salta en plancha sobre el objetivo. Si falla, se hiere a sí mismo."
-834,PSYCHICNOISE,Psicorruido,0BB,75,PSYCHIC,Special,100,10,0,04,0,bcefk,"Ataca emitiendo una onda sonora desagradable que impide al objetivo usar movimientos, habilidades y objetos equipados que recuperan PS durante dos turnos."
+834,PSYCHICNOISE,Psicorruido,280,75,PSYCHIC,Special,100,10,0,04,0,bcefk,"Ataca emitiendo una onda sonora desagradable que impide al objetivo usar movimientos, habilidades y objetos equipados que recuperan PS durante dos turnos."
 835,UPPERHAND,Palma Rauda,261,40,FIGHTING,Physical,100,10,100,00,3,abe,"Se anticipa al objetivo golpeándolo rápidamente con la palma y lo amedrenta. Falla si el objetivo no está preparando un movimiento de prioridad alta." #
 836,MALIAGNANTCHAIN,Cadena Virulenta,006,100,POISON,Physical,100,5,50,00,0,abef,"Apresa al objetivo con una cadena hecha de ponzoña que le inocula toxinas para minarle las fuerzas. Puede envenenar gravemente."
 

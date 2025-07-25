@@ -13091,3 +13091,40 @@ class PokeBattle_Move_279 < PokeBattle_Move
     return type
   end
 end
+
+################################################################################
+# Movimiento de sonido.
+# Durante 3 rondas, desactiva los movimientos de salud del objetivo.
+# Psicorruido / Psychic Noise
+################################################################################
+class PokeBattle_Move_280 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    ret=super(attacker,opponent,hitnum,alltargets,showanimation)
+    if opponent.effects[PBEffects::HealBlock]>0
+      return -1
+    end
+    if !attacker.hasMoldBreaker
+      if opponent.hasWorkingAbility(:AROMAVEIL)
+        @battle.pbDisplay(_INTL("¡Pero falló debido a {2} de {1}!",
+           opponent.pbThis,PBAbilities.getName(opponent.ability)))
+        return -1
+      elsif opponent.pbPartner.hasWorkingAbility(:AROMAVEIL)
+        @battle.pbDisplay(_INTL("¡Pero falló debido a {2} de {1}!",
+           opponent.pbPartner.pbThis,PBAbilities.getName(opponent.pbPartner.ability)))
+        return -1
+      end
+    end
+    opponent.effects[PBEffects::HealBlock]=3
+    @battle.pbDisplay(_INTL("¡{1} no puede curarse!",opponent.pbThis))
+    return 0
+  end
+
+  def pbAdditionalEffect(attacker,opponent)
+    return if opponent.damagestate.substitute
+    if opponent.effects[PBEffects::HealBlock]<1
+      opponent.effects[PBEffects::HealBlock]=3
+      @battle.pbDisplay(_INTL("¡{1} no puede curarse!",opponent.pbThis))
+    end
+  end
+
+end

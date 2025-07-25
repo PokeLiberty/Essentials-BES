@@ -291,7 +291,7 @@
 291,TM04,MT04,MT04s,4,0,"Aumenta la concentración y calma el espíritu para subir el Ataque Especial y la Defensa Especial.",3,0,0,CALMMIND
 292,TM05,MT05,MT05s,4,0,"Se lleva al objetivo, que es cambiado por otro Pokémon. Si es un Pokémon salvaje, acaba el combate.",3,0,0,ROAR
 293,TM06,MT06,MT06s,4,0,"Envenena gravemente al objetivo y causa un daño mayor en cada turno.",3,0,0,TOXIC
-294,TM07,MT07,MT07s,4,0,"Tormenta de granizo que dura cinco turnos. Hiere a todos, excepto a los de tipo Hielo.",3,0,0,HAIL
+294,TM07,MT07,MT07s,4,0,"Desata una nevada que dura cinco turnos y aumenta la Defensa de los Pokémon de tipo Hielo.",3,0,0,SNOWSCAPE
 295,TM08,MT08,MT08s,4,0,"Robustece el cuerpo para subir el Ataque y la Defensa.",3,0,0,BULKUP
 296,TM09,MT09,MT09s,4,0,"Ataca cubriendo al objetivo con un líquido venenoso. El daño será doble si este ya está envenenado.",3,0,0,VENOSHOCK
 297,TM10,MT10,MT10s,4,0,"Ataque único cuyo tipo y potencia varían según el agresor.",3,0,0,HIDDENPOWER
@@ -344,7 +344,7 @@
 344,TM57,MT57,MT57s,4,0,"Lanza un rayo eléctrico contra el objetivo. Puede subir el Ataque Especial de quien lo usa.",3,0,0,CHARGEBEAM
 345,TM58,MT58,MT58s,4,0,"Primero lanza al objetivo al aire y despues lo hace caer. Mientras está en el aire, no lo deja moverse.",3,0,0,SKYDROP
 346,TM59,MT59,MT59s,4,0,"Llamas que golpean a los objetivos adyacentes. Si estos llevan Bayas, estas se quemarán y ya no se podrán usar.",3,0,0,INCINERATE
-347,TM60,MT60,MT60s,4,0,"El usuario intimida a su objetivo logrando que su movimiento sea el último del turno.",3,0,0,QUASH
+347,TM60,MT60,MT60s,4,0,"Ataca emitiendo una onda sonora desagradable que impide al objetivo recuperar PS durante algunos turnos.",3,0,0,PSYCHICNOISE
 348,TM61,MT61,MT61s,4,0,"Siniestra llama morada que produce quemaduras.",3,0,0,WILLOWISP
 349,TM62,MT62,MT62s,4,0,"Golpea ágilmente. Si el usuario no porta ningún objeto, el objetivo resulta seriamente dañado.",3,0,0,ACROBATICS
 350,TM63,MT63,MT63s,4,0,"Impide al objetivo usar el objeto que lleva. Su Entrenador tampoco puede usar objetos sobre él.",3,0,0,EMBARGO
@@ -378,7 +378,7 @@
 378,TM91,MT91,MT91s,4,0,"El usuario concentra toda la luz del cuerpo y la libera. Puede bajar la Defensa Especial del objetivo.",3,0,0,FLASHCANNON
 379,TM92,MT92,MT92s,4,0,"Se crea un espacio extraño en el que los Pokémon lentos se mueven primero durante cinco turnos.",3,0,0,TRICKROOM
 380,TM93,MT93,MT93s,4,0,"Carga eléctrica muy potente que también hiere ligeramente a quien la usa.",3,0,0,WILDCHARGE
-381,TM94,MT94,MT94s,4,1000,"Ataca con puñetazos que pueden romper rocas. Puede bajar la Defensa del objetivo.",3,0,0,ROCKSMASH
+381,TM94,MT94,MT94s,4,0,"Ataca con puñetazos que pueden romper rocas. Puede bajar la Defensa del objetivo.",3,0,0,ROCKSMASH
 382,TM95,MT95,MT95s,4,0,"Ataca lanzando un chillido insoportable que baja el Ataque Especial de los objetivos.",3,0,0,SNARL
 383,TM96,MT96,MT96s,4,0,"Este movimiento se convierte en otro movimiento según el terreno en que tenga lugar la batalla.",3,0,0,NATUREPOWER
 384,TM97,MT97,MT97s,4,0,"Libera una horrible aura de malos pensamientos que puede hacer retroceder al rival.",3,0,0,DARKPULSE
