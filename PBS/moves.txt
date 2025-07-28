@@ -823,7 +823,7 @@
 828,TACHYONCUTTER,Tajo Taquión,0BD,50,STEEL,Special,0,15,0,00,0,bef,"Lanza una ráfaga de cuchillas formadas por partículas contra el objetivo y le inflige daño dos veces seguidas. No falla nunca."
 829,HARDPRESS,Prensa Metalica,08C,1,STEEL,Physical,100,10,0,00,0,abef,"Oprime con los brazos o las pinzas. Cuantos más PS le queden al objetivo, mayor será la potencia del movimiento."
 830,DRAGONCHEER,Bramido Dragón,259,0,DRAGON,Status,0,30,0,10,0,d,"Bramido de dragón que sube la moral de los aliados y aumenta sus probabilidades de asestar un golpe crítico. Es especialmente efectivo con aliados de tipo Dragón."
-831,ALLURINGVOICE,Canto Encantador,260,80,FAIRY,Special,100,5,100,04,0,befk,"Ataca con un canto angelical y, si las características del objetivo han aumentado en ese turno, lo deja confuso." 
+831,ALLURINGVOICE,Canto Encantador,260,80,FAIRY,Special,100,10,100,00,0,befk,"Ataca con un canto angelical y, si las características del objetivo han aumentado en ese turno, lo deja confuso."
 832,TEMPERFLARE,Cólera Ardiente,CF16,75,FIRE,Physical,100,10,0,00,0,abef,"Arremete contra el objetivo tras dejarse llevar por la ira. Su potencia se duplica si el movimiento del usuario falló en el turno anterior."
 833,SUPERCELLSLAM,Plancha Voltaica,10B,100,ELECTRIC,Physical,95,15,0,00,0,abefl,"El usuario electrifica su cuerpo y salta en plancha sobre el objetivo. Si falla, se hiere a sí mismo."
 834,PSYCHICNOISE,Psicorruido,280,75,PSYCHIC,Special,100,10,0,04,0,bcefk,"Ataca emitiendo una onda sonora desagradable que impide al objetivo usar movimientos, habilidades y objetos equipados que recuperan PS durante dos turnos."

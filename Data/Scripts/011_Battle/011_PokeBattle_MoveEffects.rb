@@ -12658,7 +12658,7 @@ class PokeBattle_Move_259 < PokeBattle_Move
 end
 
 ################################################################################
-# Quema al oponente si se sube las estadísticas en el turno.
+# Confunde al oponente si se sube las estadísticas en el turno.
 # Canto Encantador / Alluring Voice
 ################################################################################
 class PokeBattle_Move_260 < PokeBattle_Move
@@ -12666,7 +12666,8 @@ class PokeBattle_Move_260 < PokeBattle_Move
     return if opponent.damagestate.substitute
     if opponent.pbCanConfuse?(attacker,false,self) &&
       opponent.effects[PBEffects::BurningJealousy]
-      opponent.pbConfuse(attacker)
+      opponent.pbConfuse
+      @battle.pbDisplay(_INTL("¡{1} se encuentra confuso!",opponent.pbThis))
     end
   end
 end
