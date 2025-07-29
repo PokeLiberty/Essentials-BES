@@ -603,6 +603,15 @@ class PokeBattle_Move
       mod2=2 if isConst?(otype2,PBTypes,:DARK) && PBTypes.isIneffective?(atype,otype2)
       mod3=2 if isConst?(otype3,PBTypes,:DARK) && PBTypes.isIneffective?(atype,otype3)
     end
+    # BES-T Battle rule para batallas inversas.
+    if @battle.rules["inverseBattle"] 
+      inmod1=mod1
+      inmod2=mod2
+      mod1=3 if inmod1<2
+      mod1=1 if inmod1>2
+      mod2=3 if inmod2<2
+      mod2=1 if inmod2>2
+    end
     # Delta Stream's weather
     if @battle.pbWeather==PBWeather::STRONGWINDS
       mod1=2 if isConst?(otype1,PBTypes,:FLYING) && PBTypes.isSuperEffective?(atype,otype1)
