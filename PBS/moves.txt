@@ -805,7 +805,7 @@
 804,RUINATION,Calamidad,06C,1,DARK,Special,90,10,0,00,0,bef,"Provoca una catástrofe devastadora que reduce a la mitad los PS del objetivo."
 805,COLLISIONCOURSE,Nitrochoque,267,100,FIGHTING,Physical,100,5,0,00,0,abefj,"El usuario choca contra el suelo mientras se transforma y provoca una explosión primigenia. La potencia del movimiento aumenta si el ataque es supereficaz."
 806,ELECTRODRIFT,Electroderrape,267,100,ELECTRIC,Special,100,5,0,00,0,befj,"Se abalanza sobre el objetivo mientras se transforma y lo atraviesa con electricidad futurista. La potencia del movimiento aumenta si el ataque es supereficaz."
-808,CHILLYRECEPTION,Fría Acogida,273,0,ICE,Status,0,10,0,10,0,,"El usuario se cambia por otro Pokémon del equipo, pero antes cuenta un chiste que tiene una acogida tan fría que hace que nieve durante cinco turnos." #POR TESTEAR
+808,CHILLYRECEPTION,Fría Acogida,273,0,ICE,Status,0,10,0,10,0,,"El usuario se cambia por otro Pokémon del equipo, pero antes cuenta un chiste que tiene una acogida tan fría que hace que nieve durante cinco turnos."
 809,TIDYUP,Limpieza General,250,0,NORMAL,Status,0,15,0,00,0,bce,"Efectúa una limpieza a fondo que anula los efectos de Púas, Trampa Rocas, Red Viscosa, Púas Tóxicas y Sustituto. Aumenta el Ataque y la Velocidad del usuario." 
 810,SNOWSCAPE,Paisaje Nevado,102,0,ICE,Status,0,10,0,20,0,,"Desata una nevada que dura cinco turnos y aumenta la Defensa de los Pokémon de tipo Hielo." 
 811,POUNCE,Brinco,044,50,BUG,Physical,100,20,100,04,0,abef,"Ataca abalanzándose sobre el objetivo y le reduce la Velocidad." 

@@ -12965,35 +12965,32 @@ class PokeBattle_Move_273 < PokeBattle_Move
     case @battle.weather
     when PBWeather::HEAVYRAIN
       @battle.pbDisplay(_INTL("¡No hay alivio para este diluvio!"))
-      canhail = false
+      canhail = false; ret=0
     when PBWeather::HARSHSUN
       @battle.pbDisplay(_INTL("¡El sol realmente abrazador no ha mermado en absoluto!"))
-      canhail = false
+      canhail = false; ret=0
     when PBWeather::STRONGWINDS
       @battle.pbDisplay(_INTL("¡Las misteriosas turbulencias siguen soplando sin cesar!"))
-      canhail = false
+      canhail = false; ret=0
     when PBWeather::HAIL
       @battle.pbDisplay(_INTL("¡Pero falló!"))
-      canhail = false
+      canhail = false; ret=0
     end
     if canhail == true
-      pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
       @battle.weather=PBWeather::HAIL
       @battle.weatherduration=5
       @battle.weatherduration=8 if attacker.hasWorkingItem(:ICYROCK)
       @battle.pbCommonAnimation("Hail",nil,nil)
-      @battle.pbDisplay(_INTL("¡Ha empezado a granizar!"))
+      @battle.pbDisplay(_INTL("¡Ha empezado a nevar!"))
     end
-    if !attacker.isFainted? &&
-       @battle.pbCanChooseNonActive?(attacker.index) &&
-       !@battle.pbAllFainted?(@battle.pbParty(opponent.index))
-      attacker.effects[PBEffects::Uturn]=true; ret=0
+
+    if !@battle.pbCanChooseNonActive?(attacker.index)
+      return -1
     end
-    return ret
+    attacker.effects[PBEffects::Uturn]=true
+    return 0
   end
 end
-
-
 
 ################################################################################
 # Cuantos más golpes haya recibido el usuario, mayor será la potencia del movimiento.
