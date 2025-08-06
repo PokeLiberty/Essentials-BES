@@ -3577,6 +3577,15 @@ class PokeBattle_Battler
       PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos basados en polvo por alguna razón")
       return false
     end
+    # Bromista
+    if USENEWBATTLEMECHANICS
+      if self.hasWorkingAbility(:PRANKSTER) && target.pbHasType?(:DARK) &&  thismove.pbIsStatus?
+        (!user.hasMoldBreaker && !thismove.doesBypassIgnorableAbilities?)
+        @battle.pbDisplay(_INTL("No ha afectado a<br>{1}...",target.pbThis(true)))
+        PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos de estado por alguna razón")
+        return false
+      end
+    end
     # Cuerpo Aureo
     if thismove.pbIsStatus? && !thismove.doesBypassIgnorableAbilities? &&
       !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD)
