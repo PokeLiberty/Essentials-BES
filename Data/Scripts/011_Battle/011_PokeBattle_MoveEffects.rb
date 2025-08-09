@@ -12680,11 +12680,16 @@ class PokeBattle_Move_261 < PokeBattle_Move
   def pbMoveFailed(attacker,opponent)
     return true if @battle.choices[opponent.index][0]!=1   # No ha elegido un movimiento
     oppmove=@battle.choices[opponent.index][2]
-    return true if !oppmove || oppmove.id<=0 || oppmove.priority>0
+    return true if !oppmove || oppmove.id<=0 || oppmove.pbIsStatus? || oppmove.priority<=0
     return true if opponent.hasMovedThisRound? && oppmove.function!=0xB0   # Yo Primero
     return false
   end
-end
+
+  def pbAdditionalEffect(attacker,opponent)
+    return if opponent.damagestate.substitute
+    opponent.pbFlinch(attacker)
+  end
+end 
 
 ################################################################################
 # Increases the user and its partner's Attack by 1 stage. (Howl)
