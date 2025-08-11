@@ -365,16 +365,16 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFWATERS,proc{|item,pokemon,scene|
 #BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::UseOnPokemon.add(:POTION,proc{|item,pokemon,scene|
   heal_map = {
-    :POTION       => 20,
-    :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
-    :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
-    :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
-    :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
-    :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
-    :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
-    :MOOMOOMILK   => 100,
-    :ORANBERRY    => 10,
-    :SITRUSBERRY  => (pokemon.totalhp / 4).floor
+    getConst(PBItems,:POTION)       => 20,
+    getConst(PBItems,:SUPERPOTION)  => (USENEWBATTLEMECHANICS ? 60 : 50),
+    getConst(PBItems,:HYPERPOTION)  => (USENEWBATTLEMECHANICS ? 120 : 200),
+    getConst(PBItems,:MAXPOTION)    => (pokemon.totalhp - pokemon.hp),
+    getConst(PBItems,:FRESHWATER)   => (USENEWBATTLEMECHANICS ? 30 : 50),
+    getConst(PBItems,:SODAPOP)      => (USENEWBATTLEMECHANICS ? 50 : 60),
+    getConst(PBItems,:LEMONADE)     => (USENEWBATTLEMECHANICS ? 70 : 80),
+    getConst(PBItems,:MOOMOOMILK)   => 100,
+    getConst(PBItems,:ORANBERRY)    => 10,
+    getConst(PBItems,:SITRUSBERRY)  => (pokemon.totalhp / 4).floor
   }
 
   heal = heal_map[item] || 20 #Si no encuentra objeto, cura como si fuese una poción.
@@ -1250,16 +1250,16 @@ ItemHandlers::UseOnPokemon.copy(:SERIOUSMINT,:ADAMANTMINT,:BOLDMINT,:BRAVEMINT,
 #BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::BattleUseOnPokemon.add(:POTION,proc{|item,pokemon,battler,scene|
   heal_map = {
-    :POTION       => 20,
-    :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
-    :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
-    :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
-    :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
-    :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
-    :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
-    :MOOMOOMILK   => 100,
-    :ORANBERRY    => 10,
-    :SITRUSBERRY  => (pokemon.totalhp / 4).floor
+    getConst(PBItems,:POTION)       => 20,
+    getConst(PBItems,:SUPERPOTION)  => (USENEWBATTLEMECHANICS ? 60 : 50),
+    getConst(PBItems,:HYPERPOTION)  => (USENEWBATTLEMECHANICS ? 120 : 200),
+    getConst(PBItems,:MAXPOTION)    => (pokemon.totalhp - pokemon.hp),
+    getConst(PBItems,:FRESHWATER)   => (USENEWBATTLEMECHANICS ? 30 : 50),
+    getConst(PBItems,:SODAPOP)      => (USENEWBATTLEMECHANICS ? 50 : 60),
+    getConst(PBItems,:LEMONADE)     => (USENEWBATTLEMECHANICS ? 70 : 80),
+    getConst(PBItems,:MOOMOOMILK)   => 100,
+    getConst(PBItems,:ORANBERRY)    => 10,
+    getConst(PBItems,:SITRUSBERRY)  => (pokemon.totalhp / 4).floor
   }
   
   heal = heal_map[item] || 20 #Si no encuentra objeto, cura como si fuese una poción.

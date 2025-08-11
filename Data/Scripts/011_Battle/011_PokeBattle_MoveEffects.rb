@@ -11855,15 +11855,16 @@ end
 # Stone Axe / Hachazo Pétreo
 ################################################################################
 class PokeBattle_Move_236 < PokeBattle_Move
-  def pbAdditionalEffect(attacker,opponent)
-    if !attacker.pbOpposingSide.effects[PBEffects::StealthRock]
-      attacker.pbOpposingSide.effects[PBEffects::StealthRock]=true
+   def pbEffectAfterHit(attacker, opponent,turneffects)
+    if opponent && !attacker.pbOpposingSide.effects[PBEffects::StealthRock]
+      attacker.pbOpposingSide.effects[PBEffects::StealthRock] = true
       if !@battle.pbIsOpposing?(attacker.index)
         @battle.pbDisplay(_INTL("¡El equipo enemigo está rodeado de piedras puntiagudas!"))
       else
         @battle.pbDisplay(_INTL("¡Tu equipo está rodeado de piedras puntiagudas!"))
       end
     end
+    return true
   end
 end
 
