@@ -10388,32 +10388,6 @@ class PokeBattle_Move_CF13 < PokeBattle_Move
 end
 
 ################################################################################
-# Heals user by an amount depending on the terrain. (Floral Healing)
-################################################################################
-class PokeBattle_Move_CF2 < PokeBattle_Move
-  def isHealingMove?
-    return true
-  end
-
-  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    if attacker.hp==attacker.totalhp
-      @battle.pbDisplay(_INTL("¡La salud de {1} está al máximo!",attacker.pbThis))
-      return -1
-    end
-    hpgain=0
-    if @battle.field.effects[PBEffects::GrassyTerrain]>0
-      hpgain=(attacker.totalhp*2/3).floor
-    else
-      hpgain=(attacker.totalhp/2).floor
-    end
-    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
-    attacker.pbRecoverHP(hpgain,true)
-    @battle.pbDisplay(_INTL("{1} recuperó salud",attacker.pbThis))
-    return 0
-  end
-end
-
-################################################################################
 # Lowers the target's Attack and Special Attack. Bypasses Accuracy. (Tearful Look)
 ################################################################################
 class PokeBattle_Move_CF14 < PokeBattle_Move
@@ -13131,4 +13105,34 @@ class PokeBattle_Move_280 < PokeBattle_Move
     end
   end
 
+end
+
+################################################################################
+# Heals user by an amount depending on the terrain. (Floral Healing)
+################################################################################
+class PokeBattle_Move_281 < PokeBattle_Move
+  def isHealingMove?
+    return true
+  end
+
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if opponent.effects[PBEffects::Substitute]>0 && !ignoresSubstitute?(attacker)
+      @battle.pbDisplay(_INTL("¡Pero falló!"))  
+      return -1
+    end
+    if opponent.hp==opponent.totalhp
+      @battle.pbDisplay(_INTL("¡La salud de {1} está al máximo!",opponent.pbThis))
+      return -1
+    end
+    hpgain=0
+    if @battle.field.effects[PBEffects::GrassyTerrain]>0
+      hpgain=(opponent.totalhp*2/3).floor
+    else
+      hpgain=(opponent.totalhp/2).floor
+    end
+    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    opponent.pbRecoverHP(hpgain,true)
+    @battle.pbDisplay(_INTL("{1} recuperó salud",opponent.pbThis))
+    return 0
+  end
 end
