@@ -285,6 +285,7 @@
 285,LOVEBALL,Amor Ball,Amor Balls,3,3000,"Una Poké Ball diseñada para capturar Pokémon del género opuesto al de tu Pokémon.",0,2,4,
 286,FRIENDBALL,Amigo Ball,Amigo Balls,3,3000,"Una Poké Ball que hace más amistosos a los Pokémon capturados.",0,2,4,
 287,MOONBALL,Luna Ball,Luna Balls,3,3000,"Una Poké Ball diseñada para capturar Pokémon que evolucionan con Piedra Lunar.",0,2,4,
+
 288,TM01,MT01,MT01s,4,0,"El usuario se afila las garras para aumentar su Ataque y Precisión.",3,0,0,HONECLAWS
 289,TM02,MT02,MT02s,4,0,"Araña al objetivo con garras afiladas.",3,0,0,DRAGONCLAW
 290,TM03,MT03,MT03s,4,0,"Crea una onda psíquica que golpea al objetivo y provoca un gran daño.",3,0,0,PSYSHOCK
@@ -496,6 +497,7 @@
 494,ABILITYURGE,Habilitador,Habilitadores,7,0,"Al usarlo, activa la habilidad de un Pokémon de tu equipo.",0,2,0,
 495,ITEMURGE,Activaobjeto,Activaobjetos,7,0,"Cuando se usa, un Pokémon de tu equipo utiliza su objeto inmediatamente.",0,2,0,
 496,ITEMDROP,Tiraobjeto,Tiraobjetos,7,0,"Cuando se usa, un Pokémon de tu equipo pierde su objeto.",0,2,0,
+
 497,BLUEFLUTE,Flauta Azul,Flautas Azules,7,100,"Flauta de cristal azul cuya melodía despierta a los Pokémon dormidos.",5,3,0,
 498,YELLOWFLUTE,Flauta Amarilla,Flautas Amarillas,7,200,"Flauta de cristal amarillo que espabila a los Pokémon confusos.",0,2,0,
 499,REDFLUTE,Flauta Roja,Flautas Rojas,7,300,"Flauta de cristal rojo que libera a un Pokémon del enamoramiento.",0,2,0,
@@ -528,6 +530,7 @@
 526,SACHET,Saquito Fragante,Saquitos Fragantes,1,100,"Saquito que desprende un aroma peculiar. Cierto Pokémon lo adora.",0,0,0,
 527,WHIPPEDDREAM,Dulce de Nata,Dulces de Nata,1,100,"Un dulce a base de suave y esponjosa nata montada. Cierto Pokémon lo adora.",0,0,0,
 528,ASSAULTVEST,Chaleco Asalto,Chalecos Asalto,1,1000,"Chaleco que potencia la Def. Esp. del Pokémon que lo lleva, pero le impide lanzar ataques de estado.",0,0,0
+
 529,ABSOLITE,Absolita,Absolitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Absol en combate.",0,0,0,
 530,GALLADITE,Galladita,Galladitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Gallade en combate.",0,0,0,
 531,GLALITITE,Glalita,Glalitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Glalie en combate.",0,0,0,
@@ -577,6 +580,7 @@
 575,LUCARIONITE,Lucarita,Lucaritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Lucario en combate.",0,0,0,
 576,REDORB,Prisma Rojo,Prismas Rojos,1,0,"Piedra carmesí de la que se dice que guarda una estrecha relación con las leyendas de Hoenn.",0,0,0,
 577,BLUEORB,Prisma Azul,Prismas Azules,1,0,"Piedra añil que, según dicen, guarda una estrecha relación con las leyendas de Hoenn.",0,0,0,
+
 578,MEGARING,Mega Aro,Mega Aros,8,0,"Aro que sirve para activar el poder de la Mega Evolución.",0,0,6,
 579,PRISONBOTTLE,Vasija Castigo,Vasijas Castigo,8,0,"Vasija en la que se halla confinado el poder de cierto Pokémon desde hace mucho tiempo.",5,0,6,
 580,ABILITYCAPSULE,Cápsula Habilidad,Cápsulas Habilidad,1,10000,"Cápsula que les permite cambiar de habilidad a los Pokémon que poseen dos.",1,0,0,
@@ -640,10 +644,12 @@
 650,NSOLARIZER,Necrosol,Necrosoles,8,0,"Artefacto que permite fusionar a Necrozma, ávido de luz, con Solgaleo.",5,0,6,
 651,NLUNARIZER,Necroluna,Necrolunas,8,0,"Artefacto que permite fusionar a Necrozma, ávido de luz, con Lunala.",5,0,6,
 652,ULTRANECROZIUMZ,Ultranecrostal Z,Ultranecrostales Z,6,0,"Cristal que confiere el Poder Z al movimiento Géiser Fotónico de Necrozma.",5,0,8
+
 653,REDNECTAR,Néctar Rojo,Néctares Rojos,1,0,"Néctar de ciertas flores de los Jardines de Ula-Ula, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
 654,YELLOWNECTAR,Néctar Amarillo,Néctares Amarillos,1,0,"Néctar de ciertas flores de los Jardines de Melemele, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
 655,PINKNECTAR,Néctar Rosa,Néctares Rosas,1,0,"Néctar de ciertas flores de los parterres de la Avenida Royale, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
 656,PURPLENECTAR,Néctar Violeta,Néctares Violetas,1,0,"Néctar de ciertas flores de los Jardines de Poni, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
+
 657,GRASSMEMORY,Disco Planta,Discos Planta,1,0,"Disco de datos que contiene información relativa al tipo Planta. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
 658,FIREMEMORY,Disco Fuego,Discos Fuego,1,0,"Disco de datos que contiene información relativa al tipo Fuego. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
 659,WATERMEMORY,Disco Agua,Discos Agua,1,0,"Disco de datos que contiene información relativa al tipo Agua. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
@@ -739,6 +745,7 @@
 749,FAIRYCORE,Prisma Hada,Prismas Hada,1,5000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Hada.",1,0,0,
 750,STELLARCORE,Prisma Estelar,Prismas Estelares,1,10000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Estelar.",1,0,0,
 751,TERARANDOMITEM,Prisma Raro,Prismas Raros,1,10000,"Objeto que permite cambiar el Teratipo de un Pokémon a un tipo al azar.",1,0,0,
+
 752,HEARTHFLAMEMASK,Máscara Horno,Máscaras Horno,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Fuego durante las batallas.",0,0,0,
 753,WELLSPRINGMASK,Máscara Fuente,Máscaras Fuente,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Agua durante las batallas.",0,0,0,
 754,CORRNERSTONEMASK,Máscara Cimiento,Máscaras Cimiento,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Roca durante las batallas.",0,0,0,
@@ -765,5 +772,5 @@
 774,NAIVEMINT,Menta Ingenua,Mentas Ingenuas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Defensa Especial.",1,0,0,
 775,SERIOUSMINT,Mentas Serias,Mentas Serias,2,9800,"Cuando un Pokémon percibe su aroma, su Ataque, su Defensa, su Ataque Especial, su Defensa Especial y su Velocidad crecen de forma uniforme.",1,0,0,
 
-
+776,ZYGARDECUBE,Arca de Zygarde,Arcas de Zygarde,8,0,"Dispositivo para almacenar células y núcleos de Zygarde.",5,0,6,
 

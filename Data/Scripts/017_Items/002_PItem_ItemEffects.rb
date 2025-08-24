@@ -1244,6 +1244,22 @@ ItemHandlers::UseOnPokemon.copy(:SERIOUSMINT,:ADAMANTMINT,:BOLDMINT,:BRAVEMINT,
                                 :MODESTMINT,:NAIVEMINT,:NAUGHTYMINT,:QUIETMINT,
                                 :RASHMINT,:RELAXEDMINT,:SASSYMINT,:TIMIDMINT)
 
+ItemHandlers::UseOnPokemon.add(:ZYGARDECUBE,proc{|item,pokemon,scene|
+  if isConst?(pokemon.species,PBSpecies,:ZYGARDE)
+     if pokemon.hp>0
+       pokemon.form=(pokemon.form==0) ? 1 : 0
+       scene.pbRefresh
+       scene.pbDisplay(_INTL("¡{1} ha cambiado de forma!",pokemon.name))
+       next true
+     else
+       scene.pbDisplay(_INTL("No se puede usar en un Pokémon debilitado."))
+     end
+   else
+     scene.pbDisplay(_INTL("No tuvo efecto."))
+     next false
+   end
+})
+
 #===============================================================================
 # BattleUseOnPokemon handlers
 #===============================================================================
