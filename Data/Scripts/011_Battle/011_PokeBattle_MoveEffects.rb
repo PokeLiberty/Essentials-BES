@@ -12742,7 +12742,7 @@ class PokeBattle_Move_264 < PokeBattle_Move
     ret=super(attacker,opponent,hitnum,alltargets,showanimation)
     if opponent.damagestate.calcdamage>0
       if attacker.pbCanReduceStatStage?(PBStats::SPATK,attacker,false,self)
-        attacker.pbReduceStat(PBStats::SPATK,2,attacker,false,self)
+        attacker.pbReduceStat(PBStats::SPATK,1,attacker,false,self)
       end
     end
     if opponent.damagestate.calcdamage>0
@@ -12755,7 +12755,6 @@ class PokeBattle_Move_264 < PokeBattle_Move
     return ret
   end
 end
-
 ################################################################################
 # El ataque se potencia en Sol y golpea a todos los Pokémon.
 # Hidrovapor / Hydrosteam

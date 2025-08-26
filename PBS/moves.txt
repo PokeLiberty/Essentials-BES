@@ -799,7 +799,7 @@
 797,ORDERUP,Oído Cocina,269,80,DRAGON,Physical,100,10,100,00,0,abef,"Ataca con porte gallardo. Si lleva un Tatsugiri en la boca, aumenta una de sus características en función de la forma de este último."
 798,POPULATIONBOMB,Proliferación,272,20,NORMAL,Physical,90,10,0,00,0,befn,"Los congéneres del usuario se agrupan y ejecutan un ataque conjunto que golpea al objetivo de una a diez veces seguidas."
 799,GLAIVERUSH,Asalto Espadón,270,120,DRAGON,Physical,100,5,0,00,0,abef,"Embiste de forma temeraria con todo el cuerpo. En el turno siguiente, los ataques que lance el rival no fallarán y causarán el doble de daño." 
-801,MAKEITRAIN,Fiebre Dorada,264,120,STEEL,Physical,100,5,0,00,0,bef,"El usuario ataca arrojando una generosa cantidad de monedas, pero su Ataque Especial se ve reducido. Al finalizar el combate, las recupera en forma de ganancias."
+801,MAKEITRAIN,Fiebre Dorada,264,120,STEEL,Physical,100,5,0,04,0,bef,"El usuario ataca arrojando una generosa cantidad de monedas, pero su Ataque Especial se ve reducido. Al finalizar el combate, las recupera en forma de ganancias."
 802,HYDROSTEAM,Hidrovapor,265,80,WATER,Special,100,15,30,00,0,befg,"Vierte agua hirviendo sobre el objetivo. Cuando hace sol, la potencia del movimiento aumenta un 50% en lugar de reducirse."
 803,PSYBLADE,Psicohojas,266,80,PSYCHIC,Physical,100,35,0,00,0,abef,"El usuario rebana al objetivo con una espada inmaterial. Cuando se usa en conjunción con un campo eléctrico, la potencia del movimiento aumenta un 50%"
 804,RUINATION,Calamidad,06C,1,DARK,Special,90,10,0,00,0,bef,"Provoca una catástrofe devastadora que reduce a la mitad los PS del objetivo."
