@@ -13019,8 +13019,14 @@ end
 # Bomba Caramelo / Syrup Bomb
 ################################################################################
 class PokeBattle_Move_276 < PokeBattle_Move
-  def pbAdditionalEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    opponent.effects[PBEffects::SyrupBomb]=3 if opponent.damagestate.calcdamage>0
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    ret=super(attacker,opponent,hitnum,alltargets,showanimation)
+    if opponent.effects[PBEffects::SyrupBomb]>0
+      return -1
+    end
+    opponent.effects[PBEffects::SyrupBomb]=3
+    @battle.pbDisplay(_INTL("¡{1} está caramelizado!",opponent.pbThis))
+    return 0
   end
 end
 
