@@ -1824,23 +1824,18 @@ MultipleForms.register(:SQUAWKABILLY,{
 
 # PALAFIN
 MultipleForms.register(:PALAFIN,{
-"type2"=>proc{|pokemon|
-  next getID(PBTypes,:FIGHTING) if pokemon.form==1
-  next
-},
 "getBaseStats"=>proc{|pokemon|
    next if pokemon.form==0
    next [100,160,97,100,106,87]
 }
 })
 
-# FLABEBE, FLOETTE, FLORGES
+# TATSUGIRI
 MultipleForms.register(:TATSUGIRI,{
 "getFormOnCreation"=>proc{|pokemon|
    next rand(2)
 },
 })
-
 
 MultipleForms.register(:OGERPON,{
 "getForm"=>proc{|pokemon|
