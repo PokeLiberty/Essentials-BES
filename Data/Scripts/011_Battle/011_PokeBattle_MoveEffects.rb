@@ -10366,14 +10366,32 @@ end
 # Lowers the target's Attack by 1 stage. (Strength Sap)
 ################################################################################
 class PokeBattle_Move_CF13 < PokeBattle_Move
+  def isHealingMove?
+    return USENEWBATTLEMECHANICS
+  end
+  
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     if attacker.effects[PBEffects::HealBlock]>0
       bob="heal"
-      bob=_INTL("use {1}",name) if !opponent.pbCanReduceStatStage?(PBStats::ATTACK,true,false,attacker)
+      bob=_INTL("usar {1}",name) if !opponent.pbCanReduceStatStage?(PBStats::ATTACK,true,false,attacker)
       @battle.pbDisplay(_INTL("¡{1} no puede {2} debido a Anticura!",attacker.pbThis,bob))
       return -1
     elsif attacker.hp==attacker.totalhp
       @battle.pbDisplay(_INTL("¡La salud de {1} está al máximo!",attacker.pbThis))
+      return -1
+    elsif opponent.pbOwnSide.effects[PBEffects::Mist]>0
+      @battle.pbDisplay(_INTL("¡{1} se ha protegido con Neblina!",opponent.pbThis))
+      return -1
+    elsif opponent.hasWorkingItem(:CLEARAMULET)
+      @battle.pbDisplay(_INTL("¡{2} de {1} evita que bajen las características!",opponent.pbThis,
+      PBItems.getName(opponent.item)))
+      return -1
+    elsif opponent.hasWorkingAbility(:CLEARBODY) ||
+         opponent.hasWorkingAbility(:WHITESMOKE) ||
+         opponent.hasWorkingAbility(:FULLMETALBODY) ||
+         opponent.hasWorkingAbility(:HYPERCUTTER)
+      @battle.pbDisplay(_INTL("¡{2} de {1} evita que bajen las características!",opponent.pbThis,
+      PBAbilities.getName(opponent.ability)))
       return -1
     else
       oatk=opponent.attack
@@ -12873,8 +12891,13 @@ end
 # Asalto espadón / Glaive Rush
 ################################################################################
 class PokeBattle_Move_270 < PokeBattle_Move
-  def pbAdditionalEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
-    attacker.effects[PBEffects::GlaiveRush]=true if opponent.damagestate.calcdamage>0
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    ret=super(attacker,opponent,hitnum,alltargets,showanimation)
+    if attacker.effects[PBEffects::GlaiveRush]=true
+      return -1
+    end
+    attacker.effects[PBEffects::GlaiveRush]=true
+    return 0
   end
 end
 

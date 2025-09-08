@@ -782,7 +782,7 @@
 780,KOWTOWCLEAVE,Genufendiente,0A5,85,DARK,Physical,0,10,0,00,0,abef,"Se postra en ademán de reverencia para hacer que el objetivo baje la guardia y aprovecha el descuido para atacar. No falla nunca."
 781,LUMINACRASH,Fotocolisión,04F,80,PSYCHIC,Special,100,10,100,00,0,bef,"Ataca proyectando una extraña luz que afecta a la mente. Reduce mucho la Defensa Especial del objetivo."
 782,ICESPINNER,Pirueta Helada,252,80,ICE,Physical,100,15,100,08,0,abef,"Recubre las extremidades con una fina capa de hielo y se abalanza sobre el objetivo, destruyendo el campo activo en el terreno de combate."
-783,MORTALSPIN,Giro Mortífero,253,30,POISON,Physical,100,15,0,00,0,abef,"Ataque giratorio que envenena al objetivo y anula los efectos de movimientos como Atadura, Constricción y Drenadoras."
+783,MORTALSPIN,Giro Mortífero,253,30,POISON,Physical,100,15,100,04,0,abef,"Ataque giratorio que envenena al objetivo y anula los efectos de movimientos como Atadura, Constricción y Drenadoras."
 784,REVIVALBLESSING,Plegaria Vital,254,0,NORMAL,Status,0,1,0,40,0,d,"Pronuncia una oración que revive a un Pokémon del equipo y restaura la mitad de sus PS máximos."
 785,DOUBLESHOCK,Electropalmas,1C9,120,ELECTRIC,Physical,100,5,0,00,0,bef,"Libera toda la electricidad de su cuerpo para lanzar un ataque devastador, tras el cual pierde el tipo Eléctrico."
 786,FILLETAWAY,Deslome,244,0,NORMAL,Status,0,5,0,10,0,dk,"Aumenta mucho el Ataque, el At. Esp. y la Velocidad del usuario a costa de la mitad de sus PS."
