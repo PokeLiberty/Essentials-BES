@@ -811,7 +811,7 @@
 811,POUNCE,Brinco,044,50,BUG,Physical,100,20,100,04,0,abef,"Ataca abalanzándose sobre el objetivo y le reduce la Velocidad." 
 814,HYPERDRILL,Hipertaladro,0AD,100,NORMAL,Physical,100,5,0,00,2,f,"El usuario hace rotar la parte puntiaguda de su cuerpo a gran velocidad para atacar al objetivo. Pasa por alto los efectos de movimientos como Protección o Detección."
 818,BLOODMOON,Luna Roja,245,140,NORMAL,Special,100,5,0,00,0,bef,"Ataca canalizando toda su fuerza y proyectándola a través de una luna llena de color rojo intenso. Este movimiento no puede usarse dos veces seguidas." 
-819,MATCHAGOTCHA,Cañón Batidor,275,80,GRASS,Special,90,15,10,00,0,bef,"Rocía al objetivo con té recién batido y recupera la mitad de los PS del daño que produce. Puede causar quemaduras." 
+819,MATCHAGOTCHA,Cañón Batidor,275,80,GRASS,Special,90,15,0,04,0,bef,"Rocía al objetivo con té recién batido y recupera la mitad de los PS del daño que produce. Puede causar quemaduras."
 820,SYRUPBOMB,Bomba Caramelo,276,60,GRASS,Special,85,10,0,00,0,befn,"Impregna al objetivo con una explosión de su viscoso néctar y lo carameliza, lo que hace que su Velocidad se reduzca progresivamente durante tres turnos."
 821,IVYCUDGEL,Garrote Liana,277,100,GRASS,Physical,100,10,0,00,0,abefh,"Golpea con un garrote que forma enrollando su liana. El tipo del movimiento varía según la máscara que lleve puesta el usuario. Suele asestar un golpe crítico." 
 822,ELECTROSHOT,Electrorrayo,255,130,ELECTRIC,Special,90,10,0,00,0,bef,"Acumula electricidad y aumenta su Ataque Especial en el primer turno y dispara una descarga de alto voltaje en el segundo. Si llueve, puede atacar en el primer turno." 

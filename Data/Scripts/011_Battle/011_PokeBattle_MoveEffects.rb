@@ -13032,6 +13032,11 @@ class PokeBattle_Move_275 < PokeBattle_Move_00A
         attacker.pbRecoverHP(hpgain,true)
         @battle.pbDisplay(_INTL("¡{1} ha perdido energía!",opponent.pbThis))
       end
+    if @battle.pbRandom(20)==0
+      if opponent.pbCanBurn?(attacker,false,self)
+        opponent.pbBurn(attacker)
+      end
+    end
     end
     return ret
   end

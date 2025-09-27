@@ -347,7 +347,11 @@ class PokeBattle_Move
            isConst?(@id,PBMoves,:PETALBLIZZARD) ||
            isConst?(@id,PBMoves,:BLIZZARD) ||
            isConst?(@id,PBMoves,:SANDSTORM) ||
-           isConst?(@id,PBMoves,:WHIRLWIND)
+           isConst?(@id,PBMoves,:WHIRLWIND) ||
+
+           # No existen en 9ª pero son de "viento" incluso en japonés(No como Viento Cortante que NO es de viento en japones)
+           isConst?(@id,PBMoves,:RAZORWIND) ||
+           isConst?(@id,PBMoves,:SILVERWIND)
   end
 
   def doesBypassIgnorableAbilities?

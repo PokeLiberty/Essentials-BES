@@ -99,6 +99,7 @@ class PokeBattle_Battle
         score *= 2 if move.basedamage > 0 && opponent.effects[PBEffects::TwoTurnAttack] > 0
       end
     end
+
 ##### Alter score depending on the move's function code ########################
     case move.function
     when 0x00 # No extra effect
@@ -3799,9 +3800,6 @@ class PokeBattle_Battle
           score=0 if skill>=PBTrainerAI.bestSkill
         end
       end
-    
-
-  
     # A score of 0 here means it should absolutely not be used
     return score if score<=0
 ##### Other score modifications ################################################
@@ -3914,6 +3912,9 @@ class PokeBattle_Battle
     end
     # If target is frozen, don't prefer moves that could thaw them # TODO
     # Adjust score based on how much damage it can deal
+    if (move.basedamage == 0 && opponent.hasWorkingAbility(:GOODASGOLD)) # Good As Gold/Cuerpo Aureo
+      score = 0
+    end
     if move.basedamage>0
       typemod=pbTypeModifier(move.type,attacker,opponent)
       if typemod==0 || score<=0

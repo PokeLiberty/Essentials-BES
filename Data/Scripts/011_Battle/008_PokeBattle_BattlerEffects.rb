@@ -322,6 +322,7 @@ class PokeBattle_Battler
       if hasWorkingAbility(:WATERVEIL) ||                    # Velo Agua
          hasWorkingAbility(:WATERBUBBLE) ||                  # Pompa
          hasWorkingAbility(:PURIFYINGSALT) ||                # Sal Purificadora 
+         hasWorkingAbility(:THERMALEXCHANGE) ||              # Termoconversion
          (hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS)) ||
          (hasWorkingAbility(:LEAFGUARD) && (@battle.pbWeather==PBWeather::SUNNYDAY ||
                                             @battle.pbWeather==PBWeather::HARSHSUN) && !hasWorkingItem(:UTILITYUMBRELLA))
@@ -365,6 +366,7 @@ class PokeBattle_Battler
     if hasWorkingAbility(:WATERVEIL) ||
        hasWorkingAbility(:WATERBUBBLE) ||
        hasWorkingAbility(:PURIFYINGSALT) ||
+       hasWorkingAbility(:THERMALEXCHANGE) ||
        (hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS)) ||
        (hasWorkingAbility(:LEAFGUARD) && (@battle.pbWeather==PBWeather::SUNNYDAY ||
                                           @battle.pbWeather==PBWeather::HARSHSUN) && !hasWorkingItem(:UTILITYUMBRELLA))

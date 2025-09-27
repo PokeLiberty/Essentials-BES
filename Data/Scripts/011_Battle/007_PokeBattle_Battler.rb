@@ -1880,6 +1880,12 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡Un gas reactivo se propaga por toda la zona!"))
       PBDebug.log("[#{pbThis} summoned Neutralizing Gas]")
     end
+    # Surcavientos
+    if self.hasWorkingAbility(:WINDRIDER) && self.pbOwnSide.effects[PBEffects::Tailwind]>0 && onactive
+      if pbIncreaseStatWithCause(PBStats::ATTACK,1,self,PBAbilities.getName(ability))
+        PBDebug.log("[Ability triggered] #{pbThis}'s Surcavientos (raising Attack)")
+      end
+    end
     # Escudo Recio
     if self.hasWorkingAbility(:DAUNTLESSSHIELD) && onactive
       if pbIncreaseStatWithCause(PBStats::DEFENSE,1,self,PBAbilities.getName(ability))
@@ -3186,6 +3192,17 @@ class PokeBattle_Battler
         end
       end
     end
+    # Colector interacción Voz Fluida
+    if opponent.hasWorkingAbility(:STORMDRAIN) && (attacker.hasWorkingAbility(:LIQUIDVOICE) && isSoundBased?)
+      PBDebug.log("[Habilidad disparada] #{PBAbilities.getName(opponent.ability)} de #{opponent.pbThis} (hizo ineficaz #{@name})")
+      if opponent.pbCanIncreaseStatStage?(PBStats::SPATK,opponent)
+        opponent.pbIncreaseStatWithCause(PBStats::SPATK,1,opponent,PBAbilities.getName(opponent.ability))
+      else
+        @battle.pbDisplay(_INTL("¡{2} de {1} hizo ineficaz {3}!",
+           opponent.pbThis,PBAbilities.getName(opponent.ability),self.name))
+      end
+      return true
+    end
     # Cambio de objtivo por el usuario de Señuelo (sobreescribe Capa Mágica
     # porque la verificación de Capa Mágica de abajo usa este objetivo)
     if PBTargets.targetsOneOpponent?(thismove)
@@ -3577,6 +3594,12 @@ class PokeBattle_Battler
       PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos basados en polvo por alguna razón")
       return false
     end
+    # Cuerpo Aureo
+    if thismove.canMagicCoat? && !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD) 
+       @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
+       PBDebug.log("[Habilidad disparada] Cuerpo Áureo de #{target.pbThis} anula movimientos de Estado")
+       return false
+     end
     # Bromista
     if USENEWBATTLEMECHANICS
       if self.hasWorkingAbility(:PRANKSTER) && target.pbHasType?(:DARK) &&  thismove.pbIsStatus?
@@ -3585,14 +3608,6 @@ class PokeBattle_Battler
         PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos de estado por alguna razón")
         return false
       end
-    end
-    # Cuerpo Aureo
-    if thismove.pbIsStatus? && !thismove.doesBypassIgnorableAbilities? &&
-      !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD)
-      showAbilityMessage(target)
-      @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
-      PBDebug.log("[Habilidad disparada] Cuerpo Áureo de #{target.pbThis}")
-      return false
     end
     if thismove.basedamage>0 && thismove.function!=0x02 &&                     # Combate
        thismove.function!=0x111                                                # Premonición
