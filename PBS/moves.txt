@@ -747,7 +747,7 @@
 746,BARBBARRAGE,Mil Púas Tóxicas,232,60,POISON,Physical,100,10,30,00,0,abef,"Dispara un sinfín de púas tóxicas que pueden envenenar al objetivo. El daño será doble si este ya sufre un problema de estado."
 747,VICTORYDANCE,Danza Triunfal,228,0,FIGHTING,Status,0,10,0,10,0,d,"Ejecuta una danza frenética que invoca la victoria y aumenta el Ataque, la Defensa y la Velocidad."
 748,CHLOROBLAST,Clorofiláser,0FA,150,GRASS,Special,95,5,100,00,0,bef,"El usuario concentra clorofila y la dispara en forma de rayo, pero también se hiere a sí mismo."
-749,MOUNTAINGALE,Viento Carámbano,00F,100,ICE,Physical,85,100,30,00,0,bef,"Ataca con unos carámbanos grandes como icebergs que pueden hacer retroceder al oponente."
+749,MOUNTAINGALE,Viento Carámbano,00F,100,ICE,Physical,85,10,30,00,0,bef,"Ataca con unos carámbanos grandes como icebergs que pueden hacer retroceder al oponente."
 750,PSYSHIELDBASH,Asalto Barrera,01D,70,PSYCHIC,Physical,90,10,10,00,0,abef,"El usuario ataca envuelto en una energía psíquica que además aumenta su Defensa."
 751,DIRECLAW,Garra Nociva,230,80,POISON,Physical,100,15,50,00,0,abef,"Ataca al punto débil del objetivo con unas garras letales que pueden envenenarlo, paralizarlo o dormirlo."
 752,ESPERWING,Ala Aural,01F,80,PSYCHIC,Special,100,10,100,00,0,befh,"Corta con unas alas imbuidas de aura. Suele ser crítico y puede subir la Velocidad del usuario."
@@ -774,7 +774,7 @@
 772,JETPUNCH,Puño Jet,000,60,WATER,Physical,100,15,0,00,1,abefj,"Se envuelve el puño con un torrente y propina un golpe imperceptible. Tiene prioridad alta."
 773,GIGATONHAMMER,Martillo Colosal,245,160,STEEL,Physical,100,5,0,00,0,bef,"Propina un golpe con un enorme martillo. Este movimiento no puede usarse dos veces seguidas."
 774,SALTCURE,Salazón,246,40,ROCK,Physical,100,15,0,00,0,abef,"Deja en salazón al objetivo, que pierde PS cada turno. Afecta especialmente a Pokémon de tipo Acero y tipo Agua."
-775,DOODLE,Decalcomanía,247,0,PSYCHIC,Status,0,10,0,00,0,,"Calca la esencia misma del objetivo para atribuir su habilidad a sí mismo y a sus aliados."
+775,DOODLE,Decalcomanía,247,0,NORMAL,Status,0,10,0,00,0,,"Calca la esencia misma del objetivo para atribuir su habilidad a sí mismo y a sus aliados."
 776,SHEDTAIL,Autotomía,248,0,NORMAL,Status,0,10,0,10,0,d,"El usuario se cambia por otro Pokémon del equipo, pero antes utiliza parte de los PS propios para crear un sustituto para su relevo." #POR TESTEAR
 777,AQUACUTTER,Tajo Acuático,000,70,WATER,Physical,100,20,0,00,0,abefh,"Expele agua a presión con la que corta al objetivo. Suele asestar un golpe crítico."
 778,TRIPLEDIVE,Triple Inmersión,249,30,WATER,Physical,95,10,0,00,0,abef,"Ejecuta una inmersión triple en perfecta sincronía que golpea al objetivo con salpicaduras de agua tres veces seguidas."
@@ -787,7 +787,7 @@
 785,DOUBLESHOCK,Electropalmas,1C9,120,ELECTRIC,Physical,100,5,0,00,0,bef,"Libera toda la electricidad de su cuerpo para lanzar un ataque devastador, tras el cual pierde el tipo Eléctrico."
 786,FILLETAWAY,Deslome,244,0,NORMAL,Status,0,5,0,10,0,dk,"Aumenta mucho el Ataque, el At. Esp. y la Velocidad del usuario a costa de la mitad de sus PS."
 787,SPINOUT,Quemarrueda,243,100,STEEL,Physical,100,5,0,00,0,abef,"Ejercie presión sobre el oponente y gira violentamente sobre sí. Reduce mucho la Velocidad del usuario."
-788,RAGEFIST,Puño Furia,274,50,FIGHTING,Physical,100,10,0,00,0,abefj,"Convierte su rabia en energía para atacar. Cuantos más golpes haya recibido el usuario, mayor será su potencia." #TODO
+788,RAGEFIST,Puño Furia,274,50,GHOST,Physical,100,10,0,00,0,abefj,"Convierte su rabia en energía para atacar. Cuantos más golpes haya recibido el usuario, mayor será su potencia." #TODO
 789,TRAILBLAZE,Abrecaminos,01F,50,GRASS,Physical,100,20,100,00,0,abef,"Ataca de pronto, saltando desde la hierba alta. El usuario se mueve con gran agilidad y aumenta su Velocidad."
 790,CHILLINGWATER,Agua Fría,044,50,WATER,Special,100,20,100,00,0,bef,"Ataca al objetivo rociándolo con un agua gélida y desalentadora que reduce su Ataque."
 791,SILKTRAP,Telatrampa,257,0,BUG,Status,0,10,0,10,4,,"Trampa sedosa que protege al usuario y reduce la Velocidad de cualquier Pokémon con el que entre en contacto."
