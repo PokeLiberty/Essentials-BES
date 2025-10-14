@@ -3944,7 +3944,7 @@ class PokeBattle_Battle
       elsif isConst?(move.type,PBTypes,:ELECTRIC) &&
             (opponent.hasWorkingAbility(:VOLTABSORB) ||
             opponent.hasWorkingAbility(:LIGHTNINGROD) ||
-            opponent.hasWorkingAbility(:MOTORDRIVE)
+            opponent.hasWorkingAbility(:MOTORDRIVE))
         score=0
       elsif move.isWindMove? &&
             opponent.hasWorkingAbility(:WINDRIDER)

@@ -1020,7 +1020,7 @@ MultipleForms.register(:FLOETTE,{
    next [74,65,67,92,125,128] if pokemon.form==6 # Floette Flor Eterna
    next [74,85,87,102,155,148] if pokemon.form==7 # Floette Flor Eterna
    next 
-}
+},
  "getMegaForm"=>proc{|pokemon|
     next 7 if isConst?(pokemon.item,PBItems,:FLOETTITE) && pokemon.form==6
     next
@@ -1170,7 +1170,7 @@ MultipleForms.register(:ZYGARDE,{
    end
 },
  "getMegaForm"=>proc{|pokemon|
-    next 3 if isConst?(pokemon.item,PBItems,:FALINKSITE) && pokemon.form==2
+    next 3 if isConst?(pokemon.item,PBItems,:ZYGARDITE) && pokemon.form==2
     next
  },
   "height"=>proc{|pokemon|
