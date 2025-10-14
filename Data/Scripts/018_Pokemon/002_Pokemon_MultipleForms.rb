@@ -995,14 +995,6 @@ MultipleForms.register(:GENESECT,{
 }
 })
 
-# GRENINJA
-MultipleForms.register(:GRENINJA,{
-"getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0
-   next [72,145,67,132,153,71]
-}
-})
-
 # VIVILLON
 MultipleForms.register(:SCATTERBUG,{
 "getFormOnCreation"=>proc{|pokemon|
@@ -1019,7 +1011,26 @@ MultipleForms.register(:FLABEBE,{
 },
 })
 
-MultipleForms.copy(:FLABEBE,:FLOETTE,:FLORGES)
+# FLABEBE, FLOETTE, FLORGES
+MultipleForms.register(:FLOETTE,{
+"getFormOnCreation"=>proc{|pokemon|
+   next rand(5)
+},
+"getBaseStats"=>proc{|pokemon|
+   next [74,65,67,92,125,128] if pokemon.form==6 # Floette Flor Eterna
+   next [74,85,87,102,155,148] if pokemon.form==7 # Floette Flor Eterna
+   next 
+}
+ "getMegaForm"=>proc{|pokemon|
+    next 7 if isConst?(pokemon.item,PBItems,:FLOETTITE) && pokemon.form==6
+    next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 6
+ }
+ })
+
+MultipleForms.copy(:FLABEBE,:FLORGES)
 
 # FURFROU
 MultipleForms.register(:FURFROU,{
@@ -1154,9 +1165,28 @@ MultipleForms.register(:ZYGARDE,{
    case pokemon.form
    when 1; next [54,100,71,115,61,85]    # Zygarde-10%
    when 2; next [216,100,121,85,91,95]   # Zygarde Completo
+   when 3; next [216,70,91,216,85,100]   # Mega Zygarde Completo
    else;   next                          # Zygarde-50%
    end
-}
+},
+ "getMegaForm"=>proc{|pokemon|
+    next 3 if isConst?(pokemon.item,PBItems,:FALINKSITE) && pokemon.form==2
+    next
+ },
+  "height"=>proc{|pokemon|
+    next 12 if pokemon.form==1
+    next 45 if pokemon.form==2
+    next
+ },
+ "weight"=>proc{|pokemon|
+    next 335 if pokemon.form==1
+    next 6100 if pokemon.form==2
+    next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 2
+ }
+
 })
 
 # HOOPA
@@ -1661,6 +1691,18 @@ MultipleForms.register(:ZAMAZENTA,{
      end
    end
 }
+})
+
+# ETERNATUS
+MultipleForms.register(:ETERNATUS,{
+"getBaseStats"=>proc{|pokemon|
+   next if pokemon.form==0
+   next [255,115,250,125,250,130] # Eternatus Dinamax infinito
+},
+ "height"=>proc{|pokemon|
+    next 1000 if pokemon.form==1
+    next
+},
 })
 
 # URSHIFU

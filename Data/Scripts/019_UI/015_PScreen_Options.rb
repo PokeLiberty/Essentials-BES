@@ -169,6 +169,7 @@ class EnumOption
 
   def initialize(name, values, get_proc, set_proc)
     @name     = name
+    values = [values] if !values.is_a?(Array)
     @values   = values.map { |val| _INTL(val) }
     @get_proc = get_proc
     @set_proc = set_proc
@@ -187,6 +188,34 @@ class EnumOption
   end
 end
 
+#===============================================================================
+# 
+#===============================================================================
+class SingleValueOption
+  include PropertyMixin
+  attr_reader :values
+
+  def initialize(name, values, get_proc, set_proc)
+    @name     = name
+    # Asegurar que values es un array
+    values = [values] if !values.is_a?(Array)
+    @values   = values.map { |val| _INTL(val) }
+    @get_proc = get_proc
+    @set_proc = set_proc
+  end
+
+  def next(current)
+    index = current + 1
+    index = 0 if index >= @values.length
+    return index
+  end
+
+  def prev(current)
+    index = current - 1
+    index = @values.length - 1 if index < 0
+    return index
+  end
+end
 #===============================================================================
 #
 #===============================================================================
@@ -533,7 +562,7 @@ MenuHandlers.add(:options_menu, :se_volume, {
 })
 
 MenuHandlers.add(:options_menu, :text_speed, {
-  "name"        => _INTL("Velocidad del texto	"),
+  "name"        => _INTL("Velocidad del texto"),
   "order"       => 30,
   "type"        => EnumOption,
   "parameters"  => [_INTL("Lenta"), _INTL("Media"), _INTL("Rápida")],

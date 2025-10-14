@@ -2871,13 +2871,13 @@ class PokeBattle_Battle
         end
         
         if attacker.hasWorkingAbility(:DRYSKIN) || 
-          attacker.hasWorkingAbility(:RAINDANCE) ||
+          attacker.hasWorkingAbility(:RAINDISH) ||
           attacker.hasWorkingAbility(:HYDRATION)
           score*=1.5
         end
         score*=0.5 if solar_moves.any? { |mov| attacker.pbHasMove?(getID(PBMoves, mov))}
 
-        if isConst?(attacker.species,PBSpecies,:GLIGAR) && @doublebattle
+        if isConst?(attacker.species,PBSpecies,:LUDICOLO) && @doublebattle
           score+=100
         else
           if attacker.hp<=attacker.totalhp/4
@@ -3944,8 +3944,7 @@ class PokeBattle_Battle
       elsif isConst?(move.type,PBTypes,:ELECTRIC) &&
             (opponent.hasWorkingAbility(:VOLTABSORB) ||
             opponent.hasWorkingAbility(:LIGHTNINGROD) ||
-            opponent.hasWorkingAbility(:MOTORDRIVE) ||
-            opponent.hasWorkingAbility(:ELECTROLADRON))
+            opponent.hasWorkingAbility(:MOTORDRIVE)
         score=0
       elsif move.isWindMove? &&
             opponent.hasWorkingAbility(:WINDRIDER)

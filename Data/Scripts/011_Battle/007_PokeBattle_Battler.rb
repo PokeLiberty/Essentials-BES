@@ -3193,13 +3193,12 @@ class PokeBattle_Battler
       end
     end
     # Colector interacción Voz Fluida
-    if opponent.hasWorkingAbility(:STORMDRAIN) && (attacker.hasWorkingAbility(:LIQUIDVOICE) && isSoundBased?)
+    if target.hasWorkingAbility(:STORMDRAIN) && (user.hasWorkingAbility(:LIQUIDVOICE) && isSoundBased?)
       PBDebug.log("[Habilidad disparada] #{PBAbilities.getName(opponent.ability)} de #{opponent.pbThis} (hizo ineficaz #{@name})")
-      if opponent.pbCanIncreaseStatStage?(PBStats::SPATK,opponent)
-        opponent.pbIncreaseStatWithCause(PBStats::SPATK,1,opponent,PBAbilities.getName(opponent.ability))
+      if opponent.pbCanIncreaseStatStage?(PBStats::SPATK,target)
+        opponent.pbIncreaseStatWithCause(PBStats::SPATK,1,target,PBAbilities.getName(target.ability))
       else
-        @battle.pbDisplay(_INTL("¡{2} de {1} hizo ineficaz {3}!",
-           opponent.pbThis,PBAbilities.getName(opponent.ability),self.name))
+        @battle.pbDisplay(_INTL("¡{2} de {1} hizo ineficaz {3}!",target.pbThis,PBAbilities.getName(target.ability),self.name))
       end
       return true
     end
