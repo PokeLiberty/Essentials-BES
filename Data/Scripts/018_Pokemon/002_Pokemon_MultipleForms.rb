@@ -1018,7 +1018,7 @@ MultipleForms.register(:FLOETTE,{
 },
 "getBaseStats"=>proc{|pokemon|
    next [74,65,67,92,125,128] if pokemon.form==6 # Floette Flor Eterna
-   next [74,85,87,102,155,148] if pokemon.form==7 # Floette Flor Eterna
+   next [74,85,87,102,155,148] if pokemon.form==7 # Mega Floette Flor Eterna
    next 
 },
  "getMegaForm"=>proc{|pokemon|
@@ -1176,11 +1176,13 @@ MultipleForms.register(:ZYGARDE,{
   "height"=>proc{|pokemon|
     next 12 if pokemon.form==1
     next 45 if pokemon.form==2
+    next 77 if pokemon.form==3
     next
  },
  "weight"=>proc{|pokemon|
     next 335 if pokemon.form==1
     next 6100 if pokemon.form==2
+    next 6100 if pokemon.form==3
     next
  },
  "getUnmegaForm"=>proc{|pokemon|

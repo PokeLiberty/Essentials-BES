@@ -837,3 +837,5 @@
 840,COMBATTORQUE,Pugnachoque,007,100,FIGHTING,Physical,100,10,10,00,0,abef,"Puede paralizar al objetivo."
 841,MAGICALTORQUE,Feerichoque,013,100,FAIRY,Physical,100,10,20,00,0,abef,"Puede confundir al objetivo."
 ############## 
+
+842,NIHILLIGHT,Luz devastadora,282,200,DRAGON,Special,100,10,0,00,0,be,"Desata una poderosa luz que ignora todas las leyes de la naturaleza. Puede golpear a Pokémon de tipo Hada e ignora los cambios en las características del rival."

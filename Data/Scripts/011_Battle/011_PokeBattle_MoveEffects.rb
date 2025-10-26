@@ -13169,3 +13169,10 @@ class PokeBattle_Move_281 < PokeBattle_Move
     return 0
   end
 end
+
+################################################################################
+# Puede golpear a Pokémon de tipo Hada e ignora los cambios en las características del rival. (Luz devastadora | Nihil Light)
+################################################################################
+class PokeBattle_Move_282 < PokeBattle_Move
+
+end
