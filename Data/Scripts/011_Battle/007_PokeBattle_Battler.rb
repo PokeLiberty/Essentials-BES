@@ -3938,7 +3938,14 @@ class PokeBattle_Battler
          !pbSuccessCheck(thismove,user,target,turneffects,i==0 || thismove.successCheckPerHit?)
         if thismove.function==0xBF && realnumhits>0                  # Triplepatada
           break                # Se considera éxitoso si Triplepatada golpea al menos una vez
-        elsif thismove.function==0x10B || thismove.function==0x15C   # Patada Salto Alta, Patada Salto, Patada Hacha
+        elsif thismove.function==0x0E0 || thismove.function==0x202   # Explosion, Bruma Explosiva
+            damage=(user.totalhp).floor
+            if damage>0
+              @battle.scene.pbDamageAnimation(user,0)
+              user.pbReduceHP(damage)
+            end
+            user.pbFaint if user.isFainted?
+        elsif thismove.function==0x10B || thismove.function==0x278   # Patada Salto Alta, Patada Salto, Patada Hacha
           if !user.hasWorkingAbility(:MAGICGUARD)
             PBDebug.log("[Efecto de mov. disparado] #{user.pbThis} es dañado por la caída")
             #TODO: No se muestra es el mensaje es "No afecta a XXX..."

@@ -240,6 +240,8 @@ class PokeBattle_Battler
     if !moldbreaker
       return false if hasWorkingAbility(:IMMUNITY) ||
                       hasWorkingAbility(:PURIFYINGSALT) ||
+                      hasWorkingAbility(:PASTELVEIL) ||
+                      hasWorkingAbility(:PURIFYINGSALT) ||
                       (hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS)) ||
                       (pbPartner.hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS))
       return false if hasWorkingAbility(:LEAFGUARD) &&
