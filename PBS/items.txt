@@ -800,3 +800,22 @@
 800,FALINKSITE,Falinksita,Falinksitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Falinks en combate.",0,0,0,
 801,FLOETTITE,Floettita,Floettitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Floette en combate.",0,0,0,
 802,ZYGARDITE,Zygardita,Zygarditas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Zygarde en combate.",0,0,0,
+803,RAICHUITEX,Raichuita X,Raichuitas X,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Raichu en combate.",0,0,0  
+804,RAICHUITEY,Raichuita Y,Raichuitas Y,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Raichu en combate.",0,0,0  
+805,CHIMECHITE,Chimechita,Chimechitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Chimecho en combate.",0,0,0  
+806,ABSOLITEZ,Absolita Z,Absolitas Z,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Absol en combate.",0,0,0  
+807,STARAPTITE,Staraptita,Staraptitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Staraptor en combate.",0,0,0  
+808,GARCHOMPITEZ,Garchompita Z,Garchompitas Z,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Garchomp en combate.",0,0,0  
+809,LUCARIONITEZ,Lucarionita Z,Lucarionitas Z,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Lucario en combate.",0,0,0  
+810,GOLURKITE,Golurkita,Golurkitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Golurk en combate.",0,0,0  
+811,MEOWSTICITE,Meowsticita,Meowsticitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Meowstic en combate.",0,0,0  
+812,CRABOMINITE,Crabominita,Crabominitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Crabominable en combate.",0,0,0  
+813,GOLISOPITE,Golisopita,Golisopitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Golisopod en combate.",0,0,0  
+814,MAGEARNITE,Magearnita,Magearnitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Magearna en combate.",0,0,0  
+815,SCOVILLAINITE,Scovillainita,Scovillainitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Scovillain en combate.",0,0,0  
+816,BAXCALIBRITE,Baxcalibrita,Baxcalibritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Baxcalibur en combate.",0,0,0  
+817,TATSUGIRINITE,Tatsugirinita,Tatsugirinitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Tatsugiri en combate.",0,0,0  
+818,GLIMMORANITE,Glimmoranita,Glimmoranitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Glimmora en combate.",0,0,0
+819,HEATRANITE,Heatranita,Heatranitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Heatran en combate.",0,0,0  
+820,DARKRANITE,Darkranita,Darkranitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Darkrai en combate.",0,0,0  
+821,ZERAORITE,Zeraorita,Zeraoritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Zeraora en combate.",0,0,0
