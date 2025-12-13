@@ -1880,9 +1880,8 @@ MultipleForms.register(:TATSUGIRI,{
    next rand(2)
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0
    next [68,65,90,92,135,125] if pokemon.form >= 3
-   end
+   next
 },
  "getMegaForm"=>proc{|pokemon|
     next 3 if isConst?(pokemon.item,PBItems,:TATSUGIRINITE) && pokemon.form==0
@@ -1891,11 +1890,11 @@ MultipleForms.register(:TATSUGIRI,{
     next
  },
   "height"=>proc{|pokemon|
-    next 10 if pokemon.form==1
+    next 10 if pokemon.form >= 3
     next
  },
  "weight"=>proc{|pokemon|
-    next 3 if pokemon.form==1
+    next 3 if pokemon.form >= 3
     next
  },
  "getUnmegaForm"=>proc{|pokemon|

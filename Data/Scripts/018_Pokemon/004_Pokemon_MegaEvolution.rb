@@ -1515,7 +1515,7 @@ class PokeBattle_Pokemon
  #   next
  #}, #No se sabe cual es la hab oficial.
  "height"=>proc{|pokemon|
-    next 09 if pokemon.form==1
+    next 9 if pokemon.form==1
     next
  },
  "weight"=>proc{|pokemon|
