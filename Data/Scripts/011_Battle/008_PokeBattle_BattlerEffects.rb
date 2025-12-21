@@ -1126,6 +1126,7 @@ class PokeBattle_Battler
       end
       if hasWorkingAbility(:CLEARBODY) || hasWorkingAbility(:WHITESMOKE) ||
          hasWorkingAbility(:HYPERCUTTER) || hasWorkingAbility(:FULLMETALBODY) ||
+         hasWorkingAbility(:INNERFOCUS) || hasWorkingAbility(:GUARDDOG) ||
          (hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS)) || 
          hasWorkingItem(:CLEARAMULET)
         abilityname=PBAbilities.getName(self.ability)

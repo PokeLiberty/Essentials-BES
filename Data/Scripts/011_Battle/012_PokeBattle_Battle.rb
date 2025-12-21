@@ -4138,6 +4138,8 @@ class PokeBattle_Battle
             pbCommonAnimation("ThunderCage",i,nil)
           elsif isConst?(i.effects[PBEffects::MultiTurnAttack],PBMoves,:CEASELESSEDGE)
             pbCommonAnimation("CeaselessEdge",i,nil)
+          elsif isConst?(i.effects[PBEffects::MultiTurnAttack],PBMoves,:SNAPTRAP)
+            pbCommonAnimation("SnapTrap",i,nil)
           else
             pbCommonAnimation("Wrap",i,nil)
           end

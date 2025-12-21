@@ -4927,10 +4927,19 @@ class PokeBattle_Move_0AF < PokeBattle_Move
        0x73,    # Repr. Metal
        0x9C,    # Refuerzo
        0xAA,    # Detección, Protección
+       0xE7,    # Mismodestino
+       0xAB,    # Vasta Guardia
        0xAD,    # Amago
+       0xAE,    # Espejo
        0xB2,    # Robo
        0xE7,    # Mismodestino
        0xE8,    # Aguante
+       0x5C,    # Mimético
+       0x5D,    # Esquema
+       0xB4,    # Sonámbulo
+       0xB5,    # Ayuda
+       0xB0,    # Yo Primero
+       0x11D,   # Cede Paso
        0xEC,    # Llave Giro, Cola Dragón
        0xF1,    # Antojo, Ladrón
        0xF2,    # Trapicheo, Truco
@@ -4938,9 +4947,12 @@ class PokeBattle_Move_0AF < PokeBattle_Move
        0x115,   # Puño Certero
        0x117,   # Señuelo, Polvo Ira
        0x158,   # Eructo
+       0x14B,   # Escudo Real
+       0x14C,   # Barrera Espinoza
        0x15B,   # Búnker
        0x184,   # Obstrucción
        0x257,   # Telatrampa
+       0x268,   # Llama Protectora
        0XAF     # Copión
     ]
     if USENEWBATTLEMECHANICS
@@ -4961,6 +4973,8 @@ class PokeBattle_Move_0AF < PokeBattle_Move
          0xCE,    # Caída Libre
          0x14D,   # Golpe Fantasma
          0x14E,   # Geocontrol
+         0x1BC,   # Pico Cañon
+         0x255,   # Electrorrayo
          0x190    # Rayo Meteórico
       ]
     end
@@ -6263,6 +6277,8 @@ class PokeBattle_Move_0CF < PokeBattle_Move
           @battle.pbDisplay(_INTL("¡{1} quedó atrapado en la jaula!",opponent.pbThis))
         elsif isConst?(@id,PBMoves,:CEASELESSEDGE)
           @battle.pbDisplay(_INTL("¡A {1} se le han clavado unos fragmentos afilados!",opponent.pbThis))
+        elsif isConst?(@id,PBMoves,:SNAPTRAP)
+          @battle.pbDisplay(_INTL("¡{1} quedó atrapado por Cepo!",opponent.pbThis))
         else
           @battle.pbDisplay(_INTL("¡{1} quedó atrapado en el torbellino!",opponent.pbThis))
         end
@@ -10392,6 +10408,14 @@ class PokeBattle_Move_CF13 < PokeBattle_Move
          opponent.hasWorkingAbility(:HYPERCUTTER)
       @battle.pbDisplay(_INTL("¡{2} de {1} evita que bajen las características!",opponent.pbThis,
       PBAbilities.getName(opponent.ability)))
+      return -1
+    elsif opponent.hasWorkingAbility(:SAPSIPPER)
+      if opponent.pbCanIncreaseStatStage?(PBStats::ATTACK,opponent,false,self)
+        opponent.pbIncreaseStat(PBStats::ATTACK,1,opponent,false,self)
+      else
+        @battle.pbDisplay(_INTL("¡El ataque de {1} no subira más!",opponent.pbThis,
+        PBAbilities.getName(opponent.ability)))
+      end
       return -1
     else
       oatk=opponent.attack

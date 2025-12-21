@@ -2389,7 +2389,8 @@ class PokeBattle_Battler
     if !(user.hasWorkingAbility(:SHEERFORCE) && thismove.addlEffect>0)
       # Objetos de objetivos:
       # Tarjeta Roja
-      if target.hasWorkingItem(:REDCARD) && @battle.pbCanSwitch?(user.index,-1,false)
+      if target.hasWorkingItem(:REDCARD) && @battle.pbCanSwitch?(user.index,-1,false) && 
+         !user.hasWorkingAbility(:SUCTIONCUPS) && !user.hasWorkingAbility(:GUARDDOG) 
         user.effects[PBEffects::Roar]=true
         @battle.pbDisplay(_INTL("¡{1} ha sacado una {2} a {3}!",
            target.pbThis,PBItems.getName(target.item),user.pbThis(true)))

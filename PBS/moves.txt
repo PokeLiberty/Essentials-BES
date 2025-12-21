@@ -353,7 +353,7 @@
 353,CHARM,Encanto,04B,0,FAIRY,Status,100,20,0,00,0,bce,"Engatusa al objetivo y reduce bastante su Ataque."
 354,CONVERSION,Conversión,05E,0,NORMAL,Status,0,30,0,10,0,d,"Cambia el tipo del usuario por el de uno de sus movimientos."
 355,CONVERSION2,Conversión 2,05F,0,NORMAL,Status,0,30,0,00,0,,"El usuario cambia de tipo para hacerse resistente al último tipo de movimiento usado por el objetivo."
-356,COPYCAT,Copión,0AE,0,NORMAL,Status,0,20,0,00,0,,"Imita el movimiento usado justo antes. El movimiento falla si no se ha usado aún ninguno."
+356,COPYCAT,Copión,0AF,0,NORMAL,Status,0,20,0,00,0,,"Imita el movimiento usado justo antes. El movimiento falla si no se ha usado aún ninguno."
 357,DEFENSECURL,Rizo Defensa,01E,0,NORMAL,Status,0,40,0,10,0,d,"Se enrosca para ocultar su punto débil. Sube la Defensa."
 358,DISABLE,Anulación,0B9,0,NORMAL,Status,100,20,0,00,0,bce,"Desactiva el último movimiento del objetivo durante cuatro turnos."
 359,DOUBLETEAM,Doble Equipo,022,0,NORMAL,Status,0,15,0,10,0,d,"Crea copias de sí mismo para mejorar la Evasión."

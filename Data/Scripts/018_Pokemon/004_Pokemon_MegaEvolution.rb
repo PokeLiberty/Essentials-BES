@@ -2087,11 +2087,11 @@ MultipleForms.register(:MEOWSTIC,{
  #   next
  #}, #No se sabe cual es la hab oficial.
  "weight"=>proc{|pokemon|
-    #next 101 if pokemon.form==1
+    next 2528 if pokemon.form==1
     next
  },
  "height"=>proc{|pokemon|
-    #next 8 if pokemon.form==1
+    next 26 if pokemon.form==1
     next
  },
  "getUnmegaForm"=>proc{|pokemon|
@@ -2113,11 +2113,11 @@ MultipleForms.register(:MEOWSTIC,{
  #   next
  #}, #No se sabe cual es la hab oficial.
  "weight"=>proc{|pokemon|
-    #next 101 if pokemon.form==1
+    next 1480 if pokemon.form==1
     next
  },
  "height"=>proc{|pokemon|
-    #next 8 if pokemon.form==1
+    next 23 if pokemon.form==1
     next
  },
  "getUnmegaForm"=>proc{|pokemon|
@@ -2141,11 +2141,11 @@ MultipleForms.register(:MEOWSTIC,{
  #   next
  #}, #No se sabe cual es la hab oficial.
  "weight"=>proc{|pokemon|
-    #next 101 if pokemon.form >= 2
+    next 2481 if pokemon.form >= 2
     next
  },
  "height"=>proc{|pokemon|
-    #next 8 if pokemon.form >= 2
+    next 13 if pokemon.form >= 2
     next
  },
  "getUnmegaForm"=>proc{|pokemon|
@@ -2186,11 +2186,11 @@ MultipleForms.register(:SCOVILLAIN,{
  #   next
  #}, #No se sabe cual es la hab oficial.
  "weight"=>proc{|pokemon|
-    #next 101 if pokemon.form==1
+    next 220 if pokemon.form==1
     next
  },
  "height"=>proc{|pokemon|
-    #next 8 if pokemon.form==1
+    next 12 if pokemon.form==1
     next
  },
  "getUnmegaForm"=>proc{|pokemon|
@@ -2212,11 +2212,11 @@ MultipleForms.register(:GLIMMORA,{
  #   next
  #}, #No se sabe cual es la hab oficial.
  "weight"=>proc{|pokemon|
-    #next 101 if pokemon.form==1
+    next 770 if pokemon.form==1
     next
  },
  "height"=>proc{|pokemon|
-    #next 8 if pokemon.form==1
+    next 28 if pokemon.form==1
     next
  },
  "getUnmegaForm"=>proc{|pokemon|
