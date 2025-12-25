@@ -17,6 +17,8 @@ class PokeBattle_FakeBattler
   def owned; return @owned; end
   def isFainted?; return false; end
   def isShiny?; return @pokemon.isShiny?; end
+  alias shiny? isShiny? #BES-T Compt - v17
+  
   def isShadow?; return false; end
   def hasMega?; return false; end
   def isMega?; return false; end

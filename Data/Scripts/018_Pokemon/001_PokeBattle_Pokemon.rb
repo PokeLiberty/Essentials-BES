@@ -74,7 +74,8 @@ class PokeBattle_Pokemon
   def isForeign?(trainer)
     return @trainerID!=trainer.id || @ot!=trainer.name
   end
-
+  alias foreign? isForeign?
+  
 # Returns the public portion of the original trainer's ID.
   def publicID
     return @trainerID&0xFFFF
@@ -140,8 +141,7 @@ class PokeBattle_Pokemon
   def isEgg?
     return @eggsteps>0
   end
-
-  def egg?; return isEgg?; end
+  alias egg? isEgg?
 
 # Returns this Pokemon's growth rate.
   def growthrate
@@ -198,21 +198,25 @@ class PokeBattle_Pokemon
     dexdata.close
     return genderbyte==255 || genderbyte==254 || genderbyte==0
   end
+  alias singleGendered? isSingleGendered?
 
 # Returns whether this Pokémon is male.
   def isMale?
     return self.gender==0
   end
+  alias male? isMale? #BES-T Compt - v17
 
 # Returns whether this Pokémon is female.
   def isFemale?
     return self.gender==1
   end
+  alias female? isFemale? #BES-T Compt - v17
 
 # Returns whether this Pokémon is genderless.
   def isGenderless?
     return self.gender==2
   end
+  alias genderless? isGenderless?
 
 # Sets this Pokémon's gender to a particular gender (if possible).
   def setGender(value)
@@ -344,6 +348,7 @@ class PokeBattle_Pokemon
     d=b^c
     return (d<SHINYPOKEMONCHANCE)
   end
+  alias shiny? isShiny? #BES-T Compt - v17
 
 # Makes this Pokemon shiny.
   def makeShiny
@@ -354,7 +359,7 @@ class PokeBattle_Pokemon
   def makeNotShiny
     @shinyflag=false
   end
-
+  
 ################################################################################
 # Pokérus
 ################################################################################

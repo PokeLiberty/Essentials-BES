@@ -214,6 +214,7 @@ class PokeBattle_Battler
     return @pokemon.isShiny? if @pokemon
     return false
   end
+  alias shiny? isShiny? #BES-T Compt - v17
 
   def owned
     return (@pokemon) ? $Trainer.owned[@pokemon.species] && !@battle.opponent : false
@@ -713,10 +714,7 @@ class PokeBattle_Battler
   def isFainted?
     return @hp<=0
   end
-
-  def fainted? #BES-T Compt - v17
-    return @hp<=0
-  end
+  alias fainted? isFainted? #BES-T Compt - v17
 
   def hasMoldBreaker
     return true if hasWorkingAbility(:MOLDBREAKER) ||
