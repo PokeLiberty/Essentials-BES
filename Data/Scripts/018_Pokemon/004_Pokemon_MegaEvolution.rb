@@ -2108,6 +2108,10 @@ MultipleForms.register(:MEOWSTIC,{
     next [75,150,175,40,70,120] if pokemon.form==1
     next
  },
+ "type2"=>proc{|pokemon|
+    next getID(PBTypes,:STEEL) if pokemon.form==1
+    next
+ },
  #"getAbilityList"=>proc{|pokemon|
  #   next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
  #   next
