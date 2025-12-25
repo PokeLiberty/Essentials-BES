@@ -1,0 +1,7 @@
+AFTERMATH=Resquicio
+MULTISCALE=Compensación
+TRACE=Rastro
+AIRLOCK=Bucle Aire
+TRUANT=Pereza
+INNERFOCUS=Foco Interno
+LIQUIDOOZE=Lodo Líquido

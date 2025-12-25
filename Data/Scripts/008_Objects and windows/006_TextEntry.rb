@@ -630,7 +630,7 @@ class Window_MultilineTextEntry < SpriteWindow_Base
     elsif Input.repeatex?(13)
       self.insert("\n")
       return
-    elsif Input.repeatex?(8) || Input.repeatex?(0x2E)
+    elsif (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.repeatex?(:BACKSPACE))
       # Backspace
       self.delete
       return
@@ -766,25 +766,30 @@ class Window_TextEntry_Keyboard < Window_TextEntry
     self.refresh if ((@frame%10)==0)
     return if !self.active
     # Moving cursor
-    if Input.repeat?(Input::LEFT)
-      if @helper.cursor > 0
-        @helper.cursor-=1
-        @frame=0
-        self.refresh
-      end
-      return
-    end
-    if Input.repeat?(Input::RIGHT)
-      if @helper.cursor < self.text.scan(/./m).length
-        @helper.cursor+=1
-        @frame=0
-        self.refresh
-      end
-      return
-    end
+    # Clara Was Here, "fix" teclado así solo pilla las teclas de flecha, incluso si cambias los controles.
+    if (!$MKXP ? Input.repeat?(0x25) : Input.repeatex?(:LEFT)) || 
+      (!$MKXP ? Input.trigger?(0x25) : Input.triggerex?(:LEFT)) #(Input::LEFT)
+     if @helper.cursor > 0
+       @helper.cursor-=1
+       @frame=0
+       self.refresh
+     end
+     return
+   end
+   if (!$MKXP ? Input.repeat?(0x27) : Input.repeatex?(:RIGHT)) || 
+      (!$MKXP ? Input.trigger?(0x27) : Input.triggerex?(:RIGHT)) #(Input::RIGHT)
+     if @helper.cursor < self.text.scan(/./m).length
+       @helper.cursor+=1
+       @frame=0
+       self.refresh
+     end
+     return
+   end
     # Backspace
-    if Input.repeatex?(8) || Input.repeatex?(0x2E)
+    if (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.repeatex?(:BACKSPACE))
       self.delete if @helper.cursor > 0
+      return
+    elsif (!$MKXP ? Input.repeatex?(13) : Input.repeatex?(:RETURN))
       return
     end
     if !@toUnicode
@@ -1040,11 +1045,11 @@ class PokemonEntryScene
     loop do
       Graphics.update
       Input.update
-      if Input.triggerex?(0x1B) && @minlength==0
+      if (!$MKXP ? Input.triggerex?(0x1B) : Input.triggerex?(:ESCAPE)) && @minlength==0
         ret=""
         break
       end
-      if Input.triggerex?(13) && @sprites["entry"].text.length>=@minlength
+      if (!$MKXP ? Input.triggerex?(13) : Input.triggerex?(:RETURN)) && @sprites["entry"].text.length>=@minlength
         ret=@sprites["entry"].text
         break
       end
@@ -1593,7 +1598,7 @@ class PokemonEntryScene2
       elsif Input.trigger?(Input::A)
         @cursorpos=OK
         @sprites["cursor"].setCursorPos(@cursorpos)
-      elsif Input.trigger?(Input::F5)
+      elsif (!$MKXP ? Input.trigger?(Input::F5) : Input.triggerex?(Input::F5))
         pbChangeTab
       end
     end

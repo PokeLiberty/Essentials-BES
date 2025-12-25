@@ -115,6 +115,7 @@ class PokemonMenu
     @scene.pbStartScene
     # Show extra info window if relevant
     pbShowInfo
+    pbSetViableDexes
     # Get all commands
     command_list = []
     commands = []
@@ -134,6 +135,35 @@ class PokemonMenu
       break if commands[choice]["effect"].call(@scene)
     end
     @scene.pbEndScene if end_scene
+  end
+end
+
+#Añade la información del safari/captura de bichos.
+class PokemonMenu
+  alias_method :__original_pbShowInfo, :pbShowInfo unless method_defined?(:__original_pbShowInfo)
+
+  def pbShowInfo
+    __original_pbShowInfo
+    if pbInSafari?
+      safari_info = if SAFARISTEPS > 0
+                      _INTL("Pasos: {1}/{2}\nBalls: {3}",pbSafariState.steps,SAFARISTEPS,pbSafariState.ballcount)
+                    else
+                      _INTL("Balls: {1}",pbSafariState.ballcount)
+                    end
+      return @scene.pbShowInfo(safari_info)
+    end
+
+    if pbInBugContest?
+      if pbBugContestState.lastPokemon
+        contest_info = _INTL("Capturado: {1}\nNivel: {2}\nBalls: {3}",
+                             PBSpecies.getName(pbBugContestState.lastPokemon.species),
+                             pbBugContestState.lastPokemon.level,
+                             pbBugContestState.ballcount)
+      else
+        contest_info = _INTL("Capturado: None\nBalls: {1}", pbBugContestState.ballcount)
+      end
+      return @scene.pbShowInfo(contest_info)
+    end
   end
 end
 
@@ -268,7 +298,7 @@ MenuHandlers.add(:pause_menu, :save, {
   },
   "effect"    => proc { |menu|
     menu.pbHideMenu
-    scene = PokemonSave_Scene.new
+    scene = PokemonSaveScene.new
     screen = PokemonSaveScreen.new(scene)
     if screen.pbSaveScreen
       menu.pbEndScene

@@ -3556,7 +3556,7 @@ def animationEditorMain(animation)
         break
       end
     end
-    if Input.trigger?(Input::F5)
+    if (!$MKXP ? Input.trigger?(Input::F5) : Input.triggerex?(Input::F5))
       pbHelpWindow
       next
     elsif Input.triggerex?(Input::RightMouseKey) && sliderwin.hittest?(0)  # Right mouse button

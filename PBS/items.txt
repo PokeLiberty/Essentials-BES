@@ -44,8 +44,8 @@
 44,STARDUST,Polvo Estelar,Polvos Estelares,1,2000,"Bonita arena roja de tacto sedoso que alcanza un alto precio en las tiendas.",0,0,0,
 45,STARPIECE,Trozo Estrella,Trozos Estrella,1,9800,"Fragmento de una bonita gema roja que puede venderse muy caro en las tiendas.",0,0,0,
 46,COMETSHARD,Fragmento Cometa,Fragmentos Cometa,1,120000,"Fragmento de un cometa caído al suelo al atravesar la atmósfera. Muy valorado por los coleccionistas.",0,0,0,
-47,NUGGET,Pepita,Pepitas,1,10000,"Pepita de oro puro que desprende un brillo espectacular. Puede venderse muy cara en las tiendas.",0,0,0,
-48,BIGNUGGET,Maxipepita,Maxipepitas,1,60000,"Pepita grande de oro puro que desprende un brillo espectacular. Muy valorada por los coleccionistas.",0,0,0,
+47,NUGGET,Pepita de oro,Pepitas,1,10000,"Pepita de oro puro que desprende un brillo espectacular. Puede venderse muy cara en las tiendas.",0,0,0,
+48,BIGNUGGET,Maxipepita de oro,Maxipepitas,1,60000,"Pepita grande de oro puro que desprende un brillo espectacular. Muy valorada por los coleccionistas.",0,0,0,
 49,HEARTSCALE,Escama Corazón,Escamas Corazón,1,100,"Bella escama con forma de corazón que brilla con los colores del arco iris. Es muy poco común.",0,0,0,
 50,SLOWPOKETAIL,Cola Slowpoke,Colas Slowpoke,1,9800,"Cola de origen desconocido y muy sabrosa. Se vende muy cara.",0,0,0,
 51,RAREBONE,Hueso Raro,Huesos Raros,1,10000,"Un hueso de gran valor arqueológico que puede alcanzar un alto precio en las tiendas.",0,0,0,
@@ -129,7 +129,7 @@
 129,LUCKINCENSE,Incienso Duplo,Inciensos Duplo,1,9600,"Incienso de aroma exótico. Si el Pokémon que lo lleva participa en un combate, duplica las ganancias.",0,0,0,
 130,PUREINCENSE,Incienso Puro,Inciensos Puros,1,9600,"Si lo lleva el primer Pokémon del equipo, los Pokémon salvajes se acercarán con menos frecuencia.",0,0,0,
 131,SEAINCENSE,Incienso Marino,Inciensos Marinos,1,9600,"Tiene un curioso aroma que potencia la energía de los ataques de tipo Agua. Debe llevarlo un Pokémon.",0,0,0,
-132,WAVEINCENSE,Incienso Aqua,Inciensos Acua,1,9600,"Incienso exótico que fortalece los movimientos de tipo Agua. Debe llevarlo un Pokémon.",0,0,0,
+132,WAVEINCENSE,Incienso Acua,Inciensos Acua,1,9600,"Incienso exótico que fortalece los movimientos de tipo Agua. Debe llevarlo un Pokémon.",0,0,0,
 133,ROSEINCENSE,Incienso Floral,Inciensos Florales,1,9600,"Incienso de exótico aroma que fortalece los movimientos de tipo Planta. Debe llevarlo un Pokémon.",0,0,0,
 134,ODDINCENSE,Incienso Raro,Inciensos Raros,1,9600,"Incienso de exótico aroma que fortalece los movimientos de tipo Psíquico. Debe llevarlo un Pokémon.",0,0,0,
 135,ROCKINCENSE,Incienso Roca,Inciensos Roca,1,9600,"Incienso de exótico aroma que fortalece los movimientos de tipo Roca. Debe llevarlo un Pokémon.",0,0,0,
@@ -137,7 +137,7 @@
 137,MYSTICWATER,Agua Mística,Aguas Místicas,1,100,"Gema con forma de lágrima que fortalece los ataques de tipo Agua. Debe llevarla un Pokémon.",0,0,0,
 138,MAGNET,Imán,Imanes,1,100,"Debe llevarlo un Pokémon. Su potente magnetismo fortalece los ataques de tipo Eléctrico.",0,0,0,
 139,MIRACLESEED,Semilla Milagro,Semillas Milagros,1,100,"Debe llevarla un Pokémon. La vitalidad de la semilla fortalece los ataques de tipo Planta.",0,0,0,
-140,NEVERMELTICE,Antiderretir,Antiderretires,1,100,"Fragmento de hielo que repele el calor y fortalece los ataques de tipo Hielo. Debe llevarlo un Pokémon.",0,0,0,
+140,NEVERMELTICE,Hielo Perpetuo,Hielo Perpetuo,1,100,"Fragmento de hielo que repele el calor y fortalece los ataques de tipo Hielo. Debe llevarlo un Pokémon.",0,0,0,
 141,BLACKBELT,Cinturón Negro,Cinturones Negros,1,100,"Debe llevarlo un Pokémon. Aumenta la decisión y fortalece los ataques de tipo Lucha.",0,0,0,
 142,POISONBARB,Flecha Venenosa,Flechas Venenosas,1,100,"Flecha venenosa que refuerza los movimientos de tipo Veneno. Debe llevarla un Pokémon.",0,0,0,
 143,SOFTSAND,Arena Fina,Arenas Finas,1,100,"Debe llevarla un Pokémon. La suavidad de la arena fortalece los ataques de tipo Tierra.",0,0,0,
@@ -253,7 +253,7 @@
 253,IRON,Hierro,Hierros,2,9800,"Nutritiva bebida que aumenta la Defensa de un Pokémon.",1,0,0,
 254,CALCIUM,Calcio,Calcios,2,9800,"Nutritiva bebida que sube el At. Esp. de un Pokémon.",1,0,0,
 255,ZINC,Zinc,Zincs,2,9800,"Nutritiva bebida que aumenta la Defensa Especial de un Pokémon.",1,0,0,
-256,CARBOS,Carburante,Carburantes,2,9800,"Nutritiva bebida que sube la Velocidad de un Pokémon.",1,0,0,
+256,CARBOS,Carbohidratos,Carbohidratos,2,9800,"Nutritiva bebida que sube la Velocidad de un Pokémon.",1,0,0,
 257,HEALTHWING,Pluma Vigor,Plumas Vigor,2,3000,"Pluma que aumenta un poco los PS de un Pokémon al subir de nivel.",1,0,0,
 258,MUSCLEWING,Pluma Músculo,Plumas Músculo,2,3000,"Pluma que aumenta un poco el Ataque de un Pokémon al subir de nivel.",1,0,0,
 259,RESISTWING,Pluma Aguante,Plumas Aguante,2,3000,"Pluma que aumenta un poco la Defensa de un Pokémon al subir de nivel.",1,0,0,
@@ -285,13 +285,14 @@
 285,LOVEBALL,Amor Ball,Amor Balls,3,3000,"Una Poké Ball diseñada para capturar Pokémon del género opuesto al de tu Pokémon.",0,2,4,
 286,FRIENDBALL,Amigo Ball,Amigo Balls,3,3000,"Una Poké Ball que hace más amistosos a los Pokémon capturados.",0,2,4,
 287,MOONBALL,Luna Ball,Luna Balls,3,3000,"Una Poké Ball diseñada para capturar Pokémon que evolucionan con Piedra Lunar.",0,2,4,
+
 288,TM01,MT01,MT01s,4,0,"El usuario se afila las garras para aumentar su Ataque y Precisión.",3,0,0,HONECLAWS
 289,TM02,MT02,MT02s,4,0,"Araña al objetivo con garras afiladas.",3,0,0,DRAGONCLAW
 290,TM03,MT03,MT03s,4,0,"Crea una onda psíquica que golpea al objetivo y provoca un gran daño.",3,0,0,PSYSHOCK
 291,TM04,MT04,MT04s,4,0,"Aumenta la concentración y calma el espíritu para subir el Ataque Especial y la Defensa Especial.",3,0,0,CALMMIND
 292,TM05,MT05,MT05s,4,0,"Se lleva al objetivo, que es cambiado por otro Pokémon. Si es un Pokémon salvaje, acaba el combate.",3,0,0,ROAR
 293,TM06,MT06,MT06s,4,0,"Envenena gravemente al objetivo y causa un daño mayor en cada turno.",3,0,0,TOXIC
-294,TM07,MT07,MT07s,4,0,"Tormenta de granizo que dura cinco turnos. Hiere a todos, excepto a los de tipo Hielo.",3,0,0,HAIL
+294,TM07,MT07,MT07s,4,0,"Desata una nevada que dura cinco turnos y aumenta la Defensa de los Pokémon de tipo Hielo.",3,0,0,SNOWSCAPE
 295,TM08,MT08,MT08s,4,0,"Robustece el cuerpo para subir el Ataque y la Defensa.",3,0,0,BULKUP
 296,TM09,MT09,MT09s,4,0,"Ataca cubriendo al objetivo con un líquido venenoso. El daño será doble si este ya está envenenado.",3,0,0,VENOSHOCK
 297,TM10,MT10,MT10s,4,0,"Ataque único cuyo tipo y potencia varían según el agresor.",3,0,0,HIDDENPOWER
@@ -344,7 +345,7 @@
 344,TM57,MT57,MT57s,4,0,"Lanza un rayo eléctrico contra el objetivo. Puede subir el Ataque Especial de quien lo usa.",3,0,0,CHARGEBEAM
 345,TM58,MT58,MT58s,4,0,"Primero lanza al objetivo al aire y despues lo hace caer. Mientras está en el aire, no lo deja moverse.",3,0,0,SKYDROP
 346,TM59,MT59,MT59s,4,0,"Llamas que golpean a los objetivos adyacentes. Si estos llevan Bayas, estas se quemarán y ya no se podrán usar.",3,0,0,INCINERATE
-347,TM60,MT60,MT60s,4,0,"El usuario intimida a su objetivo logrando que su movimiento sea el último del turno.",3,0,0,QUASH
+347,TM60,MT60,MT60s,4,0,"Ataca emitiendo una onda sonora desagradable que impide al objetivo recuperar PS durante algunos turnos.",3,0,0,PSYCHICNOISE
 348,TM61,MT61,MT61s,4,0,"Siniestra llama morada que produce quemaduras.",3,0,0,WILLOWISP
 349,TM62,MT62,MT62s,4,0,"Golpea ágilmente. Si el usuario no porta ningún objeto, el objetivo resulta seriamente dañado.",3,0,0,ACROBATICS
 350,TM63,MT63,MT63s,4,0,"Impide al objetivo usar el objeto que lleva. Su Entrenador tampoco puede usar objetos sobre él.",3,0,0,EMBARGO
@@ -378,7 +379,7 @@
 378,TM91,MT91,MT91s,4,0,"El usuario concentra toda la luz del cuerpo y la libera. Puede bajar la Defensa Especial del objetivo.",3,0,0,FLASHCANNON
 379,TM92,MT92,MT92s,4,0,"Se crea un espacio extraño en el que los Pokémon lentos se mueven primero durante cinco turnos.",3,0,0,TRICKROOM
 380,TM93,MT93,MT93s,4,0,"Carga eléctrica muy potente que también hiere ligeramente a quien la usa.",3,0,0,WILDCHARGE
-381,TM94,MT94,MT94s,4,1000,"Ataca con puñetazos que pueden romper rocas. Puede bajar la Defensa del objetivo.",3,0,0,ROCKSMASH
+381,TM94,MT94,MT94s,4,0,"Ataca con puñetazos que pueden romper rocas. Puede bajar la Defensa del objetivo.",3,0,0,ROCKSMASH
 382,TM95,MT95,MT95s,4,0,"Ataca lanzando un chillido insoportable que baja el Ataque Especial de los objetivos.",3,0,0,SNARL
 383,TM96,MT96,MT96s,4,0,"Este movimiento se convierte en otro movimiento según el terreno en que tenga lugar la batalla.",3,0,0,NATUREPOWER
 384,TM97,MT97,MT97s,4,0,"Libera una horrible aura de malos pensamientos que puede hacer retroceder al rival.",3,0,0,DARKPULSE
@@ -496,6 +497,7 @@
 494,ABILITYURGE,Habilitador,Habilitadores,7,0,"Al usarlo, activa la habilidad de un Pokémon de tu equipo.",0,2,0,
 495,ITEMURGE,Activaobjeto,Activaobjetos,7,0,"Cuando se usa, un Pokémon de tu equipo utiliza su objeto inmediatamente.",0,2,0,
 496,ITEMDROP,Tiraobjeto,Tiraobjetos,7,0,"Cuando se usa, un Pokémon de tu equipo pierde su objeto.",0,2,0,
+
 497,BLUEFLUTE,Flauta Azul,Flautas Azules,7,100,"Flauta de cristal azul cuya melodía despierta a los Pokémon dormidos.",5,3,0,
 498,YELLOWFLUTE,Flauta Amarilla,Flautas Amarillas,7,200,"Flauta de cristal amarillo que espabila a los Pokémon confusos.",0,2,0,
 499,REDFLUTE,Flauta Roja,Flautas Rojas,7,300,"Flauta de cristal rojo que libera a un Pokémon del enamoramiento.",0,2,0,
@@ -528,6 +530,7 @@
 526,SACHET,Saquito Fragante,Saquitos Fragantes,1,100,"Saquito que desprende un aroma peculiar. Cierto Pokémon lo adora.",0,0,0,
 527,WHIPPEDDREAM,Dulce de Nata,Dulces de Nata,1,100,"Un dulce a base de suave y esponjosa nata montada. Cierto Pokémon lo adora.",0,0,0,
 528,ASSAULTVEST,Chaleco Asalto,Chalecos Asalto,1,1000,"Chaleco que potencia la Def. Esp. del Pokémon que lo lleva, pero le impide lanzar ataques de estado.",0,0,0
+
 529,ABSOLITE,Absolita,Absolitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Absol en combate.",0,0,0,
 530,GALLADITE,Galladita,Galladitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Gallade en combate.",0,0,0,
 531,GLALITITE,Glalita,Glalitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Glalie en combate.",0,0,0,
@@ -577,6 +580,7 @@
 575,LUCARIONITE,Lucarita,Lucaritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Lucario en combate.",0,0,0,
 576,REDORB,Prisma Rojo,Prismas Rojos,1,0,"Piedra carmesí de la que se dice que guarda una estrecha relación con las leyendas de Hoenn.",0,0,0,
 577,BLUEORB,Prisma Azul,Prismas Azules,1,0,"Piedra añil que, según dicen, guarda una estrecha relación con las leyendas de Hoenn.",0,0,0,
+
 578,MEGARING,Mega Aro,Mega Aros,8,0,"Aro que sirve para activar el poder de la Mega Evolución.",0,0,6,
 579,PRISONBOTTLE,Vasija Castigo,Vasijas Castigo,8,0,"Vasija en la que se halla confinado el poder de cierto Pokémon desde hace mucho tiempo.",5,0,6,
 580,ABILITYCAPSULE,Cápsula Habilidad,Cápsulas Habilidad,1,10000,"Cápsula que les permite cambiar de habilidad a los Pokémon que poseen dos.",1,0,0,
@@ -640,10 +644,12 @@
 650,NSOLARIZER,Necrosol,Necrosoles,8,0,"Artefacto que permite fusionar a Necrozma, ávido de luz, con Solgaleo.",5,0,6,
 651,NLUNARIZER,Necroluna,Necrolunas,8,0,"Artefacto que permite fusionar a Necrozma, ávido de luz, con Lunala.",5,0,6,
 652,ULTRANECROZIUMZ,Ultranecrostal Z,Ultranecrostales Z,6,0,"Cristal que confiere el Poder Z al movimiento Géiser Fotónico de Necrozma.",5,0,8
+
 653,REDNECTAR,Néctar Rojo,Néctares Rojos,1,0,"Néctar de ciertas flores de los Jardines de Ula-Ula, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
 654,YELLOWNECTAR,Néctar Amarillo,Néctares Amarillos,1,0,"Néctar de ciertas flores de los Jardines de Melemele, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
 655,PINKNECTAR,Néctar Rosa,Néctares Rosas,1,0,"Néctar de ciertas flores de los parterres de la Avenida Royale, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
 656,PURPLENECTAR,Néctar Violeta,Néctares Violetas,1,0,"Néctar de ciertas flores de los Jardines de Poni, capaz de hacer cambiar de forma a una determinada especie de Pokémon.",1,0,0,
+
 657,GRASSMEMORY,Disco Planta,Discos Planta,1,0,"Disco de datos que contiene información relativa al tipo Planta. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
 658,FIREMEMORY,Disco Fuego,Discos Fuego,1,0,"Disco de datos que contiene información relativa al tipo Fuego. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
 659,WATERMEMORY,Disco Agua,Discos Agua,1,0,"Disco de datos que contiene información relativa al tipo Agua. Permite cambiar de tipo a cierto Pokémon.",0,0,0,
@@ -739,6 +745,77 @@
 749,FAIRYCORE,Prisma Hada,Prismas Hada,1,5000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Hada.",1,0,0,
 750,STELLARCORE,Prisma Estelar,Prismas Estelares,1,10000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Estelar.",1,0,0,
 751,TERARANDOMITEM,Prisma Raro,Prismas Raros,1,10000,"Objeto que permite cambiar el Teratipo de un Pokémon a un tipo al azar.",1,0,0,
+
 752,HEARTHFLAMEMASK,Máscara Horno,Máscaras Horno,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Fuego durante las batallas.",0,0,0,
 753,WELLSPRINGMASK,Máscara Fuente,Máscaras Fuente,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Agua durante las batallas.",0,0,0,
 754,CORRNERSTONEMASK,Máscara Cimiento,Máscaras Cimiento,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Roca durante las batallas.",0,0,0,
+
+755,LONELYMINT,Menta Huraña,Mentas Hurañas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Defensa.",1,0,0,
+756,ADANANTMINT,Menta Firme,Mentas Firmes,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Ataque Especial.",1,0,0,
+757,NAUGHTYMINT,Menta Pícara,Mentas Pícaras,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Defensa Especial.",1,0,0,
+758,BRAVEMINT,Menta Audaz,Mentas Audazes,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Velocidad.",1,0,0,
+759,BOLDMINT,Menta Osada,Mentas Osadas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa, en detrimento de su Ataque.",1,0,0,
+760,IMPISHMINT,Menta Agitada,Mentas Agitadas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa, en detrimento de su Ataque Especial.",1,0,0,
+761,LAXMINT,Menta Floja,Mentas Flojas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa, en detrimento de su Defensa Especial.",1,0,0,
+762,RELAXEDMINT,Menta Plácida,Mentas Plácidas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa, en detrimento de su Velocidad.",1,0,0,
+763,MODESTMINT,Menta Modesta,Mentas Modestas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque Especial, en detrimento de su Ataque.",1,0,0,
+764,MILDMINT,Menta Afable,Mentas Afables,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque Especial, en detrimento de su Defensa.",1,0,0,
+765,RASHMINT,Menta Alocada,Mentas Alocadas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque Especial, en detrimento de su Defensa Especial.",1,0,0,
+766,QUIETMINT,Menta Mansa,Menta Mansa,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque Especial, en detrimento de su Velocidad.",1,0,0,
+767,CALMMINT,Menta Serena,Mentas Serenas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa Especial, en detrimento de su Ataque.",1,0,0,
+768,GENTLEMINT,Menta Amable,Mentas Amables,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa Especial, en detrimento de su Defensa.",1,0,0,
+769,CAREFULMINT,Menta Cauta,Mentas Cautas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa Especial, en detrimento de su Ataque Especial.",1,0,0,
+770,SASSYMINT,Menta Grosera,Mentas Groseras,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Defensa Especial, en detrimento de su Velocidad.",1,0,0,
+771,TIMIDMINT,Menta Miedosa,Mentas Miedosas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Ataque.",1,0,0,
+772,HASTYMINT,Menta Activa,Mentas Activas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Defensa.",1,0,0,
+773,JOLLYMINT,Menta Alegre,Mentas Alegres,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Ataque Especial.",1,0,0,
+774,NAIVEMINT,Menta Ingenua,Mentas Ingenuas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Velocidad, en detrimento de su Defensa Especial.",1,0,0,
+775,SERIOUSMINT,Mentas Serias,Mentas Serias,2,9800,"Cuando un Pokémon percibe su aroma, su Ataque, su Defensa, su Ataque Especial, su Defensa Especial y su Velocidad crecen de forma uniforme.",1,0,0,
+
+776,ZYGARDECUBE,Arca de Zygarde,Arcas de Zygarde,8,0,"Dispositivo para almacenar células y núcleos de Zygarde.",5,0,6,
+
+777,VICTREEBELITE,Victreebelita,Victreebelitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Victreebel en combate.",0,0,0,
+778,DRAGONINITE,Dragonitita,Dragonititas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Dragonite en combate.",0,0,0,
+779,CHESNAUGHTITE,Chesnaughtita,Chesnaughtitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Chesnaught en combate.",0,0,0,
+780,DELPHOXITE,Delphoxita,Delphoxitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Delphox en combate.",0,0,0,
+781,GRENINJITE,Greninjita,Greninjitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Greninja en combate.",0,0,0,
+782,MALAMARITE,Malamarita,Malamaritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Malamar en combate.",0,0,0,
+783,HAWLUCHANITE,Hawluchita,Hawluchitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Hawlucha en combate.",0,0,0,
+784,CLEFABLITE,Clefablita,Clefablitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Clefable en combate.",0,0,0,
+785,STARMINITE,Starmita,Starmitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Starmie en combate.",0,0,0,
+786,MEGANIUMITE,Meganiumita,Meganiumitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Meganium en combate.",0,0,0,
+787,FERALIGITE,Feraligatrita,Feraligatritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Feraligatr en combate.",0,0,0,
+788,SKARMORITE,Skarmorita,Skarmoritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Skarmory en combate.",0,0,0,
+789,FROSLASSITE,Froslassita,Froslassitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Froslass en combate.",0,0,0,
+790,EMBOARITE,Emboarita,Emboaritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Emboar en combate.",0,0,0,
+791,EXCADRITE,Excadrillita,Excadrillitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Excadrill en combate.",0,0,0,
+792,SCOLIPITE,Scolipedita,Scraftitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Scolipede en combate.",0,0,0,
+793,SCRAFTINITE,Scraftita,Scraftitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Scrafty en combate.",0,0,0,
+794,EELEKTROSSITE,Eelektrossita,Eelektrossitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Eelektross en combate.",0,0,0,
+795,CHANDELURITE,Chandelurita,Chandeluritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Chandelure en combate.",0,0,0,
+796,PYROARITE,Pyroarita,Pyroaritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Pyroar en combate.",0,0,0,
+797,BARBARACITE,Barbaraclita,Barbaraclitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Barbaracle en combate.",0,0,0,
+798,DRAGALGITE,Dragalgita,Dragalgita,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Dragalge en combate.",0,0,0,
+799,DRAMPANITE,Drampanita,Drampanita,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Drampa en combate.",0,0,0,
+800,FALINKSITE,Falinksita,Falinksitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Falinks en combate.",0,0,0,
+801,FLOETTITE,Floettita,Floettitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Floette en combate.",0,0,0,
+802,ZYGARDITE,Zygardita,Zygarditas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Zygarde en combate.",0,0,0,
+803,RAICHUITEX,Raichuita X,Raichuitas X,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Raichu en combate.",0,0,0  
+804,RAICHUITEY,Raichuita Y,Raichuitas Y,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Raichu en combate.",0,0,0  
+805,CHIMECHITE,Chimechita,Chimechitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Chimecho en combate.",0,0,0  
+806,ABSOLITEZ,Absolita Z,Absolitas Z,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Absol en combate.",0,0,0  
+807,STARAPTITE,Staraptita,Staraptitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Staraptor en combate.",0,0,0  
+808,GARCHOMPITEZ,Garchompita Z,Garchompitas Z,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Garchomp en combate.",0,0,0  
+809,LUCARIONITEZ,Lucarionita Z,Lucarionitas Z,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Lucario en combate.",0,0,0  
+810,GOLURKITE,Golurkita,Golurkitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Golurk en combate.",0,0,0  
+811,MEOWSTICITE,Meowsticita,Meowsticitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Meowstic en combate.",0,0,0  
+812,CRABOMINITE,Crabominita,Crabominitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Crabominable en combate.",0,0,0  
+813,GOLISOPITE,Golisopita,Golisopitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Golisopod en combate.",0,0,0  
+814,MAGEARNITE,Magearnita,Magearnitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Magearna en combate.",0,0,0  
+815,SCOVILLAINITE,Scovillainita,Scovillainitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Scovillain en combate.",0,0,0  
+816,BAXCALIBRITE,Baxcalibrita,Baxcalibritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Baxcalibur en combate.",0,0,0  
+817,TATSUGIRINITE,Tatsugirinita,Tatsugirinitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Tatsugiri en combate.",0,0,0  
+818,GLIMMORANITE,Glimmoranita,Glimmoranitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Glimmora en combate.",0,0,0
+819,HEATRANITE,Heatranita,Heatranitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Heatran en combate.",0,0,0  
+820,DARKRANITE,Darkranita,Darkranitas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Darkrai en combate.",0,0,0  
+821,ZERAORITE,Zeraorita,Zeraoritas,1,0,"Una de las misteriosas Megapiedras. Permite megaevolucionar a Zeraora en combate.",0,0,0

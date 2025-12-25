@@ -139,3 +139,56 @@ def pbDownloadToString(url)
     return ""
   end 
 end
+
+def pbDownloadData(url, file=nil)
+  if $joiplay
+    return ""
+  end
+  code, headers, content = Net::HTTP.get(url)
+  if file.nil?
+    return content
+  else
+    File.open(file, "wb") do |f|
+      f.write(content)
+    end
+    return content
+  end
+end
+
+def pbPostData(url, postdata, file=nil)
+  if $joiplay
+    return ""
+  end
+  code, headers, content = Net::HTTP.post(url, nil, postdata)
+  if file.nil?
+    return content
+  else
+    File.open(file, "wb") do |f|
+      f.write(content)
+    end
+    return content
+  end
+end
+
+def pbDownloadToFile(url, file)
+  begin
+    pbDownloadData(url, file)
+  rescue
+  end
+end
+
+def pbPostToString(url, postdata)
+  begin
+    data = pbPostData(url, postdata)
+    return data
+  rescue
+    return ""
+  end 
+end
+
+def pbPostToFile(url, postdata, file)
+  begin
+    pbPostData(url, postdata, file)
+  rescue
+  end
+end

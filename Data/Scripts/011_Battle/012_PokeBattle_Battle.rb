@@ -12,10 +12,12 @@
 module PokeBattle_BattleCommon
   def pbStorePokemon(pokemon)
     if !(pokemon.isShadow? rescue false)
-      if pbDisplayConfirm(_INTL("¿Quieres ponerle un mote a {1}?",pokemon.name))
-        species=PBSpecies.getName(pokemon.species)
-        nickname=@scene.pbNameEntry(_INTL("Mote de {1}",species),pokemon)
-        pokemon.name=nickname if nickname!=""
+      if $PokemonSystem.givenicknames == 0
+        if pbDisplayConfirm(_INTL("¿Quieres ponerle un mote a {1}?",pokemon.name))
+          species=PBSpecies.getName(pokemon.species)
+          nickname=@scene.pbNameEntry(_INTL("Mote de {1}",species),pokemon)
+          pokemon.name=nickname if nickname!=""
+        end
       end
     end
     if self.pbPlayer.party.length<6
@@ -23,15 +25,17 @@ module PokeBattle_BattleCommon
       return
     else
       pokemon2 = -1
-      if pbDisplayConfirm(_INTL("¿Te gustaría añadir a {1} a tu equipo?",pokemon.name))
-        pbDisplayPaused(_INTL("Selecciona un Pokémon para intercambiar."))
-        pbChoosePokemon(1,2)
-        poke = pbGet(1)
-        if poke != -1
-          pokemon2 = pokemon
-          pokemon = self.pbPlayer.party[poke]
-          pbRemovePokemonAt(poke)
-          self.pbPlayer.party[self.pbPlayer.party.length]=pokemon2
+      if $PokemonSystem.sendtoboxes == 0
+        if pbDisplayConfirm(_INTL("¿Te gustaría añadir a {1} a tu equipo?",pokemon.name))
+          pbDisplayPaused(_INTL("Selecciona un Pokémon para intercambiar."))
+          pbChoosePokemon(1,2)
+          poke = pbGet(1)
+          if poke != -1
+            pokemon2 = pokemon
+            pokemon = self.pbPlayer.party[poke]
+            pbRemovePokemonAt(poke)
+            self.pbPlayer.party[self.pbPlayer.party.length]=pokemon2
+          end
         end
       end
       oldcurbox=@peer.pbCurrentBox()
@@ -121,15 +125,15 @@ def pbThrowPokeBall(idxPokemon,ball,rareness=nil,showplayer=false,safari=false,f
     @scene.pbThrowAndDeflect(ball,1)
     pbDisplay(_INTL("¡El entrenador ha bloqueado la Poké Ball!<br>¡No seas un ladrón!"))
     ret=tryFetchingBall(ball,safari,firstfailedthrowatsafari)
-  elsif $game_switches[NO_CAPTURE_SWITCH] || @rules["disablePokeBalls"]
+  elsif $game_switches[NO_CAPTURE_SWITCH] || (@rules && @rules["disablePokeBalls"])
    @scene.pbThrowAndDeflect(ball,1)
    pbDisplay(_INTL("No puedes capturar a este Pokémon."))
   else
     pokemon=battler.pokemon
     species=pokemon.species
-    if $DEBUG && Input.press?(Input::CTRL) || @rules["alwaysCapture"]
+    if $DEBUG && Input.press?(Input::CTRL) || (@rules && @rules["alwaysCapture"])
       shakes=4
-    elsif @rules["neverCapture"]
+    elsif (@rules && @rules["neverCapture"])
       shakes=0
     else
       if !rareness
@@ -635,6 +639,53 @@ class PokeBattle_Battle
             [:SWAMPERT,:SWAMPERTITE],
             [:TYRANITAR,:TYRANITARITE],
             [:VENUSAUR,:VENUSAURITE],
+            # Megas ZA
+            [:VICTREEBEL, :VICTREEBELITE],
+            [:DRAGONITE, :DRAGONINITE],
+            [:CHESNAUGHT, :CHESNAUGHTITE],
+            [:DELPHOX, :DELPHOXITE],
+            [:GRENINJA, :GRENINJITE],
+            [:MALAMAR, :MALAMARITE],
+            [:HAWLUCHA, :HAWLUCHANITE],
+            [:CLEFABLE, :CLEFABLITE],
+            [:STARMIE, :STARMINITE],
+            [:MEGANIUM, :MEGANIUMITE],
+            [:FERALIGATR, :FERALIGITE],
+            [:SKARMORY, :SKARMORITE],
+            [:FROSLASS, :FROSLASSITE],
+            [:EMBOAR, :EMBOARITE],
+            [:EXCADRILL, :EXCADRITE],
+            [:SCOLIPEDE, :SCOLIPITE],
+            [:SCRAFTY, :SCRAFTINITE],
+            [:EELEKTROSS, :EELEKTROSSITE],
+            [:CHANDELURE, :CHANDELURITE],
+            [:PYROAR, :PYROARITE],
+            [:BARBARACLE, :BARBARACITE],
+            [:DRAGALGE, :DRAGALGITE],
+            [:DRAMPA, :DRAMPANITE],
+            [:FALINKS, :FALINKSITE],
+            [:FLOETTE, :FLOETTITE],
+            [:ZYGARDE, :ZYGARDITE],
+            [:RAICHU, :RAICHUITEX],
+            [:RAICHU, :RAICHUITEY],
+            [:CHIMECHO, :CHIMECHITE],
+            [:ABSOL, :ABSOLITEZ],
+            [:STARAPTOR, :STARAPTITE],
+            [:GARCHOMP, :GARCHOMPITEZ],
+            [:LUCARIO, :LUCARIONITEZ],
+            [:GOLURK, :GOLURKITE],
+            [:MEOWSTIC, :MEOWSTICITE],
+            [:CRABOMINABLE, :CRABOMINITE],
+            [:GOLISOPOD, :GOLISOPITE],
+            [:MAGEARNA, :MAGEARNITE],
+            [:SCOVILLAIN, :SCOVILLAINITE],
+            [:BAXCALIBUR, :BAXCALIBRITE],
+            [:TATSUGIRI, :TATSUGIRINITE],
+            [:GLIMMORA, :GLIMMORANITE],
+            [:HEATRAN, :HEATRANITE],
+            [:DARKRAI, :DARKRANITE],
+            [:ZERAORA, :ZERAORITE],
+
             # Primal Reversion stones
             [:KYOGRE,:BLUEORB],
             [:GROUDON,:REDORB]
@@ -1865,21 +1916,22 @@ class PokeBattle_Battle
     pbDisplayBrief(_INTL("¡{1} ha usado<br>{2}!", opponent.fullname, itemname))
     PBDebug.log("[Objeto usado] El rival ha usado #{itemname} en #{battler.pbThis(true)}")
   
-    heal_map = {
+    healing_items = {
       :POTION       => 20,
       :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
       :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
-      :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
+      :MAXPOTION    => (battler.totalhp - battler.hp),
       :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
       :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
       :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
       :MOOMOOMILK   => 100,
       :ORANBERRY    => 10,
-      :SITRUSBERRY  => (pokemon.totalhp / 4).floor,
+      :SITRUSBERRY  => (battler.totalhp / 4).floor,
 
       :ENERGYPOWDER  => (USENEWBATTLEMECHANICS) ? 60 : 50,
       :ENERGYROOT    => (USENEWBATTLEMECHANICS) ? 120 : 200
     }
+
 
     pbCommonAnimation("UseItem",battler,nil) rescue nil
     if healing_items.keys.any? { |key| isConst?(item, PBItems, key) }
@@ -2884,7 +2936,7 @@ class PokeBattle_Battle
       @decision=0
       @scene.pbEndBattle(@decision)
     end
-    pbDisallowSpeedup if (!$DEBUG || SKIPTEXT_DEBUG)
+    pbDisallowSpeedup if (!$DEBUG || TURBO_DEBUG)
     if FASTER_BATTLE
       Graphics.frame_rate = 40 
       Graphics.frame_rate = 60 if FPS60 && $MKXP
@@ -4086,6 +4138,8 @@ class PokeBattle_Battle
             pbCommonAnimation("ThunderCage",i,nil)
           elsif isConst?(i.effects[PBEffects::MultiTurnAttack],PBMoves,:CEASELESSEDGE)
             pbCommonAnimation("CeaselessEdge",i,nil)
+          elsif isConst?(i.effects[PBEffects::MultiTurnAttack],PBMoves,:SNAPTRAP)
+            pbCommonAnimation("SnapTrap",i,nil)
           else
             pbCommonAnimation("Wrap",i,nil)
           end

@@ -248,6 +248,18 @@ def pbItemIconFile(item)
       bitmapFileName=sprintf("Graphics/Icons/item%03d",item)
     end
   end
+  # BES-T Usa un icono por defecto para las MT y las megapiedras, si no existe uno.
+  if pbIsMachine?(item) && !pbResolveBitmap(bitmapFileName)
+    movedata=pbRgssOpen("Data/moves.dat")
+    movedata.pos=$ItemData[item][ITEMMACHINE]*14+3
+    typeid=movedata.fgetb
+    movedata.close
+    type=getConstantName(PBTypes,typeid)
+    bitmapFileName=sprintf("Graphics/Icons/TM_%s",type)
+  end
+  if pbIsMegaStone?(item) && !pbResolveBitmap(bitmapFileName)
+    bitmapFileName=sprintf("Graphics/Icons/item_Megastone")
+  end
   return bitmapFileName
 end
 

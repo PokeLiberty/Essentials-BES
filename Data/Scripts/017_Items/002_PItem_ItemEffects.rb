@@ -365,16 +365,16 @@ ItemHandlers::UseOnPokemon.add(:SCROLLOFWATERS,proc{|item,pokemon,scene|
 #BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::UseOnPokemon.add(:POTION,proc{|item,pokemon,scene|
   heal_map = {
-    :POTION       => 20,
-    :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
-    :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
-    :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
-    :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
-    :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
-    :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
-    :MOOMOOMILK   => 100,
-    :ORANBERRY    => 10,
-    :SITRUSBERRY  => (pokemon.totalhp / 4).floor
+    getConst(PBItems,:POTION)       => 20,
+    getConst(PBItems,:SUPERPOTION)  => (USENEWBATTLEMECHANICS ? 60 : 50),
+    getConst(PBItems,:HYPERPOTION)  => (USENEWBATTLEMECHANICS ? 120 : 200),
+    getConst(PBItems,:MAXPOTION)    => (pokemon.totalhp - pokemon.hp),
+    getConst(PBItems,:FRESHWATER)   => (USENEWBATTLEMECHANICS ? 30 : 50),
+    getConst(PBItems,:SODAPOP)      => (USENEWBATTLEMECHANICS ? 50 : 60),
+    getConst(PBItems,:LEMONADE)     => (USENEWBATTLEMECHANICS ? 70 : 80),
+    getConst(PBItems,:MOOMOOMILK)   => 100,
+    getConst(PBItems,:ORANBERRY)    => 10,
+    getConst(PBItems,:SITRUSBERRY)  => (pokemon.totalhp / 4).floor
   }
 
   heal = heal_map[item] || 20 #Si no encuentra objeto, cura como si fuese una poción.
@@ -1204,22 +1204,78 @@ ItemHandlers::UseOnPokemon.add(:ABILITYPATCH,proc{|item,pokemon,scene|
    next false
 })
 
+ItemHandlers::UseOnPokemon.add(:SERIOUSMINT,proc{|item,pokemon,scene|
+  nat = :SERIOUS
+  nat = :ADAMANT if isConst?(item,PBItems,:ADAMANTMINT)
+  nat = :BOLD    if isConst?(item,PBItems,:BOLDMINT)
+  nat = :BRAVE   if isConst?(item,PBItems,:BRAVEMINT)
+  nat = :CALM    if isConst?(item,PBItems,:CALMMINT)
+  nat = :CAREFUL if isConst?(item,PBItems,:CAREFULMINT)
+  nat = :GENTLE  if isConst?(item,PBItems,:GENTLEMINT)
+  nat = :HASTY   if isConst?(item,PBItems,:HASTYMINT)
+  nat = :IMPISH  if isConst?(item,PBItems,:IMPISHMINT)
+  nat = :JOLLY   if isConst?(item,PBItems,:JOLLYMINT)
+  nat = :LAX     if isConst?(item,PBItems,:LAXMINT)
+  nat = :LONELY  if isConst?(item,PBItems,:LONELYMINT)
+  nat = :MILD    if isConst?(item,PBItems,:MILDMINT)
+  nat = :MODEST  if isConst?(item,PBItems,:MODESTMINT)
+  nat = :NAIVE   if isConst?(item,PBItems,:NAIVEMINT)
+  nat = :NAUGHTY if isConst?(item,PBItems,:NAUGHTYMINT)
+  nat = :BOLD    if isConst?(item,PBItems,:BOLDMINT)
+  nat = :QUIET   if isConst?(item,PBItems,:QUIETMINT)
+  nat = :RASH    if isConst?(item,PBItems,:RASHMINT)
+  nat = :RELAXED if isConst?(item,PBItems,:RELAXEDMINT)
+  nat = :SASSY   if isConst?(item,PBItems,:SASSYMINT)
+  nat = :TIMID   if isConst?(item,PBItems,:TIMIDMINT)
+  
+  if pokemon.nature==(nat)
+    scene.pbDisplay(_INTL("No tendrá ningún efecto."))
+  else
+    pokemon.setNature(nat)
+    pokemon.calcStats
+    scene.pbDisplay(_INTL("{1} se comio la {2}.",pokemon.name,PBItems.getName(item)))
+  end
+
+})
+
+ItemHandlers::UseOnPokemon.copy(:SERIOUSMINT,:ADAMANTMINT,:BOLDMINT,:BRAVEMINT,
+                                :CALMMINT,:CAREFULMINT,:GENTLEMINT,:HASTYMINT,
+                                :IMPISHMINT,:JOLLYMINT,:LAXMINT,:LONELYMINT,:MILDMINT,
+                                :MODESTMINT,:NAIVEMINT,:NAUGHTYMINT,:QUIETMINT,
+                                :RASHMINT,:RELAXEDMINT,:SASSYMINT,:TIMIDMINT)
+
+ItemHandlers::UseOnPokemon.add(:ZYGARDECUBE,proc{|item,pokemon,scene|
+  if isConst?(pokemon.species,PBSpecies,:ZYGARDE)
+     if pokemon.hp>0
+       pokemon.form=(pokemon.form==0) ? 1 : 0
+       scene.pbRefresh
+       scene.pbDisplay(_INTL("¡{1} ha cambiado de forma!",pokemon.name))
+       next true
+     else
+       scene.pbDisplay(_INTL("No se puede usar en un Pokémon debilitado."))
+     end
+   else
+     scene.pbDisplay(_INTL("No tuvo efecto."))
+     next false
+   end
+})
+
 #===============================================================================
 # BattleUseOnPokemon handlers
 #===============================================================================
 #BES-T Edición y optimización del codigo de las pociones, ahora usan bastante menos código.
 ItemHandlers::BattleUseOnPokemon.add(:POTION,proc{|item,pokemon,battler,scene|
   heal_map = {
-    :POTION       => 20,
-    :SUPERPOTION  => (USENEWBATTLEMECHANICS ? 60 : 50),
-    :HYPERPOTION  => (USENEWBATTLEMECHANICS ? 120 : 200),
-    :MAXPOTION    => (pokemon.totalhp - pokemon.hp),
-    :FRESHWATER   => (USENEWBATTLEMECHANICS ? 30 : 50),
-    :SODAPOP      => (USENEWBATTLEMECHANICS ? 50 : 60),
-    :LEMONADE     => (USENEWBATTLEMECHANICS ? 70 : 80),
-    :MOOMOOMILK   => 100,
-    :ORANBERRY    => 10,
-    :SITRUSBERRY  => (pokemon.totalhp / 4).floor
+    getConst(PBItems,:POTION)       => 20,
+    getConst(PBItems,:SUPERPOTION)  => (USENEWBATTLEMECHANICS ? 60 : 50),
+    getConst(PBItems,:HYPERPOTION)  => (USENEWBATTLEMECHANICS ? 120 : 200),
+    getConst(PBItems,:MAXPOTION)    => (pokemon.totalhp - pokemon.hp),
+    getConst(PBItems,:FRESHWATER)   => (USENEWBATTLEMECHANICS ? 30 : 50),
+    getConst(PBItems,:SODAPOP)      => (USENEWBATTLEMECHANICS ? 50 : 60),
+    getConst(PBItems,:LEMONADE)     => (USENEWBATTLEMECHANICS ? 70 : 80),
+    getConst(PBItems,:MOOMOOMILK)   => 100,
+    getConst(PBItems,:ORANBERRY)    => 10,
+    getConst(PBItems,:SITRUSBERRY)  => (pokemon.totalhp / 4).floor
   }
   
   heal = heal_map[item] || 20 #Si no encuentra objeto, cura como si fuese una poción.

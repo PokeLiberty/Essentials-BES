@@ -304,7 +304,8 @@ class Game_System
     if @timer_working and @timer > 0
       @timer -= 1
     end
-    if Input.trigger?(Input::F5) && pbCurrentEventCommentInput(1,"Cut Scene")
+    #if Input.trigger?(Input::F5) && pbCurrentEventCommentInput(1,"Cut Scene")
+    if (!$MKXP ? Input.trigger?(Input::F5) : Input.triggerex?(Input::F5)) && pbCurrentEventCommentInput(1,"Cut Scene")
       event=@map_interpreter.get_character(0)
       @map_interpreter.pbSetSelfSwitch(event.id,"A",true)
       @map_interpreter.command_end

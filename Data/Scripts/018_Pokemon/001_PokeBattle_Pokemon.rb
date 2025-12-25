@@ -3,7 +3,7 @@
 # contiene cada uno de los Pokémon del equipo actual del entrenador.
 ################################################################################
 class PokeBattle_Pokemon
-  attr_reader(:totalhp)       # PS totales actuales
+  attr_accessor(:totalhp)     # PS totales actuales
   attr_reader(:attack)        # Ataque actual
   attr_reader(:defense)       # Defensa actual
   attr_reader(:speed)         # Velocidad actual

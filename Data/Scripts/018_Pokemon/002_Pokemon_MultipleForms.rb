@@ -995,14 +995,6 @@ MultipleForms.register(:GENESECT,{
 }
 })
 
-# GRENINJA
-MultipleForms.register(:GRENINJA,{
-"getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0
-   next [72,145,67,132,153,71]
-}
-})
-
 # VIVILLON
 MultipleForms.register(:SCATTERBUG,{
 "getFormOnCreation"=>proc{|pokemon|
@@ -1019,7 +1011,26 @@ MultipleForms.register(:FLABEBE,{
 },
 })
 
-MultipleForms.copy(:FLABEBE,:FLOETTE,:FLORGES)
+# FLABEBE, FLOETTE, FLORGES
+MultipleForms.register(:FLOETTE,{
+"getFormOnCreation"=>proc{|pokemon|
+   next rand(5)
+},
+"getBaseStats"=>proc{|pokemon|
+   next [74,65,67,92,125,128] if pokemon.form==6 # Floette Flor Eterna
+   next [74,85,87,102,155,148] if pokemon.form==7 # Mega Floette Flor Eterna
+   next 
+},
+ "getMegaForm"=>proc{|pokemon|
+    next 7 if isConst?(pokemon.item,PBItems,:FLOETTITE) && pokemon.form==6
+    next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 6
+ }
+ })
+
+MultipleForms.copy(:FLABEBE,:FLORGES)
 
 # FURFROU
 MultipleForms.register(:FURFROU,{
@@ -1154,9 +1165,30 @@ MultipleForms.register(:ZYGARDE,{
    case pokemon.form
    when 1; next [54,100,71,115,61,85]    # Zygarde-10%
    when 2; next [216,100,121,85,91,95]   # Zygarde Completo
+   when 3; next [216,70,91,216,85,100]   # Mega Zygarde Completo
    else;   next                          # Zygarde-50%
    end
-}
+},
+ "getMegaForm"=>proc{|pokemon|
+    next 3 if isConst?(pokemon.item,PBItems,:ZYGARDITE) && pokemon.form==2
+    next
+ },
+  "height"=>proc{|pokemon|
+    next 12 if pokemon.form==1
+    next 45 if pokemon.form==2
+    next 77 if pokemon.form==3
+    next
+ },
+ "weight"=>proc{|pokemon|
+    next 335 if pokemon.form==1
+    next 6100 if pokemon.form==2
+    next 6100 if pokemon.form==3
+    next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 2
+ }
+
 })
 
 # HOOPA
@@ -1663,6 +1695,18 @@ MultipleForms.register(:ZAMAZENTA,{
 }
 })
 
+# ETERNATUS
+MultipleForms.register(:ETERNATUS,{
+"getBaseStats"=>proc{|pokemon|
+   next if pokemon.form==0
+   next [255,115,250,125,250,130] # Eternatus Dinamax infinito
+},
+ "height"=>proc{|pokemon|
+    next 1000 if pokemon.form==1
+    next
+},
+})
+
 # URSHIFU
 MultipleForms.register(:URSHIFU,{
 "type2"=>proc{|pokemon|
@@ -1824,22 +1868,43 @@ MultipleForms.register(:SQUAWKABILLY,{
 
 # PALAFIN
 MultipleForms.register(:PALAFIN,{
-"type2"=>proc{|pokemon|
-  next getID(PBTypes,:FIGHTING) if pokemon.form==1
-  next
-},
 "getBaseStats"=>proc{|pokemon|
    next if pokemon.form==0
    next [100,160,97,100,106,87]
 }
 })
 
-# FLABEBE, FLOETTE, FLORGES
+# TATSUGIRI
 MultipleForms.register(:TATSUGIRI,{
 "getFormOnCreation"=>proc{|pokemon|
    next rand(2)
 },
+"getBaseStats"=>proc{|pokemon|
+   next [68,65,90,92,135,125] if pokemon.form >= 3
+   next
+},
+ "getMegaForm"=>proc{|pokemon|
+    next 3 if isConst?(pokemon.item,PBItems,:TATSUGIRINITE) && pokemon.form==0
+    next 4 if isConst?(pokemon.item,PBItems,:TATSUGIRINITE) && pokemon.form==1
+    next 5 if isConst?(pokemon.item,PBItems,:TATSUGIRINITE) && pokemon.form==2
+    next
+ },
+  "height"=>proc{|pokemon|
+    next 10 if pokemon.form >= 3
+    next
+ },
+ "weight"=>proc{|pokemon|
+    next 3 if pokemon.form >= 3
+    next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 2 if pokemon.form==4
+   next 1 if pokemon.form==5
+   next 0
+ }
+
 })
+
 
 
 MultipleForms.register(:OGERPON,{

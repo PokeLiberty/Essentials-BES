@@ -43,8 +43,7 @@ def createTrainer(trainerid,trainername,party,items=[])
   name = pbGetMessageFromHash(MessageTypes::TrainerNames, trainername)
   
   if trainerid.is_a?(String) || trainerid.is_a?(Symbol)
-    pbTrainerTypeCheck(trainerid)
-    return false if !hasConst?(PBTrainers,trainerid)
+    return 1 if !hasConst?(PBTrainers,trainerid) #Si no encuentra el trainer usa el 1 de placeholder.
     trainerid=PBTrainers.const_get(trainerid)
   end
   

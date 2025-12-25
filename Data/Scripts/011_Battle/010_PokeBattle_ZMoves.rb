@@ -7,15 +7,15 @@ class PokeBattle_ZMoves < PokeBattle_Move
   attr_reader(:type)
   attr_reader(:accuracy)
   attr_reader(:addlEffect)
-  attr_reader(:target)   
+  attr_reader(:target)
   attr_reader(:priority)
   attr_reader(:flags)
-  attr_reader(:category)  
+  attr_reader(:category)
   attr_reader(:thismove)
   attr_accessor(:pp)
   attr_accessor(:totalpp)
   attr_reader(:oldmove)
-  attr_reader(:status) 
+  attr_reader(:status)
   attr_reader(:oldname)
   attr_accessor(:zmove)
 ################################################################################
@@ -35,21 +35,32 @@ class PokeBattle_ZMoves < PokeBattle_Move
     @basedamage = pbZMoveBaseDamage(move,crystal)
     @type       = move.type
     @accuracy   = pbZMoveAccuracy(move,crystal)
-    @addlEffect = 0 
+    @addlEffect = 0
     @target     = move.target
     @priority   = @oldmove.priority
     @flags      = pbZMoveFlags(move,crystal)
+    if @flags.is_a?(String)
+      f=0
+      i=@flags
+      f+=1 if i.include?("a")
+      f+=2 if i.include?("b")
+      f+=4 if i.include?("c")
+      f+=8 if i.include?("d")
+      f+=16 if i.include?("e")
+      f+=32 if i.include?("f")
+      @flags=f
+    end
     @category   = oldmovedata.category
     @pp         = 1
     @totalpp    = 1
-    @thismove   = self #move  
+    @thismove   = self #move
     @zmove      = true
     if !@status
       @priority = 0
-    end    
-    
+    end
+
     moveZname = @nameEspanol
-    
+
     battler.pbBeginTurn(self)
     if !@status
       @battle.pbDisplayBrief(_INTL("¡{1} liberó todo el poder de su movimiento Z!",battler.pbThis))
@@ -61,7 +72,7 @@ class PokeBattle_ZMoves < PokeBattle_Move
     end
     ztargets=[]
     user=battler.pbFindUser(zchoice,ztargets)
-    
+
 
     if ztargets.length==0
       if @thismove.target==PBTargets::SingleNonUser ||
@@ -78,7 +89,7 @@ class PokeBattle_ZMoves < PokeBattle_Move
         pbZStatus(@id,battler)
         battler.pbUseMove(zchoice,true)
         #zchoice[2].name = moveZname
-        
+
         #@oldmove.name = @oldname.to_s if @oldname
       end
     else
@@ -191,7 +202,7 @@ class PokeBattle_ZMoves < PokeBattle_Move
   #BES-T ZMOVES EN ESPAÑOL
   def pbZMoveName2(oldmove,crystal)
     if @status
-      return oldmove.name + "Z" 
+      return oldmove.name + "Z"
     else
       case crystal
       when getID(PBItems,:NORMALIUMZ)  ;return "Carrera arrolladora"
@@ -437,10 +448,6 @@ class PokeBattle_ZMoves < PokeBattle_Move
     return @type
   end
 
-  def isContactMove?
-    return @flags.include?("a")
-  end
-
   def pbCanUseWhileAsleep?
     return false
   end
@@ -452,11 +459,11 @@ class PokeBattle_ZMoves < PokeBattle_Move
   def pbTargetsMultiple?(attacker)
     return false
   end
-  
+
   def hasHighCriticalRate?
-    return false 
+    return false
   end
-  
+
 ################################################################################
 # PokeBattle_ActualScene Feature for playing animation (based on common anims)
 ################################################################################
@@ -885,7 +892,7 @@ class PokeBattle_Battler
         canuse=true if move.id==getID(PBMoves,:MOONGEISTBEAM)
       end
     # AÑADE NUEVOS Z MOVES AQUÍ
-    
+
     end
 
 

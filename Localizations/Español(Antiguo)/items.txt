@@ -1,0 +1,15 @@
+SOOTHEBELL=Campana Alivio
+CHOICEBAND=Cinta Elegida
+CHOICESPECS=Gafas Elegidas
+CHOICESCARF=Pañuelo Elegido
+XSPECIAL=Especial X
+DIREHIT=Directo
+GUARDSPEC=Protección Especial
+STICK=Palo
+WAVEINCENSE=Incienso Aqua
+FOCUSBAND=Cinta Focus
+FOCUSSASH=Banda Focus
+CARBOS=Carburante
+NUGGET=Pepita
+BIGNUGGET=Maxipepita
+NEVERMELTICE=Antiderretir

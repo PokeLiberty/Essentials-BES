@@ -1189,13 +1189,14 @@ def pbDrawImagePositions(bitmap,textpos)
     y=i[2]
     srcx=i[3] || 0
     srcy=i[4] || 0
-    width=i[5]>=0 ? i[5] : srcbitmap.width
-    height=i[6]>=0 ? i[6] : srcbitmap.height
+    width=(i[5] && i[5]>=0) ? i[5] : srcbitmap.width
+    height=(i[6] && i[6]>=0) ? i[6] : srcbitmap.height
     srcrect=Rect.new(srcx,srcy,width,height)
     bitmap.blt(x,y,srcbitmap.bitmap,srcrect)
     srcbitmap.dispose
   end
 end
+
 
 class Game_Temp
   attr_accessor :fadestate

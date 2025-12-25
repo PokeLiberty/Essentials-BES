@@ -4007,7 +4007,7 @@ GLOBALMETADATA=[
       end
     elsif Input.triggerex?("E"[0])
       pbEncounterEditorMap(@encdata,@selmapid) if @selmapid>=0
-    elsif Input.trigger?(Input::F5)
+    elsif (!$MKXP ? Input.trigger?(Input::F5) : Input.triggerex?(Input::F5))
       helpWindow
     end
     pbUpdateSpriteHash(@sprites)

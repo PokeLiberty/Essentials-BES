@@ -24,7 +24,7 @@ class CommandMenuDisplay
       @buttons=nil
       # BES-T Info combate
       @statinfo=IconSprite.new(0,0,viewport)
-      @statinfo.setBitmap("Graphics/Pictures/Battle/infoStats")
+      @statinfo.setBitmap("Graphics/Pictures/Battle/infoStats") if !pbInSafari?
       @statinfo.y=PokeBattle_SceneConstants::INFOBUTTON_Y
       @statinfo.x=PokeBattle_SceneConstants::INFOBUTTON_X
       
@@ -607,7 +607,7 @@ class PokeBattle_Scene
       elsif Input.trigger?(Input::B) && index==2 && @lastcmd[0]!=2 # Cancel
         pbPlayDecisionSE()
         return -1
-      elsif Input.trigger?(Input::L) #Q
+      elsif Input.trigger?(Input::L) && !pbInSafari? #Q
         pbShowBattleInfo(@battle)
       end
     end
@@ -692,7 +692,7 @@ class PokeBattle_Scene
         @lastmove[index]=cw.index
         pbPlayCancelSE()
         return -1
-      elsif Input.trigger?(Input::L) #Q
+      elsif Input.trigger?(Input::L) && !pbInSafari? #Q
         pbShowBattleInfo(@battle)
       end
     end
