@@ -14,7 +14,7 @@ BR_WIN = 1
 # The pokemon doesn't need to be able to learn the given moves, they can be
 # arbitary.
 # ------------------------------------------------------------------------------
-def createPokemon(species, level, moveset=nil)
+def createPokemon(species, level=5, moveset=nil)
   begin
     poke = PokeBattle_Pokemon.new(species, level)
     poke.moves = convertMoves(moveset) if moveset

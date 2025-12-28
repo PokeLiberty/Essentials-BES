@@ -298,8 +298,8 @@ MenuHandlers.add(:pause_menu, :save, {
   },
   "effect"    => proc { |menu|
     menu.pbHideMenu
-    scene = PokemonSaveScene.new
-    screen = PokemonSaveScreen.new(scene)
+    scene=PokemonSaveScene.new
+    screen=PokemonSave.new(scene)
     if screen.pbSaveScreen
       menu.pbEndScene
       next true
