@@ -105,9 +105,6 @@ class Window_PokemonBag < Window_DrawableCommand
     end
   end
 end
-
-
-
 class PokemonBag_Scene
 ## Configuration
   ITEMLISTBASECOLOR     = Color.new(88,88,80)
@@ -116,8 +113,8 @@ class PokemonBag_Scene
   ITEMTEXTSHADOWCOLOR   = Color.new(0,0,0)
   POCKETNAMEBASECOLOR   = Color.new(88,88,80)
   POCKETNAMESHADOWCOLOR = Color.new(168,184,184)
-  ITEMSVISIBLE          = 7
-
+  ITEMSVISIBLE          = 6
+  
   def update
     pbUpdateSpriteHash(@sprites)
   end
@@ -129,41 +126,85 @@ class PokemonBag_Scene
     @sprites={}
     lastpocket=@bag.lastpocket
     lastitem=@bag.getChoice(lastpocket)
+    
+  
+    # Fondo principal (sin el cuadro de items)
     @sprites["background"]=IconSprite.new(0,0,@viewport)
     @sprites["background"].setBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagbg#{lastpocket}"))
-    @sprites["leftarrow"]=AnimatedSprite.new("Graphics/Pictures/leftarrow",8,40,28,2,@viewport)
-    @sprites["rightarrow"]=AnimatedSprite.new("Graphics/Pictures/rightarrow",8,40,28,2,@viewport)
-    @sprites["leftarrow"].play
-    @sprites["rightarrow"].play
-    @sprites["bag"]=IconSprite.new(30,20,@viewport)
-    @sprites["icon"]=ItemIconSprite.new(48,Graphics.height-48,-1,@viewport)
-    @sprites["itemwindow"]=Window_PokemonBag.new(@bag,lastpocket,168,-8,314,40+32+ITEMSVISIBLE*32)
+    
+    @sprites["bag"]=IconSprite.new(28,84+56,@viewport) #BES-T Bolsa con prioridad más baja.
+
+    # Cuadro de información y items
+    @sprites["itemframe"]=IconSprite.new(0,0,@viewport)
+    @sprites["itemframe"].setBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagbg_frame"))
+    
+    # Iconos de bolsillos
+    @sprites["pocketicons"]=BitmapSprite.new(Graphics.width,64,@viewport)
+    @sprites["pocketicons"].x=0
+    @sprites["pocketicons"].y=0
+    
+    @sprites["leftarrow"]=IconSprite.new(0,0,@viewport)
+    @sprites["leftarrow"].setBitmap("Graphics/#{BAG_ROUTE}/icon_arrow")
+    @sprites["leftarrow"].src_rect=Rect.new(0,0,28,28)
+    
+    @sprites["rightarrow"]=IconSprite.new(0,0,@viewport)
+    @sprites["rightarrow"].setBitmap("Graphics/#{BAG_ROUTE}/icon_arrow")
+    @sprites["rightarrow"].src_rect=Rect.new(28,0,28,28)
+    
+    @iconX=92
+    @iconY=158 - 56
+    @sprites["icon"]=ItemIconSprite.new(@iconX,@iconY,-1,@viewport)
+    @sprites["icon"].ox=0
+    @sprites["icon"].oy=0
+    
+    @sprites["itemwindow"]=Window_PokemonBag.new(@bag,lastpocket,164,-8+36,340,36+32+ITEMSVISIBLE*32)
     @sprites["itemwindow"].viewport=@viewport
     @sprites["itemwindow"].pocket=lastpocket
     @sprites["itemwindow"].index=lastitem
     @sprites["itemwindow"].baseColor=ITEMLISTBASECOLOR
     @sprites["itemwindow"].shadowColor=ITEMLISTSHADOWCOLOR
     @sprites["itemwindow"].refresh
-    @sprites["slider"]=IconSprite.new(Graphics.width-40,60,@viewport)
+    
+    @sliderStart = 76
+    @sprites["slider"]=IconSprite.new(Graphics.width-28,@sliderStart,@viewport)
     @sprites["slider"].setBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagSlider"))
+    
     @sprites["pocketwindow"]=BitmapSprite.new(186,228,@viewport)
     pbSetSystemFont(@sprites["pocketwindow"].bitmap)
+    
+    # Sprites de pokéballs (para mostrar si el Pokémon puede aprender el movimiento)
+    @sprites["pokeicons"]=BitmapSprite.new(180,120,@viewport)
+    @sprites["pokeicons"].x=2
+    @sprites["pokeicons"].y=32 + 6
+    @sprites["pokeicons"].visible=false
+    
+    # Ventana de información de TM/HM (inicialmente invisible)
+    @sprites["tminfo"]=BitmapSprite.new(180,140,@viewport)
+    @sprites["tminfo"].x=0
+    @sprites["tminfo"].y=Graphics.height - 96 - 140
+    @sprites["tminfo"].visible=false
+    pbSetSystemFont(@sprites["tminfo"].bitmap)
+    
     @sprites["itemtextwindow"]=Window_UnformattedTextPokemon.new("")
-    @sprites["itemtextwindow"].x=72
+    @sprites["itemtextwindow"].x=20
     @sprites["itemtextwindow"].y=270
-    @sprites["itemtextwindow"].width=Graphics.width-72
+    @sprites["itemtextwindow"].width=Graphics.width-@sprites["itemtextwindow"].x
     @sprites["itemtextwindow"].height=128
     @sprites["itemtextwindow"].baseColor=ITEMTEXTBASECOLOR
     @sprites["itemtextwindow"].shadowColor=ITEMTEXTSHADOWCOLOR
     @sprites["itemtextwindow"].visible=true
     @sprites["itemtextwindow"].viewport=@viewport
     @sprites["itemtextwindow"].windowskin=nil
+    
+    
     @sprites["helpwindow"]=Window_UnformattedTextPokemon.new("")
     @sprites["helpwindow"].visible=false
     @sprites["helpwindow"].viewport=@viewport
+    
     @sprites["msgwindow"]=Window_AdvancedTextPokemon.new("")
     @sprites["msgwindow"].visible=false
     @sprites["msgwindow"].viewport=@viewport
+    
     pbBottomLeftLines(@sprites["helpwindow"],1)
     pbDeactivateWindows(@sprites)
     pbRefresh
@@ -194,11 +235,150 @@ class PokemonBag_Scene
        @sprites["helpwindow"],helptext,commands) { update }
   end
 
+  def drawPocketIcons
+    bm=@sprites["pocketicons"].bitmap
+    bm.clear
+    numpockets=PokemonBag.numPockets
+    iconbitmap=AnimatedBitmap.new("Graphics/#{BAG_ROUTE}/icon_pocket")
+    
+    @pocketSize=28
+    # Calcular espaciado centrado en el cuadro de objetos
+    # El cuadro está a 184px con ancho de 480px en pantalla de 512px
+    boxleft=184
+    boxwidth=480-184  # 296px de ancho
+    totalwidth=numpockets*@pocketSize
+    startx=boxleft+(boxwidth-totalwidth)/2
+    
+    for i in 1..numpockets
+      x=startx+(i-1)*@pocketSize
+      y=0
+      # Fila 0 = no seleccionado, Fila 1 = seleccionado
+      srcrow=(i==@bag.lastpocket) ? 1 : 0
+      srcrect=Rect.new((i-1)*@pocketSize,srcrow*@pocketSize,@pocketSize,@pocketSize)
+      bm.blt(x,y,iconbitmap.bitmap,srcrect)
+    end
+    
+    # Posicionar flechas a los lados de los iconos
+    @sprites["leftarrow"].x=startx-28
+    @sprites["leftarrow"].y=0
+    @sprites["rightarrow"].x=startx+totalwidth
+    @sprites["rightarrow"].y=0
+    
+  end
+
+  def drawTMInfo(item)
+    return if !pbIsMachine?(item)
+    
+    @sprites["tminfo"].visible=true
+    @sprites["pokeicons"].visible=true
+    @sprites["bag"].visible=false
+    @sprites["itemframe"].setBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagbg_TMFrame"))
+
+    bitmap=@sprites["tminfo"].bitmap
+    bitmap.clear
+    
+    # Obtener información del movimiento
+    machine  = $ItemData[item][ITEMMACHINE]
+    move     = machine
+    movename = PBMoves.getName(move)
+    movedata = PBMoveData.new(move)
+    movepower= movedata.basedamage rescue 0
+    movetype = movedata.type rescue 0
+    movecat  = movedata.category rescue 2
+    moveacc  = movedata.accuracy rescue 0
+    movepp   = movedata.totalpp rescue 0
+    
+    # Dibujar información
+    textpos=[]
+    imagepos=[]
+    
+    # Tipo
+    catX=86 + 6
+    typebitmap=sprintf("Graphics/Pictures/types")
+    imagepos.push(["Graphics/Pictures/types", catX - 64 - 6,4,0,movedata.type*28,64,28])
+    # Categoría
+    if movecat==0 # Físico
+      imagepos.push(["Graphics/Pictures/category",catX,4,0,0,64,28])
+    elsif movecat==1 # Especial
+      imagepos.push(["Graphics/Pictures/category",catX,4,0,28,64,28])
+    elsif movecat==2 # Estado
+      imagepos.push(["Graphics/Pictures/category",catX,4,0,56,64,28])
+    end
+    
+    # Poder
+    textpos.push([_INTL("Potencia"),4,32,0,ITEMTEXTBASECOLOR,ITEMTEXTSHADOWCOLOR])
+    powertext=(movepower>0) ? movepower.to_s : "---"
+    textpos.push([powertext,72*2,32,2,ITEMTEXTBASECOLOR,ITEMTEXTSHADOWCOLOR])
+    
+    # Precisión
+    textpos.push([_INTL("Precisión"),4,32+32,0,ITEMTEXTBASECOLOR,ITEMTEXTSHADOWCOLOR])
+    acctext=(moveacc>0) ? moveacc.to_s : "---"
+    textpos.push([acctext,72*2,32+32,2,ITEMTEXTBASECOLOR,ITEMTEXTSHADOWCOLOR])
+    
+    textpos.push([_INTL("PP"),4,32+32+32,0,ITEMTEXTBASECOLOR,ITEMTEXTSHADOWCOLOR])
+    pptext=(movepp>0) ? movepp.to_s : "---"
+    textpos.push([pptext,72*2,32+32+32,2,ITEMTEXTBASECOLOR,ITEMTEXTSHADOWCOLOR])
+
+    
+    pbDrawTextPositions(bitmap,textpos)
+    pbDrawImagePositions(bitmap,imagepos)
+    
+    itemwindow=@sprites["itemwindow"]
+    @sprites["itemtextwindow"].text=(itemwindow.item==0) ? _INTL("Cerrar la mochila.") : 
+       pbGetMessage(MessageTypes::MoveDescriptions,$ItemData[item][ITEMMACHINE])
+    
+    # Dibujar iconos de Pokémon
+    drawPokemonCompatibility(move)
+  end
+
+  def drawPokemonCompatibility(move)
+    bitmap=@sprites["pokeicons"].bitmap
+    bitmap.clear
+    
+    return if !$Trainer || !$Trainer.party
+    
+    imagepos=[]
+    xBase=0
+    yBase=0
+    spacing=30
+    
+    for i in 0...$Trainer.party.length
+      pokemon=$Trainer.party[i]
+      next if !pokemon
+      
+      x=xBase+(i%6)*spacing
+      y=yBase+(i/6)*spacing
+      
+      # Determinar si puede aprender el movimiento
+      canLearn=false
+      if pokemon.isCompatibleWithMove?(move)
+        canLearn=true
+      end
+      
+      # Usar ballnormal o ballfainted según compatibilidad
+      if canLearn
+        imagepos.push(["Graphics/Pictures/Battle/ballnormal",x,y,0,0,-1,-1])
+      else
+        imagepos.push(["Graphics/Pictures/Battle/ballfainted",x,y,0,0,-1,-1])
+      end
+    end
+    
+    pbDrawImagePositions(bitmap,imagepos)
+  end
+
   def pbRefresh
     bm=@sprites["pocketwindow"].bitmap
     bm.clear
+    
+    # Dibujar iconos de bolsillos
+    drawPocketIcons
+    
     # Set the background bitmap for the currently selected pocket
-    @sprites["background"].setBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagbg#{@bag.lastpocket}"))
+    if pbResolveBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagbg#{@bag.lastpocket}"))
+      @sprites["background"].setBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagbg#{@bag.lastpocket}"))
+    else
+      @sprites["background"].setBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagbg1"))
+    end
     # Set the bag picture for the currently selected pocket
     fbagexists=pbResolveBitmap(sprintf("Graphics/#{BAG_ROUTE}/bag#{@bag.lastpocket}f"))
     if $Trainer.isFemale? && fbagexists
@@ -206,30 +386,46 @@ class PokemonBag_Scene
     else
       @sprites["bag"].setBitmap("Graphics/#{BAG_ROUTE}/bag#{@bag.lastpocket}")
     end
+    
     # Draw the pocket name
     name=PokemonBag.pocketNames()[@bag.lastpocket]
     base=POCKETNAMEBASECOLOR
     shadow=POCKETNAMESHADOWCOLOR
     pbDrawTextPositions(bm,[
-       [name,bm.width/2,180,2,base,shadow]
+       [name,bm.width/2,2,2,base,shadow]
     ])
-    # Reset positions of left/right arrows around the bag
-    @sprites["leftarrow"].x=-4
-    @sprites["leftarrow"].y=76
-    @sprites["rightarrow"].x=150
-    @sprites["rightarrow"].y=76
+    
     itemwindow=@sprites["itemwindow"]
+    
     # Draw the slider
-    ycoord=60
+    ycoord=@sliderStart
     if itemwindow.itemCount>1
-      ycoord+=116.0 * itemwindow.index/(itemwindow.itemCount-1)
+      ycoord+=138.0 * itemwindow.index/(itemwindow.itemCount-1)
     end
     @sprites["slider"].y=ycoord
+    
     # Set the icon for the currently selected item
     @sprites["icon"].item=itemwindow.item
+    @sprites["icon"].x=@iconX
+    @sprites["icon"].y=@iconY
+    
     # Display the item's description
     @sprites["itemtextwindow"].text=(itemwindow.item==0) ? _INTL("Cerrar la mochila.") : 
        pbGetMessage(MessageTypes::ItemDescriptions,itemwindow.item)
+
+    # Mostrar información de TM/HM si corresponde
+    currentItem=itemwindow.item
+    if currentItem>0 && pbIsMachine?(currentItem)
+      drawTMInfo(currentItem)
+      @sprites["itemtextwindow"].text=(itemwindow.item==0) ? _INTL("Cerrar la mochila.") : 
+        pbGetMessage(MessageTypes::MoveDescriptions,$ItemData[currentItem][ITEMMACHINE])
+    else
+      @sprites["itemframe"].setBitmap(sprintf("Graphics/#{BAG_ROUTE}/bagbg_frame"))
+      @sprites["tminfo"].visible=false
+      @sprites["pokeicons"].visible=false
+      @sprites["bag"].visible=true
+    end
+    
     # Refresh the item window
     itemwindow.refresh
   end
@@ -251,15 +447,25 @@ class PokemonBag_Scene
          self.update
          if itemwindow.item!=olditem
            # Update slider position
-           ycoord=60
+           ycoord=@sliderStart
            if itemwindow.itemCount>1
-             ycoord+=116.0 * itemwindow.index/(itemwindow.itemCount-1)
+             ycoord+=138.0 * itemwindow.index/(itemwindow.itemCount-1)
            end
            @sprites["slider"].y=ycoord
+           
            # Update item icon and description
            @sprites["icon"].item=itemwindow.item
            @sprites["itemtextwindow"].text=(itemwindow.item==0) ? _INTL("Cerrar la mochila.") :
               pbGetMessage(MessageTypes::ItemDescriptions,itemwindow.item)
+           
+           # Actualizar información de TM/HM
+           currentItem=itemwindow.item
+           if currentItem>0 && pbIsMachine?(currentItem)
+             drawTMInfo(currentItem)
+           else
+             @sprites["tminfo"].visible=false
+             @sprites["pokeicons"].visible=false
+           end
          end
          if itemwindow.index!=oldindex
            # Update selected item for current pocket
@@ -272,12 +478,14 @@ class PokemonBag_Scene
              if !sorting
                itemwindow.pocket=(itemwindow.pocket==1) ? numpockets : itemwindow.pocket-1
                @bag.lastpocket=itemwindow.pocket
+               pbPlayCursorSE
                pbRefresh
              end
            elsif Input.trigger?(Input::RIGHT)
              if !sorting
                itemwindow.pocket=(itemwindow.pocket==numpockets) ? 1 : itemwindow.pocket+1
                @bag.lastpocket=itemwindow.pocket
+               pbPlayCursorSE
                pbRefresh
              end
            end
@@ -290,6 +498,7 @@ class PokemonBag_Scene
              sortindex=itemwindow.index
              sorting=true
              @sprites["itemwindow"].sortIndex=sortindex
+             pbPlayDecisionSE
            else
              next
            end
@@ -300,6 +509,7 @@ class PokemonBag_Scene
              sorting=false
              @sprites["itemwindow"].sortIndex=-1
            else
+             pbPlayCloseMenuSE
              return 0
            end
          end
@@ -313,9 +523,11 @@ class PokemonBag_Scene
                thispocket[itemwindow.index]=thispocket[sortindex]
                thispocket[sortindex]=tmp
                @sprites["itemwindow"].sortIndex=-1
+               (itemwindow.item) ? pbPlayDecisionSE : pbPlayCloseMenuSE
                pbRefresh
                next
              else
+               (itemwindow.item) ? pbPlayDecisionSE : pbPlayCloseMenuSE
                pbRefresh
                return thispocket[itemwindow.index][0]
              end
@@ -327,8 +539,6 @@ class PokemonBag_Scene
     }
   end
 end
-
-
 
 class PokemonBagScreen
   def initialize(scene,bag)
@@ -915,7 +1125,7 @@ class ItemStorageScene
     @bag=bag
     @sprites={}
     @sprites["background"]=IconSprite.new(0,0,@viewport)
-    @sprites["background"].setBitmap("Graphics/#{PARTY_ROUTE}/pcItembg")
+    @sprites["background"].setBitmap("Graphics/#{BAG_ROUTE}/pcItembg")
     @sprites["icon"]=ItemIconSprite.new(50,334,-1,@viewport)
     # Item list
     @sprites["itemwindow"]=Window_PokemonItemStorage.new(@bag,98,14,334,32+ITEMSVISIBLE*32)
@@ -981,10 +1191,12 @@ class ItemStorageScene
            self.pbRefresh
          end
          if Input.trigger?(Input::B)
+           pbPlayCloseMenuSE
            return 0
          end
          if Input.trigger?(Input::C)
            if itemwindow.index<@bag.length
+             (itemwindow.item) ? pbPlayDecisionSE : pbPlayCloseMenuSE
              pbRefresh
              return @bag[itemwindow.index][0]
            else
@@ -1018,7 +1230,7 @@ end
 
 class WithdrawItemScene < ItemStorageScene
   def initialize
-    super(_INTL("Sacar<br>objeto"))
+    super(_INTL("Sacar\nobjeto"))
   end
 end
 
@@ -1026,7 +1238,7 @@ end
 
 class TossItemScene < ItemStorageScene
   def initialize
-    super(_INTL("Tirar<br>objeto"))
+    super(_INTL("Tirar\nobjeto"))
   end
 end
 
