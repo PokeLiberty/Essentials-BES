@@ -13200,3 +13200,11 @@ end
 class PokeBattle_Move_282 < PokeBattle_Move
 
 end
+
+class PokeBattle_Move_456 < PokeBattle_Move
+  def pbMoveFailed(attacker,opponent)
+    return true if !isConst?(attacker.species,PBSpecies,:ZYGARDE)
+    return true if attacker.form!=3
+    return false
+  end
+end

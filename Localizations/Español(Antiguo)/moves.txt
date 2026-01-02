@@ -21,3 +21,4 @@ THRASH=Golpe
 FLASHCANNON=Foco Resplandor
 SYNTHESIS=Síntesis
 TAILWHIP=Látigo
+FACADE=Imagen

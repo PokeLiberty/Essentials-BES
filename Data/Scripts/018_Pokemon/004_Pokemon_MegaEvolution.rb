@@ -1692,7 +1692,7 @@ class PokeBattle_Pokemon
     next
  },
  "getBaseStats"=>proc{|pokemon|
-    next [86,88,92,129,86,126] if pokemon.form==1
+    next [86,88,92,126,129,86] if pokemon.form==1
     next
  },
  #"getAbilityList"=>proc{|pokemon|
@@ -1800,7 +1800,7 @@ MultipleForms.register(:HAWLUCHA,{
     next
  },
  "getBaseStats"=>proc{|pokemon|
-    next [78,137,100,74,93,118] if pokemon.form==1
+    next [78,137,100,118,74,93] if pokemon.form==1
     next
  },
  #"getAbilityList"=>proc{|pokemon|
