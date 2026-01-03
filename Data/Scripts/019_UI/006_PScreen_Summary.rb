@@ -112,7 +112,7 @@ class PokemonSummaryScene
     @party      = party
     @partyindex = partyindex
     @pokemon    = @party[@partyindex]
-    @inbattle   = inbattle
+    @inbattle   = true
     @page       = 4
     @sprites["movesel"] = MoveSelectionSprite.new(@viewport,moveToLearn>0)
     @sprites["movesel"].visible = false

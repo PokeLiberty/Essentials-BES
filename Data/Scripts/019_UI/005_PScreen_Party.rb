@@ -458,7 +458,14 @@ class PokemonPartyPanel < SpriteWrapper
     @panelbgsprite.update if @panelbgsprite && !@panelbgsprite.disposed?
     @hpbgsprite.update if @hpbgsprite && !@hpbgsprite.disposed?
     @ballsprite.update if @ballsprite && !@ballsprite.disposed?
-    @pkmnsprite.update if @pkmnsprite && !@pkmnsprite.disposed?
+    if @pkmnsprite && !@pkmnsprite.disposed?
+      if @pkmnsprite.pokemon.isTera?
+        @pkmnsprite.tone=TERATONES[@pkmnsprite.pokemon.teratype] if @pkmnsprite.pokemon.isTera?
+      else
+        @pkmnsprite.tone=Tone.new(0,0,0,0)
+      end
+      @pkmnsprite.update
+    end
     @helditemsprite.update if @helditemsprite && !@helditemsprite.disposed?
   end
 end
