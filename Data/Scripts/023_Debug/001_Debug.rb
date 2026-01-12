@@ -815,9 +815,11 @@ def pbDebugMenu
     elsif cmd=="purifychamber"
       pbPurifyChamber()
     elsif cmd=="extracttext"
-      pbExtractText
+      pbExtractTextByType
+      #pbExtractText
     elsif cmd=="compiletext"
-      pbCompileTextUI
+      pbCompileTextFromFoldersUI
+      #pbCompileTextUI
     elsif cmd=="compiledata"
       msgwindow=Kernel.pbCreateMessageWindow
       pbCompileAllData(true) {|msg| Kernel.pbMessageDisplay(msgwindow,msg,false) }
