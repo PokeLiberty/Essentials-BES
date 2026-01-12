@@ -129,17 +129,17 @@ MultipleForms.register(:RATICATE,{
 MultipleForms.register(:RAICHU,{
 "getFormOnCreation"=>proc{|pokemon|
    if $game_map && ALOLA_MAPS.include?($game_map.map_id)
-     next 1
+     next 3
    else
      next 0
    end
 },
 "type2"=>proc{|pokemon|
-  next getID(PBTypes,:PSYCHIC) if pokemon.form==1
+  next getID(PBTypes,:PSYCHIC) if pokemon.form==3
   next
 },
 "getBaseStats"=>proc{|pokemon|
-  next [60,85,50,110,95,85] if pokemon.form==1
+  next [60,85,50,110,95,85] if pokemon.form==3
   next
 },
 "getAbilityList"=>proc{|pokemon|
@@ -147,7 +147,7 @@ MultipleForms.register(:RAICHU,{
    next [[getID(PBAbilities,:SURGESURFER),0]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form==3
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:PSYCHIC],[1,:SPEEDSWAP],[1,:THUNDERSHOCK],[1,:QUICKATTACK],[1,:TAILWHIP],[1,:THUNDERBOLT]]
