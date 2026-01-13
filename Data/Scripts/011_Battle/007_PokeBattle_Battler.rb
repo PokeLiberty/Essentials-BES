@@ -1345,7 +1345,7 @@ class PokeBattle_Battler
         battlerability=@battle.battlers[choice].ability
         @ability=battlerability
         abilityname=PBAbilities.getName(battlerability)
-        showAbilityMessage(poke) rescue nil
+        showAbilityMessage(self) rescue nil
         @battle.pbDisplay(_INTL("¡{1} ha copiado la habilidad {3} de {2}!",pbThis,battlername,abilityname))
         PBDebug.log("[Habilidad disparada] Rastro de #{pbThis} se convirtió en #{abilityname} de #{battlername}")
       end
@@ -1384,7 +1384,7 @@ class PokeBattle_Battler
         abilityname=PBAbilities.getName(abil)
         PBDebug.log("[Ability triggered] #{self.pbThis}'s #{PBAbilities.getName(self.ability)} turned into #{abilityname} from #{battlername}")
         self.ability=abil
-        showAbilityMessage(poke) rescue nil
+        showAbilityMessage(self) rescue nil
         @battle.pbDisplay(_INTL("¡{1} copió {3} de {2}!",pbThis,battlername,abilityname))
       end
     end
@@ -1392,7 +1392,7 @@ class PokeBattle_Battler
     # Hospitalidad
     if self.hasWorkingAbility(:HOSPITALITY) && onactive
       if self.pbPartner && !self.pbPartner.isFainted?
-        showAbilityMessage(poke) rescue nil
+        showAbilityMessage(self) rescue nil
         if self.pbPartner.hp==self.pbPartner.totalhp
           @battle.pbDisplay(_INTL("¡Los PS de {1} están al máximo!",self.pbPartner.pbThis))
         else
@@ -1422,11 +1422,11 @@ class PokeBattle_Battler
       if self.hasWorkingItem(:BOOSTERENERGY) && !(self.hasWorkingAbility(:PROTOSYNTHESIS) && ([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather)) ||
                                                   self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0))
         @effects[PBEffects::BoosterEnergy] = true
-        showAbilityMessage(poke) rescue nil
+        showAbilityMessage(self) rescue nil
         @battle.pbDisplay(_INTL("{1} de {2} aumentó su {3} gracias a {4}!", PBAbilities.getName(self.ability), pbThis, PBStats.getName(@effects[PBEffects::Protosynthesis]), PBItems.getName(self.item)))
         self.pbConsumeItem
       else
-        showAbilityMessage(poke) rescue nil
+        showAbilityMessage(self) rescue nil
         @battle.pbDisplay(_INTL("{1} de {2} aumentó su {3}!", PBAbilities.getName(self.ability), pbThis, PBStats.getName(@effects[PBEffects::Protosynthesis])))
       end
     end
