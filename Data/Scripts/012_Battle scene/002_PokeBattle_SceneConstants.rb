@@ -121,6 +121,13 @@ module PokeBattle_SceneConstants
   FOCUSTARGET_Y = 96    # 108, 98
 
   # BES-T
+  
+  # Activa o deactiva las bases sobre las que aparecen los pokémon en combate.
+  USE_BATTLE_BASES   = false
+  # Activa o deactiva las sombras de los pokémon rivales en combate. Se adapta al sprite.
+  # Si es false no utiliza las sobras en ningun lugar.
+  USE_BATTLE_SHADOWS   = true
+  
   # Colorea las letras de los movimientos segun los colores usados en el botón de combate.
   # Desactivalo si usas cajas customizadas.
   COLOREDTYPE     = false
@@ -131,7 +138,7 @@ module PokeBattle_SceneConstants
   CMD_OUTLINE     = true
   # Cambia el color del sombreado/outline del texto al ser seleccionado.
   MENUSHADOWCOLORACTIVE = Color.new(120,120,128)
-
+  
   
   # Añade outlines a todos los textos que aparecen en el databox de cada pokémon.
   # Recomendado en interfaces estilo Blanco y Negro, recuerda editar los colores del texto!

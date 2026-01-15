@@ -1622,6 +1622,7 @@ class PokeBattle_Move
       @battle.pbDisplayPaused(_INTL("¡El sustituto recibe el daño en lugar de {1}!",opponent.name))
       if opponent.effects[PBEffects::Substitute]<=0
         opponent.effects[PBEffects::Substitute]=0
+        @battle.scene.pbShowSubstitute(opponent.index, false)
         @battle.pbDisplayPaused(_INTL("¡El sustituto de {1} se acabó!",opponent.name))
         PBDebug.log("[Efecto terminado] Sustituto de #{opponent.pbThis} terminado")
       end

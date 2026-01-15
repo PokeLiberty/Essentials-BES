@@ -111,7 +111,7 @@ class MoveInfoScene
     
     pbSetSystemFont(@sprites["overlay"].bitmap)
     pbDrawTextPositions(bitmap, [[@move_name, x_start, y, 0, base, shadow]])
-    draw_category_and_type(bitmap, x_start + 200, y, base, shadow)
+    draw_category_and_type(bitmap,250, y, base, shadow)
     pbSetNarrowFont(@sprites["overlay"].bitmap)
     y = 78
     draw_power_accuracy_pp(bitmap, x_start, y, base, shadow, base2, shadow2)
@@ -125,20 +125,20 @@ class MoveInfoScene
   # Dibujar categoría y tipo
   #-----------------------------------------------------------------------------
   def draw_category_and_type(bitmap, x, y, base, shadow)
-    # Tipo
-    types_bmp = Bitmap.new("Graphics/Pictures/types")
+    # Tipo #Usamos el de la dex pa' rellenar mas. ~Clara
+    types_bmp = Bitmap.new("Graphics/Pictures/pokedexTypes")
   
     # Debug
     move_type = MoveTypeHelper.get_move_type(@battler, @battler.moves[@current_index], @battle) rescue @movedata.type 
     
-    src_y = getID(PBTypes, move_type) * 28
-    bitmap.blt(x, y, types_bmp, Rect.new(0, src_y, 64, 28))
+    src_y = getID(PBTypes, move_type) * 32
+    bitmap.blt(x, y, types_bmp, Rect.new(0, src_y, 96, 32))
     types_bmp.dispose
     
     category_bmp = Bitmap.new("Graphics/Pictures/category")
     category_type = @movedata.category
     src_y = @movedata.category * 28
-    bitmap.blt(x+64, y, category_bmp, Rect.new(0, src_y, 64, 28))
+    bitmap.blt(x+ 96+ 64 + 16, y+2, category_bmp, Rect.new(0, src_y, 64, 28))
     category_bmp.dispose
   end
   
@@ -149,23 +149,23 @@ class MoveInfoScene
     power_text = @movedata.basedamage > 0 ? @movedata.basedamage.to_s : "---"
     pbDrawTextPositions(bitmap, [
       [_INTL("Potencia:"), x, y, 0, base, shadow],
-      [power_text, x + 120, y, 0, base2, shadow2]
+      [power_text, 232, y, 1, base2, shadow2]
     ])
     accuracy_text = @movedata.accuracy > 0 ? @movedata.accuracy.to_s : "---"
     pbDrawTextPositions(bitmap, [
       [_INTL("Precisión:"), x, y+30, 0, base, shadow],
-      [accuracy_text, x + 120, y+30, 0, base2, shadow2]
+      [accuracy_text, 232, y+30, 1, base2, shadow2]
     ])
     pp_text = @movedata.totalpp > 0 ? @movedata.totalpp.to_s : "---"
     pbDrawTextPositions(bitmap, [
       [_INTL("PP:"), x, y+30+30, 0, base, shadow],
-      [pp_text, x + 120, y+30+30, 0, base2, shadow2]
+      [pp_text, 232, y+30+30, 1, base2, shadow2]
     ])
     priority = @movedata.priority
     priority_text = priority > 0 ? "+#{priority}" : priority.to_s
     pbDrawTextPositions(bitmap, [
       [_INTL("Prioridad:"), x, y+30+30+30, 0, base, shadow],
-      [priority_text, x + 120, y+30+30+30, 0, base2, shadow2]
+      [priority_text, 232, y+30+30+30, 1, base2, shadow2]
     ])
   end
 
@@ -314,7 +314,6 @@ class FightMenuDisplay
   end
   
   def show_move_info(move_id,battle)    
-    # Mostrar escena de información con el índice actual
     scene = MoveInfoScene.new(move_id, @battler, battle, @index)
     scene.main
   end
