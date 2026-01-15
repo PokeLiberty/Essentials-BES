@@ -1873,42 +1873,6 @@ MultipleForms.register(:FALINKS,{
  }
  })
 
-
-MultipleForms.register(:RAICHU,{
- "getMegaForm"=>proc{|pokemon|
-    next 1 if isConst?(pokemon.item,PBItems,:RAICHUITEX)
-    next 2 if isConst?(pokemon.item,PBItems,:RAICHUITEY)
-    next
- },
- "getMegaName"=>proc{|pokemon|
-    next _INTL("Mega Raichu X") if pokemon.form==1
-    next _INTL("Mega Raichu Y") if pokemon.form==2
-    next
- },
- "getBaseStats"=>proc{|pokemon|
-    next [60,135,95,110,90,95] if pokemon.form==1
-    next [60,100,55,130,160,80] if pokemon.form==2
-    next
- },
- #"getAbilityList"=>proc{|pokemon|
- #   next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
- #   next
- #}, #No se sabe cual es la hab oficial.
- "weight"=>proc{|pokemon|
-    next 380 if pokemon.form==1
-    next 260 if pokemon.form==2
-    next
- },
-"height"=>proc{|pokemon|
-    next 12 if pokemon.form==1
-    next 10 if pokemon.form==2
-    next
- },
- "getUnmegaForm"=>proc{|pokemon|
-   next 0
- }
- })
-
 MultipleForms.register(:CHIMECHO,{
  "getMegaForm"=>proc{|pokemon|
     next 1 if isConst?(pokemon.item,PBItems,:CHIMECHITE)
