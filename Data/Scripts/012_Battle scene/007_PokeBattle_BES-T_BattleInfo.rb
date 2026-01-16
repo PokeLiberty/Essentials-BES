@@ -903,7 +903,7 @@ class PokeBattle_Battle
           when PBEffects::Attract then effect_name = _INTL("Enamorado") if effect != -1
           when PBEffects::LeechSeed then effect_name = PBMoves.getName(PBMoves::LEECHSEED) if effect != -1
           when PBEffects::Protect  then effect_name = PBMoves.getName(PBMoves::PROTECT)
-            
+          when PBEffects::Substitute  then effect_name = PBMoves.getName(PBMoves::SUBSTITUTE) if effect != 0
           when PBEffects::Bide
             if effect > 0
               venganza = 3 - effect

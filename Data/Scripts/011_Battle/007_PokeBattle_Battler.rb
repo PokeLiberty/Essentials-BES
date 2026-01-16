@@ -4788,6 +4788,10 @@ class PokeBattle_Battler
         @battle.pbMessagesOnRevival(index,newpoke,newpokename)
       end
     end
+    # Re-añade el sprite de sustituto para relevo y autonomia.
+    if user.effects[PBEffects::Substitute]>0
+      @battle.scene.pbShowSubstitute(user.index,true) rescue nil
+    end
     # Record move as having been used
     user.lastMoveUsed=thismove.id
     user.lastMoveUsedType=thismove.pbType(thismove.type,user,nil)

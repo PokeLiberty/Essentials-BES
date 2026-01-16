@@ -3799,6 +3799,8 @@ class PokeBattle_Battle
           score-=90 # Because it will fail here
           score=0 if skill>=PBTrainerAI.bestSkill
         end
+      when 0x254 # Revival blessing
+        score=0 # La IA no debe ni puede usarlo.
       end
     # A score of 0 here means it should absolutely not be used
     return score if score<=0

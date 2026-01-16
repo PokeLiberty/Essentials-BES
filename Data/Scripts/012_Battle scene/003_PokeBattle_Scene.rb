@@ -2320,8 +2320,8 @@ class PokeBattle_Scene
         
         sus = back ? "substitute_back" : "substitute"
         @sprites["substitute#{battlerindex}"].setBitmap("Graphics/Battlers/#{sus}")
-        @sprites["substitute#{battlerindex}"].zoom_x = back ? 3 : 2
-        @sprites["substitute#{battlerindex}"].zoom_y = back ? 3 : 2
+        @sprites["substitute#{battlerindex}"].zoom_x = back ? BACKSPRITESCALE : POKEMONSPRITESCALE
+        @sprites["substitute#{battlerindex}"].zoom_y = back ? BACKSPRITESCALE : POKEMONSPRITESCALE
         
         # Ajustes de posición específicos según el zoom
         if back
@@ -2338,9 +2338,8 @@ class PokeBattle_Scene
         @sprites["substitute#{battlerindex}"].x = @original_pokemon_x[battlerindex] + offset_sub_x
         @sprites["substitute#{battlerindex}"].y = pokemon_sprite.y + offset_sub_y
         @sprites["substitute#{battlerindex}"].opacity = 0
-        @sprites["substitute#{battlerindex}"].visible = true
       end
-      
+      @sprites["substitute#{battlerindex}"].visible = true # Movemos esto aqui para evitar errores.
       # Animación suave (20 frames)
       20.times do
         # Interpolar posición del Pokémon
