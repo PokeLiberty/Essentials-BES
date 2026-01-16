@@ -60,6 +60,7 @@ Your credits go here.
 Your credits go here.
 
 {INSERTS_PLUGIN_CREDITS_DO_NOT_REMOVE}
+
 "Pokémon Essentials" was created by:
 Flameguru
 Poccil (Peter O.)
@@ -71,15 +72,92 @@ Boushy<s>MiDas Mike
 Brother1440<s>Near Fantastica
 FL.<s>PinkMan
 Genzai Kawakami<s>Popper
-help-14<s>Rataime
+Golisopod User<s>Rataime
+help-14<s>Savordez
 IceGod64<s>SoundSpawn
 Jacob O. Wobbrock<s>the__end
 KitsuneKouta<s>Venom12
 Lisa Anthony<s>Wachunga
-Luka S.J.<s>
+Luka S.J.<s> 
 and everyone else who helped out
 
+"mkxp-z" by:
+Roza
+Based on MKXP by Ancurio et al.
 
+"Pokémon Essentials BES" es una recopilación de recursos y scripts basada en Pokémon Essentials v16 y la Base de Pira
+"PBS"
+Pira<s>Clara
+Jaizu<s>Alexandrite
+Nero<s>MasterYuri
+
+"Sprites y otros graficos"
+Smogon Sprite Project
+leParagon<s>N-Kin
+fishbowlsoul90<s>MrDollSteak
+BlackWhiteRobin<s>Wobblebuns
+princessofmusic<s>Z-nogyroP
+MyMarshlands<s>MBCMechachu
+Megax Rocker<s>KingOfThe-X-Roads
+Caruban<s>Blaquaza
+KattenK<s>Travis
+G.E.Z.<s>SpheX
+Hematite<s>SelenaArmorclaw
+Mak<s>jinxed
+leParagon<s>Sopita_Yorita
+Azria<s>Mashirosakura
+JordanosArt<s>Abnayami
+OldSoulja<s>Katten
+Divaruta 666<s>Clara
+Skyflyer<s>AshnixsLaw
+ace_stryfe<s>JaegerLucciano23
+academico95<s>KajiAtsui
+Chaos Rush<s>BlackstarG5
+mangamanga<s>HeXeR
+Tetra<s>goranthegreat
+Trev<s>xiechayghe
+Lucidious89<s>lichenprincess
+jinxed<s>Kyledove
+aronousqui20<s>Camiloveso
+RetroNC<s>Esneider
+Piper<s>TheSonicGamerYT
+Alfpixel<s>Ezerart
+SrGio<s>Luis779
+Batin<s>Rauru (Pepsiman)
+
+SageDeoxys<s>DarkusShadow
+LarryTurbo<s>Princess-Phoenix
+Kidkatt<s>Zender1752
+
+"Scripts"
+Pira<s>Clara
+WolfPP<s>Alberto
+Selfish<s>Rot8er_ConeX
+Mybusiness<s>BlackOutG5
+Telemetius<s>rigbycwts
+MotoxChmpn10<s>Crystal Noel
+Zerokid<s>Jonas930
+Slaqueen / Ele-nya
+derFischae<s>Marcello 
+Zumi<s>Ice Cream Sand Witch 
+Amethyst<s>Jan 
+Sardines<s>Inuki
+pKa<s>Deo<s>FL
+Luka SJ<s>Vendily
+Bezier<s>FiaPlay
+Stochastic<s>bo4p5687
+Skyflyer<s>DerxwnaKapsyla
+josmancia<s>Lucifer666
+SakDayne
+
+"Animaciones"
+Pokémon Reborn Team
+Gen 8 Animation Project led by StCooler, with additional contributions by DarrylBD99, WolfPP, ardicoozer, riddlemeree
+Gen 9 Animation Project led by KRLW890 and Nut0066, with additional contributions by Toxillian, QuahogTheCreator, Lcorp, and Shashu-Greninja
+josmancia<s>julieharu<s>SakDayne
+
+"Musica y sonidos"
+ENLS<s>BellBlitzKing
 
 "RPG Maker XP" by:
 Enterbrain

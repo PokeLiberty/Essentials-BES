@@ -2,20 +2,50 @@ Si faltan creditos de alguien reportad.
 
 Créditos:
 
-- Pokémon Essentials -
+* - Pokémon Essentials - * 
 · Flameguru
-· Poccil
+· Poccil (Peter O.)
 · Maruno
 
-- Recopilación -
-· Pira
-· Clara
+With contributions from:
+· AvatarMonkeyKirby
+· Marin
+· Boushy
+· MiDas Mike
+· Brother1440
+· Near Fantastica
+· FL.
+· PinkMan
+· Genzai Kawakami
+· Popper
+· Golisopod User
+· Rataime
+· help-14
+· Savordez
+· IceGod64
+· SoundSpawn
+· Jacob O. Wobbrock
+· the__end
+· KitsuneKouta
+· Venom12
+· Lisa Anthony
+· Wachunga
+· Luka S.J.
+and everyone else who helped out.
 
+"mkxp-z" by:
+· Roza
+· Based on MKXP by Ancurio et al.
+
+
+Pokémon Essentials BES es una recopilación de recursos y scripts basada en Pokémon Essentials v16 y la Base de Pira
 - PBS - 
 · Alexandrite
+· Pira
 · Clara
 · Jaizu
 · Nero
+· MasterYuri
 
 - Sprites y otros graficos-
 · Smogon Sprite Project
@@ -31,14 +61,35 @@ Créditos:
 · MBCMechachu
 · Megax Rocker
 · KingOfThe-X-Roads
-
+· Caruban
+· Blaquaza
+· KattenK
+· Travis
+· G.E.Z.
+· SpheX
+· Hematite
+· SelenaArmorclaw
+· Mak
+· jinxed
+· leParagon
+· Sopita_Yorita
+· Azria
+· Mashirosakura
+· JordanosArt
+· Abnayami
+· OldSoulja
+· Katten
+· Divaruta 666
+· Clara
+· Skyflyer
+· AshnixsLaw
+· ace_stryfe
 · JaegerLucciano23
 · academico95
 · KajiAtsui
 · Chaos Rush
 · BlackstarG5
 · mangamanga
-· JaegerLucciano23
 · HeXeR
 · Tetra
 · goranthegreat
@@ -46,7 +97,6 @@ Créditos:
 · xiechayghe
 · Lucidious89 
 · lichenprincess
-· Caruban
 · jinxed
 · Kyledove
 · aronousqui20
@@ -71,7 +121,8 @@ Créditos:
 · Zender1752
 
 - Scripts -
-
+· Pira
+· Clara
 · WolfPP
 · Alberto
 · Selfish
@@ -83,7 +134,6 @@ Créditos:
 · MotoxChmpn10
 · Crystal Noel
 · Zerokid
-· Clara
 · Slaqueen / Ele-nya
 · Jonas930
 · derFischae
@@ -106,7 +156,7 @@ Créditos:
 · DerxwnaKapsyla
 · josmancia
 · Lucifer666
-
+· SakDayne
 - Animaciones -
 · Pokémon Reborn Team
 · Gen 8 Animation Project lead by StCooler, with additional contributions by DarrylBD99, WolfPP, ardicoozer, riddlemeree
@@ -119,10 +169,14 @@ Créditos:
 · ENLS
 · BellBlitzKing
 
-- Otros -
-· MasterYuri
+"RPG Maker XP" by:
+· Enterbrain
 
-- Pokémon -
-· Nintendo
-· Game Freak
-· The Pokémon Company
+Pokémon is owned by:
+The Pokémon Company
+Nintendo
+Affiliated with Game Freak
+
+This is a non-profit fan-made game.
+No copyright infringements intended.
+Please support the official games!
