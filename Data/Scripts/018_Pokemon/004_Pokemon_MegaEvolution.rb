@@ -708,6 +708,7 @@ class PokeBattle_Pokemon
  MultipleForms.register(:LUCARIO,{
  "getMegaForm"=>proc{|pokemon|
     next 1 if isConst?(pokemon.item,PBItems,:LUCARIONITE)
+    next 2 if isConst?(pokemon.item,PBItems,:LUCARIONITEZ)
     next
  },
  "getBaseStats"=>proc{|pokemon|
