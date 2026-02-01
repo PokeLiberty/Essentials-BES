@@ -28,7 +28,6 @@ class PokeBattle_ZMoves < PokeBattle_Move
     @id         = pbZMoveId(move,crystal)
     @battle     = battle
     @name       = pbZMoveName(move,crystal)
-    @nameEspanol= pbZMoveName2(move,crystal)
     # Get data on the move
     oldmovedata = PBMoveData.new(move.id)
     @function   = pbZMoveFunction(move,crystal)
@@ -59,7 +58,7 @@ class PokeBattle_ZMoves < PokeBattle_Move
       @priority = 0
     end
 
-    moveZname = @nameEspanol
+    moveZname = @name
 
     battler.pbBeginTurn(self)
     if !@status
@@ -157,89 +156,44 @@ class PokeBattle_ZMoves < PokeBattle_Move
 
   def pbZMoveName(oldmove,crystal)
     if @status
-      return "Z-" + oldmove.name
+      return $PokemonSystem.language !=1 ? oldmove.name + "Z" : "Z-" + oldmove.name
     else
       case crystal
-      when getID(PBItems,:NORMALIUMZ)  ;return "Breakneck Blitz"
-      when getID(PBItems,:FIGHTINIUMZ) ;return "All-Out Pummeling"
-      when getID(PBItems,:FLYINIUMZ)   ;return "Supersonic Skystrike"
-      when getID(PBItems,:POISONIUMZ)  ;return "Acid Downpour"
-      when getID(PBItems,:GROUNDIUMZ)  ;return "Tectonic Rage"
-      when getID(PBItems,:ROCKIUMZ)    ;return "Continental Crush"
-      when getID(PBItems,:BUGINIUMZ)   ;return "Savage Spin-Out"
-      when getID(PBItems,:GHOSTIUMZ)   ;return "Never-Ending Nightmare"
-      when getID(PBItems,:STEELIUMZ)   ;return "Corkscrew Crash"
-      when getID(PBItems,:FIRIUMZ)     ;return "Inferno Overdrive"
-      when getID(PBItems,:WATERIUMZ)   ;return "Hydro Vortex"
-      when getID(PBItems,:GRASSIUMZ)   ;return "Bloom Doom"
-      when getID(PBItems,:ELECTRIUMZ)  ;return "Gigavolt Havoc"
-      when getID(PBItems,:PSYCHIUMZ)   ;return "Shattered Psyche"
-      when getID(PBItems,:ICIUMZ)      ;return "Subzero Slammer"
-      when getID(PBItems,:DRAGONIUMZ)  ;return "Devastating Drake"
-      when getID(PBItems,:DARKINIUMZ)  ;return "Black Hole Eclipse"
-      when getID(PBItems,:FAIRIUMZ)    ;return "Twinkle Tackle"
-      when getID(PBItems,:ALORAICHIUMZ);return "Stoked Sparksurfer"
-      when getID(PBItems,:DECIDIUMZ)   ;return "Sinister Arrow Raid"
-      when getID(PBItems,:INCINIUMZ)   ;return "Malicious Moonsault"
-      when getID(PBItems,:PRIMARIUMZ)  ;return "Oceanic Operetta"
-      when getID(PBItems,:EEVIUMZ)     ;return "Extreme Evoboost"
-      when getID(PBItems,:PIKANIUMZ)   ;return "Catastropika"
-      when getID(PBItems,:SNORLIUMZ)   ;return "Pulverizing Pancake"
-      when getID(PBItems,:MEWNIUMZ)    ;return "Genesis Supernova"
-      when getID(PBItems,:TAPUNIUMZ)   ;return "Guardian of Alola"
-      when getID(PBItems,:MARSHADIUMZ) ;return "Soul-Stealing 7-Star Strike"
-      when getID(PBItems,:PIKASHUNIUMZ);return "10,000,000 Volt Tunderbolt"
-      when getID(PBItems,:ULTRANECROZIUMZ) ;return "Light That Burns the Sky"
-      when getID(PBItems,:LYCANIUMZ)  ;return "Splintered Stormshards"
-      when getID(PBItems,:MIMIKIUMZ)  ;return "Let's Snuggle Forever"
-      when getID(PBItems,:KOMMONIUMZ) ;return "Clangorous Soulblaze"
-      when getID(PBItems,:SOLGANIUMZ) ;return "Searing Sunraze Smash"
-      when getID(PBItems,:LUNALIUMZ)  ;return "Menacing Moonraze Maelstrom"
-      end
-    end
-  end
-
-  #BES-T ZMOVES EN ESPAÑOL
-  def pbZMoveName2(oldmove,crystal)
-    if @status
-      return oldmove.name + "Z"
-    else
-      case crystal
-      when getID(PBItems,:NORMALIUMZ)  ;return "Carrera arrolladora"
-      when getID(PBItems,:FIGHTINIUMZ) ;return "Ráfaga demoledora"
-      when getID(PBItems,:FLYINIUMZ)   ;return "Picado supersónico"
-      when getID(PBItems,:POISONIUMZ)  ;return "Diluvio corrosivo"
-      when getID(PBItems,:GROUNDIUMZ)  ;return "Barrena telúrica"
-      when getID(PBItems,:ROCKIUMZ)    ;return "Aplastamiento gigalítico"
-      when getID(PBItems,:BUGINIUMZ)   ;return "Guadaña sedosa"
-      when getID(PBItems,:GHOSTIUMZ)   ;return "Presa espectral"
-      when getID(PBItems,:STEELIUMZ)   ;return "Hélice trepanadora"
-      when getID(PBItems,:FIRIUMZ)     ;return "Hecatombe pírica"
-      when getID(PBItems,:WATERIUMZ)   ;return "Hidrovórtice abisal"
-      when getID(PBItems,:GRASSIUMZ)   ;return "Megatón floral"
-      when getID(PBItems,:ELECTRIUMZ)  ;return "Gigavoltio destructor"
-      when getID(PBItems,:PSYCHIUMZ)   ;return "Disruptor psíquico"
-      when getID(PBItems,:ICIUMZ)      ;return "Crioaliento despiadado"
-      when getID(PBItems,:DRAGONIUMZ)  ;return "Dracoaliento devastador"
-      when getID(PBItems,:DARKINIUMZ)  ;return "Agujero negro aniquilador"
-      when getID(PBItems,:FAIRIUMZ)    ;return "Arrumaco sideral"
-      when getID(PBItems,:ALORAICHIUMZ);return "Surfeo galvánico"
-      when getID(PBItems,:DECIDIUMZ)   ;return "Aluvión de flechas sombrías"
-      when getID(PBItems,:INCINIUMZ)   ;return "Hiperplancha oscura"
-      when getID(PBItems,:PRIMARIUMZ)  ;return "Sinfonía de la diva marina"
-      when getID(PBItems,:EEVIUMZ)     ;return "Novena potencia"
-      when getID(PBItems,:PIKANIUMZ)   ;return "Pikavoltio letal"
-      when getID(PBItems,:SNORLIUMZ)   ;return "Arrojo intempestivo"
-      when getID(PBItems,:MEWNIUMZ)    ;return "Supernova original"
-      when getID(PBItems,:TAPUNIUMZ)   ;return "Cólera del guardián"
-      when getID(PBItems,:MARSHADIUMZ) ;return "Constelación robaalmas"
-      when getID(PBItems,:PIKASHUNIUMZ);return "Gigarrayo fulminante"
-      when getID(PBItems,:ULTRANECROZIUMZ) ;return "Fotodestrucción apocalíptica"
-      when getID(PBItems,:LYCANIUMZ)  ;return "Tempestad rocosa"
-      when getID(PBItems,:MIMIKIUMZ)  ;return "Somanta amistosa"
-      when getID(PBItems,:KOMMONIUMZ) ;return "Estruendo implacable"
-      when getID(PBItems,:SOLGANIUMZ) ;return "Embestida solar"
-      when getID(PBItems,:LUNALIUMZ)  ;return "Deflagración lunar"
+      when getID(PBItems,:NORMALIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Carrera arrolladora") : "Breakneck Blitz"
+      when getID(PBItems,:FIGHTINIUMZ) ; return $PokemonSystem.language !=1 ? _INTL("Ráfaga demoledora") : "All-Out Pummeling"
+      when getID(PBItems,:FLYINIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Picado supersónico") : "Supersonic Skystrike"
+      when getID(PBItems,:POISONIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Diluvio corrosivo") : "Acid Downpour"
+      when getID(PBItems,:GROUNDIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Barrena telúrica") : "Tectonic Rage"
+      when getID(PBItems,:ROCKIUMZ)    ; return $PokemonSystem.language !=1 ? _INTL("Aplastamiento gigalítico") : "Continental Crush"
+      when getID(PBItems,:BUGINIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Guadaña sedosa") : "Savage Spin-Out"
+      when getID(PBItems,:GHOSTIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Presa espectral") : "Never-Ending Nightmare"
+      when getID(PBItems,:STEELIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Hélice trepanadora") : "Corkscrew Crash"
+      when getID(PBItems,:FIRIUMZ)     ; return $PokemonSystem.language !=1 ? _INTL("Hecatombe pírica") : "Inferno Overdrive"
+      when getID(PBItems,:WATERIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Hidrovórtice abisal") : "Hydro Vortex"
+      when getID(PBItems,:GRASSIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Megatón floral") : "Bloom Doom"
+      when getID(PBItems,:ELECTRIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Gigavoltio destructor") : "Gigavolt Havoc"
+      when getID(PBItems,:PSYCHIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Disruptor psíquico") : "Shattered Psyche"
+      when getID(PBItems,:ICIUMZ)      ; return $PokemonSystem.language !=1 ? _INTL("Crioaliento despiadado") : "Subzero Slammer"
+      when getID(PBItems,:DRAGONIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Dracoaliento devastador") : "Devastating Drake"
+      when getID(PBItems,:DARKINIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Agujero negro aniquilador") : "Black Hole Eclipse"
+      when getID(PBItems,:FAIRIUMZ)    ; return $PokemonSystem.language !=1 ? _INTL("Arrumaco sideral") : "Twinkle Tackle"
+      when getID(PBItems,:ALORAICHIUMZ); return $PokemonSystem.language !=1 ? _INTL("Surfeo galvánico") : "Stoked Sparksurfer"
+      when getID(PBItems,:DECIDIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Aluvión de flechas sombrías") : "Sinister Arrow Raid"
+      when getID(PBItems,:INCINIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Hiperplancha oscura") : "Malicious Moonsault"
+      when getID(PBItems,:PRIMARIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Sinfonía de la diva marina") : "Oceanic Operetta"
+      when getID(PBItems,:EEVIUMZ)     ; return $PokemonSystem.language !=1 ? _INTL("Novena potencia") : "Extreme Evoboost"
+      when getID(PBItems,:PIKANIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Pikavoltio letal") : "Catastropika"
+      when getID(PBItems,:SNORLIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Arrojo intempestivo") : "Pulverizing Pancake"
+      when getID(PBItems,:MEWNIUMZ)    ; return $PokemonSystem.language !=1 ? _INTL("Supernova original") : "Genesis Supernova"
+      when getID(PBItems,:TAPUNIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Cólera del guardián") : "Guardian of Alola"
+      when getID(PBItems,:MARSHADIUMZ) ; return $PokemonSystem.language !=1 ? _INTL("Constelación robaalmas") : "Soul-Stealing 7-Star Strike"
+      when getID(PBItems,:PIKASHUNIUMZ); return $PokemonSystem.language !=1 ? _INTL("Gigarrayo fulminante") : "10,000,000 Volt Thunderbolt"
+      when getID(PBItems,:ULTRANECROZIUMZ) ; return $PokemonSystem.language !=1 ? _INTL("Fotodestrucción apocalíptica") : "Light That Burns the Sky"
+      when getID(PBItems,:LYCANIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Tempestad rocosa") : "Splintered Stormshards"
+      when getID(PBItems,:MIMIKIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Somanta amistosa") : "Let's Snuggle Forever"
+      when getID(PBItems,:KOMMONIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Estruendo implacable") : "Clangorous Soulblaze"
+      when getID(PBItems,:SOLGANIUMZ)  ; return $PokemonSystem.language !=1 ? _INTL("Embestida solar") : "Searing Sunraze Smash"
+      when getID(PBItems,:LUNALIUMZ)   ; return $PokemonSystem.language !=1 ? _INTL("Deflagración lunar") : "Menacing Moonraze Maelstrom"
       end
     end
   end
@@ -471,6 +425,8 @@ class PokeBattle_ZMoves < PokeBattle_Move
   def pbShowAnimation(movename,user,target,hitnum=0,alltargets=nil,showanimation=true)
     animname=movename.delete(" ").delete("-").upcase
     animations=load_data("Data/PkmnAnimations.rxdata")
+    
+    # Intentar encontrar la animación específica del Z-Move
     for i in 0...animations.length
       if @battle.pbBelongsToPlayer?(user.index)
         if animations[i] && animations[i].name=="ZMove:"+animname && showanimation
@@ -487,6 +443,81 @@ class PokeBattle_ZMoves < PokeBattle_Move
         end
       end
     end
+    
+    # Si no se encontró animación específica, usar animación de respaldo
+    fallback = pbGetZMoveFallbackAnimation(@id)
+    if fallback && showanimation
+      for i in 0...animations.length
+        if @battle.pbBelongsToPlayer?(user.index)
+          if animations[i] && animations[i].name==fallback
+            @battle.scene.pbAnimationCore(animations[i],user,(target!=nil) ? target : user)
+            return
+          end
+        else
+          oppfallback = "Opp#{fallback}"
+          if animations[i] && animations[i].name==oppfallback
+            @battle.scene.pbAnimationCore(animations[i],target,(user!=nil) ? user : target)
+            return
+          elsif animations[i] && animations[i].name==fallback
+            @battle.scene.pbAnimationCore(animations[i],user,(target!=nil) ? target : user)
+            return
+          end
+        end
+      end
+    end
+  end
+  
+  def pbGetZMoveFallbackAnimation(zmoveid)
+    # Mapeo de IDs de Z-Moves a animaciones de respaldo
+    fallbacks = {
+      # Z-Moves por tipo (ofensivos)
+      "Z001" => "Move:GIGAIMPACT",      # Hiperrayo Alfa (Normal)
+      "Z002" => "Move:FOCUSPUNCH",      # Plancha Supercosmica (Lucha)
+      "Z003" => "Move:BRAVEBIRD",       # Picado Supersónico (Volador)
+      "Z004" => "Move:GUNKSHOT",        # Lluvia Ácida Nociva (Veneno)
+      "Z005" => "Move:EARTHQUAKE",      # Temblor Tectónico (Tierra)
+      "Z006" => "Move:STONEEDGE",       # Corteza Terrestre (Roca)
+      "Z007" => "Move:MEGAHORN",        # Enjambre Bravío (Bicho)
+      "Z008" => "Move:SHADOWFORCE",     # Presa Espectral (Fantasma)
+      "Z009" => "Move:IRONHEAD",        # Hélice Trepanadora (Acero)
+      "Z010" => "Move:BLASTBURN",       # Hecatombe Pírica (Fuego)
+      "Z011" => "Move:HYDROCANNON",     # Vórtice Hidrocinético (Agua)
+      "Z012" => "Move:FRENZYPLANT",     # Megatón Floral (Planta)
+      "Z013" => "Move:BOLTSTRIKE",      # Gigavoltio Destructor (Eléctrico)
+      "Z014" => "Move:PSYCHOBOOST",     # Disruptor Psíquico (Psíquico)
+      "Z015" => "Move:ICEBURN",         # Criovacío (Hielo)
+      "Z016" => "Move:ROAROFTIME",      # Devastación Dracónica (Dragón)
+      "Z017" => "Move:DARKPULSE",       # Agujero Negro Aniquilador (Siniestro)
+      "Z018" => "Move:MOONBLAST",       # Arrumaco Sideral (Hada)
+      
+      # Z-Moves exclusivos
+      "Z019" => "Move:THUNDERBOLT",     # Surf de Voltios Gigavatios (Raichu Alola)
+      "Z020" => "Move:SPIRITSHACKLE",   # Aluvión de Flechas Sombrías (Decidueye)
+      "Z021" => "Move:DARKESTLARIAT",   # Hiperplancha Oscura (Incineroar)
+      "Z022" => "Move:SPARKLINGARIA",   # Sinfonía de la Diva Marina (Primarina)
+      "Z023" => "Move:LASTRESORT",      # Novena Potencia (Eevee)
+      "Z024" => "Move:VOLTTACKLE",      # Catastropika (Pikachu)
+      "Z025" => "Move:GIGAIMPACT",      # Arrojo Intempestivo (Snorlax)
+      "Z026" => "Move:PSYCHIC",         # Supernova Original (Mew)
+      "Z027" => "Move:NATURESMADNESS",  # Cólera del Guardián (Tapu)
+      "Z028" => "Move:SPECTRALTHIEF",   # Constelación Robaalmas (Marshadow)
+      "Z029" => "Move:THUNDER",         # Rayo Destructor de 10.000.000 V (Pikachu Gorra)
+      "Z030" => "Move:PHOTONGEYSER",    # Fotodestrucción Apocalíptica (Necrozma Ultra)
+      "Z031" => "Move:STONEEDGE",       # Tempestad Rocas Afiladas (Lycanroc)
+      "Z032" => "Move:PLAYROUGH",       # Somanta Amistosa (Mimikyu)
+      "Z033" => "Move:CLANGINGSCALES",  # Estruendo Escamas Draco (Kommo-o)
+      "Z034" => "Move:SUNSTEELSTRIKE",  # Embestida Solar Estelar (Solgaleo/Necrozma)
+      "Z035" => "Move:MOONGEISTBEAM"    # Deflagración Lunar Menguante (Lunala/Necrozma)
+    }
+    
+    return fallbacks[zmoveid] if fallbacks[zmoveid]
+    
+    # Si no hay mapeo específico, usar animación genérica
+    if zmoveid && zmoveid.start_with?("Z")
+      return "Move:HYPERBEAM"  # Animación genérica por defecto
+    end
+    
+    return nil
   end
 
 ################################################################################
