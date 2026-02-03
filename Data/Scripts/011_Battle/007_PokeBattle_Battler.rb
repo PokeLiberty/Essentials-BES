@@ -214,6 +214,7 @@ class PokeBattle_Battler
     return @pokemon.isShiny? if @pokemon
     return false
   end
+  alias shiny? isShiny? #BES-T Compt - v17
 
   def owned
     return (@pokemon) ? $Trainer.owned[@pokemon.species] && !@battle.opponent : false
@@ -561,8 +562,6 @@ class PokeBattle_Battler
     @effects[PBEffects::ShedTail]         = false
     @effects[PBEffects::SaltCure]         = false
     @effects[PBEffects::SyrupBomb]        = 0
-
-    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     @effects[PBEffects::Protosynthesis]   = 0
     @effects[PBEffects::BoosterEnergy]    = false
   end
@@ -715,10 +714,7 @@ class PokeBattle_Battler
   def isFainted?
     return @hp<=0
   end
-
-  def fainted? #BES-T Compt - v17
-    return @hp<=0
-  end
+  alias fainted? isFainted? #BES-T Compt - v17
 
   def hasMoldBreaker
     return true if hasWorkingAbility(:MOLDBREAKER) ||
@@ -828,17 +824,17 @@ class PokeBattle_Battler
       speedmult=(speedmult/2).round
     end
     if self.status==PBStatuses::PARALYSIS && !self.hasWorkingAbility(:QUICKFEET)
-      speedmult=(speedmult/4).round
+      speedmult=(speedmult/(USENEWBATTLEMECHANICS ? 2 : 4)).round
     end
-    
+
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     # Aumento de velocidad
     if ((self.hasWorkingAbility(:PROTOSYNTHESIS) && ((([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather))) || self.effects[PBEffects::BoosterEnergy]))              ||   # Paleosítensis
-        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.effects[PBEffects::BoosterEnergy]))) &&                                                                                    # Quark Drive       
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.effects[PBEffects::BoosterEnergy]))) &&                                                                                    # Quark Drive
         @effects[PBEffects::Protosynthesis] == PBStats::SPEED
       speedmult=(speedmult*1.5).round
     end
-    
+
     if @battle.internalbattle && @battle.pbOwnedByPlayer?(@index) &&
        @battle.pbPlayer.numbadges>=BADGESBOOSTSPEED
       speedmult=(speedmult*1.1).round
@@ -1392,19 +1388,19 @@ class PokeBattle_Battler
         end
       end
     end
-    
+
     # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
     # Resetea el efecto cuando se pase el clima/campo
     if (!@effects[PBEffects::BoosterEnergy] && @effects[PBEffects::Protosynthesis] > 0) && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (![PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather))) || # Paleosítensis
-        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]<=0)))                                                                                                          # Quark Drive    
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]<=0)))                                                                                                          # Quark Drive
       @effects[PBEffects::Protosynthesis] = 0
     end
 
     # Activación de Protosíntesis y Carga Cuark.
     if @effects[PBEffects::Protosynthesis] <= 0 && ((self.hasWorkingAbility(:PROTOSYNTHESIS) && (([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather) || self.hasWorkingItem(:BOOSTERENERGY)))) ||           # Paleosítensis
-        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY))))  # Quark Drive      
+        (self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || self.hasWorkingItem(:BOOSTERENERGY))))  # Quark Drive
       stagemult = [1, 1.5, 2, 2.5, 3, 3.5, 4, 0.25, 0.28, 0.33, 0.40, 0.50, 0.67]
-      stats = [@attack, @defense, @speed, @spatk, @spdef].each_with_index.map { |stat, i| 
+      stats = [@attack, @defense, @speed, @spatk, @spdef].each_with_index.map { |stat, i|
         stat * stagemult[@stages[i + 1]]
       }
       stats = [stats[2], stats[4], stats[3], stats[1], stats[0]] # Cambia el orden de las stats para que sea el mismo que en los juegos oficiales en caso de tener el mismo valor.
@@ -1412,7 +1408,7 @@ class PokeBattle_Battler
       @effects[PBEffects::Protosynthesis]=[3, 5, 4, 2, 1][max[1]] # Revierte los cambios de índice para que sea el mismo que en Essentials.
       if self.hasWorkingItem(:BOOSTERENERGY) && !(self.hasWorkingAbility(:PROTOSYNTHESIS) && ([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather)) ||
                                                   self.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0))
-        @effects[PBEffects::BoosterEnergy] = true 
+        @effects[PBEffects::BoosterEnergy] = true
         @battle.pbDisplay(_INTL("{1} de {2} aumentó su {3} gracias a {4}!", PBAbilities.getName(self.ability), pbThis, PBStats.getName(@effects[PBEffects::Protosynthesis]), PBItems.getName(self.item)))
         self.pbConsumeItem
       else
@@ -1762,9 +1758,9 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("¡{1} no rinde todo lo que podría!",
          pbThis,PBAbilities.getName(self.ability)))
     end
-    if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT)
+    if self.species==PBSpecies::TERAPAGOS && self.hasWorkingAbility(:TERASHIFT) && self.pokemon.form=0
       self.pokemon.form=1
-      @battler.pbUpdate(true)
+      (self.pbUpdate(true) rescue nil)
       @battle.scene.pbChangePokemon(self,@pokemon)
       @battle.pbDisplay(_INTL("¡{1} se transformó!",pbThis))
     end
@@ -1882,6 +1878,12 @@ class PokeBattle_Battler
     if isConst?(self.ability,PBAbilities,:NEUTRALIZINGGAS) && onactive
       @battle.pbDisplay(_INTL("¡Un gas reactivo se propaga por toda la zona!"))
       PBDebug.log("[#{pbThis} summoned Neutralizing Gas]")
+    end
+    # Surcavientos
+    if self.hasWorkingAbility(:WINDRIDER) && self.pbOwnSide.effects[PBEffects::Tailwind]>0 && onactive
+      if pbIncreaseStatWithCause(PBStats::ATTACK,1,self,PBAbilities.getName(ability))
+        PBDebug.log("[Ability triggered] #{pbThis}'s Surcavientos (raising Attack)")
+      end
     end
     # Escudo Recio
     if self.hasWorkingAbility(:DAUNTLESSSHIELD) && onactive
@@ -2386,7 +2388,8 @@ class PokeBattle_Battler
     if !(user.hasWorkingAbility(:SHEERFORCE) && thismove.addlEffect>0)
       # Objetos de objetivos:
       # Tarjeta Roja
-      if target.hasWorkingItem(:REDCARD) && @battle.pbCanSwitch?(user.index,-1,false)
+      if target.hasWorkingItem(:REDCARD) && @battle.pbCanSwitch?(user.index,-1,false) && 
+         !user.hasWorkingAbility(:SUCTIONCUPS) && !user.hasWorkingAbility(:GUARDDOG) 
         user.effects[PBEffects::Roar]=true
         @battle.pbDisplay(_INTL("¡{1} ha sacado una {2} a {3}!",
            target.pbThis,PBItems.getName(target.item),user.pbThis(true)))
@@ -3189,6 +3192,16 @@ class PokeBattle_Battler
         end
       end
     end
+    # Colector interacción Voz Fluida
+    if target.hasWorkingAbility(:STORMDRAIN) && (user.hasWorkingAbility(:LIQUIDVOICE) && isSoundBased?)
+      PBDebug.log("[Habilidad disparada] #{PBAbilities.getName(opponent.ability)} de #{opponent.pbThis} (hizo ineficaz #{@name})")
+      if opponent.pbCanIncreaseStatStage?(PBStats::SPATK,target)
+        opponent.pbIncreaseStatWithCause(PBStats::SPATK,1,target,PBAbilities.getName(target.ability))
+      else
+        @battle.pbDisplay(_INTL("¡{2} de {1} hizo ineficaz {3}!",target.pbThis,PBAbilities.getName(target.ability),self.name))
+      end
+      return true
+    end
     # Cambio de objtivo por el usuario de Señuelo (sobreescribe Capa Mágica
     # porque la verificación de Capa Mágica de abajo usa este objetivo)
     if PBTargets.targetsOneOpponent?(thismove)
@@ -3576,17 +3589,24 @@ class PokeBattle_Battler
        (!user.hasMoldBreaker && target.hasWorkingAbility(:OVERCOAT) &&
        !thismove.doesBypassIgnorableAbilities?) ||
        target.hasWorkingItem(:SAFETYGOGGLES))
-      @battle.pbDisplay(_INTL("No ha afectado a\r\n{1}...",target.pbThis(true)))
+      @battle.pbDisplay(_INTL("No ha afectado a<br>{1}...",target.pbThis(true)))
       PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos basados en polvo por alguna razón")
       return false
     end
     # Cuerpo Aureo
-    if thismove.pbIsStatus? && !thismove.doesBypassIgnorableAbilities? &&
-      !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD)
-      showAbilityMessage(target)
-      @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
-      PBDebug.log("[Habilidad disparada] Cuerpo Áureo de #{target.pbThis}")
-      return false
+    if thismove.canMagicCoat? && !user.hasMoldBreaker && target.hasWorkingAbility(:GOODASGOLD) 
+       @battle.pbDisplay(_INTL("¡{1} es inmune a movimientos de Estado gracias a Cuerpo Áureo!",target.pbThis))
+       PBDebug.log("[Habilidad disparada] Cuerpo Áureo de #{target.pbThis} anula movimientos de Estado")
+       return false
+     end
+    # Bromista
+    if USENEWBATTLEMECHANICS
+      if self.hasWorkingAbility(:PRANKSTER) && target.pbHasType?(:DARK) &&  thismove.pbIsStatus?
+        (!user.hasMoldBreaker && !thismove.doesBypassIgnorableAbilities?)
+        @battle.pbDisplay(_INTL("No ha afectado a<br>{1}...",target.pbThis(true)))
+        PBDebug.log("[Movimiento falló] #{target.pbThis} es inmune a movimientos de estado por alguna razón")
+        return false
+      end
     end
     if thismove.basedamage>0 && thismove.function!=0x02 &&                     # Combate
        thismove.function!=0x111                                                # Premonición
@@ -3625,7 +3645,7 @@ class PokeBattle_Battler
         return false
       end
       if typemod==0
-        @battle.pbDisplay(_INTL("No afecta a\r\n{1}...",target.pbThis(true)))
+        @battle.pbDisplay(_INTL("No afecta a<br>{1}...",target.pbThis(true)))
         PBDebug.log("[Movimiento falló] Inmunidad por tipo")
         return false
       end
@@ -3918,7 +3938,14 @@ class PokeBattle_Battler
          !pbSuccessCheck(thismove,user,target,turneffects,i==0 || thismove.successCheckPerHit?)
         if thismove.function==0xBF && realnumhits>0                  # Triplepatada
           break                # Se considera éxitoso si Triplepatada golpea al menos una vez
-        elsif thismove.function==0x10B || thismove.function==0x15C   # Patada Salto Alta, Patada Salto, Patada Hacha
+        elsif thismove.function==0x0E0 || thismove.function==0x202   # Explosion, Bruma Explosiva
+            damage=(user.totalhp).floor
+            if damage>0
+              @battle.scene.pbDamageAnimation(user,0)
+              user.pbReduceHP(damage)
+            end
+            user.pbFaint if user.isFainted?
+        elsif thismove.function==0x10B || thismove.function==0x278   # Patada Salto Alta, Patada Salto, Patada Hacha
           if !user.hasWorkingAbility(:MAGICGUARD)
             PBDebug.log("[Efecto de mov. disparado] #{user.pbThis} es dañado por la caída")
             #TODO: No se muestra es el mensaje es "No afecta a XXX..."
@@ -4366,7 +4393,7 @@ class PokeBattle_Battler
     return if !thismove || thismove.id==0   # if move was not chosen
     if !turneffects[PBEffects::SpecialUsage]
       if !pbReducePP(thismove)
-        @battle.pbDisplay(_INTL("¡{1} usó\r\n{2}!",pbThis,thismove.name))
+        @battle.pbDisplay(_INTL("¡{1} usó<br>{2}!",pbThis,thismove.name))
         @battle.pbDisplay(_INTL("¡Pero no le quedan PP al movimiento!"))
         self.lastMoveUsed=-1
         self.lastMoveUsedType=-1
@@ -4427,6 +4454,10 @@ class PokeBattle_Battler
     user=pbFindUser(choice,targets)
     #Change to two targets for expanding force with psychic terrain
     if isConst?(thismove.id,PBMoves,:EXPANDINGFORCE) && @battle.field.effects[PBEffects::PsychicTerrain]>0 && !user.isAirborne? && @battle.doublebattle
+      targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
+    end
+    #Teracúster golpe a ambos si es Terapagos
+    if isConst?(thismove.id,PBMoves,:TERASTARSTORM) && (isConst?(user.species,PBSpecies,:TERAPAGOS) && user.isTera?) && @battle.doublebattle
       targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
     end
     # Battle Arena only - assume failure
@@ -4770,6 +4801,7 @@ class PokeBattle_Battler
     if !@battle.opponent && @battle.pbIsOpposing?(self.index) &&
        @battle.rules["alwaysflee"] && @battle.pbCanRun?(self.index)
       pbBeginTurn(choice)
+      @battle.scene.pbHideWild(self)
       @battle.pbDisplay(_INTL("¡{1} ha huido!",self.pbThis))
       @battle.decision=3
       pbEndTurn(choice)

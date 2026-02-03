@@ -240,6 +240,8 @@ class PokeBattle_Battler
     if !moldbreaker
       return false if hasWorkingAbility(:IMMUNITY) ||
                       hasWorkingAbility(:PURIFYINGSALT) ||
+                      hasWorkingAbility(:PASTELVEIL) ||
+                      hasWorkingAbility(:PURIFYINGSALT) ||
                       (hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS)) ||
                       (pbPartner.hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS))
       return false if hasWorkingAbility(:LEAFGUARD) &&
@@ -322,6 +324,7 @@ class PokeBattle_Battler
       if hasWorkingAbility(:WATERVEIL) ||                    # Velo Agua
          hasWorkingAbility(:WATERBUBBLE) ||                  # Pompa
          hasWorkingAbility(:PURIFYINGSALT) ||                # Sal Purificadora 
+         hasWorkingAbility(:THERMALEXCHANGE) ||              # Termoconversion
          (hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS)) ||
          (hasWorkingAbility(:LEAFGUARD) && (@battle.pbWeather==PBWeather::SUNNYDAY ||
                                             @battle.pbWeather==PBWeather::HARSHSUN) && !hasWorkingItem(:UTILITYUMBRELLA))
@@ -365,6 +368,7 @@ class PokeBattle_Battler
     if hasWorkingAbility(:WATERVEIL) ||
        hasWorkingAbility(:WATERBUBBLE) ||
        hasWorkingAbility(:PURIFYINGSALT) ||
+       hasWorkingAbility(:THERMALEXCHANGE) ||
        (hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS)) ||
        (hasWorkingAbility(:LEAFGUARD) && (@battle.pbWeather==PBWeather::SUNNYDAY ||
                                           @battle.pbWeather==PBWeather::HARSHSUN) && !hasWorkingItem(:UTILITYUMBRELLA))
@@ -1122,6 +1126,7 @@ class PokeBattle_Battler
       end
       if hasWorkingAbility(:CLEARBODY) || hasWorkingAbility(:WHITESMOKE) ||
          hasWorkingAbility(:HYPERCUTTER) || hasWorkingAbility(:FULLMETALBODY) ||
+         hasWorkingAbility(:INNERFOCUS) || hasWorkingAbility(:GUARDDOG) ||
          (hasWorkingAbility(:FLOWERVEIL) && pbHasType?(:GRASS)) || 
          hasWorkingItem(:CLEARAMULET)
         abilityname=PBAbilities.getName(self.ability)

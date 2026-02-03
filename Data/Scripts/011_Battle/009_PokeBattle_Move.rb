@@ -347,7 +347,11 @@ class PokeBattle_Move
            isConst?(@id,PBMoves,:PETALBLIZZARD) ||
            isConst?(@id,PBMoves,:BLIZZARD) ||
            isConst?(@id,PBMoves,:SANDSTORM) ||
-           isConst?(@id,PBMoves,:WHIRLWIND)
+           isConst?(@id,PBMoves,:WHIRLWIND) ||
+
+           # No existen en 9ª pero son de "viento" incluso en japonés(No como Viento Cortante que NO es de viento en japones)
+           isConst?(@id,PBMoves,:RAZORWIND) ||
+           isConst?(@id,PBMoves,:SILVERWIND)
   end
 
   def doesBypassIgnorableAbilities?
@@ -603,6 +607,15 @@ class PokeBattle_Move
       mod2=2 if isConst?(otype2,PBTypes,:DARK) && PBTypes.isIneffective?(atype,otype2)
       mod3=2 if isConst?(otype3,PBTypes,:DARK) && PBTypes.isIneffective?(atype,otype3)
     end
+    # BES-T Battle rule para batallas inversas.
+    if @battle.rules["inverseBattle"] 
+      inmod1=mod1
+      inmod2=mod2
+      mod1=3 if inmod1<2
+      mod1=1 if inmod1>2
+      mod2=3 if inmod2<2
+      mod2=1 if inmod2>2
+    end
     # Delta Stream's weather
     if @battle.pbWeather==PBWeather::STRONGWINDS
       mod1=2 if isConst?(otype1,PBTypes,:FLYING) && PBTypes.isSuperEffective?(atype,otype1)
@@ -826,7 +839,7 @@ class PokeBattle_Move
       damagemult=(damagemult*1.5).round
     end
     if attacker.hasWorkingAbility(:TRANSISTOR) && isConst?(type,PBTypes,:ELECTRIC)
-      damagemult=(damagemult*1.5).round
+      damagemult=(damagemult*1.3).round
     end
     if attacker.hasWorkingAbility(:DRAGONSMAW) && isConst?(type,PBTypes,:DRAGON)
       damagemult=(damagemult*1.5).round
@@ -1765,7 +1778,7 @@ class PokeBattle_Move
   # 0 si el ataque debería proceder con su efecto
   # 1 si el ataque debería terminar con éxito
   # 2 if Bide is storing energy
-    @battle.pbDisplayBrief(_INTL("¡{1} ha usado\r\n{2}!",attacker.pbThis,name))
+    @battle.pbDisplayBrief(_INTL("¡{1} ha usado<br>{2}!",attacker.pbThis,name))
     return 0
   end
 
