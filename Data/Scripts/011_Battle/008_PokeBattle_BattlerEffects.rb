@@ -766,7 +766,8 @@ class PokeBattle_Battler
 #===============================================================================
 # Flinching / Retroceso
 #===============================================================================
-  def pbFlinch(attacker)
+  def pbFlinch(attacker=nil)
+    return false if @effects[PBEffects::Dynamax]>0 # Dynamax can't be flinched
     return false if (!attacker || !attacker.hasMoldBreaker) && hasWorkingAbility(:INNERFOCUS)      # Foco Interno
     @effects[PBEffects::Flinch]=true
     return true

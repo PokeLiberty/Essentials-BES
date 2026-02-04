@@ -892,18 +892,13 @@ class PokeBattle_Battler
     if @pokemon && @battle.internalbattle
       @pokemon.changeHappiness("faint")
     end
-    if self.isMega?
-      @pokemon.makeUnmega
-    end
-    if self.isUltra?
-       @pokemon.makeUnUltra
-    end
-    if self.isPrimal?
-      @pokemon.makeUnprimal
-    end
-    if self.isTera?
-      @pokemon.makeUntera
-    end
+    
+    @pokemon.makeUnmega if self.isMega?
+    @pokemon.makeUnUltra if self.isUltra?
+    @pokemon.makeUnprimal if self.isPrimal?
+    @pokemon.makeUntera if self.isTera?
+    @pokemon.makeUnmax rescue nil #if self.isDynamax? # Dynamax
+    
     @pokemon.revertOtherForms
     @fainted=true
     # reset choice
@@ -1057,15 +1052,15 @@ class PokeBattle_Battler
     if isConst?(self.species,PBSpecies,:DARMANITAN)
       if self.hasWorkingAbility(:ZENMODE) && @hp<=((@totalhp/2).floor)
         if self.form==0
-          self.form=1; transformed=true
-        elsif self.form==2
+          self.form=2; transformed=true
+        elsif self.form==1
           self.form=3; transformed=true
         end
       elsif self.hasWorkingAbility(:ZENMODE) && @hp>((@totalhp/2).floor)
-        if self.form==1
+        if self.form==2
           self.form=0; transformed=true
         elsif self.form==3
-          self.form=2; transformed=true
+          self.form=1; transformed=true
         end
       end
     end
@@ -1164,12 +1159,11 @@ class PokeBattle_Battler
          isConst?(self.species,PBSpecies,:EISCUE) ||
          isConst?(self.species,PBSpecies,:MORPEKO)||
          isConst?(self.species,PBSpecies,:ZACIAN)||
-         isConst?(self.species,PBSpecies,:ZAMAZENTA)||
-         isConst?(self.species,PBSpecies,:TERAPAGOS)
+         isConst?(self.species,PBSpecies,:ZAMAZENTA)
         self.form=0
       end
       if isConst?(self.species,PBSpecies,:DARMANITAN)
-        self.form=0 if self.form==1; self.form=2 if self.form==3
+        self.form=0 if self.form==2; self.form=1 if self.form==3
       end
       if isConst?(self.species,PBSpecies,:MINIOR)
         if @@miniorform>0
@@ -4789,10 +4783,6 @@ class PokeBattle_Battler
         @battle.pbMessagesOnRevival(index,newpoke,newpokename)
       end
     end
-    # Re-añade el sprite de sustituto para relevo y autonomia.
-    if user.effects[PBEffects::Substitute]>0
-      @battle.scene.pbShowSubstitute(user.index,true) rescue nil
-    end
     # Record move as having been used
     user.lastMoveUsed=thismove.id
     user.lastMoveUsedType=thismove.pbType(thismove.type,user,nil)
@@ -4860,15 +4850,17 @@ class PokeBattle_Battler
 
   def pbEndTurn(choice)
     # True end(?)
-    if @effects[PBEffects::ChoiceBand]<0 && @lastMoveUsed>=0 && !self.isFainted? &&
-       (self.hasWorkingItem(:CHOICEBAND) ||
-       self.hasWorkingItem(:CHOICESPECS) ||
-       self.hasWorkingItem(:CHOICESCARF))
-      @effects[PBEffects::ChoiceBand]=@lastMoveUsed
-    end
-    if @effects[PBEffects::GorillaTactics]<0 && @lastMoveUsed>=0 && !isFainted? &&
-       self.hasWorkingAbility(:GORILLATACTICS)
-      @effects[PBEffects::GorillaTactics]=@lastMoveUsed
+    unless (self.isDynamax? rescue false)
+      if @effects[PBEffects::ChoiceBand]<0 && @lastMoveUsed>=0 && !self.isFainted? &&
+         (self.hasWorkingItem(:CHOICEBAND) ||
+         self.hasWorkingItem(:CHOICESPECS) ||
+         self.hasWorkingItem(:CHOICESCARF))
+        @effects[PBEffects::ChoiceBand]=@lastMoveUsed
+      end
+      if @effects[PBEffects::GorillaTactics]<0 && @lastMoveUsed>=0 && !isFainted? &&
+         self.hasWorkingAbility(:GORILLATACTICS)
+        @effects[PBEffects::GorillaTactics]=@lastMoveUsed
+      end
     end
     @battle.pbPrimordialWeather
     for i in 0...4

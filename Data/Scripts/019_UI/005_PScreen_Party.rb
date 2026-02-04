@@ -434,13 +434,6 @@ class PokemonPartyPanel < SpriteWrapper
         pbSetSmallFont(@overlaysprite.bitmap)
         leveltext=[([_INTL("Nv.{1}",@pokemon.level),@levelX,@levelY,0,basecolor,shadowcolor])]
         pbDrawTextPositions(@overlaysprite.bitmap,leveltext)
-        
-        #pbDrawImagePositions(@overlaysprite.bitmap,[[
-        #   "Graphics/Pictures/Party/overlay_lv",20,70,0,0,22,14]])
-        #pbSetSmallFont(@overlaysprite.bitmap)
-        #pbDrawTextPositions(@overlaysprite.bitmap,[
-        #   [@pokemon.level.to_s,42,62,0,basecolor,shadowcolor]
-        #])
       end
       # Draw annotation text
       if @text && @text.length>0
@@ -459,10 +452,12 @@ class PokemonPartyPanel < SpriteWrapper
     @hpbgsprite.update if @hpbgsprite && !@hpbgsprite.disposed?
     @ballsprite.update if @ballsprite && !@ballsprite.disposed?
     if @pkmnsprite && !@pkmnsprite.disposed?
-      if @pkmnsprite.pokemon.isTera?
-        @pkmnsprite.tone=TERATONES[@pkmnsprite.pokemon.teratype] if @pkmnsprite.pokemon.isTera?
+      if (@pkmnsprite.pokemon.isTera? rescue nil)
+        @pkmnsprite.color=TERATONES[@pkmnsprite.pokemon.teratype]
+      elsif (@pkmnsprite.pokemon.isDynamax? rescue nil)
+        @pkmnsprite.color= @pkmnsprite.pokemon.isSpecies?(:CALYREX) ? DYNATONE[1] : DYNATONE[0]
       else
-        @pkmnsprite.tone=Tone.new(0,0,0,0)
+        @pkmnsprite.color= Color.new(0,0,0,0)
       end
       @pkmnsprite.update
     end

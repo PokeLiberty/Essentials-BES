@@ -583,10 +583,8 @@ class PokeBattle_Scene
     cw.teraButton=1 if @battle.pbCanTeraCristal?(index)
     cw.zButton=0
     cw.zButton=1 if @battle.pbCanZMove?(index)
-    # NO FUNCIONAN, DEJADOS PARA MEJOR COMPATIBILIDAD
-    # SOLO PARA EL CASO DE QUE UNO QUIERA PONERLOS
     cw.dynaButton=0
-    cw.dynaButton=1 if false
+    cw.dynaButton=1 if (@battle.pbCanDynamax?(index) && !@battle.pbCanMegaEvolve?(index) && !@battle.pbCanUltraBurst?(index) && !@battle.pbCanZMove?(index))
     pbSelectBattler(index)
     pbRefresh
     loop do
@@ -604,6 +602,12 @@ class PokeBattle_Scene
         pbPlayCursorSE() if cw.setIndex(cw.index+2)
       end
       if Input.trigger?(Input::C)   # Confirm choice
+        if battler.effects[PBEffects::DButton]
+          battler.effects[PBEffects::MaxMove1]+=1 if cw.index == 0
+          battler.effects[PBEffects::MaxMove2]+=1 if cw.index == 1
+          battler.effects[PBEffects::MaxMove3]+=1 if cw.index == 2
+          battler.effects[PBEffects::MaxMove4]+=1 if cw.index == 3
+        end
         ret=cw.index
         if cw.zButton==2
           if battler.pbCompatibleZMoveFromIndex?(ret)
@@ -621,24 +625,38 @@ class PokeBattle_Scene
         return ret
         end
       elsif Input.trigger?(Input::A)   # Use Mega Evolution
-        if @battle.pbCanMegaEvolve?(index) && !pbIsZCrystal?(battler.item)
+        if @battle.pbCanMegaEvolve?(index)
           @battle.pbRegisterMegaEvolution(index)
           cw.megaButton=2
           pbPlayDecisionSE()
-        elsif @battle.pbCanUltraBurst?(index)  # Use Ultra Burst
-          @battle.pbRegisterUltraBurst(index)
-          cw.ultraButton=2
-          pbPlayDecisionSE()
-        elsif @battle.pbCanTeraCristal?(index)
+          next
+        elsif @battle.pbCanDynamax?(index) # Use Dynamax
+          battler.effects[PBEffects::DButton] = true
+          battler.pbMaxMove
+          @battle.pbRegisterDynamax (index)
+          pbPlayDecisionSE
+          cw.dynaButton = 2
+          pbUpdate
+          next
+        elsif @battle.pbCanTeraCristal?(index) && !@battle.pbCanDynamax?(index)
           @battle.pbRegisterTeraCristal(index)
           cw.teraButton=2
           pbPlayDecisionSE()
+          next
+        elsif @battle.pbCanUltraBurst?(index) # Use Ultra Burst
+          @battle.pbRegisterUltraBurst(index)
+          cw.ultraButton=2
+          pbPlayDecisionSE()
+          next
         elsif @battle.pbCanZMove?(index)  # Use Z Move
           @battle.pbRegisterZMove(index)
           cw.zButton=2
           pbPlayDecisionSE()
+          next
         end
       elsif Input.trigger?(Input::B)   # Cancel fight menu
+        battler.effects[PBEffects::DButton] = false
+        battler.pbUnMaxMove if !battler.isDynamax?
         @lastmove[index]=cw.index
         pbPlayCancelSE()
         return -1

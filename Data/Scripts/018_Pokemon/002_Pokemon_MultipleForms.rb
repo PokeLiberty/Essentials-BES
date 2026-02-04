@@ -208,6 +208,22 @@ module MultipleForms
     return nil if !sp || !sp[func]
     return sp[func].call(pokemon,*args)
   end
+
+  # NUEVO: Método para añadir funciones sin sobrescribir las existentes 
+  # BES-T - Se usa en el dynamax.
+  def self.add(sym,hash)
+    existing = @@formSpecies[sym]
+    if existing
+      # Si ya existe, combinar los hashes
+      hash.each do |key, value|
+        existing[key] = value
+      end
+    else
+      # Si no existe, crear nuevo registro
+      @@formSpecies.add(sym,hash)
+    end
+  end
+
 end
 
 

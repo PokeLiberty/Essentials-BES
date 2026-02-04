@@ -1012,7 +1012,9 @@ Events.onEndBattle+=proc {|sender,e|
   end
   if decision==1
     for i in $Trainer.party
-      (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil);
+      (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil)
+      (i.makeUntera rescue nil); (i.makeUndynamax rescue nil)
+      (i.revertOtherForms rescue nil)
     end
     for pkmn in $Trainer.party
       Kernel.pbPickup(pkmn)

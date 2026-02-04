@@ -777,6 +777,7 @@ class PokeBattle_Move
     c=0
     ratios=(USENEWBATTLEMECHANICS) ? [16,8,2,1,1] : [16,8,4,3,2]
     c+=attacker.effects[PBEffects::FocusEnergy]
+    c+=attacker.effects[PBEffects::ChiStrike] if attacker.effects[PBEffects::ChiStrike] #Dynamax
     c+=1 if hasHighCriticalRate?
     if (attacker.inHyperMode? rescue false) && isConst?(self.type,PBTypes,:SHADOW)
       c+=1
@@ -1253,14 +1254,15 @@ class PokeBattle_Move
        !@battle.rules["souldewclause"]
       atkmult=(atkmult*1.5).round
     end
-    if attacker.hasWorkingItem(:CHOICEBAND) && pbIsPhysical?(type)
-      atkmult=(atkmult*1.5).round
+    if !attacker.isDynamax? # Dynamax
+      if attacker.hasWorkingItem(:CHOICEBAND) && pbIsPhysical?(type)
+        atkmult=(atkmult*1.5).round
+      end
+      if attacker.hasWorkingItem(:CHOICESPECS) && pbIsSpecial?(type)
+        atkmult=(atkmult*1.5).round
+      end
     end
-    if attacker.hasWorkingItem(:CHOICESPECS) && pbIsSpecial?(type)
-      atkmult=(atkmult*1.5).round
-    end
-    
-    # Issue #13: Protosintesis y Carga Cuark no funcionan exactamente igual que en los juegos oficiales. - albertomcastro4
+    # Protosintesis y Carga Cuark
     # Aumentos del ataque
     if ((attacker.hasWorkingAbility(:PROTOSYNTHESIS) && (([PBWeather::SUNNYDAY, PBWeather::HARSHSUN].include?(@battle.pbWeather)) || attacker.effects[PBEffects::BoosterEnergy]))  ||   # Paleosítensis
         (attacker.hasWorkingAbility(:QUARKDRIVE) && (@battle.field.effects[PBEffects::ElectricTerrain]>0 || attacker.effects[PBEffects::BoosterEnergy])))                                           &&   # Quark Drive   
