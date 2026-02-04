@@ -2441,22 +2441,22 @@ class PokeBattle_Battle
                    isConst?(thispoke.itemInitial,PBItems,:MACHOBRACE)
       case k
       when PBStats::HP
-        evgain+=4 if isConst?(thispoke.item,PBItems,:POWERWEIGHT) ||
+        evgain+=8 if isConst?(thispoke.item,PBItems,:POWERWEIGHT) ||
                      isConst?(thispoke.itemInitial,PBItems,:POWERWEIGHT)
       when PBStats::ATTACK
-        evgain+=4 if isConst?(thispoke.item,PBItems,:POWERBRACER) ||
+        evgain+=8 if isConst?(thispoke.item,PBItems,:POWERBRACER) ||
                      isConst?(thispoke.itemInitial,PBItems,:POWERBRACER)
       when PBStats::DEFENSE
-        evgain+=4 if isConst?(thispoke.item,PBItems,:POWERBELT) ||
+        evgain+=8 if isConst?(thispoke.item,PBItems,:POWERBELT) ||
                      isConst?(thispoke.itemInitial,PBItems,:POWERBELT)
       when PBStats::SPATK
-        evgain+=4 if isConst?(thispoke.item,PBItems,:POWERLENS) ||
+        evgain+=8 if isConst?(thispoke.item,PBItems,:POWERLENS) ||
                      isConst?(thispoke.itemInitial,PBItems,:POWERLENS)
       when PBStats::SPDEF
-        evgain+=4 if isConst?(thispoke.item,PBItems,:POWERBAND) ||
+        evgain+=8 if isConst?(thispoke.item,PBItems,:POWERBAND) ||
                      isConst?(thispoke.itemInitial,PBItems,:POWERBAND)
       when PBStats::SPEED
-        evgain+=4 if isConst?(thispoke.item,PBItems,:POWERANKLET) ||
+        evgain+=8 if isConst?(thispoke.item,PBItems,:POWERANKLET) ||
                      isConst?(thispoke.itemInitial,PBItems,:POWERANKLET)
       end
       evgain*=2 if thispoke.pokerusStage>=1 # Infected or cured
@@ -2475,6 +2475,7 @@ class PokeBattle_Battle
         if totalev>PokeBattle_Pokemon::EVLIMIT
           print "EV limit #{PokeBattle_Pokemon::EVLIMIT} exceeded.\r\nTotal EVs: #{totalev} EV gain: #{evgain}  EVs: #{thispoke.ev.inspect}"
         end
+        thispoke.calcStats
       end
     end
     # Gain experience
@@ -2527,6 +2528,7 @@ class PokeBattle_Battle
     growthrate=thispoke.growthrate
     newexp=PBExperience.pbAddExperience(thispoke.exp,exp,growthrate)
     exp=newexp-thispoke.exp
+    exp=exp.floor
     if exp>0
       if showmessages
         if isOutsider
@@ -2551,6 +2553,13 @@ class PokeBattle_Battle
         tempexp2=0
         # Find battler
         battler=pbFindPlayerBattler(index)
+        oldtotalhp=thispoke.totalhp
+        oldattack=thispoke.attack
+        olddefense=thispoke.defense
+        oldspeed=thispoke.speed
+        oldspatk=thispoke.spatk
+        oldspdef=thispoke.spdef
+        oldlevel=thispoke.level
         loop do
           # EXP Bar animation
           startexp=PBExperience.pbGetStartExperience(curlevel,growthrate)
@@ -2566,26 +2575,23 @@ class PokeBattle_Battle
             @scene.pbRefresh
             break
           end
-          oldtotalhp=thispoke.totalhp
-          oldattack=thispoke.attack
-          olddefense=thispoke.defense
-          oldspeed=thispoke.speed
-          oldspatk=thispoke.spatk
-          oldspdef=thispoke.spdef
           if battler && battler.pokemon && @internalbattle
             battler.pokemon.changeHappiness("level up")
           end
           thispoke.calcStats
           battler.pbUpdate(false) if battler
           @scene.pbRefresh
-          pbDisplayPaused(_INTL("¡{1} subió al nivel {2}!",thispoke.name,curlevel))
-          @scene.pbLevelUp(thispoke,battler,oldtotalhp,oldattack,
-                           olddefense,oldspeed,oldspatk,oldspdef)
-          # Determina todos los movimientos aprendidos a este nivel
+        end
+        # BES-T Sube todos los niveles de golpe si son varios.
+        levelamount = thispoke.level - oldlevel
+        if levelamount>0 
+          pbMEPlay("Level Up!")
+          pbDisplayPaused(_INTL("¡{1} subió al nivel {2}!",thispoke.name,thispoke.level))
+          @scene.pbLevelUp(thispoke,battler,oldtotalhp,oldattack,olddefense,oldspeed,oldspatk,oldspdef)
           movelist=thispoke.getMoveList
-          for k in movelist
-            if k[0]==thispoke.level   # Aprendió un movimiento nuevo
-              pbLearnMove(index,k[1])
+          for i in oldlevel...thispoke.level
+            for k in movelist
+              pbLearnMove(index,k[1]) if k[0]==thispoke.level   # Aprendió un movimiento nuevo
             end
           end
         end

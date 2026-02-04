@@ -501,59 +501,9 @@ class CommandMenuDisplay
     end
   
     def getMoveType(move)
-      case move.id
-      when PBMoves::WEATHERBALL
-        case @battle.pbWeather
-        when PBWeather::SUNNYDAY, PBWeather::HARSHSUN;   return PBTypes::FIRE
-        when PBWeather::RAINDANCE, PBWeather::HEAVYRAIN; return PBTypes::WATER
-        when PBWeather::SANDSTORM;                       return PBTypes::ROCK
-        when PBWeather::HAIL;                            return PBTypes::ICE
-        end
-      when PBMoves::HIDDENPOWER
-        return pbHiddenPower(@pokemon.iv)[0]
-      when PBMoves::JUDGMENT, PBMoves::MULTIATTACK
-        return @pokemon.type1
-      when PBMoves::TECHNOBLAST
-        case @pokemon.item
-        when PBItems::CHILLDRIVE; return PBTypes::ICE
-        when PBItems::BURNDRIVE;  return PBTypes::FIRE
-        when PBItems::DOUSEDRIVE; return PBTypes::WATER
-        when PBItems::SHOCKDRIVE; return PBTypes::ELECTRIC
-        end
-      when PBMoves::AURAWHEEL
-        return @pokemon.form==0 ? PBTypes::ELECTRIC : PBTypes::DARK
-      when PBMoves::TERRAINPULSE
-        if @battle.field.effects[PBEffects::ElectricTerrain]>0
-          return (getConst(PBTypes,:ELECTRIC))
-        elsif @battle.field.effects[PBEffects::MistyTerrain]>0
-          return (getConst(PBTypes,:FAIRY))
-        elsif @battle.field.effects[PBEffects::PsychicTerrain]>0
-          return (getConst(PBTypes,:PSYCHIC))
-        elsif @battle.field.effects[PBEffects::GrassyTerrain]>0
-          return (getConst(PBTypes,:GRASS))
-        end
-      when PBMoves::TERABLAST
-        return @pokemon.teratype if (@pokemon.isTera? rescue false)
-      end
-      if @pokemon.ability==PBAbilities::NORMALIZE
-        return PBTypes::NORMAL
-      end
-      if move.type==PBTypes::NORMAL
-        if @pokemon.ability==PBAbilities::AERILATE
-          return PBTypes::FLYING
-        elsif @pokemon.ability==PBAbilities::REFRIGERATE
-          return PBTypes::ICE
-        elsif @pokemon.ability==PBAbilities::PIXILATE
-          return PBTypes::FAIRY
-        elsif @pokemon.ability==PBAbilities::GALVANIZE
-          return PBTypes::ELECTRIC
-        end
-      end
-      if (@battle.field.effects[PBEffects::IonDeluge] || @battle.field.effects[PBEffects::PlasmaFists]) && isConst?(move.type,PBTypes,:NORMAL)
-        return getConst(PBTypes,:ELECTRIC)
-      end
-      return move.type
+      return MoveTypeHelper.get_move_type(@pokemon, move, @battle) rescue move.type
     end
+    
   end
 
 class PokeBattle_Scene
@@ -692,8 +642,6 @@ class PokeBattle_Scene
         @lastmove[index]=cw.index
         pbPlayCancelSE()
         return -1
-      elsif Input.trigger?(Input::L) && !pbInSafari? #Q
-        pbShowBattleInfo(@battle)
       end
     end
   end

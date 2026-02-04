@@ -452,6 +452,76 @@ def pbSpriteSetCenter(sprite,cx,cy)
 end
 
 def showShadow?(species)
-  metrics=load_data("Data/metrics.dat")
-  return metrics[2][species]>0
+  #metrics=load_data("Data/metrics.dat")
+  #return metrics[2][species]>0
+  return  PokeBattle_SceneConstants::USE_BATTLE_SHADOWS
+end
+
+def pbCheckPokemonShadowBitmapFiles(species, form = 0, back = false)
+  # Cargar el bitmap
+  animated_bitmap = pbLoadSpeciesBitmap(species, false, form)
+  return nil if !animated_bitmap
+  bitmap = animated_bitmap.bitmap
+  return nil if !bitmap || bitmap.disposed?
+  # Buscar bordes visibles
+  left_edge = nil
+  right_edge = nil
+  top_edge = nil
+  bottom_edge = nil
+  # Buscar desde izquierda
+  for x in 0...bitmap.width
+    column_has_pixels = false
+    for y in 0...bitmap.height
+      next if y % 5 != 0  # Optimización
+      if bitmap.get_pixel(x, y).alpha > 0
+        column_has_pixels = true
+        break
+      end
+    end
+    if column_has_pixels
+      left_edge = x
+      break
+    end
+  end
+  # Buscar desde derecha
+  for x in (bitmap.width - 1).downto(0)
+    column_has_pixels = false
+    for y in 0...bitmap.height
+      next if y % 5 != 0
+      if bitmap.get_pixel(x, y).alpha > 0
+        column_has_pixels = true
+        break
+      end
+    end
+    if column_has_pixels
+      right_edge = x
+      break
+    end
+  end
+  # Calcular dimensiones visibles
+  if left_edge && right_edge
+    visible_width = right_edge - left_edge + 1
+  else
+    visible_width = 0
+  end
+  # Usar la dimensión mayor para determinar tamaño
+  # (esto es útil para Pokémon largos como Serperior o altos como Wailord)
+  dimension = visible_width
+  dimension = dimension*1.5 if back
+  #p "Dimension usada para sombra: #{dimension}"
+  # Determinar tamaño
+  size = 1  # small
+  if dimension >= 170
+    size = 4  # extra large
+  elsif dimension >= 100
+    size = 3  # large
+  elsif dimension >= 70
+    size = 2  # medium
+  end
+  
+  # Nombre del archivo
+  bitmapFileName = sprintf("Graphics/Pictures/Battle/battler_shadow_%d", size)
+  return bitmapFileName if pbResolveBitmap(bitmapFileName)
+  
+  return nil
 end

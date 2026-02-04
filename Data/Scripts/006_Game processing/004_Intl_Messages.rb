@@ -781,3 +781,436 @@ def _MAPISPRINTF(mapid,*arg)
   end
   return string
 end
+
+
+################################################################################################
+# BES-T
+# Permite separar los archivos para la traducción en varios archivos distintos y 2 carpetas.
+# La compilación la manda automaticamente a Data.
+# Necesita que LANGUAGES en Settings este configurado correctamente.
+################################################################################################
+module MessageTypes
+  
+  CORE_TYPES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+  
+  TYPE_NAMES = {
+    0 => "EVENT_TEXTS",
+    1 => "SPECIES_NAMES",
+    2 => "SPECIES_CATEGORIES",
+    3 => "POKEDEX_ENTRIES",
+    4 => "SPECIES_FORM_NAMES",
+    5 => "MOVE_NAMES",
+    6 => "MOVE_DESCRIPTIONS",
+    7 => "ITEM_NAMES",
+    8 => "ITEM_NAME_PLURALS",
+    9 => "ITEM_DESCRIPTIONS",
+    10 => "ABILITY_NAMES",
+    11 => "ABILITY_DESCRIPTIONS",
+    12 => "TYPE_NAMES",
+    13 => "TRAINER_TYPE_NAMES",
+    14 => "TRAINER_NAMES",
+    15 => "FRONTIER_INTRO_SPEECHES",
+    16 => "FRONTIER_END_SPEECHES_WIN",
+    17 => "FRONTIER_END_SPEECHES_LOSE",
+    18 => "REGION_NAMES",
+    19 => "REGION_LOCATION_NAMES",
+    20 => "REGION_LOCATION_DESCRIPTIONS",
+    21 => "MAP_NAMES",
+    22 => "PHONE_MESSAGES",
+    23 => "SCRIPT_TEXTS"
+  }
+  
+  # Tipos que usan IDs numéricas (todos los Core + MAP_NAMES)
+  INDEXED_TYPES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 18, 21]
+  
+  def self.isIndexedType?(type)
+    return INDEXED_TYPES.include?(type)
+  end
+  
+  def self.isCoreType?(type)
+    return CORE_TYPES.include?(type)
+  end
+  
+  def self.getTypeName(type)
+    return TYPE_NAMES[type] ? TYPE_NAMES[type] : "Type#{type}"
+  end
+end
+
+class Messages
+  def self.writeTypeToFile(f, msgs, secname, origMessages=nil, omitIndex=false)
+    return if !msgs
+    if msgs.is_a?(Array)
+      f.write("[#{secname}]\r\n")
+      for j in 0...msgs.length
+        next if nil_or_empty?(msgs[j])
+        value = Messages.normalizeValue(msgs[j])
+        origValue = ""
+        if origMessages
+          origValue = Messages.normalizeValue(origMessages.get(secname, j))
+        else
+          origValue = Messages.normalizeValue(MessageTypes.get(secname, j))
+        end
+        if !omitIndex
+          f.write("#{j}\r\n")
+        end
+        f.write(origValue + "\r\n")
+        f.write(value + "\r\n")
+      end
+    elsif msgs.is_a?(OrderedHash)
+      f.write("[#{secname}]\r\n")
+      keys = msgs.keys
+      for key in keys
+        next if nil_or_empty?(msgs[key])
+        value = Messages.normalizeValue(msgs[key])
+        valkey = Messages.normalizeValue(key)
+        f.write(valkey + "\r\n")
+        f.write(value + "\r\n")
+      end
+    end
+  end
+  
+  def extractByType
+    origMessages = Messages.new("Data/messages.dat")
+    
+    # Crear directorios si no existen
+    Dir.mkdir("Translation_Core") rescue nil
+    Dir.mkdir("Translation_Game") rescue nil
+    
+    # Extraer mensajes de mapas (tipo 0) - va a Game
+    if origMessages.messages[0]
+      File.open("Translation_Game/MapEvents.txt", "wb") { |f|
+        f.write(0xef.chr)
+        f.write(0xbb.chr)
+        f.write(0xbf.chr)
+        f.write("# Map Events and Common Events\r\n")
+        f.write("# To localize this text, translate every second line.\r\n")
+        
+        for i in 0...origMessages.messages[0].length
+          msgs = origMessages.messages[0][i]
+          if msgs && !msgs.empty?
+            Messages.writeTypeToFile(f, msgs, "Map#{i}", origMessages)
+          end
+        end
+      }
+    end
+    
+    # Extraer cada MessageType individualmente
+    for i in 1...origMessages.messages.length
+      msgs = origMessages.messages[i]
+      next if !msgs || msgs.empty?
+      
+      typeName = MessageTypes.getTypeName(i)
+      folder = MessageTypes.isCoreType?(i) ? "Translation_Core" : "Translation_Game"
+      filename = "#{folder}/#{typeName}.txt"
+      
+      File.open(filename, "wb") { |f|
+        f.write(0xef.chr)
+        f.write(0xbb.chr)
+        f.write(0xbf.chr)
+        f.write("# #{typeName}\r\n")
+        f.write("# To localize this text, translate every second line.\r\n")
+        
+        Messages.writeTypeToFile(f, msgs, i, origMessages)
+      }
+    end
+  end
+end
+
+# Actualizar MessageTypes
+module MessageTypes
+  def self.extractByType
+    @@messages.extractByType
+  end
+end
+
+# Función para compilar desde directorios
+def pbCompileFromFolders(folders, outfile = "intl.dat")
+  intldat = []
+  processedFiles = []
+  
+  # Cargar datos originales para obtener las IDs
+  origMessages = nil
+  if FileTest.exist?("Data/messages.dat")
+    begin
+      origMessages = Messages.new("Data/messages.dat")
+    rescue
+      # Si falla al cargar, continuamos sin él
+      origMessages = nil
+    end
+  end
+  
+  for folder in folders
+    next if !FileTest.directory?(folder)
+    
+    # Obtener todos los archivos .txt del directorio
+    files = Dir.entries(folder).select { |f| f =~ /\.txt$/i }
+    
+    for filename in files
+      filepath = "#{folder}/#{filename}"
+      next if !FileTest.exist?(filepath)
+      
+      begin
+        fileData = pbGetText(filepath)
+        processedFiles.push(filepath)
+        
+        # Combinar datos
+        if fileData[0] # Map messages
+          intldat[0] = [] if !intldat[0]
+          for i in 0...fileData[0].length
+            if fileData[0][i]
+              intldat[0][i] = fileData[0][i]
+            end
+          end
+        end
+        
+        # Otros tipos de mensajes
+        for i in 1...fileData.length
+          if fileData[i]
+            # Si es un tipo indexado y los datos vienen sin índices, reconstruirlos
+            if MessageTypes.isIndexedType?(i) && fileData[i].is_a?(OrderedHash)
+              if origMessages && origMessages.messages[i]
+                # Crear un mapeo de texto original -> ID
+                origArray = origMessages.messages[i]
+                textToId = {}
+                
+                for j in 0...origArray.length
+                  if !nil_or_empty?(origArray[j])
+                    key = Messages.stringToKey(origArray[j])
+                    textToId[key] = j
+                  end
+                end
+                
+                # Reconstruir array usando el mapeo
+                rebuiltArray = []
+                hashKeys = fileData[i].keys
+                
+                for key in hashKeys
+                  if textToId[key]
+                    rebuiltArray[textToId[key]] = fileData[i][key]
+                  end
+                end
+                
+                intldat[i] = rebuiltArray
+              else
+                # Sin datos originales, convertir OrderedHash a Array denso
+                arr = []
+                index = 0
+                fileData[i].keys.each { |key|
+                  arr[index] = fileData[i][key]
+                  index += 1
+                }
+                intldat[i] = arr
+              end
+            else
+              intldat[i] = fileData[i]
+            end
+          end
+        end
+      rescue
+        raise _INTL("Error al procesar {1}: {2}", filepath, $!.message)
+      end
+    end
+  end
+  
+  if processedFiles.length == 0
+    raise _INTL("No se encontraron archivos de traducción en las carpetas especificadas")
+  end
+  
+  # Guardar archivo combinado
+  File.open(outfile, "wb") { |f|
+    Marshal.dump(intldat, f)
+  }
+  
+  return processedFiles.length
+end
+
+# Función UI para extraer por tipo
+def pbExtractTextByType
+  # Seleccionar idioma
+  if !defined?(LANGUAGES) || !LANGUAGES
+    Kernel.pbMessage(_INTL("No se encontró la configuración de LANGUAGES."))
+    return
+  end
+  
+  langNames = []
+  for lang in LANGUAGES
+    langNames.push(lang[0])
+  end
+  
+  msgwindow = Kernel.pbCreateMessageWindow
+  Kernel.pbMessageDisplay(msgwindow, _INTL("Selecciona el idioma para extraer:"))
+  Kernel.pbDisposeMessageWindow(msgwindow)
+  
+  langIndex = Kernel.pbShowCommands(nil, langNames, -1)
+  return if langIndex < 0
+  
+  selectedLang = LANGUAGES[langIndex][0]
+  langCode = selectedLang.downcase
+  
+  # Seleccionar qué extraer
+  msgwindow = Kernel.pbCreateMessageWindow
+  Kernel.pbMessageDisplay(msgwindow, _INTL("¿Qué deseas extraer?"))
+  Kernel.pbDisposeMessageWindow(msgwindow)
+  
+  options = [
+    _INTL("Solo Core"),
+    _INTL("Solo Game"),
+    _INTL("Ambos"),
+    _INTL("Cancelar")
+  ]
+  
+  choice = Kernel.pbShowCommands(nil, options, -1)
+  return if choice < 0 || choice == 3
+  
+  extractCore = (choice == 0 || choice == 2)
+  extractGame = (choice == 1 || choice == 2)
+  
+  msgwindow = Kernel.pbCreateMessageWindow
+  Kernel.pbMessageDisplay(msgwindow, _INTL("Por favor, espera.\\wtnp[0]"))
+  
+  begin
+    origMessages = Messages.new("Data/messages.dat")
+    
+    # Crear directorios según selección
+    coreFolderName = "Text_#{langCode}_core"
+    gameFolderName = "Text_#{langCode}_game"
+    
+    Dir.mkdir(coreFolderName) rescue nil if extractCore
+    Dir.mkdir(gameFolderName) rescue nil if extractGame
+    
+    # Extraer mensajes de mapas (tipo 0) - va a Game
+    if extractGame && origMessages.messages[0]
+      typeName = MessageTypes.getTypeName(0)
+      File.open("#{gameFolderName}/#{typeName}.txt", "wb") { |f|
+        f.write(0xef.chr)
+        f.write(0xbb.chr)
+        f.write(0xbf.chr)
+        f.write("# #{typeName}\r\n")
+        f.write("# To localize this text, translate every second line.\r\n")
+        
+        for i in 0...origMessages.messages[0].length
+          msgs = origMessages.messages[0][i]
+          if msgs && !msgs.empty?
+            Messages.writeTypeToFile(f, msgs, "Map#{i}", origMessages)
+          end
+        end
+      }
+    end
+    
+    # Extraer cada MessageType individualmente
+    for i in 1...origMessages.messages.length
+      msgs = origMessages.messages[i]
+      next if !msgs || msgs.empty?
+      
+      isCore = MessageTypes.isCoreType?(i)
+      next if isCore && !extractCore
+      next if !isCore && !extractGame
+      
+      typeName = MessageTypes.getTypeName(i)
+      folder = isCore ? coreFolderName : gameFolderName
+      filename = "#{folder}/#{typeName}.txt"
+      omitIndex = MessageTypes.isIndexedType?(i)
+      
+      File.open(filename, "wb") { |f|
+        f.write(0xef.chr)
+        f.write(0xbb.chr)
+        f.write(0xbf.chr)
+        f.write("# #{typeName}\r\n")
+        f.write("# To localize this text, translate every second line.\r\n")
+        
+        Messages.writeTypeToFile(f, msgs, i, origMessages, omitIndex)
+      }
+    end
+    
+    Kernel.pbMessageDisplay(msgwindow,
+      _INTL("Los textos se extrajeron exitosamente.\1"))
+    if extractCore
+      Kernel.pbMessageDisplay(msgwindow,
+        _INTL("{1}: Datos de Pokémon (especies, movimientos, objetos, etc.).\1", coreFolderName))
+    end
+    if extractGame
+      Kernel.pbMessageDisplay(msgwindow,
+        _INTL("{1}: Datos del juego (entrenadores, diálogos, mapas, etc.).\1", gameFolderName))
+    end
+    Kernel.pbMessageDisplay(msgwindow,
+      _INTL("Traduce las segundas líneas de cada par en los archivos.\1"))
+    Kernel.pbMessageDisplay(msgwindow,
+      _INTL("Luego elige \"Compilar Texto desde Carpetas.\""))
+  rescue
+    Kernel.pbMessageDisplay(msgwindow,
+      _INTL("Error al extraer texto: {1}", $!.message))
+  end
+  
+  Kernel.pbDisposeMessageWindow(msgwindow)
+end
+
+# Función UI para compilar desde carpetas
+def pbCompileTextFromFoldersUI
+  # Seleccionar idioma
+  if !defined?(LANGUAGES) || !LANGUAGES
+    Kernel.pbMessage(_INTL("No se encontró la configuración de LANGUAGES."))
+    return
+  end
+  
+  langNames = []
+  for lang in LANGUAGES
+    langNames.push(lang[0])
+  end
+  
+  msgwindow = Kernel.pbCreateMessageWindow
+  Kernel.pbMessageDisplay(msgwindow, _INTL("Selecciona el idioma a compilar:"))
+  Kernel.pbDisposeMessageWindow(msgwindow)
+  
+  langIndex = Kernel.pbShowCommands(nil, langNames, -1)
+  return if langIndex < 0
+  
+  selectedLang = LANGUAGES[langIndex][0]
+  langCode = selectedLang.downcase
+  outputFile = LANGUAGES[langIndex][1]
+  
+  # Si es el idioma por defecto (sin archivo), usar intl.dat
+  if outputFile == "" || outputFile == nil
+    outputFile = "intl.dat"
+  end
+  
+  msgwindow = Kernel.pbCreateMessageWindow
+  Kernel.pbMessageDisplay(msgwindow, _INTL("Por favor, espera.\\wtnp[0]"))
+  
+  begin
+    coreFolderName = "Text_#{langCode}_core"
+    gameFolderName = "Text_#{langCode}_game"
+    
+    folders = []
+    folders.push(coreFolderName) if FileTest.directory?(coreFolderName)
+    folders.push(gameFolderName) if FileTest.directory?(gameFolderName)
+    
+    if folders.length == 0
+      Kernel.pbMessageDisplay(msgwindow,
+        _INTL("No se encontraron las carpetas {1} o {2}.\1", coreFolderName, gameFolderName))
+      Kernel.pbMessageDisplay(msgwindow,
+        _INTL("Asegúrate de haber extraído los textos primero."))
+      Kernel.pbDisposeMessageWindow(msgwindow)
+      return
+    end
+    
+    # Compilar a Data/archivo
+    outputPath = "Data/#{outputFile}"
+    fileCount = pbCompileFromFolders(folders, outputPath)
+    
+    Kernel.pbMessageDisplay(msgwindow,
+      _INTL("Texto compilado exitosamente desde {1} archivo(s).", fileCount))
+    Kernel.pbMessageDisplay(msgwindow,
+      _INTL("El archivo {1} se guardó en la carpeta Data.", outputFile))
+    Kernel.pbMessageDisplay(msgwindow,
+      _INTL("Idioma: {1}", selectedLang))
+    if outputFile != "intl.dat"
+      Kernel.pbMessageDisplay(msgwindow,
+        _INTL("Este archivo ya está configurado en LANGUAGES y se cargará automáticamente."))
+    end
+  rescue RuntimeError
+    Kernel.pbMessageDisplay(msgwindow,
+      _INTL("Fallo al compilar el texto: {1}", $!.message))
+  end
+  
+  Kernel.pbDisposeMessageWindow(msgwindow)
+end

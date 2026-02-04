@@ -3799,6 +3799,8 @@ class PokeBattle_Battle
           score-=90 # Because it will fail here
           score=0 if skill>=PBTrainerAI.bestSkill
         end
+      when 0x254 # Revival blessing
+        score=0 # La IA no debe ni puede usarlo.
       end
     # A score of 0 here means it should absolutely not be used
     return score if score<=0
@@ -4966,10 +4968,14 @@ class PokeBattle_Battle
     evastage=opponent.stages[PBStats::EVASION]
     evastage-=2 if @field.effects[PBEffects::Gravity]>0
     evastage=-6 if evastage<-6
+    evastage=0 if evastage>0 && USENEWBATTLEMECHANICS &&
+                  attacker.hasWorkingAbility(:KEENEYE)
     evastage=0 if opponent.effects[PBEffects::Foresight] ||
                   opponent.effects[PBEffects::MiracleEye] ||
-                  move.function==0xA9 || # Chip Away
-                  attacker.hasWorkingAbility(:UNAWARE)
+                  @function==0xA9 || # Chip Away
+                  @function==0x282 || # Nihil Light
+                  attacker.hasWorkingAbility(:UNAWARE) ||
+                  attacker.hasWorkingAbility(:MINDSEYE)
     evasion=(evastage>=0) ? (evastage+3)*100.0/3 : 300.0/(3-evastage)
     accuracy*=baseaccuracy/evasion
     # Accuracy modifiers

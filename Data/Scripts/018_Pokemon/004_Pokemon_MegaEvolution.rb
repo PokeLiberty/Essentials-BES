@@ -708,6 +708,7 @@ class PokeBattle_Pokemon
  MultipleForms.register(:LUCARIO,{
  "getMegaForm"=>proc{|pokemon|
     next 1 if isConst?(pokemon.item,PBItems,:LUCARIONITE)
+    next 2 if isConst?(pokemon.item,PBItems,:LUCARIONITEZ)
     next
  },
  "getBaseStats"=>proc{|pokemon|
@@ -1692,7 +1693,7 @@ class PokeBattle_Pokemon
     next
  },
  "getBaseStats"=>proc{|pokemon|
-    next [86,88,92,129,86,126] if pokemon.form==1
+    next [86,88,92,126,129,86] if pokemon.form==1
     next
  },
  #"getAbilityList"=>proc{|pokemon|
@@ -1800,7 +1801,7 @@ MultipleForms.register(:HAWLUCHA,{
     next
  },
  "getBaseStats"=>proc{|pokemon|
-    next [78,137,100,74,93,118] if pokemon.form==1
+    next [78,137,100,118,74,93] if pokemon.form==1
     next
  },
  #"getAbilityList"=>proc{|pokemon|
@@ -1866,42 +1867,6 @@ MultipleForms.register(:FALINKS,{
  },
  "weight"=>proc{|pokemon|
     next 990 if pokemon.form==1
-    next
- },
- "getUnmegaForm"=>proc{|pokemon|
-   next 0
- }
- })
-
-
-MultipleForms.register(:RAICHU,{
- "getMegaForm"=>proc{|pokemon|
-    next 1 if isConst?(pokemon.item,PBItems,:RAICHUITEX)
-    next 2 if isConst?(pokemon.item,PBItems,:RAICHUITEY)
-    next
- },
- "getMegaName"=>proc{|pokemon|
-    next _INTL("Mega Raichu X") if pokemon.form==1
-    next _INTL("Mega Raichu Y") if pokemon.form==2
-    next
- },
- "getBaseStats"=>proc{|pokemon|
-    next [60,135,95,110,90,95] if pokemon.form==1
-    next [60,100,55,130,160,80] if pokemon.form==2
-    next
- },
- #"getAbilityList"=>proc{|pokemon|
- #   next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
- #   next
- #}, #No se sabe cual es la hab oficial.
- "weight"=>proc{|pokemon|
-    next 380 if pokemon.form==1
-    next 260 if pokemon.form==2
-    next
- },
-"height"=>proc{|pokemon|
-    next 12 if pokemon.form==1
-    next 10 if pokemon.form==2
     next
  },
  "getUnmegaForm"=>proc{|pokemon|

@@ -56,7 +56,6 @@ FEINTATTACK=Ataque Finta
 SCARYFACE=Cara Aterradora
 FLATTER=Halago
 MEMENTO=Recuerdo
-FACADE=Fachada
 FOCUSPUNCH=Puño Centrado
 TAUNT=Provocación
 HELPINGHAND=Refuerzos

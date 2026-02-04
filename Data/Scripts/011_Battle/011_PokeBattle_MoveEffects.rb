@@ -8449,7 +8449,8 @@ class PokeBattle_Move_10C < PokeBattle_Move
       return -1
     end
     attacker.pbReduceHP(sublife,false,false)
-    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    #Utiliza la animación del sustituto
+    @battle.scene.pbShowSubstitute(attacker.index, true) rescue pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
     attacker.effects[PBEffects::MultiTurn]=0
     attacker.effects[PBEffects::MultiTurnAttack]=0
     attacker.effects[PBEffects::Substitute]=sublife
@@ -12246,7 +12247,7 @@ class PokeBattle_Move_248 < PokeBattle_Move
       return -1
     end
     attacker.pbReduceHP(sublife,false,false)
-    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    @battle.scene.pbShowSubstitute(attacker.index, true) rescue pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
     #@battle.scene.setSubstitute(attacker.index) #sustituto
     attacker.effects[PBEffects::MultiTurn]=0
     attacker.effects[PBEffects::MultiTurnAttack]=0
@@ -13199,4 +13200,12 @@ end
 ################################################################################
 class PokeBattle_Move_282 < PokeBattle_Move
 
+end
+
+class PokeBattle_Move_456 < PokeBattle_Move
+  def pbMoveFailed(attacker,opponent)
+    return true if !isConst?(attacker.species,PBSpecies,:ZYGARDE)
+    return true if attacker.form!=3
+    return false
+  end
 end

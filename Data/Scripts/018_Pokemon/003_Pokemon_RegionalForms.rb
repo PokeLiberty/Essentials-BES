@@ -129,25 +129,27 @@ MultipleForms.register(:RATICATE,{
 MultipleForms.register(:RAICHU,{
 "getFormOnCreation"=>proc{|pokemon|
    if $game_map && ALOLA_MAPS.include?($game_map.map_id)
-     next 1
+     next 3
    else
      next 0
    end
 },
 "type2"=>proc{|pokemon|
-  next getID(PBTypes,:PSYCHIC) if pokemon.form==1
+  next getID(PBTypes,:PSYCHIC) if pokemon.form==3
   next
 },
 "getBaseStats"=>proc{|pokemon|
-  next [60,85,50,110,95,85] if pokemon.form==1
+  next [60,135,95,110,90,95]  if pokemon.form==1
+  next [60,100,55,130,160,80] if pokemon.form==2
+  next [60,85,50,110,95,85]   if pokemon.form==3
   next
 },
-"getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
-   next [[getID(PBAbilities,:SURGESURFER),0]]
+"getAbilityList"=>proc{|pokemon|   
+   next [[getID(PBAbilities,:SURGESURFER),0]] if pokemon.form==3  
+   next 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form==3
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:PSYCHIC],[1,:SPEEDSWAP],[1,:THUNDERSHOCK],[1,:QUICKATTACK],[1,:TAILWHIP],[1,:THUNDERBOLT]]
@@ -175,7 +177,30 @@ MultipleForms.register(:RAICHU,{
      movelist[i]=getConst(PBMoves,movelist[i])
    end
    next movelist
-}
+},
+ "getMegaForm"=>proc{|pokemon|
+    next 1 if isConst?(pokemon.item,PBItems,:RAICHUITEX) && pokemon.form==0
+    next 2 if isConst?(pokemon.item,PBItems,:RAICHUITEY) && pokemon.form==0
+    next
+ },
+"getMegaName"=>proc{|pokemon|
+    next _INTL("Mega Raichu X") if pokemon.form==1
+    next _INTL("Mega Raichu Y") if pokemon.form==2
+    next
+ },
+"weight"=>proc{|pokemon|
+    next 380 if pokemon.form==1
+    next 260 if pokemon.form==2
+    next
+ },
+"height"=>proc{|pokemon|
+    next 12 if pokemon.form==1
+    next 10 if pokemon.form==2
+    next
+ },
+ "getUnmegaForm"=>proc{|pokemon|
+   next 0
+ }
 })
 
 # SANDSHREW

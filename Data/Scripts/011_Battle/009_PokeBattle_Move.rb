@@ -607,6 +607,12 @@ class PokeBattle_Move
       mod2=2 if isConst?(otype2,PBTypes,:DARK) && PBTypes.isIneffective?(atype,otype2)
       mod3=2 if isConst?(otype3,PBTypes,:DARK) && PBTypes.isIneffective?(atype,otype3)
     end
+    # Luz Devastadora
+    if @function==0x282
+      mod1=2 if isConst?(otype1,PBTypes,:FAIRY) && PBTypes.isIneffective?(atype,otype1)
+      mod2=2 if isConst?(otype2,PBTypes,:FAIRY) && PBTypes.isIneffective?(atype,otype2)
+      mod3=2 if isConst?(otype3,PBTypes,:FAIRY) && PBTypes.isIneffective?(atype,otype3)
+    end
     # BES-T Battle rule para batallas inversas.
     if @battle.rules["inverseBattle"] 
       inmod1=mod1
@@ -689,6 +695,7 @@ class PokeBattle_Move
     evastage=0 if opponent.effects[PBEffects::Foresight] ||
                   opponent.effects[PBEffects::MiracleEye] ||
                   @function==0xA9 || # Chip Away
+                  @function==0x282 || # Nihil Light
                   attacker.hasWorkingAbility(:UNAWARE) ||
                   attacker.hasWorkingAbility(:MINDSEYE)
     evasion=(evastage>=0) ? (evastage+3)*100.0/3 : 300.0/(3-evastage)
@@ -1282,6 +1289,7 @@ class PokeBattle_Move
     if !attacker.hasWorkingAbility(:UNAWARE)
       defstage=6 if @function==0xA9 # Chip Away (ignore stat stages)
       #defstage2=6 if @function==0xA9 # Chip Away (ignore stat stages)
+      defstage=6 if @function==0x282 # Nihil Light
       defstage=6 if opponent.damagestate.critical && defstage>6
       #defstage2=6 if opponent.damagestate.critical && defstage2>6
       defense=(defense*1.0*stagemul[defstage]/stagediv[defstage]).floor
@@ -1614,6 +1622,7 @@ class PokeBattle_Move
       @battle.pbDisplayPaused(_INTL("¡El sustituto recibe el daño en lugar de {1}!",opponent.name))
       if opponent.effects[PBEffects::Substitute]<=0
         opponent.effects[PBEffects::Substitute]=0
+        @battle.scene.pbShowSubstitute(opponent.index, false)
         @battle.pbDisplayPaused(_INTL("¡El sustituto de {1} se acabó!",opponent.name))
         PBDebug.log("[Efecto terminado] Sustituto de #{opponent.pbThis} terminado")
       end

@@ -121,6 +121,13 @@ module PokeBattle_SceneConstants
   FOCUSTARGET_Y = 96    # 108, 98
 
   # BES-T
+  
+  # Activa o deactiva las bases sobre las que aparecen los pokémon en combate.
+  USE_BATTLE_BASES   = true
+  # Activa o deactiva las sombras de los pokémon rivales en combate. Se adapta al sprite.
+  # Si es false no utiliza las sobras en ningun lugar.
+  USE_BATTLE_SHADOWS   = true
+  
   # Colorea las letras de los movimientos segun los colores usados en el botón de combate.
   # Desactivalo si usas cajas customizadas.
   COLOREDTYPE     = false
