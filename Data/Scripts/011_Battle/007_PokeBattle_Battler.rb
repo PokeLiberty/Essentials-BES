@@ -4542,6 +4542,10 @@ class PokeBattle_Battler
     if isConst?(thismove.id,PBMoves,:TERASTARSTORM) && (isConst?(user.species,PBSpecies,:TERAPAGOS) && user.isTera?) && @battle.doublebattle
       targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
     end
+    #Los movimientos Dynamax golpean a ambos
+    if thismove.is_a?(PokeBattle_MaxMove) && @battle.doublebattle && !thismove.pbIsStatus?
+      targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
+    end
     # Battle Arena only - assume failure
     @battle.successStates[user.index].useState=1
     @battle.successStates[user.index].typemod=8

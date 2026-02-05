@@ -379,13 +379,14 @@
 378,TM91,MT91,MT91s,4,0,"El usuario concentra toda la luz del cuerpo y la libera. Puede bajar la Defensa Especial del objetivo.",3,0,0,FLASHCANNON
 379,TM92,MT92,MT92s,4,0,"Se crea un espacio extraño en el que los Pokémon lentos se mueven primero durante cinco turnos.",3,0,0,TRICKROOM
 380,TM93,MT93,MT93s,4,0,"Carga eléctrica muy potente que también hiere ligeramente a quien la usa.",3,0,0,WILDCHARGE
-381,TM94,MT94,MT94s,4,0,"Ataca con puñetazos que pueden romper rocas. Puede bajar la Defensa del objetivo.",3,0,0,ROCKSMASH
+381,TM94,MT94,MT94s,4,0,"Gira los puños y libera una onda de vacío contra el objetivo. Este movimiento siempre va primero.",3,0,0,VACUUMWAVE
 382,TM95,MT95,MT95s,4,0,"Ataca lanzando un chillido insoportable que baja el Ataque Especial de los objetivos.",3,0,0,SNARL
 383,TM96,MT96,MT96s,4,0,"Este movimiento se convierte en otro movimiento según el terreno en que tenga lugar la batalla.",3,0,0,NATUREPOWER
 384,TM97,MT97,MT97s,4,0,"Libera una horrible aura de malos pensamientos que puede hacer retroceder al rival.",3,0,0,DARKPULSE
 385,TM98,MT98,MT98s,4,0,"Puñetazo que sube el ataque del usuario.",3,0,0,POWERUPPUNCH
 386,TM99,MT99,MT99s,4,0,"Inflige daño a los oponentes con una potente luz.",3,0,0,DAZZLINGGLEAM
 387,TM100,MT100,MT100s,4,0,"Baja un nivel el ataque especial del rival.",3,0,0,CONFIDE
+388,TM101,MT101,MT101s,4,0,"Patada que suele ser un golpe crítico y puede causar quemaduras.",3,0,0,BLAZEKICK
 
 389,CHERIBERRY,Baya Zreza,Bayas Zreza,5,20,"Los Pokémon pueden llevarla o usarla para recuperarse de la parálisis.",1,1,5,
 390,CHESTOBERRY,Baya Atania,Bayas Atania,5,20,"Los Pokémon pueden llevarla o usarla para despertar del sueño.",1,1,5,
@@ -630,7 +631,11 @@
 633,HM04,MO04,MO04s,4,0,"Potente puñetazo. Fuera de combate sirve para mover piedras.",4,0,0,STRENGTH
 634,HM05,MO05,MO05s,4,0,"Embiste con un gran impulso que puede hacer retroceder. También sirve para remontar cascadas.",4,0,0,WATERFALL
 635,HM06,MO06,MO06s,4,0,"Primer turno: se sumerge en el mar.  Segundo turno: emerge y ataca.",4,0,0,DIVE
+636,HM07,MO07,MO07s,4,0,"Ataca con puñetazos que pueden romper rocas. Puede bajar la Defensa del objetivo.",3,0,0,ROCKSMASH
+637,HM08,MO08,MO08s,4,0,"Ataca con una gran embestida. Puede confundir al objetivo.",3,0,0,ROCKCLIMB
 
+638,MAXMUSHROOMS,Maxiseta,Maxisetas,2,10000,"Usala en ciertos Pokémon para que se vuelvan capaces de gigamaxizarse. Si se la toma un Pokémon que ya tenga esa capacidad, la perderá.",1,0,0,
+639,DYNAMAXCANDY,Caramelo Dynamax,Caramelos Dynamax,2,10000,"Caramelo energético que sube el nivel Dinamax de un Pokémon. Cuanto más alto sea el nivel, más aumentarán sus PS al dinamaxizarse.",1,0,0,
 640,ZRING,Pulsera Z,Pulseras Z,8,0,"Un anillo misterioso que permite a los Pokémon usar movimientos Z. Requiere tanto la fuerza de voluntad como el poder físico del Entrenador que lo lleva.",0,0,6,
 641,DYNAMAXBAND,Maximuñequera,Maximuñequera,8,0,"Emite una luz que permite a los Pokémon alcanzar el Dynamax cuando se encuentran en un punto de poder.",0,0,6,
 642,TERAORB,Orbe Teracristal,Orbe Teracristal,8,0,"Un orbe que contiene en su interior el poder de teracristalizar. Cuando está cargado de energía, puede usarse para provocar que los Pokémon se terastalicen.",0,0,6,
@@ -725,6 +730,8 @@
 726,FOSSILIZEDDINO,Plesiofósil,Plesiofósiles,1,1000,"Fósil de un Pokémon prehistórico que habitaba en el mar. Su apariencia es una incógnita.",0,0,0,
 727,FOSSILIZEDFISH,Ictiofósil,Ictiofósiles,1,1000,"Fósil de un Pokémon prehistórico que habitaba en el mar. Su apariencia es una incógnita.",0,0,0,
 
+
+
 731,NORMALCORE,Prisma Normal,Prismas Normal,1,5000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Normal.",1,0,0,
 732,FIGHTINGCORE,Prisma Lucha,Prismas Lucha,1,5000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Lucha.",1,0,0,
 733,FLYINGCORE,Prisma Volador,Prismas Volador,1,5000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Volador.",1,0,0,
@@ -745,11 +752,9 @@
 749,FAIRYCORE,Prisma Hada,Prismas Hada,1,5000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Hada.",1,0,0,
 750,STELLARCORE,Prisma Estelar,Prismas Estelares,1,10000,"Objeto que permite cambiar el Teratipo de un Pokémon a tipo Estelar.",1,0,0,
 751,TERARANDOMITEM,Prisma Raro,Prismas Raros,1,10000,"Objeto que permite cambiar el Teratipo de un Pokémon a un tipo al azar.",1,0,0,
-
 752,HEARTHFLAMEMASK,Máscara Horno,Máscaras Horno,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Fuego durante las batallas.",0,0,0,
 753,WELLSPRINGMASK,Máscara Fuente,Máscaras Fuente,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Agua durante las batallas.",0,0,0,
 754,CORRNERSTONEMASK,Máscara Cimiento,Máscaras Cimiento,1,0,"Esta máscara de madera tallada está adornada con cristales y permite a Ogerpon blandir el tipo Roca durante las batallas.",0,0,0,
-
 755,LONELYMINT,Menta Huraña,Mentas Hurañas,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Defensa.",1,0,0,
 756,ADANANTMINT,Menta Firme,Mentas Firmes,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Ataque Especial.",1,0,0,
 757,NAUGHTYMINT,Menta Pícara,Mentas Pícaras,2,9800,"Cuando un Pokémon percibe su aroma, aumenta con más facilidad su Ataque, en detrimento de su Defensa Especial.",1,0,0,

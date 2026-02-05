@@ -923,76 +923,7 @@ class PokeBattle_Pokemon
     return @hp<=0
   end
   alias fainted? isFainted? #BES-T Compt - v17
-  
-  def calcStats
-    oldhpDiff = @totalhp - @hp
-    nature = self.nature
-    stats = []
-    pvalues = [100, 100, 100, 100, 100]
-    nd5 = (nature / 5).floor
-    nm5 = (nature % 5).floor
-    if nd5 != nm5
-      pvalues[nd5] = 110
-      pvalues[nm5] = 90
-    end
-    level = self.level
-    bs = self.baseStats
-    for i in 0..5
-      base = bs[i]
-      if i == PBStats::HP
-        stats[i] = calcHP(base, level, @iv[i], @ev[i])
-      else
-        stats[i] = calcStat(base, level, @iv[i], @ev[i], pvalues[i - 1])
-      end
-    end
-  
-    dynamaxCalc = @dynamax_lvl ? 1.5 + (0.05 * @dynamax_lvl) : 1.5
-    base_hp = stats[PBStats::HP]
     
-    if isDynamax? && !reverted? && base_hp > 1
-      # Calcular el nuevo HP máximo con Dynamax
-      new_totalhp = (base_hp * dynamaxCalc).ceil
-      # Mantener el mismo porcentaje de HP
-      if @totalhp > 0
-        @hp = (@hp * new_totalhp / @totalhp).ceil
-      else
-        @hp = (base_hp * dynamaxCalc).ceil
-      end
-      @totalhp = new_totalhp
-      # Eternatus Gigantamax mantiene el HP actual (no se multiplica)
-      if isSpecies?(:ETERNATUS) && gmaxFactor?
-        @hp = @totalhp - oldhpDiff
-      end
-    elsif reverted? && !isDynamax? && @totalhp > 1
-      # Revertir Dynamax: volver al HP base
-      # Mantener el mismo porcentaje de HP
-      if @totalhp > 0
-        @hp = (@hp * base_hp / @totalhp).ceil
-      else
-        @hp = base_hp
-      end
-      @totalhp = base_hp
-      # Eternatus Gigantamax mantiene el HP actual
-      if isSpecies?(:ETERNATUS) && gmaxFactor?
-        @hp = @totalhp - oldhpDiff
-      end
-      @hp += 1 if !isFainted? && @hp <= 0
-    else
-      # Cálculo normal (sin Dynamax)
-      diff = @totalhp - @hp
-      @totalhp = base_hp
-      @hp = @totalhp - diff
-    end
-    
-    @hp = 0 if @hp <= 0
-    @hp = @totalhp if @hp > @totalhp
-    @attack = stats[PBStats::ATTACK]
-    @defense = stats[PBStats::DEFENSE]
-    @spatk = stats[PBStats::SPATK]
-    @spdef = stats[PBStats::SPDEF]
-    @speed = stats[PBStats::SPEED]
-  end
-  
   def calcStats
     nature = self.nature
     stats = []

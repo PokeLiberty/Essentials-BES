@@ -353,7 +353,7 @@ class PokeBattle_MaxMove < PokeBattle_Move
     @function   = pbMaxMoveFunction(move, battler)
     @basedamage = @status ? 0 : pbMaxMoveBaseDamage(move)
     @accuracy   = 0
-    @addlEffect = 0
+    @addlEffect = 100
     @priority   = 0
     @flags      = pbMaxMoveFlags(move, battler)
     
@@ -602,9 +602,14 @@ class PokeBattle_MaxMove < PokeBattle_Move
   end
 
   def pbEffectAfterHit(attacker,opponent,turneffects)
-    pbMaxMoveSecondaryEffect(attacker,opponent)
+    #pbMaxMoveSecondaryEffect(attacker,opponent) #Lo que usaba antes :p
   end
 
+  def pbAdditionalEffect(attacker,opponent)
+    pbMaxMoveSecondaryEffect(attacker,opponent)
+  end
+  
+  
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     return 0 if !opponent
     if @status
