@@ -48,8 +48,11 @@ class PBPokemon
   attr_accessor :move3
   attr_accessor :move4
   attr_accessor :ev
+  attr_accessor :form
+  attr_accessor :ability
+  attr_accessor :teratype
 
-  def initialize(species,item,nature,move1,move2,move3,move4,ev)
+  def initialize(species,item,nature,move1,move2,move3,move4,ev,form=0,ability=0,teratype=nil,dynamax=false)
     @species=species
     @item=item ? item : 0
     @nature=nature
@@ -58,6 +61,10 @@ class PBPokemon
     @move3=move3 ? move3 : 0
     @move4=move4 ? move4 : 0
     @ev=ev 
+    @form=form
+    @ability=ability
+    @teratype=teratype
+    @dynamax=dynamax
   end
 
 =begin
@@ -107,10 +114,29 @@ class PBPokemon
       end
     end
     moveid=[1] if moveid.length==0
+    form=pieces[5].to_i
+    ability=pieces[6].to_i
+    
+    terastal=nil
+    if pieces[7] && pieces[7]!=""
+      # Intentar convertir como nombre de tipo primero
+      if (PBTypes.const_defined?(pieces[7]) rescue false)
+        terastal=PBTypes.const_get(pieces[7])
+      # Si no es nombre, intentar como número
+      elsif pieces[7].to_i.to_s == pieces[7]
+        terastal=pieces[7].to_i
+      end
+    end
+    # Manejo de Dynamax
+    dynamax=nil
+    if pieces[8] && pieces[8]!=""
+      dynamax=true if pieces[8].downcase=="true"
+    end
     return self.new(species,item,nature,
-       moveid[0],(moveid[1]||0),(moveid[2]||0),(moveid[3]||0),evvalue)
+       moveid[0],(moveid[1]||0),(moveid[2]||0),(moveid[3]||0),evvalue,form,ability,terastal,dynamax)
   end
 
+  #No se usa.
   def self.fromPokemon(pokemon)
     evvalue=0
     evvalue|=0x01 if pokemon.ev[0]>60
@@ -121,7 +147,7 @@ class PBPokemon
     evvalue|=0x20 if pokemon.ev[5]>60
     return self.new(pokemon.species,pokemon.item,pokemon.nature,
        pokemon.moves[0].id,pokemon.moves[1].id,pokemon.moves[2].id,
-       pokemon.moves[3].id,evvalue)
+       pokemon.moves[3].id,evvalue,form,ability)
   end
 
   def inspect
@@ -129,7 +155,7 @@ class PBPokemon
     c2=(@item==0) ? "" : getConstantName(PBItems,@item)
     c3=getConstantName(PBNatures,@nature)
     evlist=""
-    for i in 0...@ev
+    for i in 0...6
       if ((@ev&(1<<i))!=0)
         evlist+="," if evlist.length>0
         evlist+=["HP","ATK","DEF","SPD","SA","SD"][i]
@@ -139,13 +165,19 @@ class PBPokemon
     c5=(@move2==0) ? "" : getConstantName(PBMoves,@move2)
     c6=(@move3==0) ? "" : getConstantName(PBMoves,@move3)
     c7=(@move4==0) ? "" : getConstantName(PBMoves,@move4)
-    return "#{c1};#{c2};#{c3};#{evlist};#{c4},#{c5},#{c6},#{c7}"
+    c8=@form
+    c9=@ability
+    c10=(@teratype==nil) ? "" : getConstantName(PBTypes,@teratype)
+    c11=@dynamax ? "true" : ""
+
+    return "#{c1};#{c2};#{c3};#{evlist};#{c4},#{c5},#{c6},#{c7},#{c8},#{c9},#{c10},#{c11}"
   end
 
+  # No se usa.
   def tocompact
     return "#{species},#{item},#{nature},#{move1},#{move2},#{move3},#{move4},#{ev}"
   end
-
+  # No se usa.
   def self.constFromStr(mod,str)
     maxconst=0
     for constant in mod.constants
@@ -158,11 +190,13 @@ class PBPokemon
     end
     return 0
   end
-
+  
+  # No se usa.
   def self.fromString(str)
     return self.fromstring(str)
   end
 
+  # No se usa.
   def self.fromstring(str)
     s=str.split(/\s*,\s*/)
     species=self.constFromStr(PBSpecies,s[1])
@@ -199,6 +233,7 @@ class PBPokemon
     pokemon.personalID+=nature
     pokemon.personalID&=0xFFFFFFFF
     pokemon.happiness=0
+    pokemon.form=@form
     pokemon.moves[0]=PBMove.new(self.convertMove(@move1))
     pokemon.moves[1]=PBMove.new(self.convertMove(@move2))
     pokemon.moves[2]=PBMove.new(self.convertMove(@move3))
@@ -211,6 +246,15 @@ class PBPokemon
     for i in 0...6
       pokemon.iv[i]=iv
       pokemon.ev[i]=((@ev&(1<<i))!=0) ? evperstat : 0
+    end
+    pokemon.abilityflag=@ability
+    if @teratype # si éste es un Pokémon con Tera
+      pokemon.teratype=@teratype
+      pokemon.tera_ace=true
+    end
+    if @dynamax # si éste es un Pokémon con Tera
+      pokemon.max_ace=true
+      pokemon.giveGMaxFactor if pokemon.hasGigantamaxForm?
     end
     pokemon.calcStats
     return pokemon
@@ -762,6 +806,16 @@ def pbBattleChallengeBeginSpeech
   end
 end
 
+def pbBattleChallengeGetTrainerName
+  if !pbBattleChallenge.pbInProgress?
+    return "..."
+  else
+    bttrainers=pbGetBTTrainers(pbBattleChallenge.currentChallenge)
+    tr=bttrainers[pbBattleChallenge.nextTrainer]
+    return tr ? pbGetMessageFromHash(MessageTypes::TrainerNames,tr[1]) : "..."
+  end
+end
+
 def pbEntryScreen(*arg)
   retval=false
   pbFadeOutIn(99999){
@@ -953,7 +1007,7 @@ def pbGenerateBattleTrainer(trainerid,rule)
     for n in pokemonnumbers
       rndpoke=btpokemon[n]
       pkmn=rndpoke.createPokemon(
-         rule.ruleset.suggestedLevel,indvalues,opponent)
+        rule.ruleset.suggestedLevel,indvalues,opponent)
       opponent.party.push(pkmn)
     end
     return opponent
@@ -980,7 +1034,7 @@ def pbOrganizedBattleEx(opponent,challengedata,endspeech,endspeechwin)
     $Trainer.party[i].heal
   end
   olditems=$Trainer.party.transform{|p| p.item }
-  olditems2=$Trainer.party.transform{|p| p.item }
+  olditems2=opponent.party.transform{|p| p.item }
   battle=challengedata.createBattle(scene,$Trainer,opponent)
   battle.internalbattle=false
   battle.endspeech=endspeech

@@ -129,3 +129,9 @@ POKEMONTRAINER_Brendan
 FiaPlay
 1
 BLAZIKEN,36,,BLAZEKICK,HIGHJUMPKICK,PROTECT,THUNDERPUNCH,,M,,,,,,,,,ELECTRIC
+#-------------------
+#Ejemplo de entrenador con Dynamax. Luego del parámetro del parametro de teratipo, añade un true.
+POKEMONTRAINER_May
+Prueba Dynamax
+1
+EEVEE,36,,,,,,,,,,,,,,,,,true
