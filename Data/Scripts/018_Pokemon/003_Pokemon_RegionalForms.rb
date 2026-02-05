@@ -1920,25 +1920,24 @@ MultipleForms.register(:LINOONE,{
 })
 
 # DARUMAKA
-
 MultipleForms.register(:DARUMAKA,{
 "getFormOnCreation"=>proc{|pokemon|
    if $game_map && GALAR_MAPS.include?($game_map.map_id)
-     next 3
+     next 2
    else
      next 0
    end
 },
 "type1"=>proc{|pokemon|
-  next getID(PBTypes,:ICE) if pokemon.form==3
+  next getID(PBTypes,:ICE) if pokemon.form==2
   next
 },
 "type2"=>proc{|pokemon|
-  next getID(PBTypes,:ICE) if pokemon.form==3
+  next getID(PBTypes,:ICE) if pokemon.form==2
   next
 },
 "getBaseStats"=>proc{|pokemon|
-  next [70,90,45,50,15,45] if pokemon.form==3
+  next [70,90,45,50,15,45] if pokemon.form==2
   next
 },
 "getAbilityList"=>proc{|pokemon|
@@ -1950,7 +1949,7 @@ MultipleForms.register(:DARUMAKA,{
    next if pokemon.form==0
    movelist=[]
    case pokemon.form
-   when 3; movelist=[[1,:POWDERSNOW],[1,:TACKLE],[4,:TAUNT],[8,:BITE], 
+   when 2; movelist=[[1,:POWDERSNOW],[1,:TACKLE],[4,:TAUNT],[8,:BITE], 
                      [12,:AVALANCHE],[16,:WORKUP],[20,:ICEFANG],[24,:HEADBUTT],
                      [28,:ICEPUNCH],[32,:UPROAR],[36,:BELLYDRUM],[40,:BLIZZARD],
                      [44,:THRASH],[48,:SUPERPOWER]]
@@ -1964,7 +1963,7 @@ MultipleForms.register(:DARUMAKA,{
    next if pokemon.form==0
    movelist=[]
    case pokemon.form
-   when 3; movelist=[# MTs
+   when 2; movelist=[# MTs
                      :FIREPUNCH,:ICEPUNCH,:SOLARBEAM,:DIG,:REST,:SNORE,:PROTECT,:ATTRACT,:FACADE,
                      :ROCKSLIDE,:THIEF,:SUNNYDAY,:WILLOWISP,:BRICKBREAK,:ROCKTOMB,:UTURN,:FLING,
                      :ICEFANG,:FIREFANG,:ROUND,:ICEBEAM,:BLIZZARD,:FLAMETHROWER,:FIREBLAST,:UPROAR,
@@ -1980,11 +1979,10 @@ MultipleForms.register(:DARUMAKA,{
 })
 
 # DARMANITAN
-
 MultipleForms.register(:DARMANITAN,{
 "getFormOnCreation"=>proc{|pokemon|
    if $game_map && GALAR_MAPS.include?($game_map.map_id)
-     next 3
+     next 2
    else
      next 0
    end
@@ -1992,31 +1990,31 @@ MultipleForms.register(:DARMANITAN,{
 "type1"=>proc{|pokemon|
    next if pokemon.form==0             # Forma Normal
    case pokemon.form
-   when 2; next getID(PBTypes,:ICE)    # Forma Galar
    when 1; next getID(PBTypes,:FIRE)   # Forma Daruma
+   when 2; next getID(PBTypes,:ICE)    # Forma Galar
    when 3; next getID(PBTypes,:ICE)    # Forma Galar Daruma
    end
 },
 "type2"=>proc{|pokemon|
    next if pokemon.form==0              # Forma Normal
    case pokemon.form
-   when 2; next getID(PBTypes,:ICE)     # Forma Galar
    when 1; next getID(PBTypes,:PSYCHIC) # Forma Daruma
+   when 2; next getID(PBTypes,:ICE)     # Forma Galar
    when 3; next getID(PBTypes,:FIRE)    # Forma Galar Daruma
    end
 },
 "getBaseStats"=>proc{|pokemon|
    next if pokemon.form==0                  # Forma Normal
    case pokemon.form
-   when 2; next [105,140,55,95,30,55]       # Forma Galar
    when 1; next [105,30,105,55,140,105]     # Forma Daruma
+   when 2; next [105,140,55,95,30,55]       # Forma Galar
    when 3; next [105,160,55,135,30,55]      # Forma Galar Daruma
   end
 },
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
-   when 2; next [[getID(PBAbilities,:GORILLATACTICS),0],[getID(PBAbilities,:ZENMODE),2]] # Forma Galar
    when 1; next [[getID(PBAbilities,:ZENMODE),0]] # Forma Daruma
+   when 2; next [[getID(PBAbilities,:GORILLATACTICS),0],[getID(PBAbilities,:ZENMODE),2]] # Forma Galar
    when 3; next [[getID(PBAbilities,:ZENMODE),0]] # Forma Galar Daruma
    else;   next                                       
    end
@@ -2025,9 +2023,10 @@ MultipleForms.register(:DARMANITAN,{
    next if pokemon.form==0
    movelist=[]
    case pokemon.form
-   when 2; movelist=[[1,:ICICLECRASH],[1,:POWDERSNOW],[1,:BITE],[1,:TACKLE],[1,:TAUNT],[12,:AVALANCHE],
-                     [16,:WORKUP],[20,:ICEFANG],[24,:HEADBUTT],[28,:ICEPUNCH],[32,:UPROAR],
-                     [38,:BELLYDRUM],[44,:BLIZZARD],[50,:THRASH],[56,:SUPERPOWER]]
+   when 2, 3
+     movelist=[[1,:ICICLECRASH],[1,:POWDERSNOW],[1,:BITE],[1,:TACKLE],[1,:TAUNT],[12,:AVALANCHE],
+               [16,:WORKUP],[20,:ICEFANG],[24,:HEADBUTT],[28,:ICEPUNCH],[32,:UPROAR],
+               [38,:BELLYDRUM],[44,:BLIZZARD],[50,:THRASH],[56,:SUPERPOWER]]
    end
    for i in movelist
      i[1]=getConst(PBMoves,i[1])
@@ -2038,15 +2037,16 @@ MultipleForms.register(:DARMANITAN,{
    next if pokemon.form==0
    movelist=[]
    case pokemon.form
-   when 2; movelist=[# MTs y tutores
-                     :FIREPUNCH,:ICEPUNCH,:GIGAIMPACT,:HYPERBEAM,:SOLARBEAM,:DIG,:BODYPRESS,
-                     :REST,:ROCKSLIDE,:THIEF,:SNORE,:PROTECT,:ATTRACT,:SUNNYDAY,:WORKUP,
-                     :WILLOWISP,:FACADE,:BRICKBREAK,:ROCKTOMB,:UTURN,:PAYBACK,:FLING,
-                     :ICEFANG,:FIREFANG,:ROUND,:BULLDOZE,:FLAMETHROWER,:ICEBEAM,:BLIZZARD,
-                     :EARTHQUAKE,:PSYCHIC,:FIREBLAST,:SLEEPTALK,:SUBSTITUTE,:UPROAR,
-                     :HEATWAVE,:TAUNT,:SUPERPOWER,:OVERHEAT,:IRONDEFENSE,:BULKUP,:GYROBALL,
-                     :FLAREBLITZ,:FOCUSBLAST,:ZENHEADBUTT,:IRONHEAD,:STONEEDGE,:GRASSKNOT,
-                     :INCINERATE,:POWERUPPUNCH,:FOCUSPUNCH,:BURNINGJEALOUSY,:LASHOUT]
+   when 2, 3
+     movelist=[# MTs y tutores
+               :FIREPUNCH,:ICEPUNCH,:GIGAIMPACT,:HYPERBEAM,:SOLARBEAM,:DIG,:BODYPRESS,
+               :REST,:ROCKSLIDE,:THIEF,:SNORE,:PROTECT,:ATTRACT,:SUNNYDAY,:WORKUP,
+               :WILLOWISP,:FACADE,:BRICKBREAK,:ROCKTOMB,:UTURN,:PAYBACK,:FLING,
+               :ICEFANG,:FIREFANG,:ROUND,:BULLDOZE,:FLAMETHROWER,:ICEBEAM,:BLIZZARD,
+               :EARTHQUAKE,:PSYCHIC,:FIREBLAST,:SLEEPTALK,:SUBSTITUTE,:UPROAR,
+               :HEATWAVE,:TAUNT,:SUPERPOWER,:OVERHEAT,:IRONDEFENSE,:BULKUP,:GYROBALL,
+               :FLAREBLITZ,:FOCUSBLAST,:ZENHEADBUTT,:IRONHEAD,:STONEEDGE,:GRASSKNOT,
+               :INCINERATE,:POWERUPPUNCH,:FOCUSPUNCH,:BURNINGJEALOUSY,:LASHOUT]
    end
    for i in 0...movelist.length
      movelist[i]=getConst(PBMoves,movelist[i])
@@ -2054,6 +2054,8 @@ MultipleForms.register(:DARMANITAN,{
    next movelist
 }
 })
+
+
 
 # YAMASK
 

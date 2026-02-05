@@ -54,7 +54,7 @@ class PokeBattle_Pokemon
   attr_accessor(:ribbons)     # Arreglo de cintas
   attr_accessor :teratype     # Teratipo del Pokémon
   attr_accessor :teracristalized # Si es true el Pokémon está teracristalzado
-  attr_accessor :tera_ace #Si es true el Pokémon teracristalizará (solo usado en entrenadores)
+  attr_accessor :tera_ace     #Si es true el Pokémon teracristalizará (solo usado en entrenadores)
   attr_accessor :cool,:beauty,:cute,:smart,:tough,:sheen # Contest stats
   attr_accessor :original_types
 
@@ -919,39 +919,125 @@ class PokeBattle_Pokemon
     return ((((base*2+iv+(ev>>2))*level/100).floor+5)*pv/100).floor
   end
 
-# Recalcula las características de este Pokémon.
+  def isFainted?
+    return @hp<=0
+  end
+  alias fainted? isFainted? #BES-T Compt - v17
+    
   def calcStats
-    nature=self.nature
-    stats=[]
-    pvalues=[100,100,100,100,100]
-    nd5=(nature/5).floor
-    nm5=(nature%5).floor
-    if nd5!=nm5
-      pvalues[nd5]=110
-      pvalues[nm5]=90
+    nature = self.nature
+    stats = []
+    pvalues = [100, 100, 100, 100, 100]
+    nd5 = (nature / 5).floor
+    nm5 = (nature % 5).floor
+    if nd5 != nm5
+      pvalues[nd5] = 110
+      pvalues[nm5] = 90
     end
-    level=self.level
-    bs=self.baseStats
+    level = self.level
+    bs = self.baseStats
+    
+    # Calcular stats base (sin boost de Dynamax)
     for i in 0..5
-      base=bs[i]
-      if i==PBStats::HP
-        stats[i]=calcHP(base,level,@iv[i],@ev[i])
+      base = bs[i]
+      if i == PBStats::HP
+        stats[i] = calcHP(base, level, @iv[i], @ev[i])
       else
-        stats[i]=calcStat(base,level,@iv[i],@ev[i],pvalues[i-1])
+        stats[i] = calcStat(base, level, @iv[i], @ev[i], pvalues[i - 1])
       end
     end
-    diff=@totalhp-@hp
-    @totalhp=stats[0]
-    @hp=@totalhp-diff
-    @hp=0 if @hp<=0
-    @hp=@totalhp if @hp>@totalhp
-    @attack=stats[1]
-    @defense=stats[2]
-    @speed=stats[3]
-    @spatk=stats[4]
-    @spdef=stats[5]
+  
+    # HP base calculado (sin Dynamax)
+    base_hp = stats[PBStats::HP]
+    
+    # Detectar si el boost de Dynamax ya está aplicado
+    # (comparando HP total actual con HP base)
+    boost_already_applied = (@totalhp > base_hp * 1.4)  # Margen para detectar boost
+    
+    # Calcular boost de Dynamax
+    dynamaxCalc = @dynamax_lvl ? 1.5 + (0.05 * @dynamax_lvl) : 1.5
+    
+    # Determinar qué hacer con los HP
+    if isDynamax? && !boost_already_applied
+      # ==========================================
+      # CASO 1: Aplicar boost por primera vez
+      # ==========================================
+      new_totalhp = (base_hp * dynamaxCalc).ceil
+      
+      # Mantener proporción de HP
+      if @totalhp > 0
+        proportion = @hp.to_f / @totalhp.to_f
+        @hp = (new_totalhp * proportion).ceil
+      else
+        @hp = new_totalhp
+      end
+      
+      @totalhp = new_totalhp
+      
+      # Caso especial: Eternatus Gigantamax
+      if isSpecies?(:ETERNATUS) && gmaxFactor?
+        oldhpDiff = @totalhp - @hp
+        @hp = @totalhp - oldhpDiff
+      end
+      
+    elsif !isDynamax? && boost_already_applied
+      # ==========================================
+      # CASO 2: Revertir boost (ya no está Dynamaxeado)
+      # ==========================================
+      
+      # Mantener proporción de HP
+      if @totalhp > 0
+        proportion = @hp.to_f / @totalhp.to_f
+        @hp = (base_hp * proportion).ceil
+      else
+        @hp = base_hp
+      end
+      
+      @totalhp = base_hp
+      
+      # Asegurar mínimo 1 HP si no estaba debilitado
+      @hp = 1 if !isFainted? && @hp <= 0
+      
+    elsif isDynamax? && boost_already_applied
+      # ==========================================
+      # CASO 3: Ya tiene boost Y sigue Dynamaxeado
+      # (ganó EXP mientras está Dynamaxeado)
+      # ==========================================
+      # Recalcular HP total con el nuevo nivel
+      new_base_hp = base_hp
+      new_totalhp = (new_base_hp * dynamaxCalc).ceil
+      
+      # Ajustar HP actual manteniendo la proporción
+      if @totalhp > 0
+        proportion = @hp.to_f / @totalhp.to_f
+        @hp = (new_totalhp * proportion).ceil
+      else
+        @hp = new_totalhp
+      end
+      
+      @totalhp = new_totalhp
+      
+    else
+      # ==========================================
+      # CASO 4: Sin Dynamax (cálculo normal)
+      # ==========================================
+      diff = @totalhp - @hp
+      @totalhp = base_hp
+      @hp = @totalhp - diff
+    end
+    
+    # Asegurar HP en rangos válidos
+    @hp = 0 if @hp < 0
+    @hp = @totalhp if @hp > @totalhp
+    
+    # Aplicar otras stats (sin cambios)
+    @attack = stats[PBStats::ATTACK]
+    @defense = stats[PBStats::DEFENSE]
+    @spatk = stats[PBStats::SPATK]
+    @spdef = stats[PBStats::SPDEF]
+    @speed = stats[PBStats::SPEED]
   end
-
+  
 # Creación de un objeto Pokémon nuevo.
 #    species   - Especie del Pokémon.
 #    level     - Nivel del Pokémon.

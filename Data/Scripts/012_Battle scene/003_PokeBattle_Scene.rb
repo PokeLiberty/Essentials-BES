@@ -273,7 +273,7 @@ class PokeBattle_Scene
         @sprites["pokemon#{i}"].update
       end
       if (@battle.battlers[i].isTera? rescue false)
-        @sprites["pokemon#{i}"].tone=TERATONES[@battle.battlers[i].pokemon.teratype]
+        @sprites["pokemon#{i}"].color=TERATONES[@battle.battlers[i].pokemon.teratype]
       end
     end
   end
@@ -1523,7 +1523,10 @@ class PokeBattle_Scene
   
 # This method is called whenever a Pokémon faints.
   def pbFainted(pkmn)
-    frames=pbCryFrameLength(pkmn.pokemon)
+    if @battle.battlers[pkmn.index].isDynamax?
+      @battle.battlers[pkmn.index].pbUndynamax
+    end
+    frames = pbCryFrameLength(pkmn.pokemon)
     pbPlayCry(pkmn.pokemon)
     frames.times do
       pbGraphicsUpdate
@@ -1917,6 +1920,26 @@ class PokeBattle_Scene
     oldusery=usersprite ? usersprite.y : 0
     oldtargetx=targetsprite ? targetsprite.x : 0
     oldtargety=targetsprite ? targetsprite.y : 0
+    # -------------------------------------------------
+    # Guardar valores de Dynamax ANTES de la animación
+    # -------------------------------------------------
+    # Para zoom (si usas Dynamax)
+    olduserzoomx = usersprite ? usersprite.zoom_x : 1
+    olduserzoomy = usersprite ? usersprite.zoom_y : 1
+    oldtargetzoomx = targetsprite ? targetsprite.zoom_x : 1
+    oldtargetzoomy = targetsprite ? targetsprite.zoom_y : 1
+    # Determinar colores actuales
+    if (usersprite && user.isDynamax? rescue false)
+      oldusercolor = user.isSpecies?(:CALYREX) ? DYNATONE[1] : DYNATONE[0]
+    elsif (usersprite && user.isTera? rescue false)
+      oldusercolor = TERATONES[user.pokemon.teratype]
+    end
+    if (targetsprite && target.isTera? rescue false)
+      oldtargetcolor = target.isSpecies?(:CALYREX) ? DYNATONE[1] : DYNATONE[0]
+    elsif (targetsprite && target.isTera? rescue false)
+      oldtargetcolor = TERATONES[target.pokemon.teratype]
+    end
+    # -------------------------------------------------
     if !targetsprite
       target=user if !target
       animplayer=PBAnimationPlayerX.new(animation,user,target,self,oppmove)
@@ -1942,21 +1965,47 @@ class PokeBattle_Scene
     animplayer.start
     while animplayer.playing?
       animplayer.update
+      # -------------------------------------------------
+      # RE-APLICAR VALORES DE DYNAMAX EN CADA FRAME
+      # --------------------------------------------
+      if usersprite && user.isDynamax?
+        usersprite.zoom_x = olduserzoomx
+        usersprite.zoom_y = olduserzoomy
+        usersprite.color = oldusercolor if oldusercolor
+        usersprite.ox=0
+        usersprite.oy=0
+        usersprite.x=olduserx
+        usersprite.y=oldusery
+      end
+      if targetsprite && target.isDynamax?
+        targetsprite.zoom_x = oldtargetzoomx
+        targetsprite.zoom_y = oldtargetzoomy
+        targetsprite.color = oldtargetcolor if oldtargetcolor
+        targetsprite.ox=0
+        targetsprite.oy=0
+        targetsprite.x=oldtargetx
+        targetsprite.y=oldtargety
+      end
+      # --------------------------------------------
       pbGraphicsUpdate
       pbInputUpdate
       pbFrameUpdate
     end
-    usersprite.ox=0 if usersprite
-    usersprite.oy=0 if usersprite
-    usersprite.x=olduserx if usersprite
-    usersprite.y=oldusery if usersprite
-    targetsprite.ox=0 if targetsprite
-    targetsprite.oy=0 if targetsprite
-    targetsprite.x=oldtargetx if targetsprite
-    targetsprite.y=oldtargety if targetsprite
+    if usersprite
+      usersprite.ox=0
+      usersprite.oy=0 
+      usersprite.x=olduserx 
+      usersprite.y=oldusery
+    end
+    if targetsprite
+      targetsprite.ox=0
+      targetsprite.oy=0
+      targetsprite.x=oldtargetx
+      targetsprite.y=oldtargety
+    end
     animplayer.dispose
   end
-
+  
   def pbLevelUp(pokemon,battler,oldtotalhp,oldattack,olddefense,oldspeed,
                 oldspatk,oldspdef)
     pbTopRightWindow(_INTL("#{PBStats.getName(0,true)} Máx.<r>+{1}<br>#{PBStats.getName(1,true)}<r>+{2}<br>#{PBStats.getName(2,true)}<r>+{3}<br>#{PBStats.getName(4,true)}<r>+{4}<br>#{PBStats.getName(5,true)}<r>+{5}<br>#{PBStats.getName(3,true)}<r>+{6}",
@@ -2290,7 +2339,7 @@ class PokeBattle_Scene
     @original_pokemon_x = {}
     @original_pokemon_opacity = {}
   end
-
+  
   def pbShowSubstitute(battlerindex, show=true)
     # Mostrar u ocultar el sprite de sustituto
     pokemon_sprite = @sprites["pokemon#{battlerindex}"]
@@ -2490,5 +2539,114 @@ class PokeBattle_Scene
     end
     pbRecall_substitute(battlerindex)
   end
+
+end
+#===============================================================================
+# DYNAMAX ZOOM SYSTEM
+#===============================================================================
+module PokeBattle_SceneConstants
+  DYNAMAX_ZOOM = 1.5  # Multiplicador de zoom para Pokémon Dynamax
+end
+
+class PokeBattle_Scene
   
+  alias initialize_dynamax initialize
+  def initialize
+    initialize_dynamax
+    @dynamax_zoom_applied ||= {}
+  end
+  
+
+  
+  # Aplicar zoom al cambiar de Pokémon (Transform, etc.)
+  alias pbChangePokemon_dynamax pbChangePokemon
+  def pbChangePokemon(attacker, pokemon)
+    pbRemoveDynamaxZoom(attacker.index)  # Primero eliminar zoom si existía
+    pbChangePokemon_dynamax(attacker, pokemon) # Ejecutar el cambio original
+    pbApplyDynamaxZoom(attacker.index) # Aplicar zoom si el nuevo Pokémon está Dynamax
+  end
+  
+  # Quitar zoom cuando un Pokémon es retirado
+  alias pbRecall_dynamax pbRecall
+  def pbRecall(battlerindex)
+    pbRemoveDynamaxZoom(battlerindex)
+    pbRecall_dynamax(battlerindex)
+  end
+
+  # Método para aplicar zoom y tono Dynamax
+  def pbApplyDynamaxZoom(battlerindex)
+    return if !@battle.battlers[battlerindex]
+    return if !@battle.battlers[battlerindex].isDynamax?
+    return if @dynamax_zoom_applied[battlerindex]
+    
+    pkmnsprite = @sprites["pokemon#{battlerindex}"]
+    return if !pkmnsprite || !pkmnsprite.bitmap
+    
+    # Guardar posición central antes del zoom
+    center_x = pkmnsprite.x + (pkmnsprite.bitmap.width * pkmnsprite.zoom_x / 2)
+    center_y = pkmnsprite.y + (pkmnsprite.bitmap.height * pkmnsprite.zoom_y / 2)
+    
+    # Aplicar zoom
+    pkmnsprite.zoom_x = PokeBattle_SceneConstants::DYNAMAX_ZOOM
+    pkmnsprite.zoom_y = PokeBattle_SceneConstants::DYNAMAX_ZOOM
+    
+    # Recentrar el sprite
+    pkmnsprite.x = center_x - (pkmnsprite.bitmap.width * pkmnsprite.zoom_x / 2)
+    pkmnsprite.y = center_y - (pkmnsprite.bitmap.height * pkmnsprite.zoom_y / 2)
+    
+    # Aplicar tono Dynamax
+    pkmnsprite.color = @battle.battlers[battlerindex].isSpecies?(:CALYREX) ? DYNATONE[1] : DYNATONE[0] if defined?(DYNATONE)
+    
+    
+    @dynamax_zoom_applied[battlerindex] = true
+  end
+  
+  # Método para quitar zoom y tono Dynamax
+  def pbRemoveDynamaxZoom(battlerindex)
+    return if !@battle.battlers[battlerindex]
+    return if !@dynamax_zoom_applied[battlerindex] && @dynamax_zoom_applied
+    
+    pkmnsprite = @sprites["pokemon#{battlerindex}"]
+    return if !pkmnsprite || !pkmnsprite.bitmap
+    
+    # Guardar posición central antes de quitar zoom
+    center_x = pkmnsprite.x + (pkmnsprite.bitmap.width * pkmnsprite.zoom_x / 2)
+    center_y = pkmnsprite.y + (pkmnsprite.bitmap.height * pkmnsprite.zoom_y / 2)
+    
+    # Restaurar zoom normal
+    pkmnsprite.zoom_x = 1.0
+    pkmnsprite.zoom_y = 1.0
+    
+    # Recentrar el sprite
+    pkmnsprite.x = center_x - (pkmnsprite.bitmap.width / 2)
+    pkmnsprite.y = center_y - (pkmnsprite.bitmap.height / 2)
+    
+    # Restaurar tono normal
+    pkmnsprite.color = Color.new(0, 0, 0, 0)
+    
+    @dynamax_zoom_applied[battlerindex] = false
+  end
+  
+  # Actualizar zoom durante la batalla (para cambios dinámicos)
+  alias pbFrameUpdate_dynamax pbFrameUpdate
+  def pbFrameUpdate(cw=nil)
+    pbFrameUpdate_dynamax(cw)
+    
+    # Verificar y actualizar zoom según estado Dynamax
+    for i in 0...4
+      next if !@battle.battlers[i]
+      if @battle.battlers[i].isDynamax?
+        # Aplicar zoom si no está aplicado
+        pbApplyDynamaxZoom(i) if !@dynamax_zoom_applied[i] && @dynamax_zoom_applied
+      else
+        # Quitar zoom si está aplicado pero ya no está Dynamax
+        pbRemoveDynamaxZoom(i) if @dynamax_zoom_applied[i] && @dynamax_zoom_applied
+      end
+      if (@battle.battlers[i].isDynamax? rescue false)
+        @sprites["pokemon#{i}"].color = @battle.battlers[i].isSpecies?(:CALYREX) ? DYNATONE[1] : DYNATONE[0] if defined?(DYNATONE)
+      end
+    end
+  end
+  
+
 end

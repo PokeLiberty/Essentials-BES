@@ -16,7 +16,8 @@ TPNAME      = 14
 TPSHADOW    = 15
 TPBALL      = 16
 TPTERA      = 17
-TPDEFAULTS = [0,10,0,0,0,0,0,nil,nil,0,false,nil,10,70,nil,false,0,nil]
+TPMAX       = 18
+TPDEFAULTS = [0,10,0,0,0,0,0,nil,nil,0,false,nil,10,70,nil,false,0,nil,false]
 
 def pbLoadTrainer(trainerid,trainername,partyid=0)
   if trainerid.is_a?(String) || trainerid.is_a?(Symbol)
@@ -83,6 +84,8 @@ def pbLoadTrainer(trainerid,trainername,partyid=0)
         pokemon.teratype=poke[TPTERA]
         pokemon.tera_ace=true
       end
+      pokemon.max_ace=poke[TPMAX]
+      pokemon.gmaxfactor=poke[TPMAX] if pokemon.hasGigantamaxForm?
       pokemon.ballused=poke[TPBALL]
       pokemon.calcStats
       party.push(pokemon)

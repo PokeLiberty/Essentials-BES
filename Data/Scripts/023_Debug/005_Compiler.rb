@@ -2325,6 +2325,13 @@ def pbCompileTrainers
         poke[TPTERA]=parseType(poke[TPTERA])
         raise _INTL("Tipo erróneo: {1} (debe ser 0 o mayor)\r\n{2}",poke[TPTERA],FileLineData.linereport) if poke[TPTERA]<0
       end
+      if !poke[TPMAX] || poke[TPMAX]==""
+        poke[TPMAX]=TPDEFAULTS[TPMAX]
+      elsif poke[TPMAX]=="max"
+        poke[TPMAX]=true
+      else
+        poke[TPMAX]=csvBoolean!(poke[TPMAX].clone)
+      end
       pkmn.push(poke)
     end
     i+=3+numpoke

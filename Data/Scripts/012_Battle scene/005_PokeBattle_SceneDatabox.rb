@@ -192,19 +192,21 @@ class SafariDataBox < SpriteWrapper
       if @battler.isShiny?
         shinyX=206
         shinyX=-6 if (@battler.index&1)==0 # If player's Pokémon
-        imagepos.push(["Graphics/Pictures/shiny.png",@spritebaseX+shinyX,36,0,0,-1,-1])
+        imagepos.push(["Graphics/Pictures/shiny",@spritebaseX+shinyX,36,0,0,-1,-1])
       end
       if (@battler.isMega? rescue false)
-        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleMegaEvoBox.png",@spritebaseX+8,34,0,0,-1,-1])
+        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleMegaEvoBox",@spritebaseX+8,34,0,0,-1,-1])
       elsif (@battler.isUltra? rescue false)
-        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleUltraBurstBox.png",@spritebaseX+140,4,0,0,-1,-1])
+        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleUltraBurstBox",@spritebaseX+140,4,0,0,-1,-1])
       elsif (@battler.isPrimal? rescue false)
-        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimal#{PBSpecies.getName(@battler.species)}Box.png",@spritebaseX+140,4,0,0,-1,-1])
+        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battlePrimal#{PBSpecies.getName(@battler.species)}Box",@spritebaseX+140,4,0,0,-1,-1])
       elsif (@battler.isTera? rescue false)
-        imagepos.push(["Graphics/Pictures/teraTypes.png",@spritebaseX+140,4,0,@battler.type1*32,32,32])
+        imagepos.push(["Graphics/Pictures/teraTypes",@spritebaseX+140,4,0,@battler.type1*32,32,32])
+      elsif (@battler.isDynamax? rescue false)
+        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleDynamaxBox",@spritebaseX+8,34,0,0,-1,-1])
       end
       if @battler.owned && (@battler.index&1)==1
-        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleBoxOwned.png",@spritebaseX+8,36,0,0,-1,-1])
+        imagepos.push(["Graphics/#{BATTLE_ROUTE}/battleBoxOwned",@spritebaseX+8,36,0,0,-1,-1])
       end
       pbDrawImagePositions(self.bitmap,imagepos)
       

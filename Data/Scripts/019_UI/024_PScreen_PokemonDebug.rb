@@ -26,6 +26,7 @@ class PokemonScreen
          _INTL("Huevo"),
          _INTL("Pokémon Oscuro"),
          _INTL("Teracristalización"),
+         _INTL("Dynamax"),
          _INTL("Hacer Reg. Mist."),
          _INTL("Duplicar"),
          _INTL("Borrar"),
@@ -629,11 +630,31 @@ class PokemonScreen
             pkmn.teracristalized=!pkmn.teracristalized
           end
         end
-      ### Make Mystery Gift ###
       when 19
+        cmd=0
+        loop do
+          cmd=@scene.pbShowCommands(_INTL("¿Qué hacer con {1}?",pkmn.name),[
+             _INTL("Setear Nivel Dynamax"),
+             _INTL("Factor Gigamax")],cmd)
+          case cmd
+          when -1
+            break
+          when 0
+            params=ChooseNumberParams.new
+            params.setRange(0,10)
+            params.setDefaultValue(pkmn.dynamax_lvl)
+            val=Kernel.pbMessageChooseNumber(
+               _INTL("Setear el nuevo valor (máx. 100)."),params) { @scene.update }
+            pkmn.dynamax_lvl=val
+          when 1
+            pkmn.gmaxfactor=!pkmn.gmaxfactor
+          end
+        end
+      ### Make Mystery Gift ###
+      when 20
         pbCreateMysteryGift(0,pkmn)
       ### Duplicate ###
-      when 20
+      when 21
         if pbConfirm(_INTL("¿Estás seguro de que quieres copiar este Pokémon?"))
           clonedpkmn=pkmn.clone
           clonedpkmn.iv=pkmn.iv.clone
@@ -644,7 +665,7 @@ class PokemonScreen
           break
         end
       ### Delete ###
-      when 21
+      when 22
         if pbConfirm(_INTL("¿Estás seguro de que quieres borrar este Pokémon?"))
           @party[pkmnid]=nil
           @party.compact!

@@ -338,20 +338,26 @@ end
 #===============================================================================
 def pbAfterBattle(decision,canlose)
   for i in $Trainer.party
-    (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil)
+    (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil)
+    (i.makeUntera rescue nil); (i.makeUndynamax rescue nil)
+    (i.revertOtherForms rescue nil)
   end
   if $PokemonGlobal.partner
     pbHealAll
     for i in $PokemonGlobal.partner[3]
       i.heal
-      (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil);
+      (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil)
+      (i.makeUntera rescue nil); (i.makeUndynamax rescue nil)
+      (i.revertOtherForms rescue nil)
     end
   end
   if decision==2 || decision==5 # if loss or draw
     if canlose
       for i in $Trainer.party;
         i.heal
-        (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil); (i.revertOtherForms rescue nil);
+        (i.makeUnmega rescue nil); (i.makeUnprimal rescue nil)
+        (i.makeUntera rescue nil); (i.makeUndynamax rescue nil)
+        (i.revertOtherForms rescue nil)
       end
       for i in 0...10
         Graphics.update

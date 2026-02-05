@@ -892,18 +892,13 @@ class PokeBattle_Battler
     if @pokemon && @battle.internalbattle
       @pokemon.changeHappiness("faint")
     end
-    if self.isMega?
-      @pokemon.makeUnmega
-    end
-    if self.isUltra?
-       @pokemon.makeUnUltra
-    end
-    if self.isPrimal?
-      @pokemon.makeUnprimal
-    end
-    if self.isTera?
-      @pokemon.makeUntera
-    end
+    
+    @pokemon.makeUnmega if self.isMega?
+    @pokemon.makeUnUltra if self.isUltra?
+    @pokemon.makeUnprimal if self.isPrimal?
+    @pokemon.makeUntera if self.isTera?
+    @pokemon.makeUnmax rescue nil #if self.isDynamax? # Dynamax
+    
     @pokemon.revertOtherForms
     @fainted=true
     # reset choice
@@ -4547,6 +4542,10 @@ class PokeBattle_Battler
     if isConst?(thismove.id,PBMoves,:TERASTARSTORM) && (isConst?(user.species,PBSpecies,:TERAPAGOS) && user.isTera?) && @battle.doublebattle
       targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
     end
+    #Los movimientos Dynamax golpean a ambos
+    if thismove.is_a?(PokeBattle_MaxMove) && @battle.doublebattle && !thismove.pbIsStatus?
+      targets = [pbOpposing1, pbOpposing2] if (!pbOpposing1.isFainted? && !pbOpposing2.isFainted?)
+    end
     # Battle Arena only - assume failure
     @battle.successStates[user.index].useState=1
     @battle.successStates[user.index].typemod=8
@@ -4788,10 +4787,6 @@ class PokeBattle_Battler
         @battle.pbMessagesOnRevival(index,newpoke,newpokename)
       end
     end
-    # Re-añade el sprite de sustituto para relevo y autonomia.
-    if user.effects[PBEffects::Substitute]>0
-      @battle.scene.pbShowSubstitute(user.index,true) rescue nil
-    end
     # Record move as having been used
     user.lastMoveUsed=thismove.id
     user.lastMoveUsedType=thismove.pbType(thismove.type,user,nil)
@@ -4859,15 +4854,17 @@ class PokeBattle_Battler
 
   def pbEndTurn(choice)
     # True end(?)
-    if @effects[PBEffects::ChoiceBand]<0 && @lastMoveUsed>=0 && !self.isFainted? &&
-       (self.hasWorkingItem(:CHOICEBAND) ||
-       self.hasWorkingItem(:CHOICESPECS) ||
-       self.hasWorkingItem(:CHOICESCARF))
-      @effects[PBEffects::ChoiceBand]=@lastMoveUsed
-    end
-    if @effects[PBEffects::GorillaTactics]<0 && @lastMoveUsed>=0 && !isFainted? &&
-       self.hasWorkingAbility(:GORILLATACTICS)
-      @effects[PBEffects::GorillaTactics]=@lastMoveUsed
+    unless (self.isDynamax? rescue false)
+      if @effects[PBEffects::ChoiceBand]<0 && @lastMoveUsed>=0 && !self.isFainted? &&
+         (self.hasWorkingItem(:CHOICEBAND) ||
+         self.hasWorkingItem(:CHOICESPECS) ||
+         self.hasWorkingItem(:CHOICESCARF))
+        @effects[PBEffects::ChoiceBand]=@lastMoveUsed
+      end
+      if @effects[PBEffects::GorillaTactics]<0 && @lastMoveUsed>=0 && !isFainted? &&
+         self.hasWorkingAbility(:GORILLATACTICS)
+        @effects[PBEffects::GorillaTactics]=@lastMoveUsed
+      end
     end
     @battle.pbPrimordialWeather
     for i in 0...4
