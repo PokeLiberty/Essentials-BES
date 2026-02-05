@@ -220,6 +220,7 @@ def pbThrowPokeBall(idxPokemon,ball,rareness=nil,showplayer=false,safari=false,f
       pokemon.makeUnmega rescue nil
       pokemon.makeUnprimal rescue nil
       pokemon.makeUnultra rescue nil
+      pokemon.makeUnmax  rescue nil
       pokemon.revertOtherForms rescue nil
       pokemon.pbRecordFirstMoves
       if GAINEXPFORCAPTURE
@@ -398,27 +399,32 @@ class PokeBattle_Battle
     @teraCristal     = []
     @necrozmaVar     = [-1,-1]
     @zMove           = []
+    @dynaMax         = []
     if @player.is_a?(Array)
-      @megaEvolution[0]=[-1]*@player.length
-      @ultraBurst[0]   =[-1]*@player.length
-      @teraCristal[0]   =[-1]*@player.length
-      @zMove[0]=[-1]*@player.length
+      @megaEvolution[0] = [-1]*@player.length
+      @ultraBurst[0]    = [-1]*@player.length
+      @teraCristal[0]   = [-1]*@player.length
+      @zMove[0]         = [-1]*@player.length
+      @dynaMax[0]       = [-1]*@player.length
     else
-      @megaEvolution[0]=[-1]
-      @ultraBurst[0]=[-1]
-      @teraCristal[0]=[-1]
-      @zMove[0]=[-1]
+      @megaEvolution[0] = [-1]
+      @ultraBurst[0]    = [-1]
+      @teraCristal[0]   = [-1]
+      @zMove[0]         = [-1]
+      @dynaMax[0]       = [-1]
     end
     if @opponent.is_a?(Array)
-      @megaEvolution[1]=[-1]*@opponent.length
-      @ultraBurst[1]   =[-1]*@opponent.length
-      @teraCristal[1]   =[-1]*@opponent.length
-      @zMove[1]=[-1]*@opponent.length
+      @megaEvolution[1] = [-1]*@opponent.length
+      @ultraBurst[1]    = [-1]*@opponent.length
+      @teraCristal[1]   = [-1]*@opponent.length
+      @zMove[1]         = [-1]*@opponent.length
+      @dynaMax[1]       = [-1]*@opponent.length
     else
-      @megaEvolution[1]=[-1]
-      @ultraBurst[1]=[-1]
-      @teraCristal[1]=[-1]
-      @zMove[1]=[-1]
+      @megaEvolution[1] = [-1]
+      @ultraBurst[1]    = [-1]
+      @teraCristal[1]   = [-1]
+      @zMove[1]         = [-1]
+      @dynaMax[1]       = [-1]
     end
     @amuletcoin       = false
     @extramoney       = 0
@@ -1564,6 +1570,12 @@ class PokeBattle_Battle
     if @teraCristal[side][owner]==idxPokemon
       @teraCristal[side][owner]=-1
     end
+    if @dynaMax[side][owner]==idxPokemon # Dynamax
+      @dynaMax[side][owner]=-1
+    end
+    if @battlers[idxPokemon].isDynamax? # Reverse Dynamax if still on
+      @battlers[idxPokemon].pbUndynamax
+    end
     return true
   end
 
@@ -1898,6 +1910,7 @@ class PokeBattle_Battle
     @ultraBurst[side][owner]=-1 if @ultraBurst[side][owner]==idxPokemon
     @zMove[side][owner]=-1 if @zMove[side][owner]==idxPokemon
     @teraCristal[side][owner]=-1 if @teraCristal[side][owner]==idxPokemon
+    @dynaMax[side][owner]=-1 if @dynaMax[side][owner]==idxPokemon # Dynamax
     return true
   end
   # BES-T Editado para mejor manejo y poder añadir nuevos objetos rápidamente.
@@ -2192,6 +2205,7 @@ class PokeBattle_Battle
     return false if @battlers[index].hasMega? || @battlers[index].isMega?
     return false if @battlers[index].isPrimal?
     return false if @battlers[index].hasUltra? || @battlers[index].isUltra?
+    return false if @battlers[index].isDynamax?
     return false if pbIsZCrystal?(@battlers[index].item) || pbCanZMove?(index)
     return false if $game_switches[NO_TERA_CRISTAL]
     return false if @rules["noTera"]
@@ -2475,7 +2489,6 @@ class PokeBattle_Battle
         if totalev>PokeBattle_Pokemon::EVLIMIT
           print "EV limit #{PokeBattle_Pokemon::EVLIMIT} exceeded.\r\nTotal EVs: #{totalev} EV gain: #{evgain}  EVs: #{thispoke.ev.inspect}"
         end
-        thispoke.calcStats
       end
     end
     # Gain experience
@@ -2738,6 +2751,19 @@ class PokeBattle_Battle
             @scene.pbDamageAnimation(pkmn,0)
             pkmn.pbReduceHP(((pkmn.totalhp*eff)/64).floor)
             pbDisplayPaused(_INTL("¡{1} fue herido por las piedras puntiagudas!",pkmn.pbThis))
+          end
+        end
+      end
+      # Steelsurge
+      if pkmn.pbOwnSide.effects[PBEffects::Steelsurge] && !pkmn.isFainted?
+        if !(pkmn.hasWorkingAbility(:MAGICGUARD) || pkmn.hasWorkingItem(:HEAVYDUTYBOOTS))
+          atype=getConst(PBTypes,:STEEL) || 0
+          eff=PBTypes.getCombinedEffectiveness(atype,pkmn.type1,pkmn.type2,pkmn.effects[PBEffects::Type3])
+          if eff>0
+            PBDebug.log("[Peligro de entrada] #{pkmn.pbThis} activó la Trampa Rocas")
+            @scene.pbDamageAnimation(pkmn,0)
+            pkmn.pbReduceHP(((pkmn.totalhp*eff)/64).floor)
+            pbDisplayPaused(_INTL("¡{1} fue herido por las piezas de acero puntiagudas!",pkmn.pbThis))
           end
         end
       end
@@ -3223,6 +3249,13 @@ class PokeBattle_Battle
     for i in 0...@zMove[1].length
       @zMove[1][i]=-1 if @zMove[1][i]>=0
     end
+    # Dynamax
+    for i in 0...@dynaMax[0].length
+      @dynaMax[0][i]=-1 if @dynaMax[0][i]>=0
+    end
+    for i in 0...@dynaMax[1].length
+      @dynaMax[1][i]=-1 if @dynaMax[1][i]>=0
+    end
     for i in 0...4
       break if @decision!=0
       next if @choices[i][0]!=0
@@ -3256,6 +3289,9 @@ class PokeBattle_Battle
                     if @teraCristal[side][owner]==i
                       @teraCristal[side][owner]=-1
                     end
+                    if @dynaMax[side][owner]==i # Dynamax
+                      @dynaMax[side][owner]=-1
+                    end
                     break
                   end
                   next if !pbRegisterMove(i,index)
@@ -3267,6 +3303,8 @@ class PokeBattle_Battle
                       next if target<0
                       pbRegisterTarget(i,target)
                     elsif target==PBTargets::UserOrPartner # Acupressure
+                      @dynaMax[0][0]=-1 if @dynaMax[0][0]>=0
+                      @dynaMax[1][0]=-1 if @dynaMax[1][0]>=0
                       target=@scene.pbChooseTarget(i,target)
                       next if target<0 || (target&1)==1
                       pbRegisterTarget(i,target)
@@ -3319,6 +3357,9 @@ class PokeBattle_Battle
                 if @teraCristal[side][owner]==i
                   @teraCristal[side][owner]=-1
                 end
+                if @dynaMax[side][owner]==i # Dynamax
+                  @dynaMax[side][owner]=-1
+                end
               end
             elsif cmd==4   # Call
               thispkmn=@battlers[i]
@@ -3339,16 +3380,21 @@ class PokeBattle_Battle
               if @teraCristal[side][owner]==i
                 @teraCristal[side][owner]=-1
               end
+              if @dynaMax[side][owner]==i # Dynamax
+                @dynaMax[side][owner]=-1
+              end
               commandDone=true
             elsif cmd==-1   # Go back to first battler's choice
               @megaEvolution[0][0]=-1 if @megaEvolution[0][0]>=0
               @megaEvolution[1][0]=-1 if @megaEvolution[1][0]>=0
-              @ultraBurst[0][0]=-1 if @ultraBurst[0][0]>=0
-              @ultraBurst[1][0]=-1 if @ultraBurst[1][0]>=0
-              @zMove[0][0]=-1 if @zMove[0][0]>=0
-              @zMove[1][0]=-1 if @zMove[1][0]>=0
-              @teraCristal[0][0]=-1 if @teraCristal[0][0]>=0
-              @teraCristal[1][0]=-1 if @teraCristal[1][0]>=0
+              @ultraBurst[0][0]   =-1 if @ultraBurst[0][0]>=0
+              @ultraBurst[1][0]   =-1 if @ultraBurst[1][0]>=0
+              @zMove[0][0]        =-1 if @zMove[0][0]>=0
+              @zMove[1][0]        =-1 if @zMove[1][0]>=0
+              @teraCristal[0][0]  =-1 if @teraCristal[0][0]>=0
+              @teraCristal[1][0]  =-1 if @teraCristal[1][0]>=0
+              @dynaMax[0][0]      =-1 if @dynaMax[0][0]>=0
+              @dynaMax[1][0]      =-1 if @dynaMax[1][0]>=0
               # Restore the item the player's first Pokémon was due to use
               if @choices[0][0]==3 && $PokemonBag && $PokemonBag.pbCanStore?(@choices[0][1])
                 $PokemonBag.pbStoreItem(@choices[0][1])
@@ -3404,6 +3450,18 @@ class PokeBattle_Battle
     if megaevolved.length>0
       for i in priority
         i.pbAbilitiesOnSwitchIn(true) if megaevolved.include?(i.index)
+      end
+    end
+    # Dynamax
+    dynamaxed = []
+    for i in priority
+      if @choices[i.index][0]== 1 && !i.effects[PBEffects::SkipTurn]
+        side = (pbIsOpposing?(i.index)) ? 1 : 0
+        owner = pbGetOwnerIndex (i.index)
+        if @dynaMax[side][owner]==i.index
+          pbDynamax(i.index)
+          dynamaxed.push(i.index)
+        end
       end
     end
     # Ultra Burst
@@ -3891,12 +3949,14 @@ class PokeBattle_Battle
       if sides[i].effects[PBEffects::SeaOfFire]>0 &&
          pbWeather!=PBWeather::RAINDANCE &&
          pbWeather!=PBWeather::HEAVYRAIN
-        @battle.pbCommonAnimation("SeaOfFire",nil,nil) if i==0
-        @battle.pbCommonAnimation("SeaOfFireOpp",nil,nil) if i==1
+        #@battle.pbCommonAnimation("SeaOfFire",nil,nil) if i==0
+        #@battle.pbCommonAnimation("SeaOfFireOpp",nil,nil) if i==1
         for j in priority
+          next if j.isFainted? || !j
           next if (j.index&1)!=i
           next if j.pbHasType?(:FIRE) || j.hasWorkingAbility(:MAGICGUARD)
-          @scene.pbDamageAnimation(j,0)
+          pbAnimation(getConst(PBMoves,:MAGMASTORM),j,nil) rescue nil
+          @scene.pbDamageAnimation(j,0) rescue nil
           hploss=j.pbReduceHP((j.totalhp/8).floor)
           pbDisplay(_INTL("¡{1} ha sido dañado por el mar de llamas!",j.pbThis)) if hploss>0
           if j.isFainted?
@@ -3904,6 +3964,64 @@ class PokeBattle_Battle
           end
         end
       end
+      # Movimientos GMax #Dynamax
+      if sides[i].effects[PBEffects::WildFire]>0
+        for j in priority
+          next if j.isFainted? || !j
+          next if (j.index&1)!=i
+          next if j.pbHasType?(:FIRE) || j.hasWorkingAbility(:MAGICGUARD)
+          pbAnimation(getConst(PBMoves,:FIRESPIN),j,nil) rescue nil
+          @scene.pbDamageAnimation(j,0) rescue nil
+          hploss=j.pbReduceHP((j.totalhp/6).floor)
+          pbDisplay(_INTL("¡{1} ha sido dañado por el fuego!",j.pbThis)) if hploss>0
+          if j.isFainted?
+            return if !j.pbFaint
+          end
+        end
+      end
+      if sides[i].effects[PBEffects::Cannonade]>0
+        for j in priority
+          next if j.isFainted? || !j
+          next if (j.index&1)!=i
+          next if j.pbHasType?(:WATER) || j.hasWorkingAbility(:MAGICGUARD)
+          pbAnimation(getConst(PBMoves,:WHIRLPOOL),j,nil) rescue nil
+          @scene.pbDamageAnimation(j,0) rescue nil
+          hploss=j.pbReduceHP((j.totalhp/6).floor)
+          pbDisplay(_INTL("¡{1} ha sido dañado por la corriente!",j.pbThis)) if hploss>0
+          if j.isFainted?
+            return if !j.pbFaint
+          end
+        end
+      end
+      if sides[i].effects[PBEffects::VineLash]>0
+        for j in priority
+          next if j.isFainted? || !j
+          next if (j.index&1)!=i
+          next if j.pbHasType?(:GRASS) || j.hasWorkingAbility(:MAGICGUARD)
+          pbAnimation(getConst(PBMoves,:VINEWHIP),j,nil) rescue nil
+          @scene.pbDamageAnimation(j,0) rescue nil
+          hploss=j.pbReduceHP((j.totalhp/6).floor)
+          pbDisplay(_INTL("¡{1} ha sido dañado por las enredaderas!",j.pbThis)) if hploss>0
+          if j.isFainted?
+            return if !j.pbFaint
+          end
+        end
+      end
+      if sides[i].effects[PBEffects::Volcalith]>0
+        for j in priority
+          next if j.isFainted? || !j
+          next if (j.index&1)!=i
+          next if j.pbHasType?(:ROCK) || j.hasWorkingAbility(:MAGICGUARD)
+          pbAnimation(getConst(PBMoves,:ROCKTOMB),j,nil) rescue nil
+          @scene.pbDamageAnimation(j,0) rescue nil
+          hploss=j.pbReduceHP((j.totalhp/6).floor)
+          pbDisplay(_INTL("¡Las piedras desprendidas han dañado a {1}!",j.pbThis)) if hploss>0
+          if j.isFainted?
+            return if !j.pbFaint
+          end
+        end
+      end
+      
     end
     for i in priority
       next if i.isFainted?
@@ -4121,7 +4239,7 @@ class PokeBattle_Battle
       next if i.isFainted?
       if i.effects[PBEffects::MultiTurn]>0
         i.effects[PBEffects::MultiTurn]-=1
-        movename=PBMoves.getName(i.effects[PBEffects::MultiTurnAttack])
+        movename=PBMoves.getName(i.effects[PBEffects::MultiTurnAttack]) rescue ""
         if i.effects[PBEffects::MultiTurn]==0
           PBDebug.log("[Fin de efecto] El movimiento de trampa #{movename} que afectaba a #{i.pbThis} terminó")
           pbDisplay(_INTL("¡{1} se liberó de {2}!",i.pbThis,movename))
@@ -4745,6 +4863,13 @@ class PokeBattle_Battle
     for i in 0...4
       next if @battlers[i].isFainted?
       @battlers[i].pbCheckForm
+      # Dynamax
+      if @battlers[i].effects[PBEffects::Dynamax]>0
+        @battlers[i].effects[PBEffects::Dynamax]-=1
+        if @battlers[i].effects[PBEffects::Dynamax]==0
+          @battlers[i].pbUndynamax
+        end
+      end
     end
     pbGainEXP
     pbSwitch

@@ -83,23 +83,24 @@ class PokeBattle_Battler
       text = "Gigantamax" if isGigantamax?
       text = "Eternamax"  if isConst?(species,PBSpecies,:ETERNATUS)
       oldhp = @hp
+      @battle.scene.pbToggleDataboxes if PokeBattle_SceneConstants::HIDE_DATABOXES_DURING_MOVES
       @battle.pbCommonAnimation("UnDynamaxAnimationHere",self,nil)
       @effects[PBEffects::DBoost] = false
       @effects[PBEffects::Dynamax] = 0
       @effects[PBEffects::DButton] = false
       @effects[PBEffects::Gigantamax]=0
-
       @pokemon.makeUngigantamax
       @pokemon.makeUndynamax
       makeUnmax
       pbUpdate(false)
-      @pokemon.pbReversion(true)
+      @pokemon.pbReversion(false)
       pbUnMaxMove(true)
       @battle.scene.pbChangePokemon(self, @pokemon)
       @battle.scene.pbHPChanged(self,totalhp) if !isFainted?
       @battle.pbDisplay(_INTL("{1}'s {2} energy left its body!",pbThis,text))
       @battle.scene.pbRefresh
       @battle.pbCommonAnimation("UnDynamaxAnimation2Here",self,nil)
+      @battle.scene.pbToggleDataboxes if PokeBattle_SceneConstants::HIDE_DATABOXES_DURING_MOVES
     end
   end
   
@@ -473,9 +474,9 @@ class PokeBattle_MaxMove < PokeBattle_Move
       return "GMAXFINALE"
     elsif isConst?(species,PBSpecies,:COPPERAJAH) && type==8
       return "GMAXSTEELSURGE"
-    elsif isConst?(species,PBSpecies,:DURALUDON) && type==8
+    elsif isConst?(species,PBSpecies,:DURALUDON) && type==16
       return "GMAXDEPLETION"
-    elsif isConst?(species,PBSpecies,:ETERNATUS) && type==3
+    elsif isConst?(species,PBSpecies,:ETERNATUS) && type==16
       return "GMAXETERNBEAM"
     elsif isConst?(species,PBSpecies,:VENUSAUR) && type==12
       return "GMAXVINELASH"
@@ -782,17 +783,11 @@ class PokeBattle_MaxMove < PokeBattle_Move
           @battle.pbAnimation(getConst(PBMoves,:SPORE),i,nil) rescue nil
           case @battle.pbRandom(2)
           when 0
-            if i.pbCanPoison?(attacker,false,self)
-              i.pbPoison(attacker)
-            end
+            i.pbPoison(attacker) if i.pbCanPoison?(attacker,false,self)
           when 1
-            if i.pbCanSleep?(attacker,false,self)
-              i.pbSleep
-            end
+            i.pbSleep if i.pbCanSleep?(attacker,false,self)
           when 2
-            if i.pbCanParalyze?(attacker,false,self)
-              i.pbParalyze(attacker)
-            end
+            i.pbParalyze(attacker) if i.pbCanParalyze?(attacker,false,self)
           end
         end
       end
@@ -800,9 +795,7 @@ class PokeBattle_MaxMove < PokeBattle_Move
       for i in [opponent,opponent.pbPartner]
         next if !i || i.isFainted?
         if !i.damagestate.substitute
-          if i.pbCanParalyze?(attacker,false,self)
-            i.pbParalyze(attacker)
-          end
+          i.pbParalyze(attacker) if i.pbCanParalyze?(attacker,false,self)
         end
       end
     when "GMAXGOLDRUSH"   # Meowth Gigantamax
@@ -821,9 +814,9 @@ class PokeBattle_MaxMove < PokeBattle_Move
         end
       end
     when "GMAXCHISTRIKE"   # Machamp Gigantamax
-      for i in [opponent,opponent.pbPartner]
+      for i in [attacker,attacker.pbPartner]
         next if !i || i.isFainted?
-        if !i.effects[PBEffects::ChiStrike]
+        if i.effects[PBEffects::ChiStrike]<=0
           i.effects[PBEffects::ChiStrike]+=1
           @battle.pbAnimation(getConst(PBMoves,:FOCUSENERGY),i,nil) rescue nil
           @battle.pbDisplay(_INTL("¡{1} se está preparando para luchar!",i.pbThis))
@@ -835,14 +828,15 @@ class PokeBattle_MaxMove < PokeBattle_Move
         if opponent.effects[PBEffects::MeanLook]<0 &&
             (!USENEWBATTLEMECHANICS || !opponent.pbHasType?(:GHOST))
           opponent.effects[PBEffects::MeanLook]=attacker.index
+          @battle.pbAnimation(getConst(PBMoves,:MEANLOOK),opponent,nil) rescue nil
           @battle.pbDisplay(_INTL("¡{1} no puede escapar!",opponent.pbThis))
         end
       end
     when "GMAXFOAMBURST"   # Kingler Gigantamax
       for i in [opponent,opponent.pbPartner]
         next if !i || i.isFainted?
-        if !i.pbCanReduceStatStage?(PBStats::SPEED,false)
-          i.pbReduceStat(PBStats::SPEED,2,false,true,nil,true)
+        if i.pbCanReduceStatStage?(PBStats::SPEED,attacker,false,self)
+          i.pbReduceStat(PBStats::SPEED,2,attacker,false,self,true)
         end
       end
     when "GMAXRESONANCE"   # Lapras Gigantamax
@@ -859,7 +853,9 @@ class PokeBattle_MaxMove < PokeBattle_Move
     when "GMAXCUDDLE"   # Eevee Gigantamax
       for i in [opponent,opponent.pbPartner]
         next if !i || i.isFainted?
-        i.pbCanAttract?(attacker)
+        if attacker.pbCanAttract?(i)
+          i.pbAttract(i)
+        end
       end
     when "GMAXREPLENISH"   # Snorlax Gigantamax
       for i in [attacker,attacker.pbPartner]
@@ -954,7 +950,7 @@ class PokeBattle_MaxMove < PokeBattle_Move
       end
     when "GMAXSTONESURGE"   # Drednaw Gigantamax
       if opponent && !attacker.pbOpposingSide.effects[PBEffects::StealthRock]
-        @battle.pbAnimation(getConst(PBMoves,:STEALTHROCK),opponent,nil) rescue nil
+        @battle.pbAnimation(getConst(PBMoves,:STEALTHROCK),attacker,nil) rescue nil
         attacker.pbOpposingSide.effects[PBEffects::StealthRock] = true
         if !@battle.pbIsOpposing?(attacker.index)
           @battle.pbDisplay(_INTL("¡El equipo enemigo está rodeado de piedras puntiagudas!"))
@@ -973,7 +969,7 @@ class PokeBattle_MaxMove < PokeBattle_Move
     when "GMAXTARTNESS"   # Flapple Gigantamax
       for i in [opponent,opponent.pbPartner]
         next if !i || i.isFainted?
-        if !i.pbCanReduceStatStage?(PBStats::EVASION,false)
+        if i.pbCanReduceStatStage?(PBStats::EVASION,false)
           i.pbReduceStat(PBStats::EVASION,1,false,true,nil,true)
         end
       end
@@ -1019,13 +1015,9 @@ class PokeBattle_MaxMove < PokeBattle_Move
         if !i.damagestate.substitute
           case @battle.pbRandom(1)
           when 0
-            if i.pbCanPoison?(attacker,false,self)
-              i.pbPoison(attacker)
-            end
+            i.pbPoison(attacker) if i.pbCanPoison?(attacker,false,self)
           when 1
-            if i.pbCanParalyze?(attacker,false,self)
-              i.pbParalyze(attacker)
-            end
+            i.pbParalyze(attacker) if i.pbCanParalyze?(attacker,false,self)
           end
         end
       end
@@ -1046,13 +1038,13 @@ class PokeBattle_MaxMove < PokeBattle_Move
     when "GMAXSMITE" # Hatterene Gigantamax
       for i in [opponent,opponent.pbPartner]
         next if !i || i.isFainted?
-        if !i.pbCanConfuse?(attacker,true,self)
+        if i.pbCanConfuse?(attacker,true,self)
           i.pbConfuse
           @battle.pbDisplay(_INTL("¡{1} se encuentra confuso!",i.pbThis))
         end
       end
     when "GMAXSNOOZE"   # Grimmsnarl Gigantamax
-      if opponent.effects[PBEffects::Yawn]==0 && @battle.pbRandom(10)<5
+      if opponent.effects[PBEffects::Yawn]<=0 && @battle.pbRandom(10)<5
         opponent.effects[PBEffects::Yawn]=2
         @battle.pbAnimation(getConst(PBMoves,:YAWN),attacker,nil) rescue nil
         @battle.pbDisplay(_INTL("¡{1} adormeció a {2}!",attacker.pbThis,opponent.pbThis(true)))
@@ -1072,7 +1064,7 @@ class PokeBattle_MaxMove < PokeBattle_Move
     when "GMAXSTEELSURGE"   # Coperajah Gigantamax
       if opponent && !attacker.pbOpposingSide.effects[PBEffects::Steelsurge]
         attacker.pbOpposingSide.effects[PBEffects::Steelsurge] = true
-        @battle.pbAnimation(getConst(PBMoves,:STEALTHROCK),opponent,nil) rescue nil
+        @battle.pbAnimation(getConst(PBMoves,:STEALTHROCK),attacker,nil) rescue nil
         if !@battle.pbIsOpposing?(attacker.index)
           @battle.pbDisplay(_INTL("¡El equipo enemigo está rodeado de piezas de acero puntiagudas!"))
         else
