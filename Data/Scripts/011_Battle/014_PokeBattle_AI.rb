@@ -1537,40 +1537,48 @@ class PokeBattle_Battle
         score*=0.1 if opponent.pbHasMove?(getID(PBMoves,:TRICKROOM))
       end
     when 0x5C # Mimic
-      blacklist=[
-         0x02,   # Struggle
-         0x14,   # Chatter
-         0x5C,   # Mimic
-         0x5D,   # Sketch
-         0xB6    # Metronome
-      ]
-      if attacker.effects[PBEffects::Transform] ||
-         opponent.lastMoveUsed<=0 ||
-         isConst?(PBMoveData.new(opponent.lastMoveUsed).type,PBTypes,:SHADOW) ||
-         blacklist.include?(PBMoveData.new(opponent.lastMoveUsed).function)
-        score-=90
-      end
-      for i in attacker.moves
-        if i.id==opponent.lastMoveUsed
-          score-=90; break
+      if opponent.lastMoveUsed.is_a?(String) 
+        blacklist=[
+           0x02,   # Struggle
+           0x14,   # Chatter
+           0x5C,   # Mimic
+           0x5D,   # Sketch
+           0xB6    # Metronome
+        ]
+        if attacker.effects[PBEffects::Transform] ||
+           opponent.lastMoveUsed<=0 ||
+           isConst?(PBMoveData.new(opponent.lastMoveUsed).type,PBTypes,:SHADOW) ||
+           blacklist.include?(PBMoveData.new(opponent.lastMoveUsed).function)
+          score-=90
         end
+        for i in attacker.moves
+          if i.id==opponent.lastMoveUsed
+            score-=90; break
+          end
+        end
+      else
+        score-=100
       end
     when 0x5D # Sketch
-      blacklist=[
-         0x02,   # Struggle
-         0x14,   # Chatter
-         0x5D    # Sketch
-      ]
-      if attacker.effects[PBEffects::Transform] ||
-         opponent.lastMoveUsedSketch<=0 ||
-         isConst?(PBMoveData.new(opponent.lastMoveUsedSketch).type,PBTypes,:SHADOW) ||
-         blacklist.include?(PBMoveData.new(opponent.lastMoveUsedSketch).function)
-        score-=90
-      end
-      for i in attacker.moves
-        if i.id==opponent.lastMoveUsedSketch
-          score-=90; break
+      if opponent.lastMoveUsed.is_a?(String) 
+        blacklist=[
+           0x02,   # Struggle
+           0x14,   # Chatter
+           0x5D    # Sketch
+        ]
+        if attacker.effects[PBEffects::Transform] ||
+           opponent.lastMoveUsedSketch<=0 ||
+           isConst?(PBMoveData.new(opponent.lastMoveUsedSketch).type,PBTypes,:SHADOW) ||
+           blacklist.include?(PBMoveData.new(opponent.lastMoveUsedSketch).function)
+          score-=90
         end
+        for i in attacker.moves
+          if i.id==opponent.lastMoveUsedSketch
+            score-=90; break
+          end
+        end
+      else
+        score-=100
       end
     when 0x5E # Conversion       
       if isConst?(attacker.ability,PBAbilities,:MULTITYPE) || isConst?(attacker.ability,PBAbilities,:RKSSYSTEM)
@@ -1590,12 +1598,12 @@ class PokeBattle_Battle
       if isConst?(attacker.ability,PBAbilities,:MULTITYPE) || isConst?(attacker.ability,PBAbilities,:RKSSYSTEM)
         score-=90
       elsif opponent.lastMoveUsed<=0 ||
-         PBTypes.isPseudoType?(PBMoveData.new(opponent.lastMoveUsed).type)
+         PBTypes.isPseudoType?(PBMoveData.new(opponent.lastMoveUsed).type) && !opponent.lastMoveUsed.is_a?(String) 
         score-=90
       else
         atype=-1
         for i in opponent.moves
-          if i.id==opponent.lastMoveUsed
+          if i.id==opponent.lastMoveUsed && !opponent.lastMoveUsed.is_a?(String) 
             atype=i.pbType(move.type,attacker,opponent); break
           end
         end
@@ -1754,7 +1762,7 @@ class PokeBattle_Battle
         if attack*1.5<spatk
           score-=60
         elsif skill>=PBTrainerAI.mediumSkill &&
-           opponent.lastMoveUsed>0
+           opponent.lastMoveUsed>0  && !opponent.lastMoveUsed.is_a?(String) 
           moveData=PBMoveData.new(opponent.lastMoveUsed)
           if moveData.basedamage>0 &&
              (USEMOVECATEGORY && moveData.category==2) ||
@@ -1771,7 +1779,7 @@ class PokeBattle_Battle
         spatk=pbRoughStat(attacker,PBStats::SPATK,skill)
         if attack>spatk*1.5
           score-=60
-        elsif skill>=PBTrainerAI.mediumSkill && opponent.lastMoveUsed>0
+        elsif skill>=PBTrainerAI.mediumSkill && opponent.lastMoveUsed>0 && !opponent.lastMoveUsed.is_a?(String) 
           moveData=PBMoveData.new(opponent.lastMoveUsed)
           if moveData.basedamage>0 &&
              (USEMOVECATEGORY && moveData.category==1) ||
@@ -1788,11 +1796,11 @@ class PokeBattle_Battle
       else
         score*=0.8          
       end
-      score*=0.7 if PBMoveData.new(attacker.lastMoveUsed).function==0x71
+      score*=0.7 if PBMoveData.new(attacker.lastMoveUsed).function==0x71 && !opponent.lastMoveUsed.is_a?(String) 
       miniscore = attacker.hp*(1.0/attacker.totalhp)
       score*=miniscore
       score*=0.3 if opponent.spatk<opponent.attack
-      score*=1.1 if PBMoveData.new(attacker.lastMoveUsed).function==0x71
+      score*=1.1 if PBMoveData.new(attacker.lastMoveUsed).function==0x71 && !opponent.lastMoveUsed.is_a?(String) 
     when 0x73 # Metal Burst
       score-=90 if opponent.effects[PBEffects::HyperBeam]>0
     when 0x74 # Flame Burst 
@@ -2000,7 +2008,7 @@ class PokeBattle_Battle
         end
       end
     when 0x9F # Judgement
-      move.type = move.pbType(move.type,attacker,opponent)
+      move.type = move.pbType(move.type,attacker,opponent) rescue nil
     when 0xA0 # Frost Breath
       thisinitial = score
       if !opponent.hasWorkingAbility(:BATTLEARMOR) && !opponent.hasWorkingAbility(:SHELLARMOR) && !attacker.effects[PBEffects::LaserFocus]
@@ -2169,20 +2177,28 @@ class PokeBattle_Battle
          score*=1.2
       end 
     when 0xAE # Mirror Move
-      if skill>=PBTrainerAI.highSkill
-        score-=100 if opponent.lastMoveUsed<=0 ||
-                     (PBMoveData.new(opponent.lastMoveUsed).flags&0x10)==0 # flag e: Copyable by Mirror Move
-      end
-      if (attacker.pbSpeed<pbRoughStat(opponent,PBStats::SPEED,skill)) ^ (@trickroom!=0)
-        score*=0.5
+      if !opponent.lastMoveUsed.is_a?(String) 
+        if skill>=PBTrainerAI.highSkill
+          score-=100 if opponent.lastMoveUsed<=0 ||
+                       (PBMoveData.new(opponent.lastMoveUsed).flags&0x10)==0 # flag e: Copyable by Mirror Move
+        end
+        if (attacker.pbSpeed<pbRoughStat(opponent,PBStats::SPEED,skill)) ^ (@trickroom!=0)
+          score*=0.5
+        end
+      else
+        score-=100
       end
     when 0xAF # Copycat
-      if skill>=PBTrainerAI.highSkill
-        score-=100 if opponent.lastMoveUsed<=0 ||
-                     (PBMoveData.new(opponent.lastMoveUsed).flags&0x10)==0 # flag e: Copyable by Mirror Move
-      end
-      if (attacker.pbSpeed<pbRoughStat(opponent,PBStats::SPEED,skill)) ^ (@trickroom!=0)
-        score*=0.5
+      if !opponent.lastMoveUsed.is_a?(String) 
+        if skill>=PBTrainerAI.highSkill
+          score-=100 if opponent.lastMoveUsed<=0 ||
+                       (PBMoveData.new(opponent.lastMoveUsed).flags&0x10)==0 # flag e: Copyable by Mirror Move
+        end
+        if (attacker.pbSpeed<pbRoughStat(opponent,PBStats::SPEED,skill)) ^ (@trickroom!=0)
+          score*=0.5
+        end
+      else
+        score-=100
       end
     when 0xB0
     when 0xB1
@@ -2211,7 +2227,7 @@ class PokeBattle_Battle
       ospeed=pbRoughStat(opponent,PBStats::SPEED,skill)
       if opponent.effects[PBEffects::Encore]>0
         score-=90
-      elsif aspeed>ospeed
+      elsif aspeed>ospeed && !opponent.lastMoveUsed.is_a?(String)
         if opponent.lastMoveUsed<=0
           score-=90
         else
@@ -2244,7 +2260,8 @@ class PokeBattle_Battle
     when 0xCD
     when 0xCE
     when 0xCF, 0x276, 0x246, 0xD0 # Multiturn
-      if opponent.effects[PBEffects::MultiTurn] == 0 && opponent.effects[PBEffects::Substitute] <= 0
+      if opponent.effects[PBEffects::MultiTurn] == 0 && 
+         (!opponent.effects[PBEffects::Substitute] || opponent.effects[PBEffects::Substitute] <= 0)
         score *= 1.2
       
         ministat = [PBStats::ATTACK, PBStats::SPATK, PBStats::SPEED, PBStats::DEFENSE, PBStats::SPDEF].inject(0) do |sum, stat|
@@ -2606,7 +2623,7 @@ class PokeBattle_Battle
       elsif bad_items.any? { |item| attacker.hasWorkingItem(item)}
         score+=50  
       elsif attacker.item==0 && opponent.item!=0
-        score-=30 if PBMoveData.new(attacker.lastMoveUsed).function==0xF2 # Trick/Switcheroo
+        score-=30 if PBMoveData.new(attacker.lastMoveUsed).function==0xF2 && !attacker.lastMoveUsed.is_a?(String)# Trick/Switcheroo
       end
     when 0xF3 # Bestow
       if attacker.item==0 || opponent.item!=0
@@ -3101,8 +3118,7 @@ class PokeBattle_Battle
         score+=avg/3
       end
     when 0x10E # Spite
-      score += 20 if attacker.isSpecies?(:GYARADOS) #PARA EL JEFE
-      if opponent.lastMoveUsed != 0
+      if opponent.lastMoveUsed != 0 && !opponent.lastMoveUsed.is_a?(String)
         moveData=PBMoveData.new(opponent.lastMoveUsed)
         typemod=pbTypeModifier(moveData.type,attacker,opponent)
         if moveData.basedamage == 0 
@@ -3799,8 +3815,6 @@ class PokeBattle_Battle
           score-=90 # Because it will fail here
           score=0 if skill>=PBTrainerAI.bestSkill
         end
-      when 0x254 # Revival blessing
-        score=0 # La IA no debe ni puede usarlo.
       end
     # A score of 0 here means it should absolutely not be used
     return score if score<=0
@@ -3986,7 +4000,11 @@ class PokeBattle_Battle
           end
         end
         # Convert damage to proportion of opponent's remaining HP
-        basedamage=(basedamage*100.0/opponent.hp)
+        if opponent.hp > 0
+          basedamage=(basedamage*100.0/opponent.hp)
+        else
+          basedamage=0  # o 100, dependiendo de tu lógica
+        end
         # Don't prefer weak attacks
         #basedamage/=2 if basedamage<40
         # Prefer damaging attack if level difference is significantly high
@@ -3998,7 +4016,7 @@ class PokeBattle_Battle
         score=score.round
         oldscore=score
         score+=basedamage
-        PBDebug.log("[AI] #{PBMoves.getName(move.id)} damage calculated (#{realDamage}=>#{basedamage}% of target's #{opponent.hp} HP), score change #{oldscore}=>#{score}")
+        PBDebug.log("[AI] #{PBMoves.getName(move.id)} damage calculated (#{realDamage}=>#{basedamage}% of target's #{opponent.hp} HP), score change #{oldscore}=>#{score}") rescue nil
       end
     else
       # Don't prefer attacks which don't deal damage
@@ -4759,6 +4777,7 @@ class PokeBattle_Battle
       end
     end
     # Main damage calculation
+    defense = defense == 0 ? 1 : defense
     damage=(((2.0*attacker.level/5+2).floor*basedamage*atk/defense).floor/50).floor+2 if basedamage >= 0
     # Multi-targeting attacks
     if skill>=PBTrainerAI.highSkill
@@ -5227,7 +5246,7 @@ class PokeBattle_Battle
         end
         if preferredMoves.length>0
           i=preferredMoves[pbAIRandom(preferredMoves.length)]
-          PBDebug.log("[AI] Prefer #{PBMoves.getName(attacker.moves[i].id)}")
+          PBDebug.log("[AI] Prefer #{PBMoves.getName(attacker.moves[i].id)}") rescue nil
           pbRegisterMove(index,i,false)
           target=targets[i] if targets
           pbRegisterTarget(index,target) if @doublebattle && target>=0
@@ -5311,6 +5330,13 @@ class PokeBattle_Battle
     return true if @battlers[index].pokemon.tera_ace 
   end
 
+  def pbEnemyShouldDynamax?(index)
+    if pbCanDynamax?(index) && @battlers[index].pokemon.max_ace 
+      return true
+    end
+    return false
+  end
+  
 ################################################################################
 # Decide whether the opponent should use an item on the Pokémon.
 ################################################################################
@@ -5395,7 +5421,7 @@ class PokeBattle_Battle
           notheal = true if battler.hasWorkingAbility(:QUICKFEET) || battler.hasWorkingAbility(:GUTS)
         end
         return i if !hashpitem && notheal == true && 
-                    (battler.status>0 || battler.effects[PBEffects::Confusion]>0)
+                    (battler.status>0 && battler.effects[PBEffects::Confusion]>0)
                     
       elsif isConst?(i,PBItems,:XATTACK) ||
             isConst?(i,PBItems,:XDEFEND) ||
@@ -5439,6 +5465,7 @@ class PokeBattle_Battle
         opponent=@battlers[index].pbOppositeOpposing
         opponent=opponent.pbPartner if opponent.isFainted?
         if !opponent.isFainted? && opponent.lastMoveUsed>0 && 
+           !opponent.lastMoveUsed.is_a?(String) &&
            (opponent.level-@battlers[index].level).abs<=6
           move=PBMoveData.new(opponent.lastMoveUsed)
           typemod=pbTypeModifier(move.type,@battlers[index],@battlers[index])
@@ -5644,10 +5671,11 @@ class PokeBattle_Battle
       return if pbEnemyShouldUseItem?(index)
       return if pbEnemyShouldWithdraw?(index)
       return if pbAutoFightMenu(index)
-      pbRegisterMegaEvolution(index) if pbEnemyShouldMegaEvolve?(index)
-      pbRegisterUltraBurst(index) if pbEnemyShouldUltraBurst?(index)
+      pbRegisterMegaEvolution(index)   if pbEnemyShouldMegaEvolve?(index)
+      pbRegisterUltraBurst(index)      if pbEnemyShouldUltraBurst?(index)
       return pbChooseEnemyZMove(index) if pbEnemyShouldZMove?(index)
-      pbRegisterTeraCristal(index) if fpEnemyShouldTeraCristal?(index)
+      pbRegisterTeraCristal(index)     if fpEnemyShouldTeraCristal?(index)
+      pbRegisterDynamax(index)         if pbEnemyShouldDynamax?(index)
       pbChooseMoves(index)
     end
   end
