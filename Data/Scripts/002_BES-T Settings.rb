@@ -80,33 +80,38 @@ MAX_ORB_ENERGY=1 #Energía máxima del teraorbe al inicio de la partida.
 #Puedes aumentarla durante el progreso del juego con: pbUpgradeTeraorb(cantidad de usos)
 
 #Tonos de cada teratipo.
-TERATONES=[Tone.new(142,143,107,64),#Normal
-  Tone.new(143,11,1,64),#Lucha
-  Tone.new(93,87,143,64),#Volador
-  Tone.new(112,10,143,64),#Veneno
-  Tone.new(143,71,0,64),#Tierra
-  Tone.new(143,103,34,64),#Roca
-  Tone.new(157,196,0,64),#Bicho
-  Tone.new(76,0,117,64),#Fantasma
-  Tone.new(128,128,128,64),#Metal
-  Tone.new(0,0,0,0),#¿¿??
-  Tone.new(245,53,0,64),#Fuego
-  Tone.new(0,24,245,64),#Agua
-  Tone.new(22,156,2,64),#Planta
-  Tone.new(240,240,5,32),#Eléctrico
-  Tone.new(255,15,119,64),#Psíquico
-  Tone.new(15,255,235,64),#Hielo
-  Tone.new(58,15,255,64),#Dragón
-  Tone.new(53,5,78,64),#Siniestro
-  Tone.new(225,38,125,64),#Hada
-  Tone.new(0,0,0,0),#Oscuro
-  Tone.new(20,111,193,64)]#Astral
+  TERATONES=[Color.new(142,143,107,100),#Normal
+             Color.new(143,11,1,100),   #Lucha
+             Color.new(93,87,143,100),  #Volador
+             Color.new(112,10,143,100), #Veneno
+             Color.new(143,71,0,100),   #Tierra
+             Color.new(143,103,34,100), #Roca
+             Color.new(157,196,0,100),  #Bicho
+             Color.new(76,0,117,100),   #Fantasma
+             Color.new(128,128,128,100),#Metal
+             Color.new(0,0,0,0),       #¿¿??
+             Color.new(245,53,0,100),   #Fuego
+             Color.new(0,24,245,100),   #Agua
+             Color.new(22,156,2,100),   #Planta
+             Color.new(240,240,5,100),  #Eléctrico
+             Color.new(255,15,119,100), #Psíquico
+             Color.new(15,255,235,100), #Hielo
+             Color.new(58,15,255,100),  #Dragón
+             Color.new(53,5,78,100),    #Siniestro
+             Color.new(225,38,125,100), #Hada
+             Color.new(53,5,78,100),    #Oscuro
+             Color.new(20,111,193,100)] #Astral 
+           
+  DYNATONE     = [Color.new(217,29,71,128),Color.new(56,160,193,128)]
+  DYNAMAXMAPS  = [] # Mapas donde el dynamax estará activo.
 
   MEGARINGS=[:MEGARING,:MEGABRACELET,:MEGACUFF,:MEGACHARM]
   TERAORBS=[:TERAORB]
   ZRINGS=[:ZRING]
+  DBANDS=[:DYNAMAXBAND]
   
   def pbHasMegaRing
+    return false if !$PokemonBag
     for i in MEGARINGS
       next if !hasConst?(PBItems,i)
       return true if $PokemonBag.pbQuantity(i)>0
@@ -115,6 +120,7 @@ TERATONES=[Tone.new(142,143,107,64),#Normal
   end
 
   def pbHasZRing
+    return false if !$PokemonBag
     for i in ZRINGS
       next if !hasConst?(PBItems,i)
       return true if $PokemonBag.pbQuantity(i)>0
@@ -123,13 +129,25 @@ TERATONES=[Tone.new(142,143,107,64),#Normal
   end
 
   def pbHasTeraOrb
+    return false if !$PokemonBag
     for i in TERAORBS
       next if !hasConst?(PBItems,i)
       return true if $PokemonBag.pbQuantity(i)>0
     end
     return false
   end
-
+  
+  NO_DYNAMAX = NO_MEGA_EVOLUTION
+  
+  def pbHasDBand
+    return false if !$PokemonBag
+    for i in DBANDS
+      next if !hasConst?(PBItems,i)
+      return true if $PokemonBag.pbQuantity(i)>0
+    end
+    return false
+  end
+  
 #===============================================================================
 # Shadow Config
 # Te permite escoger nombres de evento donde no aparezcan sombras.

@@ -4776,6 +4776,10 @@ class PokeBattle_Battler
         user.pbAbilitiesOnSwitchIn(true)
       end
     end
+    # Añade el sprite de sustituto para relevo y compañia.
+    if user.effects[PBEffects::Substitute]>0
+      @battle.scene.pbShowSubstitute(user.index,true) rescue nil
+    end
     # Plegaria Vital
     if user.effects[PBEffects::RevivalBlessing]
       user.effects[PBEffects::RevivalBlessing]=false
