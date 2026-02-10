@@ -4988,7 +4988,7 @@ class PokeBattle_Battle
     evastage-=2 if @field.effects[PBEffects::Gravity]>0
     evastage=-6 if evastage<-6
     evastage=0 if evastage>0 && USENEWBATTLEMECHANICS &&
-                  attacker.hasWorkingAbility(:KEENEYE)
+                  (attacker.hasWorkingAbility(:KEENEYE)  || attacker.hasWorkingAbility(:ILLUMINATE))
     evastage=0 if opponent.effects[PBEffects::Foresight] ||
                   opponent.effects[PBEffects::MiracleEye] ||
                   @function==0xA9 || # Chip Away

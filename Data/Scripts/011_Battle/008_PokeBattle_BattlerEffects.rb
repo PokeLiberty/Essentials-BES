@@ -948,7 +948,7 @@ class PokeBattle_Battler
           @battle.pbDisplay(_INTL("¡{2} de {1} evita que baje su Defensa!",pbThis,abilityname)) if showMessages
           return false
         end
-        if stat==PBStats::ACCURACY && hasWorkingAbility(:KEENEYE)
+        if stat==PBStats::ACCURACY && (hasWorkingAbility(:KEENEYE) || hasWorkingAbility(:ILLUMINATE))
           abilityname=PBAbilities.getName(self.ability)
           @battle.pbDisplay(_INTL("¡{2} de {1} evita que baje su precisión!",pbThis,abilityname)) if showMessages
           return false
