@@ -554,7 +554,7 @@ class PokeBattle_Scene
         ret=cw.index
         @lastcmd[index]=ret
         return ret
-      elsif Input.trigger?(Input::B) && index==2 && @lastcmd[0]!=2 # Cancel
+      elsif Input.trigger?(Input::B) && index==2 # Cancel
         pbPlayDecisionSE()
         return -1
       elsif Input.trigger?(Input::L) && !pbInSafari? #Q

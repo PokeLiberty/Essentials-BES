@@ -2778,7 +2778,7 @@ class PokeBattle_Battle
           elsif pkmn.pbCanPoisonSpikes?(moldbreaker)
             PBDebug.log("[Peligro de entrada] #{pkmn.pbThis} activó las Púas Tóxicas")
             if pkmn.pbOwnSide.effects[PBEffects::ToxicSpikes]==2
-              pkmn.pbPoison(nil,_INTL("¡{1} ha sido gravemente envenenado por las Púas Tóxicas!",pkmn.pbThis,true))
+              pkmn.pbPoison(nil,_INTL("¡{1} ha sido gravemente envenenado por las Púas Tóxicas!",pkmn.pbThis),true)
             else
               pkmn.pbPoison(nil,_INTL("¡{1} ha sido envenenado por las Púas Tóxicas!",pkmn.pbThis))
             end
