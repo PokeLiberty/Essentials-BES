@@ -923,3 +923,150 @@ class ::Array
   #-----------------------------------------------------------------------------
 end
 
+################################################################################
+# Font installer - LEGACY NO FUNCIONA
+################################################################################
+module FontInstaller
+  # filenames of fonts to be installed
+  Filenames = [
+     'pkmnem.ttf',
+     'pkmnemn.ttf',
+     'pkmnems.ttf',
+     'pkmnrs.ttf',
+     'pkmndp.ttf',
+     'pkmnfl.ttf'
+  ]    
+  # names (not filenames) of fonts to be installed
+  Names = [
+    'Power Green',
+    'Power Green Narrow',
+    'Power Green Small',
+    'Power Red and Blue',
+    'Power Clear',
+    'Power Red and Green'
+  ]
+  # whether to notify player (via pop-up message) that fonts were installed
+  Notify = true
+  # location of fonts (relative to game folder)
+  Source = 'Fonts/'
+
+  def self.getFontFolder
+    fontfolder=MiniRegistry.get(MiniRegistry::HKEY_CURRENT_USER,
+       "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders",
+       "Fonts")
+    return fontfolder+"\\" if fontfolder
+    if ENV['SystemRoot']
+      return ENV['SystemRoot'] + '\\Fonts\\'
+    elsif ENV['windir']
+      return ENV['windir'] + '\\Fonts\\'
+    else
+      return '\\Windows\\Fonts\\'
+    end   
+  end
+
+  AFR = Win32API.new('gdi32', 'AddFontResource', ['P'], 'L')
+  WPS = Win32API.new('kernel32', 'WriteProfileString', ['P'] * 3, 'L')
+  SM = Win32API.new('user32', 'PostMessage', ['L'] * 4, 'L')
+  WM_FONTCHANGE = 0x001D
+  HWND_BROADCAST = 0xffff
+
+  def self.copy_file(src,dest)
+    File.open(src,  'rb') {|r|
+       File.open(dest, 'wb') {|w|
+          while s = r.read(4096)
+            w.write s
+          end
+       }
+    }
+  end
+
+  def self.pbResolveFont(name)
+    RTP.eachPathFor(Source+name) {|file|
+       return file if safeExists?(file)
+    }
+    return Source+name
+  end
+
+  def self.install
+    success = []
+    # Check if all fonts already exist
+    filesExist=true
+    fontsExist=true
+    dest=self.getFontFolder()
+    for i in 0...Names.size
+      if !safeExists?(dest + Filenames[i])
+        filesExist=false
+      end
+      if !Font.exist?(Names[i])
+        fontsExist=false
+      end
+    end
+    return if filesExist
+    # Check if all source fonts exist
+    exist=true
+    for i in 0...Names.size
+      if !RTP.exists?(Source + Filenames[i])
+        exist=false
+        break
+      end
+    end
+    return if !exist # Exit if not all source fonts exist
+    Kernel.pbMessage(_INTL("Una o más fuentes usadas en este juego no existen en el sistema.\1"))
+    Kernel.pbMessage(_INTL("El juego puede continuar, pero la presentación del texto del juego no será la óptima.\1"))
+    failed=false
+    for i in 0...Filenames.size
+      f = Filenames[i]
+      if safeExists?(dest + f) && !Font.exist?(Names[i])
+        File.delete(dest + f) rescue nil
+      end
+      # check if already installed...
+      if not safeExists?(dest + f)
+        # check to ensure font is in specified location...
+        if RTP.exists?(Source + f)
+          # copy file to fonts folder
+          succeeded=false
+          begin
+            copy_file(pbResolveFont(f), dest + f)
+            # add font resource
+            AFR.call(dest + f)
+            # add entry to win.ini/registry
+            WPS.call('Fonts', Names[i] + ' (TrueType)', f)
+            succeeded=safeExists?(dest + f)
+          rescue SystemCallError
+            # failed
+            succeeded=false
+          end
+          if succeeded
+            success.push(Names[i])
+          else
+            failed=true
+          end
+        end
+      else
+        success.push(Names[i]) # assume success
+      end
+    end
+    if success.length>0 # one or more fonts successfully installed
+      SM.call(HWND_BROADCAST,WM_FONTCHANGE,0,0)
+      if Notify
+        fonts = ''
+        success.each do |f|
+          fonts << f << ', '
+        end
+        if failed
+          Kernel.pbMessage(_INTL("Se instalaron exitosamente algunas de las fuentes.\1"))
+          Kernel.pbMessage(_INTL("Para instalar las otras fuentes, copie los archivos de la carpeta Fonts del juego a la carpeta Fonts del Panel de Control."))
+        else
+          Kernel.pbMessage(_INTL("Las fuentes se instalaron exitosamente.\1"))
+        end
+        if Kernel.pbConfirmMessage(_INTL("¿Quieres reiniciar el juego para aplicar los cambios?"))
+          a = Thread.new { system('Game') }
+          exit
+        end
+      end
+    else
+      # No fonts were installed.
+      Kernel.pbMessage(_INTL("Para instalar las fuentes apropiadas, copie los archivos de la carpeta Fonts del juego a la carpeta Fonts del Panel de Control."))
+    end
+  end
+end

@@ -203,42 +203,56 @@ end
 
 
 class PokemonLoad
+  attr_accessor :scene
+  attr_accessor :savefile
+  attr_accessor :trainer
+  attr_accessor :framecount
+  attr_accessor :showContinue
+
   def initialize(scene)
-    @scene=scene
+    @scene = scene
+    @savefile = RTP.getSaveFileName("Game.rxdata")
+    @trainer = nil
+    @framecount = 0
+    @showContinue = false
   end
 
-  def pbTryLoadFile(savefile)
-    trainer=nil
-    framecount=nil
-    game_system=nil
-    pokemonSystem=nil
-    mapid=nil
-    File.open(savefile){|f|
-       trainer=Marshal.load(f)
-       framecount=Marshal.load(f)
-       game_system=Marshal.load(f)
-       pokemonSystem=Marshal.load(f)
-       mapid=Marshal.load(f)
+  def pbTryLoadFile(savefile, backup = false)
+    trainer = nil
+    framecount = nil
+    game_system = nil
+    pokemonSystem = nil
+    mapid = nil
+    time = nil
+    File.open(savefile) { |f|
+      if backup
+        Marshal.load(f)
+      end
+      trainer = Marshal.load(f)
+      framecount = Marshal.load(f)
+      game_system = Marshal.load(f)
+      pokemonSystem = Marshal.load(f)
+      mapid = Marshal.load(f)
+      time = Marshal.load(f) rescue nil
     }
     raise "Archivo corrupto" if !trainer.is_a?(PokeBattle_Trainer)
     raise "Archivo corrupto" if !framecount.is_a?(Numeric)
     raise "Archivo corrupto" if !game_system.is_a?(Game_System)
     raise "Archivo corrupto" if !pokemonSystem.is_a?(PokemonSystem)
     raise "Archivo corrupto" if !mapid.is_a?(Numeric)
-    return [trainer,framecount,game_system,pokemonSystem,mapid]
+    return [trainer, framecount, game_system, pokemonSystem, mapid, time]
   end
 
   def pbStartDeleteScreen
-    savefile=RTP.getSaveFileName("Game.rxdata")
     @scene.pbStartDeleteScene
     @scene.pbStartScene2
-    if safeExists?(savefile)
+    if safeExists?(@savefile)
       if Kernel.pbConfirmMessageSerious(_INTL("¿Borrar todos los datos guardados?"))
         Kernel.pbMessage(_INTL("Una vez que los datos sean borrados, no hay forma de recuperarlos.\1"))
         if Kernel.pbConfirmMessageSerious(_INTL("¿Borrar los datos guardados de todos modos?"))
           Kernel.pbMessage(_INTL("Borrando todos los datos.<br>No apagues la consola.\\wtnp[0]"))
-          begin; File.delete(savefile); rescue; end
-          begin; File.delete(savefile+".bak"); rescue; end
+          begin; File.delete(@savefile); rescue; end
+          begin; File.delete(@savefile + ".bak"); rescue; end
           Kernel.pbMessage(_INTL("El archivo guardado fue borrado."))
         end
       end
@@ -246,47 +260,43 @@ class PokemonLoad
       Kernel.pbMessage(_INTL("No se encontró ningún archivo guardado."))
     end
     @scene.pbEndScene
-    $scene=pbCallTitle
+    $scene = pbCallTitle
   end
 
   def pbStartLoadScreen
-    $PokemonTemp   = PokemonTemp.new
-    $game_temp     = Game_Temp.new
-    $game_system   = Game_System.new
+    $PokemonTemp = PokemonTemp.new
+    $game_temp = Game_Temp.new
+    $game_system = Game_System.new
     $PokemonSystem = PokemonSystem.new if !$PokemonSystem
-    cmdContinue    = -1
-    cmdNewGame     = -1
-    cmdOption      = -1
-    cmdLanguage    = -1
-    cmdMysteryGift = -1
-    cmdQuit        = -1
-    commands       = []
-    savefile = RTP.getSaveFileName("Game.rxdata")
+    
+    pbLoadMessages("Data/"+LANGUAGES[$PokemonSystem.language][1]) if $PokemonSystem.language
+    
+    commands = []
+    command_data = {}
+
     #FontInstaller.install #DISABLED - BES
     data_system = pbLoadRxData("Data/System")
-    mapfile=sprintf("Data/Map%03d.rxdata",data_system.start_map_id)
-    if data_system.start_map_id==0 || !pbRgssExists?(mapfile)
+    mapfile = sprintf("Data/Map%03d.rxdata", data_system.start_map_id)
+    if data_system.start_map_id == 0 || !pbRgssExists?(mapfile)
       Kernel.pbMessage(_INTL("No se estableció una posición inicial en el mapa.\1"))
       Kernel.pbMessage(_INTL("El juego no puede continuar."))
       @scene.pbEndScene
-      $scene=nil
+      $scene = nil
       return
     end
-    if safeExists?(savefile)
-      trainer=nil
-      framecount=0
-      mapid=0
-      showContinue=false
-      haveBackup=false
+    mapid = 0
+    haveBackup = false
+    # Intentar cargar archivo guardado
+    if safeExists?(@savefile)
       begin
-        trainer, framecount, $game_system, $PokemonSystem, mapid=pbTryLoadFile(savefile)
-        showContinue=true
+        @trainer, @framecount, $game_system, $PokemonSystem, mapid = pbTryLoadFile(@savefile)
+        @showContinue = true
       rescue
-        if safeExists?(savefile+".bak")
+        if safeExists?(@savefile + ".bak")
           begin
-            trainer, framecount, $game_system, $PokemonSystem, mapid=pbTryLoadFile(savefile+".bak")
-            haveBackup=true
-            showContinue=true
+            @trainer, @framecount, $game_system, $PokemonSystem, mapid = pbTryLoadFile(@savefile + ".bak")
+            haveBackup = true
+            @showContinue = true
           rescue
           end
         end
@@ -297,319 +307,261 @@ class PokemonLoad
           if !Kernel.pbConfirmMessageSerious(_INTL("¿Quieres borrar el archivo guardado para iniciar uno nuevo?"))
             raise "scss error - Corrupted or incompatible save file."
           end
-          begin; File.delete(savefile); rescue; end
-          begin; File.delete(savefile+".bak"); rescue; end
-          $game_system=Game_System.new
-          $PokemonSystem=PokemonSystem.new if !$PokemonSystem
+          begin; File.delete(@savefile); rescue; end
+          begin; File.delete(@savefile + ".bak"); rescue; end
+          $game_system = Game_System.new
+          $PokemonSystem = PokemonSystem.new if !$PokemonSystem
           Kernel.pbMessage(_INTL("El archivo guardado fue borrado."))
         end
       end
-      if showContinue
-        if !haveBackup
-          begin; File.delete(savefile+".bak"); rescue; end
-        end
+      if @showContinue && !haveBackup
+        begin; File.delete(@savefile + ".bak"); rescue; end
       end
-      commands[cmdContinue=commands.length]=_INTL("Continuar") if showContinue
-      commands[cmdNewGame=commands.length]=_INTL("Partida Nueva")
-      commands[cmdMysteryGift=commands.length]=_INTL("Regalo Misterioso") if (trainer.mysterygiftaccess rescue false) || MYSTERYGIFTALWAYSSHOW
-    else
-      commands[cmdNewGame=commands.length]=_INTL("Partida Nueva")
     end
-    commands[cmdOption=commands.length]=_INTL("Opciones")
-    commands[cmdLanguage=commands.length]=_INTL("Idioma") if LANGUAGES.length>=2
-    commands[cmdQuit=commands.length]=_INTL("Salir del Juego")
-    @scene.pbStartScene(commands,showContinue,trainer,framecount,mapid)
-    @scene.pbSetParty(trainer) if showContinue
+    # Construir comandos usando MenuHandlers
+    MenuHandlers.each_available(:load_screen, self) do |option, hash, name|
+      commands.push(name)
+      command_data[commands.length - 1] = hash
+    end
+    @scene.pbStartScene(commands, @showContinue, @trainer, @framecount, mapid)
+    @scene.pbSetParty(@trainer) if @showContinue
     @scene.pbStartScene2
     $ItemData = readItemList("Data/items.dat")
     loop do
-      command=@scene.pbChoose(commands)
-      if cmdContinue>=0 && command==cmdContinue
-        unless safeExists?(savefile)
-          pbPlayBuzzerSE()
-          next
-        end
-        @scene.pbEndScene
-        metadata=nil
-        File.open(savefile){|f|
-           Marshal.load(f) # Trainer already loaded
-           $Trainer             = trainer
-           Graphics.frame_count = Marshal.load(f)
-           $game_system         = Marshal.load(f)
-           Marshal.load(f) # PokemonSystem already loaded
-           Marshal.load(f) # Current map id no longer needed
-           $game_switches       = Marshal.load(f)
-           $game_variables      = Marshal.load(f)
-           $game_self_switches  = Marshal.load(f)
-           $game_screen         = Marshal.load(f)
-           $MapFactory          = Marshal.load(f)
-           $game_map            = $MapFactory.map
-           $game_player         = Marshal.load(f)
-           $PokemonGlobal       = Marshal.load(f)
-           metadata             = Marshal.load(f)
-           $PokemonBag          = Marshal.load(f)
-           $PokemonStorage      = Marshal.load(f)
-           magicNumberMatches=false
-           if $data_system.respond_to?("magic_number")
-             magicNumberMatches=($game_system.magic_number==$data_system.magic_number)
-           else
-             magicNumberMatches=($game_system.magic_number==$data_system.version_id)
-           end
-           if !magicNumberMatches || $PokemonGlobal.safesave
-             if pbMapInterpreterRunning?
-               pbMapInterpreter.setup(nil,0)
-             end
-             begin
-               $MapFactory.setup($game_map.map_id) # calls setMapChanged
-             rescue Errno::ENOENT
-               if $DEBUG
-                 Kernel.pbMessage(_INTL("No se encontró el mapa {1}.",$game_map.map_id))
-                 map=pbWarpToMap()
-                 if map
-                   $MapFactory.setup(map[0])
-                   $game_player.moveto(map[1],map[2])
-                 else
-                   $game_map=nil
-                   $scene=nil
-                   return
-                 end
-               else
-                 $game_map=nil
-                 $scene=nil
-                 Kernel.pbMessage(_INTL("No se encontró el mapa. El juego no puede continuar."))
-               end
-             end
-             $game_player.center($game_player.x, $game_player.y)
-           else
-             $MapFactory.setMapChanged($game_map.map_id)
-           end
-        }
-        if !$game_map.events # Map wasn't set up
-          $game_map=nil
-          $scene=nil
-          Kernel.pbMessage(_INTL("El mapa está corrupto. El juego no puede continuar."))
-          return
-        end
-        $PokemonMap=metadata
-        $PokemonEncounters=PokemonEncounters.new
-        $PokemonEncounters.setup($game_map.map_id)
-        pbAutoplayOnSave
-        $game_map.update
-        $PokemonMap.updateMap
-        $scene = Scene_Map.new
-        return
-      elsif cmdNewGame>=0 && command==cmdNewGame
-        @scene.pbEndScene
-        if $game_map && $game_map.events
-          for event in $game_map.events.values
-            event.clear_starting
-          end
-        end
-        $game_temp.common_event_id=0 if $game_temp
-        $scene               = Scene_Map.new
-        Graphics.frame_count = 0
-        $game_system         = Game_System.new
-        $game_switches       = Game_Switches.new
-        $game_variables      = Game_Variables.new
-        $game_self_switches  = Game_SelfSwitches.new
-        $game_screen         = Game_Screen.new
-        $game_player         = Game_Player.new
-        $PokemonMap          = PokemonMapMetadata.new
-        $PokemonGlobal       = PokemonGlobalMetadata.new
-        $PokemonStorage      = PokemonStorage.new
-        $PokemonEncounters   = PokemonEncounters.new
-        $PokemonTemp.begunNewGame=true
-        $data_system         = pbLoadRxData("Data/System")
-        $MapFactory          = PokemonMapFactory.new($data_system.start_map_id) # calls setMapChanged
-        $game_player.moveto($data_system.start_x, $data_system.start_y)
-        $game_player.refresh
-        $game_map.autoplay
-        $game_map.update
-        return
-      elsif cmdMysteryGift>=0 && command==cmdMysteryGift
-        pbFadeOutIn(99999){
-           trainer=pbDownloadMysteryGift(trainer)
-        }
-      elsif cmdOption>=0 && command==cmdOption
-        scene=PokemonOptionScene.new
-        screen=PokemonOption.new(scene)
-        pbFadeOutIn(99999) { screen.pbStartScreen(true) }
-      elsif cmdLanguage>=0 && command==cmdLanguage
-        @scene.pbEndScene
-        $PokemonSystem.language=pbChooseLanguage
-        pbLoadMessages("Data/"+LANGUAGES[$PokemonSystem.language][1])
-        savedata=[]
-        if safeExists?(savefile)
-          File.open(savefile,"rb"){|f|
-             15.times { savedata.push(Marshal.load(f)) }
-          }
-          savedata[3]=$PokemonSystem
-          begin
-            File.open(RTP.getSaveFileName("Game.rxdata"),"wb"){|f|
-               15.times {|i| Marshal.dump(savedata[i],f) }
-            }
-          rescue
-          end
-        end
-        $scene=pbCallTitle
-        return
-      elsif cmdQuit>=0 && command==cmdQuit
-        @scene.pbEndScene
-        $scene=nil
-        return
-      end
+      command = @scene.pbChoose(commands)
+      break if command < 0
+      result = command_data[command]["effect"].call(self)
+      return if result == :exit
     end
     @scene.pbEndScene
-    return
   end
-end
-
-
-
-################################################################################
-# Font installer
-################################################################################
-module FontInstaller
-  # filenames of fonts to be installed
-  Filenames = [
-     'pkmnem.ttf',
-     'pkmnemn.ttf',
-     'pkmnems.ttf',
-     'pkmnrs.ttf',
-     'pkmndp.ttf',
-     'pkmnfl.ttf'
-  ]    
-  # names (not filenames) of fonts to be installed
-  Names = [
-    'Power Green',
-    'Power Green Narrow',
-    'Power Green Small',
-    'Power Red and Blue',
-    'Power Clear',
-    'Power Red and Green'
-  ]
-  # whether to notify player (via pop-up message) that fonts were installed
-  Notify = true
-  # location of fonts (relative to game folder)
-  Source = 'Fonts/'
-
-  def self.getFontFolder
-    fontfolder=MiniRegistry.get(MiniRegistry::HKEY_CURRENT_USER,
-       "Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Shell Folders",
-       "Fonts")
-    return fontfolder+"\\" if fontfolder
-    if ENV['SystemRoot']
-      return ENV['SystemRoot'] + '\\Fonts\\'
-    elsif ENV['windir']
-      return ENV['windir'] + '\\Fonts\\'
-    else
-      return '\\Windows\\Fonts\\'
-    end   
-  end
-
-  AFR = Win32API.new('gdi32', 'AddFontResource', ['P'], 'L')
-  WPS = Win32API.new('kernel32', 'WriteProfileString', ['P'] * 3, 'L')
-  SM = Win32API.new('user32', 'PostMessage', ['L'] * 4, 'L')
-  WM_FONTCHANGE = 0x001D
-  HWND_BROADCAST = 0xffff
-
-  def self.copy_file(src,dest)
-    File.open(src,  'rb') {|r|
-       File.open(dest, 'wb') {|w|
-          while s = r.read(4096)
-            w.write s
-          end
-       }
-    }
-  end
-
-  def self.pbResolveFont(name)
-    RTP.eachPathFor(Source+name) {|file|
-       return file if safeExists?(file)
-    }
-    return Source+name
-  end
-
-  def self.install
-    success = []
-    # Check if all fonts already exist
-    filesExist=true
-    fontsExist=true
-    dest=self.getFontFolder()
-    for i in 0...Names.size
-      if !safeExists?(dest + Filenames[i])
-        filesExist=false
-      end
-      if !Font.exist?(Names[i])
-        fontsExist=false
-      end
+  
+  # Método auxiliar para cargar partida.
+  def pbLoadGame(savefile, is_backup = false)
+    unless safeExists?(savefile)
+      pbPlayBuzzerSE()
+      return false
     end
-    return if filesExist
-    # Check if all source fonts exist
-    exist=true
-    for i in 0...Names.size
-      if !RTP.exists?(Source + Filenames[i])
-        exist=false
-        break
+    @scene.pbEndScene
+    metadata = nil
+    
+    File.open(savefile) { |f|
+      if is_backup
+        Marshal.load(f) # Backup data already loaded
       end
-    end
-    return if !exist # Exit if not all source fonts exist
-    Kernel.pbMessage(_INTL("Una o más fuentes usadas en este juego no existen en el sistema.\1"))
-    Kernel.pbMessage(_INTL("El juego puede continuar, pero la presentación del texto del juego no será la óptima.\1"))
-    failed=false
-    for i in 0...Filenames.size
-      f = Filenames[i]
-      if safeExists?(dest + f) && !Font.exist?(Names[i])
-        File.delete(dest + f) rescue nil
-      end
-      # check if already installed...
-      if not safeExists?(dest + f)
-        # check to ensure font is in specified location...
-        if RTP.exists?(Source + f)
-          # copy file to fonts folder
-          succeeded=false
-          begin
-            copy_file(pbResolveFont(f), dest + f)
-            # add font resource
-            AFR.call(dest + f)
-            # add entry to win.ini/registry
-            WPS.call('Fonts', Names[i] + ' (TrueType)', f)
-            succeeded=safeExists?(dest + f)
-          rescue SystemCallError
-            # failed
-            succeeded=false
-          end
-          if succeeded
-            success.push(Names[i])
-          else
-            failed=true
-          end
-        end
+      Marshal.load(f) # Trainer already loaded
+      $Trainer             = @trainer
+      Graphics.frame_count = Marshal.load(f)
+      $game_system         = Marshal.load(f)
+      Marshal.load(f) # PokemonSystem already loaded
+      Marshal.load(f) # Current map id no longer needed
+      $game_switches        = Marshal.load(f)
+      $game_variables       = Marshal.load(f)
+      $game_self_switches   = Marshal.load(f)
+      $game_screen          = Marshal.load(f)
+      $MapFactory           = Marshal.load(f)
+      $game_map             = $MapFactory.map
+      $game_player          = Marshal.load(f)
+      $PokemonGlobal        = Marshal.load(f)
+      metadata              = Marshal.load(f)
+      $PokemonBag           = Marshal.load(f)
+      $PokemonStorage       = Marshal.load(f)
+      magicNumberMatches    = false
+      if $data_system.respond_to?("magic_number")
+        magicNumberMatches = ($game_system.magic_number == $data_system.magic_number)
       else
-        success.push(Names[i]) # assume success
+        magicNumberMatches = ($game_system.magic_number == $data_system.version_id)
       end
-    end
-    if success.length>0 # one or more fonts successfully installed
-      SM.call(HWND_BROADCAST,WM_FONTCHANGE,0,0)
-      if Notify
-        fonts = ''
-        success.each do |f|
-          fonts << f << ', '
+      if !magicNumberMatches || $PokemonGlobal.safesave
+        if pbMapInterpreterRunning?
+          pbMapInterpreter.setup(nil, 0)
         end
-        if failed
-          Kernel.pbMessage(_INTL("Se instalaron exitosamente algunas de las fuentes.\1"))
-          Kernel.pbMessage(_INTL("Para instalar las otras fuentes, copie los archivos de la carpeta Fonts del juego a la carpeta Fonts del Panel de Control."))
-        else
-          Kernel.pbMessage(_INTL("Las fuentes se instalaron exitosamente.\1"))
+        begin
+          $MapFactory.setup($game_map.map_id)
+        rescue Errno::ENOENT
+          if $DEBUG
+            Kernel.pbMessage(_INTL("No se encontró el mapa {1}.", $game_map.map_id))
+            map = pbWarpToMap()
+            if map
+              $MapFactory.setup(map[0])
+              $game_player.moveto(map[1], map[2])
+            else
+              $game_map = nil
+              $scene = nil
+              return :exit
+            end
+          else
+            $game_map = nil
+            $scene = nil
+            Kernel.pbMessage(_INTL("No se encontró el mapa. El juego no puede continuar."))
+          end
         end
-        if Kernel.pbConfirmMessage(_INTL("¿Quieres reiniciar el juego para aplicar los cambios?"))
-          a = Thread.new { system('Game') }
-          exit
-        end
+        $game_player.center($game_player.x, $game_player.y)
+      else
+        $MapFactory.setMapChanged($game_map.map_id)
       end
-    else
-      # No fonts were installed.
-      Kernel.pbMessage(_INTL("Para instalar las fuentes apropiadas, copie los archivos de la carpeta Fonts del juego a la carpeta Fonts del Panel de Control."))
+    }
+    $game_screen.start_tone_change(Tone.new(0,0,0,0), 20) if is_backup
+    if !$game_map.events
+      $game_map = nil
+      $scene = nil
+      Kernel.pbMessage(_INTL("El mapa está corrupto. El juego no puede continuar."))
+      return :exit
     end
+    $PokemonMap = metadata
+    $PokemonEncounters = PokemonEncounters.new
+    $PokemonEncounters.setup($game_map.map_id)
+    pbAutoplayOnSave
+    $game_map.update
+    $PokemonMap.updateMap
+    $scene = Scene_Map.new
+    return :exit
   end
 end
+
+#===============================================================================
+# MenuHandlers para la pantalla de carga
+#===============================================================================
+
+MenuHandlers.add(:load_screen, :continue, {
+  "name"      => _INTL("Continuar"),
+  "order"     => 10,
+  "condition" => proc { |screen| next screen.showContinue },
+  "effect"    => proc { |screen|
+    next screen.pbLoadGame(screen.savefile, false)
+  }
+})
+
+MenuHandlers.add(:load_screen, :new_game, {
+  "name"      => _INTL("Partida Nueva"),
+  "order"     => 20,
+  "effect"    => proc { |screen|
+    screen.scene.pbEndScene
+    if $game_map && $game_map.events
+      for event in $game_map.events.values
+        event.clear_starting
+      end
+    end
+    $game_temp.common_event_id = 0 if $game_temp
+    $scene = Scene_Map.new
+    Graphics.frame_count = 0
+    $game_system              = Game_System.new
+    $game_switches            = Game_Switches.new
+    $game_variables           = Game_Variables.new
+    $game_self_switches       = Game_SelfSwitches.new
+    $game_screen              = Game_Screen.new
+    $game_player              = Game_Player.new
+    $PokemonMap               = PokemonMapMetadata.new
+    $PokemonGlobal            = PokemonGlobalMetadata.new
+    $PokemonStorage           = PokemonStorage.new
+    $PokemonEncounters        = PokemonEncounters.new
+    $PokemonTemp.begunNewGame = true
+    $data_system              = pbLoadRxData("Data/System")
+    $MapFactory               = PokemonMapFactory.new($data_system.start_map_id)
+    $game_player.moveto($data_system.start_x, $data_system.start_y)
+    $game_player.refresh
+    $game_map.autoplay
+    $game_map.update
+    next :exit
+  }
+})
+
+MenuHandlers.add(:load_screen, :mystery_gift, {
+  "name"      => _INTL("Regalo Misterioso"),
+  "order"     => 30,
+  "condition" => proc { |screen|
+    next (screen.trainer && (screen.trainer.mysterygiftaccess rescue false)) || 
+         (defined?(MYSTERYGIFTALWAYSSHOW) && MYSTERYGIFTALWAYSSHOW)
+  },
+  "effect"    => proc { |screen|
+    pbFadeOutIn(99999) {
+      screen.trainer = pbDownloadMysteryGift(screen.trainer)
+    }
+    next false
+  }
+})
+
+MenuHandlers.add(:load_screen, :options, {
+  "name"      => _INTL("Opciones"),
+  "order"     => 40,
+  "effect"    => proc { |screen|
+    scene = PokemonOptionScene.new
+    optscreen = PokemonOption.new(scene)
+    pbFadeOutIn(99999) { optscreen.pbStartScreen(true) }
+    next false
+  }
+})
+
+MenuHandlers.add(:load_screen, :language, {
+  "name"      => _INTL("Idioma"),
+  "order"     => 50,
+  "condition" => proc { |screen| next defined?(LANGUAGES) && LANGUAGES.length >= 2 },
+  "effect"    => proc { |screen|
+    screen.scene.pbEndScene
+    $PokemonSystem.language = pbChooseLanguage
+    pbLoadMessages("Data/" + LANGUAGES[$PokemonSystem.language][1])
+    savedata = []
+    if safeExists?(screen.savefile)
+      File.open(screen.savefile, "rb") { |f|
+        15.times { savedata.push(Marshal.load(f)) }
+      }
+      savedata[3] = $PokemonSystem
+      begin
+        File.open(RTP.getSaveFileName("Game.rxdata"), "wb") { |f|
+          15.times { |i| Marshal.dump(savedata[i], f) }
+        }
+      rescue
+      end
+    end
+    $scene = pbCallTitle
+    next :exit
+  }
+})
+
+MenuHandlers.add(:load_screen, :quit, {
+  "name"      => _INTL("Salir del Juego"),
+  "order"     => 60,
+  "effect"    => proc { |screen|
+    screen.scene.pbEndScene
+    $scene = nil
+    next :exit
+  }
+})
+
+#Extra para compatibilizar el script de autosaves de Kyu, no funciona si no existe.
+MenuHandlers.add(:load_screen, :autosaves, {
+  "name"      => _INTL("Autoguardados"),
+  "order"     => 15,
+  "condition" => proc { |screen|
+    next unless defined?(selectAutosave)
+    next screen.showContinue || safeExists?(RTP.getSaveFileName("Backup0.rxdata"))
+  },
+  "effect"    => proc { |screen|
+    commands = []
+    for i in 0...10
+      file = RTP.getSaveFileName("Backup#{i}.rxdata")
+      if safeExists?(file)
+        data = nil
+        File.open(file) { |f|
+          data = Marshal.load(f)
+        }
+        if data.is_a?(String)
+          commands.push(data)
+          next
+        end
+      end
+      commands.push("----------")
+    end
+    
+    cmd = selectAutosave(commands)
+    if cmd == nil
+      next false
+    end
+    
+    savefile = RTP.getSaveFileName("Backup#{cmd}.rxdata")
+    screen.trainer, screen.framecount, $game_system, $PokemonSystem, mapid = screen.pbTryLoadFile(savefile, true)
+    $loading = true
+    
+    next screen.pbLoadGame(savefile, true)
+  }
+})
