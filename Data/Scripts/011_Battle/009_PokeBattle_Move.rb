@@ -191,6 +191,7 @@ class PokeBattle_Move
          !pbIsMultiHit && !pbTwoTurnAttack(attacker)
         exceptions=[0x6E,   # Esfuerzo
                     0xE0,   # Autodestru./Explosión
+                    0x202,  # Bruma Explosiva
                     0xE1,   # Sacrificio
                     0xF7]   # Lanzamiento
         if !exceptions.include?(@function)
