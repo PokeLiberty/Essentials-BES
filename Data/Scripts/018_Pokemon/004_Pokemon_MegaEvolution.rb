@@ -1641,10 +1641,10 @@ class PokeBattle_Pokemon
     next [88,137,172,44,74,115] if pokemon.form==1
     next
  },
- #"getAbilityList"=>proc{|pokemon|
- #   next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
- #   next
- #}, #No se sabe cual es la hab oficial.
+ "getAbilityList"=>proc{|pokemon|
+    next [[getID(PBAbilities,:BULLETPROOF),0]] if pokemon.form==1
+    next
+ },
  "getUnmegaForm"=>proc{|pokemon|
    next 0
  }
@@ -1659,10 +1659,10 @@ class PokeBattle_Pokemon
     next [75,69,72,159,125,134] if pokemon.form==1
     next
  },
- #"getAbilityList"=>proc{|pokemon|
- #   next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
- #   next
- #}, #No se sabe cual es la hab oficial.
+ "getAbilityList"=>proc{|pokemon|
+    next [[getID(PBAbilities,:LEVITATE),0]] if pokemon.form==1
+    next
+ },
  "getUnmegaForm"=>proc{|pokemon|
    next 0
  }
@@ -1678,10 +1678,10 @@ class PokeBattle_Pokemon
     next [72,145,67,132,153,71] if pokemon.form==2 #Greninja-Ash
     next
  },
- #"getAbilityList"=>proc{|pokemon|
- #   next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
- #   next
- #}, #No se sabe cual es la hab oficial.
+ "getAbilityList"=>proc{|pokemon|
+    next [[getID(PBAbilities,:PROTEAN),0]] if pokemon.form==1
+    next
+ },
  "getUnmegaForm"=>proc{|pokemon|
    next 0
  }
