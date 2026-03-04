@@ -1,10 +1,13 @@
+
 #===============================================================================
 # FUNCIONES HELPER - Construcción de variantes
 #===============================================================================
+
 # Construye array de carpetas en orden de prioridad (v21 → v16)
 def pbBattlerFolders(back=false, female=false, shiny=false)
   folders_v21 = []
   folders_v16 = []
+  
   # v21: Graphics/Pokemon/
   if shiny && back
     folders_v21 << "Graphics/Pokemon/BackShiny/"
@@ -19,6 +22,7 @@ def pbBattlerFolders(back=false, female=false, shiny=false)
   folders_v21 << "Graphics/Pokemon/Back/Female/" if female && back && !shiny
   folders_v21 << "Graphics/Pokemon/FrontShiny/Female/" if female && shiny && !back
   folders_v21 << "Graphics/Pokemon/BackShiny/Female/" if female && shiny && back
+  
   # v16: Graphics/Battlers/
   if shiny && back
     folders_v16 << "Graphics/Battlers/BackShiny/"
@@ -33,6 +37,7 @@ def pbBattlerFolders(back=false, female=false, shiny=false)
   folders_v16 << "Graphics/Battlers/Back/Female/" if female && back && !shiny
   folders_v16 << "Graphics/Battlers/FrontShiny/Female/" if female && shiny && !back
   folders_v16 << "Graphics/Battlers/BackShiny/Female/" if female && shiny && back
+  
   return folders_v21 + folders_v16
 end
 
@@ -41,7 +46,9 @@ def pbBitmapVariants(species, form=0, shadow=false)
   tform = (form && form > 0) ? "_#{form}" : ""
   tshadow = shadow ? "_shadow" : ""
   speciesname = getConstantName(PBSpecies, species) rescue nil
+  
   variants = []
+  
   # Prioridad: nombre de especie + forma/shadow → ID numérico
   if speciesname
     variants << "#{speciesname}#{tform}#{tshadow}"
@@ -49,12 +56,15 @@ def pbBitmapVariants(species, form=0, shadow=false)
     variants << "#{speciesname}#{tshadow}" if tform
     variants << speciesname
   end
+  
   variants << sprintf("%03d%s%s", species, tform, tshadow)
   variants << sprintf("%03d%s", species, tform) if tshadow
   variants << sprintf("%03d%s", species, tshadow) if tform
   variants << sprintf("%03d", species)
+  
   return variants
 end
+
 # Busca en múltiples carpetas y variantes
 def pbSearchBitmapVariants(folders, variants)
   folders.each do |folder|
@@ -75,24 +85,8 @@ end
 #===============================================================================
 # Load Pokémon sprites
 #===============================================================================
-def pbPokemonBitmapFile(species, shiny, back=false)
-  variants = pbBitmapVariants(species, 0, false)
-  folders = []
-  if shiny && back
-    folders = ["Graphics/Pokemon/BackShiny/", "Graphics/Battlers/BackShiny/", "Graphics/Battlers/Back Shiny/"]
-  elsif shiny
-    folders = ["Graphics/Pokemon/FrontShiny/", "Graphics/Battlers/FrontShiny/", "Graphics/Battlers/Front Shiny/"]
-  elsif back
-    folders = ["Graphics/Pokemon/Back/", "Graphics/Battlers/Back/"]
-  else
-    folders = ["Graphics/Pokemon/Front/", "Graphics/Battlers/Front/"]
-  end
-  return pbSearchBitmapVariants(folders, variants)
-end
-
-def pbLoadPokemonBitmap(pokemon, back=false, dynamax=false)
+def pbLoadPokemonBitmap(pokemon, back=false)
   scale = back ? BACKSPRITESCALE : POKEMONSPRITESCALE
-  scale = scale*1.5 if dynamax
   return pbLoadPokemonBitmapSpecies(pokemon, pokemon.species, back, scale)
 end
 
@@ -100,6 +94,7 @@ def pbLoadPokemonBitmapSpecies(pokemon, species, back=false, scale=POKEMONSPRITE
   scale = back ? BACKSPRITESCALE : POKEMONSPRITESCALE
   ret = nil
   pokemon = pokemon.pokemon if pokemon.respond_to?(:pokemon)
+  
   if pokemon.isEgg?
     bitmapFileName = pbLoadEggBitmap(species, pokemon.isShiny?)
   else
@@ -107,9 +102,11 @@ def pbLoadPokemonBitmapSpecies(pokemon, species, back=false, scale=POKEMONSPRITE
                                                 pokemon.isShiny?, (pokemon.form rescue 0),
                                                 (pokemon.isShadow? rescue false)])
   end
+  
   bitmapFileName = sprintf("Graphics/Battlers/000") if bitmapFileName.nil?
   animatedBitmap = AnimatedBitmapWrapper.new(bitmapFileName, scale) if bitmapFileName
   ret = animatedBitmap if bitmapFileName
+  
   # Compatibilidad con alterBitmap
   alterBitmap = (MultipleForms.getFunction(species, "alterBitmap") rescue nil) if !pokemon.isEgg? && animatedBitmap
   if bitmapFileName && alterBitmap
@@ -133,6 +130,7 @@ def pbLoadEggBitmap(species, shiny=false)
   folders = ["Graphics/Pokemon/Eggs/"] + ["Graphics/Battlers/Eggs/"]
   bitmap = pbSearchBitmapVariants(folders, variants)
   return bitmap if bitmap
+  
   # Fallback
   return pbResolveBitmap("Graphics/Battlers/Eggs/000s") if shiny
   return pbResolveBitmap("Graphics/Battlers/Eggs/000")
@@ -152,11 +150,31 @@ end
 
 def pbCheckPokemonBitmapFiles(params)
   species, back, female, shiny, form, shadow = params[0], params[1], params[2], params[3], params[4], params[5]
+  
   # Construir carpetas
   folders = pbBattlerFolders(back, female, shiny)
+  
   # Construir variantes de nombre
   variants = pbBitmapVariants(species, form, shadow)
+  
   # Buscar
+  return pbSearchBitmapVariants(folders, variants)
+end
+
+def pbPokemonBitmapFile(species, shiny, back=false)
+  variants = pbBitmapVariants(species, 0, false)
+  
+  folders = []
+  if shiny && back
+    folders = ["Graphics/Pokemon/BackShiny/", "Graphics/Battlers/BackShiny/", "Graphics/Battlers/Back Shiny/"]
+  elsif shiny
+    folders = ["Graphics/Pokemon/FrontShiny/", "Graphics/Battlers/FrontShiny/", "Graphics/Battlers/Front Shiny/"]
+  elsif back
+    folders = ["Graphics/Pokemon/Back/", "Graphics/Battlers/Back/"]
+  else
+    folders = ["Graphics/Pokemon/Front/", "Graphics/Battlers/Front/"]
+  end
+  
   return pbSearchBitmapVariants(folders, variants)
 end
 
@@ -186,30 +204,35 @@ def pbCheckPokemonIconFiles(params, egg=false)
   if egg
     tshiny = shiny ? "s" : ""
     speciesname = getConstantName(PBSpecies, species) rescue nil
+    
     # v21: sin prefijo
     variants_v21 = []
     variants_v21 << "#{speciesname}egg" if speciesname
     variants_v21 << sprintf("%03degg", species)
     bitmap = pbSearchBitmapVariants(["Graphics/Pokemon/Icons/"], variants_v21)
     return bitmap if bitmap
+    
     # v16: con prefijo
     variants_v16 = []
     variants_v16 << "icon#{speciesname}egg" if speciesname
     variants_v16 << sprintf("icon%03degg", species)
     bitmap = pbSearchBitmapVariants(["Graphics/Icons/"], variants_v16)
     return bitmap if bitmap
+    
     begin
       return pbResolveBitmap("Graphics/Icons/iconEgg")
     rescue
       return nil
     end
   end
+  
   # Construir variantes
   tgender = female ? "f" : ""
   tshiny = shiny ? "s" : ""
   tform = (form && form > 0) ? "_#{form}" : ""
   tshadow = shadow ? "_shadow" : ""
   speciesname = getConstantName(PBSpecies, species) rescue nil
+  
   # v21: sin prefijo "icon"
   variants_v21 = []
   if speciesname
@@ -221,14 +244,17 @@ def pbCheckPokemonIconFiles(params, egg=false)
     variants_v21 << "#{speciesname}#{tgender}" if tshiny || tshadow
     variants_v21 << speciesname
   end
+  
   variants_v21 << sprintf("%03d%s%s%s%s", species, tgender, tshiny, tform, tshadow)
   variants_v21 << sprintf("%03d%s%s%s", species, tgender, tshiny, tform) if tshadow
   variants_v21 << sprintf("%03d%s%s%s", species, tgender, tshiny, tshadow) if tform
   variants_v21 << sprintf("%03d%s%s", species, tgender, tshiny)
   variants_v21 << sprintf("%03d%s", species, tgender) if tshiny || tshadow
   variants_v21 << sprintf("%03d", species)
+  
   bitmap = pbSearchBitmapVariants(["Graphics/Pokemon/Icons/"], variants_v21)
   return bitmap if bitmap
+  
   # v16: con prefijo "icon"
   variants_v16 = []
   if speciesname
@@ -240,14 +266,17 @@ def pbCheckPokemonIconFiles(params, egg=false)
     variants_v16 << "icon#{speciesname}#{tgender}" if tshiny || tshadow
     variants_v16 << "icon#{speciesname}"
   end
+  
   variants_v16 << sprintf("icon%03d%s%s%s%s", species, tgender, tshiny, tform, tshadow)
   variants_v16 << sprintf("icon%03d%s%s%s", species, tgender, tshiny, tform) if tshadow
   variants_v16 << sprintf("icon%03d%s%s%s", species, tgender, tshiny, tshadow) if tform
   variants_v16 << sprintf("icon%03d%s%s", species, tgender, tshiny)
   variants_v16 << sprintf("icon%03d%s", species, tgender) if tshiny || tshadow
   variants_v16 << sprintf("icon%03d", species)
+  
   bitmap = pbSearchBitmapVariants(["Graphics/Icons/"], variants_v16)
   return bitmap if bitmap
+  
   begin
     return pbResolveBitmap("Graphics/Icons/icon000")
   rescue
@@ -258,32 +287,27 @@ end
 #===============================================================================
 # Load Pokémon footprint graphics
 #===============================================================================
-def pbPokemonFootprintFile(pokemon,form=0)   # Used by the Pokédex
+def pbPokemonFootprintFile(pokemon, form=0)
   return nil if !pokemon
-  if pokemon.is_a?(Numeric)
-    bitmapFileName = sprintf("Graphics/Icons/Footprints/footprint%s_%d",getConstantName(PBSpecies,pokemon),form) rescue nil
-    if !pbResolveBitmap(bitmapFileName)
-      bitmapFileName = sprintf("Graphics/Icons/Footprints/footprint%03d_%d",pokemon,form) rescue nil
-      if !pbResolveBitmap(bitmapFileName)
-    bitmapFileName=sprintf("Graphics/Icons/Footprints/footprint%s",getConstantName(PBSpecies,pokemon)) rescue nil
-        if !pbResolveBitmap(bitmapFileName)
-          bitmapFileName = sprintf("Graphics/Icons/Footprints/footprint%03d",pokemon)
-        end
-      end
-    end
-  else
-    bitmapFileName=sprintf("Graphics/Icons/Footprints/footprint%s_%d",getConstantName(PBSpecies,pokemon.species),(pokemon.form rescue 0)) rescue nil
-    if !pbResolveBitmap(bitmapFileName)
-      bitmapFileName=sprintf("Graphics/Icons/Footprints/footprint%03d_%d",pokemon.species,(pokemon.form rescue 0)) rescue nil
-      if !pbResolveBitmap(bitmapFileName)
-        bitmapFileName=sprintf("Graphics/Icons/Footprints/footprint%s",getConstantName(PBSpecies,pokemon.species)) rescue nil
-        if !pbResolveBitmap(bitmapFileName)
-          bitmapFileName=sprintf("Graphics/Icons/Footprints/footprint%03d",pokemon.species)
-        end
-      end
-    end
+  
+  species = pokemon.is_a?(Numeric) ? pokemon : pokemon.species
+  form = pokemon.is_a?(Numeric) ? form : (pokemon.form rescue 0)
+  
+  tform = (form && form > 0) ? "_#{form}" : ""
+  speciesname = getConstantName(PBSpecies, species) rescue nil
+  
+  variants = []
+  if speciesname
+    variants << "footprint#{speciesname}#{tform}"
+    variants << "footprint#{speciesname}" if tform
   end
-  return pbResolveBitmap(bitmapFileName)
+  
+  variants << sprintf("footprint%03d%s", species, tform)
+  variants << sprintf("footprint%03d", species)
+  
+  folders = ["Graphics/Pokemon/Footprints/", "Graphics/Icons/Footprints/"]
+  bitmap = pbSearchBitmapVariants(folders, variants)
+  return bitmap
 end
 
 #===============================================================================

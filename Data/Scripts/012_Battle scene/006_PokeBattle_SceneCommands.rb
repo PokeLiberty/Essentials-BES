@@ -169,10 +169,12 @@ class CommandMenuDisplay
       super
     end
   
-    def update(index=0,mode=0)
-      refresh(index,mode)
+    def update(index=0, mode=0)
+      return if index == @last_index && mode == @last_mode
+      @last_index = index; @last_mode = mode
+      refresh(index, mode)
     end
-  
+
     def refresh(index,mode=0)
       self.bitmap.clear
       @mode=mode
@@ -414,11 +416,16 @@ class CommandMenuDisplay
       @terastalbitmap.dispose
       super
     end
-  
-    def update(index=0,moves=nil,megaButton=0,ultraButton=0,zButton=0,dynaButton=0,teraButton=0)
-      refresh(index,moves,megaButton,ultraButton,zButton,dynaButton,teraButton)
+    
+    def update(index=0, moves=nil, mega=0, ultra=0, z=0, dyna=0, tera=0)
+      return if index == @last_index && mega == @last_mega &&
+                dyna == @last_dyna && tera == @last_tera &&
+                z == @last_z && ultra == @last_ultra
+      @last_index = index; @last_mega = mega; @last_dyna = dyna
+      @last_tera  = tera;  @last_z    = z;    @last_ultra = ultra
+      refresh(index, moves, mega, ultra, z, dyna, tera)
     end
-  
+
     def getMoveName(move)
       movename = move.name
       if PokeBattle_SceneConstants::SHORTEN_MOVES && movename.length > 16

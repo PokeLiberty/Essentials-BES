@@ -2448,7 +2448,7 @@ module InterpreterFieldMixin
     if $DEBUG
       return if !Kernel.pbTrainerTypeCheck(symbol)
     end
-    trtype=PBTrainers.const_get(symbol)
+    trtype=PBTrainers.const_get(symbol) rescue 0
     pbGlobalLock
     Kernel.pbPlayTrainerIntroME(trtype)
     return true

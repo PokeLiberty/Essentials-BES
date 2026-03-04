@@ -405,26 +405,44 @@ end
 
 
 #===============================================================================
-# Ajustes de la posición del sprite
+# Ajustes de la posición del sprite - MEJORADO BES-T
 #===============================================================================
 def getBattleSpriteMetricOffset(species,index,metrics=nil)
   metrics=load_data("Data/metrics.dat") if !metrics
   ret=0
   if index==1 || index==3   # Pokémon rival
-    ret+=(metrics[1][species] || 0)*2   # enemy Y
+    #ret+=(metrics[1][species] || 0)*2   # enemy Y
     ret-=(metrics[2][species] || 0)*2   # altitude
   else                      # Pokémon del jugador
-    ret+=(metrics[0][species] || 0)*2 
+    #ret+=(metrics[0][species] || 0)*2 
+    ret-=48
   end
   return ret
 end
 
-def adjustBattleSpriteY(sprite,species,index,metrics=nil)
-  ret=0
-  spriteheight=(sprite.bitmap &&
-     !sprite.bitmap.disposed?) ? sprite.bitmap.height : 128
-  ret-=spriteheight
-  ret+=getBattleSpriteMetricOffset(species,index,metrics)
+def adjustBattleSpriteY(sprite, species, index, metrics=nil)
+  ret = 0
+  begin
+    if sprite && sprite.bitmap && !sprite.bitmap.disposed?
+      # Obtener el bottom edge visible del primer frame
+      bottom_edge = pbGetSpriteBitmapBottomEdge(sprite.bitmap, 0)
+      if bottom_edge
+        # Posicionar basándose en la altura visible del contenido
+        visible_height = bottom_edge + 1
+        ret = -visible_height
+      else
+        # Fallback: usar altura completa del bitmap
+        ret = -(sprite.bitmap.height rescue 128)
+      end
+    else
+      ret = -128  # Fallback default
+    end
+    # Aplicar offset de métricas (altitude)
+    ret += getBattleSpriteMetricOffset(species, index, metrics)
+  rescue => e
+    p "Error en adjustBattleSpriteY: #{e.message}" if $DEBUG
+    ret = -128
+  end
   return ret
 end
 
@@ -458,70 +476,109 @@ def showShadow?(species)
 end
 
 def pbCheckPokemonShadowBitmapFiles(species, form = 0, back = false)
-  # Cargar el bitmap
-  animated_bitmap = pbLoadSpeciesBitmap(species, false, form)
-  return nil if !animated_bitmap
-  bitmap = animated_bitmap.bitmap
-  return nil if !bitmap || bitmap.disposed?
-  # Buscar bordes visibles
-  left_edge = nil
-  right_edge = nil
-  top_edge = nil
-  bottom_edge = nil
-  # Buscar desde izquierda
-  for x in 0...bitmap.width
-    column_has_pixels = false
-    for y in 0...bitmap.height
-      next if y % 5 != 0  # Optimización
-      if bitmap.get_pixel(x, y).alpha > 0
-        column_has_pixels = true
-        break
+  begin
+    animated_bitmap = pbLoadSpeciesBitmap(species, false, form)
+    return nil if !animated_bitmap
+    bitmap = animated_bitmap.bitmap
+    return nil if !bitmap || bitmap.disposed?
+    width = bitmap.width rescue 0
+    height = bitmap.height rescue 0
+    return nil if width <= 0 || height <= 0
+    left_edge = nil
+    right_edge = nil
+    # Búsqueda optimizada desde ambos lados
+    left = 0
+    right = width - 1
+    step = [height / 10, 1].max  # Aumentar paso en altura para velocidad
+    while left <= right
+      # Buscar desde izquierda
+      if left_edge.nil? && left < width
+        y = 0
+        while y < height
+          begin
+            if bitmap.get_pixel(left, y).alpha > 0
+              left_edge = left
+              break
+            end
+          rescue # Ignorar errores de píxel
+          end
+          y += step
+        end
+        left += 1 if left_edge.nil?
       end
-    end
-    if column_has_pixels
-      left_edge = x
-      break
-    end
-  end
-  # Buscar desde derecha
-  for x in (bitmap.width - 1).downto(0)
-    column_has_pixels = false
-    for y in 0...bitmap.height
-      next if y % 5 != 0
-      if bitmap.get_pixel(x, y).alpha > 0
-        column_has_pixels = true
-        break
+      # Buscar desde derecha
+      if right_edge.nil? && right >= 0
+        y = 0
+        while y < height
+          begin
+            if bitmap.get_pixel(right, y).alpha > 0
+              right_edge = right
+              break
+            end
+          rescue # Ignorar errores de píxel
+          end
+          y += step
+        end
+        right -= 1 if right_edge.nil?
       end
+      # Salir si ambos bordes fueron encontrados
+      break if left_edge && right_edge
     end
-    if column_has_pixels
-      right_edge = x
-      break
+    # Calcular dimensiones visibles
+    visible_width = (left_edge && right_edge) ? (right_edge - left_edge + 1) : 0
+    dimension = visible_width
+    dimension = (dimension * 1.5).to_i if back
+    # Determinar tamaño
+    size = 1  # small
+    if dimension >= 170
+      size = 4  # extra large
+    elsif dimension >= 100
+      size = 3  # large
+    elsif dimension >= 70
+      size = 2  # medium
     end
-  end
-  # Calcular dimensiones visibles
-  if left_edge && right_edge
-    visible_width = right_edge - left_edge + 1
-  else
-    visible_width = 0
-  end
-  # Usar la dimensión mayor para determinar tamaño
-  # (esto es útil para Pokémon largos como Serperior o altos como Wailord)
-  dimension = visible_width
-  dimension = dimension*1.5 if back
-  #p "Dimension usada para sombra: #{dimension}"
-  # Determinar tamaño
-  size = 1  # small
-  if dimension >= 170
-    size = 4  # extra large
-  elsif dimension >= 100
-    size = 3  # large
-  elsif dimension >= 70
-    size = 2  # medium
+    bitmapFileName = sprintf("Graphics/Pictures/Battle/battler_shadow_%d", size)
+    return bitmapFileName if pbResolveBitmap(bitmapFileName)
+  rescue => e
+    p "Error en pbCheckPokemonShadowBitmapFiles: #{e.message}" if $DEBUG
   end
   
-  # Nombre del archivo
-  bitmapFileName = sprintf("Graphics/Pictures/Battle/battler_shadow_%d", size)
-  return bitmapFileName if pbResolveBitmap(bitmapFileName)
-  
+  return nil
+end
+
+#===============================================================================
+# DETECCIÓN DE BOTTOM EDGE - Para posicionamiento de sprites
+#===============================================================================
+def pbGetSpriteBitmapBottomEdge(bitmap, frame_index=0)
+  begin
+    return nil if !bitmap
+    return nil if bitmap.disposed?
+    width = bitmap.width rescue 0
+    height = bitmap.height rescue 0
+    return nil if width <= 0 || height <= 0
+    # Calcular frame width basándose en estructura de sprite animado
+    frame_width = height
+    start_x = frame_index * frame_width
+    end_x = [(frame_index + 1) * frame_width, width].min
+    return nil if start_x >= width
+    step = [height / 8, 1].max  # Aumentar paso para optimizar
+    # Buscar desde abajo hacia arriba para encontrar el primer píxel visible
+    y = height - 1
+    while y >= 0
+      x = start_x
+      while x < end_x
+        begin
+          if bitmap.get_pixel(x, y).alpha > 0
+            return y
+          end
+        rescue# Ignorar errores
+        end
+        x += 1
+      end
+      y -= step
+    end
+  rescue => e
+    p "Error en pbGetSpriteBitmapBottomEdge: #{e.message}" if $DEBUG
+  end
   return nil
 end

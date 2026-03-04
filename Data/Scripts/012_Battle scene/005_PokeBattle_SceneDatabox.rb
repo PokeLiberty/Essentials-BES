@@ -275,6 +275,7 @@ class SafariDataBox < SpriteWrapper
       super
       @frame = (@frame+1)%24
       if @animatingHP
+        prev = @currenthp  # guardar valor antes
         if @currenthp<@endhp
           @currenthp+=[1,(@battler.totalhp/PokeBattle_SceneConstants::HPGAUGESIZE).floor].max
           @currenthp=@endhp if @currenthp>@endhp
@@ -283,9 +284,10 @@ class SafariDataBox < SpriteWrapper
           @currenthp=@endhp if @currenthp<@endhp
         end
         @animatingHP=false if @currenthp==@endhp
-        refresh
+        refresh if @currenthp != prev  # solo si el valor cambió visualmente
       end
       if @animatingEXP
+        prev = @currentexp  # guardar valor antes
         if !@showexp
           @currentexp=@endexp
         elsif @currentexp<@endexp   # Gaining Exp
@@ -305,7 +307,7 @@ class SafariDataBox < SpriteWrapper
           end
           @currentexp=@endexp if @currentexp<@endexp
         end
-        refresh
+        refresh if @currentexp != prev  # solo si el valor cambió visualmente
         if @currentexp==@endexp
           if @currentexp==PokeBattle_SceneConstants::EXPGAUGESIZE
             if @expflash==0

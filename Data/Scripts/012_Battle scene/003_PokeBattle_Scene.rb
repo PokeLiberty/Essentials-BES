@@ -61,7 +61,6 @@ class PokeBattle_Scene
   end
 
   def pbUpdate
-    partyAnimationUpdate
     @sprites["battlebg"].update if @sprites["battlebg"].respond_to?("update")
   end
 
@@ -272,7 +271,9 @@ class PokeBattle_Scene
       if @sprites["pokemon#{i}"]
         @sprites["pokemon#{i}"].update
       end
-      if (@battle.battlers[i].isTera? rescue false)
+      if @sprites["pokemon#{i}"] && @battle.battlers[i] &&
+         @battle.battlers[i].respond_to?(:isTera?) &&
+         @battle.battlers[i].isTera?
         @sprites["pokemon#{i}"].color=TERATONES[@battle.battlers[i].pokemon.teratype]
       end
     end
@@ -2635,6 +2636,7 @@ class PokeBattle_Scene
     # Verificar y actualizar zoom según estado Dynamax
     for i in 0...4
       next if !@battle.battlers[i]
+      next if !@battle.battlers[i].respond_to?(:isDynamax?)
       if @battle.battlers[i].isDynamax?
         # Aplicar zoom si no está aplicado
         pbApplyDynamaxZoom(i) if !@dynamax_zoom_applied[i] && @dynamax_zoom_applied
