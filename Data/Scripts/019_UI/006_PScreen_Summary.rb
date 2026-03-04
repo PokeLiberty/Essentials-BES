@@ -2,6 +2,9 @@ class PokemonSummaryScene
   
   TOTALPAGES = 5
   
+  POKEMON_SPRITE_X = Graphics.width/4 - 32
+  POKEMON_SPRITE_Y = Graphics.width/2 - 48
+  
   def pbStartScene(party,partyindex,inbattle=false)
     @party      = party
     @partyindex = partyindex
@@ -13,9 +16,11 @@ class PokemonSummaryScene
 
     @sprites["pokemon"] = PokemonSprite.new(@viewport)
     @sprites["pokemon"].setPokemonBitmap(@pokemon)
-    @sprites["pokemon"].ox, @sprites["pokemon"].oy = 0, 0
-    @sprites["pokemon"].x = 8
-    @sprites["pokemon"].y = 144 - 32
+    @sprites["pokemon"].ox = @sprites["pokemon"].bitmap.width / 2
+    @sprites["pokemon"].oy = @sprites["pokemon"].bitmap.height / 2
+    
+    @sprites["pokemon"].x = POKEMON_SPRITE_X
+    @sprites["pokemon"].y = POKEMON_SPRITE_Y
     
     if (@pokemon.isTera? rescue nil)
       @sprites["pokemon"].color=TERATONES[@pokemon.teratype]
@@ -60,7 +65,6 @@ class PokemonSummaryScene
     when 2; drawPageData
     when 3; drawPageStats
     when 4; drawPageMoves
-      
     #Añade paginas aquí. vvv
     #when 5; drawPageSix
     #Por conveniencia las cintas son siempre la ultima página.
@@ -171,7 +175,7 @@ class PokemonSummaryScene
                 _INTL("MOVIMIENTOS"), 
                 _INTL("CINTAS")][page-1]
     
-    textpos.push([pagename,26,16,0,@base,@shadow])
+    textpos.push([pagename,26,16,0,@base,@shadow]) if pagename.is_a?(String)
     textpos.push([@pokemon.name,46,62,0,@base,@shadow])
     
     unless isEgg
@@ -894,6 +898,9 @@ class PokemonSummaryScene
   def pbChangePokemon
     @pokemon = @party[@partyindex]
     @sprites["pokemon"].setPokemonBitmap(@pokemon)
+    @sprites["pokemon"].ox = @sprites["pokemon"].bitmap.width / 2
+    @sprites["pokemon"].oy = @sprites["pokemon"].bitmap.height / 2
+    
     @sprites["itemicon"].item = @pokemon.item
     pbSEStop
     pbPlayCry(@pokemon)
@@ -907,6 +914,7 @@ class PokemonSummaryScene
     elsif (@pokemon.isDynamax? rescue nil)
       @sprites["pokemon"].color= @pokemon.isSpecies?(:CALYREX) ? DYNATONE[1] : DYNATONE[0]
     end
+    
   end
 
   def pbMoveSelection
@@ -1123,7 +1131,7 @@ class PokemonSummaryScene
           pbPlayDecisionSE
           pbMoveSelection
           dorefresh = true
-        elsif @page==@pageNumber
+        elsif @page==TOTALPAGES
           pbPlayDecisionSE
           pbRibbonSelection
           dorefresh = true
