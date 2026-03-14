@@ -13202,6 +13202,80 @@ class PokeBattle_Move_282 < PokeBattle_Move
 
 end
 
+################################################################################
+# Quema al rival. Precisión perfecta en la lluvia.
+# (Simún de Arena)
+################################################################################
+class PokeBattle_Move_283 < PokeBattle_Move
+  def pbAdditionalEffect(attacker,opponent)
+    return if opponent.damagestate.substitute
+    if opponent.pbCanBurn?(attacker,false,self)
+      opponent.pbBurn(attacker)
+    end
+  end
+
+  def pbModifyBaseAccuracy(baseaccuracy,attacker,opponent)
+    case @battle.pbWeather
+    when PBWeather::RAINDANCE, PBWeather::HEAVYRAIN
+      return 0
+    end
+    return baseaccuracy
+  end
+end
+
+################################################################################
+# Paraliza al objetivo. Precisión perfecta en la lluvia.
+# (Electormenta)
+################################################################################
+class PokeBattle_Move_284 < PokeBattle_Move
+  def pbAdditionalEffect(attacker,opponent)
+    return if opponent.damagestate.substitute
+    if opponent.pbCanParalyze?(attacker,false,self)
+      opponent.pbParalyze(attacker)
+    end
+  end
+
+  def pbModifyBaseAccuracy(baseaccuracy,attacker,opponent)
+    case @battle.pbWeather
+    when PBWeather::RAINDANCE, PBWeather::HEAVYRAIN
+      return 0
+    end
+    return baseaccuracy
+  end
+end
+
+################################################################################
+# Puede bajar la velocidad. Precisión perfecta en la lluvia.
+# (Vendaval Gélido)
+################################################################################
+class PokeBattle_Move_285 < PokeBattle_Move
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    return super(attacker,opponent,hitnum,alltargets,showanimation) if pbIsDamaging?
+    return -1 if !opponent.pbCanReduceStatStage?(PBStats::SPEED,attacker,true,self)
+    pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
+    ret=opponent.pbReduceStat(PBStats::SPEED,1,attacker,false,self)
+    return ret ? 0 : -1
+  end
+
+  def pbAdditionalEffect(attacker,opponent)
+    return if opponent.damagestate.substitute
+    if opponent.pbCanReduceStatStage?(PBStats::SPEED,attacker,false,self)
+      opponent.pbReduceStat(PBStats::SPEED,1,attacker,false,self)
+    end
+  end
+
+  def pbModifyBaseAccuracy(baseaccuracy,attacker,opponent)
+    case @battle.pbWeather
+    when PBWeather::RAINDANCE, PBWeather::HEAVYRAIN
+      return 0
+    end
+    return baseaccuracy
+  end
+end
+
+################################################################################################################
+Movimiento Zydarde ZA
+##############################################################################################################
 class PokeBattle_Move_456 < PokeBattle_Move
   def pbMoveFailed(attacker,opponent)
     return true if !isConst?(attacker.species,PBSpecies,:ZYGARDE)
@@ -13209,3 +13283,4 @@ class PokeBattle_Move_456 < PokeBattle_Move
     return false
   end
 end
+

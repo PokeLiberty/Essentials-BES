@@ -2534,9 +2534,8 @@ class PokeBattle_Battler
     end
     # Fuerte Afecto
     if isConst?(user.species,PBSpecies,:GRENINJA) && user.hasWorkingAbility(:BATTLEBOND)
-      if target.isFainted? && user.form!=1
-        showAbilityMessage(user) rescue nil
-        user.form=1
+      if target.isFainted? && user.form!=2
+        user.form=2
         pbUpdate(true)
         @battle.scene.pbChangePokemon(user,user.pokemon)
         @battle.pbDisplay(_INTL("¡{1} creó un fuerte vínculo con su entrenador!",user.pbThis))
