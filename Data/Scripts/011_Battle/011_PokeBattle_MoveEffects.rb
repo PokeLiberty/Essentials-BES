@@ -13274,7 +13274,7 @@ class PokeBattle_Move_285 < PokeBattle_Move
 end
 
 ################################################################################################################
-Movimiento Zydarde ZA
+# Movimiento Zydarde ZA
 ##############################################################################################################
 class PokeBattle_Move_456 < PokeBattle_Move
   def pbMoveFailed(attacker,opponent)

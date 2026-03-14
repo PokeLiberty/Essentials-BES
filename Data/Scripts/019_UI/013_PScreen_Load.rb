@@ -269,7 +269,7 @@ class PokemonLoad
     $game_system = Game_System.new
     $PokemonSystem = PokemonSystem.new if !$PokemonSystem
     
-    pbLoadMessages("Data/"+LANGUAGES[$PokemonSystem.language][1]) if $PokemonSystem.language
+    pbLoadMessages("Data/"+LANGUAGES[$PokemonSystem.language][1]) if (defined?(LANGUAGES) && LANGUAGES.length >= 2) && $PokemonSystem.language
     
     commands = []
     command_data = {}
