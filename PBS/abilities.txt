@@ -310,6 +310,7 @@
 308,TERASHIFT,Teracambio,"Al entrar en combate, adopta la Forma Teracristal tras absorber la energía de su alrededor."
 309,TERASHELL,Teracaparazón,"Su caparazón encierra energía de todos los tipos. Gracias a ello, si sus PS están al máximo, el movimiento que lo alcance no será muy eficaz." #TODO
 310,TERAFORMZERO,Teraformación 0,"Cuando Terapagos adopta la Forma Astral, anula todos los efectos del tiempo atmosférico y de los campos que haya en el terreno gracias a su poder oculto." #TODO
-
+311,DRAGONIZE,Piel Dragontina,"Convierte los movimientos de tipo Normal en tipo Dragón y aumenta ligeramente su potencia."
+312,MEGASOL,Mega Solar,"Permite que el Pokémon use sus movimientos como si el clima fuera Soleado." #Desc provisional hasta Champions
 
 

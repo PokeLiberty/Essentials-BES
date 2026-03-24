@@ -1142,8 +1142,9 @@ class PokeBattle_Move_028 < PokeBattle_Move
     pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
     showanim=true
     increment=1
-    if (@battle.pbWeather==PBWeather::SUNNYDAY ||
-       @battle.pbWeather==PBWeather::HARSHSUN) && !attacker.hasWorkingItem(:UTILITYUMBRELLA)
+    if ((@battle.pbWeather==PBWeather::SUNNYDAY ||
+       @battle.pbWeather==PBWeather::HARSHSUN) && !attacker.hasWorkingItem(:UTILITYUMBRELLA)) || 
+       attacker.hasWorkingAbility(:MEGASOL)
       increment=2
     end
     if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
@@ -3814,6 +3815,9 @@ class PokeBattle_Move_087 < PokeBattle_Move
     when PBWeather::HAIL
       type=(getConst(PBTypes,:ICE) || type)
     end
+    if attacker.hasWorkingAbility(:MEGASOL)
+      type=(getConst(PBTypes,:FIRE) || type)
+    end
     return type
   end
 end
@@ -3981,6 +3985,7 @@ def pbHiddenPower(iv)
   base=(base*(powermax-powermin)/63).floor+powermin
   return [hptype,base]
 end
+
 
 ################################################################################
 # La potencia se duplica con cada uso consecutivo.
@@ -5751,8 +5756,9 @@ class PokeBattle_Move_0C4 < PokeBattle_Move
   def pbTwoTurnAttack(attacker)
     @immediate=false; @sunny=false
     if attacker.effects[PBEffects::TwoTurnAttack]==0
-      if (@battle.pbWeather==PBWeather::SUNNYDAY ||
-         @battle.pbWeather==PBWeather::HARSHSUN) && !attacker.hasWorkingItem(:UTILITYUMBRELLA)
+      if ((@battle.pbWeather==PBWeather::SUNNYDAY ||
+         @battle.pbWeather==PBWeather::HARSHSUN) && !attacker.hasWorkingItem(:UTILITYUMBRELLA)) ||
+        attacker.hasWorkingAbility(:MEGASOL)
         @immediate=true; @sunny=true
       end
     end
@@ -5764,9 +5770,16 @@ class PokeBattle_Move_0C4 < PokeBattle_Move
   end
 
   def pbBaseDamageMultiplier(damagemult,attacker,opponent)
-    if @battle.pbWeather!=0 &&
-       @battle.pbWeather!=PBWeather::SUNNYDAY &&
-       @battle.pbWeather!=PBWeather::HARSHSUN
+    # Lista de climas que reducen la potencia
+    weather_list = [
+      PBWeather::RAINDANCE,
+      PBWeather::PRIMORDIALSEA,
+      PBWeather::SANDSTORM,
+      PBWeather::HAIL
+    ]
+    # Si el clima está en la lista y el usuario NO lleva Utility Umbrella, se reduce a la mitad
+    if weather_list.include?(@battle.pbWeather) &&
+       (!attacker.hasWorkingItem(:UTILITYUMBRELLA) || !attacker.hasWorkingAbility(:MEGASOL))
       return (damagemult*0.5).round
     end
     return damagemult
@@ -6549,8 +6562,9 @@ class PokeBattle_Move_0D8 < PokeBattle_Move
       return -1
     end
     hpgain=0
-    if (@battle.pbWeather==PBWeather::SUNNYDAY ||
-       @battle.pbWeather==PBWeather::HARSHSUN)  && !attacker.hasWorkingItem(:UTILITYUMBRELLA)
+    if ((@battle.pbWeather==PBWeather::SUNNYDAY ||
+       @battle.pbWeather==PBWeather::HARSHSUN)  && !attacker.hasWorkingItem(:UTILITYUMBRELLA)) || 
+       attacker.hasWorkingAbility(:MEGASOL)
       hpgain=(attacker.totalhp*2/3).floor
     elsif @battle.pbWeather!=0
       hpgain=(attacker.totalhp/4).floor
@@ -12804,8 +12818,9 @@ end
 ################################################################################
 class PokeBattle_Move_265 < PokeBattle_Move
   def pbBaseDamage(basedmg,attacker,opponent)
-    if (@battle.pbWeather==PBWeather::SUNNYDAY ||
-        @battle.pbWeather==PBWeather::HARSHSUN) && !attacker.hasWorkingItem(:UTILITYUMBRELLA)
+    if ((@battle.pbWeather==PBWeather::SUNNYDAY ||
+        @battle.pbWeather==PBWeather::HARSHSUN) && !attacker.hasWorkingItem(:UTILITYUMBRELLA)) || 
+        attacker.hasWorkingAbility(:MEGASOL)
       return basedmg*1.5
     end
     return basedmg

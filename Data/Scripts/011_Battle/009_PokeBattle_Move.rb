@@ -42,7 +42,7 @@ class PokeBattle_Move
     @category   = movedata.category
     @thismove   = move
     @pp         = move.pp   # Puede ser cambiado con Mimic/Transform
-    @powerboost = false   # For Aerilate, Pixilate, Refrigerate
+    @powerboost = false   # For Aerilate, Pixilate, Refrigerate, Draconize
     @zmove      = false
   end
 
@@ -91,6 +91,9 @@ class PokeBattle_Move
         elsif attacker.hasWorkingAbility(:PIXILATE) && hasConst?(PBTypes,:FAIRY)
           type=getConst(PBTypes,:FAIRY)
           @powerboost=true
+        elsif attacker.hasWorkingAbility(:DRAGONIZE) && hasConst?(PBTypes,:FAIRY)
+          type=getConst(PBTypes,:DRAGON)
+          @powerboost=true
         elsif attacker.hasWorkingAbility(:GALVANIZE) && hasConst?(PBTypes,:ELECTRIC)
           type=getConst(PBTypes,:ELECTRIC)
           @powerboost=true
@@ -123,6 +126,10 @@ class PokeBattle_Move
         elsif @battle.field.effects[PBEffects::PlasmaFists] && attacker.hasWorkingAbility(:PIXILATE) &&
          hasConst?(PBTypes,:FAIRY)
           type=getConst(PBTypes,:FAIRY)
+          @powerboots=true
+        elsif @battle.field.effects[PBEffects::PlasmaFists] && attacker.hasWorkingAbility(:DRAGONIZE) &&
+         hasConst?(PBTypes,:DRAGON)
+          type=getConst(PBTypes,:DRAGON)
           @powerboots=true
         elsif @battle.field.effects[PBEffects::PlasmaFists] && attacker.hasWorkingAbility(:GALVANIZE) &&
          hasConst?(PBTypes,:ELECTRIC)
@@ -920,6 +927,7 @@ class PokeBattle_Move
     if (attacker.hasWorkingAbility(:AERILATE) ||
        attacker.hasWorkingAbility(:REFRIGERATE) ||
        attacker.hasWorkingAbility(:PIXILATE) ||
+       attacker.hasWorkingAbility(:DRAGONIZE) ||
        attacker.hasWorkingAbility(:GALVANIZE)) && @powerboost
       damagemult=(damagemult*1.2).round
     end
