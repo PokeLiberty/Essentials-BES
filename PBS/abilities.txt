@@ -312,5 +312,5 @@
 310,TERAFORMZERO,Teraformación 0,"Cuando Terapagos adopta la Forma Astral, anula todos los efectos del tiempo atmosférico y de los campos que haya en el terreno gracias a su poder oculto." #TODO
 311,DRAGONIZE,Piel Dragontina,"Convierte los movimientos de tipo Normal en tipo Dragón y aumenta ligeramente su potencia."
 312,MEGASOL,Mega Solar,"Permite que el Pokémon use sus movimientos como si el clima fuera Soleado." #Desc provisional hasta Champions
-
-
+313,SPICYSPRAY,Salpicante,"Quema al ser alcanzado por cualquier movimiento." #Desc provisional hasta Champions
+314,PIERCINGDRILL,Turbotaladro,Turb. Drill,Permite golpear objetivos protegidos infligiendo 1/4 del daño con movimientos de contacto. #Desc provisional hasta Champions

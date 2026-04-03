@@ -863,6 +863,16 @@ class PokeBattle_Move
     if attacker.hasWorkingAbility(:ROCKYPAYLOAD) && isConst?(type,PBTypes,:ROCK)
       damagemult=(damagemult*1.5).round
     end
+    # Mega Sol / Megasolar
+    if attacker.hasWorkingAbility(:MEGASOL) && isConst?(type,PBTypes,:FIRE)
+      damagemult=(damagemult*1.5).round
+    end
+    if attacker.hasWorkingAbility(:MEGASOL) && isConst?(type,PBTypes,:WATER)
+      damagemult=(damagemult*0.5).round
+    end
+    if attacker.hasWorkingAbility(:MEGASOL) && isConst?(type,PBTypes,:WATER) && @function==0x265
+      damagemult=(damagemult*1.0).round
+    end
     if attacker.hasWorkingAbility(:TECHNICIAN) && basedmg<=60 && @id>0
       damagemult=(damagemult*1.5).round
     end
@@ -1665,6 +1675,10 @@ class PokeBattle_Move
         damage*=2
         @battle.pbDisplay(_INTL("¡La potencia del ataque se ha duplicado!"))
         opponent.effects[PBEffects::GlaiveRush]=false
+      end
+      # Piercing Drill
+      if attacker.effects[PBEffects::PiercingDrill]
+        damage = [(damage / 4).floor, 1].max
       end
       if damage>=opponent.hp
         damage=opponent.hp

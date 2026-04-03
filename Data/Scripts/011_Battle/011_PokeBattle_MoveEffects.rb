@@ -3793,7 +3793,7 @@ end
 ################################################################################
 class PokeBattle_Move_087 < PokeBattle_Move
   def pbBaseDamage(basedmg,attacker,opponent)
-    if @battle.pbWeather!=0
+    if @battle.pbWeather!=0 || attacker.hasWorkingAbility(:MEGASOL)
       return basedmg*2
     end
     return basedmg

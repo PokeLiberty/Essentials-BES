@@ -564,6 +564,7 @@ class PokeBattle_Battler
     @effects[PBEffects::SyrupBomb]        = 0
     @effects[PBEffects::Protosynthesis]   = 0
     @effects[PBEffects::BoosterEnergy]    = false
+    @effects[PBEffects::PiercingDrill]    = false
   end
 
   def pbUpdate(fullchange=false)
@@ -1939,6 +1940,7 @@ class PokeBattle_Battler
 
   def pbEffectsOnDealingDamage(move,user,target,damage)
     movetype=move.pbType(move.type,user,target)
+    
     if damage>0 && move.isContactMove? && !user.hasWorkingAbility(:LONGREACH) &&
       !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && !move.isPunchingMove?)
       if !target.damagestate.substitute
@@ -2253,6 +2255,13 @@ class PokeBattle_Battler
             @battle.pbCommonAnimation("Sandstorm",nil,nil)
             @battle.pbDisplay(_INTL("¡Se acerca una tormenta de arena!"))
           end
+        end
+        #Salpicante
+        if target.hasWorkingAbility(SPICYSPRAY) && user.pbCanBurn(nil,false)
+          PBDebug.log([Habilidad disparada] Salpicante de #{target.pbThis})
+          showAbilityMessage(target) rescue nil
+          user.pbBurn(target,_INTL(¡{2} de {1} quemó a {3}!,target.pbThis,
+          PBAbilities.getName(target.ability),user.pbThis(true)))
         end
         # Energía Eólica
         if target.hasWorkingAbility(:WINDPOWER) && move.isWindMove?
@@ -3477,7 +3486,7 @@ class PokeBattle_Battler
   end
 
   def pbSuccessCheck(thismove,user,target,turneffects,accuracy=true)
-    unseenfist=isConst?(user.ability,PBAbilities,:UNSEENFIST) && thismove.isContactMove?
+    unseenfist= isConst?(user.ability,PBAbilities,:UNSEENFIST) && thismove.isContactMove?
     if user.effects[PBEffects::TwoTurnAttack]>0
       return true
     end
@@ -3494,12 +3503,18 @@ class PokeBattle_Battler
       PBDebug.log("[Movimiento falló] Escupir de #{user.pbThis} no hizo nada debido a que el contador de Reserva está en 0")
       return false
     end
-    if target.effects[PBEffects::Protect] && thismove.canProtectAgainst? &&    # Protección
-       !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
-      @battle.successStates[user.index].protected=true
-      PBDebug.log("[Movimiento falló] Protección de #{target.pbThis} se está protegiendo")
-      return false
+    if target.effects[PBEffects::Protect] && thismove.canProtectAgainst? &&
+      !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
+        @battle.successStates[user.index].protected=true
+        PBDebug.log("[Movimiento falló] Protección de #{target.pbThis} se está protegiendo")
+        return false
+      end
     end
     p=thismove.priority
     if USENEWBATTLEMECHANICS
@@ -3514,11 +3529,17 @@ class PokeBattle_Battler
               !isConst?(thismove.id,PBMoves,:PRESENT) &&
               !isConst?(thismove.id,PBMoves,:POLLENPUFF)
     end
-    if target.pbOwnSide.effects[PBEffects::QuickGuard] && thismove.canProtectAgainst? &&     # Anticipo
-       p>0 && !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} ha sido protegido por Anticipo!",target.pbThis))
-      PBDebug.log("[Movimiento falló] El Anticipo del lado del oponente ha detenido el ataque")
-      return false
+    if target.pbOwnSide.effects[PBEffects::QuickGuard] && thismove.canProtectAgainst? &&
+      p>0 && !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} ha sido protegido por Anticipo!",target.pbThis))
+        PBDebug.log("[Movimiento falló] El Anticipo del lado del oponente ha detenido el ataque")
+        return false
+      end
     end
     if @battle.field.effects[PBEffects::PsychicTerrain]>0 && p>0 && !target.isAirborne?
       @battle.pbDisplay(_INTL("¡Campo Psíquico protegió a {1}!",target.pbThis))
@@ -3561,11 +3582,17 @@ class PokeBattle_Battler
     end
     # Vastaguardia
     if target.pbOwnSide.effects[PBEffects::WideGuard] &&
-       PBTargets.hasMultipleTargets?(thismove) && !thismove.pbIsStatus? &&
-       !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} ha sido protegido por Vastaguardia!",target.pbThis))
-      PBDebug.log("[Movimiento falló] La Vastaguardia del lado del oponente ha detenido el ataque")
-      return false
+      PBTargets.hasMultipleTargets?(thismove) && !thismove.pbIsStatus? &&
+      !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} ha sido protegido por Vastaguardia!",target.pbThis))
+        PBDebug.log("[Movimiento falló] La Vastaguardia del lado del oponente ha detenido el ataque")
+        return false
+      end
     end
     if target.pbOwnSide.effects[PBEffects::CraftyShield] && thismove.pbIsStatus? &&      # Truco Defensa
        thismove.function!=0xE5 && !unseenfist                                       # Canto Mortal
@@ -3573,11 +3600,17 @@ class PokeBattle_Battler
       PBDebug.log("[Movimiento falló] El Truco Defensa del lado del oponente ha detenido el ataque")
       return false
     end
-    if target.pbOwnSide.effects[PBEffects::MatBlock] && !thismove.pbIsStatus? &&         # Escudo Tatami
-       thismove.canProtectAgainst? && !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡Escudo Tatami ha neutralizado {1}!",thismove.name))
-      PBDebug.log("[Movimiento falló] El Escudo Tatami del lado del oponente ha detenido el ataque")
-      return false
+    if target.pbOwnSide.effects[PBEffects::MatBlock] && !thismove.pbIsStatus? &&
+      thismove.canProtectAgainst? && !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡Escudo Tatami ha neutralizado {1}!",thismove.name))
+        PBDebug.log("[Movimiento falló] El Escudo Tatami del lado del oponente ha detenido el ataque")
+        return false
+      end
     end
     # TODO: Telépata/Fijar Blanco (Mind Reader/Lock-On)
     # --Esquema/Premonición/Más Psique funcionan incluso en Vuelo/Buceo/Excavar
@@ -3587,80 +3620,156 @@ class PokeBattle_Battler
       return false
     end
     # Escudo Real (deliberadamente después de pbMoveFailed)
-    if target.effects[PBEffects::KingsShield] && !thismove.pbIsStatus? &&
-       thismove.canProtectAgainst? && !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
-      @battle.successStates[user.index].protected=true
-      PBDebug.log("[Movimiento falló] Escudo Real de #{target.pbThis} ha detenido el ataque")
-      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
-        (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
-        user.pbReduceStat(PBStats::ATTACK,1,nil,false)
+    if target.effects[PBEffects::KingsShield] && thismove.canProtectAgainst? &&
+      !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        # Aplica la bajada de Ataque de Escudo Real igualmente
+        if !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          user.pbReduceStat(PBStats::ATTACK,1,nil,false)
+        end
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} está protegiendo!",target.pbThis))
+        @battle.successStates[user.index].protected=true
+        PBDebug.log("[Movimiento falló] Escudo Real de #{target.pbThis} ha detenido el ataque")
+        if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) &&
+          !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          user.pbReduceStat(PBStats::ATTACK,1,nil,false)
+        end
+        return false
       end
-      return false
     end
     # Barrera Espinosa
     if target.effects[PBEffects::SpikyShield] && thismove.canProtectAgainst? &&
-       !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
-      @battle.successStates[user.index].protected=true
-      PBDebug.log("[Movimiento falló] Barrera Espinosa de #{user.pbThis} ha detenido el ataque")
-      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
-        (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
-        @battle.scene.pbDamageAnimation(user,0)
-        amt=user.pbReduceHP((user.totalhp/8).floor)
-        @battle.pbDisplay(_INTL("¡{1} ha sido dañado!",user.pbThis)) if amt>0
+      !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        # Aplica el daño de contacto de Barrera Espinosa igualmente
+        if !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          @battle.scene.pbDamageAnimation(user,0)
+          amt = user.pbReduceHP((user.totalhp/8).floor)
+          @battle.pbDisplay(_INTL("¡{1} ha sido dañado!",user.pbThis)) if amt > 0
+        end
+        if user.isFainted?
+          user.pbFaint
+          return false
+        end
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
+        @battle.successStates[user.index].protected=true
+        PBDebug.log("[Movimiento falló] Barrera Espinosa de #{user.pbThis} ha detenido el ataque")
+        if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          @battle.scene.pbDamageAnimation(user,0)
+          amt=user.pbReduceHP((user.totalhp/8).floor)
+          @battle.pbDisplay(_INTL("¡{1} ha sido dañado!",user.pbThis)) if amt>0
+        end
+        return false
       end
-      return false
     end
     # Búnker
     if target.effects[PBEffects::BanefulBunker] && thismove.canProtectAgainst? &&
-       !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
-      @battle.successStates[user.index].protected=true
-      PBDebug.log("[Move failed] #{user.pbThis}'s Baneful Bunker stopped the attack!")
-      if thismove.isContactMove? && !user.isFainted? && user.pbCanPoison?(nil,false) && !user.hasWorkingAbility(:LONGREACH) &&
-        (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
-        PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker")
-        user.pbPoison(target,_INTL("¡{1} fue envenenado!",target.pbThis))
+      !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        # Aplica el veneno de contacto del Búnker igualmente
+        if !user.isFainted? && user.pbCanPoison?(nil,false) &&
+          !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?)
+          PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker (PiercingDrill)")
+          user.pbPoison(target,_INTL("¡{1} fue envenenado por el Búnker!",user.pbThis))
+        end
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
+        @battle.successStates[user.index].protected=true
+        PBDebug.log("[Move failed] #{user.pbThis}'s Baneful Bunker stopped the attack!")
+        if thismove.isContactMove? && !user.isFainted? && user.pbCanPoison?(nil,false) && !user.hasWorkingAbility(:LONGREACH) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker")
+          user.pbPoison(target,_INTL("¡{1} fue envenenado!",target.pbThis))
+        end
+        return false
       end
-      return false
     end
     # Obstrucción
     if target.effects[PBEffects::Obstruct] && thismove.canProtectAgainst? &&
-       !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} está protegiendo!",target.pbThis))
-      @battle.successStates[user.index].protected=true
-      PBDebug.log("[Move failed] #{target.pbThis}'s Obstruct stopped the attack")
-      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) &&
-         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
-        user.pbReduceStat(PBStats::DEFENSE,2,nil,false)
+      !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        # Aplica la bajada de Defensa de Obstrucción igualmente
+        if !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          user.pbReduceStat(PBStats::DEFENSE,2,nil,false)
+        end
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} está protegiendo!",target.pbThis))
+        @battle.successStates[user.index].protected=true
+        PBDebug.log("[Move failed] #{target.pbThis}'s Obstruct stopped the attack")
+        if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) &&
+          !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          user.pbReduceStat(PBStats::DEFENSE,2,nil,false)
+        end
+        return false
       end
-      return false
     end
     # Telatrampa
     if target.effects[PBEffects::Silktrap] && thismove.canProtectAgainst? &&
-       !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} está protegiendo!",target.pbThis))
-      @battle.successStates[user.index].protected=true
-      PBDebug.log("[Move failed] #{target.pbThis}'s Silktrap stopped the attack")
-      if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
-        (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
-        user.pbReduceStat(PBStats::SPEED,1,nil,false)
+      !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        # Aplica la bajada de Velocidad de Telatrampa igualmente
+        if !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          user.pbReduceStat(PBStats::SPEED,1,nil,false)
+        end
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} está protegiendo!",target.pbThis))
+        @battle.successStates[user.index].protected=true
+        PBDebug.log("[Move failed] #{target.pbThis}'s Silktrap stopped the attack")
+        if thismove.isContactMove? && !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          user.pbReduceStat(PBStats::SPEED,1,nil,false)
+        end
+        return false
       end
-      return false
     end
     #Burning Bulwark
     if target.effects[PBEffects::BurningBulwark] && thismove.canProtectAgainst? &&
-       !target.effects[PBEffects::ProtectNegation] && !unseenfist
-      @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
-      @battle.successStates[user.index].protected=true
-      PBDebug.log("[Move failed] #{user.pbThis}'s Baneful Bunker stopped the attack!")
-      if thismove.isContactMove? && !user.isFainted? && user.pbCanBurn?(nil,false) && !user.hasWorkingAbility(:LONGREACH) &&
-         !user.hasWorkingItem(:PROTECTIVEPADS) && (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
-        PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker")
-        user.pbBurn(target,_INTL("¡{1} fue envenenado!",target.pbThis))
+      !target.effects[PBEffects::ProtectNegation] && !unseenfist
+      if user.hasWorkingAbility(:PIERCINGDRILL) && thismove.isContactMove?
+        # Aplica el veneno de contacto del Búnker igualmente
+        if !user.isFainted? && user.pbCanBurn?(nil,false) &&
+          !user.hasWorkingAbility(:LONGREACH) && !user.hasWorkingItem(:PROTECTIVEPADS) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?)
+          PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker (PiercingDrill)")
+          user.pbBurn(target,_INTL("¡{1} fue quemado!",user.pbThis))
+        end
+        user.effects[PBEffects::PiercingDrill] = true
+        showAbilityMessage(user) rescue nil
+        @battle.pbDisplay(_INTL("¡{2} de {1} penetró la protección!",user.pbThis,PBAbilities.getName(user.ability)))
+      else
+        @battle.pbDisplay(_INTL("¡{1} se está protegiendo!",target.pbThis))
+        @battle.successStates[user.index].protected=true
+        PBDebug.log("[Move failed] #{user.pbThis}'s Baneful Bunker stopped the attack!")
+        if thismove.isContactMove? && !user.isFainted? && user.pbCanBurn?(nil,false) && !user.hasWorkingAbility(:LONGREACH) &&
+          (!user.hasWorkingItem(:PUNCHINGGLOVE) && !thismove.isPunchingMove?) && !user.isFainted?
+          PBDebug.log("#{target.pbThis} poisoned by Baneful Bunker")
+          user.pbBurn(target,_INTL("¡{1} fue quemado!",target.pbThis))
+        end
+        return false
       end
-      return false
     end
     # Inmunidad a movimientos basados en polvos
     if USENEWBATTLEMECHANICS && thismove.isPowderMove? &&
@@ -3993,6 +4102,7 @@ class PokeBattle_Battler
   end
 
   def pbProcessMoveAgainstTarget(thismove,user,target,numhits,turneffects,nocheck=false,alltargets=nil,showanimation=true,dancercheck=false)
+    user.effects[PBEffects::PiercingDrill] = false
     realnumhits=0
     totaldamage=0
     destinybond=false
