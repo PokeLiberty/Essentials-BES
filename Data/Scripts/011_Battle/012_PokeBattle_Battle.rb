@@ -4222,10 +4222,10 @@ class PokeBattle_Battle
         PBDebug.log("[Efecto prolongado disparado] Salazón de #{i.pbThis}")
         @scene.pbDamageAnimation(i,0)
         if i.pbHasType?(:WATER) || i.pbHasType?(:STEEL)
-          i.pbReduceHP((i.totalhp/4).floor,true)
+          i.pbReduceHP((i.totalhp/8).floor,true)
           pbDisplay(_INTL("¡Salazón ha herido a {1}!",i.pbThis))
         else
-          i.pbReduceHP((i.totalhp/8).floor,true)
+          i.pbReduceHP((i.totalhp/16).floor,true)
           pbDisplay(_INTL("¡Salazón ha herido a {1}!",i.pbThis))
         end
       end

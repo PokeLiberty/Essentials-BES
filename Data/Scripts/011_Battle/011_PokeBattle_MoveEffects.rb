@@ -10787,7 +10787,7 @@ end
 
 ################################################################################
 # Poisons the target (Toxic Thread)
-# Decreases the target's Speed by 1 stage.
+# Decreases the target's Speed by 2* stage.
 ################################################################################
 class PokeBattle_Move_1B9 < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
@@ -10796,7 +10796,7 @@ class PokeBattle_Move_1B9 < PokeBattle_Move
     poison=opponent.pbCanPoison?(attacker,false,self)
     pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation) if speed || poison
     ret=false
-    ret=opponent.pbReduceStat(PBStats::SPEED,1,attacker,true,self) if speed
+    ret=opponent.pbReduceStat(PBStats::SPEED,USENEWBATTLEMECHANICS ? 2 : 1,attacker,true,self) if speed
     ret|=poison
     opponent.pbPoison(attacker) if poison || attacker.hasWorkingAbility(:CORROSION) && opponent.status==0
     @battle.pbDisplay(_INTL("¡Pero falló!")) if !ret

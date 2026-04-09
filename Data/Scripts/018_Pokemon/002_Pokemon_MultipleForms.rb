@@ -1037,6 +1037,10 @@ MultipleForms.register(:FLOETTE,{
    next [74,85,87,102,155,148] if pokemon.form==7 # Mega Floette Flor Eterna
    next 
 },
+"getAbilityList"=>proc{|pokemon|
+    next [[getID(PBAbilities,:FAIRYAURA),0]] if pokemon.form==7
+    next
+}, #No se sabe cual es la hab oficial.
  "getMegaForm"=>proc{|pokemon|
     next 7 if isConst?(pokemon.item,PBItems,:FLOETTITE) && pokemon.form==6
     next

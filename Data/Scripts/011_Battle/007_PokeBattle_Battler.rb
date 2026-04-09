@@ -4074,7 +4074,8 @@ class PokeBattle_Battler
         end
       end
       if self.status==PBStatuses::PARALYSIS
-        if @battle.pbRandom(4)==0
+        if (!USENEWBATTLEMECHANICS && @battle.pbRandom(4)==0) || 
+           (USENEWBATTLEMECHANICS && @battle.pbRandom(8)==0) #Update del Champions
           pbContinueStatus
           PBDebug.log("[Estado] #{pbThis} está completamente paralizado y no se pudo mover")
           return false

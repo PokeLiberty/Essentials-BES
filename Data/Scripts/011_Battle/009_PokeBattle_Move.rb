@@ -320,7 +320,9 @@ class PokeBattle_Move
            isConst?(@id,PBMoves,:KOWTOWCLEAVE) ||
            isConst?(@id,PBMoves,:MIGHTYCLEAVE) ||
            isConst?(@id,PBMoves,:PSYBLADE) ||
-           isConst?(@id,PBMoves,:TACHYONCUTTER) 
+           isConst?(@id,PBMoves,:TACHYONCUTTER) ||
+           isConst?(@id,PBMoves,:SHADOWCLAW) ||
+           isConst?(@id,PBMoves,:DRAGONCLAW) ||
            
   end
 
