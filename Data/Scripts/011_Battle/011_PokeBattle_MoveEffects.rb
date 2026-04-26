@@ -316,6 +316,9 @@ class PokeBattle_Move_008 < PokeBattle_Move
   end
 
   def pbModifyBaseAccuracy(baseaccuracy,attacker,opponent)
+    if attacker.hasWorkingAbility(:MEGASOL)
+      return 50
+    end
     case @battle.pbWeather
     when PBWeather::RAINDANCE, PBWeather::HEAVYRAIN
       if !attacker.hasWorkingItem(:UTILITYUMBRELLA)
@@ -627,6 +630,9 @@ class PokeBattle_Move_015 < PokeBattle_Move
   end
 
   def pbModifyBaseAccuracy(baseaccuracy,attacker,opponent)
+    if attacker.hasWorkingAbility(:MEGASOL)
+      return 50
+    end
     case @battle.pbWeather
     when PBWeather::RAINDANCE, PBWeather::HEAVYRAIN
       if !attacker.hasWorkingItem(:UTILITYUMBRELLA)
@@ -10342,6 +10348,8 @@ class PokeBattle_Move_CF5 < PokeBattle_Move
     hpgain=0
     if @battle.pbWeather==PBWeather::SANDSTORM
       hpgain=(attacker.totalhp*2/3).floor
+    elsif attacker.hasWorkingAbility(:MEGASOL)
+      hpgain=(attacker.totalhp/2).floor
     else
       hpgain=(attacker.totalhp/2).floor
     end

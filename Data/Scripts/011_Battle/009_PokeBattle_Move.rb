@@ -1319,12 +1319,12 @@ class PokeBattle_Move
       #defense2=(defense2*1.0*stagemul[defstage2]/stagediv[defstage2]).floor
     end
     if @battle.pbWeather==PBWeather::SANDSTORM &&
-       opponent.pbHasType?(:ROCK) && applysandstorm
+       opponent.pbHasType?(:ROCK) && applysandstorm && !attacker.hasWorkingAbility(:MEGASOL)
       defense=(defense*1.5).round
     end
     if SNOW_REPLACES_HAIL
       if @battle.pbWeather==PBWeather::HAIL &&
-         opponent.pbHasType?(:ICE) && applysnow
+         opponent.pbHasType?(:ICE) && applysnow && !attacker.hasWorkingAbility(:MEGASOL)
         defense2=(defense2*1.5).round
       end
     end

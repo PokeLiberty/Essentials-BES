@@ -66,6 +66,7 @@ class PokeBattle_Battle
     score=100
     opponent=attacker.pbOppositeOpposing unless opponent
     opponent=opponent.pbPartner if opponent && opponent.isFainted?
+    return 100 if opponent.nil? || opponent.isFainted? # Sin el da un Bug al morir tu poke por daño indirecto
     score=-100 if move.pp <= 0
     # Bromista / Prankster
     prankpri = (move.basedamage == 0 && attacker.hasWorkingAbility(:PRANKSTER))
