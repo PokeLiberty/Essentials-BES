@@ -1601,6 +1601,10 @@ MultipleForms.register(:INDEEDEE,{
      pokemon.form=0
    end
 },
+  "getBaseStats"=>proc{|pokemon|
+  next [70,55,65,85,95,105] if pokemon.form==1
+  next
+},
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
    when 1; next [[getID(PBAbilities,:OWNTEMPO),0],[getID(PBAbilities,:SYNCHRONIZE),1],[getID(PBAbilities,:PSYCHICSURGE),2]]
@@ -1843,6 +1847,21 @@ MultipleForms.register(:CALYREX,{
 }
 })
 
+# BASCULEGION
+MultipleForms.register(:BASCULEGION,{
+"getFormOnCreation"=>proc{|pokemon|
+   if pokemon.isFemale?
+     pokemon.form=1
+   else
+     pokemon.form=0
+   end
+},
+    "getBaseStats"=>proc{|pokemon|
+  next [120,92,65,78,100,75] if pokemon.form==1
+  next
+}
+})
+
 # OINKOLOGNE
 MultipleForms.register(:OINKOLOGNE,{
 "getFormOnCreation"=>proc{|pokemon|
@@ -1851,6 +1870,10 @@ MultipleForms.register(:OINKOLOGNE,{
    else
      pokemon.form=0
    end
+},
+    "getBaseStats"=>proc{|pokemon|
+  next [115,90,70,65,59,90] if pokemon.form==1
+  next
 },
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
