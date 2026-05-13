@@ -2260,7 +2260,7 @@ class PokeBattle_Battler
         if target.hasWorkingAbility(:SPICYSPRAY) && user.pbCanBurn(nil,false)
           PBDebug.log("[Habilidad disparada] Salpicante de #{target.pbThis}")
           showAbilityMessage(target) rescue nil
-          user.pbBurn(target,_INTL("¡{2} de {1} quemó a {3}!"!,target.pbThis,
+          user.pbBurn(target,_INTL("¡{2} de {1} quemó a {3}!",target.pbThis,
           PBAbilities.getName(target.ability),user.pbThis(true)))
         end
         # Energía Eólica

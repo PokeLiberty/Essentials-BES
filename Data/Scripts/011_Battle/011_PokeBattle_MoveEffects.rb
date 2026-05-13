@@ -7239,7 +7239,7 @@ end
 ################################################################################
 class PokeBattle_Move_0F0 < PokeBattle_Move
   def pbEffectAfterHit(attacker,opponent,turneffects)
-    if !attacker.isFainted? && !opponent.isFainted? && opponent.item!=0 &&
+    if !opponent.isFainted? && opponent.item!=0 &&
        opponent.damagestate.calcdamage>0 && !opponent.damagestate.substitute
       if !attacker.hasMoldBreaker && opponent.hasWorkingAbility(:STICKYHOLD)
         abilityname=PBAbilities.getName(opponent.ability)
@@ -7263,9 +7263,6 @@ class PokeBattle_Move_0F0 < PokeBattle_Move
     return damagemult
   end
 end
-
-
-
 ################################################################################
 # El usuario roba el objeto al objetivo en caso que el usuario no tenga ninguno.
 # El usuario se queda con los objetos robados en batallas con salvajes después
@@ -12911,20 +12908,20 @@ end
 # Oído Cocina / Order Up
 ################################################################################
 class PokeBattle_Move_269 < PokeBattle_Move
-  def pbAdditionalEffect(attacker,opponent)
-    if attacker.pbPartner.form==0
+  def pbAdditionalEffect(attacker,opponent) 
+    if attacker.pbPartner.form==0 && @battle.doublebattle
       showanim=true
       if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
         attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
         showanim=false
       end
-    elsif attacker.pbPartner.form==1
+    elsif attacker.pbPartner.form==1 && @battle.doublebattle
       showanim=true
       if attacker.pbCanIncreaseStatStage?(PBStats::DEFENSE,attacker,false,self)
         attacker.pbIncreaseStat(PBStats::DEFENSE,1,attacker,false,self,showanim)
         showanim=false
       end
-    elsif attacker.pbPartner.form==2
+    elsif attacker.pbPartner.form==2 && @battle.doublebattle
       showanim=true
       if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,attacker,false,self)
         attacker.pbIncreaseStat(PBStats::SPEED,1,attacker,false,self,showanim)
