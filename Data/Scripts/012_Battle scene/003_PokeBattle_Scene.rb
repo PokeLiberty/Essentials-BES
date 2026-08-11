@@ -453,6 +453,7 @@ class PokeBattle_Scene
     yvalue-=72 if doublePreviewTop
     pbAddSprite("partybarfoe",-400,yvalue,"Graphics/#{BATTLE_ROUTE}/battleLineup",@viewport)
     @sprites["partybarfoe"].visible=true
+    @sprites["partybarfoe"].z=41
     @partyAnimPhase=0
   end
 

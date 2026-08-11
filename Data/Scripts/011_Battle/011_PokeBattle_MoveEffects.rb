@@ -5779,7 +5779,7 @@ class PokeBattle_Move_0C4 < PokeBattle_Move
     # Lista de climas que reducen la potencia
     weather_list = [
       PBWeather::RAINDANCE,
-      PBWeather::PRIMORDIALSEA,
+      PBWeather::HEAVYRAIN,
       PBWeather::SANDSTORM,
       PBWeather::HAIL
     ]
@@ -10813,7 +10813,7 @@ class PokeBattle_Move_1B9 < PokeBattle_Move
   def pbAdditionalEffect(attacker,opponent)
     return if opponent.damagestate.substitute
     if opponent.pbCanReduceStatStage?(PBStats::SPEED,attacker,false,self)
-      opponent.pbReduceStat(PBStats::SPEED,1,attacker,false,self)
+      opponent.pbReduceStat(PBStats::SPEED,USENEWBATTLEMECHANICS ? 2 : 1,attacker,false,self)
     end
     if opponent.pbCanPoison?(attacker,false,self) ||
      attacker.hasWorkingAbility(:CORROSION) && opponent.status==0

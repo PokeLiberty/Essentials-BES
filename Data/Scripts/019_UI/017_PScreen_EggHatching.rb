@@ -163,7 +163,7 @@ end
 
 
 def pbHatchAnimation(pokemon)
-  Kernel.pbMessage(_INTL("¿Y ésto?\1"))
+  Kernel.pbMessage(_INTL("¿Y esto?\1"))
   pbFadeOutInWithMusic(99999) {
      scene=PokemonEggHatchScene.new
      screen=PokemonEggHatchScreen.new(scene)
@@ -186,7 +186,7 @@ def pbHatch(pokemon)
   pbSeenForm(pokemon)
   pokemon.pbRecordFirstMoves
   if !pbHatchAnimation(pokemon)
-    Kernel.pbMessage(_INTL("¿Y ésto?\1"))
+    Kernel.pbMessage(_INTL("¿Y esto?\1"))
     Kernel.pbMessage(_INTL("...\1"))
     Kernel.pbMessage(_INTL("... .... .....\1"))
     Kernel.pbMessage(_INTL("¡{1} ha salido del huevo!",speciesname))
