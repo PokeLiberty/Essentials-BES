@@ -2,10 +2,25 @@
 # ** Map Autoscroll
 #-------------------------------------------------------------------------------
 # Wachunga
-# Version 1.02
-# 2005-12-18
+# Version 2 para BES
 #===============================================================================
 =begin
+  BES-T Guia de uso
+
+  # USAR ESTOS PARA MEJOR FUNCIONAMIENTO
+  autoscroll_wait(x, y, speed) -> scroll hasta centrar tile x,y (velocidad 4)
+  autoscroll_player_wait(speed)-> scroll hasta centrar al jugador (velocidad 4)
+
+  autoscroll(x,y)              -> scroll hasta centrar tile x,y (velocidad 4)
+  autoscroll(x,y,speed)        -> speed de 1 a 6
+  autoscroll_player(speed)     -> scroll hasta centrar al jugador
+
+  Debe llamarse desde un evento en un LOOP que espere a que termine, ej:
+
+  @__as_done = autoscroll(52,8)
+  ~ (Conditional Branch: @__as_done == false) -> Wait 1 frame -> Loop back
+
+  o más simple, usar autoscroll_wait(x,y,speed) que bloquea el evento
 
   This script supplements the built-in "Scroll Map" event command with the
   aim of simplifying cutscenes (and map scrolling in general). Whereas the
@@ -71,157 +86,102 @@
 
 class Interpreter
   SCROLL_SPEED_DEFAULT = 4
+
   #-----------------------------------------------------------------------------
   # * Map Autoscroll to Coordinates
   #     x     : x coordinate to scroll to and center on
   #     y     : y coordinate to scroll to and center on
   #     speed : (optional) scroll speed (from 1-6, default being 4)
   #-----------------------------------------------------------------------------
-
-  def autoscroll(x,y,speed=SCROLL_SPEED_DEFAULT)
-    if $game_map.scrolling?
-      return false
-    elsif not $game_map.valid?(x,y)
+  def autoscroll(x, y, speed = SCROLL_SPEED_DEFAULT)
+    if not $game_map.valid?(x, y)
       print 'Map Autoscroll: given x,y is invalid'
-      return command_skip
+      return true
     elsif not (1..6).include?(speed)
       print 'Map Autoscroll: invalid speed (1-6 only)'
-      return command_skip
-    end
-    center_x = (Graphics.width/2 - Game_Map::TILEWIDTH/2) * 4    # X coordinate in the center of the screen
-    center_y = (Graphics.height/2 - Game_Map::TILEHEIGHT/2) * 4   # Y coordinate in the center of the screen
-    max_x = ($game_map.width - Graphics.width*1.0/Game_Map::TILEWIDTH) * 4 * Game_Map::TILEWIDTH
-    max_y = ($game_map.height - Graphics.height*1.0/Game_Map::TILEHEIGHT) * 4 * Game_Map::TILEHEIGHT
-    count_x = ($game_map.display_x - [0,[x*Game_Map.realResX-center_x,max_x].min].max)/Game_Map.realResX
-    count_y = ($game_map.display_y - [0,[y*Game_Map.realResY-center_y,max_y].min].max)/Game_Map.realResY
-    # BES-T Ahora esto funciona.
-    if false #not @diag
-      @diag = true
-      dir = nil
-      if count_x > 0
-        if count_y > 0
-          dir = 7
-        elsif count_y < 0
-          dir = 1
-        end
-      elsif count_x < 0
-        if count_y > 0
-          dir = 9
-        elsif count_y < 0
-          dir = 3
-        end
-      end
-      count = [count_x.abs,count_y.abs].min
-    else
-      @diag = false
-      dir = nil
-      if count_x != 0 and count_y != 0
-        return false
-      elsif count_x > 0
-        dir = 4
-      elsif count_x < 0
-        dir = 6
-      elsif count_y > 0
-        dir = 8
-      elsif count_y < 0
-        dir = 2
-      end
-      count = count_x != 0 ? count_x.abs : count_y.abs
-    end
-    $game_map.start_scroll(dir, count, speed) if dir != nil
-    if @diag
-      return false
-    else
       return true
     end
+    $game_map.start_autoscroll(x, y, speed)
+    return !$game_map.autoscrolling?
   end
-
   #-----------------------------------------------------------------------------
   # * Map Autoscroll (to Player)
   #     speed : (optional) scroll speed (from 1-6, default being 4)
   #-----------------------------------------------------------------------------
-  def autoscroll_player(speed=SCROLL_SPEED_DEFAULT)
-    autoscroll($game_player.x,$game_player.y,speed)
+  def autoscroll_player(speed = SCROLL_SPEED_DEFAULT)
+    autoscroll($game_player.x, $game_player.y, speed)
+  end
+
+  #-----------------------------------------------------------------------------
+  # * BES-T Versión bloqueante: usar esta mejor.
+  #-----------------------------------------------------------------------------
+  def autoscroll_wait(x, y, speed = SCROLL_SPEED_DEFAULT)
+    autoscroll(x, y, speed)
+    while $game_map.autoscrolling?
+      pbWait(1)
+    end
+    return true
+  end
+
+  def autoscroll_player_wait(speed = SCROLL_SPEED_DEFAULT)
+    autoscroll_wait($game_player.x, $game_player.y, speed)
   end
 end
 
 
 
 class Game_Map
-  def scroll_downright(distance)
-    @display_x = [@display_x + distance,
-       (self.width - Graphics.width*1.0/Game_Map::TILEWIDTH) * Game_Map.realResX].min
-    @display_y = [@display_y + distance,
-       (self.height - Graphics.height*1.0/Game_Map::TILEHEIGHT) * Game_Map.realResY].min
+  def start_autoscroll(x, y, speed = 4)
+    center_x = (Graphics.width / 2 - Game_Map::TILEWIDTH / 2) * 4
+    center_y = (Graphics.height / 2 - Game_Map::TILEHEIGHT / 2) * 4
+    max_x = (self.width  - Graphics.width  * 1.0 / Game_Map::TILEWIDTH)  * 4 * Game_Map::TILEWIDTH
+    max_y = (self.height - Graphics.height * 1.0 / Game_Map::TILEHEIGHT) * 4 * Game_Map::TILEHEIGHT
+
+    target_x = [0, [x * Game_Map.realResX - center_x, max_x].min].max
+    target_y = [0, [y * Game_Map.realResY - center_y, max_y].min].max
+
+    @as_target_x = target_x
+    @as_target_y = target_y
+    @as_speed    = 2 ** speed   # píxeles-mapa por frame, misma escala que el sistema original
+    @as_active   = true
   end
 
-  def scroll_downleft(distance)
-    @display_x = [@display_x - distance, 0].max    
-    @display_y = [@display_y + distance,
-       (self.height - Graphics.height*1.0/Game_Map::TILEHEIGHT) * Game_Map.realResY].min    
+  def autoscrolling?
+    @as_active == true
   end
 
-  def scroll_upright(distance)
-    @display_x = [@display_x + distance,
-       (self.width - Graphics.width*1.0/Game_Map::TILEWIDTH) * Game_Map.realResX].min
-    @display_y = [@display_y - distance, 0].max
-  end
+  #-----------------------------------------------------------------------------
+  # * Se llama una vez por frame (ver alias de update más abajo)
+  #-----------------------------------------------------------------------------
+  def update_autoscroll
+    return unless @as_active
 
-  def scroll_upleft(distance)
-    @display_x = [@display_x - distance, 0].max
-    @display_y = [@display_y - distance, 0].max
-  end
+    dx = @as_target_x - @display_x
+    dy = @as_target_y - @display_y
 
-  def update_scrolling
-    # If scrolling
-    if @scroll_rest > 0
-      # Change from scroll speed to distance in map coordinates
-      distance = 2 ** @scroll_speed
-      # Execute scrolling
-      case @scroll_direction
-#-------------------------------------------------------------------------------
-# Begin Map Autoscroll Edit
-#-------------------------------------------------------------------------------
-      when 1 # down left
-        scroll_downleft(distance)
-#-------------------------------------------------------------------------------
-# End Map Autoscroll Edit
-#-------------------------------------------------------------------------------
-      when 2  # Down
-        scroll_down(distance)
-#-------------------------------------------------------------------------------
-# Begin Map Autoscroll Edit
-#-------------------------------------------------------------------------------
-      when 3 # down right
-        scroll_downright(distance)
-#-------------------------------------------------------------------------------
-# End Map Autoscroll Edit
-#-------------------------------------------------------------------------------
-      when 4  # Left
-        scroll_left(distance)
-      when 6  # Right
-        scroll_right(distance)
-#-------------------------------------------------------------------------------
-# Begin Map Autoscroll Edit
-#-------------------------------------------------------------------------------
-      when 7  # up left
-        scroll_upleft(distance)
-#-------------------------------------------------------------------------------
-# End Map Autoscroll Edit
-#-------------------------------------------------------------------------------
-      when 8  # Up
-        scroll_up(distance)
-#-------------------------------------------------------------------------------
-# Begin Map Autoscroll Edit
-#-------------------------------------------------------------------------------
-      when 9  # up right
-        scroll_upright(distance)                
-#-------------------------------------------------------------------------------
-# End Map Autoscroll Edit
-#-------------------------------------------------------------------------------
-      end
-      # Subtract distance scrolled
-      @scroll_rest -= distance
+    if dx == 0 and dy == 0
+      @as_active = false
+      return
     end
-  end  
+
+    dist = Math.sqrt(dx.to_f * dx + dy.to_f * dy)
+    step = @as_speed
+
+    if dist <= step
+      # último frame: llegar exacto, sin pasarse
+      @display_x = @as_target_x
+      @display_y = @as_target_y
+      @as_active = false
+    else
+      ratio = step / dist
+      @display_x += (dx * ratio).round
+      @display_y += (dy * ratio).round
+    end
+  end
+
+  alias autoscroll_orig_update update
+  def update
+    autoscroll_orig_update
+    update_autoscroll
+  end
 end
