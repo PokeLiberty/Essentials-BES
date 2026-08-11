@@ -12315,7 +12315,14 @@ class PokeBattle_Move_250 < PokeBattle_Move
   def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
     return super(attacker,opponent,hitnum,alltargets,showanimation) if pbIsDamaging?
     pbShowAnimation(@id,attacker,opponent,hitnum,alltargets,showanimation)
-    opponent.pbReduceStat(PBStats::EVASION,1,attacker,false,self)
+    showanim=true
+    if attacker.pbCanIncreaseStatStage?(PBStats::ATTACK,attacker,false,self)
+      attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
+      showanim=false
+    end
+    if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,attacker,false,self)
+      attacker.pbIncreaseStat(PBStats::SPEED,1,attacker,false,self,showanim)
+    end
     opponent.pbOwnSide.effects[PBEffects::Reflect]     = 0
     opponent.pbOwnSide.effects[PBEffects::LightScreen] = 0
     opponent.pbOwnSide.effects[PBEffects::AuroraVeil]  = 0
@@ -12358,10 +12365,8 @@ class PokeBattle_Move_250 < PokeBattle_Move
       attacker.pbIncreaseStat(PBStats::ATTACK,1,attacker,false,self,showanim)
       showanim=false
     end
-    showanim=true
     if attacker.pbCanIncreaseStatStage?(PBStats::SPEED,attacker,false,self)
       attacker.pbIncreaseStat(PBStats::SPEED,1,attacker,false,self,showanim)
-      showanim=false
     end
     opponent.pbOwnSide.effects[PBEffects::Reflect]     = 0
     opponent.pbOwnSide.effects[PBEffects::LightScreen] = 0
