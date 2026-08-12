@@ -105,6 +105,10 @@ class PokeBattle_Move
 
   def pbType(type,attacker,opponent)
     @powerboost=false
+    # Voz Fluida
+    if type>=0 && attacker.hasWorkingAbility(:LIQUIDVOICE) && isSoundBased? && hasConst?(PBTypes,:WATER)
+      type=getConst(PBTypes,:WATER)
+    end
     type=pbModifyType(type,attacker,opponent)
     if type>=0 && hasConst?(PBTypes,:ELECTRIC)
       if @battle.field.effects[PBEffects::IonDeluge] && isConst?(type,PBTypes,:NORMAL)
@@ -577,10 +581,6 @@ class PokeBattle_Move
       otype2=opponent.pokemon.original_types[1]
     end
     otype3=opponent.effects[PBEffects::Type3] || -1
-    # Voz Fluida
-    if attacker.hasWorkingAbility(:LIQUIDVOICE) && isSoundBased?
-      atype=getConst(PBTypes,:WATER) || 0
-    end
     # Respiro
     if isConst?(otype1,PBTypes,:FLYING) && opponent.effects[PBEffects::Roost]
       if isConst?(otype2,PBTypes,:FLYING) && isConst?(otype3,PBTypes,:FLYING)
