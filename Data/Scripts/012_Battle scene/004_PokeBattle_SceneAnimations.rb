@@ -359,7 +359,7 @@ class PokeballSendOutAnimation
 #===============================================================================
   POKEBALL_ANIM_SPEED = 2
   POKEBALL_STAR_SPEED = 3
-  POKEBALL_BURST_SPEED = 4
+  POKEBALL_BURST_SPEED = 3
 
   def pokeballThrow(ball,shakes,critical,targetBattler,scene,battler,burst=-1,showplayer=false)
     spd=lambda{|n| (n*POKEBALL_ANIM_SPEED).round}
