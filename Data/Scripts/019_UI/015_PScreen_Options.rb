@@ -17,6 +17,7 @@ class PokemonSystem
   attr_accessor :textinput
   attr_accessor :border
   attr_accessor :font
+  attr_accessor :pkmnanim
   
   def initialize
     @textspeed     = 2     # Text speed (0=slow, 1=medium, 2=fast, 3=instant)
@@ -34,6 +35,7 @@ class PokemonSystem
     @textinput     = 0     # Text input mode (0=cursor, 1=keyboard)
     @font        = 0   # Font (see also $VersionStyles)
     @border      = 0   # Screen border (0=off, 1=on)
+    @pkmnanim      = 0     # Animación de sprites (predetermiando: encendidos)
 
   end
   
@@ -588,6 +590,16 @@ MenuHandlers.add(:options_menu, :battle_animations, {
   "description" => _INTL("Activa o desactiva las animaciones durante los combates."),
   "get_proc"    => proc { next $PokemonSystem.battlescene },
   "set_proc"    => proc { |value, _scene| $PokemonSystem.battlescene = value }
+})
+
+MenuHandlers.add(:options_menu, :pkmn_animados, {
+  "name"        => _INTL("Pokémon Animados"),
+  "order"       => 40,
+  "type"        => EnumOption,
+  "parameters"  => [_INTL("Ver"), _INTL("No ver")],
+  "description" => _INTL("Activa o desactiva los Pokémon (Sprites) Animados."),
+  "get_proc"    => proc { $PokemonSystem.pkmnanim },
+  "set_proc"    => proc { |value, _scene| $PokemonSystem.pkmnanim = value }
 })
 
 MenuHandlers.add(:options_menu, :battle_style, {

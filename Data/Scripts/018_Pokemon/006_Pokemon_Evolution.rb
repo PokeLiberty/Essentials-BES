@@ -876,25 +876,34 @@ class PokemonEvolutionScene
         end
       end
       if createSpecies>0 && $Trainer.party.length<6
-        newpokemon=@pokemon.clone
-        newpokemon.iv=@pokemon.iv.clone
-        newpokemon.ev=@pokemon.ev.clone
-        newpokemon.species=createSpecies
-        newpokemon.name=PBSpecies.getName(createSpecies)
-        newpokemon.setItem(0)
-        newpokemon.clearAllRibbons
-        newpokemon.markings=0
-        newpokemon.ballused=0
-        newpokemon.calcStats
-        newpokemon.heal
-        $Trainer.party.push(newpokemon)
-        $Trainer.seen[createSpecies]=true
-        $Trainer.owned[createSpecies]=true
-        pbSeenForm(newpokemon)
+        pbDuplicatePokemon(@pokemon, createSpecies)
         $PokemonBag.pbDeleteItem(getConst(PBItems,:POKEBALL))
       end
     end
   end
+
+  #Metodo usado a partir de la v18
+  def pbDuplicatePokemon(pkmn, new_species)
+    return false if pkmn.nil?
+    # BES-T Crea una copia independiente del pokemon, en lugar del .clone original, que daba problemas
+    new_pkmn = Marshal.load(Marshal.dump(pkmn)) rescue nil
+    return false if new_pkmn.nil?
+    new_pkmn.species  = new_species
+    new_pkmn.name     = PBSpecies.getName(new_species)
+    new_pkmn.markings = 0
+    new_pkmn.ballused = 0
+    new_pkmn.setItem(0)
+    new_pkmn.clearAllRibbons
+    new_pkmn.calcStats
+    new_pkmn.heal
+    # Add duplicate Pokémon to party
+    $Trainer.party.push(new_pkmn)
+    # See and own duplicate Pokémon
+    $Trainer.seen[new_species]  = true
+    $Trainer.owned[new_species] = true
+    pbSeenForm(new_pkmn)
+  end
+
 end
 
 

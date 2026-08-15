@@ -250,7 +250,7 @@ def pbAddPokemon(pokemon,level=nil,seeform=true,nick=true)
   end
   speciesname=PBSpecies.getName(pokemon.species)
   Kernel.pbMessage(_INTL("¡{1} ha obtenido un {2}!\\se[PokemonGet]\1",$Trainer.name,speciesname))
-  pbNicknameAndStore(pokemon) if nick
+  pbNicknameAndStore(pokemon,nick)
   pbSeenForm(pokemon) if seeform
   return true
 end

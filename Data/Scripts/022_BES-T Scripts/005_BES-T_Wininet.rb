@@ -24,6 +24,10 @@ module Net
   
     HTTP_ADDREQ_FLAG_REPLACE=0x80000000
   
+    INTERNET_FLAG_RELOAD         = 0x80000000
+    INTERNET_FLAG_NO_CACHE_WRITE = 0x04000000
+    INTERNET_FLAG_PRAGMA_NOCACHE = 0x00000100
+    
     SPC=Win32API.new('kernel32','SetPriorityClass','pi','i').call(-1,128)
     IOA=Win32API.new(W,'InternetOpenA','plppl','l')
     ICA=Win32API.new(W,'InternetConnectA','lplpplll','l')
@@ -41,7 +45,7 @@ module Net
       POST="POST"
   
       module_function
-      def request(method, url, params=nil, body=nil, headers=nil)
+      def request(method, url, params=nil, body=nil, headers=nil, wininet_flags=0)
         url_parts=url.split('/')
         server=url_parts[2]
         path=url_parts[3..url_parts.size].join('/')
@@ -49,7 +53,6 @@ module Net
         if hInternet!=0
           hConnect=ICA.call(hInternet, server, 80, nil, nil, INTERNET_SERVICE_HTTP, 0, 0)
           if hConnect!=0
-            # TODO: add urlencoded params into path
             if not params.nil?
               terms = []
               params.each do |key, value|
@@ -57,15 +60,18 @@ module Net
               end
               path = "#{path}?#{terms.join('&')}"
             end
-            hRequest=HORA.call(hConnect, method, path, nil, nil, nil, 0, 0)
+            hRequest=HORA.call(hConnect, method, path, nil, nil, nil, wininet_flags, 0)
             if hRequest!=0
               HARHA.call(hRequest, "User-Agent: RPG Maker XP", -1, HTTP_ADDREQ_FLAG_REPLACE)
+              if wininet_flags != 0
+                HARHA.call(hRequest, "Cache-Control: no-cache", -1, HTTP_ADDREQ_FLAG_REPLACE)
+                HARHA.call(hRequest, "Pragma: no-cache", -1, HTTP_ADDREQ_FLAG_REPLACE)
+              end
               if not headers.nil?
                 headers.each do |key, value|
                   HARHA.call(hRequest, "#{key}: #{value}", -1, HTTP_ADDREQ_FLAG_REPLACE)
                 end
               end
-              # TODO: implement post data for application/x-www-form-urlencoded
               msg = ''
               if not body.nil?
                 if body.instance_of? Hash
@@ -89,7 +95,7 @@ module Net
                 raw_headers = k.delete!("\0").split("\r\n")
                 headers = {}
                 raw_headers.each do |raw_header|
-                  key, value = raw_header.split(":")
+                  key, value = raw_header.split(":", 2)
                   headers[key] = value.strip if not value.nil?
                 end
                 loop do
@@ -117,8 +123,8 @@ module Net
         end
       end
        
-     def get(url, params=nil, headers=nil)
-       return request(GET, url, params, nil, headers)
+     def get(url, params=nil, headers=nil, wininet_flags=0)
+       return request(GET, url, params, nil, headers, wininet_flags)
      end
      
      def post(url, params=nil, body=nil, headers=nil)

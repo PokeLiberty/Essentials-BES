@@ -292,8 +292,17 @@ class Spriteset_Map
       end
     end
     for sprite in @reflectedSprites
-      sprite.visible=true
-      sprite.visible=(@map==$game_map) if sprite.event==$game_player
+      if sprite.event.is_a?(Game_Event)
+        if in_range?(sprite.event) || sprite.event.move_route_forcing ||
+           sprite.event.trigger==3 || sprite.event.trigger==4
+          sprite.visible=true
+        else
+          sprite.visible=false
+        end
+      else
+        sprite.visible=true
+        sprite.visible=(@map==$game_map) if sprite.event==$game_player
+      end
       sprite.update
     end
     # Avoids overlap effect of player sprites if player is near edge of
