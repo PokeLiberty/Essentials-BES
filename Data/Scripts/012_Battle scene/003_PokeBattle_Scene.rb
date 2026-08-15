@@ -47,6 +47,115 @@ class PokeBattle_Scene
   COMMANDBOX = 2
   FIGHTBOX   = 3
 
+#===============================================================================
+# BES-T: Efecto de captura mejorado (Estilo v21)
+#===============================================================================
+  BALL_BURST_CAPTURE_VARIANCES_BEST = {
+    :POKEBALL   => ["particle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "dazzle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "particle", Tone.new(0,0,0), Tone.new(0,0,-192),
+                    "particle_s", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "particle_s", Tone.new(0,0,0), Tone.new(0,0,-192),
+                    Tone.new(0,0,-96), Tone.new(0,0,-96)],
+    :GREATBALL  => ["particle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "dazzle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "particle", Tone.new(0,0,0), Tone.new(0,0,-192),
+                    "particle_s", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "particle_s", Tone.new(0,0,0), Tone.new(-128,-64,0),
+                    Tone.new(-128,-32,0), Tone.new(-128,-32,0)],
+    :ULTRABALL  => ["particle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "dazzle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "particle", Tone.new(0,0,0), Tone.new(0,0,-192),
+                    "particle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "dazzle", Tone.new(0,0,0), Tone.new(0,0,-192),
+                    Tone.new(0,0,-128), Tone.new(0,0,-128)],
+    :MASTERBALL => ["particle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "dazzle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "particle", Tone.new(-64,-128,-64), Tone.new(-96,-160,-96),
+                    "dazzle", Tone.new(0,0,0), Tone.new(0,0,0),
+                    "particle", Tone.new(0,-80,0), Tone.new(0,-128,-64),
+                    Tone.new(0,0,0), Tone.new(-48,-200,-80)]
+  }
+  
+#-----------------------------------------------------------------------------
+# Efecto de absorción adaptada a las funciones move* de BES
+#-----------------------------------------------------------------------------
+  def pbCaptureAbsorbBurst(baseZ, ballX, ballY, poke_ball, speed=1)
+    particle_duration = 10*speed
+    ring_duration = 5*speed
+    num_particles = 9
+    base_angle = 270
+    base_radius = (poke_ball == :MASTERBALL) ? 192 : 144
+    variances = BALL_BURST_CAPTURE_VARIANCES_BEST[poke_ball] || BALL_BURST_CAPTURE_VARIANCES_BEST[:POKEBALL]
+    particles = []
+    glare_names = [variances[6], variances[3], variances[0]]
+    glare_tones = [variances[7], variances[4], variances[1]]
+    glare_zooms = (poke_ball == :MASTERBALL) ? [1200,400,800] : [600,250,500]
+    glares = []
+    3.times do |num|
+      pic = PictureEx.new(baseZ+100+num)
+      spr = IconSprite.new(0,0,@viewport)
+      pic.moveOrigin(0,PictureOrigin::Center)
+      pic.moveXY(0,0,ballX,ballY)
+      pic.moveName(0,"Graphics/#{BATTLE_ROUTE}/ballBurst_#{glare_names[num]}")
+      pic.moveZoom(0,0,0)
+      pic.moveTone(0,0,glare_tones[num])
+      pic.moveVisible(0,false)
+      glares.push([pic,spr])
+      particles.push([pic,spr])
+    end
+    glares.each { |p| p[0].moveVisible(1,true) }
+    glares.each_with_index do |p,num|
+      p[0].moveZoom(particle_duration,1,glare_zooms[num])
+      p[0].moveTone(particle_duration,1,variances[8-(3*num)])
+    end
+    glares.each { |p| p[0].moveVisible(1+particle_duration,false) }
+    num_particles.times do |i|
+      p2 = [PictureEx.new(baseZ+110), IconSprite.new(0,0,@viewport)]
+      p3 = [PictureEx.new(baseZ+111), IconSprite.new(0,0,@viewport)]
+      [p2,p3].each_with_index do |p,num|
+        name = (num==0) ? variances[12] : variances[9]
+        p[0].moveOrigin(0,PictureOrigin::Center)
+        p[0].moveName(0,"Graphics/#{BATTLE_ROUTE}/ballBurst_#{name}")
+        p[0].moveZoom(0,0,0)
+        p[0].moveTone(0,0,variances[13-(3*num)])
+        p[0].moveVisible(0,false)
+      end
+      [p2,p3].each { |p| p[0].moveVisible(1,true) }
+      start_angle = base_angle + (i*360/num_particles)
+      particle_duration.times do |j|
+        index=j+1
+        angle=start_angle+(index*(360/num_particles)/particle_duration)
+        radian=angle*Math::PI/180
+        prop=index.to_f/(particle_duration/2)
+        prop=2-prop if index>particle_duration/2
+        radius=base_radius*prop
+        [p2,p3].each { |p| p[0].moveXY(1,1+j,ballX+(radius*Math.cos(radian)),ballY-(radius*Math.sin(radian))) }
+      end
+      [p2,p3].each_with_index do |p,num|
+        zoomval=(num==0 && poke_ball==:MASTERBALL) ? 225 : 100
+        p[0].moveZoom(particle_duration/2,1,zoomval)
+        p[0].moveZoom(1+(particle_duration*2/3),particle_duration/3,10)
+        p[0].moveTone(1+(particle_duration/3),(particle_duration/3.0).ceil,variances[14-(3*num)])
+      end
+      [p2,p3].each { |p| p[0].moveVisible(1+particle_duration,false) }
+      particles.concat([p2,p3])
+    end
+    ring=[PictureEx.new(baseZ+110), IconSprite.new(0,0,@viewport)]
+    ring[0].moveXY(0,0,ballX,ballY)
+    ring[0].moveOrigin(0,PictureOrigin::Center)
+    ring[0].moveName(0,"Graphics/#{BATTLE_ROUTE}/ballBurst_ring1")
+    ring[0].moveZoom(0,0,0)
+    ring[0].moveTone(0,0,variances[15])
+    ring[0].moveVisible(0,false)
+    ring[0].moveVisible(1+particle_duration,true)
+    ring[0].moveZoom(ring_duration+2,1+particle_duration-2,125)
+    ring[0].moveTone(ring_duration,1+particle_duration,variances[16]) if variances[16]
+    ring[0].moveVisible(1+particle_duration+ring_duration,false)
+    particles.push(ring)
+    return particles, (particle_duration+ring_duration+2)
+  end
+
   def initialize
     @battle=nil
     @lastcmd=[0,0,0,0]
