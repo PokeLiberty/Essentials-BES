@@ -353,180 +353,191 @@ class PokeballSendOutAnimation
   
   
   
-  #===============================================================================
-  # Shows the player's Poké Ball being thrown to capture a Pokémon.
-  #===============================================================================
+#===============================================================================
+# BES-T: Efecto de captura Essentials v21
+#   Adaptado por maartiiindev_ para BES
+#===============================================================================
+  POKEBALL_ANIM_SPEED = 2
+  POKEBALL_STAR_SPEED = 3
+  POKEBALL_BURST_SPEED = 3
+
   def pokeballThrow(ball,shakes,critical,targetBattler,scene,battler,burst=-1,showplayer=false)
+    spd=lambda{|n| (n*POKEBALL_ANIM_SPEED).round}
+
     balltype=pbGetBallType(ball)
-    animtrainer=false
-    if showplayer && @sprites["player"].bitmap.width>@sprites["player"].bitmap.height
-      animtrainer=true
-    end
+    poke_ball=$BallTypes[balltype] || :POKEBALL
+    success=(shakes>=4)
+    numShakes=(critical && shakes>0) ? 1 : shakes
+
     oldvisible=@sprites["shadow#{targetBattler}"].visible
     @sprites["shadow#{targetBattler}"].visible=false
-    ball=sprintf("Graphics/#{BATTLE_ROUTE}/ball%02d",balltype)
-    ballopen=sprintf("Graphics/#{BATTLE_ROUTE}/ball%02d_open",balltype)
-    # sprites
+    ballfile=sprintf("Graphics/#{BATTLE_ROUTE}/ball_%s",poke_ball)
+    ballopenfile=sprintf("Graphics/#{BATTLE_ROUTE}/ball_%s_open",poke_ball)
+
     spritePoke=@sprites["pokemon#{targetBattler}"]
     spriteBall=IconSprite.new(0,0,@viewport)
     spriteBall.visible=false
-    spritePlayer=@sprites["player"] if animtrainer
-    # pictures
+
+    cropBallFrame=lambda{
+      next if !spriteBall.bitmap
+      if spriteBall.bitmap.width>=spriteBall.bitmap.height
+        spriteBall.src_rect.x=0
+        spriteBall.src_rect.y=0
+        spriteBall.src_rect.width=spriteBall.bitmap.height/2
+        spriteBall.src_rect.height=spriteBall.bitmap.height
+      end
+      spriteBall.ox=spriteBall.src_rect.width/2
+      spriteBall.oy=spriteBall.src_rect.height/2
+    }
+
     pictureBall=PictureEx.new(spritePoke.z+1)
     picturePoke=PictureEx.new(spritePoke.z)
     dims=[spritePoke.x,spritePoke.y]
     center=getSpriteCenter(@sprites["pokemon#{targetBattler}"])
+
     if @battle.doublebattle
       ballendy=PokeBattle_SceneConstants::FOEBATTLERD1_Y-4 if targetBattler==1
       ballendy=PokeBattle_SceneConstants::FOEBATTLERD2_Y-4 if targetBattler==3
     else
       ballendy=PokeBattle_SceneConstants::FOEBATTLER_Y-4
     end
-    if animtrainer
-      picturePlayer=PictureEx.new(spritePoke.z+2)
-      playerpos=[@sprites["player"].x,@sprites["player"].y]
-    end
-    # starting positions
+    ballGroundY=ballendy
+
+    # Lanzamiento: Arco hasta el otro Pokémon
+    ballStartX=-6
+    ballStartY=246
+    pictureBall.moveXY(0,1,ballStartX,ballStartY)
     pictureBall.moveVisible(1,true)
-    pictureBall.moveName(1,ball)
+    pictureBall.moveName(1,ballfile)
     pictureBall.moveOrigin(1,PictureOrigin::Center)
-    if animtrainer
-      pictureBall.moveXY(0,1,64,256)
-    else
-      pictureBall.moveXY(0,1,10,180)
-    end
-    picturePoke.moveVisible(1,true)
-    picturePoke.moveOrigin(1,PictureOrigin::Center)
-    picturePoke.moveXY(0,1,center[0],center[1])
-    if animtrainer
-      picturePlayer.moveVisible(1,true)
-      picturePlayer.moveName(1,spritePlayer.name)
-      picturePlayer.moveOrigin(1,PictureOrigin::TopLeft)
-      picturePlayer.moveXY(0,1,playerpos[0],playerpos[1])
-    end
-    # directives
-    picturePoke.moveSE(1,"Audio/SE/throw")
-    if animtrainer
-      pictureBall.moveCurve(30,1,64,256,30+Graphics.width/2,10,center[0],center[1])
-      pictureBall.moveAngle(30,1,-720)
-    else
-      pictureBall.moveCurve(30,1,150,70,30+Graphics.width/2,10,center[0],center[1])
-      pictureBall.moveAngle(30,1,-1080)
-    end
+    pictureBall.moveSE(1,"Audio/SE/throw")
+    midX=(ballStartX+center[0])/2
+    midY=[ballStartY,center[1]].min-140
+    pictureBall.moveCurve(spd.call(16),1,midX,midY,midX,midY,center[0],center[1])
+    pictureBall.moveAngle(spd.call(16),1,critical ? -1440 : -1080)
     pictureBall.moveAngle(0,pictureBall.totalDuration,0)
-    delay=pictureBall.totalDuration+4
-    picturePoke.moveTone(10,delay,Tone.new(0,-224,-224,0))
-    delay=picturePoke.totalDuration
-    picturePoke.moveSE(delay,"Audio/SE/recall")
-    pictureBall.moveName(delay+4,ballopen)
-    if animtrainer
-      picturePlayer.moveSrc(1,@sprites["player"].bitmap.height,0)
-      picturePlayer.moveXY(0,1,playerpos[0]-14,playerpos[1])
-      picturePlayer.moveSrc(4,@sprites["player"].bitmap.height*2,0)
-      picturePlayer.moveXY(0,4,playerpos[0]-12,playerpos[1])
-      picturePlayer.moveSrc(8,@sprites["player"].bitmap.height*3,0)
-      picturePlayer.moveXY(0,8,playerpos[0]+20,playerpos[1])
-      picturePlayer.moveSrc(16,@sprites["player"].bitmap.height*4,0)
-      picturePlayer.moveXY(0,16,playerpos[0]+16,playerpos[1])
-      picturePlayer.moveSrc(40,0,0)
-      picturePlayer.moveXY(0,40,playerpos[0],playerpos[1])
-    end
     loop do
       pictureBall.update
-      picturePoke.update
-      picturePlayer.update if animtrainer
       setPictureIconSprite(spriteBall,pictureBall)
-      setPictureSprite(spritePoke,picturePoke)
-      setPictureIconSprite(spritePlayer,picturePlayer) if animtrainer
+      cropBallFrame.call
       pbGraphicsUpdate
       pbInputUpdate
       pbFrameUpdate
-      break if !pictureBall.running? && !picturePoke.running?
-    end
-    # Burst animation here
-    if burst>=0 && scene.battle.battlescene
-      scene.pbCommonAnimation("BallBurst#{burst}",battler,nil)
+      break if !pictureBall.running?
     end
     pictureBall.clearProcesses
-    picturePoke.clearProcesses
-    delay=0
-    picturePoke.moveZoom(15,delay,0)
-    picturePoke.moveXY(15,delay,center[0],center[1])
-    picturePoke.moveSE(delay+10,"Audio/SE/jumptoball")
-    picturePoke.moveVisible(delay+15,false)
-    pictureBall.moveName(picturePoke.totalDuration+2,ball)
-    delay=pictureBall.totalDuration+6
-    if critical
-      pictureBall.moveSE(delay,"Audio/SE/ballshake")
-      pictureBall.moveXY(2,delay,center[0]+4,center[1])
-      pictureBall.moveXY(4,pictureBall.totalDuration,center[0]-4,center[1])
-      pictureBall.moveSE(pictureBall.totalDuration,"Audio/SE/ballshake")
-      pictureBall.moveXY(4,pictureBall.totalDuration,center[0]+4,center[1])
-      pictureBall.moveXY(4,pictureBall.totalDuration,center[0]-4,center[1])
-      pictureBall.moveXY(2,pictureBall.totalDuration,center[0],center[1])
-      delay=pictureBall.totalDuration+4
-    end
-    pictureBall.moveXY(10,delay,center[0],ballendy)
-    pictureBall.moveSE(pictureBall.totalDuration,"Audio/SE/balldrop")
-    pictureBall.moveXY(5,pictureBall.totalDuration+2,center[0],ballendy-((ballendy-center[1])/2))
-    pictureBall.moveXY(5,pictureBall.totalDuration+2,center[0],ballendy)
-    pictureBall.moveSE(pictureBall.totalDuration,"Audio/SE/balldrop")
-    pictureBall.moveXY(3,pictureBall.totalDuration+2,center[0],ballendy-((ballendy-center[1])/4))
-    pictureBall.moveXY(3,pictureBall.totalDuration+2,center[0],ballendy)
-    pictureBall.moveSE(pictureBall.totalDuration,"Audio/SE/balldrop")
-    pictureBall.moveXY(1,pictureBall.totalDuration+2,center[0],ballendy-((ballendy-center[1])/8))
-    pictureBall.moveXY(1,pictureBall.totalDuration+2,center[0],ballendy)
-    pictureBall.moveSE(pictureBall.totalDuration,"Audio/SE/balldrop")
-    picturePoke.moveXY(0,pictureBall.totalDuration,center[0],ballendy)
-    delay=pictureBall.totalDuration+18# if shakes==0
-    numshakes = (critical) ? 1 : [shakes,3].min
-    numshakes.times do
-      pictureBall.moveSE(delay,"Audio/SE/ballshake")
-      pictureBall.moveXY(3,delay,center[0]-8,ballendy)
-      pictureBall.moveAngle(3,delay,20) # positive means counterclockwise
-      delay=pictureBall.totalDuration
-      pictureBall.moveXY(6,delay,center[0]+8,ballendy)
-      pictureBall.moveAngle(6,delay,-20) # negative means clockwise
-      delay=pictureBall.totalDuration
-      pictureBall.moveXY(3,delay,center[0],ballendy)
-      pictureBall.moveAngle(3,delay,0)
-      delay=pictureBall.totalDuration+18
-    end
-    if shakes<4
-      picturePoke.moveSE(delay,"Audio/SE/recall")
-      pictureBall.moveName(delay,ballopen)
-      pictureBall.moveVisible(delay+10,false)
-      picturePoke.moveVisible(delay,true)
-      picturePoke.moveZoom(15,delay,100)
-      picturePoke.moveXY(15,delay,center[0],center[1])
-      picturePoke.moveTone(0,delay,Tone.new(248,248,248,248))
-      picturePoke.moveTone(24,delay,Tone.new(0,0,0,0))
-      delay=picturePoke.totalDuration
-    end
-    pictureBall.moveXY(0,delay,center[0],ballendy)
-    picturePoke.moveOrigin(picturePoke.totalDuration,PictureOrigin::TopLeft)
-    picturePoke.moveXY(0,picturePoke.totalDuration,dims[0],dims[1])
+
+    pictureBall.moveName(1,ballopenfile)
+    pictureBall.moveSE(1,"Audio/SE/recall")
     loop do
       pictureBall.update
-      picturePoke.update
       setPictureIconSprite(spriteBall,pictureBall)
-      setPictureSprite(spritePoke,picturePoke)
+      cropBallFrame.call
       pbGraphicsUpdate
       pbInputUpdate
       pbFrameUpdate
-      break if !pictureBall.running? && !picturePoke.running?
+      break if !pictureBall.running?
     end
-    if shakes<4
-      @sprites["shadow#{targetBattler}"].visible=oldvisible
-      spriteBall.dispose
-    else
-      spriteBall.tone=Tone.new(-64,-64,-64,128)
-      pbSEPlay("ballcatch",100,150)
-      spriteBall.color = Color.new(0,0,0,0)
+    pictureBall.clearProcesses
+    spd.call(6).times do
+      pbGraphicsUpdate
+      pbInputUpdate
+      pbFrameUpdate
+    end
+
+    # Destello y absorbido 
+    picturePoke.moveXY(0,1,center[0],center[1])
+    picturePoke.moveVisible(1,true)
+    picturePoke.moveOrigin(1,PictureOrigin::Center)
+    picturePoke.moveSE(1,"Audio/SE/jumptoball")
+    picturePoke.moveZoom(spd.call(5),1,0)
+    picturePoke.moveXY(spd.call(5),1,center[0],center[1])
+    picturePoke.moveVisible(1+spd.call(5),false)
+
+    burstParticles,burstFrames=pbCaptureAbsorbBurst(spritePoke.z+2,center[0],center[1],poke_ball,POKEBALL_BURST_SPEED)
+
+    loop do
+      picturePoke.update
+      setPictureSprite(spritePoke,picturePoke)
+      if burstFrames>0
+        burstParticles.each { |pic,spr| pic.update; setPictureIconSprite(spr,pic) }
+        burstFrames-=1
+      end
+      pbGraphicsUpdate
+      pbInputUpdate
+      pbFrameUpdate
+      break if !picturePoke.running? && burstFrames<=0
+    end
+    burstParticles.each { |pic,spr| spr.dispose }
+    picturePoke.clearProcesses
+
+    pictureBall.moveName(1,ballfile)
+    pictureBall.moveTone(spd.call(3),1,Tone.new(96,64,-160,160))
+    pictureBall.moveTone(spd.call(3),1+spd.call(3),Tone.new(0,0,0,0))
+    loop do
+      pictureBall.update
+      setPictureIconSprite(spriteBall,pictureBall)
+      cropBallFrame.call
+      pbGraphicsUpdate
+      pbInputUpdate
+      pbFrameUpdate
+      break if !pictureBall.running?
+    end
+    pictureBall.clearProcesses
+
+    delay=1
+    if critical
+      pictureBall.moveXY(spd.call(1),delay,center[0]+4,ballendy+50)
+      pictureBall.moveXY(spd.call(2),pictureBall.totalDuration,center[0]-4,ballendy+50)
+      pictureBall.moveXY(spd.call(1),pictureBall.totalDuration,center[0],ballendy+50)
+      delay=pictureBall.totalDuration+spd.call(3)
+    end
+    bounce_heights=[1,2,4,8]
+    bounce_times=[4,4,3,2]
+    bounce_start_y=center[1]
+    4.times do |i|
+      t=spd.call(bounce_times[i])
+      d=bounce_heights[i]
+      pictureBall.moveXY(t,delay,center[0],ballGroundY-((ballGroundY-bounce_start_y)/d))
+      pictureBall.moveXY(t,pictureBall.totalDuration,center[0],ballGroundY)
+      pictureBall.moveSE(pictureBall.totalDuration,"Audio/SE/Battle ball drop")
+      delay=pictureBall.totalDuration
+    end
+
+    # Shake ball
+    delay+=spd.call(12)
+    [numShakes,3].min.times do |i|
+      pictureBall.moveSE(delay,"Audio/SE/Battle ball shake")
+      pictureBall.moveXY(spd.call(2),delay,center[0]-8,ballGroundY)
+      pictureBall.moveAngle(spd.call(2),delay,20)
+      pictureBall.moveXY(spd.call(4),pictureBall.totalDuration,center[0]+8,ballGroundY)
+      pictureBall.moveAngle(spd.call(4),pictureBall.totalDuration,-20)
+      pictureBall.moveXY(spd.call(2),pictureBall.totalDuration,center[0],ballGroundY)
+      pictureBall.moveAngle(spd.call(2),pictureBall.totalDuration,0)
+      delay=pictureBall.totalDuration+spd.call(8)
+    end
+    loop do
+      pictureBall.update
+      setPictureIconSprite(spriteBall,pictureBall)
+      cropBallFrame.call
+      pbGraphicsUpdate
+      pbInputUpdate
+      pbFrameUpdate
+      break if !pictureBall.running?
+    end
+    pictureBall.clearProcesses
+
+    if success
+      # Captura exitosa
+      pbSEPlay("Battle catch click",100,150)
       ballstar = {}
-      stargraphic= "Graphics/#{BATTLE_ROUTE}/battle_star"
-      
+      stargraphic= "Graphics/#{BATTLE_ROUTE}/ballBurst_star"
       if !pbResolveBitmap(stargraphic).nil?
+        star_duration = 16*POKEBALL_STAR_SPEED
+        x_dir      = [-1, 0, 1]
+        y_offsets  = [[0,74,52],[0,62,28],[0,74,48]]
+        start_ang  = [0,345,15]
+        spin_extra = [144,0,45]
         for j in 0...3
           ballstar["#{j}"] = Sprite.new(spriteBall.viewport)
           ballstar["#{j}"].bitmap = BitmapCache.load_bitmap(stargraphic)
@@ -536,21 +547,89 @@ class PokeballSendOutAnimation
           ballstar["#{j}"].y = spriteBall.y
           ballstar["#{j}"].opacity = 0
           ballstar["#{j}"].z = spriteBall.z + 1
+          ballstar["#{j}"].angle = start_ang[j]
+          ballstar["#{j}"].zoom_x = [0.5,0.5,0.33][j]
+          ballstar["#{j}"].zoom_y = ballstar["#{j}"].zoom_x
         end
-        for i in 0...16
+        for i in 0...star_duration
+          index = i+1
+          proportion = index.to_f/star_duration
           for j in 0...3
-            ballstar["#{j}"].y -= [3,4,3][j]
-            ballstar["#{j}"].x -= [3,0,-3][j]
-            ballstar["#{j}"].opacity += 32*(i < 8 ? 1 : -1)
-            ballstar["#{j}"].angle += [4,2,-4][j]
+            x = 72*index/star_duration
+            yp = y_offsets[j]
+            a = (2*yp[2])-(4*yp[1])
+            b = yp[2]-a
+            y = ((a*proportion)+b)*proportion
+            ballstar["#{j}"].x = spriteBall.x+(x_dir[j]*x)
+            ballstar["#{j}"].y = spriteBall.y-y
+            ballstar["#{j}"].angle += spin_extra[j].to_f/star_duration if j.even?
+            if i<4
+              ballstar["#{j}"].opacity += 64
+            elsif i>=star_duration-4
+              ballstar["#{j}"].opacity -= 64
+            end
+            if i==2
+              ballstar["#{j}"].tone = Tone.new(0,0,-96)
+            elsif i==5
+              ballstar["#{j}"].tone = Tone.new(0,0,0)
+            end
           end
-          @sprites["battlebox#{targetBattler}"].opacity-=25.5
-          spriteBall.color.alpha += 8
+          @sprites["battlebox#{targetBattler}"].opacity-=15
           pbWait(1)
         end
+        for j in 0...3
+          ballstar["#{j}"].dispose
+        end
       end
-      @sprites["capture"]=spriteBall
+      spd.call(16).times do
+        spriteBall.opacity-=16
+        pbGraphicsUpdate
+        pbInputUpdate
+        pbFrameUpdate
+      end
       spritePoke.visible=false
+      spriteBall.dispose
+    else
+      pictureBall.moveName(1,ballopenfile)
+      pictureBall.moveSE(1,"Audio/SE/recall")
+      loop do
+        pictureBall.update
+        setPictureIconSprite(spriteBall,pictureBall)
+        cropBallFrame.call
+        pbGraphicsUpdate
+        pbInputUpdate
+        pbFrameUpdate
+        break if !pictureBall.running?
+      end
+      pictureBall.clearProcesses
+
+      # Falla la captura
+      failBurst,failFrames=pbCaptureAbsorbBurst(spritePoke.z-1,center[0],ballGroundY,poke_ball,POKEBALL_BURST_SPEED)
+
+      picturePoke.moveXY(0,1,center[0],ballGroundY)
+      picturePoke.moveZoom(0,1,0)
+      picturePoke.moveVisible(1,true)
+      picturePoke.moveTone(0,1,Tone.new(248,248,248,248))
+      picturePoke.moveZoom(spd.call(15),1,100)
+      picturePoke.moveOrigin(1,PictureOrigin::TopLeft)
+      picturePoke.moveXY(spd.call(15),1,dims[0],dims[1])
+      picturePoke.moveTone(spd.call(24),1,Tone.new(0,0,0,0))
+
+      loop do
+        picturePoke.update
+        setPictureSprite(spritePoke,picturePoke)
+        if failFrames>0
+          failBurst.each { |pic,spr| pic.update; setPictureIconSprite(spr,pic) }
+          failFrames-=1
+        end
+        pbGraphicsUpdate
+        pbInputUpdate
+        pbFrameUpdate
+        break if !picturePoke.running? && failFrames<=0
+      end
+      failBurst.each { |pic,spr| spr.dispose }
+      picturePoke.clearProcesses
+      @sprites["shadow#{targetBattler}"].visible=oldvisible
+      spriteBall.dispose
     end
   end
-    
