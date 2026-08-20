@@ -484,7 +484,7 @@ class PokeballSendOutAnimation
       break if !pictureBall.running?
     end
     pictureBall.clearProcesses
-
+    #------------------
     delay=1
     if critical
       pictureBall.moveXY(spd.call(1),delay,center[0]+4,ballendy+50)
@@ -505,16 +505,18 @@ class PokeballSendOutAnimation
     end
 
     # Shake ball
-    delay+=spd.call(12)
+    delay=pictureBall.totalDuration+spd.call(18)
     [numShakes,3].min.times do |i|
-      pictureBall.moveSE(delay,"Audio/SE/Battle ball shake")
-      pictureBall.moveXY(spd.call(2),delay,center[0]-8,ballGroundY)
-      pictureBall.moveAngle(spd.call(2),delay,20)
-      pictureBall.moveXY(spd.call(4),pictureBall.totalDuration,center[0]+8,ballGroundY)
-      pictureBall.moveAngle(spd.call(4),pictureBall.totalDuration,-20)
-      pictureBall.moveXY(spd.call(2),pictureBall.totalDuration,center[0],ballGroundY)
-      pictureBall.moveAngle(spd.call(2),pictureBall.totalDuration,0)
-      delay=pictureBall.totalDuration+spd.call(8)
+      pictureBall.moveSE(delay,"Audio/SE/ballshake")
+      pictureBall.moveXY(spd.call(3),delay,center[0]-8,ballGroundY)
+      pictureBall.moveAngle(spd.call(3),delay,20)
+      delay=pictureBall.totalDuration
+      pictureBall.moveXY(spd.call(6),delay,center[0]+8,ballGroundY)
+      pictureBall.moveAngle(spd.call(6),delay,-20)
+      delay=pictureBall.totalDuration
+      pictureBall.moveXY(spd.call(3),delay,center[0],ballGroundY)
+      pictureBall.moveAngle(spd.call(3),delay,0)
+      delay=pictureBall.totalDuration+spd.call(18)
     end
     loop do
       pictureBall.update
@@ -526,7 +528,7 @@ class PokeballSendOutAnimation
       break if !pictureBall.running?
     end
     pictureBall.clearProcesses
-
+    #-------------------------------
     if success
       # Captura exitosa
       pbSEPlay("Battle catch click",100,150)
