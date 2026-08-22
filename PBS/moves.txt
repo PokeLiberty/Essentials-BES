@@ -717,7 +717,7 @@
 717,JUNGLEHEALING,Cura Selvática,210,0,GRASS,Status,0,10,0,40,0,d,"Utiliza lianas para envolver árboles y absorber su energía. Restaura los PS y cura los problemas de estado del usuario y sus aliados."
 718,SHELLSIDEARM,Moluscañón,206,90,POISON,Special,100,10,20,00,0,bef,"El usuario lanza un ataque físico o especial en función de cuál inflija más daño. Puede envenenar al objetivo."
 719,TERRAINPULSE,Pulso de Campo,203,50,NORMAL,Special,100,10,0,00,0,befm,"El usuario ataca aprovechando la energía del campo activo, que determina tanto el tipo como la potencia del movimiento."
-720,BURNINGJEALOUSY,Envidia Ardiente,209,70,FIRE,Special,100,5,100,04,0,bef,Envidia Ardiente,"Ataca al objetivo con la energía generada por la envidia y causa quemaduras a los Pokémon cuyas características hayan aumentado en ese turno."
+720,BURNINGJEALOUSY,Envidia Ardiente,209,70,FIRE,Special,100,5,100,04,0,bef,"Ataca al objetivo con la energía generada por la envidia y causa quemaduras a los Pokémon cuyas características hayan aumentado en ese turno."
 721,FLIPTURN,Viraje,0EE,60,WATER,Physical,100,20,0,00,0,abef,"Tras atacar, el usuario da paso a toda prisa a otro Pokémon del equipo."
 722,RISINGVOLTAGE,Alto Voltaje,201,70,ELECTRIC,Special,100,20,0,00,0,bef,"Ataca con una descarga eléctrica que surge del terreno de combate. La potencia del movimiento se duplica si el rival se ve afectado por un campo eléctrico."
 723,GRASSYGLIDE,Fitoimpulso,211,55,GRASS,Physical,100,20,0,00,0,abef,"Ataca al objetivo deslizándose sobre el terreno de combate. Este movimiento tiene prioridad alta cuando el terreno está cubierto por un campo de hierba."
