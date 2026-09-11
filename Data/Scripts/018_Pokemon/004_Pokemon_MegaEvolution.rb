@@ -662,6 +662,7 @@ class PokeBattle_Pokemon
  },
  "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
+    next [[getID(PBAbilities,:SHARPNESS),0]] if pokemon.form==2
     next
  },
   "type2"=>proc{|pokemon|
@@ -694,6 +695,7 @@ class PokeBattle_Pokemon
  },
  "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:SANDFORCE),0]] if pokemon.form==1
+    next [[getID(PBAbilities,:LEVITATE),0]] if pokemon.form==2
     next
  },
 "weight"=>proc{|pokemon|
@@ -2113,10 +2115,10 @@ MultipleForms.register(:MEOWSTIC,{
     next getID(PBTypes,:STEEL) if pokemon.form==1
     next
  },
- #"getAbilityList"=>proc{|pokemon|
- #   next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
- #   next
- #}, #No se sabe cual es la hab oficial.
+ "getAbilityList"=>proc{|pokemon|
+    next [[getID(PBAbilities,:TOUGHCLAWS),0]] if pokemon.form==1
+    next
+ },
  "weight"=>proc{|pokemon|
     next 1480 if pokemon.form==1
     next
@@ -2238,10 +2240,6 @@ MultipleForms.register(:BAXCALIBUR,{
     next [115,175,117,87,105,101] if pokemon.form==1
     next
  },
- #"getAbilityList"=>proc{|pokemon|
- #   next [[getID(PBAbilities,:MAGICBOUNCE),0]] if pokemon.form==1
- #   next
- #}, #No se sabe cual es la hab oficial.
  "weight"=>proc{|pokemon|
     next 3150 if pokemon.form==1
     next
