@@ -13300,6 +13300,27 @@ class PokeBattle_Move_285 < PokeBattle_Move
   end
 end
 
+################################################################################
+# Cura al usuario o aliado por 1/2 de sus PS máximos.
+# (Milk Drink/Batido)
+################################################################################
+class PokeBattle_Move_286 < PokeBattle_Move
+  def isHealingMove?
+    return true
+  end
+
+  def pbEffect(attacker,opponent,hitnum=0,alltargets=nil,showanimation=true)
+    if opponent.hp==opponent.totalhp
+      @battle.pbDisplay(_INTL("¡La salud de tu Pokémon está completa!",opponent.pbThis))
+      return -1
+    end
+    pbShowAnimation(@id,attacker,nil,hitnum,alltargets,showanimation)
+    opponent.pbRecoverHP(((opponent.totalhp+1)/2).floor,true)
+    @battle.pbDisplay(_INTL("Tu Pokémon recuperó salud.",attacker.pbThis))
+    return 0
+  end
+end
+
 ################################################################################################################
 # Movimiento Zydarde ZA
 ##############################################################################################################

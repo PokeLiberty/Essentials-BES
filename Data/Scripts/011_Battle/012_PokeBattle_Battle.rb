@@ -1487,6 +1487,9 @@ class PokeBattle_Battle
     if thispkmn.hasWorkingItem(:SHEDSHELL)
       return true
     end
+    if thispkmn.hasWorkingAbility(:RUNAWAY)
+      return true
+    end
     if USENEWBATTLEMECHANICS && thispkmn.pbHasType?(:GHOST)
       return true
     end
