@@ -622,7 +622,7 @@
 615,PEATBLOCK,Bloque de Turba,Bloques de Turba,1,2100,"Pedrusco de carbón que se asemeja al lodo y que se puede emplear como combustible tras secarse. Le encanta a cierto Pokémon.",1,0,0,
 616,AUSPICIOUSARMOR,Armadura Auspiciosa,Armaduras Auspiciosas,1,3000,"Curiosa armadura que hace evolucionar a una determinada especie de Pokémon. En su interior alberga sentimientos auspiciosos.",0,0,0,
 617,MALICIOUSARMOR,Armadura Maldita,Armaduras Malditas,1,3000,"Curiosa armadura que hace evolucionar a una determinada especie de Pokémon. En su interior alberga sentimientos de rencor.",0,0,0,
-618,LEADERSCREST,Distintivo Líder,Distintivos Líderes,1,5000,"Fragmento de lo que parece una cuchilla desgastada. Solo la llevan los Bisharp que lideran grupos de Pawniard.",1,0,0,
+618,LEADERSCREST,Distintivo de Líder,Distintivos de Líder,1,5000,"Fragmento de lo que parece una cuchilla desgastada. Solo la llevan los Bisharp que lideran grupos de Pawniard.",1,0,0,
 619,UNREMARKABLETEACUP,Cuenco Mediocre,Cuencos Mediocres,1,100,"Cuenco mediocre que hace evolucionar a determinadas especies de Pokémon.",1,0,0,
 
 630,HM01,MO01,MO01s,4,0,"Corta con garras, guadañas, etc. También sirve para cortar árboles finos.",4,0,0,CUT

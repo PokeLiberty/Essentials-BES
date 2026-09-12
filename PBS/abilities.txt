@@ -316,3 +316,4 @@
 314,PIERCINGDRILL,Turbotaladro,"Permite golpear objetivos protegidos infligiendo 1/4 del daño con movimientos de contacto." #Desc provisional hasta Champions
 315,EELEVATE,Impulso Anguila,"Da inmunidad a los movimientos de tipo Tierra y si el Pokémon derrota a un rival en ese turno, aumenta su característica más fuerte."
 316,FIREMANE,Crin de Fuego,"Potencia los movimientos de tipo Fuego."
+317,AURAGUARD,Aura Protectora,"Reduce a la mitad el daño provocado por los movimientos de contacto."

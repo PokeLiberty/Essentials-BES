@@ -720,6 +720,7 @@ class PokeBattle_Pokemon
  },
  "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:ADAPTABILITY),0]] if pokemon.form==1
+    next [[getID(PBAbilities,:AURAGUARD),0]]    if pokemon.form==2
     next
  },
  "height"=>proc{|pokemon|

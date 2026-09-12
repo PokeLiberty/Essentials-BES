@@ -1579,14 +1579,20 @@ class PokeBattle_Move
         finaldamagemult=(finaldamagemult*0.75).round
       end
     end
-    if opponent.hasWorkingAbility(:FLUFFY) && isConst?(type,PBTypes,:FIRE)
-      if !isContactMove?
-        finaldamagemult=(finaldamagemult*2.0).round
+    # BES-T Refactorizamos como va Fluffy y añadimos un check para isContactMove? y Longreach propio, asi solo tenemos que editar este.
+    # Añadido PROTECTIVEPADS, que no estaba por algun motivo.
+    contact = isContactMove? &&
+              !attacker.hasWorkingAbility(:LONGREACH) &&
+              !attacker.hasWorkingItem(:PROTECTIVEPADS)
+    if opponent.hasWorkingAbility(:FLUFFY)
+      if isConst?(type, PBTypes, :FIRE) && !contact
+        finaldamagemult *= 2.0
+      elsif contact && !isConst?(type, PBTypes, :FIRE)
+        finaldamagemult *= 0.5
       end
-      elsif opponent.hasWorkingAbility(:FLUFFY) && attacker.hasWorkingAbility(:LONGREACH) && isContactMove?
-        finaldamagemult=(finaldamagemult*1.0).round
-      elsif opponent.hasWorkingAbility(:FLUFFY) && isContactMove?
-        finaldamagemult=(finaldamagemult*0.5).round
+    end
+    if opponent.hasWorkingAbility(:AURAGUARD) && contact
+      finaldamagemult=(finaldamagemult*0.5).round
     end
     if attacker.hasWorkingItem(:METRONOME)
       met=1+0.2*[attacker.effects[PBEffects::Metronome],5].min
