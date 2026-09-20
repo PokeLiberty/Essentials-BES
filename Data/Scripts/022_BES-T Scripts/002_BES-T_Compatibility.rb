@@ -105,15 +105,15 @@ end
 #De v16 a v18
 ################################################################################
 def pbMessage(message,commands=nil,cmdIfCancel=0,skin=nil,defaultCmd=0,&block)
-  Kernel.pbMessage(message,commands=nil,cmdIfCancel=0,skin=nil,defaultCmd=0,&block)
+  Kernel.pbMessage(message,commands,cmdIfCancel,skin,defaultCmd,block)
 end
 
 def pbShowCommandsWithHelp(msgwindow, commands, help, cmdIfCancel = 0, defaultCmd = 0)
-  Kernel.pbShowCommandsWithHelp(msgwindow,commands,help,cmdIfCancel=0,defaultCmd=0)
+  Kernel.pbShowCommandsWithHelp(msgwindow,commands,help,cmdIfCancel,defaultCmd)
 end
 
 def pbShowCommands(msgwindow, commands = nil, cmdIfCancel = 0, defaultCmd = 0)
-  Kernel.pbShowCommands(msgwindow,commands=nil,cmdIfCancel=0,defaultCmd=0)
+  Kernel.pbShowCommands(msgwindow,commands,cmdIfCancel,defaultCmd)
 end
 
 def pbMessageChooseNumber(message, params, &block)
@@ -129,11 +129,11 @@ def pbConfirmMessageSerious(message, &block)
 end
 
 def pbCreateStatusWindow(viewport = nil)
-  Kernel.pbCreateStatusWindow(viewport=nil)
+  Kernel.pbCreateStatusWindow(viewport)
 end
 
 def pbCreateMessageWindow(viewport = nil, skin = nil)
-  Kernel.pbCreateMessageWindow(viewport=nil,skin=nil)
+  Kernel.pbCreateMessageWindow(viewport,skin)
 end
 
 def pbDisposeMessageWindow(msgwindow)
@@ -141,15 +141,15 @@ def pbDisposeMessageWindow(msgwindow)
 end
 
 def pbMessageDisplay(msgwindow, message, letterbyletter = true, commandProc = nil)
-  Kernel.pbMessageDisplay(msgwindow,message,letterbyletter=true,commandProc=nil)
+  Kernel.pbMessageDisplay(msgwindow,message,letterbyletter,commandProc)
 end
 
 def pbFreeText(msgwindow, currenttext, passwordbox, maxlength, width = 240)
-  Kernel.pbFreeText(msgwindow,currenttext,passwordbox,maxlength,width=240)
+  Kernel.pbFreeText(msgwindow,currenttext,passwordbox,maxlength,width)
 end
 
 def pbMessageFreeText(message, currenttext, passwordbox, maxlength, width = 240, &block)
-  Kernel.pbMessageFreeText(message,currenttext,passwordbox,maxlength,width=240,&block)
+  Kernel.pbMessageFreeText(message,currenttext,passwordbox,maxlength,width,&block)
 end
 
 
