@@ -3581,6 +3581,43 @@ class PokeBattle_Battler
       PBDebug.log("[Movimiento falló] Regia Presencia bloqueó el ataque")
       return false
     end
+    # Fitoimpulso Interacciones
+    if target.hasWorkingAbility(:ARMORTAIL) && !user.hasMoldBreaker && 
+      thismove.function==0x211 && @battle.field.effects[PBEffects::GrassyTerrain]>0
+      @battle.pbDisplay(_INTL("¡Cola Armadura impidió el ataque!",target.pbThis))
+      PBDebug.log("[Movimiento falló] Regia Presencia bloqueó el ataque")
+      return false
+    end
+    if target.pbPartner.hasWorkingAbility(:ARMORTAIL) && !user.hasMoldBreaker && 
+      thismove.function==0x211 && @battle.field.effects[PBEffects::GrassyTerrain]>0
+      @battle.pbDisplay(_INTL("¡Cola Armadura impidió el ataque!",target.pbThis))
+      PBDebug.log("[Movimiento falló] Regia Presencia bloqueó el ataque")
+      return false
+    end
+    if target.hasWorkingAbility(:DAZZLING) && !user.hasMoldBreaker && 
+      thismove.function==0x211 && @battle.field.effects[PBEffects::GrassyTerrain]>0
+      @battle.pbDisplay(_INTL("¡Cuerpo Vívido impidió el ataque!",target.pbThis))
+      PBDebug.log("[Movimiento falló] Regia Presencia bloqueó el ataque")
+      return false
+    end
+    if target.pbPartner.hasWorkingAbility(:DAZZLING) && !user.hasMoldBreaker && 
+      thismove.function==0x211 && @battle.field.effects[PBEffects::GrassyTerrain]>0
+      @battle.pbDisplay(_INTL("¡Cuerpo Vívido impidió el ataque!",target.pbThis))
+      PBDebug.log("[Movimiento falló] Regia Presencia bloqueó el ataque")
+      return false
+    end
+    if target.hasWorkingAbility(:QUEENLYMAJESTY) && !user.hasMoldBreaker && 
+      thismove.function==0x211 && @battle.field.effects[PBEffects::GrassyTerrain]>0
+      @battle.pbDisplay(_INTL("¡Regia Presencia impidió el ataque!",target.pbThis))
+      PBDebug.log("[Movimiento falló] Regia Presencia bloqueó el ataque")
+      return false
+    end
+    if target.pbPartner.hasWorkingAbility(:QUEENLYMAJESTY) && !user.hasMoldBreaker && 
+      thismove.function==0x211 && @battle.field.effects[PBEffects::GrassyTerrain]>0
+      @battle.pbDisplay(_INTL("¡Regia Presencia impidió el ataque!",target.pbThis))
+      PBDebug.log("[Movimiento falló] Regia Presencia bloqueó el ataque")
+      return false
+    end
     # Vastaguardia
     if target.pbOwnSide.effects[PBEffects::WideGuard] &&
       PBTargets.hasMultipleTargets?(thismove) && !thismove.pbIsStatus? &&

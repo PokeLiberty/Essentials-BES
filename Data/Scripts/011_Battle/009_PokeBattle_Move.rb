@@ -1220,18 +1220,10 @@ class PokeBattle_Move
       atkmult=(atkmult*2.0).round
     end
     if attacker.hasWorkingAbility(:SUPREMEOVERLORD)
-      party=@battle.pbParty(attacker.index)
-      if party.select{|p|p.hp==0}.length==5
-        atkmult=(atkmult*1.5).round
-      elsif party.select{|p|p.hp==0}.length==4
-        atkmult=(atkmult*1.4).round
-      elsif party.select{|p|p.hp==0}.length==3
-        atkmult=(atkmult*1.3).round
-      elsif party.select{|p|p.hp==0}.length==2
-        atkmult=(atkmult*1.2).round
-      elsif party.select{|p|p.hp==0}.length==1
-        atkmult=(atkmult*1.1).round
-      end
+      party = @battle.pbParty(attacker.index)
+      fainted_count = party.count { |p| p && p.hp == 0 }
+      # El multiplicador añade +0.1 por cada Pokémon debilitado (máx 1.5)
+      atkmult = (atkmult * (1.0 + 0.1 * [fainted_count, 5].min)).round
     end
     if attacker.hasWorkingAbility(:SOLARPOWER) && pbIsSpecial?(type) &&
        (@battle.pbWeather==PBWeather::SUNNYDAY && !attacker.hasWorkingItem(:UTILITYUMBRELLA) ||
