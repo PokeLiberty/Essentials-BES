@@ -25,13 +25,13 @@ MultipleForms.register(:RATTATA,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:GLUTTONY),0],
          [getID(PBAbilities,:HUSTLE),1],
          [getID(PBAbilities,:THICKFAT),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:TAILWHIP],[4,:QUICKATTACK],[7,:FOCUSENERGY],
@@ -45,7 +45,7 @@ MultipleForms.register(:RATTATA,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs y tutores
@@ -84,13 +84,13 @@ MultipleForms.register(:RATICATE,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:GLUTTONY),0],
          [getID(PBAbilities,:HUSTLE),1],
          [getID(PBAbilities,:THICKFAT),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:SCARYFACE],[1,:TACKLE],[1,:SWORDSDANCE],[1,:TAILWHIP],[4,:QUICKATTACK],[7,:FOCUSENERGY],
@@ -104,7 +104,7 @@ MultipleForms.register(:RATICATE,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -146,13 +146,15 @@ MultipleForms.register(:RAICHU,{
 },
 "getAbilityList"=>proc{|pokemon|   
    next [[getID(PBAbilities,:SURGESURFER),0]] if pokemon.form==3  
+   next [[getID(PBAbilities,:NOGUARD),0]] if pokemon.form==1 
+   next [[getID(PBAbilities,:ELECTRICSURGE),0]] if pokemon.form==2
    next 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==3
+   next if pokemon.form !=3
    movelist=[]
    case pokemon.form
-   when 1; movelist=[[1,:PSYCHIC],[1,:SPEEDSWAP],[1,:THUNDERSHOCK],[1,:QUICKATTACK],[1,:TAILWHIP],[1,:THUNDERBOLT]]
+   when 3; movelist=[[1,:PSYCHIC],[1,:SPEEDSWAP],[1,:THUNDERSHOCK],[1,:QUICKATTACK],[1,:TAILWHIP],[1,:THUNDERBOLT]]
    end
    for i in movelist
      i[1]=getConst(PBMoves,i[1])
@@ -160,10 +162,10 @@ MultipleForms.register(:RAICHU,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=3
    movelist=[]
    case pokemon.form
-   when 1; movelist=[# MTs y tutores
+   when 3; movelist=[# MTs y tutores
                      :PSYSHOCK,:CALMMIND,:TOXIC,:HIDDENPOWER,:HYPERBEAM,:LIGHTSCREEN,
                      :PROTECT,:RAINDANCE,:SAFEGUARD,:FRUSTRATION,:THUNDERBOLT,:THUNDER,:RETURN,:DIG,:PSYCHIC,
                      :BRICKBREAK,:DOUBLETEAM,:REFLECT,:FACADE,:REST,:ATTRACT,:THIEF,:ROUND,:ECHOEDVOICE,
@@ -226,17 +228,17 @@ MultipleForms.register(:SANDSHREW,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1    
    next [[getID(PBAbilities,:SNOWCLOAK),0],
          [getID(PBAbilities,:SLUSHRUSH),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:SCRATCH],[1,:DEFENSECURL],[3,:BIDE],[5,:POWDERSNOW],[7,:ICEBALL],[9,:RAPIDSPIN],
                      [11,:FURYCUTTER],[14,:METALCLAW],[17,:SWIFT],[20,:FURYSWIPES],[23,:IRONDEFENSE],
-                     [26,:SLASH],[30,:IRONHEAD],[34,:GYROBALL],[38,:SWORDSDANCE],[42,:HAIL],
+                     [26,:SLASH],[30,:IRONHEAD],[34,:GYROBALL],[38,:SWORDSDANCE],[42,:SNOWSCAPE],
                      [46,:BLIZZARD]]
    end
    for i in movelist
@@ -245,11 +247,11 @@ MultipleForms.register(:SANDSHREW,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
-                     :HONECLAWS,:TOXIC,:HAIL,:HIDDENPOWER,:SUNNYDAY,:BLIZZARD,
+                     :HONECLAWS,:TOXIC,:HAIL,:HIDDENPOWER,:SUNNYDAY,:BLIZZARD,:SNOWSCAPE,
                      :PROTECT,:SAFEGUARD,:FRUSTRATION,:EARTHQUAKE,:RETURN,
                      :BRICKBREAK,:DOUBLETEAM,:AERIALACE,:FACADE,:REST,:ATTRACT,:THIEF,:ROUND,
                      :FLING,:SHADOWCLAW,:GYROBALL,:SWORDSDANCE,:BULLDOZE,:FROSTBREATH,:ROCKSLIDE,:XSCISSOR,
@@ -287,12 +289,12 @@ MultipleForms.register(:SANDSLASH,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:SNOWCLOAK),0],
          [getID(PBAbilities,:SLUSHRUSH),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:ICICLESPEAR],[1,:ICICLECRASH],[1,:METALBURST],[1,:METALCLAW],[1,:ICEBALL],[1,:SLASH],[1,:DEFENSECURL]]
@@ -303,11 +305,11 @@ MultipleForms.register(:SANDSLASH,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
-                     :HONECLAWS,:TOXIC,:HAIL,:HIDDENPOWER,:SUNNYDAY,:BLIZZARD,:HYPERBEAM,
+                     :HONECLAWS,:TOXIC,:HAIL,:HIDDENPOWER,:SUNNYDAY,:BLIZZARD,:HYPERBEAM,:SNOWSCAPE,
                      :PROTECT,:SAFEGUARD,:FRUSTRATION,:EARTHQUAKE,:RETURN,
                      :BRICKBREAK,:DOUBLETEAM,:AERIALACE,:FACADE,:REST,:ATTRACT,:THIEF,:ROUND,:FOCUSBLAST,
                      :FLING,:SHADOWCLAW,:GIGAIMPACT,:GYROBALL,:SWORDSDANCE,:BULLDOZE,:FROSTBREATH,:ROCKSLIDE,:XSCISSOR,
@@ -341,12 +343,12 @@ MultipleForms.register(:VULPIX,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:SNOWCLOAK),0],
          [getID(PBAbilities,:SNOWWARNING),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:POWDERSNOW],[4,:TAILWHIP],[7,:ROAR],[9,:BABYDOLLEYES],[10,:ICESHARD],[12,:CONFUSERAY],
@@ -360,14 +362,14 @@ MultipleForms.register(:VULPIX,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
                      :ROAR,:TOXIC,:HAIL,:HIDDENPOWER,:ICEBEAM,:BLIZZARD,:PROTECT,:RAINDANCE,
                      :SAFEGUARD,:FRUSTRATION,:RETURN,:DOUBLETEAM,:FACADE,:REST,:ATTRACT,:THIEF,:ROUND,
                      :PAYBACK,:PSYCHUP,:FROSTBREATH,:SWAGGER,:SLEEPTALK,:SUBSTITUTE,:SECRETPOWER,:DARKPULSE,
-                     :CONFIDE,:ICYWIND,:FOULPLAY,:PAINSPLIT,:ZENHEADBUTT,
+                     :CONFIDE,:ICYWIND,:FOULPLAY,:PAINSPLIT,:ZENHEADBUTT,:SNOWSCAPE,
                      :AQUATAIL,:AURORAVEIL,:COVET,:HEALBELL,:ROLEPLAY,:SNORE,
                      :SPITE,:IRONTAIL]
    end
@@ -402,12 +404,12 @@ MultipleForms.register(:NINETALES,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:SNOWCLOAK),0],
          [getID(PBAbilities,:SNOWWARNING),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:DAZZLINGGLEAM],[1,:MOONBLAST],[1,:NASTYPLOT],[1,:IMPRISON],[1,:ICESHARD],[1,:ICEBEAM],[1,:CONFUSERAY],[1,:SAFEGUARD]]
@@ -418,16 +420,16 @@ MultipleForms.register(:NINETALES,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
-                     :PSYSHOCK,:CALMIND,:ROAR,:TOXIC,:HAIL,:HIDDENPOWER,:ICEBEAM,:BLIZZARD,:HYPERBEAM,:PROTECT,:RAINDANCE,
+                     :PSYSHOCK,:CALMMIND,:ROAR,:TOXIC,:HAIL,:HIDDENPOWER,:ICEBEAM,:BLIZZARD,:HYPERBEAM,:PROTECT,:RAINDANCE,
                      :SAFEGUARD,:FRUSTRATION,:RETURN,:DOUBLETEAM,:FACADE,:REST,:ATTRACT,:THIEF,:ROUND,
                      :PAYBACK,:GIGAIMPACT,:PSYCHUP,:FROSTBREATH,:DREAMEATER,:SWAGGER,:SLEEPTALK,:SUBSTITUTE,:SECRETPOWER,:DARKPULSE,
-                     :DAZZLINGGLEAM,:CONFIDE,:ICYWIND,:FOULPLAY,:PAINSPLIT,:ZENHEADBUTT,
+                     :DAZZLINGGLEAM,:CONFIDE,:ICYWIND,:FOULPLAY,:PAINSPLIT,:ZENHEADBUTT,:SNOWSCAPE,
                      :AQUATAIL,:AURORAVEIL,:COVET,:HEALBELL,:LASERFOCUS,:ROLEPLAY,:SNORE,:SPITE,:WONDERROOM,
-                     :NASTPLOT,:SPITE,:IRONTAIL,:TRIPLEAXEL]
+                     :NASTYPLOT,:SPITE,:IRONTAIL,:TRIPLEAXEL]
    end
    for i in 0...movelist.length
      movelist[i]=getConst(PBMoves,movelist[i])
@@ -455,13 +457,13 @@ MultipleForms.register(:DIGLETT,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:SANDVEIL),0],
          [getID(PBAbilities,:TANGLINGHAIR),1],
          [getID(PBAbilities,:SANDFORCE),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:METALCLAW],[1,:SANDATTACK],[4,:GROWL],[7,:ASTONISH],[10,:MUDSLAP],[14,:MAGNITUDE],
@@ -474,7 +476,7 @@ MultipleForms.register(:DIGLETT,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs y tutores
@@ -510,13 +512,13 @@ MultipleForms.register(:DUGTRIO,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:SANDVEIL),0],
          [getID(PBAbilities,:TANGLINGHAIR),1],
          [getID(PBAbilities,:SANDFORCE),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:SANDTOMB],[1,:METALCLAW],[1,:SANDATTACK],[1,:ROTOTILLER],[1,:TRIATTACK],[1,:NIGHTSLASH],
@@ -530,7 +532,7 @@ MultipleForms.register(:DUGTRIO,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs y tutores
@@ -560,24 +562,24 @@ MultipleForms.register(:MEOWTH,{
    end
 },
 "type1"=>proc{|pokemon|
-   next if pokemon.form==0             # Forma Normal
    case pokemon.form
    when 1; next getID(PBTypes,:DARK)   # Forma Alola
    when 2; next getID(PBTypes,:STEEL)  # Forma Galar
+   else;   next   
    end
 },
 "type2"=>proc{|pokemon|
-   next if pokemon.form==0             # Forma Normal
    case pokemon.form
    when 1; next getID(PBTypes,:DARK)   # Forma Alola
    when 2; next getID(PBTypes,:STEEL)  # Forma Galar
+   else;   next   
    end
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0              # Forma Normal
    case pokemon.form
    when 1; next [40,35,35,90,50,40]     # Forma Alola
    when 2; next [50,65,55,40,40,40]     # Forma Galar
+   else;   next   
   end
 },
 "getAbilityList"=>proc{|pokemon|
@@ -588,8 +590,6 @@ MultipleForms.register(:MEOWTH,{
    end
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
-   movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:SCRATCH],[1,:GROWL],[6,:BITE],[9,:FAKEOUT],[14,:FURYSWIPES],[17,:SCREECH],
                      [22,:FEINTATTACK],[25,:TAUNT],[30,:PAYDAY],[33,:SLASH],[38,:NASTYPLOT],
@@ -597,15 +597,16 @@ MultipleForms.register(:MEOWTH,{
    when 2; movelist=[[1,:FAKEOUT],[1,:GROWL],[4,:HONECLAWS],[8,:SCRATCH],[12,:PAYDAY],[16,:METALCLAW],
                      [20,:TAUNT],[24,:SWAGGER],[29,:FURYSWIPES],[32,:SCREECH],[36,:SLASH],
                      [40,:METALSOUND],[44,:THRASH]]
+   else;   next           
    end
-   for i in movelist
-     i[1]=getConst(PBMoves,i[1])
+   if movelist
+     for i in movelist
+       i[1]=getConst(PBMoves,i[1])
+     end
+     next movelist
    end
-   next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
-   movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs y tutores
                      :TOXIC,:HIDDENPOWER,:SUNNYDAY,:TAUNT,:PROTECT,:RAINDANCE,:FRUSTRATION,:THUNDERBOLT,:THUNDER,:RETURN,
@@ -621,11 +622,14 @@ MultipleForms.register(:MEOWTH,{
                      :TAUNT,:HYPERVOICE,:IRONDEFENSE,:DARKPULSE,:GYROBALL,:SEEDBOMB,:GUNKSHOT,
                      :NASTYPLOT,:IRONHEAD,:FOULPLAY,:WORKUP,:PLAYROUGH,:THROATCHOP,:SWAGGER,
                      :COVET,:LASHOUT]
+   else;   next           
    end
-   for i in 0...movelist.length
-     movelist[i]=getConst(PBMoves,movelist[i])
+   if movelist
+     for i in 0...movelist.length
+       movelist[i]=getConst(PBMoves,movelist[i])
+     end
+     next movelist
    end
-   next movelist
 }
 })
 
@@ -652,13 +656,13 @@ MultipleForms.register(:PERSIAN,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:FURCOAT),0],
          [getID(PBAbilities,:TECHNICIAN),1],
          [getID(PBAbilities,:RATTLED),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:SWIFT],[1,:SCRATCH],[1,:GROWL],[1,:PLAYROUGH],[1,:SWITCHEROO],[1,:QUASH],
@@ -672,7 +676,7 @@ MultipleForms.register(:PERSIAN,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs y tutores
@@ -706,13 +710,13 @@ MultipleForms.register(:GEODUDE,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:MAGNETPULL),0],
          [getID(PBAbilities,:STURDY),1],
          [getID(PBAbilities,:GALVANIZE),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:DEFENSECURL],[4,:CHARGE],[6,:ROCKPOLISH],[10,:ROLLOUT],[12,:SPARK],
@@ -726,7 +730,7 @@ MultipleForms.register(:GEODUDE,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -759,13 +763,13 @@ MultipleForms.register(:GRAVELER,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:MAGNETPULL),0],
          [getID(PBAbilities,:STURDY),1],
          [getID(PBAbilities,:GALVANIZE),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:DEFENSECURL],[4,:CHARGE],[6,:ROCKPOLISH],[10,:ROLLOUT],[12,:SPARK],
@@ -779,7 +783,7 @@ MultipleForms.register(:GRAVELER,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -812,13 +816,13 @@ MultipleForms.register(:GOLEM,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:MAGNETPULL),0],
          [getID(PBAbilities,:STURDY),1],
          [getID(PBAbilities,:GALVANIZE),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:DEFENSECURL],[4,:CHARGE],[6,:ROCKPOLISH],[10,:STEAMROLLER],[12,:SPARK],
@@ -832,7 +836,7 @@ MultipleForms.register(:GOLEM,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -865,13 +869,13 @@ MultipleForms.register(:GRIMER,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:POISONTOUCH),0],
          [getID(PBAbilities,:GLUTTONY),1],
          [getID(PBAbilities,:POWEROFALCHEMY),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:POUND],[1,:POISONGAS],[4,:HARDEN],[7,:BITE],[12,:DISABLE],[15,:ACIDSPRAY],
@@ -885,7 +889,7 @@ MultipleForms.register(:GRIMER,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs y tutores
@@ -918,13 +922,13 @@ MultipleForms.register(:MUK,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:POISONTOUCH),0],
          [getID(PBAbilities,:GLUTTONY),1],
          [getID(PBAbilities,:POWEROFALCHEMY),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:VENOMDRENCH],[1,:POUND],[1,:POISONGAS],[4,:HARDEN],[7,:BITE],[12,:DISABLE],[15,:ACIDSPRAY],
@@ -938,7 +942,7 @@ MultipleForms.register(:MUK,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs y tutores
@@ -975,12 +979,12 @@ MultipleForms.register(:EXEGGUTOR,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:FRISK),0],
          [getID(PBAbilities,:HARVEST),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:DRAGONHAMMER],[1,:SEEDBOMB],[1,:CLAMP],[1,:HYPNOSIS],[1,:CONFUSION],[17,:PSYSHOCK],
@@ -992,7 +996,7 @@ MultipleForms.register(:EXEGGUTOR,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs y tutores
@@ -1033,13 +1037,13 @@ MultipleForms.register(:MAROWAK,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:CURSEDBODY),0],
          [getID(PBAbilities,:LIGHTNINGROD),1],
          [getID(PBAbilities,:ROCKHEAD),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:SHADOWBONE],[1,:GROWL],[3,:TAILWHIP],[7,:BONECLUB],[11,:FLAMEWHEEL],[13,:LEER],
@@ -1052,7 +1056,7 @@ MultipleForms.register(:MAROWAK,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1098,13 +1102,13 @@ MultipleForms.register(:PONYTA,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:RUNAWAY),0],
          [getID(PBAbilities,:PASTELVEIL),1],
          [getID(PBAbilities,:ANTICIPATION),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:GROWL],[5,:TAILWHIP],[10,:CONFUSION],[15,:FAIRYWIND],
@@ -1117,7 +1121,7 @@ MultipleForms.register(:PONYTA,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1156,13 +1160,13 @@ MultipleForms.register(:RAPIDASH,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:RUNAWAY),0],
          [getID(PBAbilities,:PASTELVEIL),1],
          [getID(PBAbilities,:ANTICIPATION),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:PSYCHOCUT],[1,:MEGAHORN],[1,:QUICKATTACK],[1,:TAILWHIP], 
@@ -1176,7 +1180,7 @@ MultipleForms.register(:RAPIDASH,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1216,13 +1220,13 @@ MultipleForms.register(:SLOWPOKE,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next  if pokemon.form != 1
    next [[getID(PBAbilities,:GLUTTONY),0],
          [getID(PBAbilities,:OWNTEMPO),1],
          [getID(PBAbilities,:REGENERATOR),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next  if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:CURSE],[1,:TACKLE],[3,:GROWL],[6,:ACID],[9,:YAWN],
@@ -1236,7 +1240,7 @@ MultipleForms.register(:SLOWPOKE,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1246,7 +1250,7 @@ MultipleForms.register(:SLOWPOKE,{
                      :PSYCHIC,:FIREBLAST,:SUBSTITUTE,:SLEEPTALK,:PSYSHOCK,:IRONTAIL,:SHADOWBALL,
                      :TRICK,:SKILLSWAP,:CALMMIND,:ZENHEADBUTT,:GRASSKNOT,:STOREDPOWER,:TRIATTACK,
                      :SCALD,:LIQUIDATION,:BRINE,:PSYCHICTERRAIN,:WEATHERBALL,:AMNESIA,:EXPANDINGFORCE,
-                     :FIREPUNCH,:THUNDERPUNCH]
+                     :FIREPUNCH,:THUNDERPUNCH,:SNOWSCAPE]
    end
    for i in 0...movelist.length
      movelist[i]=getConst(PBMoves,movelist[i])
@@ -1292,7 +1296,7 @@ MultipleForms.register(:SLOWBRO,{
    end
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:SHELLSIDEARM],[1,:TACKLE],[1,:GROWL],[1,:ACID],[1,:CURSE],
@@ -1307,7 +1311,7 @@ MultipleForms.register(:SLOWBRO,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1319,7 +1323,7 @@ MultipleForms.register(:SLOWBRO,{
                      :SCALD,:LIQUIDATION,:BRINE,:PSYCHICTERRAIN,:WEATHERBALL,:AMNESIA,:AVALANCHE,
                      :EXPANDINGFORCE,:BRICKBREAK,:DRAINPUNCH,:FOCUSBLAST,:GIGAIMPACT,:HYPERBEAM,
                      :ICEPUNCH,:IRONDEFENSE,:MUDDYWATER,:NASTYPLOT,:POISONJAB,:RAZORSHELL,:SLUDGEBOMB,
-                     :SLUDGEWAVE,:VENOSHOCK,:EXPANDINGFORCE]
+                     :SLUDGEWAVE,:VENOSHOCK,:EXPANDINGFORCE,:SNOWSCAPE]
    end
    for i in 0...movelist.length
      movelist[i]=getConst(PBMoves,movelist[i])
@@ -1331,6 +1335,70 @@ MultipleForms.register(:SLOWBRO,{
 }
 })
 
+# SLOWKING
+MultipleForms.register(:SLOWKING,{
+"getFormOnCreation"=>proc{|pokemon|
+   if $game_map && GALAR_MAPS.include?($game_map.map_id)
+     next 1
+   else
+     next 0
+   end
+},
+"type1"=>proc{|pokemon|
+  next getID(PBTypes,:PSYCHIC) if pokemon.form==1
+  next
+},
+"type2"=>proc{|pokemon|
+  next getID(PBTypes,:POISON) if pokemon.form==1
+  next
+},
+"getBaseStats"=>proc{|pokemon|
+  next [95,65,80,30,110,110] if pokemon.form==1
+  next
+},
+"getAbilityList"=>proc{|pokemon|
+   case pokemon.form
+   when 1; next [[getID(PBAbilities,:CURIOUSMEDICINE),0],[getID(PBAbilities,:OWNTEMPO),1],[getID(PBAbilities,:REGENERATOR),2]]
+   else;   next                                       
+   end
+},
+"getMoveList"=>proc{|pokemon|
+   next if pokemon.form != 1
+   movelist=[]
+   case pokemon.form
+   when 1; movelist=[[1,:EERIESPELL],[1,:NASTYPLOT],[1,:POWERGEM],[1,:SWAGGER],
+                     [1,:TACKLE],[1,:GROWL],[1,:ACID],[1,:CURSE],[9,:YAWN],
+                     [12,:CONFUSION],[15,:DISABLE],[18,:WATERPULSE],
+                     [21,:HEADBUTT],[24,:ZENHEADBUTT],[27,:AMNESIA],[30,:SURF],
+                     [33,:SLACKOFF],[36,:PSYCHIC],[39,:PSYCHUP],[42,:RAINDANCE],
+                     [45,:HEALPULSE]]
+   end
+   for i in movelist
+     i[1]=getConst(PBMoves,i[1])
+   end
+   next movelist
+},
+"getMoveCompatibility"=>proc{|pokemon|
+   next if pokemon.form != 1
+   movelist=[]
+   case pokemon.form
+   when 1; movelist=[# MTs
+                     :THUNDERWAVE,:DIG,:LIGHTSCREEN,:SAFEGUARD,:REST,:SNORE,:PROTECT,:ICYWIND,
+                     :ATTRACT,:RAINDANCE,:SUNNYDAY,:HAIL,:FACADE,:DIVE,:TRICKROOM,:WONDERROOM,
+                     :ROUND,:BULLDOZE,:FLAMETHROWER,:SURF,:HYDROPUMP,:ICEBEAM,:BLIZZARD,:EARTHQUAKE,
+                     :PSYCHIC,:FIREBLAST,:SUBSTITUTE,:SLEEPTALK,:PSYSHOCK,:IRONTAIL,:SHADOWBALL,
+                     :TRICK,:SKILLSWAP,:CALMMIND,:ZENHEADBUTT,:GRASSKNOT,:STOREDPOWER,:TRIATTACK,
+                     :SCALD,:LIQUIDATION,:BRINE,:PSYCHICTERRAIN,:WEATHERBALL,:AMNESIA,:AVALANCHE,
+                     :EXPANDINGFORCE,:BRICKBREAK,:DRAINPUNCH,:FOCUSBLAST,:GIGAIMPACT,:HYPERBEAM,
+                     :ICEPUNCH,:IRONDEFENSE,:MUDDYWATER,:NASTYPLOT,:POISONJAB,:RAZORSHELL,:SLUDGEBOMB,
+                     :SLUDGEWAVE,:VENOSHOCK,:EXPANDINGFORCE,:SNORE,:FLING,:SNOWSCAPE]
+   end
+   for i in 0...movelist.length
+     movelist[i]=getConst(PBMoves,movelist[i])
+   end
+   next movelist
+}
+})
 # FARFETCH'D
 
 MultipleForms.register(:FARFETCHD,{
@@ -1354,12 +1422,12 @@ MultipleForms.register(:FARFETCHD,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:STEADFAST),0],
          [getID(PBAbilities,:SCRAPPY),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:PECK],[1,:SANDATTACK],[5,:LEER],[10,:FURYCUTTER],[15,:ROCKSMASH],
@@ -1373,7 +1441,7 @@ MultipleForms.register(:FARFETCHD,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1404,13 +1472,13 @@ MultipleForms.register(:WEEZING,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:LEVITATE),0],
          [getID(PBAbilities,:NEUTRALIZINGGAS),1],
          [getID(PBAbilities,:MISTYSURGE),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:DOUBLEHIT],[1,:STRANGESTEAM],[1,:DEFOG],[1,:HEATWAVE],[1,:SMOG],
@@ -1425,7 +1493,7 @@ MultipleForms.register(:WEEZING,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1467,13 +1535,13 @@ MultipleForms.register(:MRMIME,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:VITALSPIRIT),0],
          [getID(PBAbilities,:SCREENCLEANER),1],
          [getID(PBAbilities,:ICEBODY),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:COPYCAT],[1,:ENCORE],[1,:ROLEPLAY],[1,:PROTECT],[1,:RECYCLE],
@@ -1489,7 +1557,7 @@ MultipleForms.register(:MRMIME,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1500,7 +1568,7 @@ MultipleForms.register(:MRMIME,{
                      :STOMPINGTANTRUM,:ICEBEAM,:SUBSTITUTE,:SLEEPTALK,:BLIZZARD,:PSYCHIC,:PSYSHOCK,
                      :THUNDER,:THUNDERBOLT,:SHADOWBALL,:UPROAR,:TAUNT,:TRICK,:SKILLSWAP,:IRONDEFENSE,
                      :CALMMIND,:FOCUSBLAST,:ENERGYBALL,:NASTYPLOT,:ZENHEADBUTT,:GRASSKNOT,:FOULPLAY,
-                     :STOREDPOWER,:ALLYSWITCH,:DAZZLINGGLEAM,:RECYCLE,:ROLEPLAY,:TRIPLEAXEL,:EXPANDINGFORCE]
+                     :STOREDPOWER,:ALLYSWITCH,:DAZZLINGGLEAM,:RECYCLE,:ROLEPLAY,:TRIPLEAXEL,:EXPANDINGFORCE,:SNOWSCAPE]
    end
    for i in 0...movelist.length
      movelist[i]=getConst(PBMoves,movelist[i])
@@ -1532,11 +1600,11 @@ MultipleForms.register(:ARTICUNO,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:COMPETITIVE),0]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:GUST],[1,:PSYCHOSHIFT],[5,:CONFUSION],[10,:REFLECT],
@@ -1551,7 +1619,7 @@ MultipleForms.register(:ARTICUNO,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1591,11 +1659,11 @@ MultipleForms.register(:ZAPDOS,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:DEFIANT),0]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:PECK],[1,:FOCUSENERGY],[5,:ROCKSMASH],[10,:LIGHTSCREEN],
@@ -1610,7 +1678,7 @@ MultipleForms.register(:ZAPDOS,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1651,11 +1719,11 @@ MultipleForms.register(:MOLTRES,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:BERSERK),0]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:GUST],[1,:LEER],[5,:PAYBACK],[10,:SAFEGUARD],
@@ -1670,7 +1738,7 @@ MultipleForms.register(:MOLTRES,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1679,72 +1747,6 @@ MultipleForms.register(:MOLTRES,{
                      :AGILITY,:SUBSTITUTE,:SLEEPTALK,:SHADOWBALL,:TAUNT,:HYPERVOICE,
                      :DARKPULSE,:BRAVEBIRD,:NASTYPLOT,:FOULPLAY,:HURRICANE,:LASHOUT,
                      :DUALWINGBEAT,:SNORE]
-   end
-   for i in 0...movelist.length
-     movelist[i]=getConst(PBMoves,movelist[i])
-   end
-   next movelist
-}
-})
-
-# SLOWKING
-
-MultipleForms.register(:SLOWKING,{
-"getFormOnCreation"=>proc{|pokemon|
-   if $game_map && GALAR_MAPS.include?($game_map.map_id)
-     next 1
-   else
-     next 0
-   end
-},
-"type1"=>proc{|pokemon|
-  next getID(PBTypes,:PSYCHIC) if pokemon.form==1
-  next
-},
-"type2"=>proc{|pokemon|
-  next getID(PBTypes,:POISON) if pokemon.form==1
-  next
-},
-"getBaseStats"=>proc{|pokemon|
-  next [95,65,80,30,110,110] if pokemon.form==1
-  next
-},
-"getAbilityList"=>proc{|pokemon|
-   case pokemon.form
-   when 1; next [[getID(PBAbilities,:CURIOUSMEDICINE),0],[getID(PBAbilities,:OWNTEMPO),1],[getID(PBAbilities,:REGENERATOR),2]]
-   else;   next                                       
-   end
-},
-"getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
-   movelist=[]
-   case pokemon.form
-   when 1; movelist=[[1,:EERIESPELL],[1,:NASTYPLOT],[1,:POWERGEM],[1,:SWAGGER],
-                     [1,:TACKLE],[1,:GROWL],[1,:ACID],[1,:CURSE],[9,:YAWN],
-                     [12,:CONFUSION],[15,:DISABLE],[18,:WATERPULSE],
-                     [21,:HEADBUTT],[24,:ZENHEADBUTT],[27,:AMNESIA],[30,:SURF],
-                     [33,:SLACKOFF],[36,:PSYCHIC],[39,:PSYCHUP],[42,:RAINDANCE],
-                     [45,:HEALPULSE]]
-   end
-   for i in movelist
-     i[1]=getConst(PBMoves,i[1])
-   end
-   next movelist
-},
-"getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
-   movelist=[]
-   case pokemon.form
-   when 1; movelist=[# MTs
-                     :THUNDERWAVE,:DIG,:LIGHTSCREEN,:SAFEGUARD,:REST,:SNORE,:PROTECT,:ICYWIND,
-                     :ATTRACT,:RAINDANCE,:SUNNYDAY,:HAIL,:FACADE,:DIVE,:TRICKROOM,:WONDERROOM,
-                     :ROUND,:BULLDOZE,:FLAMETHROWER,:SURF,:HYDROPUMP,:ICEBEAM,:BLIZZARD,:EARTHQUAKE,
-                     :PSYCHIC,:FIREBLAST,:SUBSTITUTE,:SLEEPTALK,:PSYSHOCK,:IRONTAIL,:SHADOWBALL,
-                     :TRICK,:SKILLSWAP,:CALMMIND,:ZENHEADBUTT,:GRASSKNOT,:STOREDPOWER,:TRIATTACK,
-                     :SCALD,:LIQUIDATION,:BRINE,:PSYCHICTERRAIN,:WEATHERBALL,:AMNESIA,:AVALANCHE,
-                     :EXPANDINGFORCE,:BRICKBREAK,:DRAINPUNCH,:FOCUSBLAST,:GIGAIMPACT,:HYPERBEAM,
-                     :ICEPUNCH,:IRONDEFENSE,:MUDDYWATER,:NASTYPLOT,:POISONJAB,:RAZORSHELL,:SLUDGEBOMB,
-                     :SLUDGEWAVE,:VENOSHOCK,:EXPANDINGFORCE,:SNORE,:FLING]
    end
    for i in 0...movelist.length
      movelist[i]=getConst(PBMoves,movelist[i])
@@ -1776,12 +1778,12 @@ MultipleForms.register(:CORSOLA,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:WEAKARMOR),0],
          [getID(PBAbilities,:CURSEDBODY),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:HARDEN],[5,:ASTONISH],[10,:DISABLE],[15,:SPITE],
@@ -1794,7 +1796,7 @@ MultipleForms.register(:CORSOLA,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1804,7 +1806,7 @@ MultipleForms.register(:CORSOLA,{
                      :HYDROPUMP,:SURF,:ICEBEAM,:SUBSTITUTE,:SLEEPTALK,:BLIZZARD,:EARTHQUAKE,
                      :PSYCHIC,:SHADOWBALL,:IRONDEFENSE,:CALMMIND,:POWERGEM,:EARTHPOWER,
                      :STONEEDGE,:STEALTHROCK,:SCALD,:THROATCHOP,:LIQUIDATION,:NATUREPOWER,
-                     :WATERPULSE,:METEORBEAM]
+                     :WATERPULSE,:METEORBEAM,:SNOWSCAPE]
    end
    for i in 0...movelist.length
      movelist[i]=getConst(PBMoves,movelist[i])
@@ -1828,13 +1830,13 @@ MultipleForms.register(:ZIGZAGOON,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:PICKUP),0],
          [getID(PBAbilities,:GLUTTONY),1],
          [getID(PBAbilities,:QUICKFEET),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:LEER],[3,:SANDATTACK],[6,:LICK],
@@ -1848,7 +1850,7 @@ MultipleForms.register(:ZIGZAGOON,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1881,13 +1883,13 @@ MultipleForms.register(:LINOONE,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1               
    next [[getID(PBAbilities,:PICKUP),0],
          [getID(PBAbilities,:GLUTTONY),1],
          [getID(PBAbilities,:QUICKFEET),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:NIGHTSLASH],[1,:SWITCHEROO],[1,:PINMISSILE],[1,:BABYDOLLEYES],
@@ -1901,7 +1903,7 @@ MultipleForms.register(:LINOONE,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -1941,12 +1943,12 @@ MultipleForms.register(:DARUMAKA,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 2
    next [[getID(PBAbilities,:HUSTLE),0],
          [getID(PBAbilities,:INNERFOCUS),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 2
    movelist=[]
    case pokemon.form
    when 2; movelist=[[1,:POWDERSNOW],[1,:TACKLE],[4,:TAUNT],[8,:BITE], 
@@ -1960,7 +1962,7 @@ MultipleForms.register(:DARUMAKA,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 2
    movelist=[]
    case pokemon.form
    when 2; movelist=[# MTs
@@ -1988,27 +1990,27 @@ MultipleForms.register(:DARMANITAN,{
    end
 },
 "type1"=>proc{|pokemon|
-   next if pokemon.form==0             # Forma Normal
    case pokemon.form
    when 1; next getID(PBTypes,:FIRE)   # Forma Daruma
    when 2; next getID(PBTypes,:ICE)    # Forma Galar
    when 3; next getID(PBTypes,:ICE)    # Forma Galar Daruma
+   else;   next
    end
 },
 "type2"=>proc{|pokemon|
-   next if pokemon.form==0              # Forma Normal
    case pokemon.form
    when 1; next getID(PBTypes,:PSYCHIC) # Forma Daruma
    when 2; next getID(PBTypes,:ICE)     # Forma Galar
    when 3; next getID(PBTypes,:FIRE)    # Forma Galar Daruma
+   else;   next
    end
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0                  # Forma Normal
    case pokemon.form
    when 1; next [105,30,105,55,140,105]     # Forma Daruma
    when 2; next [105,140,55,95,30,55]       # Forma Galar
    when 3; next [105,160,55,135,30,55]      # Forma Galar Daruma
+   else;   next
   end
 },
 "getAbilityList"=>proc{|pokemon|
@@ -2020,22 +2022,21 @@ MultipleForms.register(:DARMANITAN,{
    end
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
-   movelist=[]
    case pokemon.form
    when 2, 3
      movelist=[[1,:ICICLECRASH],[1,:POWDERSNOW],[1,:BITE],[1,:TACKLE],[1,:TAUNT],[12,:AVALANCHE],
                [16,:WORKUP],[20,:ICEFANG],[24,:HEADBUTT],[28,:ICEPUNCH],[32,:UPROAR],
                [38,:BELLYDRUM],[44,:BLIZZARD],[50,:THRASH],[56,:SUPERPOWER]]
+   else;   next
    end
+   if movelist
    for i in movelist
      i[1]=getConst(PBMoves,i[1])
    end
    next movelist
+   end
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
-   movelist=[]
    case pokemon.form
    when 2, 3
      movelist=[# MTs y tutores
@@ -2047,11 +2048,14 @@ MultipleForms.register(:DARMANITAN,{
                :HEATWAVE,:TAUNT,:SUPERPOWER,:OVERHEAT,:IRONDEFENSE,:BULKUP,:GYROBALL,
                :FLAREBLITZ,:FOCUSBLAST,:ZENHEADBUTT,:IRONHEAD,:STONEEDGE,:GRASSKNOT,
                :INCINERATE,:POWERUPPUNCH,:FOCUSPUNCH,:BURNINGJEALOUSY,:LASHOUT]
+   else;   next
    end
+   if movelist
    for i in 0...movelist.length
      movelist[i]=getConst(PBMoves,movelist[i])
    end
    next movelist
+   end
 }
 })
 
@@ -2080,11 +2084,11 @@ MultipleForms.register(:YAMASK,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:WANDERINGSPIRIT),0]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:ASTONISH],[1,:PROTECT],[4,:HAZE],[8,:NIGHTSHADE],[12,:DISABLE],
@@ -2098,7 +2102,7 @@ MultipleForms.register(:YAMASK,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2138,11 +2142,11 @@ MultipleForms.register(:STUNFISK,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:MIMICRY),0]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:MUDSLAP],[1,:TACKLE],[1,:WATERGUN],[1,:METALCLAW], 
@@ -2156,7 +2160,7 @@ MultipleForms.register(:STUNFISK,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2201,13 +2205,13 @@ MultipleForms.register(:GROWLITHE,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:INTIMIDATE),0],
          [getID(PBAbilities,:FLASHFIRE),1],
          [getID(PBAbilities,:ROCKHEAD),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:EMBER],[1,:LEER],[4,:HOWL],[8,:BITE],[12,:FLAMEWHEEL],
@@ -2221,7 +2225,7 @@ MultipleForms.register(:GROWLITHE,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2264,20 +2268,20 @@ MultipleForms.register(:ARCANINE,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:INTIMIDATE),0],
          [getID(PBAbilities,:FLASHFIRE),1],
          [getID(PBAbilities,:ROCKHEAD),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
-   when 1; movelist=[[0,:EXTREMESPEED],[1,:FLAMEWHEEL],[1,:FIREFANG],
-                     [1,:FLAREBLITZ],[1,:HOWL],[1,:HELPINGHAND],[1,:CRUNCH],
-                     [1,:REVERSAL],[1,:RETALIATE],[1,:TAKEDOWN],[1,:AGILITY],
-                     [1,:ROCKTHROW],[1,:EMBER],[1,:ROAR],[1,:BITE],[1,:LEER],
-                     [1,:ROCKSLIDE],[5,:FLAMETHROWER],[64,:RAGINGFURY]]
+   when 1; movelist=[[0,:EXTREMESPEED],[1,:ROCKTHROW],[1,:AGILITY],
+                     [1,:EMBER], [1,:LEER], [4,:HOWL], [8,:BITE], [12,:FLAMEWHEEL],
+                     [16,:HELPINGHAND], [24,:FIREFANG], [28,:RETALIATE], [32,:CRUNCH],
+                     [36,:TAKEDOWN], [40,:FLAMETHROWER], [44,:ROAR], [48,:ROCKSLIDE],
+                     [52,:REVERSAL], [56,:FLAREBLITZ], [64,:RAGINGFURY]]
 
    end
    for i in movelist
@@ -2286,7 +2290,7 @@ MultipleForms.register(:ARCANINE,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2331,13 +2335,13 @@ MultipleForms.register(:VOLTORB,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:SOUNDPROOF),0],
          [getID(PBAbilities,:STATIC),1],
          [getID(PBAbilities,:AFTERMATH),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:CHARGE],[4,:THUNDERSHOCK],[6,:STUNSPORE],
@@ -2352,7 +2356,7 @@ MultipleForms.register(:VOLTORB,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2394,13 +2398,13 @@ MultipleForms.register(:ELECTRODE,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:SOUNDPROOF),0],
          [getID(PBAbilities,:STATIC),1],
          [getID(PBAbilities,:AFTERMATH),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:CHLOROBLAST],[1,:TACKLE],[1,:CHARGE],[4,:THUNDERSHOCK],
@@ -2417,7 +2421,7 @@ MultipleForms.register(:ELECTRODE,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2460,12 +2464,12 @@ MultipleForms.register(:TYPHLOSION,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:BLAZE),0],
          [getID(PBAbilities,:FRISK),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:INFERNALPARADE],[1,:GYROBALL],[1,:ERUPTION],
@@ -2482,7 +2486,7 @@ MultipleForms.register(:TYPHLOSION,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2527,13 +2531,13 @@ MultipleForms.register(:QWILFISH,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:SWIFTSWIM),0],
          [getID(PBAbilities,:POISONPOINT),1],
          [getID(PBAbilities,:INTIMIDATE),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:POISONSTING],[1,:TACKLE],[4,:HARDEN],[8,:BITE],
@@ -2549,7 +2553,7 @@ MultipleForms.register(:QWILFISH,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2591,13 +2595,13 @@ MultipleForms.register(:SNEASEL,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1     
    next [[getID(PBAbilities,:INNERFOCUS),0],
          [getID(PBAbilities,:KEENEYE),1],
          [getID(PBAbilities,:PICKPOCKET),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:SCRATCH],[1,:LEER],[1,:ROCKSMASH],[6,:TAUNT],
@@ -2611,7 +2615,7 @@ MultipleForms.register(:SNEASEL,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2655,12 +2659,12 @@ MultipleForms.register(:SAMUROTT,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1                    
    next [[getID(PBAbilities,:TORRENT),0],
          [getID(PBAbilities,:SHARPNESS),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:CEASELESSEDGE],[1,:SLASH],[1,:SUCKERPUNCH],
@@ -2676,7 +2680,7 @@ MultipleForms.register(:SAMUROTT,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2722,13 +2726,13 @@ MultipleForms.register(:LILLIGANT,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:CHLOROPHYLL),0],
          [getID(PBAbilities,:HUSTLE),1],
          [getID(PBAbilities,:LEAFGUARD),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:VICTORYDANCE],[1,:TEETERDANCE],[1,:SOLARBLADE],
@@ -2746,7 +2750,7 @@ MultipleForms.register(:LILLIGANT,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2791,11 +2795,11 @@ MultipleForms.register(:ZORUA,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:ILLUSION),0]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:LEER],[1,:SCRATCH],[4,:TORMENT],[8,:HONECLAWS],
@@ -2809,7 +2813,7 @@ MultipleForms.register(:ZORUA,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2852,11 +2856,11 @@ MultipleForms.register(:ZOROARK,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:ILLUSION),0]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:SHADOWCLAW],[1,:UTURN],[1,:HONECLAWS],[1,:SCRATCH],
@@ -2872,7 +2876,7 @@ MultipleForms.register(:ZOROARK,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2918,13 +2922,13 @@ MultipleForms.register(:BRAVIARY,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:KEENEYE),0],
          [getID(PBAbilities,:SHEERFORCE),1],
          [getID(PBAbilities,:COMPETITIVE),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:ESPERWING],[1,:SUPERPOWER],[1,:LEER],[1,:WINGATTACK],
@@ -2940,7 +2944,7 @@ MultipleForms.register(:BRAVIARY,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -2987,13 +2991,13 @@ MultipleForms.register(:SLIGGOO,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:SAPSIPPER),0],
          [getID(PBAbilities,:SHELLARMOR),1],
          [getID(PBAbilities,:GOOEY),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:SHELTER],[1,:ACIDARMOR],[1,:DRAGONBREATH],[1,:TACKLE],
@@ -3008,7 +3012,7 @@ MultipleForms.register(:SLIGGOO,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -3051,13 +3055,13 @@ MultipleForms.register(:GOODRA,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form !=1
    next [[getID(PBAbilities,:SAPSIPPER),0],
          [getID(PBAbilities,:SHELLARMOR),1],
          [getID(PBAbilities,:GOOEY),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:IRONTAIL],[1,:SHELTER],[1,:ACIDSPRAY],[1,:FEINT],
@@ -3073,7 +3077,7 @@ MultipleForms.register(:GOODRA,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -3121,13 +3125,13 @@ MultipleForms.register(:AVALUGG,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:STRONGJAW),0],
          [getID(PBAbilities,:ICEBODY),1],
          [getID(PBAbilities,:STURDY),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:ROCKSLIDE],[1,:POWDERSNOW],[1,:RAPIDSPIN],[1,:WIDEGUARD],
@@ -3142,7 +3146,7 @@ MultipleForms.register(:AVALUGG,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -3186,12 +3190,12 @@ MultipleForms.register(:DECIDUEYE,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:OVERGROW),0],
          [getID(PBAbilities,:LONGREACH),2]]
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[0,:TRIPLEARROWS],[1,:LEAFSTORM],[1,:LEAFAGE],[1,:TACKLE],
@@ -3207,7 +3211,7 @@ MultipleForms.register(:DECIDUEYE,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[# MTs
@@ -3249,13 +3253,13 @@ MultipleForms.register(:WOOPER,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:POISONPOINT),0],
          [getID(PBAbilities,:WATERABSORB),1],
          [getID(PBAbilities,:UNAWARE),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TAILWHIP],[1,:MUDSHOT],[4,:TACKLE],[8,:POISONTAIL],
@@ -3268,7 +3272,7 @@ MultipleForms.register(:WOOPER,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[:PROTECT,:SUBSTITUTE,:RAINDANCE,:SUNNYDAY,:ATTRACT,:TAUNT,
@@ -3303,7 +3307,7 @@ MultipleForms.register(:TAUROS,{
    end
 },
 "type1"=>proc{|pokemon|
-   next if pokemon.form==0             # Forma Normal
+   next if pokemon.form != 1             # Forma Normal
    case pokemon.form
    when 1; next getID(PBTypes,:FIGHTING)   # Variante Combatiente
    when 2; next getID(PBTypes,:FIGHTING)   # Variante Ardiente
@@ -3311,7 +3315,7 @@ MultipleForms.register(:TAUROS,{
    end
 },
 "type2"=>proc{|pokemon|
-   next if pokemon.form==0             # Forma Normal
+   next if pokemon.form != 1             # Forma Normal
    case pokemon.form
    when 1; next getID(PBTypes,:FIGHTING)   # Variante Combatiente
    when 2; next getID(PBTypes,:FIRE)       # Variante Ardiente
@@ -3319,7 +3323,7 @@ MultipleForms.register(:TAUROS,{
    end
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0              # Forma Normal
+   next if pokemon.form != 1              # Forma Normal
    case pokemon.form
    when 1; next [75,110,105,100,30,70]  # Variante Combatiente
    when 2; next [75,110,105,100,30,70]  # Variante Ardiente
@@ -3335,7 +3339,7 @@ MultipleForms.register(:TAUROS,{
    end
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:TACKLE],[1,:TAILWHIP],[5,:WORKUP],[10,:DOUBLEKICK],[15,:ASSURANCE],
@@ -3370,13 +3374,13 @@ MultipleForms.register(:URSALUNA,{
   next
 },
 "getAbilityList"=>proc{|pokemon|
-   next if pokemon.form==0                    
+   next if pokemon.form != 1
    next [[getID(PBAbilities,:MINDSEYE),0],
          [getID(PBAbilities,:MINDSEYE),1],
          [getID(PBAbilities,:MINDSEYE),2]] 
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[[1,:MOONLIGHT],[1,:HEADLONGRUSH],[1,:SCRATCH],[1,:LEER],
@@ -3392,7 +3396,7 @@ MultipleForms.register(:URSALUNA,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form != 1
    movelist=[]
    case pokemon.form
    when 1; movelist=[

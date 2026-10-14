@@ -43,7 +43,7 @@ Events.onStepTaken+=proc {
 
 ItemHandlers::UseFromBag.add(:BLACKFLUTE,proc{|item|
    Kernel.pbMessage(_INTL("¡{1} ha usado una {2}!",$Trainer.name,PBItems.getName(item)))
-   Kernel.pbMessage(_INTL("¡{1} se encontrará con más Pokémon de nivel alto!",$Trainer.name))
+   Kernel.pbMessage(_INTL("¡{1} se encontrará con más Pokémon de nivel bajo!",$Trainer.name))
    $PokemonMap.blackFluteUsed=true
    $PokemonMap.whiteFluteUsed=false
    next 1
@@ -51,7 +51,7 @@ ItemHandlers::UseFromBag.add(:BLACKFLUTE,proc{|item|
 
 ItemHandlers::UseFromBag.add(:WHITEFLUTE,proc{|item|
    Kernel.pbMessage(_INTL("¡{1} ha usado una {2}!",$Trainer.name,PBItems.getName(item)))
-   Kernel.pbMessage(_INTL("¡{1} se encontrará con más Pokémon de nivel bajo!",$Trainer.name))
+   Kernel.pbMessage(_INTL("¡{1} se encontrará con más Pokémon de nivel alto!",$Trainer.name))
    $PokemonMap.blackFluteUsed=false
    $PokemonMap.whiteFluteUsed=true
    next 1

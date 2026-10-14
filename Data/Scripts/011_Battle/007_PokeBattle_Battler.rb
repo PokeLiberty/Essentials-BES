@@ -901,6 +901,8 @@ class PokeBattle_Battler
     @pokemon.makeUntera if self.isTera?
     @pokemon.makeUnmax rescue nil #if self.isDynamax? # Dynamax
     
+    peer = (@battle.respond_to?(:peer) && @battle.peer) ? @battle.peer : PokeBattle_RealBattlePeer.new
+    peer.pbOnLeavingBattle(@battle, @pokemon) rescue nil
     @pokemon.revertOtherForms
     @fainted=true
     # reset choice
@@ -1096,31 +1098,23 @@ class PokeBattle_Battler
       @battle.pbDisplay(_INTL("{1} siente la presencia de muchos...",pbThis))
     end
     # Minior
-    if self.hasWorkingAbility(:SHIELDSDOWN) &&
-      isConst?(self.species,PBSpecies,:MINIOR) &&
-      self.hp>(self.totalhp*0.5).floor && self.form!=0
-      @@miniorform=self.form
-      self.form=0
-      showAbilityMessage(self) rescue nil
-      @battle.pbDisplay(_INTL("¡El cuerpo de {1} fue petrificado!",self.pbThis))
-      transformed=true
-    elsif self.hasWorkingAbility(:SHIELDSDOWN) &&
-      isConst?(self.species,PBSpecies,:MINIOR) &&
-       self.hp<=(self.totalhp*0.5).floor && self.form==0 && @@miniorform>0
-      self.form=@@miniorform
-      showAbilityMessage(self) rescue nil
-      @battle.pbDisplay(_INTL("¡La coraza rocosa de {1} se rompió!",self.pbThis))
-      transformed=true
-    elsif self.hasWorkingAbility(:SHIELDSDOWN) &&
-      isConst?(self.species,PBSpecies,:MINIOR) &&
-       self.hp<=(self.totalhp*0.5).floor && self.form==0 && @@miniorform=0
-       self.form=1+rand(7)
-       @@miniorform=self.form
-       showAbilityMessage(self) rescue nil
-       @battle.pbDisplay(_INTL("¡El núcleo de {1} fue quebrado!",self.pbThis))
-       transformed=true
+    if self.hasWorkingAbility(:SHIELDSDOWN) && isConst?(self.species,PBSpecies,:MINIOR)
+      if self.hp>(self.totalhp*0.5).floor
+        # Vuelve a la forma Meteoro (0-6)
+        if self.form>=7
+          self.form=self.form-7
+          showAbilityMessage(self) rescue nil
+          @battle.pbDisplay(_INTL("¡El cuerpo de {1} fue petrificado!",self.pbThis))
+          transformed=true
+        end
+      elsif self.form<7
+        # Pasa a la forma Núcleo (7-13)
+        self.form=self.form+7
+        showAbilityMessage(self) rescue nil
+        @battle.pbDisplay(_INTL("¡La coraza rocosa de {1} se rompió!",self.pbThis))
+        transformed=true
+      end
     end
-
     if transformed
       pbUpdate(true)
       @battle.scene.pbChangePokemon(self,@pokemon)
@@ -1166,14 +1160,6 @@ class PokeBattle_Battler
       end
       if isConst?(self.species,PBSpecies,:DARMANITAN)
         self.form=0 if self.form==2; self.form=1 if self.form==3
-      end
-      if isConst?(self.species,PBSpecies,:MINIOR)
-        if @@miniorform>0
-          self.form=@@miniorform
-        else
-          self.form=1+rand(7)
-          @@miniorform=self.form
-        end
       end
     end
     pbUpdate(true)

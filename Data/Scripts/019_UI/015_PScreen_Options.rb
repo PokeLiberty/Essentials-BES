@@ -534,12 +534,18 @@ MenuHandlers.add(:options_menu, :bgm_volume, {
   "description" => _INTL("Ajusta el volumen de la música del juego."),
   "get_proc"    => proc { next $PokemonSystem.bgmvolume },
   "set_proc"    => proc { |value, scene|
-    next if $PokemonSystem.bgmvolume == value
-    $PokemonSystem.bgmvolume = value
-    next if scene.in_load_screen || $game_system.playing_bgm.nil?
-    playingBGM = $game_system.getPlayingBGM
-    $game_system.bgm_pause
-    $game_system.bgm_resume(playingBGM)
+    if $PokemonSystem.bgmvolume != value
+        $PokemonSystem.bgmvolume = value
+        if $game_system.playing_bgm != nil
+          if Audio.respond_to?(:bgm_volume=)
+            Audio.bgm_volume = value
+          else
+            bgm = $game_system.playing_bgm.clone
+            $game_system.bgm_pause
+            $game_system.bgm_resume(bgm)
+          end
+        end
+      end
   }
 })
 
@@ -551,13 +557,17 @@ MenuHandlers.add(:options_menu, :se_volume, {
   "description" => _INTL("Ajusta el volumen de los efectos de sonido del juego."),
   "get_proc"    => proc { next $PokemonSystem.sevolume },
   "set_proc"    => proc { |value, _scene|
-    next if $PokemonSystem.sevolume == value
+  next if $PokemonSystem.sevolume == value
     $PokemonSystem.sevolume = value
     if $game_system.playing_bgs
       $game_system.playing_bgs.volume = value
-      playingBGS = $game_system.getPlayingBGS
-      $game_system.bgs_pause
-      $game_system.bgs_resume(playingBGS)
+      if Audio.respond_to?(:bgs_volume=)
+        Audio.bgs_volume = value
+      else
+        playingBGS = $game_system.getPlayingBGS
+        $game_system.bgs_pause
+        $game_system.bgs_resume(playingBGS)
+      end
     end
     pbPlayCursorSE
   }

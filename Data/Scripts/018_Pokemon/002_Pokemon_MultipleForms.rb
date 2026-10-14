@@ -172,6 +172,23 @@ class PokeBattle_RealBattlePeer
       pokemon.form=f
     end
   end
+  
+  def pbOnStartingBattle(battle, pkmn, wild = false)
+    f = MultipleForms.call("getFormOnStartingBattle", pkmn, wild)
+    pkmn.form = f if f
+    MultipleForms.call("changePokemonOnStartingBattle", pkmn, battle)
+  end
+
+  # For switching out, including due to fainting, and for the end of battle
+  def pbOnLeavingBattle(battle, pkmn, endBattle = false)
+    return if !pkmn
+    f = MultipleForms.call("getFormOnLeavingBattle", pkmn, battle, endBattle)
+    pkmn.form = f if f && pkmn.form != f
+    pkmn.hp = pkmn.totalhp if pkmn.hp > pkmn.totalhp
+    MultipleForms.call("changePokemonOnLeavingBattle", pkmn, battle, endBattle)
+  end
+  
+  
 end
 
 
@@ -208,7 +225,7 @@ module MultipleForms
     return nil if !sp || !sp[func]
     return sp[func].call(pokemon,*args)
   end
-
+  
   # NUEVO: Método para añadir funciones sin sobrescribir las existentes 
   # BES-T - Se usa en el dynamax.
   def self.add(sym,hash)
@@ -223,7 +240,7 @@ module MultipleForms
       @@formSpecies.add(sym,hash)
     end
   end
-
+  
 end
 
 
@@ -324,6 +341,22 @@ def pbSpindaSpots(pokemon,bitmap)
     drawSpot(bitmap,spot2,d+21,c+24,0,-115,-75)
     drawSpot(bitmap,spot3,f+39,e+7,0,-115,-75)
     drawSpot(bitmap,spot4,h+15,g+6,0,-115,-75)
+  end
+end
+
+# Cambia un movimiento por otro (usado en Zacian/Zamazenta al entrar y salir de combate)
+def pbSwapFormMove(pokemon,fromMove,toMove)
+  return if !hasConst?(PBMoves,toMove)
+  toID=getID(PBMoves,toMove)
+  for i in 0...4
+    m=pokemon.moves[i]
+    next if !m || m.id==0
+    if isConst?(m.id,PBMoves,fromMove)
+      oldpp=m.pp
+      pokemon.moves[i]=PBMove.new(toID)
+      pokemon.moves[i].pp=[oldpp,pokemon.moves[i].totalpp].min
+      break
+    end
   end
 end
 
@@ -557,6 +590,8 @@ MultipleForms.register(:ROTOM,{
    end
 },
 "onSetForm"=>proc{|pokemon,form|
+   isPlayerPokemon = $Trainer.pokemonParty.any?{|p| p.equal?(pokemon)} rescue false
+   next if !isPlayerPokemon
    moves=[
       :OVERHEAT,  # Calor, Microondas
       :HYDROPUMP, # Lavado, Lavadora
@@ -797,8 +832,7 @@ MultipleForms.register(:BASCULIN,{
    end
 },
 "getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
-   next if pokemon.form==1
+   next if pokemon.form !=2
    movelist=[]
    case pokemon.form
    when 2; movelist=[[1,:WATERGUN],[1,:TAILWHIP],[4,:TACKLE],[8,:FLAIL],
@@ -813,10 +847,10 @@ MultipleForms.register(:BASCULIN,{
    next movelist
 },
 "getMoveCompatibility"=>proc{|pokemon|
-   next if pokemon.form==0
+   next if pokemon.form !=2
    movelist=[]
    case pokemon.form
-   when 1; movelist=[# MTs
+   when 2; movelist=[# MTs
                      :AGILITY,:BLIZZARD,:CHILLINGWATER,:CRUNCH,:DOUBLEEDGE,
                      :ENDEAVOR,:ENDURE,:FACADE,:FLIPTURN,:HYDROPUMP,:ICEBEAM,
                      :ICEFANG,:ICYWIND,:LIQUIDATION,:MUDDYWATER,:MUDSHOT,
@@ -1040,7 +1074,7 @@ MultipleForms.register(:FLOETTE,{
 "getAbilityList"=>proc{|pokemon|
     next [[getID(PBAbilities,:FAIRYAURA),0]] if pokemon.form==7
     next
-}, #No se sabe cual es la hab oficial.
+},
  "getMegaForm"=>proc{|pokemon|
     next 7 if isConst?(pokemon.item,PBItems,:FLOETTITE) && pokemon.form==6
     next
@@ -1067,45 +1101,37 @@ MultipleForms.register(:FURFROU,{
 
 # MEOWSTIC
 MultipleForms.register(:ESPURR,{
-"getFormOnCreation"=>proc{|pokemon|
-   if pokemon.isFemale?
-     pokemon.form=1
-   else
-     pokemon.form=0
-   end
-}
+  "getForm" => proc { |pokemon|
+    next pokemon.gender
+  }
 })
 
 MultipleForms.register(:MEOWSTIC,{
-"getFormOnCreation"=>proc{|pokemon|
-   if pokemon.isFemale?
-     pokemon.form=1
-   else
-     pokemon.form=0
-   end
-},
-"getAbilityList"=>proc{|pokemon|
-   case pokemon.form
-   when 1; next [[getID(PBAbilities,:KEENEYE),0],[getID(PBAbilities,:INFILTRATOR),1],[getID(PBAbilities,:COMPETITIVE),2]]
-   else;   next
-   end
-},
-"getMoveList"=>proc{|pokemon|
-   next if pokemon.form==0
-   movelist=[]
-   case pokemon.form
-   when 1; movelist=[[1,:STOREDPOWER],[1,:MEFIRST],[1,:MAGICALLEAF],[1,:SCRATCH],
-                        [1,:LEER],[5,:COVET],[9,:CONFUSION],[13,:LIGHTSCREEN],
-                        [17,:PSYBEAM],[19,:FAKEOUT],[22,:DISARMINGVOICE],[25,:PSYSHOCK],[28,:CHARGEBEAM],
-                        [31,:SHADOWBALL],[35,:EXTRASENSORY],[40,:PSYCHIC],
-                        [43,:ROLEPLAY],[45,:SIGNALBEAM],[48,:SUCKERPUNCH],
-                        [50,:FUTURESIGHT],[53,:STOREDPOWER]]
-   end
-   for i in movelist
-     i[1]=getConst(PBMoves,i[1])
-   end
-   next movelist
-}
+  "getForm" => proc { |pokemon|
+    next pokemon.gender
+  },
+  "getAbilityList"=>proc{|pokemon|
+     case pokemon.form
+     when 1; next [[getID(PBAbilities,:KEENEYE),0],[getID(PBAbilities,:INFILTRATOR),1],[getID(PBAbilities,:COMPETITIVE),2]]
+     else;   next
+     end
+  },
+  "getMoveList"=>proc{|pokemon|
+     next if pokemon.form==0
+     movelist=[]
+     case pokemon.form
+     when 1; movelist=[[1,:STOREDPOWER],[1,:MEFIRST],[1,:MAGICALLEAF],[1,:SCRATCH],
+                          [1,:LEER],[5,:COVET],[9,:CONFUSION],[13,:LIGHTSCREEN],
+                          [17,:PSYBEAM],[19,:FAKEOUT],[22,:DISARMINGVOICE],[25,:PSYSHOCK],[28,:CHARGEBEAM],
+                          [31,:SHADOWBALL],[35,:EXTRASENSORY],[40,:PSYCHIC],
+                          [43,:ROLEPLAY],[45,:SIGNALBEAM],[48,:SUCKERPUNCH],
+                          [50,:FUTURESIGHT],[53,:STOREDPOWER]]
+     end
+     for i in movelist
+       i[1]=getConst(PBMoves,i[1])
+     end
+     next movelist
+  }
 })
 
 # AEGISLASH
@@ -1118,9 +1144,13 @@ MultipleForms.register(:AEGISLASH,{
 
 # PUMPKABOO
 MultipleForms.register(:PUMPKABOO,{
-"getFormOnCreation"=>proc{|pokemon|
-   next [rand(4),rand(4)].min
-},
+"getFormOnCreation" => proc { |pokemon|
+    r = rand(100)
+    next 3 if r < 5    # Super Size (5%)
+    next 2 if r < 20   # Large (15%)
+    next 1 if r < 65   # Average (45%)
+    next 0             # Small (35%)
+  },
 "height"=>proc{|pokemon|
    next if pokemon.form==0
    next 4 if pokemon.form==1
@@ -1149,9 +1179,13 @@ MultipleForms.register(:PUMPKABOO,{
 
 # GOURGEIST
 MultipleForms.register(:GOURGEIST,{
-"getFormOnCreation"=>proc{|pokemon|
-   next [rand(4),rand(4)].min
-},
+"getFormOnCreation" => proc { |pokemon|
+    r = rand(100)
+    next 3 if r < 5    # Super Size (5%)
+    next 2 if r < 20   # Large (15%)
+    next 1 if r < 65   # Average (45%)
+    next 0             # Small (35%)
+  },
 "height"=>proc{|pokemon|
    next if pokemon.form==0
    next 9 if pokemon.form==1
@@ -1289,12 +1323,11 @@ MultipleForms.register(:ORICORIO,{
    end
 },
 "dexEntry"=>proc{|pokemon|
-   next if pokemon.form==1
-   next _INTL("Forma que toma Oricorio al libar néctar amarillo. Electrifica el corazón de sus adversarios con su alegre y cálida danza.")
-   next if pokemon.form==2
-   next _INTL("Forma que toma Oricorio al libar néctar rosa. Con su suave contoneo de caderas, derrite el corazón de sus rivales.")
-   next if pokemon.form==3
-   next _INTL("Forma que toma Oricorio al libar néctar violeta. Con su refinada y elegante danza, puede enviar al otro mundo a sus enemigos en cuerpo y alma.")
+   case pokemon.form
+   when 1; next _INTL("Forma que toma Oricorio al libar néctar amarillo. Electrifica el corazón de sus adversarios con su alegre y cálida danza.")
+   when 2; next _INTL("Forma que toma Oricorio al libar néctar rosa. Con su suave contoneo de caderas, derrite el corazón de sus rivales.")
+   when 3; next _INTL("Forma que toma Oricorio al libar néctar violeta. Con su refinada y elegante danza, puede enviar al otro mundo a sus enemigos en cuerpo y alma.")
+   end
 }
 })
 
@@ -1383,10 +1416,10 @@ MultipleForms.register(:LYCANROC,{
    next movelist
 },
 "dexEntry"=>proc{|pokemon|
-   next if pokemon.form==1
-   next _INTL("Si no está de acuerdo con una orden, no duda en ignorarla. No le importa salir herido con tal de derrotar al oponente.")
-   next if pokemon.form==2
-   next _INTL("Lycanroc evoluciona a esta forma especial cuando se expone al sol del atardecer. Parece pacifico, pero posee un gran espiritu combativo.")
+   case pokemon.form
+   when 1; next _INTL("Si no está de acuerdo con una orden, no duda en ignorarla. No le importa salir herido con tal de derrotar al oponente.")
+   when 2; next _INTL("Lycanroc evoluciona a esta forma especial cuando se expone al sol del atardecer. Parece pacifico, pero posee un gran espiritu combativo.")
+   end
 }
 })
 
@@ -1451,18 +1484,18 @@ MultipleForms.register(:SILVALLY,{
 # MINIOR
 MultipleForms.register(:MINIOR,{
 "getFormOnCreation"=>proc{|pokemon|
-   next 1+rand(7)
+  next 7+rand(7)   # Meteor forms are 0-6, Core forms are 7-13
+},
+"getFormOnStartingBattle" => proc { |pokemon, wild|
+  next pokemon.form - 7 if pokemon.form >= 7 && wild   # Los Minior salvajes aparecen en forma Meteoro
+},
+"getFormOnLeavingBattle" => proc { |pokemon, battle, endBattle|
+  next pokemon.form + 7 if pokemon.form < 7
 },
 "getBaseStats"=>proc{|pokemon|
-   next if pokemon.form==0               # Forma Normal
    case pokemon.form
-   when 1; next [60,100,60,120,100,60] # Formas Ofensivas
-   when 2; next [60,100,60,120,100,60] # Formas Ofensivas
-   when 3; next [60,100,60,120,100,60] # Formas Ofensivas
-   when 4; next [60,100,60,120,100,60] # Formas Ofensivas
-   when 5; next [60,100,60,120,100,60] # Formas Ofensivas
-   when 6; next [60,100,60,120,100,60] # Formas Ofensivas
-   when 7; next [60,100,60,120,100,60] # Formas Ofensivas
+   when 7,8,9,10,11,12,13; next [60,100,60,120,100,60] # Formas Ofensivas
+   else; next
    end
 }
 })
@@ -1601,7 +1634,7 @@ MultipleForms.register(:INDEEDEE,{
      pokemon.form=0
    end
 },
-  "getBaseStats"=>proc{|pokemon|
+"getBaseStats"=>proc{|pokemon|
   next [70,55,65,85,95,105] if pokemon.form==1
   next
 },
@@ -1643,9 +1676,18 @@ MultipleForms.register(:INDEEDEE,{
 
 # ZACIAN
 MultipleForms.register(:ZACIAN,{
-"getForm"=>proc{|pokemon|
-   next 1 if isConst?(pokemon.item,PBItems,:RUSTEDSWORD) && $startBattle
+"getFormOnStartingBattle"=>proc{|pokemon,wild|
+   next 1 if isConst?(pokemon.item,PBItems,:RUSTEDSWORD)
    next 0
+},
+"changePokemonOnStartingBattle"=>proc{|pokemon,battle|
+   pbSwapFormMove(pokemon,:IRONHEAD,:BEHEMOTHBLADE) if pokemon.form==1
+},
+"getFormOnLeavingBattle"=>proc{|pokemon,battle,endBattle|
+   next 0 if endBattle   # Vuelve a Forma Normal al terminar el combate
+},
+"changePokemonOnLeavingBattle"=>proc{|pokemon,battle,endBattle|
+   pbSwapFormMove(pokemon,:BEHEMOTHBLADE,:IRONHEAD) if endBattle
 },
 "type2"=>proc{|pokemon|
   next getID(PBTypes,:STEEL) if pokemon.form==1
@@ -1654,37 +1696,23 @@ MultipleForms.register(:ZACIAN,{
 "getBaseStats"=>proc{|pokemon|
   next [92,150,115,148,80,115] if pokemon.form==1
   next
-},
-"onSetForm"=>proc{|pokemon,form|
-   moves=[
-      :IRONHEAD,     # Forma Normal
-      :BEHEMOTHBLADE # Forma Espada
-   ]
-   hasoldmove=-1
-   for i in 0...4
-     for j in 0...moves.length
-       if isConst?(pokemon.moves[i].id,PBMoves,moves[j])
-         hasoldmove=i; break
-       end
-     end
-     break if hasoldmove>=0
-   end
-   newmove = moves[form]
-   if newmove!=nil && hasConst?(PBMoves,newmove)
-     if hasoldmove>=0
-       oldmovepp=pokemon.moves[hasoldmove].pp
-       pokemon.moves[hasoldmove]=PBMove.new(getID(PBMoves,newmove))
-       pokemon.moves[hasoldmove].pp=[oldmovepp,pokemon.moves[hasoldmove].totalpp].min
-     end
-   end
 }
 })
 
 # ZAMAZENTA
 MultipleForms.register(:ZAMAZENTA,{
-"getForm"=>proc{|pokemon|
-   next 1 if isConst?(pokemon.item,PBItems,:RUSTEDSHIELD) && $startBattle
+"getFormOnStartingBattle"=>proc{|pokemon,wild|
+   next 1 if isConst?(pokemon.item,PBItems,:RUSTEDSHIELD)
    next 0
+},
+"changePokemonOnStartingBattle"=>proc{|pokemon,battle|
+   pbSwapFormMove(pokemon,:IRONHEAD,:BEHEMOTHBASH) if pokemon.form==1
+},
+"getFormOnLeavingBattle"=>proc{|pokemon,battle,endBattle|
+   next 0 if endBattle
+},
+"changePokemonOnLeavingBattle"=>proc{|pokemon,battle,endBattle|
+   pbSwapFormMove(pokemon,:BEHEMOTHBASH,:IRONHEAD) if endBattle
 },
 "type2"=>proc{|pokemon|
   next getID(PBTypes,:STEEL) if pokemon.form==1
@@ -1693,29 +1721,6 @@ MultipleForms.register(:ZAMAZENTA,{
 "getBaseStats"=>proc{|pokemon|
   next [92,120,140,128,80,140] if pokemon.form==1
   next
-},
-"onSetForm"=>proc{|pokemon,form|
-   moves=[
-      :IRONHEAD,    # Forma Normal
-      :BEHEMOTHBASH # Forma Escudo
-   ]
-   hasoldmove=-1
-   for i in 0...4
-     for j in 0...moves.length
-       if isConst?(pokemon.moves[i].id,PBMoves,moves[j])
-         hasoldmove=i; break
-       end
-     end
-     break if hasoldmove>=0
-   end
-   newmove = moves[form]
-   if newmove!=nil && hasConst?(PBMoves,newmove)
-     if hasoldmove>=0
-       oldmovepp=pokemon.moves[hasoldmove].pp
-       pokemon.moves[hasoldmove]=PBMove.new(getID(PBMoves,newmove))
-       pokemon.moves[hasoldmove].pp=[oldmovepp,pokemon.moves[hasoldmove].totalpp].min
-     end
-   end
 }
 })
 
@@ -1728,7 +1733,7 @@ MultipleForms.register(:ETERNATUS,{
  "height"=>proc{|pokemon|
     next 1000 if pokemon.form==1
     next
-},
+}
 })
 
 # URSHIFU
@@ -1871,7 +1876,7 @@ MultipleForms.register(:OINKOLOGNE,{
      pokemon.form=0
    end
 },
-    "getBaseStats"=>proc{|pokemon|
+"getBaseStats"=>proc{|pokemon|
   next [115,90,70,65,59,90] if pokemon.form==1
   next
 },

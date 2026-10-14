@@ -29,19 +29,22 @@ def pbCallTitle #:nodoc:
 end
 
 def mainFunction #:nodoc:
-  if $DEBUG
+  # BES-T Da el error completo fuera de debug, para mejor debugging.
+  #if $DEBUG
     pbCriticalCode { mainFunctionDebug }
-  else
-    mainFunctionDebug
-  end
+  #else
+  #  mainFunctionDebug
+  #end
   return 1
 end
 
 def mainFunctionDebug #:nodoc:
   begin
-    getCurrentProcess=Win32API.new("kernel32.dll","GetCurrentProcess","","l")
-    setPriorityClass=Win32API.new("kernel32.dll","SetPriorityClass",%w(l i),"")
-    setPriorityClass.call(getCurrentProcess.call(),32768) # "Above normal" priority class
+    if !$MKXP
+      getCurrentProcess=Win32API.new("kernel32.dll","GetCurrentProcess","","l")
+      setPriorityClass=Win32API.new("kernel32.dll","SetPriorityClass",%w(l i),"")
+      setPriorityClass.call(getCurrentProcess.call(),32768) # "Above normal" priority class
+    end
     $data_animations    = pbLoadRxData("Data/Animations")
     $data_tilesets      = pbLoadRxData("Data/Tilesets")
     $data_common_events = pbLoadRxData("Data/CommonEvents")

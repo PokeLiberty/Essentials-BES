@@ -2986,6 +2986,8 @@ class PokeBattle_Battle
     if !@fullparty2 && @party2.length>MAXPARTYSIZE
       raise ArgumentError.new(_INTL("Equipo 2 tiene más de {1} Pokémon.",MAXPARTYSIZE))
     end
+    @party1.each { |pkmn| @peer.pbOnStartingBattle(self, pkmn, !@opponent ? true : false) if pkmn }
+    @party2.each { |pkmn| @peer.pbOnStartingBattle(self, pkmn, !@opponent ? true : false) if pkmn }
 #==================================================================
 # Initialize wild Pokémon / Inicializa Pokémon salvaje
 #==================================================================
@@ -3531,6 +3533,7 @@ class PokeBattle_Battle
               @choices[j.index][3]=i.index # Make sure to target the switching Pokémon
               j.pbUseMove(@choices[j.index]) # This calls pbGainEXP as appropriate
               j.effects[PBEffects::Pursuit]=true
+              @battle.peer.pbOnLeavingBattle(@battle, @pokemon)
               @switching=false
               return if @decision>0
             end
@@ -5082,6 +5085,7 @@ class PokeBattle_Battle
       i.setItem(i.itemInitial)
       i.itemInitial=i.itemRecycle=0
       i.belch=false
+      @peer.pbOnLeavingBattle(self, i, true)   # Reset form
     end
     if USENEWBATTLEMECHANICS # BES-T Recuperar objetos usados excepto Bayas
       for i in $Trainer.party 
