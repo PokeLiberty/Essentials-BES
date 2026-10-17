@@ -1,17 +1,18 @@
 def pbSameThread(wnd)
   return false if wnd==0
+  $pbThreadFuncs ||= [
+    Win32API.new('kernel32','GetCurrentThreadId', '%w()','l'),
+    Win32API.new('user32','GetWindowThreadProcessId', '%w(l p)','l')
+  ]
   processid=[0].pack('l')
-  getCurrentThreadId=Win32API.new('kernel32','GetCurrentThreadId', '%w()','l')
-  getWindowThreadProcessId=Win32API.new('user32','GetWindowThreadProcessId', '%w(l p)','l')
-  threadid=getCurrentThreadId.call
-  wndthreadid=getWindowThreadProcessId.call(wnd,processid)
+  threadid=$pbThreadFuncs[0].call
+  wndthreadid=$pbThreadFuncs[1].call(wnd,processid)
   return (wndthreadid==threadid)
 end
 
 
 module Input
 
-  #Teclas remapeables con F1
   DOWN  = 2
   LEFT  = 4
   RIGHT = 6
@@ -30,10 +31,10 @@ module Input
   CTRL  = 22
   ALT   = 23
   F5    = $MKXP ? :F5 : 25
-  F6    = 26
-  F7    = 27
-  F8    = 28
-  F9    = 29
+  F6    = $MKXP ? :F6 : 26
+  F7    = $MKXP ? :F7 : 27
+  F8    = $MKXP ? :F8 : 28
+  F9    = $MKXP ? :F9 : 29
 
   #Teclas no remapeables, deben usar un formato distinto para funcionar con $MKXP
   F3    = $MKXP ? :F3 : 30
@@ -41,6 +42,35 @@ module Input
   
   F12    = $MKXP ? :F12 : 32
   
+  A2     = $MKXP ? :A  : 33
+  B2     = $MKXP ? :B  : 34
+  C2     = $MKXP ? :C  : 35
+  X2     = $MKXP ? :X  : 36
+  Y2     = $MKXP ? :Y  : 37
+  Z2     = $MKXP ? :Z  : 38
+  L2     = $MKXP ? :L  : 39
+  R2     = $MKXP ? :R  : 40
+  
+  W      = $MKXP ? :W  : 41
+  S      = $MKXP ? :S  : 42
+  D      = $MKXP ? :D  : 43
+  
+  Q      = $MKXP ? :Q  : 44
+  E      = $MKXP ? :E  : 45
+  T      = $MKXP ? :T  : 46
+  U      = $MKXP ? :U  : 47
+  I      = $MKXP ? :I  : 48
+  O      = $MKXP ? :O  : 49
+  P      = $MKXP ? :P  : 50
+  F      = $MKXP ? :F  : 51
+  G      = $MKXP ? :G  : 52
+  H      = $MKXP ? :H  : 53
+  J      = $MKXP ? :J  : 54
+  K      = $MKXP ? :K  : 55
+  V      = $MKXP ? :V  : 56
+  N      = $MKXP ? :N  : 57
+  M      = $MKXP ? :M  : 58
+
   #BES-T COMPATIBILIDAD con otros Essentials
   USE      = C
   BACK     = B
@@ -69,7 +99,7 @@ module Input
     end
   
     def self.updateKeyState(i)
-      gfw=pbSameThread(@GetForegroundWindow.call())
+      gfw=@gfw
       if !@stateUpdated[i]
         newstate=self.getstate(i) && gfw
         @keystate[i] = 0 if !@keystate[i]
@@ -81,6 +111,7 @@ module Input
     end
   
     def self.update
+      @gfw=pbSameThread(@GetForegroundWindow.call())
       if @keystate
         for i in 0...256
           # just noting that the state should be updated
@@ -128,6 +159,30 @@ module Input
       when Input::F7;                  return [0x76] # F7
       when Input::F8;                  return [0x77] # F8
       when Input::F9;                  return [0x78] # F9
+      when Input::F12;                 return [0x7B] # F12
+
+      when Input::B2;                  return [0x42] # B
+      when Input::P;                   return [0x50] # P
+      when Input::I;                   return [0x49] # I
+      when Input::J;                   return [0x4A] # J
+      when Input::F;                   return [0x46] # F
+      when Input::M;                   return [0x4D] # M
+      when Input::Y2;                  return [0x59] # Y
+      #when Input::L2
+      #when Input::C2
+      #when Input::X2
+      #when Input::Z2
+      #when Input::R2
+      #when Input::Q
+      #when Input::E
+      #when Input::U
+      #when Input::O
+      #when Input::P
+      #when Input::G
+      #when Input::H
+      #when Input::K
+      #when Input::V
+      #when Input::N
       end
       return []
     end
@@ -241,16 +296,8 @@ module Input
     def self.pressex?(key)
       return self.repeatcount(key)>0
     end
-  
-  
-  
   end #MKXP
-  
-
-  
 end
-
-
 
 # Requires Win32API
 module Mouse
@@ -296,5 +343,37 @@ module Mouse
     return if @oldcursor == nil
     @SetClassLong.call(Win32API.pbFindRgssWindow,-12, @oldcursor)
     @oldcursor = nil
+  end
+end
+
+#===============================================================================
+# MKXP: las teclas con nombre (símbolos, p. ej. :F5) se consultan con
+# triggerex?/pressex?/repeatex?. Varios scripts del proyecto llaman directamente
+# a Input.trigger?(Input::F5), así que aquí se redirige automáticamente.
+# Los botones numéricos (Input::C, Input::B...) siguen usando el método nativo.
+#===============================================================================
+if $MKXP && Input.respond_to?(:triggerex?)
+  class << Input
+    if Input.respond_to?(:trigger?)
+      alias_method :pb_native_trigger?, :trigger?
+      def trigger?(button)
+        return triggerex?(button) if button.is_a?(Symbol)
+        return pb_native_trigger?(button)
+      end
+    end
+    if Input.respond_to?(:press?) && Input.respond_to?(:pressex?)
+      alias_method :pb_native_press?, :press?
+      def press?(button)
+        return pressex?(button) if button.is_a?(Symbol)
+        return pb_native_press?(button)
+      end
+    end
+    if Input.respond_to?(:repeat?) && Input.respond_to?(:repeatex?)
+      alias_method :pb_native_repeat?, :repeat?
+      def repeat?(button)
+        return repeatex?(button) if button.is_a?(Symbol)
+        return pb_native_repeat?(button)
+      end
+    end
   end
 end

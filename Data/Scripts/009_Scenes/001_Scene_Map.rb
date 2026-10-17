@@ -142,7 +142,7 @@ class Scene_Map
 
     unless pbMapInterpreterRunning?
       for keyNumber in 0...Input::ITEMKEYS.size
-        if (!$MKXP ? Input.trigger?(Input::ITEMKEYS[keyNumber]) : Input.triggerex?(Input::ITEMKEYS[keyNumber])) && $PokemonTemp
+        if Input.trigger?(Input::ITEMKEYS[keyNumber]) && $PokemonTemp
           $PokemonTemp.keyItemCalling = keyNumber 
         end
       end

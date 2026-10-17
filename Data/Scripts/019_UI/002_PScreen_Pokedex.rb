@@ -1098,7 +1098,7 @@ class PokemonPokedexScene
              pbPlayDecisionSE()
              pbDexEntry(@sprites["pokedex"].index)
            end
-          elsif (!$MKXP ? Input.trigger?(Input::F5) : Input.triggerex?(Input::F5))
+          elsif Input.trigger?(Input::F5)
            pbPlayDecisionSE()
            pbDexSearch
          end

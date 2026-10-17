@@ -198,3 +198,29 @@ def pbPostToFile(url, postdata, file)
   rescue
   end
 end
+
+# Parche Android: en plataformas no-Windows, usar HTTPLite en vez de wininet
+if defined?(HTTPLite)
+  module Net
+    module HTTP
+      module_function
+
+      def get(url, params = nil, headers = nil, wininet_flags = 0)
+        full = url
+        if params
+          terms = []
+          params.each { |k, v| terms.push("#{k}=#{v}") }
+          full = "#{url}#{url.include?('?') ? '&' : '?'}#{terms.join('&')}"
+        end
+        return 0, {}, '' unless defined?(HTTPLite)
+        response = begin
+          HTTPLite.get(full, nil, true)  # misma firma que usa el shim de Apple
+        rescue StandardError
+          nil
+        end
+        return 0, {}, '' unless response.is_a?(Hash)
+        return response[:status].to_i, (response[:headers] || {}), response[:body].to_s
+      end
+    end
+  end
+end

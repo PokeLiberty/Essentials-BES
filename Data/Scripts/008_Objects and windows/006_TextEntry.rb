@@ -1,3 +1,374 @@
+# Convierte una lista de bytes en String.
+def pbBytesToStr(bytes)
+  s=bytes.pack("C*")
+  s.force_encoding("UTF-8") if s.respond_to?(:force_encoding)
+  return s
+end
+
+# Codepoint Unicode -> carácter UTF-8.
+def pbUTF8FromCodepoint(cp)
+  if cp<0x80
+    bytes=[cp]
+  elsif cp<0x800
+    bytes=[0xC0|(cp>>6), 0x80|(cp&0x3F)]
+  elsif cp<0x10000
+    bytes=[0xE0|(cp>>12), 0x80|((cp>>6)&0x3F), 0x80|(cp&0x3F)]
+  else
+    bytes=[0xF0|((cp>>18)&0x07), 0x80|((cp>>12)&0x3F),
+           0x80|((cp>>6)&0x3F), 0x80|(cp&0x3F)]
+  end
+  return pbBytesToStr(bytes)
+end
+
+# Divide una cadena UTF-8 en caracteres (no en bytes).
+# En Ruby 1.8, String#scan(/./) trabaja con bytes y rompe la Ñ y demás.
+def pbUTF8Chars(str)
+  bytes=str.unpack("C*")
+  result=[]
+  i=0
+  while i<bytes.length
+    b=bytes[i]
+    if b<0x80
+      len=1
+    elsif b>=0xF0
+      len=4
+    elsif b>=0xE0
+      len=3
+    elsif b>=0xC0
+      len=2
+    else
+      len=1
+    end
+    len=bytes.length-i if i+len>bytes.length
+    result.push(pbBytesToStr(bytes[i,len]))
+    i+=len
+  end
+  return result
+end
+
+#===============================================================================
+# Teclado Win32 (estado de teclas y traducción a texto).
+#===============================================================================
+module KeyboardText
+  VK_BACK    = 0x08
+  VK_TAB     = 0x09
+  VK_RETURN  = 0x0D
+  VK_SHIFT   = 0x10
+  VK_CONTROL = 0x11
+  VK_MENU    = 0x12   # Alt (AltGr = Ctrl + Alt)
+  VK_ESCAPE  = 0x1B
+  VK_END     = 0x23
+  VK_HOME    = 0x24
+  VK_LEFT    = 0x25
+  VK_RIGHT   = 0x27
+  VK_DELETE  = 0x2E
+
+  # true = imprime en la consola las teclas detectadas (diagnóstico)
+  DEBUG = false
+  
+  # true = ignora las teclas si la ventana activa no es la del juego
+  FOCUS_CHECK = false
+  # Escribe una línea en kb_debug.txt (carpeta del juego). No bloquea el juego.
+  def self.log(msg)
+    begin
+      File.open("kb_debug.txt","a") { |f| f.puts(msg) }
+    rescue Exception
+    end
+  end
+  # Caracteres de acento que devuelve el teclado al pulsar una tecla muerta
+  DEAD_CHARS=[0xB4,0x60,0xA8,0x5E,0x7E]
+  # Repetición de tecla mantenida (en frames)
+  REPEAT_DELAY = 24
+  REPEAT_RATE  = 3
+
+  # Acento muerto (codepoint) => [letras base ASCII, letras acentuadas]
+  ACCENTS = {
+    0xB4 => ["AEIOUaeiou", "ÁÉÍÓÚáéíóú"],   # ´ agudo
+    0x60 => ["AEIOUaeiou", "ÀÈÌÒÙàèìòù"],   # ` grave
+    0xA8 => ["AEIOUaeiou", "ÄËÏÖÜäëïöü"],   # ¨ diéresis
+    0x5E => ["AEIOUaeiou", "ÂÊÎÔÛâêîôû"],   # ^ circunflejo
+    0x7E => ["AONaon",     "ÃÕÑãõñ"]        # ~ tilde
+  }
+
+  # Devuelve el carácter acentuado o nil si la combinación no existe.
+  def self.compose(accent,base)
+    entry=ACCENTS[accent]
+    return nil if !entry || base>=0x80
+    idx=entry[0].index(base.chr)
+    return nil if !idx
+    return pbUTF8Chars(entry[1])[idx]
+  end
+
+  # ¿El carácter cp es ya la versión acentuada de ese acento? (p. ej. ú para ´)
+  def self.accented?(accent,cp)
+    entry=ACCENTS[accent]
+    return false if !entry
+    return pbUTF8Chars(entry[1]).include?(pbUTF8FromCodepoint(cp))
+  end
+
+  # Inicialización perezosa. Devuelve true si Win32API está disponible.
+  def self.setup
+    if @available.nil?
+      begin
+        @getAsyncKeyState=Win32API.new("user32","GetAsyncKeyState","i","i")
+        @getForegroundWindow=Win32API.new("user32","GetForegroundWindow","","i")
+        @toUnicode=Win32API.new("user32","ToUnicode","iippii","i")
+        @mapVirtualKey=Win32API.new("user32","MapVirtualKey","ii","i")
+        @available=true
+        begin
+          @getKeyState=Win32API.new("user32","GetKeyState","i","i")
+        rescue Exception
+          @getKeyState=nil
+        end
+      rescue Exception => e
+        @available=false
+        @errorMsg=e.message
+        puts "KeyboardText: Win32API NO disponible (#{e.message}). Solo funcionan Intro/Esc."
+      end
+      @held=Array.new(256,0)
+      @state=Array.new(256,0)
+      @kbs="\0"*256
+      @dead=nil
+    end
+    return @available
+  end
+
+  def self.available?
+    return setup
+  end
+
+  # Diagnóstico: devuelve un texto con el estado del teclado.
+  def self.diagnose
+    return "Win32API no disponible: #{@errorMsg}" if !setup
+    lines=[]
+    lines.push("ventana activa=#{@getForegroundWindow.call}  ventana juego=#{gameWindow}")
+    lines.push("comprobación de foco: #{FOCUS_CHECK ? 'activa' : 'desactivada'}")
+    buf="\0"*16
+    ret=@toUnicode.call(0x41,@mapVirtualKey.call(0x41,0),"\0"*256,buf,8,4)
+    lines.push("prueba ToUnicode(A): ret=#{ret} texto=#{buf.unpack('v*')[0].inspect} (esperado 1 y 97)")
+    st=readKeys
+    down=[]
+    for vk in 0...256
+      down.push(vk) if (st[vk]&0x80)!=0
+    end
+    lines.push("teclas pulsadas ahora (VK): #{down.inspect}")
+    return lines.join("\n")
+  end
+
+  # Llamar al abrir una pantalla de texto. Las teclas que ya estaban pulsadas
+  # (p. ej. el botón que abrió el cuadro) no cuentan como pulsaciones nuevas.
+  def self.reset
+    setup
+    @dead=nil
+    if @available
+      st=readKeys
+      for vk in 0...256
+        @held[vk]=((st[vk]&0x80)!=0) ? 1 : 0
+      end
+    end
+  end
+
+  # ¿Está pulsada esta tecla en este frame?
+  def self.down?(vk)
+    setup
+    return false if !@state
+    return (@state[vk]&0x80)!=0
+  end
+
+  # Manejador de la ventana del juego. Si no se puede obtener, devuelve 0.
+  def self.gameWindow
+    if @gameWnd.nil?
+      begin
+        @gameWnd=Win32API.pbFindRgssWindow
+      rescue Exception
+        @gameWnd=0
+      end
+    end
+    return @gameWnd
+  end
+
+  # ¿Tiene el foco la ventana del juego? Si no podemos comprobarlo, se asume que sí.
+  def self.gameFocused?
+    # Desactivado por defecto: la ventana 'juego' que se detecta no siempre es la
+    # visible, y dejaba el teclado inutilizable. Poner true para volver a usarlo.
+    return true if !FOCUS_CHECK
+    fg=@getForegroundWindow.call
+    return false if fg==0
+    gw=gameWindow
+    return true if gw==0
+    return fg==gw
+  end
+
+  # Estado de las 256 teclas, en el formato de GetKeyboardState, usando
+  # GetAsyncKeyState (global: funciona desde cualquier hilo). Sin foco = nada.
+  def self.readKeys
+    bytes=Array.new(256,0)
+    @focused=gameFocused?
+    if @focused
+      for vk in 0...256
+        bytes[vk]=((@getAsyncKeyState.call(vk)&0x8000)!=0) ? 0x80 : 0
+      end
+      # Shift/Ctrl/Alt genéricos = cualquiera de sus dos lados
+      bytes[0x10]=bytes[0x10]|bytes[0xA0]|bytes[0xA1]
+      bytes[0x11]=bytes[0x11]|bytes[0xA2]|bytes[0xA3]
+      bytes[0x12]=bytes[0x12]|bytes[0xA4]|bytes[0xA5]
+      # Teclas de bloqueo (Mayús, Num, Scroll): bit 0x01 = activado
+      if @getKeyState
+        for vk in [0x14,0x90,0x91]
+          bytes[vk]=bytes[vk]|1 if (@getKeyState.call(vk)&1)!=0
+        end
+      end
+    end
+    @state=bytes
+    @kbs=bytes.pack("C*")
+    return @state
+  end
+
+  # Llamar UNA vez por frame. Devuelve una lista [[vk, texto_o_nil], ...] con
+  # las pulsaciones nuevas (incluidas repeticiones de teclas mantenidas).
+  # El texto es nil si la tecla no escribe nada (flechas, Backspace, Enter...).
+  def self.poll
+    return fallbackPoll if !setup
+    st=readKeys
+    pressed=[]
+    for vk in 0...256
+      if (st[vk]&0x80)!=0
+        if @held[vk]==0
+          @held[vk]=1
+          pressed.push(vk)
+        else
+          @held[vk]+=1
+          if @held[vk]>=REPEAT_DELAY && (@held[vk]-REPEAT_DELAY)%REPEAT_RATE==0 && vk!=@deadVk
+            pressed.push(vk)
+          end
+        end
+      else
+        @held[vk]=0
+        @deadVk=nil if vk==@deadVk
+      end
+    end
+    # Teclas OEM (acentos, ñ, signos) antes que letras: si llegan en el mismo
+    # frame, el acento debe procesarse antes que la letra que lo completa.
+    oem=[]
+    rest=[]
+    for vk in pressed
+      if (vk>=0xBA && vk<=0xC0) || (vk>=0xDB && vk<=0xDF)
+        oem.push(vk)
+      else
+        rest.push(vk)
+      end
+    end
+    pressed=oem+rest
+    result=[]
+    for vk in pressed
+      result.push([vk,translate(vk)])
+    end
+    if DEBUG && (!pressed.empty? || @focused!=@lastFocused)
+      log("[KB] foco=#{@focused} pulsadas=#{pressed.inspect} eventos=#{result.inspect}")
+    end
+    @lastFocused=@focused
+    return result
+  end
+
+  # Traduce una tecla a texto según el teclado del sistema.
+  def self.translate(vk)
+    st=@state
+    # Ctrl+tecla (atajos como Ctrl+C) no escribe texto.
+    # AltGr envía Ctrl+Alt a la vez, y ese sí debe escribir (@, €, etc.).
+    return nil if ((st[VK_CONTROL]&0x80)!=0) && ((st[VK_MENU]&0x80)==0)
+    scan=@mapVirtualKey.call(vk,0)
+    buf="\0"*16
+    # flag 4 = no cambiar el estado de teclas muertas del sistema
+    ret=@toUnicode.call(vk,scan,@kbs,buf,8,4)
+    # Algunas capas de Win32API devuelven -1 como entero sin signo (4294967295).
+    # Lo normalizamos y limitamos al tamaño del buffer (8 unidades UTF-16),
+    # para que ningún bucle de abajo pueda recorrer miles de millones de vueltas.
+    ret-=0x100000000 if ret>0x7FFFFFFF
+    ret=8 if ret>8
+    units=buf.unpack("v*")
+    out=""
+    if DEBUG && (ret<0 || @dead)
+      log("[acento] vk=#{vk} ret=#{ret} units=#{units[0,4].inspect} pendiente=#{@dead.inspect}")
+    end
+    # Acento muerto. Windows puede devolver -1, o devolver el acento una o dos
+    # veces (p. ej. "´´") si el estado de teclas muertas ya lo consumió el
+    # sistema de mensajes. En todos esos casos el acento queda pendiente y no se imprime.
+    same=(ret>0)
+    if ret>0
+      for k in 0...ret
+        same=false if units[k]!=units[0]
+      end
+    end
+    deadLike=(ret<0) || (same && DEAD_CHARS.include?(units[0]))
+    if deadLike
+      cp=units[0]
+      if @dead==cp
+        # Misma tecla de acento dos veces seguidas: un solo acento
+        out=pbUTF8FromCodepoint(cp)
+        @dead=nil
+        return out
+      end
+      out=pbUTF8FromCodepoint(@dead) if @dead
+      @dead=cp
+      @deadVk=vk
+      return (out=="") ? nil : out
+    end
+    return nil if ret==0   # Shift, Ctrl, flechas...: el acento pendiente se conserva
+    i=0
+    while i<ret
+      u=units[i]
+      i+=1
+      if u>=0xD800 && u<=0xDBFF && i<ret && units[i]>=0xDC00 && units[i]<=0xDFFF
+        cp=0x10000+((u-0xD800)<<10)+(units[i]-0xDC00)
+        i+=1
+      else
+        cp=u
+      end
+      if cp<0x20 || cp==0x7F
+        # Enter, Tab, Backspace, Esc... no son texto: cancelan el acento pendiente
+        @dead=nil
+        next
+      end
+      if @dead
+        if cp==0x20
+          # Como Windows: acento + espacio = solo el acento
+          out+=pbUTF8FromCodepoint(@dead)
+          @dead=nil
+          next
+        end
+        if accented?(@dead,cp)
+          out+=pbUTF8FromCodepoint(cp)
+          @dead=nil
+          next
+        end
+        composed=compose(@dead,cp)
+        if composed
+          out+=composed
+          @dead=nil
+          next
+        end
+        out+=pbUTF8FromCodepoint(@dead)
+        @dead=nil
+      end
+      out+=pbUTF8FromCodepoint(cp)
+    end
+    return (out=="") ? nil : out
+  end
+
+  # Respaldo cuando Win32API no está disponible (MKXP fuera de Windows).
+  def self.fallbackPoll
+    events=[]
+    begin
+      events.push([VK_RETURN,nil]) if Input.triggerex?(:RETURN)
+      events.push([VK_ESCAPE,nil]) if Input.triggerex?(:ESCAPE)
+      events.push([VK_BACK,nil])   if Input.triggerex?(:BACKSPACE)
+      events.push([VK_LEFT,nil])   if Input.triggerex?(:LEFT)
+      events.push([VK_RIGHT,nil])  if Input.triggerex?(:RIGHT)
+    rescue Exception
+    end
+    return events
+  end
+end
 class Window_CharacterEntry < Window_DrawableCommand
   XSIZE=13
   YSIZE=4
@@ -75,7 +446,7 @@ class CharacterEntryHelper
   end
 
   def textChars
-    chars=text.scan(/./m)
+    chars=pbUTF8Chars(text)
     if @passwordChar!=""
       chars.length.times {|i|
          chars[i]=@passwordChar
@@ -88,7 +459,7 @@ class CharacterEntryHelper
     @maxlength=-1
     @text=text
     @passwordChar=""
-    @cursor=text.scan(/./m).length
+    @cursor=pbUTF8Chars(text).length
     ensure
   end
 
@@ -102,17 +473,17 @@ class CharacterEntryHelper
   end
 
   def length
-    return self.text.scan(/./m).length
+    return pbUTF8Chars(self.text).length
   end
 
   def canInsert?
-    chars=self.text.scan(/./m)
+    chars=pbUTF8Chars(self.text)
     return false if @maxlength>=0 && chars.length>=@maxlength
     return true
   end
 
   def insert(ch)
-    chars=self.text.scan(/./m)
+    chars=pbUTF8Chars(self.text)
     return false if @maxlength>=0 && chars.length>=@maxlength
     chars.insert(@cursor,ch)
     @text=""
@@ -124,13 +495,13 @@ class CharacterEntryHelper
   end
 
   def canDelete?
-    chars=self.text.scan(/./m)
+    chars=pbUTF8Chars(self.text)
     return false if chars.length<=0 || @cursor<=0
     return true
   end
 
   def delete
-    chars=self.text.scan(/./m)
+    chars=pbUTF8Chars(self.text)
     return false if chars.length<=0 || @cursor<=0
     chars.delete_at(@cursor-1)
     @text=""
@@ -145,7 +516,7 @@ class CharacterEntryHelper
 
   def ensure
     return if @maxlength<0
-    chars=self.text.scan(/./m)
+    chars=pbUTF8Chars(self.text)
     if chars.length>@maxlength && @maxlength>=0
       chars=chars[0,@maxlength]
     end
@@ -235,7 +606,7 @@ class Window_TextEntry < SpriteWindow_Base
       return
     end
     if Input.repeat?(Input::RIGHT) && Input.press?(Input::A)
-      if @helper.cursor < self.text.scan(/./m).length
+      if @helper.cursor < pbUTF8Chars(self.text).length
         @helper.cursor+=1
         @frame=0
         self.refresh
@@ -265,7 +636,7 @@ class Window_TextEntry < SpriteWindow_Base
     width=self.width-self.borderX
     height=self.height-self.borderY
     cursorcolor=Color.new(16,24,32)
-    textscan=self.text.scan(/./m)
+    textscan=pbUTF8Chars(self.text)
     scanlength=textscan.length
     @helper.cursor=scanlength if @helper.cursor>scanlength
     @helper.cursor=0 if @helper.cursor<0
@@ -317,7 +688,7 @@ def getLineBrokenText(bitmap,value,width,dims)
   ret.push(["",0,0,0,bitmap.text_size("X").height,0,0,0,0])
   while ((c = textmsg.slice!(/\n|(\S*([ \r\t\f]?))/)) != nil)
     break if c==""
-    length=c.scan(/./m).length
+    length=pbUTF8Chars(c).length
     ccheck=c
     if ccheck=="\n"
       ret.push(["\n",x,y,0,textheight,line,position,column,0])
@@ -586,95 +957,45 @@ class Window_MultilineTextEntry < SpriteWindow_Base
 #   echoln ["aftermoving",@cursorLine,@cursorColumn]
   end
 
-  def update
+  def update(events=nil)
     @frame+=1
     @frame%=20
     self.refresh if ((@frame%10)==0)
     return if !self.active
-    # Moving cursor
-    if Input.repeat?(Input::LEFT)
-      moveCursor(0,-1)
-      return
-    elsif Input.repeat?(Input::UP)
-      moveCursor(-1,0)
-      return
-    elsif Input.repeat?(Input::DOWN)
-      moveCursor(1,0)
-      return
-    elsif Input.repeat?(Input::RIGHT)
-      moveCursor(0,1)
-      return
-    end
-    if !@peekMessage
-      @peekMessage=Win32API.new("user32.dll","PeekMessage","pliii","i") rescue nil
-    end
-    if @peekMessage
-      msg=[0,0,0,0,0,0,0].pack("V*")
-      retval=@peekMessage.call(msg,0,0x102,0x102,1)
-      if retval!=0
-        p "WM_CHAR #{msg[2]}"
+    events=KeyboardText.poll if !events
+    ctrl=KeyboardText.down?(KeyboardText::VK_CONTROL)
+    for ev in events
+      vk=ev[0]
+      txt=ev[1]
+      if txt
+        for ch in pbUTF8Chars(txt)
+          self.insert(ch)
+        end
+        next
       end
-    end
-    if Input.pressex?(0x11) && Input.triggerex?(0x24) # Ctrl + Home
-      # Move cursor to beginning
-      @cursorLine=0
-      @cursorColumn=0
-      updateCursorPos(true)
-      return
-    elsif Input.pressex?(0x11) && Input.triggerex?(0x23) # Ctrl + End
-      # Move cursor to end
-      @cursorLine=getTotalLines()-1
-      @cursorColumn=getColumnsInLine(@cursorLine)
-      updateCursorPos(true)
-      return
-    elsif Input.repeatex?(13)
-      self.insert("\n")
-      return
-    elsif (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.repeatex?(:BACKSPACE))
-      # Backspace
-      self.delete
-      return
-    end
-    # Letter keys
-    for i in 65..90
-      if Input.repeatex?(i)
-        shift=(Input.press?(Input::SHIFT)) ? 0x41 : 0x61
-        insert((shift+(i-65)).chr)
-        return
-      end
-    end
-    # Number keys
-    shifted=")!@\#$%^&*("
-    unshifted="0123456789"
-    for i in 48..57
-      if Input.repeatex?(i)
-        insert((Input.press?(Input::SHIFT)) ? shifted[i-48].chr : unshifted[i-48].chr)
-        return
-      end
-    end
-    keys=[
-       [32," "," "],
-       [106,"*","*"],
-       [107,"+","+"],
-       [109,"-","-"],
-       [111,"/","/"],
-       [186,";",":"],
-       [187,"=","+"],
-       [189,"-","_"],
-       [191,"/","?"],
-       [219,"[","{"],
-       [190,".",">"],
-       [188,",","<"],
-       [220,"\\","|"],
-       [190,".",""],
-       [188,",",""],
-       [221,"]","}"],
-       [222,"'","\""]
-    ]
-    for i in keys
-      if Input.repeatex?(i[0])
-        insert((Input.press?(Input::SHIFT)) ? i[2] : i[1])
-        return
+      if ctrl && vk==KeyboardText::VK_HOME
+        @cursorLine=0
+        @cursorColumn=0
+        updateCursorPos(true)
+      elsif ctrl && vk==KeyboardText::VK_END
+        @cursorLine=getTotalLines()-1
+        @cursorColumn=getColumnsInLine(@cursorLine)
+        updateCursorPos(true)
+      else
+        case vk
+        when KeyboardText::VK_LEFT
+          moveCursor(0,-1)
+        when KeyboardText::VK_RIGHT
+          moveCursor(0,1)
+        when KeyboardText::VK_UP
+          moveCursor(-1,0)
+        when KeyboardText::VK_DOWN
+          moveCursor(1,0)
+        when KeyboardText::VK_RETURN
+          self.insert("\n")
+        when KeyboardText::VK_BACK
+          self.delete
+        end
       end
     end
   end
@@ -733,7 +1054,7 @@ class Window_MultilineTextEntry < SpriteWindow_Base
           textheight=textchars[i][4]
           posToCursor=@cursorColumn-thiscolumn
           if posToCursor>=0
-            partialString=textchars[i][0].scan(/./m)[0,posToCursor].join("")
+            partialString=pbUTF8Chars(textchars[i][0])[0,posToCursor].join("")
             cursorX+=bitmap.text_size(partialString).width
           end
           break
@@ -749,136 +1070,51 @@ end
 
 
 class Window_TextEntry_Keyboard < Window_TextEntry
-
-  # Acentos básicos [ ´ , ` , ¨ , ^ ]
-  @@Acentos = [180, 96, 168, 94]
-  @@AcentosConversion=[
-    ['A','E','I','O','U','a','e','i','o','u'],
-    ['Á','É','Í','Ó','Ú','á','é','í','ó','ú'],
-    ['À','È','Ì','Ò','Ù','à','è','ì','ò','ù'],
-    ['Ä','Ë','Ï','Ö','Ü','ä','ë','ï','ö','ü'],
-    ['Â','Ê','Î','Ô','Û','â','ê','î','ô','û']
-  ]
-
-  def update
+  # Teclas ya traducidas por KeyboardText.poll (ver arriba).
+  # events: lista [[vk, texto_o_nil], ...]. Si es nil, la ventana lee el teclado.
+  def update(events=nil)
     @frame+=1
     @frame%=20
     self.refresh if ((@frame%10)==0)
     return if !self.active
-    # Moving cursor
-    # Clara Was Here, "fix" teclado así solo pilla las teclas de flecha, incluso si cambias los controles.
-    if (!$MKXP ? Input.repeat?(0x25) : Input.repeatex?(:LEFT)) || 
-      (!$MKXP ? Input.trigger?(0x25) : Input.triggerex?(:LEFT)) #(Input::LEFT)
-     if @helper.cursor > 0
-       @helper.cursor-=1
-       @frame=0
-       self.refresh
-     end
-     return
-   end
-   if (!$MKXP ? Input.repeat?(0x27) : Input.repeatex?(:RIGHT)) || 
-      (!$MKXP ? Input.trigger?(0x27) : Input.triggerex?(:RIGHT)) #(Input::RIGHT)
-     if @helper.cursor < self.text.scan(/./m).length
-       @helper.cursor+=1
-       @frame=0
-       self.refresh
-     end
-     return
-   end
-    # Backspace
-    if (!$MKXP ? Input.repeatex?(8) : Input.triggerex?(:BACKSPACE)) || (!$MKXP ? Input.repeatex?(0x2E) : Input.repeatex?(:BACKSPACE))
-      self.delete if @helper.cursor > 0
-      return
-    elsif (!$MKXP ? Input.repeatex?(13) : Input.repeatex?(:RETURN))
-      return
-    end
-    if !@toUnicode
-      @toUnicode=Win32API.new("user32.dll","ToUnicode","iippii","i") rescue nil
-      @mapVirtualKey=Win32API.new("user32.dll","MapVirtualKey","ii","i") rescue nil
-      @getKeyboardState=Win32API.new("user32.dll","GetKeyboardState","p","i") rescue nil
-    end
-    @alt_gr = false
-    if @getKeyboardState
-      @acento = 0 if !@acento
-      kbs="\0"*256
-      @getKeyboardState.call(kbs)
-      kbcount=0
-      for i in 3...256
-        if Input.triggerex?(i)
-          if i==17 # Alt Gr Key
-            @alt_gr=true
-          end
-          vsc=@mapVirtualKey.call(i,0)
-          buf="\0"*8
-          ret=@toUnicode.call(i,vsc,kbs,buf,4,0)
-          if ret>0
-            b=buf.unpack("v*")
-            if @@Acentos.include?(b[0])
-              @acento = @@Acentos.index(b[0]) + 1
-              return
-            elsif @@AcentosConversion[0].include?(buf[0].chr) && @acento > 0
-              idx = @@AcentosConversion[0].index(buf[0].chr)
-              insert(@@AcentosConversion[@acento][idx])
-              @acento = 0
-              return
-            else
-              @acento=0
-            end
-            for j in 0...ret
-              if buf[j]<=0x7F
-                insert(buf[j].chr)
-              elsif buf[j]<=0x7FF
-                insert((0xC0|((buf[j]>>6)&0x1F)).chr+(0x80|(buf[j]&0x3F)).chr)
-              else
-                str=(0xE0|((buf[j]>>12)&0x0F)).chr
-                str+=(0x80|((buf[j]>>6)&0x3F)).chr
-                str+=(0x80|(buf[j]&0x3F)).chr
-                insert(str)
-              end
-              kbcount+=1
-            end
-          end
+    events=KeyboardText.poll if !events
+    for ev in events
+      vk=ev[0]
+      txt=ev[1]
+      if txt
+        for ch in pbUTF8Chars(txt)
+          self.insert(ch)
         end
+        next
       end
-      return if kbcount>0
-    end
-    # Letter keys
-    for i in 65..90
-      if Input.repeatex?(i)
-        shift=(Input.press?(Input::SHIFT)) ? 0x41 : 0x61
-        insert((shift+(i-65)).chr)
-        return
-      end
-    end
-    # Number keys
-    shifted="=!\"·$%&/()"
-    unshifted="0123456789"
-    for i in 48..57
-      if Input.repeatex?(i)
-        insert((Input.press?(Input::SHIFT)) ? shifted[i-48].chr : unshifted[i-48].chr)
-        return
-      end
-    end
-    keys=[
-       [32," "," "],
-       [106,"*","*"],
-       [107,"+","+"],
-       [109,"-","-"],
-       [111,"/","/"],
-       [186,";",":"],
-       [187,"=","+"],
-       [189,"-","_"],
-       [191,"/","?"],
-       [219,"[","{"],
-       [190,".",""],
-       [188,",",""],
-       [221,"]","}"],
-       [222,"'","\""]
-    ]
-    for i in keys
-      if Input.repeatex?(i[0])
-        insert((Input.press?(Input::SHIFT)) ? i[2] : i[1])
-        return
+      case vk
+      when KeyboardText::VK_LEFT
+        if @helper.cursor>0
+          @helper.cursor-=1
+          @frame=0
+          self.refresh
+        end
+      when KeyboardText::VK_RIGHT
+        if @helper.cursor<@helper.length
+          @helper.cursor+=1
+          @frame=0
+          self.refresh
+        end
+      when KeyboardText::VK_HOME
+        @helper.cursor=0
+        @frame=0
+        self.refresh
+      when KeyboardText::VK_END
+        @helper.cursor=@helper.length
+        @frame=0
+        self.refresh
+      when KeyboardText::VK_BACK
+        self.delete if @helper.cursor>0
+      when KeyboardText::VK_DELETE
+        if @helper.cursor<@helper.length
+          @helper.cursor+=1
+          self.delete
+        end
       end
     end
   end
@@ -896,18 +1132,20 @@ def Kernel.pbFreeText(msgwindow,currenttext,passwordbox,maxlength,width=240)
   pbPositionNearMsgWindow(window,msgwindow,:right)
   window.text=currenttext
   window.passwordChar="*" if passwordbox
+  KeyboardText.reset
   loop do
     Graphics.update
     Input.update
-    if Input.triggerex?(0x1B)
+    events=KeyboardText.poll
+    if events.any?{|e| e[0]==KeyboardText::VK_ESCAPE}
       ret=currenttext
       break
     end
-    if Input.triggerex?(13)
+    if events.any?{|e| e[0]==KeyboardText::VK_RETURN}
       ret=window.text
       break
     end
-    window.update
+    window.update(events)
     msgwindow.update if msgwindow
     yield if block_given?
   end
@@ -933,8 +1171,8 @@ end
 #===============================================================================
 class PokemonEntryScene
   @@Characters=[
-     [("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz").scan(/./),"[*]"],
-     [("0123456789   !@\#$%^&*()   ~`-_+={}[]   :;'\"<>,.?/   ").scan(/./),"[A]"],
+     [pbUTF8Chars("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"),"[*]"],
+     [pbUTF8Chars("0123456789   !@\#$%^&*()   ~`-_+={}[]   :;'\"<>,.?/   "),"[A]"],
   ]
   USEKEYBOARD=true
 
@@ -973,6 +1211,7 @@ class PokemonEntryScene
          32,Graphics.height-96,Graphics.width-64,96,@viewport
       )
     end
+    #x,y,width,height
     @sprites["helpwindow"].letterbyletter=false
     @sprites["helpwindow"].viewport=@viewport
     @sprites["helpwindow"].visible=USEKEYBOARD
@@ -994,6 +1233,11 @@ class PokemonEntryScene
           charheight=@sprites["subject"].bitmap.height
           @sprites["subject"].x = 44*2 - charwidth/8
           @sprites["subject"].y = 38*2 - charheight/4
+
+          @sprites["trainer"]=IconSprite.new(336,112,@viewport)
+          @sprites["trainer"].setBitmap(pbPlayerSpriteFile($Trainer.trainertype))
+          pbPositionPokemonSprite(@sprites["trainer"],176,120)
+
         end
       end
     when 2   # Pokémon
@@ -1005,6 +1249,14 @@ class PokemonEntryScene
         @sprites["subject"]=PokemonIconSprite.new(pokemon,@viewport)
         @sprites["subject"].x=56
         @sprites["subject"].y=14
+
+        @sprites["pokemon"]=PokemonSprite.new(@viewport)
+        @sprites["pokemon"].setPokemonBitmap(pokemon)
+        @sprites["pokemon"].mirror=false
+        @sprites["pokemon"].color=Color.new(0,0,0,0)
+        
+        pbPositionPokemonSprite(@sprites["pokemon"],176,120)
+
         @sprites["gender"]=BitmapSprite.new(32,32,@viewport)
         @sprites["gender"].x=430
         @sprites["gender"].y=54
@@ -1042,19 +1294,22 @@ class PokemonEntryScene
 
   def pbEntry1
     ret=""
+    KeyboardText.reset
     loop do
       Graphics.update
       Input.update
-      if (!$MKXP ? Input.triggerex?(0x1B) : Input.triggerex?(:ESCAPE)) && @minlength==0
+      events=KeyboardText.poll
+      if @minlength==0 && events.any?{|e| e[0]==KeyboardText::VK_ESCAPE}
         ret=""
         break
       end
-      if (!$MKXP ? Input.triggerex?(13) : Input.triggerex?(:RETURN)) && @sprites["entry"].text.length>=@minlength
+      if events.any?{|e| e[0]==KeyboardText::VK_RETURN} &&
+         pbUTF8Chars(@sprites["entry"].text).length>=@minlength
         ret=@sprites["entry"].text
         break
       end
       @sprites["helpwindow"].update
-      @sprites["entry"].update
+      @sprites["entry"].update(events)
       @sprites["subject"].update if @sprites["subject"]
     end
     Input.update
@@ -1074,7 +1329,7 @@ class PokemonEntryScene
         index=@sprites["entry2"].command
         if index==-3 # Confirm text
           ret=@sprites["entry"].text
-          if ret.length<@minlength || ret.length>@maxlength
+          if pbUTF8Chars(ret).length<@minlength || pbUTF8Chars(ret).length>@maxlength
             pbPlayBuzzerSE()
           else
             pbPlayDecisionSE()
@@ -1124,9 +1379,9 @@ end
 #===============================================================================
 class PokemonEntryScene2
   @@Characters=[
-     [("ABCDEFGHIJ ,."+"KLMNOPQRST '-"+"UVWXYZ     ♂♀"+"             "+"0123456789   ").scan(/./),_INTL("UPPER")],
-     [("abcdefghij ,."+"klmnopqrst '-"+"uvwxyz     ♂♀"+"             "+"0123456789   ").scan(/./),_INTL("lower")],
-     [(",.:;!?   ♂♀  "+"\"'()<>[]     "+"~@#%*&$      "+"+-=^_/\\|     "+"             ").scan(/./),_INTL("other")],
+     [pbUTF8Chars("ABCDEFGHIJ ,."+"KLMNOPQRST '-"+"UVWXYZ     ♂♀"+"             "+"0123456789   "),_INTL("UPPER")],
+     [pbUTF8Chars("abcdefghij ,."+"klmnopqrst '-"+"uvwxyz     ♂♀"+"             "+"0123456789   "),_INTL("lower")],
+     [pbUTF8Chars(",.:;!?   ♂♀  "+"\"'()<>[]     "+"~@#%*&$      "+"+-=^_/\\|     "+"             "),_INTL("other")],
   ]
   ROWS=13
   COLUMNS=5
@@ -1598,7 +1853,7 @@ class PokemonEntryScene2
       elsif Input.trigger?(Input::A)
         @cursorpos=OK
         @sprites["cursor"].setCursorPos(@cursorpos)
-      elsif (!$MKXP ? Input.trigger?(Input::F5) : Input.triggerex?(Input::F5))
+      elsif Input.trigger?(Input::F5)
         pbChangeTab
       end
     end
@@ -1628,6 +1883,9 @@ class PokemonEntry
     @scene.pbStartScene(helptext,minlength,maxlength,initialText,mode,pokemon)
     ret=@scene.pbEntry
     @scene.pbEndScene
+    if ret.to_s =~ /\A\s*\z/
+      ret = pokemon ? pokemon.name : initialText
+    end
     return ret
   end
 end
