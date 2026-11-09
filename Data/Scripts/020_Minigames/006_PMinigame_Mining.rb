@@ -509,7 +509,7 @@ class MiningGameScene
              Graphics.width,Graphics.height*i/32,Color.new(0,0,0))
           Graphics.update
         end
-        Kernel.pbMessage(_INTL("The wall collapsed!"))
+        Kernel.pbMessage(_INTL("¡El muro se ha derrumbado!"))
         break
       end
       foundall=true
@@ -567,7 +567,7 @@ class MiningGameScene
           Kernel.pbMessage(_INTL("Consigues {1}.\\wtnp[30]\\se[MiningItemGet]\\wtnp[30]",
              PBItems.getName(i)))
         else
-          Kernel.pbMessage(_INTL("Consigues {1}, pero no tienes espacio para llevartelo.",
+          Kernel.pbMessage(_INTL("Consigues {1}, pero no tienes espacio para llevártelo.",
              PBItems.getName(i)))
         end
       end
