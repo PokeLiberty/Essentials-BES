@@ -905,6 +905,10 @@ class PokeBattle_Battler
     peer.pbOnLeavingBattle(@battle, @pokemon) rescue nil
     @pokemon.revertOtherForms
     @fainted=true
+    if isConst?(self.species,PBSpecies,:DONDOZO) && pbPartner && pbPartner.effects[PBEffects::Commander]>0
+      pbPartner.effects[PBEffects::Commander]=0
+      pbPartner.effects[PBEffects::FollowMe]=0
+    end
     # reset choice
     @battle.choices[@index]=[0,0,nil,-1]
     pbOwnSide.effects[PBEffects::LastRoundFainted]=@battle.turncount
@@ -4560,7 +4564,7 @@ class PokeBattle_Battler
        @effects[PBEffects::Bide]>0
       choice[2]=PokeBattle_Move.pbFromPBMove(@battle,PBMove.new(@currentMove))
       turneffects[PBEffects::SpecialUsage]=true
-      PBDebug.log("Continuación de movimiento multi-turnos #{choice[2].name}")
+      PBDebug.log("Continuación de movimiento multi-turnos #{choice[2] ? choice[2].name : 'NIL (currentMove=' + @currentMove.to_s + ')'}")
     elsif @effects[PBEffects::Encore]>0
       if @battle.pbCanShowCommands?(@index) &&
          @battle.pbCanChooseMove?(@index,@effects[PBEffects::EncoreIndex],false)
@@ -4573,6 +4577,10 @@ class PokeBattle_Battler
       end
     end
     thismove=choice[2]
+    if !choice[2] || choice[2].id==0
+      PBDebug.log("[ERROR] #{pbThis} sin movimiento válido. choice=#{choice.inspect}")
+      return
+    end
     return if !thismove || thismove.id==0 # if move was not chosen
     if !turneffects[PBEffects::SpecialUsage]
       # TODO: Quick Claw message

@@ -2093,8 +2093,8 @@ MultipleForms.register(:YAMASK,{
    case pokemon.form
    when 1; movelist=[[1,:ASTONISH],[1,:PROTECT],[4,:HAZE],[8,:NIGHTSHADE],[12,:DISABLE],
                      [16,:BRUTALSWING],[20,:CRAFTYSHIELD],[24,:HEX],[28,:MEANLOOK],[32,:SLAM],
-                     [36,:CURSE],[40,:SHADOWBALL],[44,:EARTHQUAKE],[48,:POWERSPIT],
-                     [48,:GUARDSPIT],[52,:DESTINYBOND]]
+                     [36,:CURSE],[40,:SHADOWBALL],[44,:EARTHQUAKE],[48,:POWERSPLIT],
+                     [48,:GUARDSPLIT],[52,:DESTINYBOND]]
    end
    for i in movelist
      i[1]=getConst(PBMoves,i[1])
@@ -2282,7 +2282,6 @@ MultipleForms.register(:ARCANINE,{
                      [16,:HELPINGHAND], [24,:FIREFANG], [28,:RETALIATE], [32,:CRUNCH],
                      [36,:TAKEDOWN], [40,:FLAMETHROWER], [44,:ROAR], [48,:ROCKSLIDE],
                      [52,:REVERSAL], [56,:FLAREBLITZ], [64,:RAGINGFURY]]
-
    end
    for i in movelist
      i[1]=getConst(PBMoves,i[1])
@@ -3333,8 +3332,8 @@ MultipleForms.register(:TAUROS,{
 "getAbilityList"=>proc{|pokemon|
    case pokemon.form
    when 1; next [[getID(PBAbilities,:INTIMIDATE),0],[getID(PBAbilities,:ANGERPOINT),1],[getID(PBAbilities,:CUDCHEW),2]] # Variante Combatiente
-   when 1; next [[getID(PBAbilities,:INTIMIDATE),0],[getID(PBAbilities,:ANGERPOINT),1],[getID(PBAbilities,:CUDCHEW),2]] # Variante Ardiente
-   when 1; next [[getID(PBAbilities,:INTIMIDATE),0],[getID(PBAbilities,:ANGERPOINT),1],[getID(PBAbilities,:CUDCHEW),2]] # Variante Acuática
+   when 2; next [[getID(PBAbilities,:INTIMIDATE),0],[getID(PBAbilities,:ANGERPOINT),1],[getID(PBAbilities,:CUDCHEW),2]] # Variante Ardiente
+   when 3; next [[getID(PBAbilities,:INTIMIDATE),0],[getID(PBAbilities,:ANGERPOINT),1],[getID(PBAbilities,:CUDCHEW),2]] # Variante Acuática
    else;   next                                       
    end
 },

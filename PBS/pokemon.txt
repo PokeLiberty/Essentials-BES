@@ -24257,7 +24257,7 @@ Pokedex=Su cremoso cuerpo surgió a partir de la unión de partículas odorífer
 BattlerPlayerY=21
 BattlerEnemyY=25
 BattlerAltitude=5
-Evolutions=ALCREMIE,Item,SHINYSTONE
+Evolutions=ALCREMIE,Happiness,
 [869]
 Name=Alcremie
 InternalName=ALCREMIE
@@ -26706,7 +26706,7 @@ Pokedex=Asalta el séquito entero de un Bisharp para reunir metal con el que for
 BattlerPlayerY=0
 BattlerEnemyY=16
 BattlerAltitude=0
-Evolutions=
+Evolutions=TINKATON,Level,38
 [959]
 Name=Tinkaton
 InternalName=TINKATON

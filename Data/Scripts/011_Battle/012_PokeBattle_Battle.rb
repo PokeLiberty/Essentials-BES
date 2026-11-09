@@ -1518,7 +1518,7 @@ class PokeBattle_Battle
     if thispkmn.effects[PBEffects::Octolock]
       for i in battlers
         if i.pokemonIndex==thispkmn.effects[PBEffects::OctolockUser] && !i.isFainted?
-          pbDisplayPaused(_INTL("¡{1} no puede ser cambiado!",thispkmn.pbThis,movename)) if showMessages
+          pbDisplayPaused(_INTL("¡{1} no puede ser cambiado!",thispkmn.pbThis)) if showMessages
           return false
         end
       end
@@ -3226,6 +3226,12 @@ class PokeBattle_Battle
         @choices[i][1]=0
         @choices[i][2]=nil
         @choices[i][3]=-1
+      elsif @battlers[i].effects[PBEffects::Commander]>0
+        # Tatsugiri dentro de la boca de Dondozo no puede recibir órdenes
+        @choices[i][0]=0
+        @choices[i][1]=0
+        @choices[i][2]=nil
+        @choices[i][3]=-1
       else
         unless !@doublebattle && pbIsDoubleBattler?(i)
           PBDebug.log("[Reutilización de comandos] #{@battlers[i].pbThis(true)}")
@@ -3550,6 +3556,7 @@ class PokeBattle_Battle
         else
           switched.push(i.index)
           i.effects[PBEffects::Stakeout]=true
+          @choices[i.index]=[0,0,nil,-1]
         end
       end
     end
@@ -3658,6 +3665,7 @@ class PokeBattle_Battle
       @battlers[i].effects[PBEffects::Stakeout]=false
       @battlers[i].effects[PBEffects::Obstruct]=false
       @battlers[i].effects[PBEffects::Silktrap]=false
+      @battlers[i].effects[PBEffects::BurningBulwark]=false
     end
     @usepriority=false  # recalculate priority
     priority=pbPriority(true) # Ignoring Quick Claw here
